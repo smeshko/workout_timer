@@ -1,0 +1,9 @@
+xcuserdata/
+
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+.build/
+*.xcworkspace
+xcshareddata/
