@@ -13,6 +13,10 @@
 		B84B0ACD2458126B00A07A1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B84B0ACC2458126B00A07A1E /* Assets.xcassets */; };
 		B84B0AD02458126B00A07A1E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B84B0ACF2458126B00A07A1E /* Preview Assets.xcassets */; };
 		B84B0AD32458126B00A07A1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B84B0AD12458126B00A07A1E /* LaunchScreen.storyboard */; };
+		B893DF95245AC46100C43360 /* Segment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893DF94245AC46100C43360 /* Segment.swift */; };
+		B893DF98245AD53700C43360 /* UIResponder-Current.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893DF97245AD53700C43360 /* UIResponder-Current.swift */; };
+		B893DF9A245AD55900C43360 /* KeyboardHeightPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893DF99245AD55900C43360 /* KeyboardHeightPublisher.swift */; };
+		B893DF9D245AD57900C43360 /* KeyboardAdaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893DF9C245AD57900C43360 /* KeyboardAdaptive.swift */; };
 		B8F9E2E8245817E9006A036F /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F9E2E7245817E9006A036F /* TimerViewModel.swift */; };
 		B8F9E7D324596056006A036F /* SoundService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F9E7D224596056006A036F /* SoundService.swift */; };
 /* End PBXBuildFile section */
@@ -26,6 +30,10 @@
 		B84B0ACF2458126B00A07A1E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B84B0AD22458126B00A07A1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B84B0AD42458126B00A07A1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B893DF94245AC46100C43360 /* Segment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segment.swift; sourceTree = "<group>"; };
+		B893DF97245AD53700C43360 /* UIResponder-Current.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder-Current.swift"; sourceTree = "<group>"; };
+		B893DF99245AD55900C43360 /* KeyboardHeightPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHeightPublisher.swift; sourceTree = "<group>"; };
+		B893DF9C245AD57900C43360 /* KeyboardAdaptive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAdaptive.swift; sourceTree = "<group>"; };
 		B8F9E2E7245817E9006A036F /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		B8F9E7D224596056006A036F /* SoundService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -60,14 +68,13 @@
 		B84B0AC52458126700A07A1E /* WorkoutTimer */ = {
 			isa = PBXGroup;
 			children = (
-				B84B0AC62458126700A07A1E /* AppDelegate.swift */,
-				B84B0AC82458126700A07A1E /* SceneDelegate.swift */,
-				B84B0ACA2458126700A07A1E /* TimerView.swift */,
-				B8F9E2E7245817E9006A036F /* TimerViewModel.swift */,
-				B8F9E7D224596056006A036F /* SoundService.swift */,
-				B84B0ACC2458126B00A07A1E /* Assets.xcassets */,
-				B84B0AD12458126B00A07A1E /* LaunchScreen.storyboard */,
-				B84B0AD42458126B00A07A1E /* Info.plist */,
+				B893DF91245AC43500C43360 /* App */,
+				B893DF92245AC43B00C43360 /* Product */,
+				B893DF90245AC42500C43360 /* Views */,
+				B893DF8F245AC42200C43360 /* ViewModels */,
+				B893DF93245AC45600C43360 /* Models */,
+				B893DF8E245AC41F00C43360 /* Services */,
+				B893DF96245AD52800C43360 /* Helpers */,
 				B84B0ACE2458126B00A07A1E /* Preview Content */,
 			);
 			path = WorkoutTimer;
@@ -79,6 +86,75 @@
 				B84B0ACF2458126B00A07A1E /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B893DF8E245AC41F00C43360 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				B8F9E7D224596056006A036F /* SoundService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		B893DF8F245AC42200C43360 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B8F9E2E7245817E9006A036F /* TimerViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B893DF90245AC42500C43360 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B893DF9B245AD56F00C43360 /* Modifiers */,
+				B84B0ACA2458126700A07A1E /* TimerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B893DF91245AC43500C43360 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				B84B0AC62458126700A07A1E /* AppDelegate.swift */,
+				B84B0AC82458126700A07A1E /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		B893DF92245AC43B00C43360 /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				B84B0ACC2458126B00A07A1E /* Assets.xcassets */,
+				B84B0AD12458126B00A07A1E /* LaunchScreen.storyboard */,
+				B84B0AD42458126B00A07A1E /* Info.plist */,
+			);
+			path = Product;
+			sourceTree = "<group>";
+		};
+		B893DF93245AC45600C43360 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B893DF94245AC46100C43360 /* Segment.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B893DF96245AD52800C43360 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B893DF97245AD53700C43360 /* UIResponder-Current.swift */,
+				B893DF99245AD55900C43360 /* KeyboardHeightPublisher.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		B893DF9B245AD56F00C43360 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				B893DF9C245AD57900C43360 /* KeyboardAdaptive.swift */,
+			);
+			path = Modifiers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,7 +228,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B893DF9A245AD55900C43360 /* KeyboardHeightPublisher.swift in Sources */,
 				B8F9E2E8245817E9006A036F /* TimerViewModel.swift in Sources */,
+				B893DF9D245AD57900C43360 /* KeyboardAdaptive.swift in Sources */,
+				B893DF95245AC46100C43360 /* Segment.swift in Sources */,
+				B893DF98245AD53700C43360 /* UIResponder-Current.swift in Sources */,
 				B8F9E7D324596056006A036F /* SoundService.swift in Sources */,
 				B84B0AC72458126700A07A1E /* AppDelegate.swift in Sources */,
 				B84B0AC92458126700A07A1E /* SceneDelegate.swift in Sources */,
@@ -296,7 +376,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"WorkoutTimer/Preview Content\"";
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = WorkoutTimer/Info.plist;
+				INFOPLIST_FILE = WorkoutTimer/Product/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -316,7 +396,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"WorkoutTimer/Preview Content\"";
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = WorkoutTimer/Info.plist;
+				INFOPLIST_FILE = WorkoutTimer/Product/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

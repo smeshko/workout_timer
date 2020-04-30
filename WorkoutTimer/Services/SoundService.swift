@@ -10,6 +10,8 @@ public protocol SoundServiceProtocol {
 
 public class SoundService: SoundServiceProtocol {
     
+    public init() {}
+    
     public func play(_ sound: Sound) {
         AudioServicesPlaySystemSound(SystemSoundID(sound.rawValue))
     }
