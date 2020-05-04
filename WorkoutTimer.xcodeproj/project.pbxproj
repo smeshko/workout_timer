@@ -17,6 +17,8 @@
 		B893DF98245AD53700C43360 /* UIResponder-Current.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893DF97245AD53700C43360 /* UIResponder-Current.swift */; };
 		B893DF9A245AD55900C43360 /* KeyboardHeightPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893DF99245AD55900C43360 /* KeyboardHeightPublisher.swift */; };
 		B893DF9D245AD57900C43360 /* KeyboardAdaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893DF9C245AD57900C43360 /* KeyboardAdaptive.swift */; };
+		B893DFA0245C217700C43360 /* TimerSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893DF9F245C217700C43360 /* TimerSlider.swift */; };
+		B893DFA4245C230300C43360 /* View-UpdateKeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893DFA3245C230300C43360 /* View-UpdateKeyPath.swift */; };
 		B8F9E2E8245817E9006A036F /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F9E2E7245817E9006A036F /* TimerViewModel.swift */; };
 		B8F9E7D324596056006A036F /* SoundService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F9E7D224596056006A036F /* SoundService.swift */; };
 /* End PBXBuildFile section */
@@ -34,6 +36,8 @@
 		B893DF97245AD53700C43360 /* UIResponder-Current.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder-Current.swift"; sourceTree = "<group>"; };
 		B893DF99245AD55900C43360 /* KeyboardHeightPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHeightPublisher.swift; sourceTree = "<group>"; };
 		B893DF9C245AD57900C43360 /* KeyboardAdaptive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAdaptive.swift; sourceTree = "<group>"; };
+		B893DF9F245C217700C43360 /* TimerSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSlider.swift; sourceTree = "<group>"; };
+		B893DFA3245C230300C43360 /* View-UpdateKeyPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View-UpdateKeyPath.swift"; sourceTree = "<group>"; };
 		B8F9E2E7245817E9006A036F /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		B8F9E7D224596056006A036F /* SoundService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,6 +111,7 @@
 		B893DF90245AC42500C43360 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B893DF9E245C209F00C43360 /* Reusable */,
 				B893DF9B245AD56F00C43360 /* Modifiers */,
 				B84B0ACA2458126700A07A1E /* TimerView.swift */,
 			);
@@ -143,7 +148,8 @@
 		B893DF96245AD52800C43360 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				B893DF97245AD53700C43360 /* UIResponder-Current.swift */,
+				B893DFA2245C22F700C43360 /* Protocols */,
+				B893DFA1245C22EF00C43360 /* Extension */,
 				B893DF99245AD55900C43360 /* KeyboardHeightPublisher.swift */,
 			);
 			path = Helpers;
@@ -155,6 +161,30 @@
 				B893DF9C245AD57900C43360 /* KeyboardAdaptive.swift */,
 			);
 			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		B893DF9E245C209F00C43360 /* Reusable */ = {
+			isa = PBXGroup;
+			children = (
+				B893DF9F245C217700C43360 /* TimerSlider.swift */,
+			);
+			path = Reusable;
+			sourceTree = "<group>";
+		};
+		B893DFA1245C22EF00C43360 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B893DFA3245C230300C43360 /* View-UpdateKeyPath.swift */,
+				B893DF97245AD53700C43360 /* UIResponder-Current.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		B893DFA2245C22F700C43360 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,9 +261,11 @@
 				B893DF9A245AD55900C43360 /* KeyboardHeightPublisher.swift in Sources */,
 				B8F9E2E8245817E9006A036F /* TimerViewModel.swift in Sources */,
 				B893DF9D245AD57900C43360 /* KeyboardAdaptive.swift in Sources */,
+				B893DFA4245C230300C43360 /* View-UpdateKeyPath.swift in Sources */,
 				B893DF95245AC46100C43360 /* Segment.swift in Sources */,
 				B893DF98245AD53700C43360 /* UIResponder-Current.swift in Sources */,
 				B8F9E7D324596056006A036F /* SoundService.swift in Sources */,
+				B893DFA0245C217700C43360 /* TimerSlider.swift in Sources */,
 				B84B0AC72458126700A07A1E /* AppDelegate.swift in Sources */,
 				B84B0AC92458126700A07A1E /* SceneDelegate.swift in Sources */,
 				B84B0ACB2458126700A07A1E /* TimerView.swift in Sources */,
