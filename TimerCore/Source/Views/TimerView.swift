@@ -1,11 +1,15 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct TimerView: View {
+public struct TimerView: View {
     
     let store: Store<TimerState, TimerAction>
     
-    var body: some View {
+    public init(store: Store<TimerState, TimerAction>) {
+        self.store = store
+    }
+    
+    public var body: some View {
         WithViewStore(self.store) { viewStore in
             VStack {
                 Spacer()
@@ -19,9 +23,9 @@ struct TimerView: View {
                 Spacer()
                 
                 VStack {
-                    Slider(value: viewStore.binding(get: \.sets, send: TimerAction.changeSetsCount), inputType: .sets)
-                    Slider(value: viewStore.binding(get: \.workoutTime, send: TimerAction.changeWorkoutTime), inputType: .workout)
-                    Slider(value: viewStore.binding(get: \.breakTime, send: TimerAction.changeBreakTime), inputType: .pause)
+                    MySlider(value: viewStore.binding(get: \.sets, send: TimerAction.changeSetsCount), inputType: .sets)
+                    MySlider(value: viewStore.binding(get: \.workoutTime, send: TimerAction.changeWorkoutTime), inputType: .workout)
+                    MySlider(value: viewStore.binding(get: \.breakTime, send: TimerAction.changeBreakTime), inputType: .pause)
                 }
                 .padding()
                 
@@ -82,7 +86,7 @@ private enum InputType {
 
 
 
-private struct Slider: View {
+private struct MySlider: View {
     
     @Binding var value: Int
     

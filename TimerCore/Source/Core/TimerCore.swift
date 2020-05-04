@@ -1,16 +1,15 @@
 import ComposableArchitecture
 
-enum TimerAction: Equatable {
+public enum TimerAction: Equatable {
     case start
     case stop
     case pause
     case changeSetsCount(Int)
     case changeBreakTime(Int)
     case changeWorkoutTime(Int)
-    
 }
 
-struct TimerState: Equatable {
+public struct TimerState: Equatable {
     var isRunning: Bool = false
     var segments: [Segment] = []
     var currentSegment: Segment? = nil
@@ -19,13 +18,35 @@ struct TimerState: Equatable {
     var breakTime: Int = 0
     var totalTimeLeft: Int = 0
     var segmentTimeLeft: Int = 0
+    
+    public init(isRunning: Bool = false,
+                segments: [Segment] = [],
+                currentSegment: Segment? = nil,
+                sets: Int = 0,
+                workoutTime: Int = 0,
+                breakTime: Int = 0,
+                totalTimeLeft: Int = 0,
+                segmentTimeLeft: Int = 0) {
+        self.isRunning = isRunning
+        self.segments = segments
+        self.currentSegment = currentSegment
+        self.sets = sets
+        self.workoutTime = workoutTime
+        self.breakTime = breakTime
+        self.totalTimeLeft = totalTimeLeft
+        self.segmentTimeLeft = segmentTimeLeft
+    }
 }
 
-struct TimerEnvironment {
+public struct TimerEnvironment {
     var soundClient: SoundClient
+    
+    public init(soundClient: SoundClient) {
+        self.soundClient = soundClient
+    }
 }
 
-let timerReducer = Reducer<TimerState, TimerAction, TimerEnvironment> { state, action, _ in
+public let timerReducer = Reducer<TimerState, TimerAction, TimerEnvironment> { state, action, _ in
     switch action {
         case .pause, .stop:
             state.isRunning = false
