@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,9 +19,26 @@
 		B893DF9D245AD57900C43360 /* KeyboardAdaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893DF9C245AD57900C43360 /* KeyboardAdaptive.swift */; };
 		B893DFA0245C217700C43360 /* TimerSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893DF9F245C217700C43360 /* TimerSlider.swift */; };
 		B893DFA4245C230300C43360 /* View-UpdateKeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893DFA3245C230300C43360 /* View-UpdateKeyPath.swift */; };
-		B8F9E2E8245817E9006A036F /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F9E2E7245817E9006A036F /* TimerViewModel.swift */; };
+		B8DC598F24605447003FC8D3 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = B8DC598E24605447003FC8D3 /* ComposableArchitecture */; };
+		B8DC599024605447003FC8D3 /* ComposableArchitecture in Embed Frameworks */ = {isa = PBXBuildFile; productRef = B8DC598E24605447003FC8D3 /* ComposableArchitecture */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B8DC5994246054E1003FC8D3 /* AppCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DC5993246054E1003FC8D3 /* AppCore.swift */; };
+		B8DC5996246055A3003FC8D3 /* TimerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DC5995246055A3003FC8D3 /* TimerCore.swift */; };
 		B8F9E7D324596056006A036F /* SoundService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F9E7D224596056006A036F /* SoundService.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B8DC599124605447003FC8D3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B8DC599024605447003FC8D3 /* ComposableArchitecture in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		B84B0AC32458126700A07A1E /* WorkoutTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkoutTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -38,7 +55,8 @@
 		B893DF9C245AD57900C43360 /* KeyboardAdaptive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAdaptive.swift; sourceTree = "<group>"; };
 		B893DF9F245C217700C43360 /* TimerSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSlider.swift; sourceTree = "<group>"; };
 		B893DFA3245C230300C43360 /* View-UpdateKeyPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View-UpdateKeyPath.swift"; sourceTree = "<group>"; };
-		B8F9E2E7245817E9006A036F /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
+		B8DC5993246054E1003FC8D3 /* AppCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCore.swift; sourceTree = "<group>"; };
+		B8DC5995246055A3003FC8D3 /* TimerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCore.swift; sourceTree = "<group>"; };
 		B8F9E7D224596056006A036F /* SoundService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -47,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8DC598F24605447003FC8D3 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,10 +91,10 @@
 		B84B0AC52458126700A07A1E /* WorkoutTimer */ = {
 			isa = PBXGroup;
 			children = (
+				B8DC5992246054D9003FC8D3 /* Core */,
 				B893DF91245AC43500C43360 /* App */,
 				B893DF92245AC43B00C43360 /* Product */,
 				B893DF90245AC42500C43360 /* Views */,
-				B893DF8F245AC42200C43360 /* ViewModels */,
 				B893DF93245AC45600C43360 /* Models */,
 				B893DF8E245AC41F00C43360 /* Services */,
 				B893DF96245AD52800C43360 /* Helpers */,
@@ -98,14 +117,6 @@
 				B8F9E7D224596056006A036F /* SoundService.swift */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		B893DF8F245AC42200C43360 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				B8F9E2E7245817E9006A036F /* TimerViewModel.swift */,
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		B893DF90245AC42500C43360 /* Views */ = {
@@ -187,6 +198,15 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		B8DC5992246054D9003FC8D3 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B8DC5993246054E1003FC8D3 /* AppCore.swift */,
+				B8DC5995246055A3003FC8D3 /* TimerCore.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -197,12 +217,16 @@
 				B84B0ABF2458126600A07A1E /* Sources */,
 				B84B0AC02458126600A07A1E /* Frameworks */,
 				B84B0AC12458126600A07A1E /* Resources */,
+				B8DC599124605447003FC8D3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = WorkoutTimer;
+			packageProductDependencies = (
+				B8DC598E24605447003FC8D3 /* ComposableArchitecture */,
+			);
 			productName = WorkoutTimer;
 			productReference = B84B0AC32458126700A07A1E /* WorkoutTimer.app */;
 			productType = "com.apple.product-type.application";
@@ -231,6 +255,9 @@
 				Base,
 			);
 			mainGroup = B84B0ABA2458126600A07A1E;
+			packageReferences = (
+				B8DC598D24605447003FC8D3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+			);
 			productRefGroup = B84B0AC42458126700A07A1E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -259,11 +286,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B893DF9A245AD55900C43360 /* KeyboardHeightPublisher.swift in Sources */,
-				B8F9E2E8245817E9006A036F /* TimerViewModel.swift in Sources */,
 				B893DF9D245AD57900C43360 /* KeyboardAdaptive.swift in Sources */,
+				B8DC5996246055A3003FC8D3 /* TimerCore.swift in Sources */,
 				B893DFA4245C230300C43360 /* View-UpdateKeyPath.swift in Sources */,
 				B893DF95245AC46100C43360 /* Segment.swift in Sources */,
 				B893DF98245AD53700C43360 /* UIResponder-Current.swift in Sources */,
+				B8DC5994246054E1003FC8D3 /* AppCore.swift in Sources */,
 				B8F9E7D324596056006A036F /* SoundService.swift in Sources */,
 				B893DFA0245C217700C43360 /* TimerSlider.swift in Sources */,
 				B84B0AC72458126700A07A1E /* AppDelegate.swift in Sources */,
@@ -462,6 +490,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B8DC598D24605447003FC8D3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B8DC598E24605447003FC8D3 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B8DC598D24605447003FC8D3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B84B0ABB2458126600A07A1E /* Project object */;
 }

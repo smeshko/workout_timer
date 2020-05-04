@@ -1,11 +1,4 @@
-//
-//  SceneDelegate.swift
-//  WorkoutTimer
-//
-//  Created by Tsonev Ivaylo on 28.04.20.
-//  Copyright © 2020 tsonevInc. All rights reserved.
-//
-
+import ComposableArchitecture
 import UIKit
 import SwiftUI
 
@@ -20,7 +13,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
         // Create the SwiftUI view that provides the window contents.
-        let contentView = TimerView()
+        let contentView = TimerView(
+            store: Store<TimerState, TimerAction>(
+                initialState: TimerState(),
+                reducer: timerReducer,
+                environment: TimerEnvironment(soundClient: .live)
+            )
+        )
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

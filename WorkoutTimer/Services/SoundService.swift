@@ -1,18 +1,24 @@
 import AVFoundation
+import ComposableArchitecture
 
 public enum Sound: Int {
     case segment = 1008
 }
 
-public protocol SoundServiceProtocol {
-    func play(_ sound: Sound)
+public struct SoundClient {
+    var play: (Sound) -> Effect<Never, Never>
 }
 
-public class SoundService: SoundServiceProtocol {
+public extension SoundClient {
+    static let live = SoundClient { sound in
+        .fireAndForget {
+            AudioServicesPlaySystemSound(SystemSoundID(sound.rawValue))
+        }
+    }
     
-    public init() {}
-    
-    public func play(_ sound: Sound) {
-        AudioServicesPlaySystemSound(SystemSoundID(sound.rawValue))
+    static let mock = SoundClient { sound in
+        .fireAndForget {
+            print("Chosen sound id: \(sound.rawValue)")
+        }
     }
 }

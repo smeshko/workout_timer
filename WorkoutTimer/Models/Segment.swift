@@ -1,5 +1,5 @@
-public struct Segment {
-    public enum Category {
+public struct Segment: Equatable {
+    public enum Category: Equatable {
         case workout
         case pause
     }

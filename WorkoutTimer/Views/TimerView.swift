@@ -1,36 +1,40 @@
 import SwiftUI
+import ComposableArchitecture
 
 struct TimerView: View {
     
-    @ObservedObject var viewModel = TimerViewModel()
+    let store: Store<TimerState, TimerAction>
     
     var body: some View {
-        VStack {
-            Spacer()
-            
-            Text(viewModel.timeLeft)
-                .font(Font.system(size: 48, design: .monospaced))
-            
-            Text(viewModel.currentSegmentTimeLeft)
-                .font(Font.system(size: 72, design: .monospaced))
-            
-            Spacer()
-
+        WithViewStore(self.store) { viewStore in
             VStack {
-                Slider(value: $viewModel.sets, inputType: .sets)
-                Slider(value: $viewModel.workoutTime, inputType: .workout)
-                Slider(value: $viewModel.breakTime, inputType: .pause)
+                Spacer()
+                
+                Text(viewStore.formattedTotalTimeLeft)
+                    .font(Font.system(size: 48, design: .monospaced))
+                
+                Text(viewStore.formattedSegmentTimeLeft)
+                    .font(Font.system(size: 72, design: .monospaced))
+                
+                Spacer()
+                
+                VStack {
+                    Slider(value: viewStore.binding(get: \.sets, send: TimerAction.changeSetsCount), inputType: .sets)
+                    Slider(value: viewStore.binding(get: \.workoutTime, send: TimerAction.changeWorkoutTime), inputType: .workout)
+                    Slider(value: viewStore.binding(get: \.breakTime, send: TimerAction.changeBreakTime), inputType: .pause)
+                }
+                .padding()
+                
+                Spacer()
+                
+                Button(action: {
+                    viewStore.send(.start)
+                }) {
+                    Text("Begin!")
+                }
+                .disabled(viewStore.isRunning)
+                .padding()
             }
-            .padding()
-            
-            Spacer()
-            
-            Button(action: {
-                self.viewModel.begin()
-            }) {
-                Text("Begin!")
-            }
-            .padding()
         }
         .keyboardAdaptive()
     }
@@ -38,7 +42,13 @@ struct TimerView: View {
 
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerView()
+        TimerView(
+            store: Store<TimerState, TimerAction>(
+                initialState: TimerState(),
+                reducer: timerReducer,
+                environment: TimerEnvironment(soundClient: .mock)
+            )
+        )
     }
 }
 
