@@ -13,8 +13,6 @@
 		B84B0AD02458126B00A07A1E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B84B0ACF2458126B00A07A1E /* Preview Assets.xcassets */; };
 		B84B0AD32458126B00A07A1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B84B0AD12458126B00A07A1E /* LaunchScreen.storyboard */; };
 		B8DC5994246054E1003FC8D3 /* AppCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DC5993246054E1003FC8D3 /* AppCore.swift */; };
-		B8DC59A524605E38003FC8D3 /* TimerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* TimerCore.framework */; };
-		B8DC59AC24605E38003FC8D3 /* TimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DC59AB24605E38003FC8D3 /* TimerTests.swift */; };
 		B8DC59B124605E38003FC8D3 /* TimerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* TimerCore.framework */; };
 		B8DC59B224605E38003FC8D3 /* TimerCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* TimerCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B8DC59BC24605ED0003FC8D3 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84B0ACA2458126700A07A1E /* TimerView.swift */; };
@@ -28,33 +26,30 @@
 		B8DC59C424605F3F003FC8D3 /* KeyboardHeightPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893DF99245AD55900C43360 /* KeyboardHeightPublisher.swift */; };
 		B8DC59CF246063A9003FC8D3 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = B8DC59CE246063A9003FC8D3 /* ComposableArchitecture */; };
 		B8DC59D0246063A9003FC8D3 /* ComposableArchitecture in Embed Frameworks */ = {isa = PBXBuildFile; productRef = B8DC59CE246063A9003FC8D3 /* ComposableArchitecture */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		B8DC59D2246063A9003FC8D3 /* ComposableArchitectureTestSupport in Frameworks */ = {isa = PBXBuildFile; productRef = B8DC59D1246063A9003FC8D3 /* ComposableArchitectureTestSupport */; };
-		B8DC59D3246063A9003FC8D3 /* ComposableArchitectureTestSupport in Embed Frameworks */ = {isa = PBXBuildFile; productRef = B8DC59D1246063A9003FC8D3 /* ComposableArchitectureTestSupport */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B8DC59D6246063B5003FC8D3 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = B8DC59D5246063B5003FC8D3 /* ComposableArchitecture */; };
 		B8DC59D7246063B5003FC8D3 /* ComposableArchitecture in Embed Frameworks */ = {isa = PBXBuildFile; productRef = B8DC59D5246063B5003FC8D3 /* ComposableArchitecture */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B8DC6A2E2461D7F6003FC8D3 /* TimerCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DC6A2D2461D7F6003FC8D3 /* TimerCoreTests.swift */; };
+		B8DC6A302461D7F6003FC8D3 /* TimerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* TimerCore.framework */; };
+		B8DC6A372461D814003FC8D3 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = B8DC6A362461D814003FC8D3 /* ComposableArchitecture */; };
+		B8DC6A392461D814003FC8D3 /* ComposableArchitecture in Embed Frameworks */ = {isa = PBXBuildFile; productRef = B8DC6A362461D814003FC8D3 /* ComposableArchitecture */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B8DC6A3B2461D814003FC8D3 /* ComposableArchitectureTestSupport in Frameworks */ = {isa = PBXBuildFile; productRef = B8DC6A3A2461D814003FC8D3 /* ComposableArchitectureTestSupport */; };
+		B8DC6A3C2461D814003FC8D3 /* ComposableArchitectureTestSupport in Embed Frameworks */ = {isa = PBXBuildFile; productRef = B8DC6A3A2461D814003FC8D3 /* ComposableArchitectureTestSupport */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B8DC59A624605E38003FC8D3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B84B0ABB2458126600A07A1E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B8DC599B24605E38003FC8D3;
-			remoteInfo = Timer;
-		};
-		B8DC59A824605E38003FC8D3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B84B0ABB2458126600A07A1E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B84B0AC22458126600A07A1E;
-			remoteInfo = WorkoutTimer;
-		};
 		B8DC59AF24605E38003FC8D3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B84B0ABB2458126600A07A1E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = B8DC599B24605E38003FC8D3;
 			remoteInfo = Timer;
+		};
+		B8DC6A312461D7F6003FC8D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B84B0ABB2458126600A07A1E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B8DC599B24605E38003FC8D3;
+			remoteInfo = TimerCore;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -82,13 +77,14 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B8DC59D4246063A9003FC8D3 /* Embed Frameworks */ = {
+		B8DC6A382461D814003FC8D3 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B8DC59D3246063A9003FC8D3 /* ComposableArchitectureTestSupport in Embed Frameworks */,
+				B8DC6A3C2461D814003FC8D3 /* ComposableArchitectureTestSupport in Embed Frameworks */,
+				B8DC6A392461D814003FC8D3 /* ComposableArchitecture in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -114,9 +110,9 @@
 		B8DC5995246055A3003FC8D3 /* TimerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCore.swift; sourceTree = "<group>"; };
 		B8DC599C24605E38003FC8D3 /* TimerCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TimerCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8DC599F24605E38003FC8D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B8DC59A424605E38003FC8D3 /* TimerCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimerCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8DC59AB24605E38003FC8D3 /* TimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTests.swift; sourceTree = "<group>"; };
-		B8DC59AD24605E38003FC8D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B8DC6A2B2461D7F6003FC8D3 /* TimerCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimerCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8DC6A2D2461D7F6003FC8D3 /* TimerCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCoreTests.swift; sourceTree = "<group>"; };
+		B8DC6A2F2461D7F6003FC8D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8F9E7D224596056006A036F /* SoundClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,12 +134,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B8DC59A124605E38003FC8D3 /* Frameworks */ = {
+		B8DC6A282461D7F6003FC8D3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8DC59D2246063A9003FC8D3 /* ComposableArchitectureTestSupport in Frameworks */,
-				B8DC59A524605E38003FC8D3 /* TimerCore.framework in Frameworks */,
+				B8DC6A372461D814003FC8D3 /* ComposableArchitecture in Frameworks */,
+				B8DC6A302461D7F6003FC8D3 /* TimerCore.framework in Frameworks */,
+				B8DC6A3B2461D814003FC8D3 /* ComposableArchitectureTestSupport in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,7 +162,7 @@
 			children = (
 				B84B0AC32458126700A07A1E /* WorkoutTimer.app */,
 				B8DC599C24605E38003FC8D3 /* TimerCore.framework */,
-				B8DC59A424605E38003FC8D3 /* TimerCoreTests.xctest */,
+				B8DC6A2B2461D7F6003FC8D3 /* TimerCoreTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -262,8 +259,8 @@
 		B8DC59AA24605E38003FC8D3 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				B8DC59AB24605E38003FC8D3 /* TimerTests.swift */,
-				B8DC59AD24605E38003FC8D3 /* Info.plist */,
+				B8DC6A2D2461D7F6003FC8D3 /* TimerCoreTests.swift */,
+				B8DC6A2F2461D7F6003FC8D3 /* Info.plist */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -387,27 +384,27 @@
 			productReference = B8DC599C24605E38003FC8D3 /* TimerCore.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		B8DC59A324605E38003FC8D3 /* TimerCoreTests */ = {
+		B8DC6A2A2461D7F6003FC8D3 /* TimerCoreTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8DC59B624605E38003FC8D3 /* Build configuration list for PBXNativeTarget "TimerCoreTests" */;
+			buildConfigurationList = B8DC6A332461D7F6003FC8D3 /* Build configuration list for PBXNativeTarget "TimerCoreTests" */;
 			buildPhases = (
-				B8DC59A024605E38003FC8D3 /* Sources */,
-				B8DC59A124605E38003FC8D3 /* Frameworks */,
-				B8DC59A224605E38003FC8D3 /* Resources */,
-				B8DC59D4246063A9003FC8D3 /* Embed Frameworks */,
+				B8DC6A272461D7F6003FC8D3 /* Sources */,
+				B8DC6A282461D7F6003FC8D3 /* Frameworks */,
+				B8DC6A292461D7F6003FC8D3 /* Resources */,
+				B8DC6A382461D814003FC8D3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				B8DC59A724605E38003FC8D3 /* PBXTargetDependency */,
-				B8DC59A924605E38003FC8D3 /* PBXTargetDependency */,
+				B8DC6A322461D7F6003FC8D3 /* PBXTargetDependency */,
 			);
 			name = TimerCoreTests;
 			packageProductDependencies = (
-				B8DC59D1246063A9003FC8D3 /* ComposableArchitectureTestSupport */,
+				B8DC6A362461D814003FC8D3 /* ComposableArchitecture */,
+				B8DC6A3A2461D814003FC8D3 /* ComposableArchitectureTestSupport */,
 			);
-			productName = TimerTests;
-			productReference = B8DC59A424605E38003FC8D3 /* TimerCoreTests.xctest */;
+			productName = TimerCoreTests;
+			productReference = B8DC6A2B2461D7F6003FC8D3 /* TimerCoreTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -426,9 +423,8 @@
 					B8DC599B24605E38003FC8D3 = {
 						CreatedOnToolsVersion = 11.4.1;
 					};
-					B8DC59A324605E38003FC8D3 = {
+					B8DC6A2A2461D7F6003FC8D3 = {
 						CreatedOnToolsVersion = 11.4.1;
-						TestTargetID = B84B0AC22458126600A07A1E;
 					};
 				};
 			};
@@ -450,7 +446,7 @@
 			targets = (
 				B84B0AC22458126600A07A1E /* WorkoutTimer */,
 				B8DC599B24605E38003FC8D3 /* TimerCore */,
-				B8DC59A324605E38003FC8D3 /* TimerCoreTests */,
+				B8DC6A2A2461D7F6003FC8D3 /* TimerCoreTests */,
 			);
 		};
 /* End PBXProject section */
@@ -473,7 +469,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B8DC59A224605E38003FC8D3 /* Resources */ = {
+		B8DC6A292461D7F6003FC8D3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -509,31 +505,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B8DC59A024605E38003FC8D3 /* Sources */ = {
+		B8DC6A272461D7F6003FC8D3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8DC59AC24605E38003FC8D3 /* TimerTests.swift in Sources */,
+				B8DC6A2E2461D7F6003FC8D3 /* TimerCoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		B8DC59A724605E38003FC8D3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B8DC599B24605E38003FC8D3 /* TimerCore */;
-			targetProxy = B8DC59A624605E38003FC8D3 /* PBXContainerItemProxy */;
-		};
-		B8DC59A924605E38003FC8D3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B84B0AC22458126600A07A1E /* WorkoutTimer */;
-			targetProxy = B8DC59A824605E38003FC8D3 /* PBXContainerItemProxy */;
-		};
 		B8DC59B024605E38003FC8D3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B8DC599B24605E38003FC8D3 /* TimerCore */;
 			targetProxy = B8DC59AF24605E38003FC8D3 /* PBXContainerItemProxy */;
+		};
+		B8DC6A322461D7F6003FC8D3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B8DC599B24605E38003FC8D3 /* TimerCore */;
+			targetProxy = B8DC6A312461D7F6003FC8D3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -759,10 +750,9 @@
 			};
 			name = Release;
 		};
-		B8DC59B724605E38003FC8D3 /* Debug */ = {
+		B8DC6A342461D7F6003FC8D3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
 				INFOPLIST_FILE = TimerCore/Tests/Info.plist;
@@ -771,18 +761,16 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.TimerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.TimerCoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WorkoutTimer.app/WorkoutTimer";
 			};
 			name = Debug;
 		};
-		B8DC59B824605E38003FC8D3 /* Release */ = {
+		B8DC6A352461D7F6003FC8D3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
 				INFOPLIST_FILE = TimerCore/Tests/Info.plist;
@@ -791,11 +779,10 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.TimerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.TimerCoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WorkoutTimer.app/WorkoutTimer";
 			};
 			name = Release;
 		};
@@ -829,11 +816,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B8DC59B624605E38003FC8D3 /* Build configuration list for PBXNativeTarget "TimerCoreTests" */ = {
+		B8DC6A332461D7F6003FC8D3 /* Build configuration list for PBXNativeTarget "TimerCoreTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B8DC59B724605E38003FC8D3 /* Debug */,
-				B8DC59B824605E38003FC8D3 /* Release */,
+				B8DC6A342461D7F6003FC8D3 /* Debug */,
+				B8DC6A352461D7F6003FC8D3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -857,15 +844,20 @@
 			package = B8DC59CD246063A9003FC8D3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
 		};
-		B8DC59D1246063A9003FC8D3 /* ComposableArchitectureTestSupport */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B8DC59CD246063A9003FC8D3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
-			productName = ComposableArchitectureTestSupport;
-		};
 		B8DC59D5246063B5003FC8D3 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B8DC59CD246063A9003FC8D3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
+		};
+		B8DC6A362461D814003FC8D3 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B8DC59CD246063A9003FC8D3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+		B8DC6A3A2461D814003FC8D3 /* ComposableArchitectureTestSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B8DC59CD246063A9003FC8D3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitectureTestSupport;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

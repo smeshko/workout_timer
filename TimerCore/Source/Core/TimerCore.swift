@@ -65,8 +65,8 @@ public let timerReducer = Reducer<TimerState, TimerAction, TimerEnvironment> { s
         
         case .start:
             state.isRunning = true
-            state.currentSegment = state.segments.first
             state.createSegments()
+            state.currentSegment = state.segments.first
             state.calculateInitialTime()
             
             return Effect
@@ -75,17 +75,14 @@ public let timerReducer = Reducer<TimerState, TimerAction, TimerEnvironment> { s
         
         case .changeSetsCount(let count):
             state.sets = count
-            state.createSegments()
             state.calculateInitialTime()
         
         case .changeBreakTime(let time):
             state.breakTime = time
-            state.createSegments()
             state.calculateInitialTime()
         
         case .changeWorkoutTime(let time):
             state.workoutTime = time
-            state.createSegments()
             state.calculateInitialTime()
         
         case .timerTicked:
@@ -117,13 +114,13 @@ public let timerReducer = Reducer<TimerState, TimerAction, TimerEnvironment> { s
 
 private extension TimerState {
     mutating func calculateInitialTime() {
-        totalTimeLeft = segments.map { $0.duration }.reduce(0, +)
+        totalTimeLeft = sets * workoutTime + (sets - 1) * breakTime
         segmentTimeLeft = currentSegment?.duration ?? 0
     }
     
     mutating func moveToNextSegment() {
-        guard let segment = currentSegment, let index = segments.firstIndex(of: segment) else { return }
-        currentSegment = segments[index]
+        guard let segment = currentSegment, let index = segments.firstIndex(of: segment), index != segments.count - 1 else { return }
+        currentSegment = segments[index + 1]
         segmentTimeLeft = currentSegment?.duration ?? 0
     }
     
