@@ -176,9 +176,6 @@
 				B8DC5992246054D9003FC8D3 /* Core */,
 				B893DF91245AC43500C43360 /* App */,
 				B893DF92245AC43B00C43360 /* Product */,
-				B893DF90245AC42500C43360 /* Views */,
-				B893DF93245AC45600C43360 /* Models */,
-				B893DF8E245AC41F00C43360 /* Services */,
 				B84B0ACE2458126B00A07A1E /* Preview Content */,
 			);
 			path = WorkoutTimer;
@@ -190,20 +187,6 @@
 				B84B0ACF2458126B00A07A1E /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		B893DF8E245AC41F00C43360 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		B893DF90245AC42500C43360 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		B893DF91245AC43500C43360 /* App */ = {
@@ -223,13 +206,6 @@
 				B84B0AD42458126B00A07A1E /* Info.plist */,
 			);
 			path = Product;
-			sourceTree = "<group>";
-		};
-		B893DF93245AC45600C43360 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		B893DF96245AD52800C43360 /* Helpers */ = {
@@ -316,9 +292,9 @@
 		B8DC59BB24605E4C003FC8D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B84B0ACA2458126700A07A1E /* TimerView.swift */,
 				B893DF9E245C209F00C43360 /* Reusable */,
 				B893DF9B245AD56F00C43360 /* Modifiers */,
-				B84B0ACA2458126700A07A1E /* TimerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

@@ -50,7 +50,10 @@ struct TimerView_Previews: PreviewProvider {
             store: Store<TimerState, TimerAction>(
                 initialState: TimerState(),
                 reducer: timerReducer,
-                environment: TimerEnvironment(soundClient: .mock)
+                environment: TimerEnvironment(
+                    mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
+                    soundClient: .mock
+                )
             )
         )
     }
@@ -83,8 +86,6 @@ private enum InputType {
         }
     }
 }
-
-
 
 private struct MySlider: View {
     
