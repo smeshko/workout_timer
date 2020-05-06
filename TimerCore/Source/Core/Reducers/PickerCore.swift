@@ -8,13 +8,16 @@ public enum PickerAction: Equatable {
 public struct PickerState: Equatable {
   var isShowingPicker: Bool = false
   var value: Int = 0
+  var isInteractionDisabled: Bool = false
   
   public init(
     isShowingPicker: Bool = false,
-    value: Int = 0
+    value: Int = 0,
+    isInteractionDisabled: Bool = false
   ) {
     self.isShowingPicker = isShowingPicker
     self.value = value
+    self.isInteractionDisabled = isInteractionDisabled
   }
 }
 

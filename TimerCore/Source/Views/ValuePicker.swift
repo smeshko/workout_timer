@@ -11,8 +11,9 @@ struct ValuePicker: View {
   var body: some View {
     WithViewStore(store) { viewStore in
       VStack(alignment: .center, spacing: 0) {
-        Button(action: {
-          viewStore.send(.togglePickerVisibility)
+        Button(action: { withAnimation {
+            viewStore.send(.togglePickerVisibility)
+          }
         }) {
           VStack {
             Text("\(viewStore.value)")
@@ -22,15 +23,19 @@ struct ValuePicker: View {
           }
           .foregroundColor(.primary)
         }
-        if viewStore.isShowingPicker {
-          Picker(selection: viewStore.binding(get: \.value, send: PickerAction.valueUpdated), label: Text("")) {
-            ForEach(0 ..< self.maxValue) { index in
-              Text("\(index)")
+        .disabled(viewStore.isInteractionDisabled)
+        
+        if viewStore.isShowingPicker { withAnimation {
+            Picker(selection: viewStore.binding(get: \.value, send: PickerAction.valueUpdated), label: Text("")) {
+              ForEach(0 ..< self.maxValue) { index in
+                Text("\(index)")
+              }
             }
           }
           .labelsHidden()
-          .onTapGesture {
-            viewStore.send(.togglePickerVisibility)
+          .onTapGesture { withAnimation {
+              viewStore.send(.togglePickerVisibility)
+            }
           }
         }
       }

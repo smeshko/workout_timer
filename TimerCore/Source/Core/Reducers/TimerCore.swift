@@ -3,12 +3,13 @@ import Foundation
 import Combine
 
 public enum TimerAction: Equatable {
-  case start
+  case start(new: Bool)
   case stop
   case pause
   case timerTicked
   case segmentEnded
   case timerFinished
+  case setNavigation
   case changeSetsCount(PickerAction)
   case changeBreakTime(PickerAction)
   case changeWorkoutTime(PickerAction)
@@ -27,9 +28,9 @@ public struct TimerState: Equatable {
   public init(isRunning: Bool = false,
               segments: [Segment] = [],
               currentSegment: Segment? = nil,
-              sets: PickerState = PickerState(),
-              workoutTime: PickerState = PickerState(),
-              breakTime: PickerState = PickerState(),
+              sets: PickerState = PickerState(value: 2),
+              workoutTime: PickerState = PickerState(value: 60),
+              breakTime: PickerState = PickerState(value: 20),
               totalTimeLeft: Int = 0,
               segmentTimeLeft: Int = 0) {
     self.isRunning = isRunning
@@ -62,15 +63,27 @@ public let timerReducer =
       struct TimerId: Hashable {}
       
       switch action {
-      case .pause, .stop:
-        state.isRunning = false
-        
-      case .start:
-        state.isRunning = true
+      case .setNavigation:
         state.createSegments()
         state.currentSegment = state.segments.first
         state.calculateInitialTime()
         
+      case .pause:
+        state.isRunning = false
+        return Effect<TimerAction, Never>.cancel(id: TimerId())
+        
+      case .stop:
+        return Effect(value: TimerAction.timerFinished)
+        
+      case .start(let new):
+        state.isRunning = true
+        state.hidePickers()
+        state.togglePickersInteraction(disabled: true)
+        if new {
+          state.createSegments()
+          state.currentSegment = state.segments.first
+          state.calculateInitialTime()
+        }
         return Effect
           .timer(id: TimerId(), every: 1, tolerance: .zero, on: environment.mainQueue)
           .map { _ in TimerAction.timerTicked }
@@ -78,9 +91,11 @@ public let timerReducer =
       case .changeSetsCount(let action):
         switch action {
         case .valueUpdated(let value):
-          state.sets.value = value / 5
+          state.sets.value = value
           state.calculateInitialTime()
-        default: break
+        case .togglePickerVisibility:
+          state.breakTime.hidePickerIfNeeded()
+          state.workoutTime.hidePickerIfNeeded()
         }
         
       case .changeBreakTime(let action):
@@ -88,7 +103,9 @@ public let timerReducer =
         case .valueUpdated(let value):
           state.breakTime.value = value
           state.calculateInitialTime()
-        default: break
+        case .togglePickerVisibility:
+          state.sets.hidePickerIfNeeded()
+          state.workoutTime.hidePickerIfNeeded()
         }
         
       case .changeWorkoutTime(let action):
@@ -96,7 +113,9 @@ public let timerReducer =
         case .valueUpdated(let value):
           state.workoutTime.value = value
           state.calculateInitialTime()
-        default: break
+        case .togglePickerVisibility:
+          state.sets.hidePickerIfNeeded()
+          state.breakTime.hidePickerIfNeeded()
         }
 
       case .timerTicked:
@@ -167,11 +186,32 @@ private extension TimerState {
   
   mutating func reset() {
     self = TimerState()
+    createSegments()
+    currentSegment = segments.first
+    calculateInitialTime()
+  }
+  
+  mutating func hidePickers() {
+    sets.isShowingPicker = false
+    breakTime.isShowingPicker = false
+    workoutTime.isShowingPicker = false
+  }
+  
+  mutating func togglePickersInteraction(disabled: Bool) {
+    sets.isInteractionDisabled = disabled
+    workoutTime.isInteractionDisabled = disabled
+    breakTime.isInteractionDisabled = disabled
   }
   
   var isCurrentSegmentLast: Bool {
     guard let segment = currentSegment, let index = segments.firstIndex(of: segment) else { return true }
     return index == segments.count - 1
+  }
+}
+
+private extension PickerState {
+  mutating func hidePickerIfNeeded() {
+    if isShowingPicker { isShowingPicker = false }
   }
 }
 
