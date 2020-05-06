@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B83905C22461EBBB00676B3D /* ValueSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83905C12461EBBB00676B3D /* ValueSlider.swift */; };
-		B83905C42461EBFD00676B3D /* SliderCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83905C32461EBFD00676B3D /* SliderCore.swift */; };
 		B83907042462A4DF00676B3D /* ValuePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83907032462A4DF00676B3D /* ValuePicker.swift */; };
 		B83907062462A4F400676B3D /* PickerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83907052462A4F400676B3D /* PickerCore.swift */; };
 		B84B0AC72458126700A07A1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84B0AC62458126700A07A1E /* AppDelegate.swift */; };
@@ -20,7 +18,6 @@
 		B8DC59B124605E38003FC8D3 /* TimerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* TimerCore.framework */; };
 		B8DC59B224605E38003FC8D3 /* TimerCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* TimerCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B8DC59BC24605ED0003FC8D3 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84B0ACA2458126700A07A1E /* TimerView.swift */; };
-		B8DC59BD24605ED5003FC8D3 /* TimerSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893DF9F245C217700C43360 /* TimerSlider.swift */; };
 		B8DC59BE24605ED5003FC8D3 /* KeyboardAdaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893DF9C245AD57900C43360 /* KeyboardAdaptive.swift */; };
 		B8DC59BF24605ED9003FC8D3 /* TimerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DC5995246055A3003FC8D3 /* TimerCore.swift */; };
 		B8DC59C024605ED9003FC8D3 /* SoundClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F9E7D224596056006A036F /* SoundClient.swift */; };
@@ -96,8 +93,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B83905C12461EBBB00676B3D /* ValueSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueSlider.swift; sourceTree = "<group>"; };
-		B83905C32461EBFD00676B3D /* SliderCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderCore.swift; sourceTree = "<group>"; };
 		B83907032462A4DF00676B3D /* ValuePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuePicker.swift; sourceTree = "<group>"; };
 		B83907052462A4F400676B3D /* PickerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCore.swift; sourceTree = "<group>"; };
 		B84B0AC32458126700A07A1E /* WorkoutTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkoutTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,7 +107,6 @@
 		B893DF97245AD53700C43360 /* UIResponder-Current.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder-Current.swift"; sourceTree = "<group>"; };
 		B893DF99245AD55900C43360 /* KeyboardHeightPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHeightPublisher.swift; sourceTree = "<group>"; };
 		B893DF9C245AD57900C43360 /* KeyboardAdaptive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAdaptive.swift; sourceTree = "<group>"; };
-		B893DF9F245C217700C43360 /* TimerSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSlider.swift; sourceTree = "<group>"; };
 		B893DFA3245C230300C43360 /* View-UpdateKeyPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View-UpdateKeyPath.swift"; sourceTree = "<group>"; };
 		B8DC5993246054E1003FC8D3 /* AppCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCore.swift; sourceTree = "<group>"; };
 		B8DC5995246055A3003FC8D3 /* TimerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCore.swift; sourceTree = "<group>"; };
@@ -158,7 +152,6 @@
 		B83905C52461ECA600676B3D /* Reducers */ = {
 			isa = PBXGroup;
 			children = (
-				B83905C32461EBFD00676B3D /* SliderCore.swift */,
 				B8DC5995246055A3003FC8D3 /* TimerCore.swift */,
 				B83907052462A4F400676B3D /* PickerCore.swift */,
 			);
@@ -240,16 +233,6 @@
 			path = Modifiers;
 			sourceTree = "<group>";
 		};
-		B893DF9E245C209F00C43360 /* Reusable */ = {
-			isa = PBXGroup;
-			children = (
-				B893DF9F245C217700C43360 /* TimerSlider.swift */,
-				B83905C12461EBBB00676B3D /* ValueSlider.swift */,
-				B83907032462A4DF00676B3D /* ValuePicker.swift */,
-			);
-			path = Reusable;
-			sourceTree = "<group>";
-		};
 		B893DFA1245C22EF00C43360 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,7 +293,7 @@
 			isa = PBXGroup;
 			children = (
 				B84B0ACA2458126700A07A1E /* TimerView.swift */,
-				B893DF9E245C209F00C43360 /* Reusable */,
+				B83907032462A4DF00676B3D /* ValuePicker.swift */,
 				B893DF9B245AD56F00C43360 /* Modifiers */,
 			);
 			path = Views;
@@ -515,16 +498,13 @@
 			files = (
 				B8DC59BF24605ED9003FC8D3 /* TimerCore.swift in Sources */,
 				B8DC59C224605F3F003FC8D3 /* View-UpdateKeyPath.swift in Sources */,
-				B83905C22461EBBB00676B3D /* ValueSlider.swift in Sources */,
 				B8DC59C124605F1A003FC8D3 /* Segment.swift in Sources */,
-				B8DC59BD24605ED5003FC8D3 /* TimerSlider.swift in Sources */,
 				B8DC59C324605F3F003FC8D3 /* UIResponder-Current.swift in Sources */,
 				B8DC59BC24605ED0003FC8D3 /* TimerView.swift in Sources */,
 				B83907062462A4F400676B3D /* PickerCore.swift in Sources */,
 				B83907042462A4DF00676B3D /* ValuePicker.swift in Sources */,
 				B8DC59BE24605ED5003FC8D3 /* KeyboardAdaptive.swift in Sources */,
 				B8DC59C424605F3F003FC8D3 /* KeyboardHeightPublisher.swift in Sources */,
-				B83905C42461EBFD00676B3D /* SliderCore.swift in Sources */,
 				B8DC59C024605ED9003FC8D3 /* SoundClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

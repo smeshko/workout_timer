@@ -6,6 +6,7 @@ struct ValuePicker: View {
   let store: Store<PickerState, PickerAction>
   let valueName: String
   let maxValue: Int
+  let tint: Color
   
   var body: some View {
     WithViewStore(store) { viewStore in
@@ -13,9 +14,10 @@ struct ValuePicker: View {
         Button(action: {
           viewStore.send(.togglePickerVisibility)
         }) {
-          VStack(spacing: 4) {
+          VStack {
             Text("\(viewStore.value)")
               .font(Font.system(size: 22, weight: .bold))
+              .foregroundColor(self.tint)
             Text(self.valueName)
           }
           .foregroundColor(.primary)
@@ -45,7 +47,8 @@ struct ValuePicker_Previews: PreviewProvider {
         environment: PickerEnvironment()
       ),
       valueName: "Sets",
-      maxValue: 20
+      maxValue: 20,
+      tint: .orange
     )
   }
 }

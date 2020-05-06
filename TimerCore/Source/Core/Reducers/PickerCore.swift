@@ -1,18 +1,26 @@
 import ComposableArchitecture
 
-enum PickerAction: Equatable {
+public enum PickerAction: Equatable {
   case valueUpdated(Int)
   case togglePickerVisibility
 }
 
-struct PickerState: Equatable {
+public struct PickerState: Equatable {
   var isShowingPicker: Bool = false
   var value: Int = 0
+  
+  public init(
+    isShowingPicker: Bool = false,
+    value: Int = 0
+  ) {
+    self.isShowingPicker = isShowingPicker
+    self.value = value
+  }
 }
 
-struct PickerEnvironment {}
+public struct PickerEnvironment {}
 
-let pickerReducer = Reducer<PickerState, PickerAction, PickerEnvironment> { state, action, _ in
+public let pickerReducer = Reducer<PickerState, PickerAction, PickerEnvironment> { state, action, _ in
   
   switch action {
   case .valueUpdated(let value):
