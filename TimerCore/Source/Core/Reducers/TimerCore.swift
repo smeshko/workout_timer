@@ -74,7 +74,7 @@ public let timerReducer = Reducer<TimerState, TimerAction, TimerEnvironment> { s
                 .map { _ in TimerAction.timerTicked }
         
         case .changeSetsCount(let count):
-            state.sets = count
+            state.sets = count / 5
             state.calculateInitialTime()
         
         case .changeBreakTime(let time):
