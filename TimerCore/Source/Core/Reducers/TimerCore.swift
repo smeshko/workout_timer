@@ -64,9 +64,7 @@ public let timerReducer =
       
       switch action {
       case .setNavigation:
-        state.createSegments()
-        state.currentSegment = state.segments.first
-        state.calculateInitialTime()
+        state.updateSegments()
         
       case .pause:
         state.isRunning = false
@@ -80,9 +78,7 @@ public let timerReducer =
         state.hidePickers()
         state.togglePickersInteraction(disabled: true)
         if new {
-          state.createSegments()
-          state.currentSegment = state.segments.first
-          state.calculateInitialTime()
+          state.updateSegments()
         }
         return Effect
           .timer(id: TimerId(), every: 1, tolerance: .zero, on: environment.mainQueue)
@@ -92,7 +88,7 @@ public let timerReducer =
         switch action {
         case .valueUpdated(let value):
           state.sets.value = value
-          state.calculateInitialTime()
+          state.updateSegments()
         case .togglePickerVisibility:
           state.breakTime.hidePickerIfNeeded()
           state.workoutTime.hidePickerIfNeeded()
@@ -102,7 +98,7 @@ public let timerReducer =
         switch action {
         case .valueUpdated(let value):
           state.breakTime.value = value
-          state.calculateInitialTime()
+          state.updateSegments()
         case .togglePickerVisibility:
           state.sets.hidePickerIfNeeded()
           state.workoutTime.hidePickerIfNeeded()
@@ -112,7 +108,7 @@ public let timerReducer =
         switch action {
         case .valueUpdated(let value):
           state.workoutTime.value = value
-          state.calculateInitialTime()
+          state.updateSegments()
         case .togglePickerVisibility:
           state.sets.hidePickerIfNeeded()
           state.breakTime.hidePickerIfNeeded()
@@ -182,6 +178,12 @@ private extension TimerState {
         segments.append(Segment(duration: breakTime.value, category: .pause))
       }
     }
+  }
+  
+  mutating func updateSegments() {
+    createSegments()
+    currentSegment = segments.first
+    calculateInitialTime()
   }
   
   mutating func reset() {

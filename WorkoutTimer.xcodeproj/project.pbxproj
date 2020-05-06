@@ -242,6 +242,13 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		B8B4F86624632B1B007EC06E /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		B8DC5992246054D9003FC8D3 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -271,6 +278,7 @@
 		B8DC59B924605E43003FC8D3 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				B8B4F86624632B1B007EC06E /* Assets */,
 				B8DC59CC2460603A003FC8D3 /* Product */,
 				B8DC59BB24605E4C003FC8D3 /* Views */,
 				B8DC59BA24605E48003FC8D3 /* Core */,

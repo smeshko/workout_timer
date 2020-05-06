@@ -32,13 +32,13 @@ public struct TimerView: View {
           ValuePicker(store: self.store.scope(state: \.workoutTime, action: TimerAction.changeWorkoutTime),
             valueName: "Workout Time",
             maxValue: 121,
-            tint: .yellow
+            tint: .red
           )
 
           ValuePicker(store: self.store.scope(state: \.breakTime, action: TimerAction.changeBreakTime),
             valueName: "Break Time",
             maxValue: 61,
-            tint: .blue
+            tint: .purple
           )
         }
         .padding()
