@@ -15,10 +15,10 @@ public struct TimerView: View {
         Spacer()
         
         Text(viewStore.formattedTotalTimeLeft)
-          .font(Font.system(size: 48, design: .monospaced))
+          .font(.system(size: 48, design: .monospaced))
         
         Text(viewStore.formattedSegmentTimeLeft)
-          .font(Font.system(size: 72, design: .monospaced))
+          .font(.system(size: 72, design: .monospaced))
         
         Spacer()
         
