@@ -11,9 +11,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     let contentView = TimerView(
       store: Store<TimerState, TimerAction>(
         initialState: TimerState(
-          sets: PickerState(value: 2),
-          workoutTime: PickerState(value: 60),
-          breakTime: PickerState(value: 20)
+//          sets: PickerState(value: 2),
+//          workoutTime: PickerState(value: 60),
+//          breakTime: PickerState(value: 20)
         ),
         reducer: timerReducer,
         environment: TimerEnvironment(

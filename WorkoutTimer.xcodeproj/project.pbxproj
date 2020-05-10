@@ -14,6 +14,7 @@
 		B84B0ACD2458126B00A07A1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B84B0ACC2458126B00A07A1E /* Assets.xcassets */; };
 		B84B0AD02458126B00A07A1E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B84B0ACF2458126B00A07A1E /* Preview Assets.xcassets */; };
 		B84B0AD32458126B00A07A1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B84B0AD12458126B00A07A1E /* LaunchScreen.storyboard */; };
+		B8806C9F246844C900C32F80 /* CircuitComposerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8806C9E246844C900C32F80 /* CircuitComposerCore.swift */; };
 		B8DC5994246054E1003FC8D3 /* AppCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DC5993246054E1003FC8D3 /* AppCore.swift */; };
 		B8DC59B124605E38003FC8D3 /* TimerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* TimerCore.framework */; };
 		B8DC59B224605E38003FC8D3 /* TimerCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* TimerCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -35,6 +36,11 @@
 		B8DC6A392461D814003FC8D3 /* ComposableArchitecture in Embed Frameworks */ = {isa = PBXBuildFile; productRef = B8DC6A362461D814003FC8D3 /* ComposableArchitecture */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B8DC6A3B2461D814003FC8D3 /* ComposableArchitectureTestSupport in Frameworks */ = {isa = PBXBuildFile; productRef = B8DC6A3A2461D814003FC8D3 /* ComposableArchitectureTestSupport */; };
 		B8DC6A3C2461D814003FC8D3 /* ComposableArchitectureTestSupport in Embed Frameworks */ = {isa = PBXBuildFile; productRef = B8DC6A3A2461D814003FC8D3 /* ComposableArchitectureTestSupport */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B8ED776324684642001B9DEE /* CircuitComposerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED776224684642001B9DEE /* CircuitComposerView.swift */; };
+		B8ED77652468493E001B9DEE /* CircuitPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED77642468493E001B9DEE /* CircuitPickerView.swift */; };
+		B8ED776724684976001B9DEE /* CircuitPickerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED776624684976001B9DEE /* CircuitPickerCore.swift */; };
+		B8ED7769246854D0001B9DEE /* TimerControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED7768246854D0001B9DEE /* TimerControlsView.swift */; };
+		B8ED776C246858A9001B9DEE /* TimerControlsCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED776B246858A8001B9DEE /* TimerControlsCore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +109,7 @@
 		B84B0ACF2458126B00A07A1E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B84B0AD22458126B00A07A1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B84B0AD42458126B00A07A1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B8806C9E246844C900C32F80 /* CircuitComposerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitComposerCore.swift; sourceTree = "<group>"; };
 		B893DF94245AC46100C43360 /* Segment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segment.swift; sourceTree = "<group>"; };
 		B893DF97245AD53700C43360 /* UIResponder-Current.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder-Current.swift"; sourceTree = "<group>"; };
 		B893DF99245AD55900C43360 /* KeyboardHeightPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHeightPublisher.swift; sourceTree = "<group>"; };
@@ -115,6 +122,11 @@
 		B8DC6A2B2461D7F6003FC8D3 /* TimerCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimerCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8DC6A2D2461D7F6003FC8D3 /* TimerCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCoreTests.swift; sourceTree = "<group>"; };
 		B8DC6A2F2461D7F6003FC8D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B8ED776224684642001B9DEE /* CircuitComposerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitComposerView.swift; sourceTree = "<group>"; };
+		B8ED77642468493E001B9DEE /* CircuitPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitPickerView.swift; sourceTree = "<group>"; };
+		B8ED776624684976001B9DEE /* CircuitPickerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitPickerCore.swift; sourceTree = "<group>"; };
+		B8ED7768246854D0001B9DEE /* TimerControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerControlsView.swift; sourceTree = "<group>"; };
+		B8ED776B246858A8001B9DEE /* TimerControlsCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerControlsCore.swift; sourceTree = "<group>"; };
 		B8F9E7D224596056006A036F /* SoundClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,15 +161,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B83905C52461ECA600676B3D /* Reducers */ = {
-			isa = PBXGroup;
-			children = (
-				B8DC5995246055A3003FC8D3 /* TimerCore.swift */,
-				B83907052462A4F400676B3D /* PickerCore.swift */,
-			);
-			path = Reducers;
-			sourceTree = "<group>";
-		};
 		B84B0ABA2458126600A07A1E = {
 			isa = PBXGroup;
 			children = (
@@ -197,12 +200,31 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		B8806C9B246841EA00C32F80 /* Reusable */ = {
+		B8806C9B246841EA00C32F80 /* ValuePicker */ = {
 			isa = PBXGroup;
 			children = (
 				B83907032462A4DF00676B3D /* ValuePicker.swift */,
+				B83907052462A4F400676B3D /* PickerCore.swift */,
 			);
-			path = Reusable;
+			path = ValuePicker;
+			sourceTree = "<group>";
+		};
+		B8806CA0246844EA00C32F80 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				B84B0ACA2458126700A07A1E /* TimerView.swift */,
+				B8DC5995246055A3003FC8D3 /* TimerCore.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
+		B8806CA12468450900C32F80 /* CircuitComposer */ = {
+			isa = PBXGroup;
+			children = (
+				B8806C9E246844C900C32F80 /* CircuitComposerCore.swift */,
+				B8ED776224684642001B9DEE /* CircuitComposerView.swift */,
+			);
+			path = CircuitComposer;
 			sourceTree = "<group>";
 		};
 		B893DF91245AC43500C43360 /* App */ = {
@@ -250,13 +272,6 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		B8B4F86624632B1B007EC06E /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Assets;
-			sourceTree = "<group>";
-		};
 		B8DC5992246054D9003FC8D3 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -286,7 +301,6 @@
 		B8DC59B924605E43003FC8D3 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				B8B4F86624632B1B007EC06E /* Assets */,
 				B8DC59CC2460603A003FC8D3 /* Product */,
 				B8DC59BB24605E4C003FC8D3 /* Views */,
 				B8DC59BA24605E48003FC8D3 /* Core */,
@@ -297,7 +311,6 @@
 		B8DC59BA24605E48003FC8D3 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				B83905C52461ECA600676B3D /* Reducers */,
 				B893DF96245AD52800C43360 /* Helpers */,
 				B8DC59CA24605FB5003FC8D3 /* Models */,
 				B8DC59CB24605FC0003FC8D3 /* Clients */,
@@ -308,9 +321,12 @@
 		B8DC59BB24605E4C003FC8D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B84B0ACA2458126700A07A1E /* TimerView.swift */,
-				B8806C9B246841EA00C32F80 /* Reusable */,
+				B8806CA12468450900C32F80 /* CircuitComposer */,
+				B8806CA0246844EA00C32F80 /* Timer */,
+				B8ED776D24685953001B9DEE /* CircuitPicker */,
+				B8806C9B246841EA00C32F80 /* ValuePicker */,
 				B893DF9B245AD56F00C43360 /* Modifiers */,
+				B8ED776A2468589A001B9DEE /* TimerControls */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -344,6 +360,24 @@
 				B8DC599F24605E38003FC8D3 /* Info.plist */,
 			);
 			path = Product;
+			sourceTree = "<group>";
+		};
+		B8ED776A2468589A001B9DEE /* TimerControls */ = {
+			isa = PBXGroup;
+			children = (
+				B8ED7768246854D0001B9DEE /* TimerControlsView.swift */,
+				B8ED776B246858A8001B9DEE /* TimerControlsCore.swift */,
+			);
+			path = TimerControls;
+			sourceTree = "<group>";
+		};
+		B8ED776D24685953001B9DEE /* CircuitPicker */ = {
+			isa = PBXGroup;
+			children = (
+				B8ED77642468493E001B9DEE /* CircuitPickerView.swift */,
+				B8ED776624684976001B9DEE /* CircuitPickerCore.swift */,
+			);
+			path = CircuitPicker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -512,15 +546,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8ED776C246858A9001B9DEE /* TimerControlsCore.swift in Sources */,
 				B8DC59BF24605ED9003FC8D3 /* TimerCore.swift in Sources */,
 				B8DC59C224605F3F003FC8D3 /* View-UpdateKeyPath.swift in Sources */,
 				B8DC59C124605F1A003FC8D3 /* Segment.swift in Sources */,
 				B8DC59C324605F3F003FC8D3 /* UIResponder-Current.swift in Sources */,
+				B8ED776724684976001B9DEE /* CircuitPickerCore.swift in Sources */,
 				B8DC59BC24605ED0003FC8D3 /* TimerView.swift in Sources */,
 				B83907062462A4F400676B3D /* PickerCore.swift in Sources */,
+				B8ED7769246854D0001B9DEE /* TimerControlsView.swift in Sources */,
 				B83907042462A4DF00676B3D /* ValuePicker.swift in Sources */,
 				B8DC59BE24605ED5003FC8D3 /* KeyboardAdaptive.swift in Sources */,
+				B8806C9F246844C900C32F80 /* CircuitComposerCore.swift in Sources */,
 				B8DC59C424605F3F003FC8D3 /* KeyboardHeightPublisher.swift in Sources */,
+				B8ED77652468493E001B9DEE /* CircuitPickerView.swift in Sources */,
+				B8ED776324684642001B9DEE /* CircuitComposerView.swift in Sources */,
 				B8DC59C024605ED9003FC8D3 /* SoundClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
