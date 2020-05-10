@@ -20,6 +20,16 @@ public struct TimerView: View {
         Text(viewStore.formattedSegmentTimeLeft)
           .font(.system(size: 72, design: .monospaced))
         
+        if viewStore.isRunning {
+          if viewStore.currentSegment?.category == .workout {
+            Text("\(viewStore.state.currentSetIndex) / \(viewStore.workoutSegmentsCount)")
+              .font(.system(size: 22))
+          } else {
+            Text("Recover")
+              .font(.system(size: 22))
+          }
+        }
+        
         Spacer()
         
         VStack(spacing: 16) {
@@ -93,3 +103,27 @@ struct TimerView_Previews: PreviewProvider {
     )
   }
 }
+
+private extension TimerState {
+  private var workouts: [Segment] {
+    segments.filter { $0.category == .workout }
+  }
+  
+  var currentSetIndex: Int {
+    guard let segment = currentSegment else { return 1 }
+    return (workouts.firstIndex(of: segment) ?? 0) + 1
+  }
+  
+  var workoutSegmentsCount: Int {
+    workouts.count
+  }
+}
+
+
+/*
+ 
+ Set      -> a workout
+ Segment  -> workout + pause
+ Circuit  -> multiple segments
+ 
+ */

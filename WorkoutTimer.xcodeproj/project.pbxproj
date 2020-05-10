@@ -197,6 +197,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		B8806C9B246841EA00C32F80 /* Reusable */ = {
+			isa = PBXGroup;
+			children = (
+				B83907032462A4DF00676B3D /* ValuePicker.swift */,
+			);
+			path = Reusable;
+			sourceTree = "<group>";
+		};
 		B893DF91245AC43500C43360 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,7 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				B84B0ACA2458126700A07A1E /* TimerView.swift */,
-				B83907032462A4DF00676B3D /* ValuePicker.swift */,
+				B8806C9B246841EA00C32F80 /* Reusable */,
 				B893DF9B245AD56F00C43360 /* Modifiers */,
 			);
 			path = Views;
@@ -676,6 +684,7 @@
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = WorkoutTimer/Product/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -697,6 +706,7 @@
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = WorkoutTimer/Product/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -720,6 +730,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = TimerCore/Source/Product/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -747,6 +758,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = TimerCore/Source/Product/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
