@@ -221,8 +221,8 @@
 		B8806CA12468450900C32F80 /* CircuitComposer */ = {
 			isa = PBXGroup;
 			children = (
-				B8806C9E246844C900C32F80 /* CircuitComposerCore.swift */,
 				B8ED776224684642001B9DEE /* CircuitComposerView.swift */,
+				B8806C9E246844C900C32F80 /* CircuitComposerCore.swift */,
 			);
 			path = CircuitComposer;
 			sourceTree = "<group>";
@@ -325,8 +325,8 @@
 				B8806CA0246844EA00C32F80 /* Timer */,
 				B8ED776D24685953001B9DEE /* CircuitPicker */,
 				B8806C9B246841EA00C32F80 /* ValuePicker */,
-				B893DF9B245AD56F00C43360 /* Modifiers */,
 				B8ED776A2468589A001B9DEE /* TimerControls */,
+				B893DF9B245AD56F00C43360 /* Modifiers */,
 			);
 			path = Views;
 			sourceTree = "<group>";

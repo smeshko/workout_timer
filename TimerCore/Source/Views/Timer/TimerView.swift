@@ -4,7 +4,7 @@ import ComposableArchitecture
 public struct TimerView: View {
   
   let store: Store<TimerState, TimerAction>
-  
+    
   public init(store: Store<TimerState, TimerAction>) {
     self.store = store
   }
@@ -45,13 +45,20 @@ public struct TimerView: View {
         .onAppear {
           viewStore.send(.setNavigation)
         }
+        .navigationBarItems(trailing:
+          Button(action: {
+            viewStore.send(.setCircuitComposerSheet(isPresented: true))
+          }) {
+            Image(systemName: "hammer.fill")
+        }
+          .sheet(isPresented: viewStore.binding(
+            get: \.isPresentingCircuitComposer,
+            send: TimerAction.setCircuitComposerSheet(isPresented:)
+          )) {
+            CircuitComposerView(store: self.store.scope(state: \.circuitComposerState, action: TimerAction.circuitComposerUpdated))
+          }
+        )
       }
-      .navigationBarItems(trailing:
-        Button(action: {
-          
-        }) {
-          Image(systemName: "hammer.fill")
-      })
     }
   }
 }
