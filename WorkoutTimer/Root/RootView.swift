@@ -1,5 +1,5 @@
 import SwiftUI
-import TimerCore
+import QuickTimer
 import ComposableArchitecture
 
 struct RootView: View {

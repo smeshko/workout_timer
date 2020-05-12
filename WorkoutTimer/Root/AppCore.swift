@@ -1,5 +1,5 @@
 import ComposableArchitecture
-import TimerCore
+import QuickTimer
 
 enum AppAction: Equatable {}
 

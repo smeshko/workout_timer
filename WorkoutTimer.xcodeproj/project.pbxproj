@@ -17,8 +17,8 @@
 		B8806C9F246844C900C32F80 /* CircuitComposerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8806C9E246844C900C32F80 /* CircuitComposerCore.swift */; };
 		B8C7D811246A8495006B95E3 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C7D810246A8495006B95E3 /* RootView.swift */; };
 		B8DC5994246054E1003FC8D3 /* AppCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DC5993246054E1003FC8D3 /* AppCore.swift */; };
-		B8DC59B124605E38003FC8D3 /* TimerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* TimerCore.framework */; };
-		B8DC59B224605E38003FC8D3 /* TimerCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* TimerCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B8DC59B124605E38003FC8D3 /* QuickTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* QuickTimer.framework */; };
+		B8DC59B224605E38003FC8D3 /* QuickTimer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* QuickTimer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B8DC59BC24605ED0003FC8D3 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84B0ACA2458126700A07A1E /* TimerView.swift */; };
 		B8DC59BE24605ED5003FC8D3 /* KeyboardAdaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893DF9C245AD57900C43360 /* KeyboardAdaptive.swift */; };
 		B8DC59BF24605ED9003FC8D3 /* TimerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DC5995246055A3003FC8D3 /* TimerCore.swift */; };
@@ -32,7 +32,7 @@
 		B8DC59D6246063B5003FC8D3 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = B8DC59D5246063B5003FC8D3 /* ComposableArchitecture */; };
 		B8DC59D7246063B5003FC8D3 /* ComposableArchitecture in Embed Frameworks */ = {isa = PBXBuildFile; productRef = B8DC59D5246063B5003FC8D3 /* ComposableArchitecture */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B8DC6A2E2461D7F6003FC8D3 /* TimerCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DC6A2D2461D7F6003FC8D3 /* TimerCoreTests.swift */; };
-		B8DC6A302461D7F6003FC8D3 /* TimerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* TimerCore.framework */; };
+		B8DC6A302461D7F6003FC8D3 /* QuickTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* QuickTimer.framework */; };
 		B8DC6A372461D814003FC8D3 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = B8DC6A362461D814003FC8D3 /* ComposableArchitecture */; };
 		B8DC6A392461D814003FC8D3 /* ComposableArchitecture in Embed Frameworks */ = {isa = PBXBuildFile; productRef = B8DC6A362461D814003FC8D3 /* ComposableArchitecture */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B8DC6A3B2461D814003FC8D3 /* ComposableArchitectureTestSupport in Frameworks */ = {isa = PBXBuildFile; productRef = B8DC6A3A2461D814003FC8D3 /* ComposableArchitectureTestSupport */; };
@@ -69,7 +69,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				B8DC59D0246063A9003FC8D3 /* ComposableArchitecture in Embed Frameworks */,
-				B8DC59B224605E38003FC8D3 /* TimerCore.framework in Embed Frameworks */,
+				B8DC59B224605E38003FC8D3 /* QuickTimer.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -119,9 +119,9 @@
 		B8C7D810246A8495006B95E3 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		B8DC5993246054E1003FC8D3 /* AppCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCore.swift; sourceTree = "<group>"; };
 		B8DC5995246055A3003FC8D3 /* TimerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCore.swift; sourceTree = "<group>"; };
-		B8DC599C24605E38003FC8D3 /* TimerCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TimerCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8DC599C24605E38003FC8D3 /* QuickTimer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QuickTimer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8DC599F24605E38003FC8D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B8DC6A2B2461D7F6003FC8D3 /* TimerCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimerCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8DC6A2B2461D7F6003FC8D3 /* QuickTimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickTimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8DC6A2D2461D7F6003FC8D3 /* TimerCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCoreTests.swift; sourceTree = "<group>"; };
 		B8DC6A2F2461D7F6003FC8D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8ED776224684642001B9DEE /* CircuitComposerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitComposerView.swift; sourceTree = "<group>"; };
@@ -138,7 +138,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8DC59CF246063A9003FC8D3 /* ComposableArchitecture in Frameworks */,
-				B8DC59B124605E38003FC8D3 /* TimerCore.framework in Frameworks */,
+				B8DC59B124605E38003FC8D3 /* QuickTimer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,7 +155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8DC6A372461D814003FC8D3 /* ComposableArchitecture in Frameworks */,
-				B8DC6A302461D7F6003FC8D3 /* TimerCore.framework in Frameworks */,
+				B8DC6A302461D7F6003FC8D3 /* QuickTimer.framework in Frameworks */,
 				B8DC6A3B2461D814003FC8D3 /* ComposableArchitectureTestSupport in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -167,7 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				B84B0AC52458126700A07A1E /* WorkoutTimer */,
-				B8DC599D24605E38003FC8D3 /* TimerCore */,
+				B8DC599D24605E38003FC8D3 /* QuickTimer */,
 				B84B0AC42458126700A07A1E /* Products */,
 				B8DC59C524605F99003FC8D3 /* Frameworks */,
 			);
@@ -177,8 +177,8 @@
 			isa = PBXGroup;
 			children = (
 				B84B0AC32458126700A07A1E /* WorkoutTimer.app */,
-				B8DC599C24605E38003FC8D3 /* TimerCore.framework */,
-				B8DC6A2B2461D7F6003FC8D3 /* TimerCoreTests.xctest */,
+				B8DC599C24605E38003FC8D3 /* QuickTimer.framework */,
+				B8DC6A2B2461D7F6003FC8D3 /* QuickTimerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -283,13 +283,13 @@
 			path = Root;
 			sourceTree = "<group>";
 		};
-		B8DC599D24605E38003FC8D3 /* TimerCore */ = {
+		B8DC599D24605E38003FC8D3 /* QuickTimer */ = {
 			isa = PBXGroup;
 			children = (
 				B8DC59B924605E43003FC8D3 /* Source */,
 				B8DC59AA24605E38003FC8D3 /* Tests */,
 			);
-			path = TimerCore;
+			path = QuickTimer;
 			sourceTree = "<group>";
 		};
 		B8DC59AA24605E38003FC8D3 /* Tests */ = {
@@ -418,9 +418,9 @@
 			productReference = B84B0AC32458126700A07A1E /* WorkoutTimer.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B8DC599B24605E38003FC8D3 /* TimerCore */ = {
+		B8DC599B24605E38003FC8D3 /* QuickTimer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8DC59B324605E38003FC8D3 /* Build configuration list for PBXNativeTarget "TimerCore" */;
+			buildConfigurationList = B8DC59B324605E38003FC8D3 /* Build configuration list for PBXNativeTarget "QuickTimer" */;
 			buildPhases = (
 				B8DC599724605E38003FC8D3 /* Headers */,
 				B8DC599824605E38003FC8D3 /* Sources */,
@@ -432,17 +432,17 @@
 			);
 			dependencies = (
 			);
-			name = TimerCore;
+			name = QuickTimer;
 			packageProductDependencies = (
 				B8DC59D5246063B5003FC8D3 /* ComposableArchitecture */,
 			);
 			productName = Timer;
-			productReference = B8DC599C24605E38003FC8D3 /* TimerCore.framework */;
+			productReference = B8DC599C24605E38003FC8D3 /* QuickTimer.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		B8DC6A2A2461D7F6003FC8D3 /* TimerCoreTests */ = {
+		B8DC6A2A2461D7F6003FC8D3 /* QuickTimerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8DC6A332461D7F6003FC8D3 /* Build configuration list for PBXNativeTarget "TimerCoreTests" */;
+			buildConfigurationList = B8DC6A332461D7F6003FC8D3 /* Build configuration list for PBXNativeTarget "QuickTimerTests" */;
 			buildPhases = (
 				B8DC6A272461D7F6003FC8D3 /* Sources */,
 				B8DC6A282461D7F6003FC8D3 /* Frameworks */,
@@ -454,13 +454,13 @@
 			dependencies = (
 				B8DC6A322461D7F6003FC8D3 /* PBXTargetDependency */,
 			);
-			name = TimerCoreTests;
+			name = QuickTimerTests;
 			packageProductDependencies = (
 				B8DC6A362461D814003FC8D3 /* ComposableArchitecture */,
 				B8DC6A3A2461D814003FC8D3 /* ComposableArchitectureTestSupport */,
 			);
 			productName = TimerCoreTests;
-			productReference = B8DC6A2B2461D7F6003FC8D3 /* TimerCoreTests.xctest */;
+			productReference = B8DC6A2B2461D7F6003FC8D3 /* QuickTimerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -501,8 +501,8 @@
 			projectRoot = "";
 			targets = (
 				B84B0AC22458126600A07A1E /* WorkoutTimer */,
-				B8DC599B24605E38003FC8D3 /* TimerCore */,
-				B8DC6A2A2461D7F6003FC8D3 /* TimerCoreTests */,
+				B8DC599B24605E38003FC8D3 /* QuickTimer */,
+				B8DC6A2A2461D7F6003FC8D3 /* QuickTimerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -582,12 +582,12 @@
 /* Begin PBXTargetDependency section */
 		B8DC59B024605E38003FC8D3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B8DC599B24605E38003FC8D3 /* TimerCore */;
+			target = B8DC599B24605E38003FC8D3 /* QuickTimer */;
 			targetProxy = B8DC59AF24605E38003FC8D3 /* PBXContainerItemProxy */;
 		};
 		B8DC6A322461D7F6003FC8D3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B8DC599B24605E38003FC8D3 /* TimerCore */;
+			target = B8DC599B24605E38003FC8D3 /* QuickTimer */;
 			targetProxy = B8DC6A312461D7F6003FC8D3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -772,7 +772,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = TimerCore/Source/Product/Info.plist;
+				INFOPLIST_FILE = QuickTimer/Source/Product/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -780,7 +780,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.Timer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.QuickTimer;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -800,7 +800,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = TimerCore/Source/Product/Info.plist;
+				INFOPLIST_FILE = QuickTimer/Source/Product/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -808,7 +808,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.Timer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.QuickTimer;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -823,7 +823,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = TimerCore/Tests/Info.plist;
+				INFOPLIST_FILE = QuickTimer/Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -841,7 +841,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = TimerCore/Tests/Info.plist;
+				INFOPLIST_FILE = QuickTimer/Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -875,7 +875,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B8DC59B324605E38003FC8D3 /* Build configuration list for PBXNativeTarget "TimerCore" */ = {
+		B8DC59B324605E38003FC8D3 /* Build configuration list for PBXNativeTarget "QuickTimer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8DC59B424605E38003FC8D3 /* Debug */,
@@ -884,7 +884,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B8DC6A332461D7F6003FC8D3 /* Build configuration list for PBXNativeTarget "TimerCoreTests" */ = {
+		B8DC6A332461D7F6003FC8D3 /* Build configuration list for PBXNativeTarget "QuickTimerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8DC6A342461D7F6003FC8D3 /* Debug */,

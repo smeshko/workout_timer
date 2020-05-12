@@ -1,5 +1,5 @@
 import ComposableArchitecture
-import TimerCore
+import QuickTimer
 import UIKit
 import SwiftUI
 
