@@ -25,7 +25,7 @@ extension QuickTimerView {
     self.init(
       store: Store<QuickTimerState, QuickTimerAction>(
         initialState: QuickTimerState(),
-        reducer: timerReducer,
+        reducer: quickTimerReducer,
         environment: QuickTimerEnvironment(
           mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
           soundClient: .live

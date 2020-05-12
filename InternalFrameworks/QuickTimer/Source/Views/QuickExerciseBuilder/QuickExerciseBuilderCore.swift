@@ -1,7 +1,7 @@
 import ComposableArchitecture
 import WorkoutCore
 
-public enum QuickTimerBuilderAction: Equatable {
+public enum QuickExerciseBuilderAction: Equatable {
   case changeSetsCount(PickerAction)
   case changeBreakTime(PickerAction)
   case changeWorkoutTime(PickerAction)
@@ -10,7 +10,7 @@ public enum QuickTimerBuilderAction: Equatable {
   case setNavigation
 }
 
-public struct QuickTimerBuilderState: Equatable {
+public struct QuickExerciseBuilderState: Equatable {
   
   var setsState = PickerState()
   var workoutTimeState = PickerState()
@@ -29,10 +29,10 @@ public struct QuickTimerBuilderState: Equatable {
   }
 }
 
-public struct QuickTimerBuilderEnvironment: Equatable {}
+public struct QuickExerciseBuilderEnvironment: Equatable {}
 
-public let quickTimerBuilderReducer =
-  Reducer<QuickTimerBuilderState, QuickTimerBuilderAction, QuickTimerBuilderEnvironment>.combine(
+public let quickExerciseBuilderReducer =
+  Reducer<QuickExerciseBuilderState, QuickExerciseBuilderAction, QuickExerciseBuilderEnvironment>.combine(
     Reducer { state, action, _ in
       
       switch action {
@@ -83,22 +83,22 @@ public let quickTimerBuilderReducer =
     },
     pickerReducer.pullback(
       state: \.setsState,
-      action: /QuickTimerBuilderAction.changeSetsCount,
+      action: /QuickExerciseBuilderAction.changeSetsCount,
       environment: { _ in PickerEnvironment() }
     ),
     pickerReducer.pullback(
       state: \.workoutTimeState,
-      action: /QuickTimerBuilderAction.changeWorkoutTime,
+      action: /QuickExerciseBuilderAction.changeWorkoutTime,
       environment: { _ in PickerEnvironment() }
     ),
     pickerReducer.pullback(
       state: \.breakTimeState,
-      action: /QuickTimerBuilderAction.changeBreakTime,
+      action: /QuickExerciseBuilderAction.changeBreakTime,
       environment: { _ in PickerEnvironment() }
     )
 )
 
-private extension QuickTimerBuilderState {
+private extension QuickExerciseBuilderState {
   
   mutating func createSegments() {
     segments = []

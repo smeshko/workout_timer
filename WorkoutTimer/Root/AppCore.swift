@@ -7,4 +7,4 @@ struct AppState: Equatable {}
 
 struct AppEnvironment {}
 
-let appReducer = timerReducer
+let appReducer = quickTimerReducer

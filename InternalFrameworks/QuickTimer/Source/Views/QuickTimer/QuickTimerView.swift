@@ -34,7 +34,7 @@ public struct QuickTimerView: View {
           
           Spacer()
           
-          QuickTimerBuilderView(store: self.store.scope(state: \.circuitPickerState, action: QuickTimerAction.circuitPickerUpdatedValues))
+          QuickExerciseBuilderView(store: self.store.scope(state: \.circuitPickerState, action: QuickTimerAction.circuitPickerUpdatedValues))
             .padding()
           
           Spacer()

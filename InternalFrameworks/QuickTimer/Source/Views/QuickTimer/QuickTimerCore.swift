@@ -11,7 +11,7 @@ public enum QuickTimerAction: Equatable {
   
   case circuitComposerUpdated(CircuitComposerAction)
   case timerControlsUpdatedState(QuickTimerControlsAction)
-  case circuitPickerUpdatedValues(QuickTimerBuilderAction)
+  case circuitPickerUpdatedValues(QuickExerciseBuilderAction)
 }
 
 public struct QuickTimerState: Equatable {
@@ -24,7 +24,7 @@ public struct QuickTimerState: Equatable {
   
   var circuitComposerState: CircuitComposerState
   var timerControlsState: QuickTimerControlsState
-  var circuitPickerState: QuickTimerBuilderState
+  var circuitPickerState: QuickExerciseBuilderState
   
   public init(segments: [Segment] = [],
               currentSegment: Segment? = nil,
@@ -32,7 +32,7 @@ public struct QuickTimerState: Equatable {
               segmentTimeLeft: Int = 0,
               isPresentingCircuitComposer: Bool = false,
               circuitComposerState: CircuitComposerState = CircuitComposerState(),
-              circuitPickerState: QuickTimerBuilderState = QuickTimerBuilderState(sets: 2, workoutTime: 60, breakTime: 20),
+              circuitPickerState: QuickExerciseBuilderState = QuickExerciseBuilderState(sets: 2, workoutTime: 60, breakTime: 20),
               timerControlsState: QuickTimerControlsState = QuickTimerControlsState()) {
     self.segments = segments
     self.currentSegment = currentSegment
@@ -137,10 +137,10 @@ public let quickTimerReducer =
       
       return .none
   },
-    quickTimerBuilderReducer.pullback(
+    quickExerciseBuilderReducer.pullback(
       state: \.circuitPickerState,
       action: /QuickTimerAction.circuitPickerUpdatedValues,
-      environment: { _ in QuickTimerBuilderEnvironment() }
+      environment: { _ in QuickExerciseBuilderEnvironment() }
     ),
     quickTimerControlsReducer.pullback(
       state: \.timerControlsState,
@@ -195,8 +195,8 @@ private extension QuickTimerState {
   }
 }
 
-private extension QuickTimerBuilderState {
-  init(state: QuickTimerBuilderState) {
+private extension QuickExerciseBuilderState {
+  init(state: QuickExerciseBuilderState) {
     self.init(sets: state.setsState.value, workoutTime: state.workoutTimeState.value, breakTime: state.breakTimeState.value)
   }
 }

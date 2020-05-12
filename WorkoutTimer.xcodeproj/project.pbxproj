@@ -18,7 +18,6 @@
 		B876744C246AB6A500438A0F /* WorkoutCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8767444246AB6A500438A0F /* WorkoutCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B8767451246AB6D100438A0F /* Segment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893DF94245AC46100C43360 /* Segment.swift */; };
 		B876746A246AB7E700438A0F /* WorkoutCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8767444246AB6A500438A0F /* WorkoutCore.framework */; };
-		B8767471246AB84700438A0F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B8767470246AB84700438A0F /* Info.plist */; };
 		B87675B9246AD78900438A0F /* WorkoutFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87675B0246AD78900438A0F /* WorkoutFeed.framework */; };
 		B87675C0246AD78900438A0F /* WorkoutFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87675BF246AD78900438A0F /* WorkoutFeedTests.swift */; };
 		B87675C5246AD78900438A0F /* WorkoutFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87675B0246AD78900438A0F /* WorkoutFeed.framework */; };
@@ -48,9 +47,11 @@
 		B8DC6A392461D814003FC8D3 /* ComposableArchitecture in Embed Frameworks */ = {isa = PBXBuildFile; productRef = B8DC6A362461D814003FC8D3 /* ComposableArchitecture */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B8DC6A3B2461D814003FC8D3 /* ComposableArchitectureTestSupport in Frameworks */ = {isa = PBXBuildFile; productRef = B8DC6A3A2461D814003FC8D3 /* ComposableArchitectureTestSupport */; };
 		B8DC6A3C2461D814003FC8D3 /* ComposableArchitectureTestSupport in Embed Frameworks */ = {isa = PBXBuildFile; productRef = B8DC6A3A2461D814003FC8D3 /* ComposableArchitectureTestSupport */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B8E59997246B3F2700E18F07 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = B8E59996246B3F2700E18F07 /* ComposableArchitecture */; };
+		B8E59999246B3F2700E18F07 /* ComposableArchitecture in Embed Frameworks */ = {isa = PBXBuildFile; productRef = B8E59996246B3F2700E18F07 /* ComposableArchitecture */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B8ED776324684642001B9DEE /* CircuitComposerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED776224684642001B9DEE /* CircuitComposerView.swift */; };
-		B8ED77652468493E001B9DEE /* QuickTimerBuilderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED77642468493E001B9DEE /* QuickTimerBuilderView.swift */; };
-		B8ED776724684976001B9DEE /* QuickTimerBuilderCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED776624684976001B9DEE /* QuickTimerBuilderCore.swift */; };
+		B8ED77652468493E001B9DEE /* QuickExerciseBuilderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED77642468493E001B9DEE /* QuickExerciseBuilderView.swift */; };
+		B8ED776724684976001B9DEE /* QuickExerciseBuilderCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED776624684976001B9DEE /* QuickExerciseBuilderCore.swift */; };
 		B8ED7769246854D0001B9DEE /* QuickTimerControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED7768246854D0001B9DEE /* QuickTimerControlsView.swift */; };
 		B8ED776C246858A9001B9DEE /* TimerControlsCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED776B246858A8001B9DEE /* TimerControlsCore.swift */; };
 /* End PBXBuildFile section */
@@ -145,6 +146,17 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B8E59998246B3F2700E18F07 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B8E59999246B3F2700E18F07 /* ComposableArchitecture in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -185,8 +197,8 @@
 		B8DC6A2D2461D7F6003FC8D3 /* TimerCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCoreTests.swift; sourceTree = "<group>"; };
 		B8DC6A2F2461D7F6003FC8D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8ED776224684642001B9DEE /* CircuitComposerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitComposerView.swift; sourceTree = "<group>"; };
-		B8ED77642468493E001B9DEE /* QuickTimerBuilderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerBuilderView.swift; sourceTree = "<group>"; };
-		B8ED776624684976001B9DEE /* QuickTimerBuilderCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerBuilderCore.swift; sourceTree = "<group>"; };
+		B8ED77642468493E001B9DEE /* QuickExerciseBuilderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickExerciseBuilderView.swift; sourceTree = "<group>"; };
+		B8ED776624684976001B9DEE /* QuickExerciseBuilderCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickExerciseBuilderCore.swift; sourceTree = "<group>"; };
 		B8ED7768246854D0001B9DEE /* QuickTimerControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerControlsView.swift; sourceTree = "<group>"; };
 		B8ED776B246858A8001B9DEE /* TimerControlsCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerControlsCore.swift; sourceTree = "<group>"; };
 		B8F9E7D224596056006A036F /* SoundClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundClient.swift; sourceTree = "<group>"; };
@@ -223,6 +235,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8E59997246B3F2700E18F07 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,7 +497,7 @@
 			children = (
 				B8806CA12468450900C32F80 /* CircuitComposer */,
 				B8806CA0246844EA00C32F80 /* QuickTimer */,
-				B8ED776D24685953001B9DEE /* QuickTimerBuilder */,
+				B8ED776D24685953001B9DEE /* QuickExerciseBuilder */,
 				B8806C9B246841EA00C32F80 /* ValuePicker */,
 				B8ED776A2468589A001B9DEE /* QuickTimerControls */,
 				B893DF9B245AD56F00C43360 /* Modifiers */,
@@ -533,13 +546,13 @@
 			path = QuickTimerControls;
 			sourceTree = "<group>";
 		};
-		B8ED776D24685953001B9DEE /* QuickTimerBuilder */ = {
+		B8ED776D24685953001B9DEE /* QuickExerciseBuilder */ = {
 			isa = PBXGroup;
 			children = (
-				B8ED77642468493E001B9DEE /* QuickTimerBuilderView.swift */,
-				B8ED776624684976001B9DEE /* QuickTimerBuilderCore.swift */,
+				B8ED77642468493E001B9DEE /* QuickExerciseBuilderView.swift */,
+				B8ED776624684976001B9DEE /* QuickExerciseBuilderCore.swift */,
 			);
-			path = QuickTimerBuilder;
+			path = QuickExerciseBuilder;
 			sourceTree = "<group>";
 		};
 		B8FCFDF9246AB2CE005C9A89 /* InternalFrameworks */ = {
@@ -646,12 +659,16 @@
 				B87675AC246AD78900438A0F /* Sources */,
 				B87675AD246AD78900438A0F /* Frameworks */,
 				B87675AE246AD78900438A0F /* Resources */,
+				B8E59998246B3F2700E18F07 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = WorkoutFeed;
+			packageProductDependencies = (
+				B8E59996246B3F2700E18F07 /* ComposableArchitecture */,
+			);
 			productName = WorkoutFeed;
 			productReference = B87675B0246AD78900438A0F /* WorkoutFeed.framework */;
 			productType = "com.apple.product-type.framework";
@@ -787,7 +804,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8767471246AB84700438A0F /* Info.plist in Resources */,
 				B84B0AD32458126B00A07A1E /* LaunchScreen.storyboard in Resources */,
 				B84B0AD02458126B00A07A1E /* Preview Assets.xcassets in Resources */,
 				B84B0ACD2458126B00A07A1E /* Assets.xcassets in Resources */,
@@ -891,7 +907,7 @@
 				B8DC59BF24605ED9003FC8D3 /* QuickTimerCore.swift in Sources */,
 				B8DC59C224605F3F003FC8D3 /* View-UpdateKeyPath.swift in Sources */,
 				B8DC59C324605F3F003FC8D3 /* UIResponder-Current.swift in Sources */,
-				B8ED776724684976001B9DEE /* QuickTimerBuilderCore.swift in Sources */,
+				B8ED776724684976001B9DEE /* QuickExerciseBuilderCore.swift in Sources */,
 				B8DC59BC24605ED0003FC8D3 /* QuickTimerView.swift in Sources */,
 				B83907062462A4F400676B3D /* PickerCore.swift in Sources */,
 				B8ED7769246854D0001B9DEE /* QuickTimerControlsView.swift in Sources */,
@@ -899,7 +915,7 @@
 				B8DC59BE24605ED5003FC8D3 /* KeyboardAdaptive.swift in Sources */,
 				B8806C9F246844C900C32F80 /* CircuitComposerCore.swift in Sources */,
 				B8DC59C424605F3F003FC8D3 /* KeyboardHeightPublisher.swift in Sources */,
-				B8ED77652468493E001B9DEE /* QuickTimerBuilderView.swift in Sources */,
+				B8ED77652468493E001B9DEE /* QuickExerciseBuilderView.swift in Sources */,
 				B8ED776324684642001B9DEE /* CircuitComposerView.swift in Sources */,
 				B8DC59C024605ED9003FC8D3 /* SoundClient.swift in Sources */,
 			);
@@ -1512,6 +1528,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B8DC59CD246063A9003FC8D3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitectureTestSupport;
+		};
+		B8E59996246B3F2700E18F07 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B8DC59CD246063A9003FC8D3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
