@@ -1,5 +1,6 @@
 import ComposableArchitecture
 import Foundation
+import WorkoutCore
 
 public enum TimerAction: Equatable {
   case timerTicked

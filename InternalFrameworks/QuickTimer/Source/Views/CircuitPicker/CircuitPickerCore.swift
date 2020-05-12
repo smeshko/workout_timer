@@ -1,4 +1,5 @@
 import ComposableArchitecture
+import WorkoutCore
 
 public enum CircuitPickerAction: Equatable {
   case changeSetsCount(PickerAction)

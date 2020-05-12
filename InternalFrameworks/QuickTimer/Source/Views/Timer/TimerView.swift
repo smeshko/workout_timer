@@ -1,5 +1,6 @@
 import SwiftUI
 import ComposableArchitecture
+import WorkoutCore
 
 public struct TimerView: View {
   

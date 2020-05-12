@@ -1,5 +1,5 @@
 import ComposableArchitecture
-
+import WorkoutCore
 
 public enum CircuitComposerAction: Equatable {
   case finishedCircuitButtonTapped

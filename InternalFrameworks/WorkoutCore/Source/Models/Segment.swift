@@ -9,6 +9,11 @@ public struct Segment: Equatable, Identifiable, Hashable {
   public let id = UUID()
   public let duration: Int
   public let category: Category
+  
+  public init(duration: Int, category: Segment.Category) {
+    self.duration = duration
+    self.category = category
+  }
 }
 
 extension Segment: CustomStringConvertible {
