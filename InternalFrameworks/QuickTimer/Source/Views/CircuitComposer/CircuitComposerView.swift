@@ -15,7 +15,7 @@ struct CircuitComposerView: View {
           }
           if viewStore.isCircuitPickerVisible {
             VStack(spacing: 16) {
-              CircuitPickerView(store: self.store.scope(state: \.circuitPickerState, action: CircuitComposerAction.circuitPickerUpdatedValues))
+              QuickTimerBuilderView(store: self.store.scope(state: \.circuitPickerState, action: CircuitComposerAction.circuitPickerUpdatedValues))
               
               Button("Done") {
                 viewStore.send(.finishedCircuitButtonTapped)

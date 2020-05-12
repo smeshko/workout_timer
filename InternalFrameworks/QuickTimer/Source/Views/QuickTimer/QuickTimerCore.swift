@@ -2,7 +2,7 @@ import ComposableArchitecture
 import Foundation
 import WorkoutCore
 
-public enum TimerAction: Equatable {
+public enum QuickTimerAction: Equatable {
   case timerTicked
   case segmentEnded
   case timerFinished
@@ -10,11 +10,11 @@ public enum TimerAction: Equatable {
   case setCircuitComposerSheet(isPresented: Bool)
   
   case circuitComposerUpdated(CircuitComposerAction)
-  case timerControlsUpdatedState(TimerControlsAction)
-  case circuitPickerUpdatedValues(CircuitPickerAction)
+  case timerControlsUpdatedState(QuickTimerControlsAction)
+  case circuitPickerUpdatedValues(QuickTimerBuilderAction)
 }
 
-public struct TimerState: Equatable {
+public struct QuickTimerState: Equatable {
   var isRunning: Bool { timerControlsState.isRunning }
   var segments: [Segment] = []
   var currentSegment: Segment? = nil
@@ -23,8 +23,8 @@ public struct TimerState: Equatable {
   var isPresentingCircuitComposer: Bool = false
   
   var circuitComposerState: CircuitComposerState
-  var timerControlsState: TimerControlsState
-  var circuitPickerState: CircuitPickerState
+  var timerControlsState: QuickTimerControlsState
+  var circuitPickerState: QuickTimerBuilderState
   
   public init(segments: [Segment] = [],
               currentSegment: Segment? = nil,
@@ -32,8 +32,8 @@ public struct TimerState: Equatable {
               segmentTimeLeft: Int = 0,
               isPresentingCircuitComposer: Bool = false,
               circuitComposerState: CircuitComposerState = CircuitComposerState(),
-              circuitPickerState: CircuitPickerState = CircuitPickerState(sets: 2, workoutTime: 60, breakTime: 20),
-              timerControlsState: TimerControlsState = TimerControlsState()) {
+              circuitPickerState: QuickTimerBuilderState = QuickTimerBuilderState(sets: 2, workoutTime: 60, breakTime: 20),
+              timerControlsState: QuickTimerControlsState = QuickTimerControlsState()) {
     self.segments = segments
     self.currentSegment = currentSegment
     self.circuitPickerState = circuitPickerState
@@ -45,7 +45,7 @@ public struct TimerState: Equatable {
   }
 }
 
-public struct TimerEnvironment {
+public struct QuickTimerEnvironment {
   var mainQueue: AnySchedulerOf<DispatchQueue>
   var soundClient: SoundClient
   
@@ -58,8 +58,8 @@ public struct TimerEnvironment {
   }
 }
 
-public let timerReducer =
-  Reducer<TimerState, TimerAction, TimerEnvironment>.combine(
+public let quickTimerReducer =
+  Reducer<QuickTimerState, QuickTimerAction, QuickTimerEnvironment>.combine(
     Reducer { state, action, environment in
       struct TimerId: Hashable {}
       
@@ -74,10 +74,10 @@ public let timerReducer =
       case .timerControlsUpdatedState(let controlsAction):
         switch controlsAction {
           case .pause:
-            return Effect<TimerAction, Never>.cancel(id: TimerId())
+            return Effect<QuickTimerAction, Never>.cancel(id: TimerId())
             
           case .stop:
-            return Effect(value: TimerAction.timerFinished)
+            return Effect(value: QuickTimerAction.timerFinished)
             
           case .start:
             state.hidePickers()
@@ -88,7 +88,7 @@ public let timerReducer =
             }
             return Effect
               .timer(id: TimerId(), every: 1, tolerance: .zero, on: environment.mainQueue)
-              .map { _ in TimerAction.timerTicked }
+              .map { _ in QuickTimerAction.timerTicked }
         }
 
       case .circuitPickerUpdatedValues(let circuitPickerAction):
@@ -105,7 +105,7 @@ public let timerReducer =
           state.segments = state.circuitComposerState.segments
           state.updateSegments()
           state.circuitPickerState.setsState.value = state.circuitComposerState.circuitPickerState.setsState.value
-          return Effect(value: TimerAction.setCircuitComposerSheet(isPresented: false))
+          return Effect(value: QuickTimerAction.setCircuitComposerSheet(isPresented: false))
         default: break
         }
         
@@ -114,11 +114,11 @@ public let timerReducer =
         state.segmentTimeLeft -= 1
         
         if state.totalTimeLeft <= 0 {
-          return Effect(value: TimerAction.timerFinished)
+          return Effect(value: QuickTimerAction.timerFinished)
         }
         
         if state.segmentTimeLeft == 0, !state.isCurrentSegmentLast {
-          return Effect(value: TimerAction.segmentEnded)
+          return Effect(value: QuickTimerAction.segmentEnded)
         }
         
       case .segmentEnded:
@@ -129,7 +129,7 @@ public let timerReducer =
         
       case .timerFinished:
         state.reset()
-        return Effect<TimerAction, Never>
+        return Effect<QuickTimerAction, Never>
           .cancel(id: TimerId())
           .flatMap { _ in environment.soundClient.play(.segment).fireAndForget() }
           .eraseToEffect()
@@ -137,24 +137,24 @@ public let timerReducer =
       
       return .none
   },
-    circuitPickerReducer.pullback(
+    quickTimerBuilderReducer.pullback(
       state: \.circuitPickerState,
-      action: /TimerAction.circuitPickerUpdatedValues,
-      environment: { _ in CircuitPickerEnvironment() }
+      action: /QuickTimerAction.circuitPickerUpdatedValues,
+      environment: { _ in QuickTimerBuilderEnvironment() }
     ),
-    timerControlsReducer.pullback(
+    quickTimerControlsReducer.pullback(
       state: \.timerControlsState,
-      action: /TimerAction.timerControlsUpdatedState,
-      environment: { _ in TimerControlsEnvironment() }
+      action: /QuickTimerAction.timerControlsUpdatedState,
+      environment: { _ in QuickTimerControlsEnvironment() }
     ),
     circuitComposerReducer.pullback(
       state: \.circuitComposerState,
-      action: /TimerAction.circuitComposerUpdated,
+      action: /QuickTimerAction.circuitComposerUpdated,
       environment: { _ in CircuitComposerEnvironment() }
     )
 )
 
-private extension TimerState {
+private extension QuickTimerState {
   mutating func calculateInitialTime() {
     totalTimeLeft = segments.map { $0.duration }.reduce(0, +)
     segmentTimeLeft = currentSegment?.duration ?? 0
@@ -172,7 +172,7 @@ private extension TimerState {
   }
   
   mutating func reset() {
-    self = TimerState()
+    self = QuickTimerState()
     currentSegment = segments.first
     calculateInitialTime()
   }
@@ -195,8 +195,8 @@ private extension TimerState {
   }
 }
 
-private extension CircuitPickerState {
-  init(state: CircuitPickerState) {
+private extension QuickTimerBuilderState {
+  init(state: QuickTimerBuilderState) {
     self.init(sets: state.setsState.value, workoutTime: state.workoutTimeState.value, breakTime: state.breakTimeState.value)
   }
 }

@@ -1,7 +1,7 @@
 import ComposableArchitecture
 import WorkoutCore
 
-public enum CircuitPickerAction: Equatable {
+public enum QuickTimerBuilderAction: Equatable {
   case changeSetsCount(PickerAction)
   case changeBreakTime(PickerAction)
   case changeWorkoutTime(PickerAction)
@@ -10,7 +10,7 @@ public enum CircuitPickerAction: Equatable {
   case setNavigation
 }
 
-public struct CircuitPickerState: Equatable {
+public struct QuickTimerBuilderState: Equatable {
   
   var setsState = PickerState()
   var workoutTimeState = PickerState()
@@ -29,10 +29,10 @@ public struct CircuitPickerState: Equatable {
   }
 }
 
-public struct CircuitPickerEnvironment: Equatable {}
+public struct QuickTimerBuilderEnvironment: Equatable {}
 
-public let circuitPickerReducer =
-  Reducer<CircuitPickerState, CircuitPickerAction, CircuitPickerEnvironment>.combine(
+public let quickTimerBuilderReducer =
+  Reducer<QuickTimerBuilderState, QuickTimerBuilderAction, QuickTimerBuilderEnvironment>.combine(
     Reducer { state, action, _ in
       
       switch action {
@@ -83,22 +83,22 @@ public let circuitPickerReducer =
     },
     pickerReducer.pullback(
       state: \.setsState,
-      action: /CircuitPickerAction.changeSetsCount,
+      action: /QuickTimerBuilderAction.changeSetsCount,
       environment: { _ in PickerEnvironment() }
     ),
     pickerReducer.pullback(
       state: \.workoutTimeState,
-      action: /CircuitPickerAction.changeWorkoutTime,
+      action: /QuickTimerBuilderAction.changeWorkoutTime,
       environment: { _ in PickerEnvironment() }
     ),
     pickerReducer.pullback(
       state: \.breakTimeState,
-      action: /CircuitPickerAction.changeBreakTime,
+      action: /QuickTimerBuilderAction.changeBreakTime,
       environment: { _ in PickerEnvironment() }
     )
 )
 
-private extension CircuitPickerState {
+private extension QuickTimerBuilderState {
   
   mutating func createSegments() {
     segments = []

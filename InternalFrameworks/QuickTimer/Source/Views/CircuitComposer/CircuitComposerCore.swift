@@ -6,18 +6,18 @@ public enum CircuitComposerAction: Equatable {
   case addAnotherCircuitButtonTapped
   case doneButtonTapped
   
-  case circuitPickerUpdatedValues(CircuitPickerAction)
+  case circuitPickerUpdatedValues(QuickTimerBuilderAction)
 }
 
 public struct CircuitComposerState: Equatable {
   var segments: [Segment] = []
   var isCircuitPickerVisible: Bool = true
   
-  var circuitPickerState: CircuitPickerState = CircuitPickerState()
+  var circuitPickerState: QuickTimerBuilderState = QuickTimerBuilderState()
   
   public init(segments: [Segment] = [],
               isCircuitPickerVisible: Bool = true,
-              circuitPickerState: CircuitPickerState = CircuitPickerState()) {
+              circuitPickerState: QuickTimerBuilderState = QuickTimerBuilderState()) {
     self.segments = segments
     self.isCircuitPickerVisible = isCircuitPickerVisible
     self.circuitPickerState = circuitPickerState
@@ -35,7 +35,7 @@ public let circuitComposerReducer =
       case .finishedCircuitButtonTapped:
         state.segments.append(contentsOf: state.circuitPickerState.segments)
         state.isCircuitPickerVisible = false
-        state.circuitPickerState = CircuitPickerState()
+        state.circuitPickerState = QuickTimerBuilderState()
         
       case .circuitPickerUpdatedValues(let pickerAction):
         switch pickerAction {
@@ -54,9 +54,9 @@ public let circuitComposerReducer =
       
       return .none
     },
-    circuitPickerReducer.pullback(
+    quickTimerBuilderReducer.pullback(
       state: \.circuitPickerState,
       action: /CircuitComposerAction.circuitPickerUpdatedValues,
-      environment: { _ in CircuitPickerEnvironment() }
+      environment: { _ in QuickTimerBuilderEnvironment() }
     )
 )

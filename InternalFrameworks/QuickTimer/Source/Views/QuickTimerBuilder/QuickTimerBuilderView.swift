@@ -1,26 +1,26 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct CircuitPickerView: View {
+struct QuickTimerBuilderView: View {
   
-  let store: Store<CircuitPickerState, CircuitPickerAction>
+  let store: Store<QuickTimerBuilderState, QuickTimerBuilderAction>
   
   var body: some View {
     WithViewStore(store) { viewStore in
       VStack(spacing: 16) {
-        ValuePicker(store: self.store.scope(state: \.setsState, action: CircuitPickerAction.changeSetsCount),
+        ValuePicker(store: self.store.scope(state: \.setsState, action: QuickTimerBuilderAction.changeSetsCount),
                     valueName: "Sets",
                     maxValue: 21,
                     tint: .orange
         )
         
-        ValuePicker(store: self.store.scope(state: \.workoutTimeState, action: CircuitPickerAction.changeWorkoutTime),
+        ValuePicker(store: self.store.scope(state: \.workoutTimeState, action: QuickTimerBuilderAction.changeWorkoutTime),
                     valueName: "Workout Time",
                     maxValue: 121,
                     tint: .red
         )
         
-        ValuePicker(store: self.store.scope(state: \.breakTimeState, action: CircuitPickerAction.changeBreakTime),
+        ValuePicker(store: self.store.scope(state: \.breakTimeState, action: QuickTimerBuilderAction.changeBreakTime),
                     valueName: "Break Time",
                     maxValue: 61,
                     tint: .purple
@@ -35,11 +35,11 @@ struct CircuitPickerView: View {
 
 struct CircuitPickerView_Previews: PreviewProvider {
   static var previews: some View {
-    CircuitPickerView(
-      store: Store<CircuitPickerState, CircuitPickerAction>(
-        initialState: CircuitPickerState(),
-        reducer: circuitPickerReducer,
-        environment: CircuitPickerEnvironment()
+    QuickTimerBuilderView(
+      store: Store<QuickTimerBuilderState, QuickTimerBuilderAction>(
+        initialState: QuickTimerBuilderState(),
+        reducer: quickTimerBuilderReducer,
+        environment: QuickTimerBuilderEnvironment()
       )
     )
   }

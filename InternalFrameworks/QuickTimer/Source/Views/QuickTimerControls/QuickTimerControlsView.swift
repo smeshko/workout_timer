@@ -1,8 +1,8 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct TimerControlsView: View {
-  let store: Store<TimerControlsState, TimerControlsAction>
+struct QuickTimerControlsView: View {
+  let store: Store<QuickTimerControlsState, QuickTimerControlsAction>
   
   var body: some View {
     WithViewStore(store) { viewStore in
@@ -37,11 +37,11 @@ struct TimerControlsView: View {
 
 struct TimerControlsView_Previews: PreviewProvider {
   static var previews: some View {
-    TimerControlsView(
-      store: Store<TimerControlsState, TimerControlsAction>(
-        initialState: TimerControlsState(),
-        reducer: timerControlsReducer,
-        environment: TimerControlsEnvironment()
+    QuickTimerControlsView(
+      store: Store<QuickTimerControlsState, QuickTimerControlsAction>(
+        initialState: QuickTimerControlsState(),
+        reducer: quickTimerControlsReducer,
+        environment: QuickTimerControlsEnvironment()
       )
     )
   }

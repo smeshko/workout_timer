@@ -2,11 +2,11 @@ import SwiftUI
 import ComposableArchitecture
 import WorkoutCore
 
-public struct TimerView: View {
+public struct QuickTimerView: View {
   
-  let store: Store<TimerState, TimerAction>
+  let store: Store<QuickTimerState, QuickTimerAction>
     
-  public init(store: Store<TimerState, TimerAction>) {
+  public init(store: Store<QuickTimerState, QuickTimerAction>) {
     self.store = store
   }
   
@@ -34,12 +34,12 @@ public struct TimerView: View {
           
           Spacer()
           
-          CircuitPickerView(store: self.store.scope(state: \.circuitPickerState, action: TimerAction.circuitPickerUpdatedValues))
+          QuickTimerBuilderView(store: self.store.scope(state: \.circuitPickerState, action: QuickTimerAction.circuitPickerUpdatedValues))
             .padding()
           
           Spacer()
           
-          TimerControlsView(store: self.store.scope(state: \.timerControlsState, action: TimerAction.timerControlsUpdatedState))
+          QuickTimerControlsView(store: self.store.scope(state: \.timerControlsState, action: QuickTimerAction.timerControlsUpdatedState))
             .padding()
           
         }
@@ -54,9 +54,9 @@ public struct TimerView: View {
         }
           .sheet(isPresented: viewStore.binding(
             get: \.isPresentingCircuitComposer,
-            send: TimerAction.setCircuitComposerSheet(isPresented:)
+            send: QuickTimerAction.setCircuitComposerSheet(isPresented:)
           )) {
-            CircuitComposerView(store: self.store.scope(state: \.circuitComposerState, action: TimerAction.circuitComposerUpdated))
+            CircuitComposerView(store: self.store.scope(state: \.circuitComposerState, action: QuickTimerAction.circuitComposerUpdated))
           }
         )
       }
@@ -66,11 +66,11 @@ public struct TimerView: View {
 
 struct TimerView_Previews: PreviewProvider {
   static var previews: some View {
-    TimerView(
-      store: Store<TimerState, TimerAction>(
-        initialState: TimerState(),
-        reducer: timerReducer,
-        environment: TimerEnvironment(
+    QuickTimerView(
+      store: Store<QuickTimerState, QuickTimerAction>(
+        initialState: QuickTimerState(),
+        reducer: quickTimerReducer,
+        environment: QuickTimerEnvironment(
           mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
           soundClient: .mock
         )
@@ -79,7 +79,7 @@ struct TimerView_Previews: PreviewProvider {
   }
 }
 
-private extension TimerState {
+private extension QuickTimerState {
   private var workouts: [Segment] {
     segments.filter { $0.category == .workout }
   }

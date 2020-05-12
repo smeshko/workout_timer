@@ -5,7 +5,7 @@ import ComposableArchitecture
 struct RootView: View {
   var body: some View {
     TabView {
-      TimerView()
+      QuickTimerView()
         .tabItem {
           Image(systemName: "timer")
           Text("Quick timer")
@@ -20,13 +20,13 @@ struct RootView_Previews: PreviewProvider {
   }
 }
 
-extension TimerView {
+extension QuickTimerView {
   init() {
     self.init(
-      store: Store<TimerState, TimerAction>(
-        initialState: TimerState(),
+      store: Store<QuickTimerState, QuickTimerAction>(
+        initialState: QuickTimerState(),
         reducer: timerReducer,
-        environment: TimerEnvironment(
+        environment: QuickTimerEnvironment(
           mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
           soundClient: .live
         )
