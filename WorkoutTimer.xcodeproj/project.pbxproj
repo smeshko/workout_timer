@@ -273,8 +273,6 @@
 			children = (
 				B84B0AC52458126700A07A1E /* WorkoutTimer */,
 				B8FCFDF9246AB2CE005C9A89 /* InternalFrameworks */,
-				B87675B1246AD78900438A0F /* WorkoutFeed */,
-				B87675BE246AD78900438A0F /* WorkoutFeedTests */,
 				B84B0AC42458126700A07A1E /* Products */,
 				B8DC59C524605F99003FC8D3 /* Frameworks */,
 			);
@@ -343,18 +341,19 @@
 			isa = PBXGroup;
 			children = (
 				B87675CD246AD7AD00438A0F /* Source */,
+				B87675BE246AD78900438A0F /* Tests */,
 				B87675B3246AD78900438A0F /* Info.plist */,
 			);
 			path = WorkoutFeed;
 			sourceTree = "<group>";
 		};
-		B87675BE246AD78900438A0F /* WorkoutFeedTests */ = {
+		B87675BE246AD78900438A0F /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				B87675BF246AD78900438A0F /* WorkoutFeedTests.swift */,
 				B87675C1246AD78900438A0F /* Info.plist */,
 			);
-			path = WorkoutFeedTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		B87675CD246AD7AD00438A0F /* Source */ = {
@@ -558,6 +557,7 @@
 		B8FCFDF9246AB2CE005C9A89 /* InternalFrameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B87675B1246AD78900438A0F /* WorkoutFeed */,
 				B8767445246AB6A500438A0F /* WorkoutCore */,
 				B8DC599D24605E38003FC8D3 /* QuickTimer */,
 			);
@@ -1242,7 +1242,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = WorkoutFeed/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/WorkoutFeed/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1271,7 +1271,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = WorkoutFeed/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/WorkoutFeed/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1294,7 +1294,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = WorkoutFeedTests/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/WorkoutFeed/Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1314,7 +1314,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = WorkoutFeedTests/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/WorkoutFeed/Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
