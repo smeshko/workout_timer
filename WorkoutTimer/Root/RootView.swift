@@ -4,18 +4,26 @@ import QuickTimer
 import ComposableArchitecture
 
 struct RootView: View {
+  
+  let store: Store<AppState, AppAction>
+  
   var body: some View {
-    TabView {
-      WorkoutsFeedView()
-        .tabItem {
-          Image(systemName: "heart")
-          Text("Workouts")
+    WithViewStore(store) { viewStore in
+      TabView {
+        WorkoutsFeedView(store: self.store.scope(state: \.workoutsFeedState, action: AppAction.workoutsFeed))
+          .tabItem {
+            Image(systemName: "heart")
+            Text("Workouts")
+        }
+        
+        QuickTimerView()
+          .tabItem {
+            Image(systemName: "timer")
+            Text("Quick timer")
+        }
       }
-
-      QuickTimerView()
-        .tabItem {
-          Image(systemName: "timer")
-          Text("Quick timer")
+      .onAppear {
+        viewStore.send(.applicationDidStart)
       }
     }
   }
@@ -23,7 +31,16 @@ struct RootView: View {
 
 struct RootView_Previews: PreviewProvider {
   static var previews: some View {
-    RootView()
+    RootView(
+      store: Store<AppState, AppAction>(
+        initialState: AppState(),
+        reducer: appReducer,
+        environment: AppEnvironment(
+          mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
+          localStorageClient: .mock
+        )
+      )
+    )
   }
 }
 
@@ -37,18 +54,6 @@ extension QuickTimerView {
           mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
           soundClient: .mock
         )
-      )
-    )
-  }
-}
-
-extension WorkoutsFeedView {
-  init() {
-    self.init(
-      store: Store<WorkoutsFeedState, WorkoutsFeedAction>(
-        initialState: WorkoutsFeedState(),
-        reducer: workoutsFeedReducer,
-        environment: WorkoutsFeedEnvironment()
       )
     )
   }

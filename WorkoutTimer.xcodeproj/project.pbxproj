@@ -13,7 +13,6 @@
 		B83D9EA3246C72B700DED0F7 /* WorkoutsFeedCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D9EA2246C72B700DED0F7 /* WorkoutsFeedCore.swift */; };
 		B83D9FE3246D396E00DED0F7 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = B83D9FE2246D396E00DED0F7 /* ComposableArchitecture */; };
 		B83D9FE5246D396E00DED0F7 /* ComposableArchitecture in Embed Frameworks */ = {isa = PBXBuildFile; productRef = B83D9FE2246D396E00DED0F7 /* ComposableArchitecture */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		B83D9FE6246D399D00DED0F7 /* LocalStorageClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D9EA5246D2ED500DED0F7 /* LocalStorageClient.swift */; };
 		B84B0AC72458126700A07A1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84B0AC62458126700A07A1E /* AppDelegate.swift */; };
 		B84B0AC92458126700A07A1E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84B0AC82458126700A07A1E /* SceneDelegate.swift */; };
 		B84B0ACD2458126B00A07A1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B84B0ACC2458126B00A07A1E /* Assets.xcassets */; };
@@ -33,6 +32,7 @@
 		B8B6FE4D246ADBF800B22568 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B6FE4C246ADBF800B22568 /* Exercise.swift */; };
 		B8C7D811246A8495006B95E3 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C7D810246A8495006B95E3 /* RootView.swift */; };
 		B8C82860246BE10B00B1113B /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C8285F246BE10B00B1113B /* Workout.swift */; };
+		B8CEBFCD246D39F200A88450 /* LocalStorageClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D9EA5246D2ED500DED0F7 /* LocalStorageClient.swift */; };
 		B8DC5994246054E1003FC8D3 /* AppCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DC5993246054E1003FC8D3 /* AppCore.swift */; };
 		B8DC59B124605E38003FC8D3 /* QuickTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* QuickTimer.framework */; };
 		B8DC59B224605E38003FC8D3 /* QuickTimer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* QuickTimer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -916,7 +916,6 @@
 				B8C7D811246A8495006B95E3 /* RootView.swift in Sources */,
 				B8DC5994246054E1003FC8D3 /* AppCore.swift in Sources */,
 				B84B0AC72458126700A07A1E /* AppDelegate.swift in Sources */,
-				B83D9FE6246D399D00DED0F7 /* LocalStorageClient.swift in Sources */,
 				B84B0AC92458126700A07A1E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -927,6 +926,7 @@
 			files = (
 				B8767451246AB6D100438A0F /* Segment.swift in Sources */,
 				B8B6FE4D246ADBF800B22568 /* Exercise.swift in Sources */,
+				B8CEBFCD246D39F200A88450 /* LocalStorageClient.swift in Sources */,
 				B8C82860246BE10B00B1113B /* Workout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

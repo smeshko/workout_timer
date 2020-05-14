@@ -36,6 +36,9 @@ public struct WorkoutsFeedView: View {
             Spacer()
           }
         }
+        .onAppear {
+          viewStore.send(.beginNavigation)
+        }
       }
       .navigationBarTitle("Workouts")
     }
@@ -48,7 +51,7 @@ struct WorkoutsFeedView_Previews: PreviewProvider {
       store: Store<WorkoutsFeedState, WorkoutsFeedAction>(
         initialState: WorkoutsFeedState(),
         reducer: workoutsFeedReducer,
-        environment: WorkoutsFeedEnvironment()
+        environment: WorkoutsFeedEnvironment(localStorageClient: .mock)
       )
     )
   }

@@ -2,7 +2,7 @@ import Combine
 import ComposableArchitecture
 import Foundation
 
-public enum StorageError: Error {
+public enum StorageError: Error, Equatable {
   case documentsDirectoryNotFound
   case savingFailed
   case fileNotFound
@@ -11,6 +11,7 @@ public enum StorageError: Error {
 }
 
 public struct LocalStorageClient {
+  public var fileExists: (String, String) -> Effect<Bool, StorageError>
   public var readFromFile: (String, String) -> Effect<Data, StorageError>
   public var write: (Data, String, String) -> Effect<Void, StorageError>
   public var readFiles: (String) -> Effect<[Data], StorageError>
@@ -20,6 +21,19 @@ public struct LocalStorageClient {
 extension LocalStorageClient {
   
   public static let live = LocalStorageClient(
+    fileExists: { file, ext in
+      Effect<Bool, StorageError>.future { promise in
+        if let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+          let fileURL = directory
+            .appendingPathComponent(file)
+            .appendingPathExtension(ext)
+          
+          promise(.success(FileManager.default.fileExists(atPath: fileURL.path)))
+        } else {
+          promise(.failure(.documentsDirectoryNotFound))
+        }
+      }
+  },
     readFromFile: { name, ext in
       Effect<Data, StorageError>.future { promise in
         if let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
@@ -33,10 +47,9 @@ extension LocalStorageClient {
             promise(.failure(.readingFromFileFailed))
           }
         } else {
-          promise(.failure(.fileNotFound))
+          promise(.failure(.documentsDirectoryNotFound))
         }
-      }.eraseToEffect()
-      
+      }
   },
     write: { data, fileName, ext in
       Effect<Void, StorageError>.future { promise in
@@ -53,8 +66,7 @@ extension LocalStorageClient {
         } else {
           promise(.failure(.documentsDirectoryNotFound))
         }
-      }.eraseToEffect()
-      
+      }
   },
     readFiles: { ext in
       Effect<[Data], StorageError>.future { promise in
@@ -70,8 +82,7 @@ extension LocalStorageClient {
           promise(.failure(.documentsDirectoryNotFound))
         }
         
-      }.eraseToEffect()
-      
+      }
   },
     delete: { fileName -> Effect<Void, StorageError> in
       Effect<Void, StorageError>.future { promise in
@@ -92,6 +103,11 @@ extension LocalStorageClient {
   })
   
   public static let mock = LocalStorageClient(
+    fileExists: { name, ext in
+      .fireAndForget {
+        print("Check if file exists \(name).\(ext)")
+      }
+  },
     readFromFile: { name, ext in
       .fireAndForget {
         print("Read file named \(name).\(ext)")

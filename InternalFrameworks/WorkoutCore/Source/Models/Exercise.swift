@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Exercise: Equatable {
+public struct Exercise: Codable, Equatable {
   public let title: String?
   public let sets: [ExerciseSet]
   public let pauseDuration: TimeInterval
@@ -12,7 +12,7 @@ public struct Exercise: Equatable {
   }
 }
 
-public struct ExerciseSet: Equatable {
+public struct ExerciseSet: Codable, Equatable {
   public let duration: TimeInterval
   
   public init(duration: TimeInterval) {
