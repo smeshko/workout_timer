@@ -2,13 +2,13 @@ import Foundation
 import WorkoutCore
 import ComposableArchitecture
 
-public enum SomeError: Error, Equatable {
-  case error
+public enum WorkoutsFeedError: Error, Equatable {
+  case failedLoadingErrors
 }
 
 public enum WorkoutsFeedAction: Equatable {
   case workoutTypeChanged( WorkoutsFeedState.WorkoutType)
-  case workoutsLoaded(Result<[Workout], SomeError>)
+  case workoutsLoaded(Result<[Workout], WorkoutsFeedError>)
   case beginNavigation
   
   case workoutsList(WorkoutsListAction)
@@ -44,17 +44,11 @@ public let workoutsFeedReducer = Reducer<WorkoutsFeedState, WorkoutsFeedAction, 
   switch action {
     
   case .beginNavigation:
-    return environment
-      .localStorageClient
-      .readFromFile("jumprope", "json")
-      .decode(type: [Workout].self, decoder: JSONDecoder())
-      .mapError { _ in SomeError.error }
-      .catchToEffect()
-      .map(WorkoutsFeedAction.workoutsLoaded)
+    return environment.loadWorkouts(.jumpRope)
     
   case .workoutTypeChanged(let type):
     state.selectedWorkoutType = type
-    state.workoutsListState.workouts = []
+    return environment.loadWorkouts(type)
     
   case .workoutsLoaded(.success(let workouts)):
     state.workoutsListState.workouts = workouts
@@ -64,4 +58,25 @@ public let workoutsFeedReducer = Reducer<WorkoutsFeedState, WorkoutsFeedAction, 
   }
   
   return .none
+}
+
+private extension WorkoutsFeedEnvironment {
+  func loadWorkouts(_ type: WorkoutsFeedState.WorkoutType) -> Effect<WorkoutsFeedAction, Never> {
+    localStorageClient
+      .readFromFile(type.filename, "json")
+      .decode(type: [Workout].self, decoder: JSONDecoder())
+      .mapError { _ in WorkoutsFeedError.failedLoadingErrors }
+      .catchToEffect()
+      .map(WorkoutsFeedAction.workoutsLoaded)
+  }
+}
+
+private extension WorkoutsFeedState.WorkoutType {
+  var filename: String {
+    switch self {
+    case .bodyweight: return "bodyweight"
+    case .jumpRope: return "jumprope"
+    case .custom: return "custom"
+    }
+  }
 }

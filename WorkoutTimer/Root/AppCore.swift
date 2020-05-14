@@ -31,11 +31,12 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
   case .applicationDidStart:
     return env
       .localStorageClient
-      .fileExists("jumprope", "json")
+      .fileExists(jumpRopeFileName, "json")
       .flatMap { exists -> Effect<Void, StorageError> in
         if !exists {
-          if let data = try? JSONEncoder().encode(jumprope) {
-            return env.localStorageClient.write(data, "jumprope", "json")
+          if let jumpropeData = try? JSONEncoder().encode(jumpropeWorkout), let bodyweightData = try? JSONEncoder().encode(bodyweightWorkout) {
+            return .concatenate(env.localStorageClient.write(jumpropeData, jumpRopeFileName, "json"),
+                                env.localStorageClient.write(bodyweightData, bodyweightFileName, "json"))
           } else {
             return Effect(error: StorageError.savingFailed)
           }
@@ -66,17 +67,28 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
   )
 )
 
-private let jumprope = [
+private let jumpropeWorkout = [
   Workout(id: "jumprope-1", name: "Jump Rope Fat Burn", exercises: [
     Exercise(title: "Criss Cross", sets: ExerciseSet.count(5, duration: 45), pauseDuration: 15),
     Exercise(title: "Double Under", sets: ExerciseSet.count(5, duration: 45), pauseDuration: 15)
   ])
 ]
 
-extension ExerciseSet {
+private let bodyweightWorkout = [
+  Workout(id: "bodyweight-1", name: "Bodyweight Fat Burn", exercises: [
+    Exercise(title: "Push ups", sets: ExerciseSet.count(2, duration: 30), pauseDuration: 20),
+    Exercise(title: "Jumping jacks", sets: ExerciseSet.count(4, duration: 45), pauseDuration: 15)
+  ])
+]
+
+private extension ExerciseSet {
   static func count(_ num: Int, duration: TimeInterval) -> [ExerciseSet] {
     (0...num).map { _ in
       ExerciseSet(duration: duration)
     }
   }
 }
+
+private let bodyweightFileName = "bodyweight"
+private let jumpRopeFileName = "jumprope"
+private let customFileName = "custom"

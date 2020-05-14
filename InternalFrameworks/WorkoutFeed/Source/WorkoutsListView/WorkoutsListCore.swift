@@ -8,6 +8,7 @@ public enum WorkoutsListAction: Equatable {
 
 public struct WorkoutsListState: Equatable {
   var workouts: [Workout] = []
+
   
   public init(workouts: [Workout] = []) {
     self.workouts = workouts

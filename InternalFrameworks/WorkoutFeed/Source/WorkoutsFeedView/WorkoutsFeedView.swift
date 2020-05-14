@@ -25,12 +25,12 @@ public struct WorkoutsFeedView: View {
             
             if viewStore.selectedWorkoutType == .custom {
               Text("No custom workouts yet")
-            } else if viewStore.selectedWorkoutType == .jumpRope {
-              Text("Jump rope")
-            } else if viewStore.selectedWorkoutType == .bodyweight {
-              Text("Bodyweight")
+                .navigationBarItems(trailing: Button(action: {}) {
+                  Image(systemName: "plus")
+                })
             } else {
               WorkoutsListView(store: self.store.scope(state: \.workoutsListState, action: WorkoutsFeedAction.workoutsList))
+                .navigationBarItems(trailing: EmptyView())
             }
             
             Spacer()

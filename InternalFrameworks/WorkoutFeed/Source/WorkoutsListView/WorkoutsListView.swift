@@ -24,11 +24,8 @@ public struct WorkoutsListView: View {
           }
         } else {
           ForEach(viewStore.workouts) { workout in
-            Text(workout.name ?? "")
+            WorkoutView(workout: workout)
           }
-          .navigationBarItems(trailing: Button(action: {}) {
-            Image(systemName: "plus")
-          })
         }
       }
     }
