@@ -1,10 +1,19 @@
 import ComposableArchitecture
+import WorkoutCore
 import QuickTimer
 
-enum AppAction: Equatable {}
+enum AppAction: Equatable {
+  case applicationDidStart
+}
 
 struct AppState: Equatable {}
 
-struct AppEnvironment {}
+struct AppEnvironment {
+  var localStorageClient: LocalStorageClient
+}
 
-let appReducer = quickTimerReducer
+let appReducer = Reducer<AppState, AppAction, AppEnvironment> { state, action, env in
+  
+  
+  return .none
+}

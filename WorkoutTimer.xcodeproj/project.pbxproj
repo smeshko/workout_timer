@@ -11,6 +11,9 @@
 		B83907062462A4F400676B3D /* PickerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83907052462A4F400676B3D /* PickerCore.swift */; };
 		B83D9EA1246C728C00DED0F7 /* WorkoutsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D9EA0246C728C00DED0F7 /* WorkoutsFeedView.swift */; };
 		B83D9EA3246C72B700DED0F7 /* WorkoutsFeedCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D9EA2246C72B700DED0F7 /* WorkoutsFeedCore.swift */; };
+		B83D9FE3246D396E00DED0F7 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = B83D9FE2246D396E00DED0F7 /* ComposableArchitecture */; };
+		B83D9FE5246D396E00DED0F7 /* ComposableArchitecture in Embed Frameworks */ = {isa = PBXBuildFile; productRef = B83D9FE2246D396E00DED0F7 /* ComposableArchitecture */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B83D9FE6246D399D00DED0F7 /* LocalStorageClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D9EA5246D2ED500DED0F7 /* LocalStorageClient.swift */; };
 		B84B0AC72458126700A07A1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84B0AC62458126700A07A1E /* AppDelegate.swift */; };
 		B84B0AC92458126700A07A1E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84B0AC82458126700A07A1E /* SceneDelegate.swift */; };
 		B84B0ACD2458126B00A07A1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B84B0ACC2458126B00A07A1E /* Assets.xcassets */; };
@@ -112,6 +115,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		B83D9FE4246D396E00DED0F7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B83D9FE5246D396E00DED0F7 /* ComposableArchitecture in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B8DC599124605447003FC8D3 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -167,6 +181,7 @@
 		B83907052462A4F400676B3D /* PickerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCore.swift; sourceTree = "<group>"; };
 		B83D9EA0246C728C00DED0F7 /* WorkoutsFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsFeedView.swift; sourceTree = "<group>"; };
 		B83D9EA2246C72B700DED0F7 /* WorkoutsFeedCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsFeedCore.swift; sourceTree = "<group>"; };
+		B83D9EA5246D2ED500DED0F7 /* LocalStorageClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageClient.swift; sourceTree = "<group>"; };
 		B84B0AC32458126700A07A1E /* WorkoutTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkoutTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B84B0AC62458126700A07A1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B84B0AC82458126700A07A1E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -226,6 +241,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B83D9FE3246D396E00DED0F7 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +297,21 @@
 				B83D9EA2246C72B700DED0F7 /* WorkoutsFeedCore.swift */,
 			);
 			path = WorkoutsFeedView;
+			sourceTree = "<group>";
+		};
+		B83D9EA4246D2EBC00DED0F7 /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				B83D9EA5246D2ED500DED0F7 /* LocalStorageClient.swift */,
+			);
+			path = Clients;
+			sourceTree = "<group>";
+		};
+		B83D9EA7246D370200DED0F7 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 		B84B0ABA2458126600A07A1E = {
@@ -339,6 +370,7 @@
 		B8767450246AB6C100438A0F /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				B83D9EA4246D2EBC00DED0F7 /* Clients */,
 				B8DC59CA24605FB5003FC8D3 /* Models */,
 			);
 			path = Source;
@@ -374,6 +406,7 @@
 		B87675CD246AD7AD00438A0F /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				B83D9EA7246D370200DED0F7 /* Assets */,
 				B83D9E9D246C725900DED0F7 /* WorkoutsFeedView */,
 				B87675CE246AD7B500438A0F /* WorkoutsListView */,
 			);
@@ -640,12 +673,16 @@
 				B8767440246AB6A500438A0F /* Sources */,
 				B8767441246AB6A500438A0F /* Frameworks */,
 				B8767442246AB6A500438A0F /* Resources */,
+				B83D9FE4246D396E00DED0F7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = WorkoutCore;
+			packageProductDependencies = (
+				B83D9FE2246D396E00DED0F7 /* ComposableArchitecture */,
+			);
 			productName = WorkoutCore;
 			productReference = B8767444246AB6A500438A0F /* WorkoutCore.framework */;
 			productType = "com.apple.product-type.framework";
@@ -879,6 +916,7 @@
 				B8C7D811246A8495006B95E3 /* RootView.swift in Sources */,
 				B8DC5994246054E1003FC8D3 /* AppCore.swift in Sources */,
 				B84B0AC72458126700A07A1E /* AppDelegate.swift in Sources */,
+				B83D9FE6246D399D00DED0F7 /* LocalStorageClient.swift in Sources */,
 				B84B0AC92458126700A07A1E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1529,6 +1567,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B83D9FE2246D396E00DED0F7 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B8DC59CD246063A9003FC8D3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
 		B8DC59CE246063A9003FC8D3 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B8DC59CD246063A9003FC8D3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
