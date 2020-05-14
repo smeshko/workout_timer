@@ -35,7 +35,7 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
       .fileExists(jumpRopeFileName, "json")
       .flatMap { exists -> Effect<Void, StorageError> in
         if !exists {
-          if let jumpropeData = try? JSONEncoder().encode(jumpropeWorkout), let bodyweightData = try? JSONEncoder().encode(bodyweightWorkout) {
+          if let jumpropeData = try? JSONEncoder().encode(jumpropeWorkouts), let bodyweightData = try? JSONEncoder().encode(bodyweightWorkouts) {
             return .concatenate(env.localStorageClient.write(jumpropeData, jumpRopeFileName, "json"),
                                 env.localStorageClient.write(bodyweightData, bodyweightFileName, "json"))
           } else {
@@ -68,14 +68,21 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
   )
 )
 
-private let jumpropeWorkout = [
+private let jumpropeWorkouts = [
   Workout(id: "jumprope-1", image: UIImage(named: "jumprope-3")?.pngData(), name: "Jump Rope Fat Burn", exercises: [
+    Exercise(title: "Criss Cross", sets: ExerciseSet.count(5, duration: 45), pauseDuration: 15),
+    Exercise(title: "Double Under", sets: ExerciseSet.count(5, duration: 45), pauseDuration: 15)
+  ]),
+
+  Workout(id: "jumprope-2", image: UIImage(named: "jumprope-2")?.pngData(), name: "Jump Rope Get Fit", exercises: [
+    Exercise(title: "Boxer step", sets: ExerciseSet.count(5, duration: 60), pauseDuration: 15),
+    Exercise(title: "Freestyle", sets: ExerciseSet.count(5, duration: 45), pauseDuration: 15),
     Exercise(title: "Criss Cross", sets: ExerciseSet.count(5, duration: 45), pauseDuration: 15),
     Exercise(title: "Double Under", sets: ExerciseSet.count(5, duration: 45), pauseDuration: 15)
   ])
 ]
 
-private let bodyweightWorkout = [
+private let bodyweightWorkouts = [
   Workout(id: "bodyweight-1", image: UIImage(named: "bodyweight-1")?.pngData(), name: "Bodyweight Fat Burn", exercises: [
     Exercise(title: "Push ups", sets: ExerciseSet.count(2, duration: 30), pauseDuration: 20),
     Exercise(title: "Jumping jacks", sets: ExerciseSet.count(4, duration: 45), pauseDuration: 15)

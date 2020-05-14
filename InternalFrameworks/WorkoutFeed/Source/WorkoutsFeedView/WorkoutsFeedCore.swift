@@ -3,7 +3,7 @@ import WorkoutCore
 import ComposableArchitecture
 
 public enum WorkoutsFeedError: Error, Equatable {
-  case failedLoadingErrors
+  case failedLoadingWorkouts
 }
 
 public enum WorkoutsFeedAction: Equatable {
@@ -44,7 +44,9 @@ public let workoutsFeedReducer = Reducer<WorkoutsFeedState, WorkoutsFeedAction, 
   switch action {
     
   case .beginNavigation:
-    return environment.loadWorkouts(state.selectedWorkoutType)
+    if state.workouts.isEmpty {
+      return environment.loadWorkouts(state.selectedWorkoutType)
+    }
     
   case .workoutTypeChanged(let type):
     state.selectedWorkoutType = type
@@ -66,7 +68,7 @@ private extension WorkoutsFeedEnvironment {
       .readFromFile(type.filename, "json")
       .receive(on: DispatchQueue.main)
       .decode(type: [Workout].self, decoder: JSONDecoder())
-      .mapError { _ in WorkoutsFeedError.failedLoadingErrors }
+      .mapError { _ in WorkoutsFeedError.failedLoadingWorkouts }
       .catchToEffect()
       .map(WorkoutsFeedAction.workoutsLoaded)
   }
