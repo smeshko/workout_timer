@@ -14,13 +14,14 @@ public struct QuickTimerView: View {
     NavigationView {
       WithViewStore(self.store) { viewStore in
         VStack {
-          Spacer()
-          
-          Text(viewStore.formattedTotalTimeLeft)
-            .font(.system(size: 48, design: .monospaced))
-          
-          Text(viewStore.formattedSegmentTimeLeft)
-            .font(.system(size: 72, design: .monospaced))
+          VStack {
+            Text(viewStore.formattedTotalTimeLeft)
+              .font(.system(size: 48, design: .monospaced))
+            
+            Text(viewStore.formattedSegmentTimeLeft)
+              .font(.system(size: 72, design: .monospaced))
+          }
+          .padding([.top])
           
           if viewStore.isRunning {
             if viewStore.currentSegment?.category == .workout {
@@ -31,13 +32,10 @@ public struct QuickTimerView: View {
                 .font(.system(size: 22))
             }
           }
-          
           Spacer()
           
           QuickExerciseBuilderView(store: self.store.scope(state: \.circuitPickerState, action: QuickTimerAction.circuitPickerUpdatedValues))
             .padding()
-          
-          Spacer()
           
           QuickTimerControlsView(store: self.store.scope(state: \.timerControlsState, action: QuickTimerAction.timerControlsUpdatedState))
             .padding()
@@ -46,19 +44,6 @@ public struct QuickTimerView: View {
         .onAppear {
           viewStore.send(.setNavigation)
         }
-        .navigationBarItems(trailing:
-          Button(action: {
-            viewStore.send(.setCircuitComposerSheet(isPresented: true))
-          }) {
-            Image(systemName: "hammer.fill")
-        }
-          .sheet(isPresented: viewStore.binding(
-            get: \.isPresentingCircuitComposer,
-            send: QuickTimerAction.setCircuitComposerSheet(isPresented:)
-          )) {
-            CircuitComposerView(store: self.store.scope(state: \.circuitComposerState, action: QuickTimerAction.circuitComposerUpdated))
-          }
-        )
       }
     }
   }

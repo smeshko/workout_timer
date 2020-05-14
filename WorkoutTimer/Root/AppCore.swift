@@ -1,4 +1,5 @@
 import ComposableArchitecture
+import UIKit
 import WorkoutFeed
 import Foundation
 import WorkoutCore
@@ -68,14 +69,14 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
 )
 
 private let jumpropeWorkout = [
-  Workout(id: "jumprope-1", name: "Jump Rope Fat Burn", exercises: [
+  Workout(id: "jumprope-1", image: UIImage(named: "jumprope-1")?.pngData(), name: "Jump Rope Fat Burn", exercises: [
     Exercise(title: "Criss Cross", sets: ExerciseSet.count(5, duration: 45), pauseDuration: 15),
     Exercise(title: "Double Under", sets: ExerciseSet.count(5, duration: 45), pauseDuration: 15)
   ])
 ]
 
 private let bodyweightWorkout = [
-  Workout(id: "bodyweight-1", name: "Bodyweight Fat Burn", exercises: [
+  Workout(id: "bodyweight-1", image: UIImage(named: "bodyweight-1")?.pngData(), name: "Bodyweight Fat Burn", exercises: [
     Exercise(title: "Push ups", sets: ExerciseSet.count(2, duration: 30), pauseDuration: 20),
     Exercise(title: "Jumping jacks", sets: ExerciseSet.count(4, duration: 45), pauseDuration: 15)
   ])
