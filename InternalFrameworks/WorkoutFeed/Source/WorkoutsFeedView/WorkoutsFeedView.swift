@@ -35,9 +35,9 @@ public struct WorkoutsFeedView: View {
             
             Spacer()
           }
-        }
-        .onAppear {
-          viewStore.send(.beginNavigation)
+          .onAppear {
+            viewStore.send(.beginNavigation)
+          }
         }
       }
       .navigationBarTitle("Workouts")

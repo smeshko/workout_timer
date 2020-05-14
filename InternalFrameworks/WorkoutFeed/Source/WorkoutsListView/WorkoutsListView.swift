@@ -1,31 +1,23 @@
 import SwiftUI
 import ComposableArchitecture
 
-public struct WorkoutsListView: View {
+struct WorkoutsListView: View {
   
   let store: Store<WorkoutsListState, WorkoutsListAction>
-  
-  private let tabs = ["Bodyweight", "Jump rope", "Custom"]
-
-  public init(store: Store<WorkoutsListState, WorkoutsListAction>) {
-    self.store = store
-  }
-  
-  public var body: some View {
-    NavigationView {
-      WithViewStore(store) { viewStore in
-        if viewStore.workouts.isEmpty {
-          VStack {
-            Text("It seems you don't have any workouts.\nWhy not create one?")
-              .multilineTextAlignment(.center)
-            Button(action: {}) {
-              Image(systemName: "plus")
-            }
-          }
-        } else {
+    
+  var body: some View {
+    WithViewStore(store) { viewStore in
+      if viewStore.workouts.isEmpty {
+        Text("Sorry, no workouts")
+      } else {
+        ScrollView {
           ForEach(viewStore.workouts) { workout in
-            WorkoutView(workout: workout)
+            NavigationLink(destination: EmptyView()) {
+              WorkoutView(workout: workout)
+            }
+            .buttonStyle(PlainButtonStyle())
           }
+          Spacer()
         }
       }
     }

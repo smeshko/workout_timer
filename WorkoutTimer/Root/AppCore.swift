@@ -69,7 +69,7 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
 )
 
 private let jumpropeWorkout = [
-  Workout(id: "jumprope-1", image: UIImage(named: "jumprope-1")?.pngData(), name: "Jump Rope Fat Burn", exercises: [
+  Workout(id: "jumprope-1", image: UIImage(named: "jumprope-3")?.pngData(), name: "Jump Rope Fat Burn", exercises: [
     Exercise(title: "Criss Cross", sets: ExerciseSet.count(5, duration: 45), pauseDuration: 15),
     Exercise(title: "Double Under", sets: ExerciseSet.count(5, duration: 45), pauseDuration: 15)
   ])
