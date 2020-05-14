@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		B83907042462A4DF00676B3D /* ValuePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83907032462A4DF00676B3D /* ValuePicker.swift */; };
 		B83907062462A4F400676B3D /* PickerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83907052462A4F400676B3D /* PickerCore.swift */; };
+		B83D9EA1246C728C00DED0F7 /* WorkoutsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D9EA0246C728C00DED0F7 /* WorkoutsFeedView.swift */; };
+		B83D9EA3246C72B700DED0F7 /* WorkoutsFeedCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D9EA2246C72B700DED0F7 /* WorkoutsFeedCore.swift */; };
 		B84B0AC72458126700A07A1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84B0AC62458126700A07A1E /* AppDelegate.swift */; };
 		B84B0AC92458126700A07A1E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84B0AC82458126700A07A1E /* SceneDelegate.swift */; };
 		B84B0ACD2458126B00A07A1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B84B0ACC2458126B00A07A1E /* Assets.xcassets */; };
@@ -27,6 +29,7 @@
 		B8B6FE4B246ADB2A00B22568 /* WorkoutsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B6FE4A246ADB2A00B22568 /* WorkoutsListView.swift */; };
 		B8B6FE4D246ADBF800B22568 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B6FE4C246ADBF800B22568 /* Exercise.swift */; };
 		B8C7D811246A8495006B95E3 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C7D810246A8495006B95E3 /* RootView.swift */; };
+		B8C82860246BE10B00B1113B /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C8285F246BE10B00B1113B /* Workout.swift */; };
 		B8DC5994246054E1003FC8D3 /* AppCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DC5993246054E1003FC8D3 /* AppCore.swift */; };
 		B8DC59B124605E38003FC8D3 /* QuickTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* QuickTimer.framework */; };
 		B8DC59B224605E38003FC8D3 /* QuickTimer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* QuickTimer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -162,6 +165,8 @@
 /* Begin PBXFileReference section */
 		B83907032462A4DF00676B3D /* ValuePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuePicker.swift; sourceTree = "<group>"; };
 		B83907052462A4F400676B3D /* PickerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCore.swift; sourceTree = "<group>"; };
+		B83D9EA0246C728C00DED0F7 /* WorkoutsFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsFeedView.swift; sourceTree = "<group>"; };
+		B83D9EA2246C72B700DED0F7 /* WorkoutsFeedCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsFeedCore.swift; sourceTree = "<group>"; };
 		B84B0AC32458126700A07A1E /* WorkoutTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkoutTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B84B0AC62458126700A07A1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B84B0AC82458126700A07A1E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -189,6 +194,7 @@
 		B8B6FE4A246ADB2A00B22568 /* WorkoutsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsListView.swift; sourceTree = "<group>"; };
 		B8B6FE4C246ADBF800B22568 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		B8C7D810246A8495006B95E3 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		B8C8285F246BE10B00B1113B /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		B8DC5993246054E1003FC8D3 /* AppCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCore.swift; sourceTree = "<group>"; };
 		B8DC5995246055A3003FC8D3 /* QuickTimerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerCore.swift; sourceTree = "<group>"; };
 		B8DC599C24605E38003FC8D3 /* QuickTimer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QuickTimer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -268,6 +274,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B83D9E9D246C725900DED0F7 /* WorkoutsFeedView */ = {
+			isa = PBXGroup;
+			children = (
+				B83D9EA0246C728C00DED0F7 /* WorkoutsFeedView.swift */,
+				B83D9EA2246C72B700DED0F7 /* WorkoutsFeedCore.swift */,
+			);
+			path = WorkoutsFeedView;
+			sourceTree = "<group>";
+		};
 		B84B0ABA2458126600A07A1E = {
 			isa = PBXGroup;
 			children = (
@@ -359,6 +374,7 @@
 		B87675CD246AD7AD00438A0F /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				B83D9E9D246C725900DED0F7 /* WorkoutsFeedView */,
 				B87675CE246AD7B500438A0F /* WorkoutsListView */,
 			);
 			path = Source;
@@ -516,6 +532,7 @@
 			children = (
 				B893DF94245AC46100C43360 /* Segment.swift */,
 				B8B6FE4C246ADBF800B22568 /* Exercise.swift */,
+				B8C8285F246BE10B00B1113B /* Workout.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -872,6 +889,7 @@
 			files = (
 				B8767451246AB6D100438A0F /* Segment.swift in Sources */,
 				B8B6FE4D246ADBF800B22568 /* Exercise.swift in Sources */,
+				B8C82860246BE10B00B1113B /* Workout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -887,7 +905,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8B6FE4B246ADB2A00B22568 /* WorkoutsListView.swift in Sources */,
+				B83D9EA1246C728C00DED0F7 /* WorkoutsFeedView.swift in Sources */,
 				B8B6FE49246ADA2600B22568 /* WorkoutsListCore.swift in Sources */,
+				B83D9EA3246C72B700DED0F7 /* WorkoutsFeedCore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1105,7 +1125,7 @@
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = WorkoutTimer/Product/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1127,7 +1147,7 @@
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = WorkoutTimer/Product/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1151,7 +1171,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = InternalFrameworks/WorkoutCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1179,7 +1199,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = InternalFrameworks/WorkoutCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1340,7 +1360,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = InternalFrameworks/QuickTimer/Source/Product/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1368,7 +1388,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = InternalFrameworks/QuickTimer/Source/Product/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

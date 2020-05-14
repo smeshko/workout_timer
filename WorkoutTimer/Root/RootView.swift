@@ -1,10 +1,17 @@
 import SwiftUI
+import WorkoutFeed
 import QuickTimer
 import ComposableArchitecture
 
 struct RootView: View {
   var body: some View {
     TabView {
+      WorkoutsFeedView()
+        .tabItem {
+          Image(systemName: "heart")
+          Text("Workouts")
+      }
+
       QuickTimerView()
         .tabItem {
           Image(systemName: "timer")
@@ -28,8 +35,20 @@ extension QuickTimerView {
         reducer: quickTimerReducer,
         environment: QuickTimerEnvironment(
           mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-          soundClient: .live
+          soundClient: .mock
         )
+      )
+    )
+  }
+}
+
+extension WorkoutsFeedView {
+  init() {
+    self.init(
+      store: Store<WorkoutsFeedState, WorkoutsFeedAction>(
+        initialState: WorkoutsFeedState(),
+        reducer: workoutsFeedReducer,
+        environment: WorkoutsFeedEnvironment()
       )
     )
   }
