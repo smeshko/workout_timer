@@ -69,33 +69,22 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
 )
 
 private let jumpropeWorkouts = [
-  Workout(id: "jumprope-1", image: UIImage(named: "jumprope-3")?.pngData(), name: "Jump Rope Fat Burn", exercises: [
-    Exercise(title: "Criss Cross", sets: ExerciseSet.count(5, duration: 45), pauseDuration: 15),
-    Exercise(title: "Double Under", sets: ExerciseSet.count(5, duration: 45), pauseDuration: 15)
-  ]),
+  Workout(id: "jumprope-1", image: UIImage(named: "jumprope-3")?.pngData(), name: "Jump Rope Fat Burn", sets: ExerciseSet.alternating([
+    .crissCross: 45,
+    .recovery: 15,
+    .doubleUnder: 45
+  ], count: 3)),
 
-  Workout(id: "jumprope-2", image: UIImage(named: "jumprope-2")?.pngData(), name: "Jump Rope Get Fit", exercises: [
-    Exercise(title: "Boxer step", sets: ExerciseSet.count(5, duration: 60), pauseDuration: 15),
-    Exercise(title: "Freestyle", sets: ExerciseSet.count(5, duration: 45), pauseDuration: 15),
-    Exercise(title: "Criss Cross", sets: ExerciseSet.count(5, duration: 45), pauseDuration: 15),
-    Exercise(title: "Double Under", sets: ExerciseSet.count(5, duration: 45), pauseDuration: 15)
-  ])
+  Workout(id: "jumprope-2", image: UIImage(named: "jumprope-2")?.pngData(), name: "Jump Rope Get Fit", sets: ExerciseSet.sets(5, exercise: .boxerStep, duration: 45, pauseInBetween: 15))
 ]
 
 private let bodyweightWorkouts = [
-  Workout(id: "bodyweight-1", image: UIImage(named: "bodyweight-1")?.pngData(), name: "Bodyweight Fat Burn", exercises: [
-    Exercise(title: "Push ups", sets: ExerciseSet.count(2, duration: 30), pauseDuration: 20),
-    Exercise(title: "Jumping jacks", sets: ExerciseSet.count(4, duration: 45), pauseDuration: 15)
-  ])
+  Workout(id: "bodyweight-1", image: UIImage(named: "bodyweight-1")?.pngData(), name: "Bodyweight Fat Burn", sets: ExerciseSet.alternating([
+    .pushUps: 30,
+    .recovery: 15,
+    .jumpingJacks: 30
+  ], count: 2))
 ]
-
-private extension ExerciseSet {
-  static func count(_ num: Int, duration: TimeInterval) -> [ExerciseSet] {
-    (0...num).map { _ in
-      ExerciseSet(duration: duration)
-    }
-  }
-}
 
 private let bodyweightFileName = "bodyweight"
 private let jumpRopeFileName = "jumprope"

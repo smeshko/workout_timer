@@ -1,4 +1,5 @@
 import SwiftUI
+import WorkoutDetails
 import ComposableArchitecture
 
 struct WorkoutsListView: View {
@@ -12,7 +13,7 @@ struct WorkoutsListView: View {
       } else {
         ScrollView {
           ForEach(viewStore.workouts) { workout in
-            NavigationLink(destination: EmptyView()) {
+            NavigationLink(destination: WorkoutDetailsView(workout: workout)) {
               WorkoutView(workout: workout)
             }
             .buttonStyle(PlainButtonStyle())

@@ -36,6 +36,8 @@
 		B87675C5246AD78900438A0F /* WorkoutFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87675B0246AD78900438A0F /* WorkoutFeed.framework */; };
 		B87675C6246AD78900438A0F /* WorkoutFeed.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B87675B0246AD78900438A0F /* WorkoutFeed.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B8806C9F246844C900C32F80 /* CircuitComposerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8806C9E246844C900C32F80 /* CircuitComposerCore.swift */; };
+		B880F826246E85D100789DDA /* ExerciseSetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880F825246E85D100789DDA /* ExerciseSetTests.swift */; };
+		B880F828246E9EB200789DDA /* ExerciseSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880F827246E9EB200789DDA /* ExerciseSet.swift */; };
 		B8B6FE49246ADA2600B22568 /* WorkoutsListCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B6FE48246ADA2600B22568 /* WorkoutsListCore.swift */; };
 		B8B6FE4B246ADB2A00B22568 /* WorkoutsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B6FE4A246ADB2A00B22568 /* WorkoutsListView.swift */; };
 		B8B6FE4D246ADBF800B22568 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B6FE4C246ADBF800B22568 /* Exercise.swift */; };
@@ -73,6 +75,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		B81B9D90246DB7A300ADD9EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B84B0ABB2458126600A07A1E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B8767443246AB6A500438A0F;
+			remoteInfo = WorkoutCore;
+		};
+		B81B9D92246DB7C900ADD9EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B84B0ABB2458126600A07A1E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B8455CFB246DB15D00C4FFAE;
+			remoteInfo = WorkoutDetails;
+		};
+		B81B9D94246DB7CB00ADD9EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B84B0ABB2458126600A07A1E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B8767443246AB6A500438A0F;
+			remoteInfo = WorkoutCore;
+		};
 		B8455D06246DB15D00C4FFAE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B84B0ABB2458126600A07A1E /* Project object */;
@@ -251,6 +274,8 @@
 		B87675BF246AD78900438A0F /* WorkoutFeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutFeedTests.swift; sourceTree = "<group>"; };
 		B87675C1246AD78900438A0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8806C9E246844C900C32F80 /* CircuitComposerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitComposerCore.swift; sourceTree = "<group>"; };
+		B880F825246E85D100789DDA /* ExerciseSetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSetTests.swift; sourceTree = "<group>"; };
+		B880F827246E9EB200789DDA /* ExerciseSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSet.swift; sourceTree = "<group>"; };
 		B893DF94245AC46100C43360 /* Segment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segment.swift; sourceTree = "<group>"; };
 		B893DF97245AD53700C43360 /* UIResponder-Current.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder-Current.swift"; sourceTree = "<group>"; };
 		B893DF99245AD55900C43360 /* KeyboardHeightPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHeightPublisher.swift; sourceTree = "<group>"; };
@@ -488,6 +513,7 @@
 			isa = PBXGroup;
 			children = (
 				B8767470246AB84700438A0F /* Info.plist */,
+				B880F825246E85D100789DDA /* ExerciseSetTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -683,6 +709,7 @@
 			children = (
 				B893DF94245AC46100C43360 /* Segment.swift */,
 				B8B6FE4C246ADBF800B22568 /* Exercise.swift */,
+				B880F827246E9EB200789DDA /* ExerciseSet.swift */,
 				B8C8285F246BE10B00B1113B /* Workout.swift */,
 			);
 			path = Models;
@@ -779,6 +806,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				B81B9D91246DB7A300ADD9EF /* PBXTargetDependency */,
 			);
 			name = WorkoutDetails;
 			packageProductDependencies = (
@@ -885,6 +913,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				B81B9D95246DB7CB00ADD9EF /* PBXTargetDependency */,
+				B81B9D93246DB7C900ADD9EF /* PBXTargetDependency */,
 			);
 			name = WorkoutFeed;
 			packageProductDependencies = (
@@ -983,6 +1013,7 @@
 					};
 					B8767464246AB7E700438A0F = {
 						CreatedOnToolsVersion = 11.4.1;
+						LastSwiftMigration = 1140;
 					};
 					B87675AF246AD78900438A0F = {
 						CreatedOnToolsVersion = 11.4.1;
@@ -1133,6 +1164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8767451246AB6D100438A0F /* Segment.swift in Sources */,
+				B880F828246E9EB200789DDA /* ExerciseSet.swift in Sources */,
 				B8B6FE4D246ADBF800B22568 /* Exercise.swift in Sources */,
 				B8CEBFCD246D39F200A88450 /* LocalStorageClient.swift in Sources */,
 				B8C82860246BE10B00B1113B /* Workout.swift in Sources */,
@@ -1143,6 +1175,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B880F826246E85D100789DDA /* ExerciseSetTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1199,6 +1232,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		B81B9D91246DB7A300ADD9EF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B8767443246AB6A500438A0F /* WorkoutCore */;
+			targetProxy = B81B9D90246DB7A300ADD9EF /* PBXContainerItemProxy */;
+		};
+		B81B9D93246DB7C900ADD9EF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B8455CFB246DB15D00C4FFAE /* WorkoutDetails */;
+			targetProxy = B81B9D92246DB7C900ADD9EF /* PBXContainerItemProxy */;
+		};
+		B81B9D95246DB7CB00ADD9EF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B8767443246AB6A500438A0F /* WorkoutCore */;
+			targetProxy = B81B9D94246DB7CB00ADD9EF /* PBXContainerItemProxy */;
+		};
 		B8455D07246DB15D00C4FFAE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B8455CFB246DB15D00C4FFAE /* WorkoutDetails */;
@@ -1284,7 +1332,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.WorkoutDetails;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1313,6 +1364,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.WorkoutDetails;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1537,6 +1591,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.WorkoutCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1565,6 +1622,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.WorkoutCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1575,6 +1635,7 @@
 		B876746E246AB7E700438A0F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
 				INFOPLIST_FILE = InternalFrameworks/WorkoutCore/Tests/Info.plist;
@@ -1585,6 +1646,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.WorkoutCoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1593,6 +1655,7 @@
 		B876746F246AB7E700438A0F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
 				INFOPLIST_FILE = InternalFrameworks/WorkoutCore/Tests/Info.plist;
@@ -1629,7 +1692,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.WorkoutFeed;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1658,6 +1724,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.WorkoutFeed;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1726,6 +1795,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.QuickTimer;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1754,6 +1826,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.QuickTimer;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";

@@ -1,14 +1,27 @@
 import SwiftUI
+import WorkoutCore
 import ComposableArchitecture
 
-struct WorkoutDetailsView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+public struct WorkoutDetailsView: View {
+  let store: Store<WorkoutDetailsState, WorkoutDetailsAction>
+  
+  public init(workout: Workout) {
+    store = Store<WorkoutDetailsState, WorkoutDetailsAction>(
+      initialState: WorkoutDetailsState(workout: workout),
+      reducer: workoutDetailsReducer,
+      environment: WorkoutDetailsEnvironment()
+    )
+  }
+  
+  public var body: some View {
+    WithViewStore(store) { viewStore in
+      Text(viewStore.workout.name ?? "")
     }
+  }
 }
 
 struct WorkoutDetailsView_Previews: PreviewProvider {
-    static var previews: some View {
-        WorkoutDetailsView()
-    }
+  static var previews: some View {
+    WorkoutDetailsView(workout: Workout(id: ""))
+  }
 }

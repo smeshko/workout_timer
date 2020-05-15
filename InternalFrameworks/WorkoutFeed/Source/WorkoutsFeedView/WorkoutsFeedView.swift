@@ -42,6 +42,7 @@ public struct WorkoutsFeedView: View {
       }
       .navigationBarTitle("Workouts")
     }
+    .accentColor(.primary)
   }
 }
 
