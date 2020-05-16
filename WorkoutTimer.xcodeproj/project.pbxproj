@@ -38,6 +38,8 @@
 		B8806C9F246844C900C32F80 /* CircuitComposerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8806C9E246844C900C32F80 /* CircuitComposerCore.swift */; };
 		B880F826246E85D100789DDA /* ExerciseSetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880F825246E85D100789DDA /* ExerciseSetTests.swift */; };
 		B880F828246E9EB200789DDA /* ExerciseSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880F827246E9EB200789DDA /* ExerciseSet.swift */; };
+		B880FAA0246FF90900789DDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B880FA9F246FF90900789DDA /* Assets.xcassets */; };
+		B880FAA3246FFE7E00789DDA /* ExerciseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880FAA2246FFE7E00789DDA /* ExerciseRowView.swift */; };
 		B8B6FE49246ADA2600B22568 /* WorkoutsListCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B6FE48246ADA2600B22568 /* WorkoutsListCore.swift */; };
 		B8B6FE4B246ADB2A00B22568 /* WorkoutsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B6FE4A246ADB2A00B22568 /* WorkoutsListView.swift */; };
 		B8B6FE4D246ADBF800B22568 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B6FE4C246ADBF800B22568 /* Exercise.swift */; };
@@ -276,6 +278,8 @@
 		B8806C9E246844C900C32F80 /* CircuitComposerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitComposerCore.swift; sourceTree = "<group>"; };
 		B880F825246E85D100789DDA /* ExerciseSetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSetTests.swift; sourceTree = "<group>"; };
 		B880F827246E9EB200789DDA /* ExerciseSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSet.swift; sourceTree = "<group>"; };
+		B880FA9F246FF90900789DDA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B880FAA2246FFE7E00789DDA /* ExerciseRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRowView.swift; sourceTree = "<group>"; };
 		B893DF94245AC46100C43360 /* Segment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segment.swift; sourceTree = "<group>"; };
 		B893DF97245AD53700C43360 /* UIResponder-Current.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder-Current.swift"; sourceTree = "<group>"; };
 		B893DF99245AD55900C43360 /* KeyboardHeightPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHeightPublisher.swift; sourceTree = "<group>"; };
@@ -422,6 +426,7 @@
 		B8455D1D246DB18B00C4FFAE /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				B880FAA1246FFE6400789DDA /* ExerciseRowView */,
 				B8455D1F246DB19D00C4FFAE /* WorkoutDetailsView */,
 			);
 			path = Source;
@@ -503,6 +508,7 @@
 		B8767450246AB6C100438A0F /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				B880FA9E246FF8FD00789DDA /* Assets */,
 				B83D9EA4246D2EBC00DED0F7 /* Clients */,
 				B8DC59CA24605FB5003FC8D3 /* Models */,
 			);
@@ -582,6 +588,22 @@
 				B8806C9E246844C900C32F80 /* CircuitComposerCore.swift */,
 			);
 			path = CircuitComposer;
+			sourceTree = "<group>";
+		};
+		B880FA9E246FF8FD00789DDA /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				B880FA9F246FF90900789DDA /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		B880FAA1246FFE6400789DDA /* ExerciseRowView */ = {
+			isa = PBXGroup;
+			children = (
+				B880FAA2246FFE7E00789DDA /* ExerciseRowView.swift */,
+			);
+			path = ExerciseRowView;
 			sourceTree = "<group>";
 		};
 		B893DF91245AC43500C43360 /* App */ = {
@@ -1089,6 +1111,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B880FAA0246FF90900789DDA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1135,6 +1158,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B880FAA3246FFE7E00789DDA /* ExerciseRowView.swift in Sources */,
 				B8455D23246DB1D000C4FFAE /* WorkoutDetailsCore.swift in Sources */,
 				B8455D21246DB1AC00C4FFAE /* WorkoutDetailsView.swift in Sources */,
 			);

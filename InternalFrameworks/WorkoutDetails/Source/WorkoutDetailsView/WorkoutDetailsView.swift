@@ -15,7 +15,7 @@ public struct WorkoutDetailsView: View {
   
   public var body: some View {
     WithViewStore(store) { viewStore in
-      VStack {
+      ScrollView {
         ZStack {
           Image(uiImage: UIImage(data: viewStore.workout.image ?? Data()) ?? UIImage())
             .resizable()
@@ -35,18 +35,27 @@ public struct WorkoutDetailsView: View {
             }
           }
         }
-        ForEach(viewStore.workout.sets, id: \.title) { set in
-          Text("\(set.title ?? "") for \(set.duration)s")
+        VStack(spacing: 0) {
+          ForEach(viewStore.workout.sets, id: \.title) { set in
+            ExerciseRowView(set: set)
+          }
+          Spacer()
         }
-        Spacer()
       }
       .navigationBarTitle("", displayMode: .inline)
     }
+    
   }
 }
 
 struct WorkoutDetailsView_Previews: PreviewProvider {
   static var previews: some View {
-    WorkoutDetailsView(workout: Workout(id: ""))
+    let image = UIImage(named: "bodyweight", in: Bundle(identifier: "com.tsonevInc.mobile.ios.WorkoutFeed"), compatibleWith: nil)
+    
+    return WorkoutDetailsView(workout: Workout(id: "1", image: image?.pngData(), name: "Mock workout", sets:
+      ExerciseSet.sets(4, exercise: .jumpingJacks, duration: 30, pauseInBetween: 10)
+    ))
+      .colorScheme(.dark)
+      .background(Color.black)
   }
 }
