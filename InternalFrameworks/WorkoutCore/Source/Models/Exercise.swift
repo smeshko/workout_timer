@@ -11,32 +11,38 @@ public struct Exercise: Codable, Equatable, Hashable {
   }
 }
 
-public extension Exercise {
-  
+private extension Data {
   private static let bundle = Bundle(identifier: "com.tsonevInc.mobile.ios.WorkoutCore")
   
+  static func named(_ name: String) -> Data? {
+    UIImage(named: "stretching", in: bundle, compatibleWith: nil)?.pngData()
+  }
+}
+
+public extension Exercise {
+  
   static var jumpingJacks: Exercise {
-    Exercise(title: "Jumping jacks", image: UIImage(named: "stretching", in: bundle, compatibleWith: nil)?.pngData())
+    Exercise(title: "Jumping jacks", image: .named("stretching"))
   }
   
   static var pushUps: Exercise {
-    Exercise(title: "Push ups", image: UIImage(named: "stretching", in: bundle, compatibleWith: nil)?.pngData())
+    Exercise(title: "Push ups", image: .named("stretching"))
   }
   
   static var crissCross: Exercise {
-    Exercise(title: "Criss Cross", image: UIImage(named: "stretching", in: bundle, compatibleWith: nil)?.pngData())
+    Exercise(title: "Criss Cross", image: .named("stretching"))
   }
   
   static var doubleUnder: Exercise {
-    Exercise(title: "Double Unders", image: UIImage(named: "stretching", in: bundle, compatibleWith: nil)?.pngData())
+    Exercise(title: "Double Unders", image: .named("stretching"))
   }
   
   static var boxerStep: Exercise {
-    Exercise(title: "Boxer steps", image: UIImage(named: "stretching", in: bundle, compatibleWith: nil)?.pngData())
+    Exercise(title: "Boxer steps", image: .named("stretching"))
   }
   
   static var recovery: Exercise {
-    Exercise(title: "Recovery", image: UIImage(named: "stretching", in: bundle, compatibleWith: nil)?.pngData())
+    Exercise(title: "Recovery", image: .named("stretching"))
   }
 }
 
