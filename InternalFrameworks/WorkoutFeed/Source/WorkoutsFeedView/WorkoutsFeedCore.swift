@@ -7,11 +7,12 @@ public enum WorkoutsFeedError: Error, Equatable {
 }
 
 public enum WorkoutsFeedAction: Equatable {
-  case workoutTypeChanged( WorkoutsFeedState.WorkoutType)
+  case workoutTypeChanged(WorkoutsFeedState.WorkoutType)
   case workoutsLoaded(Result<[Workout], WorkoutsFeedError>)
   case beginNavigation
   
-  case workoutsList(WorkoutsListAction)
+  case bodyweightWorkoutsAction(WorkoutsListAction)
+  case jumpropeWorkoutsAction(WorkoutsListAction)
 }
 
 public struct WorkoutsFeedState: Equatable {
@@ -24,18 +25,20 @@ public struct WorkoutsFeedState: Equatable {
   
   var workoutTypes = WorkoutType.allCases
   var selectedWorkoutType: WorkoutType = .jumpRope
-  var workouts: [Workout] = []
   
-  var workoutsListState = WorkoutsListState()
+  var bodyweightWorkoutsState = WorkoutsListState()
+  var jumpropeWorkoutsState = WorkoutsListState()
 
   public init() {}
 }
 
 public struct WorkoutsFeedEnvironment {
   let localStorageClient: LocalStorageClient
+  let mainQueue: AnySchedulerOf<DispatchQueue>
   
-  public init(localStorageClient: LocalStorageClient) {
+  public init(localStorageClient: LocalStorageClient, mainQueue: AnySchedulerOf<DispatchQueue>) {
     self.localStorageClient = localStorageClient
+    self.mainQueue = mainQueue
   }
 }
 
@@ -44,16 +47,24 @@ public let workoutsFeedReducer = Reducer<WorkoutsFeedState, WorkoutsFeedAction, 
   switch action {
     
   case .beginNavigation:
-    if state.workouts.isEmpty {
-      return environment.loadWorkouts(state.selectedWorkoutType)
+    if state.isSelectedTypeEmpty {
+      return environment.loadWorkouts(state.selectedWorkoutType, mainQueue: environment.mainQueue)
     }
     
   case .workoutTypeChanged(let type):
     state.selectedWorkoutType = type
-    return environment.loadWorkouts(type)
+    if state.isSelectedTypeEmpty {
+      return environment.loadWorkouts(type, mainQueue: environment.mainQueue)
+    }
     
   case .workoutsLoaded(.success(let workouts)):
-    state.workoutsListState.workouts = workouts
+    switch state.selectedWorkoutType {
+    case .bodyweight:
+      state.bodyweightWorkoutsState.workouts = workouts
+    case .jumpRope:
+      state.jumpropeWorkoutsState.workouts = workouts
+    default: break
+    }
   
   case .workoutsLoaded(.failure(let error)):
     break
@@ -63,10 +74,10 @@ public let workoutsFeedReducer = Reducer<WorkoutsFeedState, WorkoutsFeedAction, 
 }
 
 private extension WorkoutsFeedEnvironment {
-  func loadWorkouts(_ type: WorkoutsFeedState.WorkoutType) -> Effect<WorkoutsFeedAction, Never> {
+  func loadWorkouts(_ type: WorkoutsFeedState.WorkoutType, mainQueue: AnySchedulerOf<DispatchQueue>) -> Effect<WorkoutsFeedAction, Never> {
+
     localStorageClient
       .readFromFile(type.filename, "json")
-      .receive(on: DispatchQueue.main)
       .decode(type: [Workout].self, decoder: JSONDecoder())
       .mapError { _ in WorkoutsFeedError.failedLoadingWorkouts }
       .catchToEffect()
@@ -80,6 +91,18 @@ private extension WorkoutsFeedState.WorkoutType {
     case .bodyweight: return "bodyweight"
     case .jumpRope: return "jumprope"
     case .custom: return "custom"
+    }
+  }
+}
+
+extension WorkoutsFeedState {
+  var isSelectedTypeEmpty: Bool {
+    switch selectedWorkoutType {
+    case .bodyweight:
+      return bodyweightWorkoutsState.workouts.isEmpty
+    case .jumpRope:
+      return jumpropeWorkoutsState.workouts.isEmpty
+    default: return false
     }
   }
 }

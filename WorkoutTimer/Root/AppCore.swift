@@ -26,7 +26,7 @@ struct AppEnvironment {
 
 let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
   Reducer<AppState, AppAction, AppEnvironment> { state, action, env in
-  struct TriviaRequestId: Hashable {}
+  struct LocalStorageReadId: Hashable {}
   
   switch action {
   case .applicationDidStart:
@@ -47,7 +47,7 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
       }
     .catchToEffect()
     .map(AppAction.finishedWritingWorkouts)
-    .cancellable(id: TriviaRequestId())
+    .cancellable(id: LocalStorageReadId())
     
   case .finishedWritingWorkouts(.failure(let error)):
     break
@@ -64,7 +64,7 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
   workoutsFeedReducer.pullback(
     state: \.workoutsFeedState,
     action: /AppAction.workoutsFeed,
-    environment: { appEnv in WorkoutsFeedEnvironment(localStorageClient: appEnv.localStorageClient) }
+    environment: { appEnv in WorkoutsFeedEnvironment(localStorageClient: appEnv.localStorageClient, mainQueue: appEnv.mainQueue) }
   )
 )
 

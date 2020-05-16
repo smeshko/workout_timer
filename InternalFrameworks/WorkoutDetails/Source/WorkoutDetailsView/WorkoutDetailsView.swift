@@ -15,7 +15,32 @@ public struct WorkoutDetailsView: View {
   
   public var body: some View {
     WithViewStore(store) { viewStore in
-      Text(viewStore.workout.name ?? "")
+      VStack {
+        ZStack {
+          Image(uiImage: UIImage(data: viewStore.workout.image ?? Data()) ?? UIImage())
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+          
+          VStack(spacing: 64) {
+            Text(viewStore.workout.name ?? "")
+              .font(.system(size: 24, weight: .bold))
+            
+            Button(action: {}) {
+              Text("Start")
+                .padding(32)
+                .background(Color.white)
+                .clipShape(Circle())
+                .font(.system(size: 20, weight: .bold))
+                .foregroundColor(.black)
+            }
+          }
+        }
+        ForEach(viewStore.workout.sets, id: \.title) { set in
+          Text("\(set.title ?? "") for \(set.duration)s")
+        }
+        Spacer()
+      }
+      .navigationBarTitle("", displayMode: .inline)
     }
   }
 }

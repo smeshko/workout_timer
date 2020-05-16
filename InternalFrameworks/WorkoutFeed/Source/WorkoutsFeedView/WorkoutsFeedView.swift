@@ -28,8 +28,15 @@ public struct WorkoutsFeedView: View {
                 .navigationBarItems(trailing: Button(action: {}) {
                   Image(systemName: "plus")
                 })
-            } else {
-              WorkoutsListView(store: self.store.scope(state: \.workoutsListState, action: WorkoutsFeedAction.workoutsList))
+              
+            } else if viewStore.selectedWorkoutType == .jumpRope {
+              
+              WorkoutsListView(store: self.store.scope(state: \.jumpropeWorkoutsState, action: WorkoutsFeedAction.jumpropeWorkoutsAction))
+                .navigationBarItems(trailing: EmptyView())
+              
+            } else if viewStore.selectedWorkoutType == .bodyweight {
+              
+              WorkoutsListView(store: self.store.scope(state: \.bodyweightWorkoutsState, action: WorkoutsFeedAction.jumpropeWorkoutsAction))
                 .navigationBarItems(trailing: EmptyView())
             }
             
@@ -52,7 +59,10 @@ struct WorkoutsFeedView_Previews: PreviewProvider {
       store: Store<WorkoutsFeedState, WorkoutsFeedAction>(
         initialState: WorkoutsFeedState(),
         reducer: workoutsFeedReducer,
-        environment: WorkoutsFeedEnvironment(localStorageClient: .mock)
+        environment: WorkoutsFeedEnvironment(
+          localStorageClient: .mock,
+          mainQueue: DispatchQueue.main.eraseToAnyScheduler()
+        )
       )
     )
   }

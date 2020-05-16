@@ -10,7 +10,7 @@ public struct ExerciseSet: Codable, Equatable {
     self.duration = duration
   }
   
-  subscript<T>(dynamicMember keyPath: KeyPath<Exercise, T>) -> T {
+  public subscript<T>(dynamicMember keyPath: KeyPath<Exercise, T>) -> T {
     exercise[keyPath: keyPath]
   }
   
