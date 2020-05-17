@@ -41,6 +41,7 @@ public struct QuickTimerView: View {
             .padding()
           
         }
+        .navigationBarHidden(true)
         .onAppear {
           viewStore.send(.setNavigation)
         }
@@ -86,12 +87,3 @@ private extension QuickTimerState {
     String(format: "%02d:%02d", segmentTimeLeft / 60, segmentTimeLeft % 60)
   }  
 }
-
-
-/*
- 
- Set      -> a workout
- Segment  -> workout + pause
- Circuit  -> multiple segments
- 
- */

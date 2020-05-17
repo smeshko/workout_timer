@@ -7,12 +7,12 @@ struct ExerciseRowView: View {
   
   var body: some View {
     HStack(spacing: 0) {
-      Image(uiImage: UIImage(data: set.image ?? Data()) ?? UIImage())
+      Image(uiImage: UIImage(namedSharedAsset: set.image) ?? UIImage())
         .resizable()
         .frame(width: 96, height: 96)
         .aspectRatio(contentMode: .fit)
       
-      Text("\(set.title ?? "")")
+      Text("\(set.name)")
         .padding(.leading, 16)
       
       Spacer()

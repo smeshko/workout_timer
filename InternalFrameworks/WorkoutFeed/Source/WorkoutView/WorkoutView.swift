@@ -9,13 +9,13 @@ struct WorkoutView: View {
   
   var body: some View {
     ZStack(alignment: .topLeading) {
-      Image(uiImage: UIImage(data: workout.image ?? Data()) ?? UIImage())
+      Image(uiImage: UIImage(namedSharedAsset: workout.image) ?? UIImage())
         .resizable()
         .frame(width: UIScreen.main.bounds.width, height: 240)
         .aspectRatio(contentMode: .fit)
         
       VStack(alignment: .leading, spacing: 4) {
-        Text(workout.name ?? "")
+        Text(workout.name)
           .font(.system(size: 24, weight: .bold))
         Text(workout.duration)
           .font(.system(size: 32, weight: .heavy))
@@ -30,10 +30,9 @@ struct WorkoutView: View {
 
 struct WorkoutView_Previews: PreviewProvider {
   static var previews: some View {
-    let image = UIImage(named: "bodyweight", in: Bundle(identifier: "com.tsonevInc.mobile.ios.WorkoutFeed"), compatibleWith: nil)
     
-    return WorkoutView(workout: Workout(id: "1", image: image?.pngData(), name: "Mock workout", sets:
-      ExerciseSet.sets(4, exercise: Exercise(title: "Push ups"), duration: 30, pauseInBetween: 10)
+    return WorkoutView(workout: Workout(id: "1", name: "Mock workout", image: "preview-workout-1", sets:
+      ExerciseSet.sets(4, exercise: .pushUps, duration: 30, pauseInBetween: 10)
     ))
       .environment(\.colorScheme, .dark)
       .previewLayout(.fixed(width: 375, height: 240))

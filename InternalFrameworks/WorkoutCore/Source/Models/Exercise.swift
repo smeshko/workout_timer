@@ -2,47 +2,44 @@ import Foundation
 import UIKit
 
 public struct Exercise: Codable, Equatable, Hashable {
-  public let title: String?
-  public let image: Data?
+  public let name: String
+  public let image: String
   
-  public init(title: String?, image: Data? = nil) {
-    self.title = title
+  public init(name: String, image: String) {
+    self.name = name
     self.image = image
   }
 }
 
 private extension Data {
-  private static let bundle = Bundle(identifier: "com.tsonevInc.mobile.ios.WorkoutCore")
+  private static let bundle = Bundle(identifier: "com.tsonevInc.mobile.ios.WorkoutTimer")
   
-  static func named(_ name: String) -> Data? {
-    UIImage(named: "stretching", in: bundle, compatibleWith: nil)?.pngData()
-  }
+  static let image = UIImage(named: "stretching", in: bundle, compatibleWith: nil)?.pngData()
 }
 
 public extension Exercise {
-  
   static var jumpingJacks: Exercise {
-    Exercise(title: "Jumping jacks", image: .named("stretching"))
+    Exercise(name: "Jumping jacks", image: "stretching")
   }
   
   static var pushUps: Exercise {
-    Exercise(title: "Push ups", image: .named("stretching"))
+    Exercise(name: "Push ups", image: "stretching")
   }
   
   static var crissCross: Exercise {
-    Exercise(title: "Criss Cross", image: .named("stretching"))
+    Exercise(name: "Criss Cross", image: "stretching")
   }
   
   static var doubleUnder: Exercise {
-    Exercise(title: "Double Unders", image: .named("stretching"))
+    Exercise(name: "Double Unders", image: "stretching")
   }
   
   static var boxerStep: Exercise {
-    Exercise(title: "Boxer steps", image: .named("stretching"))
+    Exercise(name: "Boxer steps", image: "stretching")
   }
   
   static var recovery: Exercise {
-    Exercise(title: "Recovery", image: .named("stretching"))
+    Exercise(name: "Recovery", image: "stretching")
   }
 }
 

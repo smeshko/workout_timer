@@ -53,7 +53,7 @@ extension QuickTimerView {
         reducer: quickTimerReducer,
         environment: QuickTimerEnvironment(
           mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-          soundClient: .mock
+          soundClient: .live
         )
       )
     )

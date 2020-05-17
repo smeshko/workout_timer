@@ -6,7 +6,7 @@ public struct Segment: Equatable, Identifiable, Hashable {
     case pause
   }
   
-  public let id = UUID()
+  public let id = UUID().uuidString
   public let duration: Int
   public let category: Category
   

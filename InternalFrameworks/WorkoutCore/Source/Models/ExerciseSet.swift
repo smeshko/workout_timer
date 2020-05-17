@@ -37,7 +37,7 @@ public struct ExerciseSet: Codable, Equatable {
   ///   - exercises: a dictionary with exercises and their durations to alternate between
   ///   - count: the number of times to add the exercises
   /// - Returns: an array of exercise sets
-  public static func alternating(_ exercises: [Exercise: TimeInterval], count: Int) -> [ExerciseSet] {
+  public static func alternating(_ count: Int, _ exercises: [Exercise: TimeInterval]) -> [ExerciseSet] {
     var sets: [ExerciseSet] = []
     (0 ..< count).forEach { _ in
       sets.append(contentsOf: exercises.reversed().map { exercise, duration in

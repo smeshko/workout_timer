@@ -1,12 +1,14 @@
 import Foundation
+import UIKit
 
 public struct Workout: Codable, Equatable, Identifiable {
+  
   public let id: String
-  public let image: Data?
-  public let name: String?
+  public let name: String
+  public var image: String
   public let sets: [ExerciseSet]
   
-  public init(id: String, image: Data? = nil, name: String? = nil, sets: [ExerciseSet] = []) {
+  public init(id: String, name: String, image: String, sets: [ExerciseSet] = []) {
     self.id = id
     self.image = image
     self.name = name

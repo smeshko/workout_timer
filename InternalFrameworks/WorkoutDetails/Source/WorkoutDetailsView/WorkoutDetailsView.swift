@@ -17,12 +17,12 @@ public struct WorkoutDetailsView: View {
     WithViewStore(store) { viewStore in
       ScrollView {
         ZStack {
-          Image(uiImage: UIImage(data: viewStore.workout.image ?? Data()) ?? UIImage())
+          Image(uiImage: UIImage(namedSharedAsset: viewStore.workout.image) ?? UIImage())
             .resizable()
             .aspectRatio(contentMode: .fit)
           
           VStack(spacing: 64) {
-            Text(viewStore.workout.name ?? "")
+            Text(viewStore.workout.name)
               .font(.system(size: 24, weight: .bold))
             
             Button(action: {}) {
@@ -36,7 +36,7 @@ public struct WorkoutDetailsView: View {
           }
         }
         VStack(spacing: 0) {
-          ForEach(viewStore.workout.sets, id: \.title) { set in
+          ForEach(viewStore.workout.sets, id: \.name) { set in
             ExerciseRowView(set: set)
           }
           Spacer()
@@ -50,9 +50,7 @@ public struct WorkoutDetailsView: View {
 
 struct WorkoutDetailsView_Previews: PreviewProvider {
   static var previews: some View {
-    let image = UIImage(named: "bodyweight", in: Bundle(identifier: "com.tsonevInc.mobile.ios.WorkoutFeed"), compatibleWith: nil)
-    
-    return WorkoutDetailsView(workout: Workout(id: "1", image: image?.pngData(), name: "Mock workout", sets:
+    return WorkoutDetailsView(workout: Workout(id: "1", name: "Mock workout", image: "bodyweight",  sets:
       ExerciseSet.sets(4, exercise: .jumpingJacks, duration: 30, pauseInBetween: 10)
     ))
       .colorScheme(.dark)
