@@ -475,19 +475,20 @@
 		B839E3772471BBC200FE5793 /* ActiveWorkout */ = {
 			isa = PBXGroup;
 			children = (
-				B839E3932471BBCC00FE5793 /* ActiveWorkoutView */,
+				B839E39E2471C6CE00FE5793 /* Source */,
+				B839E3842471BBC200FE5793 /* Tests */,
 				B839E3792471BBC200FE5793 /* Info.plist */,
 			);
 			path = ActiveWorkout;
 			sourceTree = "<group>";
 		};
-		B839E3842471BBC200FE5793 /* ActiveWorkoutTests */ = {
+		B839E3842471BBC200FE5793 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				B839E3852471BBC200FE5793 /* ActiveWorkoutTests.swift */,
 				B839E3872471BBC200FE5793 /* Info.plist */,
 			);
-			path = ActiveWorkoutTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		B839E3932471BBCC00FE5793 /* ActiveWorkoutView */ = {
@@ -497,6 +498,14 @@
 				B839E3962471BBE600FE5793 /* ActiveWorkoutView.swift */,
 			);
 			path = ActiveWorkoutView;
+			sourceTree = "<group>";
+		};
+		B839E39E2471C6CE00FE5793 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				B839E3932471BBCC00FE5793 /* ActiveWorkoutView */,
+			);
+			path = Source;
 			sourceTree = "<group>";
 		};
 		B83D9E9D246C725900DED0F7 /* WorkoutsFeedView */ = {
@@ -566,8 +575,6 @@
 			children = (
 				B84B0AC52458126700A07A1E /* WorkoutTimer */,
 				B8FCFDF9246AB2CE005C9A89 /* InternalFrameworks */,
-				B839E3772471BBC200FE5793 /* ActiveWorkout */,
-				B839E3842471BBC200FE5793 /* ActiveWorkoutTests */,
 				B84B0AC42458126700A07A1E /* Products */,
 				B8DC59C524605F99003FC8D3 /* Frameworks */,
 			);
@@ -890,6 +897,7 @@
 		B8FCFDF9246AB2CE005C9A89 /* InternalFrameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B839E3772471BBC200FE5793 /* ActiveWorkout */,
 				B8455CFD246DB15D00C4FFAE /* WorkoutDetails */,
 				B87675B1246AD78900438A0F /* WorkoutFeed */,
 				B8767445246AB6A500438A0F /* WorkoutCore */,
@@ -1576,7 +1584,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = ActiveWorkout/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/ActiveWorkout/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1605,7 +1613,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = ActiveWorkout/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/ActiveWorkout/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1628,7 +1636,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = ActiveWorkoutTests/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/ActiveWorkout/Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1648,7 +1656,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = ActiveWorkoutTests/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/ActiveWorkout/Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
