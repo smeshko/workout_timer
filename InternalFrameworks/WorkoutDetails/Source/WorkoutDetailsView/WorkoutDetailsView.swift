@@ -1,4 +1,5 @@
 import SwiftUI
+import ActiveWorkout
 import WorkoutCore
 import ComposableArchitecture
 
@@ -25,7 +26,7 @@ public struct WorkoutDetailsView: View {
             Text(viewStore.workout.name)
               .font(.system(size: 24, weight: .bold))
             
-            Button(action: {}) {
+            NavigationLink(destination: ActiveWorkoutView(workout: viewStore.workout)) {
               Text("Start")
                 .padding(32)
                 .background(Color.white)
@@ -33,6 +34,8 @@ public struct WorkoutDetailsView: View {
                 .font(.system(size: 20, weight: .bold))
                 .foregroundColor(.black)
             }
+            .buttonStyle(PlainButtonStyle())
+            
           }
         }
         VStack(spacing: 0) {

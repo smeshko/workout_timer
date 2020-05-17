@@ -23,19 +23,19 @@ public extension Exercise {
   }
   
   static var pushUps: Exercise {
-    Exercise(name: "Push ups", image: "stretching")
+    Exercise(name: "Push ups", image: "push-ups")
   }
   
   static var crissCross: Exercise {
-    Exercise(name: "Criss Cross", image: "stretching")
+    Exercise(name: "Criss Cross", image: "criss-cross")
   }
   
   static var doubleUnder: Exercise {
-    Exercise(name: "Double Unders", image: "stretching")
+    Exercise(name: "Double Unders", image: "double-unders")
   }
   
   static var boxerStep: Exercise {
-    Exercise(name: "Boxer steps", image: "stretching")
+    Exercise(name: "Boxer steps", image: "boxer-steps")
   }
   
   static var recovery: Exercise {
