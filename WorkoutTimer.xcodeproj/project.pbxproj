@@ -50,6 +50,8 @@
 		B880F828246E9EB200789DDA /* ExerciseSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880F827246E9EB200789DDA /* ExerciseSet.swift */; };
 		B880FAA0246FF90900789DDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B880FA9F246FF90900789DDA /* Assets.xcassets */; };
 		B880FAA3246FFE7E00789DDA /* ExerciseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880FAA2246FFE7E00789DDA /* ExerciseRowView.swift */; };
+		B8B21CAC24727FC60085164A /* ActiveExerciseRowCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B21CAB24727FC60085164A /* ActiveExerciseRowCore.swift */; };
+		B8B21CAE24727FE10085164A /* ActiveExerciseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B21CAD24727FE10085164A /* ActiveExerciseRowView.swift */; };
 		B8B6FE49246ADA2600B22568 /* WorkoutsListCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B6FE48246ADA2600B22568 /* WorkoutsListCore.swift */; };
 		B8B6FE4B246ADB2A00B22568 /* WorkoutsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B6FE4A246ADB2A00B22568 /* WorkoutsListView.swift */; };
 		B8B6FE4D246ADBF800B22568 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B6FE4C246ADBF800B22568 /* Exercise.swift */; };
@@ -344,6 +346,8 @@
 		B893DF99245AD55900C43360 /* KeyboardHeightPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHeightPublisher.swift; sourceTree = "<group>"; };
 		B893DF9C245AD57900C43360 /* KeyboardAdaptive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAdaptive.swift; sourceTree = "<group>"; };
 		B893DFA3245C230300C43360 /* View-UpdateKeyPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View-UpdateKeyPath.swift"; sourceTree = "<group>"; };
+		B8B21CAB24727FC60085164A /* ActiveExerciseRowCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveExerciseRowCore.swift; sourceTree = "<group>"; };
+		B8B21CAD24727FE10085164A /* ActiveExerciseRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveExerciseRowView.swift; sourceTree = "<group>"; };
 		B8B6FE48246ADA2600B22568 /* WorkoutsListCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsListCore.swift; sourceTree = "<group>"; };
 		B8B6FE4A246ADB2A00B22568 /* WorkoutsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsListView.swift; sourceTree = "<group>"; };
 		B8B6FE4C246ADBF800B22568 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
@@ -494,8 +498,8 @@
 		B839E3932471BBCC00FE5793 /* ActiveWorkoutView */ = {
 			isa = PBXGroup;
 			children = (
-				B839E3942471BBDA00FE5793 /* ActiveWorkoutCore.swift */,
 				B839E3962471BBE600FE5793 /* ActiveWorkoutView.swift */,
+				B839E3942471BBDA00FE5793 /* ActiveWorkoutCore.swift */,
 			);
 			path = ActiveWorkoutView;
 			sourceTree = "<group>";
@@ -503,9 +507,19 @@
 		B839E39E2471C6CE00FE5793 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				B839E39F2471C71800FE5793 /* ActiveExerciseRow */,
 				B839E3932471BBCC00FE5793 /* ActiveWorkoutView */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		B839E39F2471C71800FE5793 /* ActiveExerciseRow */ = {
+			isa = PBXGroup;
+			children = (
+				B8B21CAD24727FE10085164A /* ActiveExerciseRowView.swift */,
+				B8B21CAB24727FC60085164A /* ActiveExerciseRowCore.swift */,
+			);
+			path = ActiveExerciseRow;
 			sourceTree = "<group>";
 		};
 		B83D9E9D246C725900DED0F7 /* WorkoutsFeedView */ = {
@@ -1359,7 +1373,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B839E3972471BBE600FE5793 /* ActiveWorkoutView.swift in Sources */,
+				B8B21CAE24727FE10085164A /* ActiveExerciseRowView.swift in Sources */,
 				B839E3952471BBDA00FE5793 /* ActiveWorkoutCore.swift in Sources */,
+				B8B21CAC24727FC60085164A /* ActiveExerciseRowCore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

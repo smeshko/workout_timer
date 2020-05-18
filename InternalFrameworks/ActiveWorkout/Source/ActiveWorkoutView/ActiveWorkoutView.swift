@@ -36,9 +36,10 @@ public struct ActiveWorkoutView: View {
       
       ScrollView {
         VStack(spacing: 0) {
-          ForEach(viewStore.workout.sets, id: \.name) { set in
-            Text(set.name)
-          }
+          ForEachStore(
+            self.store.scope(state: \.sets, action: ActiveWorkoutAction.exerciseSet(id:action:)),
+            content: ActiveExerciseRowView.init(store:)
+          )
         }
       }
       
