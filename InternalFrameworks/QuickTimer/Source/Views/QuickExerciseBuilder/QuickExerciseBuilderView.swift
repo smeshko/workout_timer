@@ -16,13 +16,13 @@ struct QuickExerciseBuilderView: View {
         
         ValuePicker(store: self.store.scope(state: \.workoutTimeState, action: QuickExerciseBuilderAction.changeWorkoutTime),
                     valueName: "Workout Time",
-                    maxValue: 121,
+                    maxValue: 241,
                     tint: .red
         )
         
         ValuePicker(store: self.store.scope(state: \.breakTimeState, action: QuickExerciseBuilderAction.changeBreakTime),
                     valueName: "Break Time",
-                    maxValue: 61,
+                    maxValue: 121,
                     tint: .purple
         )
       }

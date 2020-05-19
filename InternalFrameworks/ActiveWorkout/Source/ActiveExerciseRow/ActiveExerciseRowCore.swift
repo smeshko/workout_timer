@@ -4,7 +4,9 @@ import ComposableArchitecture
 
 struct TimerId: Hashable {}
 
-public enum ActiveExerciseRowAction: Equatable {}
+public enum ActiveExerciseRowAction: Equatable {
+  case progressBarDidUpdate(Double)
+}
 
 @dynamicMemberLookup
 public struct ActiveExerciseRowState: Identifiable, Equatable {
@@ -12,6 +14,10 @@ public struct ActiveExerciseRowState: Identifiable, Equatable {
   var isActive = false
   let set: ExerciseSet
   var secondsLeft: TimeInterval = 0
+  
+  var progress: Double {
+    (self.duration - secondsLeft) / self.duration
+  }
   
   public var id: UUID {
     self.set.id
@@ -34,5 +40,8 @@ public struct ActiveExerciseRowState: Identifiable, Equatable {
 public struct ActiveExerciseRowEnvironment {}
 
 public let activeExerciseRowReducer = Reducer<ActiveExerciseRowState, ActiveExerciseRowAction, ActiveExerciseRowEnvironment> { state, action, environment in
+  switch action {
+  case .progressBarDidUpdate: break
+  }
   return .none
 }

@@ -23,6 +23,10 @@ struct ActiveExerciseRowView: View {
           Spacer()
         }
         .padding([.vertical], 32)
+        .background(viewStore.isActive ?
+          AnyView(ProgressBar(value: viewStore.binding(get: \.progress, send: ActiveExerciseRowAction.progressBarDidUpdate))) :
+          AnyView(Color(.systemGray).opacity(0.2))
+        )
         
         Divider()
       }

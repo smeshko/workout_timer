@@ -5,6 +5,7 @@ import ComposableArchitecture
 public struct ActiveWorkoutView: View {
   
   let store: Store<ActiveWorkoutState, ActiveWorkoutAction>
+  @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
   
   public init(workout: Workout) {
     self.store = Store<ActiveWorkoutState, ActiveWorkoutAction>(
@@ -18,44 +19,69 @@ public struct ActiveWorkoutView: View {
   
   public var body: some View {
     WithViewStore(store) { viewStore in
-      ZStack(alignment: .top) {
-        Image(uiImage: UIImage(namedSharedAsset: viewStore.currentSet.image) ?? UIImage())
-          .resizable()
-          .aspectRatio(contentMode: .fit)
-
-        HStack {
-          Text(viewStore.formattedTimeExpired)
-            .font(.system(size: 24, weight: .bold, design: .monospaced))
-          Spacer()
-          Button(action: {
-            if viewStore.isRunning {
-              viewStore.send(.pause)
-            } else {
-              viewStore.send(.resume)
+      VStack(spacing: 0) {
+        ZStack(alignment: .top) {
+          Image(uiImage: UIImage(namedSharedAsset: viewStore.currentSet.image) ?? UIImage())
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(idealHeight: 240, alignment: .top)
+          
+          VStack(spacing: 0) {
+          
+            HStack {
+              Text(viewStore.formattedTimeExpired)
+                .font(.system(size: 24, weight: .bold, design: .monospaced))
+              Spacer()
+              
+              HStack(spacing: 24) {
+                Button(action: {
+                  if viewStore.isRunning {
+                    viewStore.send(.pause)
+                  } else {
+                    viewStore.send(.resume)
+                  }
+                }) {
+                  Image(systemName: viewStore.isRunning ? "pause.fill" : "play.fill")
+                    .font(.system(size: 24))
+                }
+                
+                Button(action: {
+                  viewStore.send(.stopWorkout)
+                  self.presentationMode.wrappedValue.dismiss()
+                }) {
+                  Image(systemName: "xmark")
+                    .font(.system(size: 24))
+                }
+              }
             }
-          }) {
-            Image(systemName: viewStore.isRunning ? "pause.fill" : "play.fill")
+            .padding()
+            .accentColor(.primary)
+            
+            Text(viewStore.currentSet.name.uppercased())
+              .multilineTextAlignment(.center)
+              .font(.system(size: 48, weight: .heavy))
+              .shadow(color: .black, radius: 5, x: 2, y: 2)
+              .padding()
+            
+            
           }
         }
-        .padding()
-        .accentColor(.primary)
         
-      }
-      
-      ScrollView {
-        VStack(spacing: 0) {
-          ForEachStore(
-            self.store.scope(state: \.sets, action: ActiveWorkoutAction.exerciseSet(id:action:)),
-            content: ActiveExerciseRowView.init(store:)
-          )
+        ScrollView {
+          VStack(spacing: 0) {
+            ForEachStore(
+              self.store.scope(state: \.sets, action: ActiveWorkoutAction.exerciseSet(id:action:)),
+              content: ActiveExerciseRowView.init(store:)
+            )
+          }
         }
       }
       .onAppear {
         viewStore.send(.workoutBegin)
       }
-      
+      .navigationBarTitle("")
+      .navigationBarHidden(true)
     }
-    .navigationBarHidden(true)
   }
 }
 

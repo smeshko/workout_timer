@@ -69,10 +69,47 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
 )
 
 private let jumpropeWorkouts = [
-  Workout(id: "jumprope-1", name: "Jump Rope Fat Burn", image: "jumprope-1", sets: ExerciseSet.alternating(3, [
-    .crissCross: 10,
-    .recovery: 5,
-    .doubleUnder: 10
+  
+  Workout(id: "jumprope-3", name: "Complete Routine", image: "bodyweight-3", sets: [
+    .freestyle(180),
+    .recovery(60),
+    .freestyle(180),
+    .recovery(60),
+    .freestyle(180),
+    .recovery(60),
+    .freestyle(180),
+    .recovery(60),
+
+    .heavyRopeJumping(60),
+    .recovery(30),
+    .pushUps(60),
+    .recovery(30),
+    .heavyRopeJumping(60),
+    .recovery(30),
+    .pushUps(60),
+    .recovery(30),
+    .heavyRopeJumping(60),
+    .recovery(30),
+    .pushUps(60),
+    .recovery(30),
+
+    .shadowBoxing(120),
+    .recovery(60),
+    .bicycles(60),
+    .recovery(60),
+    .shadowBoxing(120),
+    .recovery(60),
+    .oneArmShoulderTouches(60),
+    .recovery(60),
+    .shadowBoxing(120),
+    .recovery(60),
+    .boatToLowBoat(60),
+    .recovery(60)
+  ]),
+
+  Workout(id: "jumprope-1", name: "Jump Rope Warmup", image: "jumprope-1", sets: ExerciseSet.alternating(4, [
+    .freestyle: 180,
+    .recovery: 60
   ])),
 
   Workout(id: "jumprope-2", name: "Jump Rope Get Fit", image: "jumprope-2", sets: ExerciseSet.sets(5, exercise: .boxerStep, duration: 45, pauseInBetween: 15))

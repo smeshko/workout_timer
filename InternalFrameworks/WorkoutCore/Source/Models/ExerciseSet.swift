@@ -27,9 +27,9 @@ public struct ExerciseSet: Identifiable, Codable, Equatable {
   public static func sets(_ count: Int, exercise: Exercise, duration: TimeInterval, pauseInBetween: TimeInterval? = nil) -> IdentifiedArrayOf<ExerciseSet> {
     var sets: IdentifiedArrayOf<ExerciseSet> = []
     (0 ..< count).forEach { index in
-      sets.append(ExerciseSet(exercise: exercise, duration: duration))
+      sets.insert(ExerciseSet(exercise: exercise, duration: duration), at: 0)
       if let pause = pauseInBetween, index != count - 1 {
-        sets.append(.recovery(pause))
+        sets.insert(.recovery(pause), at: 0)
       }
     }
     return sets
@@ -43,9 +43,9 @@ public struct ExerciseSet: Identifiable, Codable, Equatable {
   public static func alternating(_ count: Int, _ exercises: [Exercise: TimeInterval]) -> IdentifiedArrayOf<ExerciseSet> {
     var sets: IdentifiedArrayOf<ExerciseSet> = []
     (0 ..< count).forEach { _ in
-      sets.append(contentsOf: exercises.reversed().map { exercise, duration in
+      sets.insert(contentsOf: exercises.map { exercise, duration in
         ExerciseSet(exercise: exercise, duration: duration)
-      })
+      }, at: 0)
     }
     return sets
   }
