@@ -3,11 +3,12 @@ import ComposableArchitecture
 
 @dynamicMemberLookup
 public struct ExerciseSet: Identifiable, Codable, Equatable {
-  public var id: UUID { exercise.id }
+  public var id: UUID
   fileprivate let exercise: Exercise
   public let duration: TimeInterval
   
   public init(exercise: Exercise, duration: TimeInterval) {
+    self.id = UUID()
     self.exercise = exercise
     self.duration = duration
   }

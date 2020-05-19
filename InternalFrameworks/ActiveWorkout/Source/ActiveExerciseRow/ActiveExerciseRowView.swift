@@ -26,9 +26,6 @@ struct ActiveExerciseRowView: View {
         
         Divider()
       }
-      .onAppear {
-        viewStore.send(.exerciseBegin)
-      }
     }
   }
 }
@@ -39,9 +36,7 @@ struct ActiveExerciseRowView_Previews: PreviewProvider {
       store: Store<ActiveExerciseRowState, ActiveExerciseRowAction>(
         initialState: ActiveExerciseRowState(set: ExerciseSet(exercise: self.mockExercise, duration: 30)),
         reducer: activeExerciseRowReducer,
-        environment: ActiveExerciseRowEnvironment(
-          mainQueue: DispatchQueue.main.eraseToAnyScheduler()
-        )
+        environment: ActiveExerciseRowEnvironment()
       )
     )
   }

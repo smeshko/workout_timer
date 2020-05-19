@@ -70,9 +70,9 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
 
 private let jumpropeWorkouts = [
   Workout(id: "jumprope-1", name: "Jump Rope Fat Burn", image: "jumprope-1", sets: ExerciseSet.alternating(3, [
-    .crissCross: 45,
-    .recovery: 15,
-    .doubleUnder: 45
+    .crissCross: 10,
+    .recovery: 5,
+    .doubleUnder: 10
   ])),
 
   Workout(id: "jumprope-2", name: "Jump Rope Get Fit", image: "jumprope-2", sets: ExerciseSet.sets(5, exercise: .boxerStep, duration: 45, pauseInBetween: 15))

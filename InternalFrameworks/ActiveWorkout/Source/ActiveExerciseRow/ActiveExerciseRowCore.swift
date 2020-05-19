@@ -4,58 +4,35 @@ import ComposableArchitecture
 
 struct TimerId: Hashable {}
 
-public enum ActiveExerciseRowAction: Equatable {
-  case timerTicked
-  case exerciseBegin
-  case exerciseFinished
-}
+public enum ActiveExerciseRowAction: Equatable {}
 
+@dynamicMemberLookup
 public struct ActiveExerciseRowState: Identifiable, Equatable {
   
-  public var id: UUID { self.set.id }
-  let set: ExerciseSet
   var isActive = false
-  var formattedTimeLeft: String = "00:00"
+  let set: ExerciseSet
+  var secondsLeft: TimeInterval = 0
   
-  fileprivate var secondsLeft: TimeInterval = 0 {
-    didSet {
-      formattedTimeLeft = String(format: "%02d:%02d", secondsLeft / 60, secondsLeft.truncatingRemainder(dividingBy: 60))
-    }
+  public var id: UUID {
+    self.set.id
+  }
+  
+  var formattedTimeLeft: String {
+    String(format: "%02d:%02d", Int(secondsLeft) / 60, Int(secondsLeft) % 60)
+  }
+  
+  subscript<T>(dynamicMember keyPath: KeyPath<ExerciseSet, T>) -> T {
+    self.set[keyPath: keyPath]
   }
 
   public init(set: ExerciseSet) {
     self.set = set
+    secondsLeft = set.duration
   }
 }
 
-public struct ActiveExerciseRowEnvironment {
-  
-  let mainQueue: AnySchedulerOf<DispatchQueue>
-  
-  public init(mainQueue: AnySchedulerOf<DispatchQueue>) {
-    self.mainQueue = mainQueue
-  }
-}
+public struct ActiveExerciseRowEnvironment {}
 
 public let activeExerciseRowReducer = Reducer<ActiveExerciseRowState, ActiveExerciseRowAction, ActiveExerciseRowEnvironment> { state, action, environment in
-  
-  switch action {
-  case .exerciseBegin:
-    state.secondsLeft = state.set.duration
-    return Effect
-      .timer(id: TimerId(), every: 1, tolerance: .zero, on: environment.mainQueue)
-      .map { _ in ActiveExerciseRowAction.timerTicked }
-    
-  case .timerTicked:
-    state.secondsLeft -= 1
-    
-    if state.secondsLeft == 0 {
-      return Effect(value: ActiveExerciseRowAction.exerciseFinished)
-    }
-    
-  case .exerciseFinished:
-    break
-  }
-  
   return .none
 }

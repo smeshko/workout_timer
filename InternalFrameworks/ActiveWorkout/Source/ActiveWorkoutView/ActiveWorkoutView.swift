@@ -10,7 +10,9 @@ public struct ActiveWorkoutView: View {
     self.store = Store<ActiveWorkoutState, ActiveWorkoutAction>(
       initialState: ActiveWorkoutState(workout: workout),
       reducer: activeWorkoutReducer,
-      environment: ActiveWorkoutEnvironment()
+      environment: ActiveWorkoutEnvironment(
+        mainQueue: DispatchQueue.main.eraseToAnyScheduler()
+      )
     )
   }
   
@@ -22,10 +24,16 @@ public struct ActiveWorkoutView: View {
           .aspectRatio(contentMode: .fit)
 
         HStack {
-          Text("00:00")
+          Text(viewStore.formattedTimeExpired)
             .font(.system(size: 24, weight: .bold, design: .monospaced))
           Spacer()
-          Button(action: {}) {
+          Button(action: {
+            if viewStore.isRunning {
+              viewStore.send(.pause)
+            } else {
+              viewStore.send(.resume)
+            }
+          }) {
             Image(systemName: viewStore.isRunning ? "pause.fill" : "play.fill")
           }
         }
@@ -41,6 +49,9 @@ public struct ActiveWorkoutView: View {
             content: ActiveExerciseRowView.init(store:)
           )
         }
+      }
+      .onAppear {
+        viewStore.send(.workoutBegin)
       }
       
     }
