@@ -37,7 +37,8 @@ public struct ActiveExerciseRowEnvironment {}
 
 public let activeExerciseRowReducer = Reducer<ActiveExerciseRowState, ActiveExerciseRowAction, ActiveExerciseRowEnvironment> { state, action, environment in
   switch action {
-  case .progressBarDidUpdate: break
+  case .progressBarDidUpdate:
+    break
   }
   return .none
 }

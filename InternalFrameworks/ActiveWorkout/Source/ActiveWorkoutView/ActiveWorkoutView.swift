@@ -26,6 +26,7 @@ public struct ActiveWorkoutView: View {
             .resizable()
             .aspectRatio(contentMode: .fit)
             .frame(idealHeight: 240, alignment: .top)
+            
           
           VStack(spacing: 0) {
           
@@ -63,8 +64,6 @@ public struct ActiveWorkoutView: View {
               .font(.system(size: 48, weight: .heavy))
               .shadow(color: .black, radius: 5, x: 2, y: 2)
               .padding()
-            
-            
           }
         }
         
@@ -94,4 +93,4 @@ struct ActiveWorkoutView_Previews: PreviewProvider {
   }
 }
 
-private let mockWorkout = Workout(id: "1", name: "Mock Workout", image: "preview-bodyweight-1", sets: ExerciseSet.sets(5, exercise: Exercise(name: "Mock", image: "preview-exercise-1"), duration: 45, pauseInBetween: 15))
+private let mockWorkout = Workout(id: "1", name: "Mock Workout", image: "preview-bodyweight-1", sets: ExerciseSet.sets(5, exercise: Exercise(name: "Mock", image: "preview-exercise-4"), duration: 45, pauseInBetween: 15))
