@@ -23,10 +23,6 @@ public struct ActiveExerciseRowState: Identifiable, Equatable {
     self.set.id
   }
   
-  var formattedTimeLeft: String {
-    String(format: "%02d:%02d", Int(secondsLeft) / 60, Int(secondsLeft) % 60)
-  }
-  
   subscript<T>(dynamicMember keyPath: KeyPath<ExerciseSet, T>) -> T {
     self.set[keyPath: keyPath]
   }

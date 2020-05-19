@@ -13,7 +13,7 @@ struct ActiveExerciseRowView: View {
         
         HStack(spacing: 0) {
           
-          Text(viewStore.formattedTimeLeft)
+          Text(viewStore.secondsLeft.formattedTimeLeft)
             .font(.system(size: 16, weight: .semibold, design: .monospaced))
             .padding([.horizontal], 16)
           

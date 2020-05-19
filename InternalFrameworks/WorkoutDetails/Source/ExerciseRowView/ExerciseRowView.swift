@@ -6,25 +6,41 @@ struct ExerciseRowView: View {
   let set: ExerciseSet
   
   var body: some View {
-    HStack(spacing: 0) {
-      Image(uiImage: UIImage(namedSharedAsset: set.image) ?? UIImage())
-        .resizable()
-        .frame(width: 96, height: 96)
-        .aspectRatio(contentMode: .fit)
+    VStack(spacing: 0) {
+      Divider()
       
-      Text("\(set.name)")
-        .padding(.leading, 16)
+      HStack(spacing: 0) {
+        if !set.isRecovery {
+          Image(uiImage: UIImage(namedSharedAsset: set.image) ?? UIImage())
+            .resizable()
+            .frame(width: 96, height: 96)
+            .aspectRatio(contentMode: .fit)
+        }
+        
+        Text("\(set.name)")
+          .padding(.leading, 16)
+          .padding(.vertical, set.isRecovery ? 16 : 0)
+
+        
+        Spacer()
+        
+        Text(set.duration.formattedTimeLeft)
+          .padding(.trailing, 16)
+      }
       
-      Spacer()
-      
-      Text(String(format: "%.0fs", set.duration))
-        .padding(.trailing, 16)
+      Divider()
     }
   }
 }
 
 struct ExerciseRowView_Previews: PreviewProvider {
   static var previews: some View {
-    ExerciseRowView(set: ExerciseSet(exercise: .jumpingJacks, duration: 30))
+    ExerciseRowView(set: .recovery(5))
+  }
+}
+
+private extension ExerciseSet {
+  var isRecovery: Bool {
+    self.name == Exercise.recovery.name
   }
 }

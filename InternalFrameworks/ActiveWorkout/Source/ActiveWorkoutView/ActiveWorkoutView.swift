@@ -12,7 +12,8 @@ public struct ActiveWorkoutView: View {
       initialState: ActiveWorkoutState(workout: workout),
       reducer: activeWorkoutReducer,
       environment: ActiveWorkoutEnvironment(
-        mainQueue: DispatchQueue.main.eraseToAnyScheduler()
+        mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
+        soundClient: .live
       )
     )
   }

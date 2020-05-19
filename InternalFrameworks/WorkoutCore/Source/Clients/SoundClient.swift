@@ -6,7 +6,7 @@ public enum Sound: Int {
 }
 
 public struct SoundClient {
-    var play: (Sound) -> Effect<Never, Never>
+    public var play: (Sound) -> Effect<Never, Never>
 }
 
 public extension SoundClient {

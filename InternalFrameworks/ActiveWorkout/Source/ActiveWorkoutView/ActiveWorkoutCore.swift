@@ -35,9 +35,11 @@ public struct ActiveWorkoutState: Equatable {
 public struct ActiveWorkoutEnvironment {
   
   let mainQueue: AnySchedulerOf<DispatchQueue>
+  let soundClient: SoundClient
   
-  public init(mainQueue: AnySchedulerOf<DispatchQueue>) {
+  public init(mainQueue: AnySchedulerOf<DispatchQueue>, soundClient: SoundClient) {
     self.mainQueue = mainQueue
+    self.soundClient = soundClient
   }
 }
 
@@ -76,7 +78,7 @@ public let activeWorkoutReducer = Reducer<ActiveWorkoutState, ActiveWorkoutActio
       }
       
     case .moveToNextExercise:
-      return state.moveToNextExercise()
+      return state.moveToNextExercise(soundClient: environment.soundClient)
       
     case .workoutFinished:
       state.isRunning = false
@@ -96,7 +98,7 @@ public let activeWorkoutReducer = Reducer<ActiveWorkoutState, ActiveWorkoutActio
 
 
 private extension ActiveWorkoutState {
-  mutating func moveToNextExercise() -> Effect<ActiveWorkoutAction, Never> {
+  mutating func moveToNextExercise(soundClient: SoundClient) -> Effect<ActiveWorkoutAction, Never> {
     sets.applyChanges(to: currentSet, { $0.isActive = false })
 
     guard let index = sets.firstIndex(where: { $0.set == currentSet }), index < sets.count - 1 else {
@@ -106,7 +108,7 @@ private extension ActiveWorkoutState {
     currentSet = sets[index + 1].set
     sets.applyChanges(to: currentSet, { $0.isActive = true })
     
-    return .none
+    return soundClient.play(.segment).fireAndForget()
   }
   
   mutating func reset() {

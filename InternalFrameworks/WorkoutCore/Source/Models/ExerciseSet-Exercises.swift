@@ -76,5 +76,20 @@ public extension ExerciseSet {
   static func plank(_ duration: TimeInterval) -> ExerciseSet {
     ExerciseSet(exercise: .plank, duration: duration)
   }
+  
+  static func lyingTStretch(_ duration: TimeInterval) -> ExerciseSet {
+    ExerciseSet(exercise: .lyingTStretch, duration: duration)
+  }
+  
+  static func figureFourStretch(_ duration: TimeInterval) -> ExerciseSet {
+    ExerciseSet(exercise: .figureFourStretch, duration: duration)
+  }
+  
+  static func lyingHamstringStretch(_ duration: TimeInterval) -> ExerciseSet {
+    ExerciseSet(exercise: .lyingHamstringStretch, duration: duration)
+  }
 
+  static func quadRockers(_ duration: TimeInterval) -> ExerciseSet {
+    ExerciseSet(exercise: .quadRockers, duration: duration)
+  }
 }

@@ -78,7 +78,8 @@ private let jumpropeWorkouts = [
     .freestyle(180),
     .recovery(60),
     .freestyle(180),
-    .recovery(60),
+    
+    .recovery(120),
 
     .heavyRopeJumping(60),
     .recovery(30),
@@ -91,7 +92,8 @@ private let jumpropeWorkouts = [
     .heavyRopeJumping(60),
     .recovery(30),
     .pushUps(60),
-    .recovery(30),
+    
+    .recovery(120),
 
     .shadowBoxing(120),
     .recovery(60),
@@ -104,7 +106,18 @@ private let jumpropeWorkouts = [
     .shadowBoxing(120),
     .recovery(60),
     .boatToLowBoat(60),
-    .recovery(60)
+    
+    .recovery(10),
+    
+    .lyingTStretch(30),
+    .recovery(5),
+    .lyingTStretch(30),
+    .recovery(5),
+    .lyingHamstringStretch(30),
+    .recovery(5),
+    .lyingHamstringStretch(30),
+    .recovery(5),
+    .quadRockers(45)
   ]),
 
   Workout(id: "jumprope-1", name: "Jump Rope Warmup", image: "jumprope-1", sets: ExerciseSet.alternating(4, [

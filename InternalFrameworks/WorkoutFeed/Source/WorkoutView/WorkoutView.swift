@@ -20,7 +20,7 @@ struct WorkoutView: View {
         Text(workout.duration)
           .font(.system(size: 32, weight: .heavy))
         Spacer()
-        Text("\(workout.sets.count) exercises")
+        Text("\(workout.count) exercises")
           .font(.system(size: 16, weight: .semibold))
       }
       .padding()
@@ -48,6 +48,10 @@ private extension Workout {
     let minutes = Int(ceil(total / 60))
     
     return "\(minutes)m"
+  }
+  
+  var count: String {
+    "\(sets.filter { $0.name != Exercise.recovery.name }.count)"
   }
 }
 

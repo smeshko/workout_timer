@@ -31,6 +31,21 @@ public extension Exercise {
     Exercise(name: "High Plank", image: "plank")
   }
   
+  static var lyingTStretch: Exercise {
+    Exercise(name: "Lying T Stretch", image: "lying-t-stretch")
+  }
+  
+  static var figureFourStretch: Exercise {
+    Exercise(name: "Figure Four Stretch", image: "figure-four-stretch")
+  }
+  
+  static var lyingHamstringStretch: Exercise {
+    Exercise(name: "Lying Hamstring Stretch", image: "lying-hamstring-stretch")
+  }
+  
+  static var quadRockers: Exercise {
+    Exercise(name: "Quad Rockers", image: "quad-rockers")
+  }
 }
 
 public extension Exercise {
