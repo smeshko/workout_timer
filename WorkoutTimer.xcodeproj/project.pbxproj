@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B82B77842475D9C200774C05 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = B82B77832475D9C200774C05 /* ComposableArchitecture */; };
+		B82B77852475D9E100774C05 /* WorkoutCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8767444246AB6A500438A0F /* WorkoutCore.framework */; };
+		B82B77862475D9E700774C05 /* WorkoutCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8767444246AB6A500438A0F /* WorkoutCore.framework */; };
+		B82B77872475D9EB00774C05 /* WorkoutCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8767444246AB6A500438A0F /* WorkoutCore.framework */; };
+		B82B77882475D9FA00774C05 /* WorkoutCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8767444246AB6A500438A0F /* WorkoutCore.framework */; };
+		B82B77892475DA9B00774C05 /* ActiveWorkout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B839E3762471BBC200FE5793 /* ActiveWorkout.framework */; };
+		B82B77972475DB1900774C05 /* WorkoutDetails.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8455CFC246DB15D00C4FFAE /* WorkoutDetails.framework */; };
 		B83907042462A4DF00676B3D /* ValuePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83907032462A4DF00676B3D /* ValuePicker.swift */; };
 		B83907062462A4F400676B3D /* PickerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83907052462A4F400676B3D /* PickerCore.swift */; };
 		B839E36E2471B7A300FE5793 /* UIImage-Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = B839E36D2471B7A300FE5793 /* UIImage-Asset.swift */; };
@@ -17,19 +24,13 @@
 		B839E38C2471BBC200FE5793 /* ActiveWorkout.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B839E3762471BBC200FE5793 /* ActiveWorkout.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B839E3952471BBDA00FE5793 /* ActiveWorkoutCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B839E3942471BBDA00FE5793 /* ActiveWorkoutCore.swift */; };
 		B839E3972471BBE600FE5793 /* ActiveWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B839E3962471BBE600FE5793 /* ActiveWorkoutView.swift */; };
-		B839E3992471BC0F00FE5793 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = B839E3982471BC0F00FE5793 /* ComposableArchitecture */; };
-		B839E39B2471BC0F00FE5793 /* ComposableArchitecture in Embed Frameworks */ = {isa = PBXBuildFile; productRef = B839E3982471BC0F00FE5793 /* ComposableArchitecture */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B83D9EA1246C728C00DED0F7 /* WorkoutsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D9EA0246C728C00DED0F7 /* WorkoutsFeedView.swift */; };
 		B83D9EA3246C72B700DED0F7 /* WorkoutsFeedCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D9EA2246C72B700DED0F7 /* WorkoutsFeedCore.swift */; };
-		B83D9FE3246D396E00DED0F7 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = B83D9FE2246D396E00DED0F7 /* ComposableArchitecture */; };
-		B83D9FE5246D396E00DED0F7 /* ComposableArchitecture in Embed Frameworks */ = {isa = PBXBuildFile; productRef = B83D9FE2246D396E00DED0F7 /* ComposableArchitecture */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B8455CF5246D9F5900C4FFAE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8455CF4246D9F5900C4FFAE /* Preview Assets.xcassets */; };
 		B8455D05246DB15D00C4FFAE /* WorkoutDetails.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8455CFC246DB15D00C4FFAE /* WorkoutDetails.framework */; };
 		B8455D0C246DB15D00C4FFAE /* WorkoutDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8455D0B246DB15D00C4FFAE /* WorkoutDetailsTests.swift */; };
 		B8455D11246DB15D00C4FFAE /* WorkoutDetails.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8455CFC246DB15D00C4FFAE /* WorkoutDetails.framework */; };
 		B8455D12246DB15D00C4FFAE /* WorkoutDetails.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8455CFC246DB15D00C4FFAE /* WorkoutDetails.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B8455D1A246DB16E00C4FFAE /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = B8455D19246DB16E00C4FFAE /* ComposableArchitecture */; };
-		B8455D1C246DB16E00C4FFAE /* ComposableArchitecture in Embed Frameworks */ = {isa = PBXBuildFile; productRef = B8455D19246DB16E00C4FFAE /* ComposableArchitecture */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B8455D21246DB1AC00C4FFAE /* WorkoutDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8455D20246DB1AC00C4FFAE /* WorkoutDetailsView.swift */; };
 		B8455D23246DB1D000C4FFAE /* WorkoutDetailsCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8455D22246DB1D000C4FFAE /* WorkoutDetailsCore.swift */; };
 		B84B0AC72458126700A07A1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84B0AC62458126700A07A1E /* AppDelegate.swift */; };
@@ -73,18 +74,8 @@
 		B8DC59C224605F3F003FC8D3 /* View-UpdateKeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893DFA3245C230300C43360 /* View-UpdateKeyPath.swift */; };
 		B8DC59C324605F3F003FC8D3 /* UIResponder-Current.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893DF97245AD53700C43360 /* UIResponder-Current.swift */; };
 		B8DC59C424605F3F003FC8D3 /* KeyboardHeightPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893DF99245AD55900C43360 /* KeyboardHeightPublisher.swift */; };
-		B8DC59CF246063A9003FC8D3 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = B8DC59CE246063A9003FC8D3 /* ComposableArchitecture */; };
-		B8DC59D0246063A9003FC8D3 /* ComposableArchitecture in Embed Frameworks */ = {isa = PBXBuildFile; productRef = B8DC59CE246063A9003FC8D3 /* ComposableArchitecture */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		B8DC59D6246063B5003FC8D3 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = B8DC59D5246063B5003FC8D3 /* ComposableArchitecture */; };
-		B8DC59D7246063B5003FC8D3 /* ComposableArchitecture in Embed Frameworks */ = {isa = PBXBuildFile; productRef = B8DC59D5246063B5003FC8D3 /* ComposableArchitecture */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B8DC6A2E2461D7F6003FC8D3 /* TimerCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DC6A2D2461D7F6003FC8D3 /* TimerCoreTests.swift */; };
 		B8DC6A302461D7F6003FC8D3 /* QuickTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* QuickTimer.framework */; };
-		B8DC6A372461D814003FC8D3 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = B8DC6A362461D814003FC8D3 /* ComposableArchitecture */; };
-		B8DC6A392461D814003FC8D3 /* ComposableArchitecture in Embed Frameworks */ = {isa = PBXBuildFile; productRef = B8DC6A362461D814003FC8D3 /* ComposableArchitecture */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		B8DC6A3B2461D814003FC8D3 /* ComposableArchitectureTestSupport in Frameworks */ = {isa = PBXBuildFile; productRef = B8DC6A3A2461D814003FC8D3 /* ComposableArchitectureTestSupport */; };
-		B8DC6A3C2461D814003FC8D3 /* ComposableArchitectureTestSupport in Embed Frameworks */ = {isa = PBXBuildFile; productRef = B8DC6A3A2461D814003FC8D3 /* ComposableArchitectureTestSupport */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		B8E59997246B3F2700E18F07 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = B8E59996246B3F2700E18F07 /* ComposableArchitecture */; };
-		B8E59999246B3F2700E18F07 /* ComposableArchitecture in Embed Frameworks */ = {isa = PBXBuildFile; productRef = B8E59996246B3F2700E18F07 /* ComposableArchitecture */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B8ED776324684642001B9DEE /* CircuitComposerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED776224684642001B9DEE /* CircuitComposerView.swift */; };
 		B8ED77652468493E001B9DEE /* QuickExerciseBuilderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED77642468493E001B9DEE /* QuickExerciseBuilderView.swift */; };
 		B8ED776724684976001B9DEE /* QuickExerciseBuilderCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED776624684976001B9DEE /* QuickExerciseBuilderCore.swift */; };
@@ -93,26 +84,47 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B81B9D90246DB7A300ADD9EF /* PBXContainerItemProxy */ = {
+		B82B778A2475DAA500774C05 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B84B0ABB2458126600A07A1E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B839E3752471BBC200FE5793;
+			remoteInfo = ActiveWorkout;
+		};
+		B82B778C2475DAC500774C05 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B84B0ABB2458126600A07A1E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B839E3752471BBC200FE5793;
+			remoteInfo = ActiveWorkout;
+		};
+		B82B778E2475DAC500774C05 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B84B0ABB2458126600A07A1E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B8DC599B24605E38003FC8D3;
+			remoteInfo = QuickTimer;
+		};
+		B82B77902475DAC500774C05 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B84B0ABB2458126600A07A1E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = B8767443246AB6A500438A0F;
 			remoteInfo = WorkoutCore;
 		};
-		B81B9D92246DB7C900ADD9EF /* PBXContainerItemProxy */ = {
+		B82B77922475DAC500774C05 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B84B0ABB2458126600A07A1E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = B8455CFB246DB15D00C4FFAE;
 			remoteInfo = WorkoutDetails;
 		};
-		B81B9D94246DB7CB00ADD9EF /* PBXContainerItemProxy */ = {
+		B82B77942475DAC500774C05 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B84B0ABB2458126600A07A1E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = B8767443246AB6A500438A0F;
-			remoteInfo = WorkoutCore;
+			remoteGlobalIDString = B87675AF246AD78900438A0F;
+			remoteInfo = WorkoutFeed;
 		};
 		B839E3802471BBC200FE5793 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -128,20 +140,6 @@
 			remoteGlobalIDString = B84B0AC22458126600A07A1E;
 			remoteInfo = WorkoutTimer;
 		};
-		B839E3892471BBC200FE5793 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B84B0ABB2458126600A07A1E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B839E3752471BBC200FE5793;
-			remoteInfo = ActiveWorkout;
-		};
-		B839E39C2471BDBF00FE5793 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B84B0ABB2458126600A07A1E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B8767443246AB6A500438A0F;
-			remoteInfo = WorkoutCore;
-		};
 		B8455D06246DB15D00C4FFAE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B84B0ABB2458126600A07A1E /* Project object */;
@@ -155,20 +153,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = B84B0AC22458126600A07A1E;
 			remoteInfo = WorkoutTimer;
-		};
-		B8455D0F246DB15D00C4FFAE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B84B0ABB2458126600A07A1E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B8455CFB246DB15D00C4FFAE;
-			remoteInfo = WorkoutDetails;
-		};
-		B8767449246AB6A500438A0F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B84B0ABB2458126600A07A1E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B8767443246AB6A500438A0F;
-			remoteInfo = WorkoutCore;
 		};
 		B876746B246AB7E700438A0F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -191,20 +175,6 @@
 			remoteGlobalIDString = B84B0AC22458126600A07A1E;
 			remoteInfo = WorkoutTimer;
 		};
-		B87675C3246AD78900438A0F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B84B0ABB2458126600A07A1E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B87675AF246AD78900438A0F;
-			remoteInfo = WorkoutFeed;
-		};
-		B8DC59AF24605E38003FC8D3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B84B0ABB2458126600A07A1E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B8DC599B24605E38003FC8D3;
-			remoteInfo = Timer;
-		};
 		B8DC6A312461D7F6003FC8D3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B84B0ABB2458126600A07A1E /* Project object */;
@@ -221,7 +191,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B839E39B2471BC0F00FE5793 /* ComposableArchitecture in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -232,7 +201,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B83D9FE5246D396E00DED0F7 /* ComposableArchitecture in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -243,7 +211,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B8455D1C246DB16E00C4FFAE /* ComposableArchitecture in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,7 +225,6 @@
 				B8455D12246DB15D00C4FFAE /* WorkoutDetails.framework in Embed Frameworks */,
 				B87675C6246AD78900438A0F /* WorkoutFeed.framework in Embed Frameworks */,
 				B876744C246AB6A500438A0F /* WorkoutCore.framework in Embed Frameworks */,
-				B8DC59D0246063A9003FC8D3 /* ComposableArchitecture in Embed Frameworks */,
 				B8DC59B224605E38003FC8D3 /* QuickTimer.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -270,7 +236,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B8DC59D7246063B5003FC8D3 /* ComposableArchitecture in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -281,8 +246,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B8DC6A3C2461D814003FC8D3 /* ComposableArchitectureTestSupport in Embed Frameworks */,
-				B8DC6A392461D814003FC8D3 /* ComposableArchitecture in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,7 +256,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				B8E59999246B3F2700E18F07 /* ComposableArchitecture in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -382,7 +344,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B839E3992471BC0F00FE5793 /* ComposableArchitecture in Frameworks */,
+				B82B77882475D9FA00774C05 /* WorkoutCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,7 +360,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8455D1A246DB16E00C4FFAE /* ComposableArchitecture in Frameworks */,
+				B82B77892475DA9B00774C05 /* ActiveWorkout.framework in Frameworks */,
+				B82B77872475D9EB00774C05 /* WorkoutCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,7 +381,6 @@
 				B8455D11246DB15D00C4FFAE /* WorkoutDetails.framework in Frameworks */,
 				B87675C5246AD78900438A0F /* WorkoutFeed.framework in Frameworks */,
 				B876744B246AB6A500438A0F /* WorkoutCore.framework in Frameworks */,
-				B8DC59CF246063A9003FC8D3 /* ComposableArchitecture in Frameworks */,
 				B8DC59B124605E38003FC8D3 /* QuickTimer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -427,7 +389,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B83D9FE3246D396E00DED0F7 /* ComposableArchitecture in Frameworks */,
+				B82B77842475D9C200774C05 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,7 +405,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8E59997246B3F2700E18F07 /* ComposableArchitecture in Frameworks */,
+				B82B77972475DB1900774C05 /* WorkoutDetails.framework in Frameworks */,
+				B82B77862475D9E700774C05 /* WorkoutCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,7 +422,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8DC59D6246063B5003FC8D3 /* ComposableArchitecture in Frameworks */,
+				B82B77852475D9E100774C05 /* WorkoutCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,9 +430,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8DC6A372461D814003FC8D3 /* ComposableArchitecture in Frameworks */,
 				B8DC6A302461D7F6003FC8D3 /* QuickTimer.framework in Frameworks */,
-				B8DC6A3B2461D814003FC8D3 /* ComposableArchitectureTestSupport in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -986,11 +947,9 @@
 			buildRules = (
 			);
 			dependencies = (
-				B839E39D2471BDBF00FE5793 /* PBXTargetDependency */,
 			);
 			name = ActiveWorkout;
 			packageProductDependencies = (
-				B839E3982471BC0F00FE5793 /* ComposableArchitecture */,
 			);
 			productName = ActiveWorkout;
 			productReference = B839E3762471BBC200FE5793 /* ActiveWorkout.framework */;
@@ -1028,11 +987,10 @@
 			buildRules = (
 			);
 			dependencies = (
-				B81B9D91246DB7A300ADD9EF /* PBXTargetDependency */,
+				B82B778B2475DAA500774C05 /* PBXTargetDependency */,
 			);
 			name = WorkoutDetails;
 			packageProductDependencies = (
-				B8455D19246DB16E00C4FFAE /* ComposableArchitecture */,
 			);
 			productName = WorkoutDetails;
 			productReference = B8455CFC246DB15D00C4FFAE /* WorkoutDetails.framework */;
@@ -1069,15 +1027,14 @@
 			buildRules = (
 			);
 			dependencies = (
-				B8DC59B024605E38003FC8D3 /* PBXTargetDependency */,
-				B876744A246AB6A500438A0F /* PBXTargetDependency */,
-				B87675C4246AD78900438A0F /* PBXTargetDependency */,
-				B8455D10246DB15D00C4FFAE /* PBXTargetDependency */,
-				B839E38A2471BBC200FE5793 /* PBXTargetDependency */,
+				B82B778D2475DAC500774C05 /* PBXTargetDependency */,
+				B82B778F2475DAC500774C05 /* PBXTargetDependency */,
+				B82B77912475DAC500774C05 /* PBXTargetDependency */,
+				B82B77932475DAC500774C05 /* PBXTargetDependency */,
+				B82B77952475DAC500774C05 /* PBXTargetDependency */,
 			);
 			name = WorkoutTimer;
 			packageProductDependencies = (
-				B8DC59CE246063A9003FC8D3 /* ComposableArchitecture */,
 			);
 			productName = WorkoutTimer;
 			productReference = B84B0AC32458126700A07A1E /* WorkoutTimer.app */;
@@ -1099,7 +1056,7 @@
 			);
 			name = WorkoutCore;
 			packageProductDependencies = (
-				B83D9FE2246D396E00DED0F7 /* ComposableArchitecture */,
+				B82B77832475D9C200774C05 /* ComposableArchitecture */,
 			);
 			productName = WorkoutCore;
 			productReference = B8767444246AB6A500438A0F /* WorkoutCore.framework */;
@@ -1136,12 +1093,9 @@
 			buildRules = (
 			);
 			dependencies = (
-				B81B9D95246DB7CB00ADD9EF /* PBXTargetDependency */,
-				B81B9D93246DB7C900ADD9EF /* PBXTargetDependency */,
 			);
 			name = WorkoutFeed;
 			packageProductDependencies = (
-				B8E59996246B3F2700E18F07 /* ComposableArchitecture */,
 			);
 			productName = WorkoutFeed;
 			productReference = B87675B0246AD78900438A0F /* WorkoutFeed.framework */;
@@ -1182,7 +1136,6 @@
 			);
 			name = QuickTimer;
 			packageProductDependencies = (
-				B8DC59D5246063B5003FC8D3 /* ComposableArchitecture */,
 			);
 			productName = Timer;
 			productReference = B8DC599C24605E38003FC8D3 /* QuickTimer.framework */;
@@ -1204,8 +1157,6 @@
 			);
 			name = QuickTimerTests;
 			packageProductDependencies = (
-				B8DC6A362461D814003FC8D3 /* ComposableArchitecture */,
-				B8DC6A3A2461D814003FC8D3 /* ComposableArchitectureTestSupport */,
 			);
 			productName = TimerCoreTests;
 			productReference = B8DC6A2B2461D7F6003FC8D3 /* QuickTimerTests.xctest */;
@@ -1272,7 +1223,7 @@
 			);
 			mainGroup = B84B0ABA2458126600A07A1E;
 			packageReferences = (
-				B8DC59CD246063A9003FC8D3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				B82B776A2475D66000774C05 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			productRefGroup = B84B0AC42458126700A07A1E /* Products */;
 			projectDirPath = "";
@@ -1506,20 +1457,35 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		B81B9D91246DB7A300ADD9EF /* PBXTargetDependency */ = {
+		B82B778B2475DAA500774C05 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B839E3752471BBC200FE5793 /* ActiveWorkout */;
+			targetProxy = B82B778A2475DAA500774C05 /* PBXContainerItemProxy */;
+		};
+		B82B778D2475DAC500774C05 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B839E3752471BBC200FE5793 /* ActiveWorkout */;
+			targetProxy = B82B778C2475DAC500774C05 /* PBXContainerItemProxy */;
+		};
+		B82B778F2475DAC500774C05 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B8DC599B24605E38003FC8D3 /* QuickTimer */;
+			targetProxy = B82B778E2475DAC500774C05 /* PBXContainerItemProxy */;
+		};
+		B82B77912475DAC500774C05 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B8767443246AB6A500438A0F /* WorkoutCore */;
-			targetProxy = B81B9D90246DB7A300ADD9EF /* PBXContainerItemProxy */;
+			targetProxy = B82B77902475DAC500774C05 /* PBXContainerItemProxy */;
 		};
-		B81B9D93246DB7C900ADD9EF /* PBXTargetDependency */ = {
+		B82B77932475DAC500774C05 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B8455CFB246DB15D00C4FFAE /* WorkoutDetails */;
-			targetProxy = B81B9D92246DB7C900ADD9EF /* PBXContainerItemProxy */;
+			targetProxy = B82B77922475DAC500774C05 /* PBXContainerItemProxy */;
 		};
-		B81B9D95246DB7CB00ADD9EF /* PBXTargetDependency */ = {
+		B82B77952475DAC500774C05 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B8767443246AB6A500438A0F /* WorkoutCore */;
-			targetProxy = B81B9D94246DB7CB00ADD9EF /* PBXContainerItemProxy */;
+			target = B87675AF246AD78900438A0F /* WorkoutFeed */;
+			targetProxy = B82B77942475DAC500774C05 /* PBXContainerItemProxy */;
 		};
 		B839E3812471BBC200FE5793 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1531,16 +1497,6 @@
 			target = B84B0AC22458126600A07A1E /* WorkoutTimer */;
 			targetProxy = B839E3822471BBC200FE5793 /* PBXContainerItemProxy */;
 		};
-		B839E38A2471BBC200FE5793 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B839E3752471BBC200FE5793 /* ActiveWorkout */;
-			targetProxy = B839E3892471BBC200FE5793 /* PBXContainerItemProxy */;
-		};
-		B839E39D2471BDBF00FE5793 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B8767443246AB6A500438A0F /* WorkoutCore */;
-			targetProxy = B839E39C2471BDBF00FE5793 /* PBXContainerItemProxy */;
-		};
 		B8455D07246DB15D00C4FFAE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B8455CFB246DB15D00C4FFAE /* WorkoutDetails */;
@@ -1550,16 +1506,6 @@
 			isa = PBXTargetDependency;
 			target = B84B0AC22458126600A07A1E /* WorkoutTimer */;
 			targetProxy = B8455D08246DB15D00C4FFAE /* PBXContainerItemProxy */;
-		};
-		B8455D10246DB15D00C4FFAE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B8455CFB246DB15D00C4FFAE /* WorkoutDetails */;
-			targetProxy = B8455D0F246DB15D00C4FFAE /* PBXContainerItemProxy */;
-		};
-		B876744A246AB6A500438A0F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B8767443246AB6A500438A0F /* WorkoutCore */;
-			targetProxy = B8767449246AB6A500438A0F /* PBXContainerItemProxy */;
 		};
 		B876746C246AB7E700438A0F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1575,16 +1521,6 @@
 			isa = PBXTargetDependency;
 			target = B84B0AC22458126600A07A1E /* WorkoutTimer */;
 			targetProxy = B87675BC246AD78900438A0F /* PBXContainerItemProxy */;
-		};
-		B87675C4246AD78900438A0F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B87675AF246AD78900438A0F /* WorkoutFeed */;
-			targetProxy = B87675C3246AD78900438A0F /* PBXContainerItemProxy */;
-		};
-		B8DC59B024605E38003FC8D3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B8DC599B24605E38003FC8D3 /* QuickTimer */;
-			targetProxy = B8DC59AF24605E38003FC8D3 /* PBXContainerItemProxy */;
 		};
 		B8DC6A322461D7F6003FC8D3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2377,55 +2313,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B8DC59CD246063A9003FC8D3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+		B82B776A2475D66000774C05 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.2;
+				minimumVersion = 0.2.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B839E3982471BC0F00FE5793 /* ComposableArchitecture */ = {
+		B82B77832475D9C200774C05 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B8DC59CD246063A9003FC8D3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
-			productName = ComposableArchitecture;
-		};
-		B83D9FE2246D396E00DED0F7 /* ComposableArchitecture */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B8DC59CD246063A9003FC8D3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
-			productName = ComposableArchitecture;
-		};
-		B8455D19246DB16E00C4FFAE /* ComposableArchitecture */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B8DC59CD246063A9003FC8D3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
-			productName = ComposableArchitecture;
-		};
-		B8DC59CE246063A9003FC8D3 /* ComposableArchitecture */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B8DC59CD246063A9003FC8D3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
-			productName = ComposableArchitecture;
-		};
-		B8DC59D5246063B5003FC8D3 /* ComposableArchitecture */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B8DC59CD246063A9003FC8D3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
-			productName = ComposableArchitecture;
-		};
-		B8DC6A362461D814003FC8D3 /* ComposableArchitecture */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B8DC59CD246063A9003FC8D3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
-			productName = ComposableArchitecture;
-		};
-		B8DC6A3A2461D814003FC8D3 /* ComposableArchitectureTestSupport */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B8DC59CD246063A9003FC8D3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
-			productName = ComposableArchitectureTestSupport;
-		};
-		B8E59996246B3F2700E18F07 /* ComposableArchitecture */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B8DC59CD246063A9003FC8D3 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			package = B82B776A2475D66000774C05 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
 		};
 /* End XCSwiftPackageProductDependency section */

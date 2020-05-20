@@ -48,7 +48,7 @@ struct ActiveExerciseRowView_Previews: PreviewProvider {
 
 extension PreviewProvider {
   static var mockExercise: Exercise {
-    Exercise(name: "Mock exercise", image: "preview-exercise-1")
+    Exercise(id: "", name: "Mock exercise", image: "preview-exercise-1")
   }
 }
 

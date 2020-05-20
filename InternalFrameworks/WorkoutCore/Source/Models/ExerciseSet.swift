@@ -43,7 +43,7 @@ public struct ExerciseSet: Identifiable, Codable, Equatable {
   public static func alternating(_ count: Int, _ exercises: [Exercise: TimeInterval]) -> [ExerciseSet] {
     var sets: [ExerciseSet] = []
     (0 ..< count).forEach { _ in
-      sets.append(contentsOf: exercises.reversed().map { exercise, duration in
+      sets.append(contentsOf: exercises.map { exercise, duration in
         ExerciseSet(exercise: exercise, duration: duration)
       })
     }

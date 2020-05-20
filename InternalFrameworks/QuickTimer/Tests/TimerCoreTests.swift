@@ -2,7 +2,6 @@ import XCTest
 import WorkoutCore
 @testable import QuickTimer
 import ComposableArchitecture
-import ComposableArchitectureTestSupport
 
 class TimerCoreTests: XCTestCase {
 

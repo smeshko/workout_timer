@@ -93,4 +93,4 @@ struct ActiveWorkoutView_Previews: PreviewProvider {
   }
 }
 
-private let mockWorkout = Workout(id: "1", name: "Mock Workout", image: "preview-bodyweight-1", sets: ExerciseSet.sets(5, exercise: Exercise(name: "Mock", image: "preview-exercise-4"), duration: 45, pauseInBetween: 15))
+private let mockWorkout = Workout(id: "1", name: "Mock Workout", image: "preview-bodyweight-1", sets: ExerciseSet.sets(5, exercise: Exercise(id: "", name: "Mock", image: "preview-exercise-4"), duration: 45, pauseInBetween: 15))
