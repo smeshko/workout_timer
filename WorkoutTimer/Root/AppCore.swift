@@ -72,14 +72,18 @@ private let jumpropeWorkouts = [
   
   Workout(id: "jumprope-3", name: "Complete Routine", image: "bodyweight-3", sets: [
     .freestyle(180),
-    .recovery(60),
+    .recovery(45),
     .freestyle(180),
-    .recovery(60),
+    .recovery(45),
     .freestyle(180),
-    .recovery(60),
+    .recovery(45),
     .freestyle(180),
-    
-    .recovery(120),
+    .recovery(45),
+    .freestyle(180),
+    .recovery(45),
+    .freestyle(180),
+
+    .recovery(60),
 
     .heavyRopeJumping(60),
     .recovery(30),
@@ -92,21 +96,32 @@ private let jumpropeWorkouts = [
     .heavyRopeJumping(60),
     .recovery(30),
     .pushUps(60),
+    .recovery(30),
     
-    .recovery(120),
+    .heavyRopeJumping(30),
+    .recovery(30),
+    .heavyRopeJumping(30),
+    .recovery(30),
+    .heavyRopeJumping(30),
+
+    .recovery(60),
 
     .shadowBoxing(120),
-    .recovery(60),
+    .recovery(45),
     .bicycles(60),
-    .recovery(60),
+    .recovery(30),
     .shadowBoxing(120),
-    .recovery(60),
+    .recovery(45),
     .oneArmShoulderTouches(60),
-    .recovery(60),
+    .recovery(30),
     .shadowBoxing(120),
-    .recovery(60),
+    .recovery(45),
     .boatToLowBoat(60),
-    
+    .recovery(30),
+    .shadowBoxing(120),
+    .recovery(45),
+    .plank(60),
+
     .recovery(10),
     
     .lyingTStretch(30),

@@ -11,6 +11,9 @@ public enum ActiveWorkoutAction: Equatable {
   case moveToNextExercise
   case stopWorkout
   case workoutFinished
+  
+  
+  case exerciseAction(ActiveExerciseRowAction)
 }
 
 public struct ActiveWorkoutState: Equatable {
@@ -64,13 +67,13 @@ public let activeWorkoutReducer = Reducer<ActiveWorkoutState, ActiveWorkoutActio
         el.isActive = true
       }
       return Effect
-        .timer(id: TimerId(), every: 0.01, tolerance: .zero, on: environment.mainQueue)
+        .timer(id: TimerId(), every: 1, tolerance: .zero, on: environment.mainQueue)
         .map { _ in ActiveWorkoutAction.timerTicked }
       
     case .timerTicked:
-      state.totalTimeExpired += 0.01
+      state.totalTimeExpired += 1
       state.sets.applyChanges(to: state.currentSet) { el in
-        el.secondsLeft -= 0.01
+        el.secondsLeft -= 1
       }
 
       if (state.sets.first(where: { $0.set == state.currentSet })?.secondsLeft ?? 0) <= 0 {
@@ -85,6 +88,8 @@ public let activeWorkoutReducer = Reducer<ActiveWorkoutState, ActiveWorkoutActio
       state.isFinished = true
       return Effect<ActiveWorkoutAction, Never>.cancel(id: TimerId())
       
+    case .exerciseAction: break
+      
     case .exerciseSet:
       break
     }
@@ -94,6 +99,15 @@ public let activeWorkoutReducer = Reducer<ActiveWorkoutState, ActiveWorkoutActio
     state: \.sets,
     action: /ActiveWorkoutAction.exerciseSet(id:action:),
     environment: { _ in ActiveExerciseRowEnvironment() } )
+//  .resending(
+//    from: { (string: String) -> ActiveWorkoutAction in
+//      ActiveWorkoutAction.exerciseAction(ActiveExerciseRowAction.exerciseBegin)
+//    },
+//    to: { (string: String) -> ActiveWorkoutAction in
+//      ActiveWorkoutAction.exerciseAction(ActiveExerciseRowAction.exerciseBegin)
+//    }
+//  )
+
   )
 
 
@@ -126,5 +140,23 @@ extension IdentifiedArrayOf where Element == ActiveExerciseRowState {
     changes(&el)
     self.remove(at: index)
     self.insert(el, at: index)
+  }
+}
+
+extension Reducer {
+  func resending<Value>(
+    from case: @escaping (Value) -> Action,
+    to embed: @escaping (Value) -> Action
+  ) -> Self {
+    .combine(
+      self,
+      .init { state, action, _ in
+        if let value = CasePath.case(`case`).extract(from: action) {
+          return Effect(value: embed(value))
+        } else {
+          return .none
+        }
+      }
+    )
   }
 }

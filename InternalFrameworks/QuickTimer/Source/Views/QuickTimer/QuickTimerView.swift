@@ -47,6 +47,7 @@ public struct QuickTimerView: View {
         }
       }
     }
+    .navigationViewStyle(StackNavigationViewStyle())
   }
 }
 

@@ -6,6 +6,7 @@ struct TimerId: Hashable {}
 
 public enum ActiveExerciseRowAction: Equatable {
   case progressBarDidUpdate(Double)
+  case exerciseBegin
 }
 
 @dynamicMemberLookup
@@ -37,6 +38,9 @@ public struct ActiveExerciseRowEnvironment {}
 
 public let activeExerciseRowReducer = Reducer<ActiveExerciseRowState, ActiveExerciseRowAction, ActiveExerciseRowEnvironment> { state, action, environment in
   switch action {
+  case .exerciseBegin:
+    break
+    
   case .progressBarDidUpdate:
     break
   }
