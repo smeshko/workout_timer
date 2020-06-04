@@ -48,13 +48,15 @@
 		B87675C0246AD78900438A0F /* WorkoutFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87675BF246AD78900438A0F /* WorkoutFeedTests.swift */; };
 		B87675C5246AD78900438A0F /* WorkoutFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87675B0246AD78900438A0F /* WorkoutFeed.framework */; };
 		B87675C6246AD78900438A0F /* WorkoutFeed.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B87675B0246AD78900438A0F /* WorkoutFeed.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B8806C9F246844C900C32F80 /* CircuitComposerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8806C9E246844C900C32F80 /* CircuitComposerCore.swift */; };
 		B880F826246E85D100789DDA /* ExerciseSetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880F825246E85D100789DDA /* ExerciseSetTests.swift */; };
 		B880F828246E9EB200789DDA /* ExerciseSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880F827246E9EB200789DDA /* ExerciseSet.swift */; };
 		B880FAA0246FF90900789DDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B880FA9F246FF90900789DDA /* Assets.xcassets */; };
 		B880FAA3246FFE7E00789DDA /* ExerciseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880FAA2246FFE7E00789DDA /* ExerciseRowView.swift */; };
 		B8A041A22488F81A0009A32D /* WorkoutTimerAPI in Frameworks */ = {isa = PBXBuildFile; productRef = B8A041A12488F81A0009A32D /* WorkoutTimerAPI */; };
 		B8A041A624890FAB0009A32D /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A041A524890FAB0009A32D /* Category.swift */; };
+		B8A041AB248981AF0009A32D /* QuickTimerControlsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A041A9248981950009A32D /* QuickTimerControlsTests.swift */; };
+		B8A041AD248982480009A32D /* QuickExerciseBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A041AC248982480009A32D /* QuickExerciseBuilderTests.swift */; };
+		B8A041AF248983F40009A32D /* ValuePickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A041AE248983F40009A32D /* ValuePickerTests.swift */; };
 		B8B21CAC24727FC60085164A /* ActiveExerciseRowCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B21CAB24727FC60085164A /* ActiveExerciseRowCore.swift */; };
 		B8B21CAE24727FE10085164A /* ActiveExerciseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B21CAD24727FE10085164A /* ActiveExerciseRowView.swift */; };
 		B8B21CB0247406040085164A /* Exercise-JumpRope.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B21CAF247406040085164A /* Exercise-JumpRope.swift */; };
@@ -82,7 +84,6 @@
 		B8DC59C424605F3F003FC8D3 /* KeyboardHeightPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893DF99245AD55900C43360 /* KeyboardHeightPublisher.swift */; };
 		B8DC6A2E2461D7F6003FC8D3 /* TimerCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DC6A2D2461D7F6003FC8D3 /* TimerCoreTests.swift */; };
 		B8DC6A302461D7F6003FC8D3 /* QuickTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* QuickTimer.framework */; };
-		B8ED776324684642001B9DEE /* CircuitComposerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED776224684642001B9DEE /* CircuitComposerView.swift */; };
 		B8ED77652468493E001B9DEE /* QuickExerciseBuilderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED77642468493E001B9DEE /* QuickExerciseBuilderView.swift */; };
 		B8ED776724684976001B9DEE /* QuickExerciseBuilderCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED776624684976001B9DEE /* QuickExerciseBuilderCore.swift */; };
 		B8ED7769246854D0001B9DEE /* QuickTimerControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED7768246854D0001B9DEE /* QuickTimerControlsView.swift */; };
@@ -310,7 +311,6 @@
 		B87675B8246AD78900438A0F /* WorkoutFeedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WorkoutFeedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B87675BF246AD78900438A0F /* WorkoutFeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutFeedTests.swift; sourceTree = "<group>"; };
 		B87675C1246AD78900438A0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B8806C9E246844C900C32F80 /* CircuitComposerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitComposerCore.swift; sourceTree = "<group>"; };
 		B880F825246E85D100789DDA /* ExerciseSetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSetTests.swift; sourceTree = "<group>"; };
 		B880F827246E9EB200789DDA /* ExerciseSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSet.swift; sourceTree = "<group>"; };
 		B880FA9F246FF90900789DDA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -321,6 +321,9 @@
 		B893DF9C245AD57900C43360 /* KeyboardAdaptive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAdaptive.swift; sourceTree = "<group>"; };
 		B893DFA3245C230300C43360 /* View-UpdateKeyPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View-UpdateKeyPath.swift"; sourceTree = "<group>"; };
 		B8A041A524890FAB0009A32D /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		B8A041A9248981950009A32D /* QuickTimerControlsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerControlsTests.swift; sourceTree = "<group>"; };
+		B8A041AC248982480009A32D /* QuickExerciseBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickExerciseBuilderTests.swift; sourceTree = "<group>"; };
+		B8A041AE248983F40009A32D /* ValuePickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuePickerTests.swift; sourceTree = "<group>"; };
 		B8B21CAB24727FC60085164A /* ActiveExerciseRowCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveExerciseRowCore.swift; sourceTree = "<group>"; };
 		B8B21CAD24727FE10085164A /* ActiveExerciseRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveExerciseRowView.swift; sourceTree = "<group>"; };
 		B8B21CAF247406040085164A /* Exercise-JumpRope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise-JumpRope.swift"; sourceTree = "<group>"; };
@@ -342,7 +345,6 @@
 		B8DC6A2B2461D7F6003FC8D3 /* QuickTimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickTimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8DC6A2D2461D7F6003FC8D3 /* TimerCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCoreTests.swift; sourceTree = "<group>"; };
 		B8DC6A2F2461D7F6003FC8D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B8ED776224684642001B9DEE /* CircuitComposerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircuitComposerView.swift; sourceTree = "<group>"; };
 		B8ED77642468493E001B9DEE /* QuickExerciseBuilderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickExerciseBuilderView.swift; sourceTree = "<group>"; };
 		B8ED776624684976001B9DEE /* QuickExerciseBuilderCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickExerciseBuilderCore.swift; sourceTree = "<group>"; };
 		B8ED7768246854D0001B9DEE /* QuickTimerControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerControlsView.swift; sourceTree = "<group>"; };
@@ -711,15 +713,6 @@
 			path = QuickTimer;
 			sourceTree = "<group>";
 		};
-		B8806CA12468450900C32F80 /* CircuitComposer */ = {
-			isa = PBXGroup;
-			children = (
-				B8ED776224684642001B9DEE /* CircuitComposerView.swift */,
-				B8806C9E246844C900C32F80 /* CircuitComposerCore.swift */,
-			);
-			path = CircuitComposer;
-			sourceTree = "<group>";
-		};
 		B880FA9E246FF8FD00789DDA /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -815,6 +808,9 @@
 			isa = PBXGroup;
 			children = (
 				B8DC6A2D2461D7F6003FC8D3 /* TimerCoreTests.swift */,
+				B8A041A9248981950009A32D /* QuickTimerControlsTests.swift */,
+				B8A041AC248982480009A32D /* QuickExerciseBuilderTests.swift */,
+				B8A041AE248983F40009A32D /* ValuePickerTests.swift */,
 				B8DC6A2F2461D7F6003FC8D3 /* Info.plist */,
 			);
 			path = Tests;
@@ -841,7 +837,6 @@
 		B8DC59BB24605E4C003FC8D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B8806CA12468450900C32F80 /* CircuitComposer */,
 				B8806CA0246844EA00C32F80 /* QuickTimer */,
 				B8ED776D24685953001B9DEE /* QuickExerciseBuilder */,
 				B8806C9B246841EA00C32F80 /* ValuePicker */,
@@ -1463,10 +1458,8 @@
 				B8ED7769246854D0001B9DEE /* QuickTimerControlsView.swift in Sources */,
 				B83907042462A4DF00676B3D /* ValuePicker.swift in Sources */,
 				B8DC59BE24605ED5003FC8D3 /* KeyboardAdaptive.swift in Sources */,
-				B8806C9F246844C900C32F80 /* CircuitComposerCore.swift in Sources */,
 				B8DC59C424605F3F003FC8D3 /* KeyboardHeightPublisher.swift in Sources */,
 				B8ED77652468493E001B9DEE /* QuickExerciseBuilderView.swift in Sources */,
-				B8ED776324684642001B9DEE /* CircuitComposerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1475,6 +1468,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8DC6A2E2461D7F6003FC8D3 /* TimerCoreTests.swift in Sources */,
+				B8A041AD248982480009A32D /* QuickExerciseBuilderTests.swift in Sources */,
+				B8A041AB248981AF0009A32D /* QuickTimerControlsTests.swift in Sources */,
+				B8A041AF248983F40009A32D /* ValuePickerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

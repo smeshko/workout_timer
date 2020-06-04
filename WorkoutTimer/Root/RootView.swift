@@ -66,6 +66,7 @@ extension QuickTimerView {
                 initialState: QuickTimerState(),
                 reducer: quickTimerReducer,
                 environment: QuickTimerEnvironment(
+                    uuid: UUID.init,
                     mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
                     soundClient: .live
                 )

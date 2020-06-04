@@ -1,5 +1,6 @@
 import SwiftUI
 import ComposableArchitecture
+import Foundation
 
 struct QuickExerciseBuilderView: View {
   
@@ -39,7 +40,7 @@ struct CircuitPickerView_Previews: PreviewProvider {
       store: Store<QuickExerciseBuilderState, QuickExerciseBuilderAction>(
         initialState: QuickExerciseBuilderState(sets: 5, workoutTime: 30, breakTime: 30),
         reducer: quickExerciseBuilderReducer,
-        environment: QuickExerciseBuilderEnvironment()
+        environment: QuickExerciseBuilderEnvironment(uuid: UUID.init)
       )
     )
   }
