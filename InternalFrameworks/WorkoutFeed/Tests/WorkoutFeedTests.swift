@@ -1,34 +1,36 @@
-//
-//  WorkoutFeedTests.swift
-//  WorkoutFeedTests
-//
-//  Created by Tsonev Ivaylo on 12.05.20.
-//  Copyright © 2020 tsonevInc. All rights reserved.
-//
-
 import XCTest
+import ComposableArchitecture
+import WorkoutCore
 @testable import WorkoutFeed
+
+let workout = Workout(id: "workout-1", name: "Mock workout", image: "image", sets: [])
+let category = WorkoutCategory(id: "category-1", name: "Mock category", workouts: [workout])
 
 class WorkoutFeedTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+    let scheduler = DispatchQueue.testScheduler
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func testFlow() {
+        let store = TestStore(
+            initialState: WorkoutsFeedState(),
+            reducer: workoutsFeedReducer,
+            environment: WorkoutsFeedEnvironment(
+                service: .mock,
+                mainQueue: AnyScheduler(self.scheduler)
+            )
+        )
+        
+        store.assert(
+            .send(.beginNavigation),
+            .do {
+                self.scheduler.advance()
+            },
+            .receive(.categoriesLoaded(.success([category]))) {
+                $0.categories = [category]
+            },
+            .receive(.workoutCategoryChanged(category)) {
+                $0.selectedCategory = category
+            }
+        )
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }
