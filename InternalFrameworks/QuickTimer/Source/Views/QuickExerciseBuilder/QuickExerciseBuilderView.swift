@@ -37,7 +37,7 @@ struct CircuitPickerView_Previews: PreviewProvider {
   static var previews: some View {
     QuickExerciseBuilderView(
       store: Store<QuickExerciseBuilderState, QuickExerciseBuilderAction>(
-        initialState: QuickExerciseBuilderState(),
+        initialState: QuickExerciseBuilderState(sets: 5, workoutTime: 30, breakTime: 30),
         reducer: quickExerciseBuilderReducer,
         environment: QuickExerciseBuilderEnvironment()
       )

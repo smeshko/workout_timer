@@ -1,38 +1,37 @@
 import SwiftUI
+import WorkoutCore
 import WorkoutDetails
-import ComposableArchitecture
 
 struct WorkoutsListView: View {
-  
-  let store: Store<WorkoutsListState, WorkoutsListAction>
+    private let workouts: [Workout]
     
-  var body: some View {
-    WithViewStore(store) { viewStore in
-      if viewStore.workouts.isEmpty {
-        Text("Sorry, no workouts")
-      } else {
-        ScrollView {
-          ForEach(viewStore.workouts) { workout in
-            NavigationLink(destination: WorkoutDetailsView(workout: workout)) {
-              WorkoutView(workout: workout)
-            }
-            .buttonStyle(PlainButtonStyle())
-          }
-          Spacer()
-        }
-      }
+    init(workouts: [Workout]) {
+        self.workouts = workouts
     }
-  }
+    
+    var body: some View {
+        VStack {
+            if workouts.isEmpty {
+                Text("Sorry, no workouts")
+            } else {
+                ScrollView {
+                    ForEach(workouts) { workout in
+                        NavigationLink(destination: WorkoutDetailsView(workout: workout)) {
+                            WorkoutView(workout: workout)
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                    }
+                    Spacer()
+                }
+            }
+        }
+    }
 }
 
 struct WorkoutsListView_Previews: PreviewProvider {
-  static var previews: some View {
-    WorkoutsListView(
-      store: Store<WorkoutsListState, WorkoutsListAction>(
-        initialState: WorkoutsListState(),
-        reducer: workoutsListReducer,
-        environment: WorkoutsListEnvironment()
-      )
-    )
-  }
+    static var previews: some View {
+        WorkoutsListView(workouts: [
+            Workout(id: "", name: "Recommended Routine", image: "", sets: [])
+        ])
+    }
 }

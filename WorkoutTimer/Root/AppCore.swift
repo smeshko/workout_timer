@@ -7,15 +7,11 @@ import QuickTimer
 
 enum AppAction {
   case applicationDidStart
-  case workoutsFeed(WorkoutsFeedAction)
   case finishedWritingWorkouts(Result<Void, StorageError>)
 }
 
 struct AppState: Equatable {
-  var workoutsFeedState: WorkoutsFeedState
-  
-  init(workoutsFeedState: WorkoutsFeedState = WorkoutsFeedState()) {
-    self.workoutsFeedState = workoutsFeedState
+  init() {
   }
 }
 
@@ -55,17 +51,10 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
   case .finishedWritingWorkouts(.success):
     break
     
-  case .workoutsFeed(let feedAction):
-    break
   }
   
   return .none
-  },
-  workoutsFeedReducer.pullback(
-    state: \.workoutsFeedState,
-    action: /AppAction.workoutsFeed,
-    environment: { appEnv in WorkoutsFeedEnvironment(localStorageClient: appEnv.localStorageClient, mainQueue: appEnv.mainQueue) }
-  )
+  }
 )
 
 private let jumpropeWorkouts = [
