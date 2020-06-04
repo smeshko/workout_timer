@@ -25,30 +25,14 @@ public struct WorkoutsFeedView: View {
                         .labelsHidden()
                         .pickerStyle(SegmentedPickerStyle())
                     }
-                        
-//                        if viewStore.selectedWorkoutType == .custom {
-//                            Text("No custom workouts yet")
-//                                .navigationBarItems(trailing: Button(action: {}) {
-//                                    Image(systemName: "plus")
-//                                })
-//
-//                        } else if viewStore.selectedWorkoutType == .jumpRope {
-//
-                        WorkoutsListView(workouts: viewStore.selectedCategory.workouts)
-                            .navigationBarItems(trailing: EmptyView())
-//
-//                        } else if viewStore.selectedWorkoutType == .bodyweight {
-//
-//                            WorkoutsListView(store: self.store.scope(state: \.bodyweightWorkoutsState, action: WorkoutsFeedAction.jumpropeWorkoutsAction))
-//                                .navigationBarItems(trailing: EmptyView())
-//                        }
-                        
-                        Spacer()
-                    }
-                    .onAppear {
-                        viewStore.send(.beginNavigation)
-                    }
+                    WorkoutsListView(workouts: viewStore.selectedCategory.workouts)
+                        .navigationBarItems(trailing: EmptyView())
+                    Spacer()
                 }
+                .onAppear {
+                    viewStore.send(.beginNavigation)
+                }
+            }
             .navigationBarTitle("Workouts")
         }
         .navigationViewStyle(StackNavigationViewStyle())

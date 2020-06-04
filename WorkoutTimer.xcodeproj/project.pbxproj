@@ -62,7 +62,6 @@
 		B8B21CB424740D2F0085164A /* ExerciseSet-Exercises.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B21CB324740D2F0085164A /* ExerciseSet-Exercises.swift */; };
 		B8B21DF1247425320085164A /* SoundClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F9E7D224596056006A036F /* SoundClient.swift */; };
 		B8B21DF4247466620085164A /* String-FormattedTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B21DF3247466620085164A /* String-FormattedTime.swift */; };
-		B8B6FE49246ADA2600B22568 /* WorkoutsListCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B6FE48246ADA2600B22568 /* WorkoutsListCore.swift */; };
 		B8B6FE4B246ADB2A00B22568 /* WorkoutsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B6FE4A246ADB2A00B22568 /* WorkoutsListView.swift */; };
 		B8B6FE4D246ADBF800B22568 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B6FE4C246ADBF800B22568 /* Exercise.swift */; };
 		B8B79CF42486BF9B008B92D8 /* WebClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B79CF32486BF9B008B92D8 /* WebClient.swift */; };
@@ -328,7 +327,6 @@
 		B8B21CB1247409300085164A /* Exercise-Bodyweight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exercise-Bodyweight.swift"; sourceTree = "<group>"; };
 		B8B21CB324740D2F0085164A /* ExerciseSet-Exercises.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExerciseSet-Exercises.swift"; sourceTree = "<group>"; };
 		B8B21DF3247466620085164A /* String-FormattedTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String-FormattedTime.swift"; sourceTree = "<group>"; };
-		B8B6FE48246ADA2600B22568 /* WorkoutsListCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsListCore.swift; sourceTree = "<group>"; };
 		B8B6FE4A246ADB2A00B22568 /* WorkoutsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsListView.swift; sourceTree = "<group>"; };
 		B8B6FE4C246ADBF800B22568 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		B8B79CF32486BF9B008B92D8 /* WebClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebClient.swift; sourceTree = "<group>"; };
@@ -679,7 +677,6 @@
 		B87675CD246AD7AD00438A0F /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				B8CEBFCE246D853B00A88450 /* WorkoutView */,
 				B83D9E9D246C725900DED0F7 /* WorkoutsFeedView */,
 				B87675CE246AD7B500438A0F /* WorkoutsListView */,
 				B8455CF6246DA12E00C4FFAE /* Preview Content */,
@@ -691,7 +688,7 @@
 			isa = PBXGroup;
 			children = (
 				B8B6FE4A246ADB2A00B22568 /* WorkoutsListView.swift */,
-				B8B6FE48246ADA2600B22568 /* WorkoutsListCore.swift */,
+				B8CEBFCF246D855700A88450 /* WorkoutView.swift */,
 			);
 			path = WorkoutsListView;
 			sourceTree = "<group>";
@@ -793,14 +790,6 @@
 				B8B79CF724877325008B92D8 /* Data-Decode.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		B8CEBFCE246D853B00A88450 /* WorkoutView */ = {
-			isa = PBXGroup;
-			children = (
-				B8CEBFCF246D855700A88450 /* WorkoutView.swift */,
-			);
-			path = WorkoutView;
 			sourceTree = "<group>";
 		};
 		B8DC5992246054D9003FC8D3 /* Root */ = {
@@ -1447,7 +1436,6 @@
 				B8B6FE4B246ADB2A00B22568 /* WorkoutsListView.swift in Sources */,
 				B83D9EA1246C728C00DED0F7 /* WorkoutsFeedView.swift in Sources */,
 				B83D72842487A48D0075DA48 /* WorkoutsFetchService.swift in Sources */,
-				B8B6FE49246ADA2600B22568 /* WorkoutsListCore.swift in Sources */,
 				B83D9EA3246C72B700DED0F7 /* WorkoutsFeedCore.swift in Sources */,
 				B8CEBFD0246D855700A88450 /* WorkoutView.swift in Sources */,
 			);
