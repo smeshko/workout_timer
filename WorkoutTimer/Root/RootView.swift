@@ -1,6 +1,7 @@
 import SwiftUI
 import WorkoutFeed
 import QuickTimer
+import WorkoutCore
 import ComposableArchitecture
 
 struct RootView: View {

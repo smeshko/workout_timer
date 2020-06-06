@@ -11,6 +11,19 @@ public enum NetworkError: Error {
 }
 
 public struct WebClient {
+    
+    public func getImageData(at key: String) -> Effect<Data, NetworkError> {
+        guard let url = Endpoint.image(key).url else {
+            return Effect<Data, NetworkError>.init(error: NetworkError.wrongUrl)
+        }
+        
+        return URLSession.shared
+            .dataTaskPublisher(for: url)
+            .map { $0.data }
+            .mapError { _ in NetworkError.failedConnection }
+            .eraseToEffect()
+    }
+    
     public func sendRequest<T>(to endpoint: EndpointProtocol) -> Effect<T, NetworkError> where T : Decodable {
         guard !isMocked else {
             print(endpoint.url?.absoluteString ?? "")

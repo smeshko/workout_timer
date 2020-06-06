@@ -52,6 +52,7 @@
 		B880FAA0246FF90900789DDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B880FA9F246FF90900789DDA /* Assets.xcassets */; };
 		B880FAA3246FFE7E00789DDA /* ExerciseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880FAA2246FFE7E00789DDA /* ExerciseRowView.swift */; };
 		B89C1C14248BC9300076E8DA /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89C1C13248BC9300076E8DA /* ProgressView.swift */; };
+		B89C1C1C248C362A0076E8DA /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89C1C1B248C362A0076E8DA /* RemoteImage.swift */; };
 		B8A041A22488F81A0009A32D /* WorkoutTimerAPI in Frameworks */ = {isa = PBXBuildFile; productRef = B8A041A12488F81A0009A32D /* WorkoutTimerAPI */; };
 		B8A041A624890FAB0009A32D /* WorkoutCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A041A524890FAB0009A32D /* WorkoutCategory.swift */; };
 		B8A041AB248981AF0009A32D /* QuickTimerControlsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A041A9248981950009A32D /* QuickTimerControlsTests.swift */; };
@@ -320,6 +321,8 @@
 		B893DF9C245AD57900C43360 /* KeyboardAdaptive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAdaptive.swift; sourceTree = "<group>"; };
 		B893DFA3245C230300C43360 /* View-UpdateKeyPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View-UpdateKeyPath.swift"; sourceTree = "<group>"; };
 		B89C1C13248BC9300076E8DA /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
+		B89C1C1B248C362A0076E8DA /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
+		B89C1C1D248C3C8A0076E8DA /* ImagesCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesCache.swift; sourceTree = "<group>"; };
 		B8A041A524890FAB0009A32D /* WorkoutCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCategory.swift; sourceTree = "<group>"; };
 		B8A041A9248981950009A32D /* QuickTimerControlsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerControlsTests.swift; sourceTree = "<group>"; };
 		B8A041AC248982480009A32D /* QuickExerciseBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickExerciseBuilderTests.swift; sourceTree = "<group>"; };
@@ -455,6 +458,7 @@
 			isa = PBXGroup;
 			children = (
 				B8B21DF22474664F0085164A /* Extensions */,
+				B89C1C1D248C3C8A0076E8DA /* ImagesCache.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -771,6 +775,7 @@
 			isa = PBXGroup;
 			children = (
 				B89C1C13248BC9300076E8DA /* ProgressView.swift */,
+				B89C1C1B248C362A0076E8DA /* RemoteImage.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1398,6 +1403,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8B21CB0247406040085164A /* Exercise-JumpRope.swift in Sources */,
+				B89C1C1C248C362A0076E8DA /* RemoteImage.swift in Sources */,
 				B8767451246AB6D100438A0F /* Segment.swift in Sources */,
 				B8B79CF62486BFDC008B92D8 /* EndpointProtocol.swift in Sources */,
 				B8B79CF824877325008B92D8 /* Data-Decode.swift in Sources */,

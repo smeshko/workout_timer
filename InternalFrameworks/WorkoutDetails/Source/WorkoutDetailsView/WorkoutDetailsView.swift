@@ -18,9 +18,8 @@ public struct WorkoutDetailsView: View {
     WithViewStore(store) { viewStore in
       ScrollView {
         ZStack {
-          Image(uiImage: UIImage(namedSharedAsset: viewStore.workout.image) ?? UIImage())
-            .resizable()
-            .aspectRatio(contentMode: .fit)
+            RemoteImage(key: viewStore.workout.image)
+                .aspectRatio(contentMode: .fit)
           
           VStack(spacing: 64) {
             Text(viewStore.workout.name)

@@ -1,6 +1,7 @@
 import SwiftUI
 import WorkoutCore
 import WorkoutDetails
+import ComposableArchitecture
 
 struct WorkoutsListView: View {
     private let workouts: [Workout]

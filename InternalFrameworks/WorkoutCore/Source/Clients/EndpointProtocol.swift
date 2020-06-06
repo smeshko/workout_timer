@@ -6,6 +6,7 @@ public protocol EndpointProtocol {
     var method: HTTPMethod { get }
     var host: String { get }
     var body: Data? { get }
+    var queryParameters: [String: String] { get }
 }
 
 public enum HTTPMethod: String {
@@ -16,11 +17,13 @@ public enum HTTPMethod: String {
 public enum Endpoint: EndpointProtocol {
     case categories
     case workouts
+    case image(String)
     
     public var path: String {
         switch self {
         case .categories: return "/api/categories/public"
         case .workouts: return "/api/workouts"
+        case .image: return "/api/images"
         }
     }
     
@@ -29,6 +32,13 @@ public enum Endpoint: EndpointProtocol {
             .components()
             .queryItems()
             .build()
+    }
+    
+    public var queryParameters: [String: String] {
+        switch self {
+        case .image(let key): return ["imageKey": key]
+        default: return [:]
+        }
     }
     
     public var method: HTTPMethod {
@@ -63,12 +73,12 @@ private class UrlBuilder {
     }
 
     func queryItems() -> Self {
-        urlComponents.queryItems = []
+        urlComponents.queryItems = endpoint.queryParameters.map { URLQueryItem(name: $0.key, value: $0.value) }
         return self
     }
     
     /// The full url for the requested endpoint.
     func build() -> URL? {
-        return urlComponents.url
+        urlComponents.url
     }
 }
