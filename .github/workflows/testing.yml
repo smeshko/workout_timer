@@ -8,8 +8,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v1
-      - name: Force XCode 11.4
-        run: sudo xcode-select -switch /Applications/Xcode_11.4.app
+      - name: Force XCode 11.4.1
+        run: sudo xcode-select -switch /Applications/Xcode_11.4.1.app
       - name: Testing iOS app
         run: |
           chmod 755 .github/scripts/test_app.sh 
