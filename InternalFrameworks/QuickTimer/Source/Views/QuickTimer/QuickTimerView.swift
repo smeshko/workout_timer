@@ -14,51 +14,48 @@ public struct QuickTimerView: View {
         NavigationView {
             WithViewStore(self.store) { viewStore in
                 ZStack(alignment: .bottom) {
-//                    Group {
-                        if viewStore.timerControlsState.timerState == .running || viewStore.timerControlsState.timerState == .paused {
-                            ProgressView(value: viewStore.binding(
-                                get: \.segmentProgress,
-                                send: QuickTimerAction.progressBarDidUpdate
-                            ), axis: .vertical)
-                                .edgesIgnoringSafeArea(.top)
+                    if viewStore.timerControlsState.timerState == .running || viewStore.timerControlsState.timerState == .paused {
+                        ProgressView(value: viewStore.binding(
+                            get: \.segmentProgress,
+                            send: QuickTimerAction.progressBarDidUpdate
+                        ), axis: .vertical)
+                            .edgesIgnoringSafeArea(.top)
+                        
+                        VStack {
+                            Text("\(viewStore.state.currentSetIndex) / \(viewStore.workoutSegmentsCount)")
+                                .font(.system(size: 32))
+                                .shadow(color: .black, radius: 4, x: 5, y: 5)
+                            if viewStore.currentSegment?.category == .workout {
+                                Text("Work")
+                                    .font(.system(size: 16))
+                                    .foregroundColor(.gray)
+                            } else {
+                                Text("Recover")
+                            }
                             
-                            VStack {
-                                Text("\(viewStore.state.currentSetIndex) / \(viewStore.workoutSegmentsCount)")
-                                    .font(.system(size: 32))
-                                    .shadow(color: .black, radius: 4, x: 5, y: 5)
-                                if viewStore.currentSegment?.category == .workout {
-                                    Text("Work")
-                                        .font(.system(size: 16))
-                                        .foregroundColor(.gray)
-                                } else {
-                                    Text("Recover")
-                                }
-                                
-                                Spacer()
-                                
-                                Text(viewStore.formattedSegmentTimeLeft)
-                                    .font(.system(size: 90, design: .monospaced))
-                                    .shadow(color: .black, radius: 6, x: 5, y: 5)
-                                Spacer()
-                            }
-                        } else {
-                            VStack {
-                                Spacer()
-                                QuickExerciseBuilderView(store: self.store.scope(state: \.circuitPickerState, action: QuickTimerAction.circuitPickerUpdatedValues))
-                                    .padding()
-                                Spacer()
-                            }
+                            Spacer()
+                            
+                            Text(viewStore.formattedSegmentTimeLeft)
+                                .font(.system(size: 90, design: .monospaced))
+                                .shadow(color: .black, radius: 6, x: 5, y: 5)
+                            Spacer()
                         }
-                        QuickTimerControlsView(store: self.store.scope(state: \.timerControlsState, action: QuickTimerAction.timerControlsUpdatedState))
-                            .padding()
-//                    }
+                    } else {
+                        VStack {
+                            Spacer()
+                            QuickExerciseBuilderView(store: self.store.scope(state: \.circuitPickerState, action: QuickTimerAction.circuitPickerUpdatedValues))
+                                .padding()
+                            Spacer()
+                        }
+                    }
+                    QuickTimerControlsView(store: self.store.scope(state: \.timerControlsState, action: QuickTimerAction.timerControlsUpdatedState))
+                        .padding()
                 }
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 .navigationBarHidden(true)
                 .onAppear {
                     viewStore.send(.setNavigation)
                 }
-                
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())

@@ -7,13 +7,24 @@ struct QuickTimerControlsView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             HStack(spacing: 32) {
-                if viewStore.isRunning {
-                    Button("Pause", action: { viewStore.send(.pause) })
-                    Button("Finish", action: { viewStore.send(.stop) })
-                } else {
+                if viewStore.timerState.isFinished {
                     Button("Start", action: { viewStore.send(.start) })
+                        .oval()
+                    
+                } else if viewStore.timerState == .paused {
+                    Button("Start", action: { viewStore.send(.start) })
+                        .oval()
+                    
+                    Button("Finish", action: { viewStore.send(.stop) })
+                        .oval()
+
+                } else {
+                    Button("Pause", action: { viewStore.send(.pause) })
+                        .oval()
+
                 }
             }
+
             .font(.system(size: 22))
         }
     }
@@ -23,7 +34,7 @@ struct TimerControlsView_Previews: PreviewProvider {
     static var previews: some View {
         QuickTimerControlsView(
             store: Store<QuickTimerControlsState, QuickTimerControlsAction>(
-                initialState: QuickTimerControlsState(),
+                initialState: QuickTimerControlsState(timerState: .paused),
                 reducer: quickTimerControlsReducer,
                 environment: QuickTimerControlsEnvironment()
             )
@@ -31,8 +42,19 @@ struct TimerControlsView_Previews: PreviewProvider {
     }
 }
 
-private extension QuickTimerControlsState {
-    var isRunning: Bool {
-        timerState == .running
+struct Oval: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .padding(20)
+            .foregroundColor(Color.white)
+            .background(Color(.systemOrange))
+            .cornerRadius(.infinity)
+            .shadow(color: Color.black.opacity(0.2), radius: 5)
+    }
+}
+
+extension Button {
+    func oval() -> some View {
+        self.modifier(Oval())
     }
 }

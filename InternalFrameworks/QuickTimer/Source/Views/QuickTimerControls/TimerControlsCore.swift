@@ -4,6 +4,10 @@ public enum TimerState {
     case running
     case paused
     case finished
+    
+    var isRunning: Bool { self == .running }
+    var isFinished: Bool { self == .finished }
+    var isPaused: Bool { self == .paused }
 }
 
 public enum QuickTimerControlsAction: Equatable {
@@ -16,6 +20,9 @@ public struct QuickTimerControlsState: Equatable {
     var timerState: TimerState = .finished
     
     public init() {}
+    public init(timerState: TimerState) {
+        self.timerState = timerState
+    }
 }
 
 public struct QuickTimerControlsEnvironment: Equatable {
