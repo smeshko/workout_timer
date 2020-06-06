@@ -7,25 +7,25 @@ public enum QuickTimerAction: Equatable {
     case segmentEnded
     case timerFinished
     case setNavigation
-    
+    case progressBarDidUpdate(Double)
+
     case timerControlsUpdatedState(QuickTimerControlsAction)
     case circuitPickerUpdatedValues(QuickExerciseBuilderAction)
 }
 
 public struct QuickTimerState: Equatable {
-    var isRunning: Bool = false
     var segments: [Segment] = []
     var currentSegment: Segment? = nil
-    var totalTimeLeft: Int = 0
-    var segmentTimeLeft: Int = 0
+    var totalTimeLeft: TimeInterval = 0
+    var segmentTimeLeft: TimeInterval = 0
     
     var timerControlsState: QuickTimerControlsState
     var circuitPickerState: QuickExerciseBuilderState
     
     public init(segments: [Segment] = [],
                 currentSegment: Segment? = nil,
-                totalTimeLeft: Int = 0,
-                segmentTimeLeft: Int = 0,
+                totalTimeLeft: TimeInterval = 0,
+                segmentTimeLeft: TimeInterval = 0,
                 circuitPickerState: QuickExerciseBuilderState = QuickExerciseBuilderState(sets: 2, workoutTime: 60, breakTime: 20),
                 timerControlsState: QuickTimerControlsState = QuickTimerControlsState()) {
         self.segments = segments
@@ -63,18 +63,18 @@ public let quickTimerReducer =
             case .setNavigation:
                 state.updateSegments()
                 
+            case .progressBarDidUpdate:
+                break
+                
             case .timerControlsUpdatedState(let controlsAction):
                 switch controlsAction {
                 case .pause:
-                    state.isRunning = false
                     return Effect<QuickTimerAction, Never>.cancel(id: TimerId())
                     
                 case .stop:
-                    state.isRunning = false
                     return Effect(value: QuickTimerAction.timerFinished)
                     
                 case .start:
-                    state.isRunning = true
                     state.hidePickers()
                     state.togglePickersInteraction(disabled: true)
                     // timer has been previously stopped (as opposed to paused)
@@ -82,7 +82,7 @@ public let quickTimerReducer =
                         state.updateSegments()
                     }
                     return Effect
-                        .timer(id: TimerId(), every: 1, tolerance: .zero, on: environment.mainQueue)
+                        .timer(id: TimerId(), every: 0.01, tolerance: .zero, on: environment.mainQueue)
                         .map { _ in QuickTimerAction.timerTicked }
                 }
                 
@@ -95,14 +95,14 @@ public let quickTimerReducer =
                 }
                 
             case .timerTicked:
-                state.totalTimeLeft -= 1
-                state.segmentTimeLeft -= 1
+                state.totalTimeLeft -= 0.01
+                state.segmentTimeLeft -= 0.01
                 
                 if state.totalTimeLeft <= 0 {
                     return Effect(value: QuickTimerAction.timerFinished)
                 }
                 
-                if state.segmentTimeLeft == 0, !state.isCurrentSegmentLast {
+                if state.segmentTimeLeft <= 0, !state.isCurrentSegmentLast {
                     return Effect(value: QuickTimerAction.segmentEnded)
                 }
                 

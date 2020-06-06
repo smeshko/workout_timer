@@ -111,9 +111,9 @@ private extension QuickExerciseBuilderState {
         segments = []
         
         (0 ..< sets).enumerated().forEach { index, _ in
-            segments.append(Segment(id: uuid(), duration: workoutTime, category: .workout))
+            segments.append(Segment(id: uuid(), duration: TimeInterval(workoutTime), category: .workout))
             if index != sets - 1 {
-                segments.append(Segment(id: uuid(), duration: breakTime, category: .pause))
+                segments.append(Segment(id: uuid(), duration: TimeInterval(breakTime), category: .pause))
             }
         }
     }

@@ -7,10 +7,10 @@ public struct Segment: Equatable, Identifiable, Hashable {
     }
     
     public let id: UUID
-    public let duration: Int
+    public let duration: TimeInterval
     public let category: Category
     
-    public init(id: UUID, duration: Int, category: Segment.Category) {
+    public init(id: UUID, duration: TimeInterval, category: Segment.Category) {
         self.id = id
         self.duration = duration
         self.category = category

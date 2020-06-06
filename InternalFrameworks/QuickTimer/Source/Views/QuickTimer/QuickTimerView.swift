@@ -13,38 +13,52 @@ public struct QuickTimerView: View {
     public var body: some View {
         NavigationView {
             WithViewStore(self.store) { viewStore in
-                VStack {
-                    VStack {
-                        Text(viewStore.formattedTotalTimeLeft)
-                            .font(.system(size: 48, design: .monospaced))
-                        
-                        Text(viewStore.formattedSegmentTimeLeft)
-                            .font(.system(size: 72, design: .monospaced))
-                    }
-                    .padding([.top])
-                    
-                    if viewStore.isRunning {
-                        if viewStore.currentSegment?.category == .workout {
-                            Text("\(viewStore.state.currentSetIndex) / \(viewStore.workoutSegmentsCount)")
-                                .font(.system(size: 22))
+                ZStack(alignment: .bottom) {
+//                    Group {
+                        if viewStore.timerControlsState.timerState == .running || viewStore.timerControlsState.timerState == .paused {
+                            ProgressView(value: viewStore.binding(
+                                get: \.segmentProgress,
+                                send: QuickTimerAction.progressBarDidUpdate
+                            ), axis: .vertical)
+                                .edgesIgnoringSafeArea(.top)
+                            
+                            VStack {
+                                Text("\(viewStore.state.currentSetIndex) / \(viewStore.workoutSegmentsCount)")
+                                    .font(.system(size: 32))
+                                    .shadow(color: .black, radius: 4, x: 5, y: 5)
+                                if viewStore.currentSegment?.category == .workout {
+                                    Text("Work")
+                                        .font(.system(size: 16))
+                                        .foregroundColor(.gray)
+                                } else {
+                                    Text("Recover")
+                                }
+                                
+                                Spacer()
+                                
+                                Text(viewStore.formattedSegmentTimeLeft)
+                                    .font(.system(size: 90, design: .monospaced))
+                                    .shadow(color: .black, radius: 6, x: 5, y: 5)
+                                Spacer()
+                            }
                         } else {
-                            Text("Recover")
-                                .font(.system(size: 22))
+                            VStack {
+                                Spacer()
+                                QuickExerciseBuilderView(store: self.store.scope(state: \.circuitPickerState, action: QuickTimerAction.circuitPickerUpdatedValues))
+                                    .padding()
+                                Spacer()
+                            }
                         }
-                    }
-                    Spacer()
-                    
-                    QuickExerciseBuilderView(store: self.store.scope(state: \.circuitPickerState, action: QuickTimerAction.circuitPickerUpdatedValues))
-                        .padding()
-                    
-                    QuickTimerControlsView(store: self.store.scope(state: \.timerControlsState, action: QuickTimerAction.timerControlsUpdatedState))
-                        .padding()
-                    
+                        QuickTimerControlsView(store: self.store.scope(state: \.timerControlsState, action: QuickTimerAction.timerControlsUpdatedState))
+                            .padding()
+//                    }
                 }
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 .navigationBarHidden(true)
                 .onAppear {
                     viewStore.send(.setNavigation)
                 }
+                
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
@@ -81,11 +95,15 @@ private extension QuickTimerState {
         workouts.count
     }
     
+    var segmentProgress: Double {
+        Double(segmentTimeLeft) / Double(currentSegment?.duration ?? 0)
+    }
+    
     var formattedTotalTimeLeft: String {
-        String(format: "%02d:%02d", totalTimeLeft / 60, totalTimeLeft % 60)
+        String(format: "%02d:%02d", totalTimeLeft / 60, Int(segmentTimeLeft) % 60)
     }
     
     var formattedSegmentTimeLeft: String {
-        String(format: "%02d:%02d", segmentTimeLeft / 60, segmentTimeLeft % 60)
+        String(format: "%02d:%02d", segmentTimeLeft / 60, Int(segmentTimeLeft) % 60)
     }  
 }
