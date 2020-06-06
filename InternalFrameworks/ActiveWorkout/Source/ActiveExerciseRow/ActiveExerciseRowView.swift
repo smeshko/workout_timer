@@ -24,8 +24,12 @@ struct ActiveExerciseRowView: View {
         }
         .padding([.vertical], 32)
         .background(viewStore.isActive ?
-          AnyView(ProgressBar(value: viewStore.binding(get: \.progress, send: ActiveExerciseRowAction.progressBarDidUpdate))) :
-          AnyView(Color(.systemGray).opacity(0.2))
+            AnyView(ProgressView(
+                value: viewStore.binding(
+                    get: \.progress,
+                    send: ActiveExerciseRowAction.progressBarDidUpdate),
+                axis: .horizontal)) :
+            AnyView(Color(.systemGray).opacity(0.2))
         )
         
         Divider()
@@ -49,23 +53,5 @@ struct ActiveExerciseRowView_Previews: PreviewProvider {
 extension PreviewProvider {
   static var mockExercise: Exercise {
     Exercise(id: "", name: "Mock exercise", image: "preview-exercise-1")
-  }
-}
-
-struct ProgressBar: View {
-  @Binding var value: Double
-  
-  var body: some View {
-    GeometryReader { geometry in
-      ZStack(alignment: .leading) {
-        Rectangle().frame(width: geometry.size.width , height: geometry.size.height)
-          .opacity(0.3)
-          .foregroundColor(Color(UIColor.systemTeal))
-        
-        Rectangle().frame(width: min(CGFloat(self.value) * geometry.size.width, geometry.size.width), height: geometry.size.height)
-          .foregroundColor(Color(UIColor.systemBlue))
-          .animation(.linear)
-      }
-    }
   }
 }

@@ -15,7 +15,6 @@ struct RootView: View {
                         Image(systemName: "heart")
                         Text("Workouts")
                 }
-                
                 QuickTimerView()
                     .tabItem {
                         Image(systemName: "timer")

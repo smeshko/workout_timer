@@ -1,4 +1,5 @@
 import Foundation
+import WorkoutTimerAPI
 
 public struct WorkoutCategory: Codable, Equatable, Identifiable, Hashable {
     public let id: String
@@ -13,5 +14,11 @@ public struct WorkoutCategory: Codable, Equatable, Identifiable, Hashable {
         self.id = id
         self.name = name
         self.workouts = workouts
+    }
+    
+    public init(dto: CategoryListDto) {
+        self.id = dto.id
+        self.name = dto.name
+        self.workouts = dto.workouts?.map { Workout(dto: $0) } ?? []
     }
 }
