@@ -11,4 +11,6 @@ jobs:
       - name: Force XCode 11.4
         run: sudo xcode-select -switch /Applications/Xcode_11.4.app
       - name: Testing iOS app
-        run: exec ./.github/scripts/test_app.sh
+        run: |
+          chmod 755 .github/scripts/test_app.sh 
+          exec ./.github/scripts/test_app.sh
