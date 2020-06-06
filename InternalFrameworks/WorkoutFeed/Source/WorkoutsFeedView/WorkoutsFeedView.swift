@@ -29,6 +29,7 @@ public struct WorkoutsFeedView: View {
                         .navigationBarItems(trailing: EmptyView())
                     Spacer()
                 }
+                .overlay(ActivityIndicator(isAnimating: viewStore.binding(get: \.isLoading, send: WorkoutsFeedAction.loadingIndicatorStoppedLoading)))
                 .onAppear {
                     viewStore.send(.beginNavigation)
                 }
@@ -51,5 +52,18 @@ struct WorkoutsFeedView_Previews: PreviewProvider {
                 )
             )
         )
+    }
+}
+
+struct ActivityIndicator: UIViewRepresentable {
+
+    @Binding var isAnimating: Bool
+
+    func makeUIView(context: UIViewRepresentableContext<ActivityIndicator>) -> UIActivityIndicatorView {
+        UIActivityIndicatorView(style: .large)
+    }
+
+    func updateUIView(_ uiView: UIActivityIndicatorView, context: UIViewRepresentableContext<ActivityIndicator>) {
+        isAnimating ? uiView.startAnimating() : uiView.stopAnimating()
     }
 }

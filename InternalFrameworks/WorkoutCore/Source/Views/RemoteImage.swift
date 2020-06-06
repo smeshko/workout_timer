@@ -48,11 +48,11 @@ public let remoteImageReducer = Reducer<RemoteImageState, RemoteImageAction, Rem
     
     switch action {
     case .keyProvided(let key):
-            return environment.client
-                .getImageData(at: key)
-                .receive(on: DispatchQueue.main)
-                .catchToEffect()
-                .map { RemoteImageAction.imageLoaded($0) }
+        return environment.client
+            .getImageData(at: key)
+            .receive(on: DispatchQueue.main)
+            .catchToEffect()
+            .map { RemoteImageAction.imageLoaded($0) }
         
     case .imageLoaded(.success(let data)):
         let image = UIImage(data: data)
