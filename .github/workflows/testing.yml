@@ -1,0 +1,14 @@
+name: testing
+on: [push]
+
+jobs:
+  test:
+    name: Testing iOS app
+    runs-on: macOS-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v1
+      - name: Force XCode 11.4
+        run: sudo xcode-select -switch /Applications/Xcode_11.4.app
+      - name: Testing iOS app
+        run: exec ./.github/scripts/test_app.sh
