@@ -15,10 +15,12 @@ public struct QuickTimerView: View {
             WithViewStore(self.store) { viewStore in
                 ZStack(alignment: .bottom) {
                     if viewStore.timerControlsState.timerState == .running || viewStore.timerControlsState.timerState == .paused {
+                        
                         ProgressView(value: viewStore.binding(
                             get: \.segmentProgress,
                             send: QuickTimerAction.progressBarDidUpdate
                         ), axis: .vertical)
+                            .fillColor(.brand1)
                             .edgesIgnoringSafeArea(.top)
                         
                         VStack {
@@ -35,7 +37,7 @@ public struct QuickTimerView: View {
                             
                             Spacer()
                             
-                            Text(viewStore.formattedSegmentTimeLeft)
+                            Text(viewStore.segmentTimeLeft.formattedTimeLeft)
                                 .font(.system(size: 90, design: .monospaced))
                                 .shadow(color: .black, radius: 6, x: 5, y: 5)
                             Spacer()
@@ -95,12 +97,4 @@ private extension QuickTimerState {
     var segmentProgress: Double {
         Double(segmentTimeLeft) / Double(currentSegment?.duration ?? 0)
     }
-    
-    var formattedTotalTimeLeft: String {
-        String(format: "%02d:%02d", totalTimeLeft / 60, Int(segmentTimeLeft) % 60)
-    }
-    
-    var formattedSegmentTimeLeft: String {
-        String(format: "%02d:%02d", segmentTimeLeft / 60, Int(segmentTimeLeft) % 60)
-    }  
 }

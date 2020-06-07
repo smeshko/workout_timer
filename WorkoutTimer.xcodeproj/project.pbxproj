@@ -27,6 +27,8 @@
 		B83D72842487A48D0075DA48 /* WorkoutsFetchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D72832487A48D0075DA48 /* WorkoutsFetchService.swift */; };
 		B83D9EA1246C728C00DED0F7 /* WorkoutsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D9EA0246C728C00DED0F7 /* WorkoutsFeedView.swift */; };
 		B83D9EA3246C72B700DED0F7 /* WorkoutsFeedCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D9EA2246C72B700DED0F7 /* WorkoutsFeedCore.swift */; };
+		B83FC05A248D1EE3007531CF /* UIColor-Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83FC059248D1EE3007531CF /* UIColor-Custom.swift */; };
+		B83FC05C248D1FB7007531CF /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B83FC05B248D1FB6007531CF /* Colors.xcassets */; };
 		B8455CF5246D9F5900C4FFAE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8455CF4246D9F5900C4FFAE /* Preview Assets.xcassets */; };
 		B8455D05246DB15D00C4FFAE /* WorkoutDetails.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8455CFC246DB15D00C4FFAE /* WorkoutDetails.framework */; };
 		B8455D0C246DB15D00C4FFAE /* WorkoutDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8455D0B246DB15D00C4FFAE /* WorkoutDetailsTests.swift */; };
@@ -286,6 +288,8 @@
 		B83D9EA0246C728C00DED0F7 /* WorkoutsFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsFeedView.swift; sourceTree = "<group>"; };
 		B83D9EA2246C72B700DED0F7 /* WorkoutsFeedCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsFeedCore.swift; sourceTree = "<group>"; };
 		B83D9EA5246D2ED500DED0F7 /* LocalStorageClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageClient.swift; sourceTree = "<group>"; };
+		B83FC059248D1EE3007531CF /* UIColor-Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor-Custom.swift"; sourceTree = "<group>"; };
+		B83FC05B248D1FB6007531CF /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		B8455CF4246D9F5900C4FFAE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B8455CFC246DB15D00C4FFAE /* WorkoutDetails.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WorkoutDetails.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8455CFF246DB15D00C4FFAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -294,7 +298,7 @@
 		B8455D0D246DB15D00C4FFAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8455D20246DB1AC00C4FFAE /* WorkoutDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailsView.swift; sourceTree = "<group>"; };
 		B8455D22246DB1D000C4FFAE /* WorkoutDetailsCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailsCore.swift; sourceTree = "<group>"; };
-		B84B0AC32458126700A07A1E /* WorkoutTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkoutTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B84B0AC32458126700A07A1E /* [D]Workout Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "[D]Workout Timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B84B0AC62458126700A07A1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B84B0AC82458126700A07A1E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B84B0ACA2458126700A07A1E /* QuickTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerView.swift; sourceTree = "<group>"; };
@@ -588,7 +592,7 @@
 		B84B0AC42458126700A07A1E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B84B0AC32458126700A07A1E /* WorkoutTimer.app */,
+				B84B0AC32458126700A07A1E /* [D]Workout Timer.app */,
 				B8DC599C24605E38003FC8D3 /* QuickTimer.framework */,
 				B8DC6A2B2461D7F6003FC8D3 /* QuickTimerTests.xctest */,
 				B8767444246AB6A500438A0F /* WorkoutCore.framework */,
@@ -714,6 +718,7 @@
 			children = (
 				B880FA9F246FF90900789DDA /* Assets.xcassets */,
 				B839E36F2471B89600FE5793 /* Preview Assets.xcassets */,
+				B83FC05B248D1FB6007531CF /* Colors.xcassets */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -786,6 +791,7 @@
 				B839E36D2471B7A300FE5793 /* UIImage-Asset.swift */,
 				B8B21DF3247466620085164A /* String-FormattedTime.swift */,
 				B8B79CF724877325008B92D8 /* Data-Decode.swift */,
+				B83FC059248D1EE3007531CF /* UIColor-Custom.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1054,7 +1060,7 @@
 			packageProductDependencies = (
 			);
 			productName = WorkoutTimer;
-			productReference = B84B0AC32458126700A07A1E /* WorkoutTimer.app */;
+			productReference = B84B0AC32458126700A07A1E /* [D]Workout Timer.app */;
 			productType = "com.apple.product-type.application";
 		};
 		B8767443246AB6A500438A0F /* WorkoutCore */ = {
@@ -1306,6 +1312,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B83FC05C248D1FB7007531CF /* Colors.xcassets in Resources */,
 				B839E3702471B89600FE5793 /* Preview Assets.xcassets in Resources */,
 				B880FAA0246FF90900789DDA /* Assets.xcassets in Resources */,
 			);
@@ -1404,6 +1411,7 @@
 			files = (
 				B8B21CB0247406040085164A /* Exercise-JumpRope.swift in Sources */,
 				B89C1C1C248C362A0076E8DA /* RemoteImage.swift in Sources */,
+				B83FC05A248D1EE3007531CF /* UIColor-Custom.swift in Sources */,
 				B8767451246AB6D100438A0F /* Segment.swift in Sources */,
 				B8B79CF62486BFDC008B92D8 /* EndpointProtocol.swift in Sources */,
 				B8B79CF824877325008B92D8 /* Data-Decode.swift in Sources */,
@@ -1894,8 +1902,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.WorkoutTimer;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.debug.WorkoutTimer;
+				PRODUCT_NAME = "[D]Workout Timer";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1917,7 +1925,8 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.WorkoutTimer;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Workout Timer";
+				PROVISIONING_PROFILE_SPECIFIER = "WorkoutTimer-Distribution";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
