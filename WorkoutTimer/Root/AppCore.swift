@@ -23,7 +23,7 @@ struct AppEnvironment {
 let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
     Reducer<AppState, AppAction, AppEnvironment> { state, action, env in
         struct LocalStorageReadId: Hashable {}
-        
+         
         switch action {
         case .applicationDidStart:
             return env
