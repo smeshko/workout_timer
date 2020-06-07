@@ -186,23 +186,3 @@ private extension QuickExerciseBuilderState {
         self.init(sets: state.setsState.value, workoutTime: state.workoutTimeState.value, breakTime: state.breakTimeState.value)
     }
 }
-
-extension Array where Element == QuickTimerSet {
-    func firstIndex(of segment: QuickTimerSet.Segment) -> Int? {
-        firstIndex {
-            $0.work == segment || $0.pause == segment
-        }
-    }
-        
-    subscript(_ segment: QuickTimerSet.Segment) -> QuickTimerSet? {
-        first {
-            $0.work == segment || $0.pause == segment
-        }
-    }
-}
-
-extension Collection {
-    subscript (safe index: Index) -> Element? {
-        indices.contains(index) ? self[index] : nil
-    }
-}

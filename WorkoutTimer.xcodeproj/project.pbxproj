@@ -30,6 +30,8 @@
 		B83FC05A248D1EE3007531CF /* UIColor-Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83FC059248D1EE3007531CF /* UIColor-Custom.swift */; };
 		B83FC05C248D1FB7007531CF /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B83FC05B248D1FB6007531CF /* Colors.xcassets */; };
 		B83FC05F248D2676007531CF /* QuickTimerSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893DF94245AC46100C43360 /* QuickTimerSet.swift */; };
+		B83FC061248D3290007531CF /* Collection-Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83FC060248D3290007531CF /* Collection-Safe.swift */; };
+		B83FC063248D32DC007531CF /* Array-QuickTimerSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83FC062248D32DC007531CF /* Array-QuickTimerSet.swift */; };
 		B8455CF5246D9F5900C4FFAE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8455CF4246D9F5900C4FFAE /* Preview Assets.xcassets */; };
 		B8455D05246DB15D00C4FFAE /* WorkoutDetails.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8455CFC246DB15D00C4FFAE /* WorkoutDetails.framework */; };
 		B8455D0C246DB15D00C4FFAE /* WorkoutDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8455D0B246DB15D00C4FFAE /* WorkoutDetailsTests.swift */; };
@@ -290,6 +292,8 @@
 		B83D9EA5246D2ED500DED0F7 /* LocalStorageClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageClient.swift; sourceTree = "<group>"; };
 		B83FC059248D1EE3007531CF /* UIColor-Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor-Custom.swift"; sourceTree = "<group>"; };
 		B83FC05B248D1FB6007531CF /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		B83FC060248D3290007531CF /* Collection-Safe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection-Safe.swift"; sourceTree = "<group>"; };
+		B83FC062248D32DC007531CF /* Array-QuickTimerSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array-QuickTimerSet.swift"; sourceTree = "<group>"; };
 		B8455CF4246D9F5900C4FFAE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B8455CFC246DB15D00C4FFAE /* WorkoutDetails.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WorkoutDetails.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8455CFF246DB15D00C4FFAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -780,6 +784,7 @@
 			children = (
 				B893DFA3245C230300C43360 /* View-UpdateKeyPath.swift */,
 				B893DF97245AD53700C43360 /* UIResponder-Current.swift */,
+				B83FC062248D32DC007531CF /* Array-QuickTimerSet.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -800,6 +805,7 @@
 				B8B21DF3247466620085164A /* String-FormattedTime.swift */,
 				B8B79CF724877325008B92D8 /* Data-Decode.swift */,
 				B83FC059248D1EE3007531CF /* UIColor-Custom.swift */,
+				B83FC060248D3290007531CF /* Collection-Safe.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1429,6 +1435,7 @@
 				B8B6FE4D246ADBF800B22568 /* Exercise.swift in Sources */,
 				B8B21CB424740D2F0085164A /* ExerciseSet-Exercises.swift in Sources */,
 				B8CEBFCD246D39F200A88450 /* LocalStorageClient.swift in Sources */,
+				B83FC061248D3290007531CF /* Collection-Safe.swift in Sources */,
 				B8C82860246BE10B00B1113B /* Workout.swift in Sources */,
 				B8B21DF4247466620085164A /* String-FormattedTime.swift in Sources */,
 				B89C1C14248BC9300076E8DA /* ProgressView.swift in Sources */,
@@ -1475,6 +1482,7 @@
 				B8DC59C224605F3F003FC8D3 /* View-UpdateKeyPath.swift in Sources */,
 				B8DC59C324605F3F003FC8D3 /* UIResponder-Current.swift in Sources */,
 				B8ED776724684976001B9DEE /* QuickExerciseBuilderCore.swift in Sources */,
+				B83FC063248D32DC007531CF /* Array-QuickTimerSet.swift in Sources */,
 				B8DC59BC24605ED0003FC8D3 /* QuickTimerView.swift in Sources */,
 				B83907062462A4F400676B3D /* PickerCore.swift in Sources */,
 				B8ED7769246854D0001B9DEE /* QuickTimerControlsView.swift in Sources */,
