@@ -23,11 +23,5 @@
     <key>signingCertificate</key>
 	<string>Apple Distribution: Ivaylo Tsonev (GR9SJM3FZP)</string>
 
-	<key>provisioningProfiles</key>
-	<dict>
-		<key>com.tsonevInc.mobile.ios.WorkoutTimer</key>
-		<string>profile</string>
-	</dict>
-
 </dict>
 </plist>
