@@ -2,7 +2,7 @@
 
 set -eo pipefail
 
-xcodebuild -project WorkoutTimer.xcproject \
+xcodebuild -project WorkoutTimer.xcodeproj \
             -scheme WorkoutTimer \
             -sdk iphoneos \
             -configuration AppStoreDistribution \
