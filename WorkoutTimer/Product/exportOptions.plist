@@ -6,5 +6,20 @@
     <string>app-store</string>
     <key>teamID</key>
     <string>GR9SJM3FZP</string>
+
+	<key>uploadBitcode</key>
+	<true/>
+	<key>compileBitcode</key>
+	<true/>
+	<key>uploadSymbols</key>
+	<true/>
+	<key>signingStyle</key>
+	<string>manual</string>
+	<key>provisioningProfiles</key>
+	<dict>
+		<key>com.tsonevInc.mobile.ios.WorkoutTimer</key>
+		<string>profiile</string>
+	</dict>
+
 </dict>
 </plist>
