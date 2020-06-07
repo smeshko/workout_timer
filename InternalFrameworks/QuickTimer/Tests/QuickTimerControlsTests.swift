@@ -14,16 +14,16 @@ class QuickTimerControlsTests: XCTestCase {
         
         store.assert(
             .send(.start) {
-                $0.isRunning = true
+                $0.timerState = .running
             },
             .send(.pause) {
-                $0.isRunning = false
+                $0.timerState = .paused
             },
             .send(.start) {
-                $0.isRunning = true
+                $0.timerState = .running
             },
             .send(.stop) {
-                $0.isRunning = false
+                $0.timerState = .finished
             }
         )
     }

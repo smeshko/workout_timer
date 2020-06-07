@@ -36,8 +36,7 @@ class TimerCoreTests: XCTestCase {
                 ]
             },
             .send(.timerControlsUpdatedState(.start)) {
-                $0.isRunning = true
-                $0.timerControlsState.isRunning = true
+                $0.timerControlsState.timerState = .running
                 $0.circuitPickerState.breakTimeState.isInteractionDisabled = true
                 $0.circuitPickerState.workoutTimeState.isInteractionDisabled = true
                 $0.circuitPickerState.setsState.isInteractionDisabled = true
@@ -70,9 +69,8 @@ class TimerCoreTests: XCTestCase {
             .receive(.timerFinished) {
                 $0.circuitPickerState.setsState.value = 2
                 $0.segments = []
-                $0.isRunning = false
                 $0.currentSegment = nil
-                $0.timerControlsState.isRunning = false
+                $0.timerControlsState.timerState = .finished
                 $0.circuitPickerState.breakTimeState.isInteractionDisabled = false
                 $0.circuitPickerState.workoutTimeState.isInteractionDisabled = false
                 $0.circuitPickerState.setsState.isInteractionDisabled = false

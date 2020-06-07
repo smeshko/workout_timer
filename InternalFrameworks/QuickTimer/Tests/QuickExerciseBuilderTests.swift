@@ -9,7 +9,7 @@ class QuickExerciseBuilderTests: XCTestCase {
         UUID(uuidString: "00000000-0000-0000-0000-000000000000")!
     }
     
-    func segment(duration: Int, category: Segment.Category) -> Segment {
+    func segment(duration: TimeInterval, category: Segment.Category) -> Segment {
         Segment(id: uuid(), duration: duration, category: category)
     }
 
