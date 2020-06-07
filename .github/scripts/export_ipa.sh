@@ -3,7 +3,7 @@
 set -eo pipefail
 
 xcodebuild -archivePath $PWD/build/WorkoutTimer.xcarchive \
-            -exportOptionsPlist WorkoutTimer/exportOptions.plist \
+            -exportOptionsPlist WorkoutTimer/Product/exportOptions.plist \
             -exportPath $PWD/build \
             -allowProvisioningUpdates \
             -exportArchive | xcpretty
