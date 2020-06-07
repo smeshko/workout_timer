@@ -7,7 +7,7 @@ public enum QuickExerciseBuilderAction: Equatable {
     case changeBreakTime(PickerAction)
     case changeWorkoutTime(PickerAction)
     
-    case updatedSegments([Segment])
+    case updatedSegments([QuickTimerSet])
     case setNavigation
 }
 
@@ -16,7 +16,7 @@ public struct QuickExerciseBuilderState: Equatable {
     var setsState = PickerState()
     var workoutTimeState = PickerState()
     var breakTimeState = PickerState()
-    var segments: [Segment] = []
+    var segments: [QuickTimerSet] = []
     
     fileprivate var sets: Int { setsState.value }
     fileprivate var workoutTime: Int { workoutTimeState.value }
@@ -108,13 +108,10 @@ public let quickExerciseBuilderReducer =
 private extension QuickExerciseBuilderState {
     
     mutating func createSegments(uuid: () -> UUID) {
-        segments = []
-        
-        (0 ..< sets).enumerated().forEach { index, _ in
-            segments.append(Segment(id: uuid(), duration: TimeInterval(workoutTime), category: .workout))
-            if index != sets - 1 {
-                segments.append(Segment(id: uuid(), duration: TimeInterval(breakTime), category: .pause))
-            }
+        segments = (0 ..< sets).enumerated().map { index, _ in
+            QuickTimerSet(id: uuid(),
+                          work: TimeInterval(workoutTime),
+                          pause: TimeInterval(index.isLastIndex(inCount: sets) ? 0 : breakTime))
         }
     }
     
@@ -123,5 +120,11 @@ private extension QuickExerciseBuilderState {
 private extension PickerState {
     mutating func hidePickerIfNeeded() {
         if isShowingPicker { isShowingPicker = false }
+    }
+}
+
+extension Int {
+    func isLastIndex(inCount count: Int) -> Bool {
+        self == count - 1
     }
 }

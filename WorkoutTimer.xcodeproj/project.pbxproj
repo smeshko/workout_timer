@@ -29,6 +29,7 @@
 		B83D9EA3246C72B700DED0F7 /* WorkoutsFeedCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D9EA2246C72B700DED0F7 /* WorkoutsFeedCore.swift */; };
 		B83FC05A248D1EE3007531CF /* UIColor-Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83FC059248D1EE3007531CF /* UIColor-Custom.swift */; };
 		B83FC05C248D1FB7007531CF /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B83FC05B248D1FB6007531CF /* Colors.xcassets */; };
+		B83FC05F248D2676007531CF /* QuickTimerSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893DF94245AC46100C43360 /* QuickTimerSet.swift */; };
 		B8455CF5246D9F5900C4FFAE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8455CF4246D9F5900C4FFAE /* Preview Assets.xcassets */; };
 		B8455D05246DB15D00C4FFAE /* WorkoutDetails.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8455CFC246DB15D00C4FFAE /* WorkoutDetails.framework */; };
 		B8455D0C246DB15D00C4FFAE /* WorkoutDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8455D0B246DB15D00C4FFAE /* WorkoutDetailsTests.swift */; };
@@ -43,7 +44,6 @@
 		B84B0AD32458126B00A07A1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B84B0AD12458126B00A07A1E /* LaunchScreen.storyboard */; };
 		B876744B246AB6A500438A0F /* WorkoutCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8767444246AB6A500438A0F /* WorkoutCore.framework */; };
 		B876744C246AB6A500438A0F /* WorkoutCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8767444246AB6A500438A0F /* WorkoutCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B8767451246AB6D100438A0F /* Segment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893DF94245AC46100C43360 /* Segment.swift */; };
 		B876746A246AB7E700438A0F /* WorkoutCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8767444246AB6A500438A0F /* WorkoutCore.framework */; };
 		B87675B9246AD78900438A0F /* WorkoutFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87675B0246AD78900438A0F /* WorkoutFeed.framework */; };
 		B87675C0246AD78900438A0F /* WorkoutFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87675BF246AD78900438A0F /* WorkoutFeedTests.swift */; };
@@ -319,7 +319,7 @@
 		B880F827246E9EB200789DDA /* ExerciseSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSet.swift; sourceTree = "<group>"; };
 		B880FA9F246FF90900789DDA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B880FAA2246FFE7E00789DDA /* ExerciseRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRowView.swift; sourceTree = "<group>"; };
-		B893DF94245AC46100C43360 /* Segment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segment.swift; sourceTree = "<group>"; };
+		B893DF94245AC46100C43360 /* QuickTimerSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerSet.swift; sourceTree = "<group>"; };
 		B893DF97245AD53700C43360 /* UIResponder-Current.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder-Current.swift"; sourceTree = "<group>"; };
 		B893DF99245AD55900C43360 /* KeyboardHeightPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHeightPublisher.swift; sourceTree = "<group>"; };
 		B893DF9C245AD57900C43360 /* KeyboardAdaptive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAdaptive.swift; sourceTree = "<group>"; };
@@ -532,6 +532,14 @@
 				B8B79CF52486BFDC008B92D8 /* EndpointProtocol.swift */,
 			);
 			path = Clients;
+			sourceTree = "<group>";
+		};
+		B83FC05E248D2663007531CF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B893DF94245AC46100C43360 /* QuickTimerSet.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		B8455CF6246DA12E00C4FFAE /* Preview Content */ = {
@@ -840,6 +848,7 @@
 		B8DC59BA24605E48003FC8D3 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				B83FC05E248D2663007531CF /* Models */,
 				B893DF96245AD52800C43360 /* Helpers */,
 			);
 			path = Core;
@@ -867,7 +876,6 @@
 		B8DC59CA24605FB5003FC8D3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B893DF94245AC46100C43360 /* Segment.swift */,
 				B8B6FE4C246ADBF800B22568 /* Exercise.swift */,
 				B880F827246E9EB200789DDA /* ExerciseSet.swift */,
 				B8C8285F246BE10B00B1113B /* Workout.swift */,
@@ -1412,7 +1420,6 @@
 				B8B21CB0247406040085164A /* Exercise-JumpRope.swift in Sources */,
 				B89C1C1C248C362A0076E8DA /* RemoteImage.swift in Sources */,
 				B83FC05A248D1EE3007531CF /* UIColor-Custom.swift in Sources */,
-				B8767451246AB6D100438A0F /* Segment.swift in Sources */,
 				B8B79CF62486BFDC008B92D8 /* EndpointProtocol.swift in Sources */,
 				B8B79CF824877325008B92D8 /* Data-Decode.swift in Sources */,
 				B880F828246E9EB200789DDA /* ExerciseSet.swift in Sources */,
@@ -1463,6 +1470,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8ED776C246858A9001B9DEE /* TimerControlsCore.swift in Sources */,
+				B83FC05F248D2676007531CF /* QuickTimerSet.swift in Sources */,
 				B8DC59BF24605ED9003FC8D3 /* QuickTimerCore.swift in Sources */,
 				B8DC59C224605F3F003FC8D3 /* View-UpdateKeyPath.swift in Sources */,
 				B8DC59C324605F3F003FC8D3 /* UIResponder-Current.swift in Sources */,
