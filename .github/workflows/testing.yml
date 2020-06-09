@@ -12,5 +12,6 @@ jobs:
         run: sudo xcode-select -switch /Applications/Xcode_11.5.app
       - name: Testing iOS app
         run: |
+          xcodebuild -project ./WorkoutTimer.xcodeproj -list
           chmod 755 .github/scripts/test_app.sh 
           exec ./.github/scripts/test_app.sh
