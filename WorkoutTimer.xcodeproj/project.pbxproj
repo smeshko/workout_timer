@@ -302,7 +302,7 @@
 		B8455D0D246DB15D00C4FFAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8455D20246DB1AC00C4FFAE /* WorkoutDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailsView.swift; sourceTree = "<group>"; };
 		B8455D22246DB1D000C4FFAE /* WorkoutDetailsCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailsCore.swift; sourceTree = "<group>"; };
-		B84B0AC32458126700A07A1E /* Workout Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Workout Timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B84B0AC32458126700A07A1E /* WorkoutTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkoutTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B84B0AC62458126700A07A1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B84B0AC82458126700A07A1E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B84B0ACA2458126700A07A1E /* QuickTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerView.swift; sourceTree = "<group>"; };
@@ -604,7 +604,7 @@
 		B84B0AC42458126700A07A1E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B84B0AC32458126700A07A1E /* Workout Timer.app */,
+				B84B0AC32458126700A07A1E /* WorkoutTimer.app */,
 				B8DC599C24605E38003FC8D3 /* QuickTimer.framework */,
 				B8DC6A2B2461D7F6003FC8D3 /* QuickTimerTests.xctest */,
 				B8767444246AB6A500438A0F /* WorkoutCore.framework */,
@@ -1073,7 +1073,7 @@
 			packageProductDependencies = (
 			);
 			productName = WorkoutTimer;
-			productReference = B84B0AC32458126700A07A1E /* Workout Timer.app */;
+			productReference = B84B0AC32458126700A07A1E /* WorkoutTimer.app */;
 			productType = "com.apple.product-type.application";
 		};
 		B8767443246AB6A500438A0F /* WorkoutCore */ = {
@@ -1915,7 +1915,8 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.debug.WorkoutTimer;
-				PRODUCT_NAME = "Workout Timer";
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1938,7 +1939,8 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.WorkoutTimer;
-				PRODUCT_NAME = "Workout Timer";
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "WorkoutTimer-Distribution";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
