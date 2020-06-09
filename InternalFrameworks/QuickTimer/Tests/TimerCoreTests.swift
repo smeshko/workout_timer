@@ -7,33 +7,30 @@ class TimerCoreTests: XCTestCase {
     
     let scheduler = DispatchQueue.testScheduler
     
-    let uuid: () -> UUID = {
+    static let uuid: () -> UUID = {
         UUID(uuidString: "00000000-0000-0000-0000-000000000000")!
     }
     
-    let workSegment = Segment(id: UUID(uuidString: "00000000-0000-0000-0000-000000000000")!, duration: 2, category: .workout)
-    let pauseSegment = Segment(id: UUID(uuidString: "00000000-0000-0000-0000-000000000000")!, duration: 1, category: .pause)
+    let segments = [QuickTimerSet(id: uuid, work: 1, pause: 1), QuickTimerSet(id: uuid, work: 1, pause: 0)]
     
     func testFlow() {
         let store = TestStore(
             initialState: QuickTimerState(circuitPickerState: QuickExerciseBuilderState(sets: 1, workoutTime: 60, breakTime: 20)),
             reducer: quickTimerReducer,
             environment: QuickTimerEnvironment(
-                uuid: self.uuid,
+                uuid: TimerCoreTests.uuid,
                 mainQueue: AnyScheduler(self.scheduler),
-                soundClient: .mock
+                soundClient: .mock,
+                timerStep: 1
             )
         )
         
         store.assert(
-            .send(.circuitPickerUpdatedValues(.updatedSegments([workSegment, pauseSegment]))) {
-                $0.currentSegment = self.workSegment
+            .send(.circuitPickerUpdatedValues(.updatedSegments(segments))) {
+                $0.currentSegment = self.segments.first?.work
                 $0.totalTimeLeft = 3
-                $0.segmentTimeLeft = 2
-                $0.segments = [
-                    self.workSegment,
-                    self.pauseSegment
-                ]
+                $0.segmentTimeLeft = 1
+                $0.segments = self.segments
             },
             .send(.timerControlsUpdatedState(.start)) {
                 $0.timerControlsState.timerState = .running
@@ -46,7 +43,11 @@ class TimerCoreTests: XCTestCase {
             },
             .receive(.timerTicked) {
                 $0.totalTimeLeft = 2
+                $0.segmentTimeLeft = 0
+            },
+            .receive(.segmentEnded) {
                 $0.segmentTimeLeft = 1
+                $0.currentSegment = self.segments.first?.pause
             },
             .do {
                 self.scheduler.advance(by: 1)
@@ -57,7 +58,7 @@ class TimerCoreTests: XCTestCase {
             },
             .receive(.segmentEnded) {
                 $0.segmentTimeLeft = 1
-                $0.currentSegment = self.pauseSegment
+                $0.currentSegment = self.segments.last?.work
             },
             .do {
                 self.scheduler.advance(by: 1)

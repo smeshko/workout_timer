@@ -37,8 +37,7 @@ struct RootView_Previews: PreviewProvider {
                 initialState: AppState(),
                 reducer: appReducer,
                 environment: AppEnvironment(
-                    mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-                    localStorageClient: .mock
+                    mainQueue: DispatchQueue.main.eraseToAnyScheduler()
                 )
             )
         )

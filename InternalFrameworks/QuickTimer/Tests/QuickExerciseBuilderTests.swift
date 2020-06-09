@@ -9,8 +9,8 @@ class QuickExerciseBuilderTests: XCTestCase {
         UUID(uuidString: "00000000-0000-0000-0000-000000000000")!
     }
     
-    func segment(duration: TimeInterval, category: Segment.Category) -> Segment {
-        Segment(id: uuid(), duration: duration, category: category)
+    func segment(pause: TimeInterval, work: TimeInterval) -> QuickTimerSet {
+        QuickTimerSet(id: uuid, work: work, pause: pause)
     }
 
     func testFlow() {
@@ -28,28 +28,24 @@ class QuickExerciseBuilderTests: XCTestCase {
             .send(.changeSetsCount(.valueUpdated(2))) {
                 $0.setsState.value = 2
                 $0.segments = [
-                    self.segment(duration: 0, category: .workout),
-                    self.segment(duration: 0, category: .pause),
-                    self.segment(duration: 0, category: .workout)
+                    self.segment(pause: 0, work: 0),
+                    self.segment(pause: 0, work: 0)
                 ]
             },
             .receive(.updatedSegments([
-                self.segment(duration: 0, category: .workout),
-                self.segment(duration: 0, category: .pause),
-                self.segment(duration: 0, category: .workout)
+                self.segment(pause: 0, work: 0),
+                self.segment(pause: 0, work: 0)
             ])),
             .send(.changeWorkoutTime(.valueUpdated(10))) {
                 $0.workoutTimeState.value = 10
                 $0.segments = [
-                    self.segment(duration: 10, category: .workout),
-                    self.segment(duration: 0, category: .pause),
-                    self.segment(duration: 10, category: .workout)
+                    self.segment(pause: 0, work: 10),
+                    self.segment(pause: 0, work: 10)
                 ]
             },
             .receive(.updatedSegments([
-                self.segment(duration: 10, category: .workout),
-                self.segment(duration: 0, category: .pause),
-                self.segment(duration: 10, category: .workout)
+                self.segment(pause: 0, work: 10),
+                self.segment(pause: 0, work: 10)
             ]))
         )
     }

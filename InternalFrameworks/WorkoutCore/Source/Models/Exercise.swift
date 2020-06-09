@@ -18,3 +18,7 @@ public struct Exercise: Identifiable, Codable, Equatable, Hashable {
         self.image = dto.imageKey
     }
 }
+
+public extension Exercise {
+    static let recovery = Exercise(id: "recovery", name: "Recovery", image: "")
+}

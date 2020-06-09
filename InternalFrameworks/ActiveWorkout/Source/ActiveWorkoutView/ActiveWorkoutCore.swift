@@ -3,7 +3,7 @@ import WorkoutCore
 import ComposableArchitecture
 
 public enum ActiveWorkoutAction: Equatable {
-  case exerciseSet(id: UUID, action: ActiveExerciseRowAction)
+  case exerciseSet(id: String, action: ActiveExerciseRowAction)
   case workoutBegin
   case timerTicked
   case pause

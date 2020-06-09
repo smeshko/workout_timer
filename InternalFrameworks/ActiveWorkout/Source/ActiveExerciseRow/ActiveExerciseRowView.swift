@@ -42,16 +42,10 @@ struct ActiveExerciseRowView_Previews: PreviewProvider {
   static var previews: some View {
     ActiveExerciseRowView(
       store: Store<ActiveExerciseRowState, ActiveExerciseRowAction>(
-        initialState: ActiveExerciseRowState(set: ExerciseSet(exercise: self.mockExercise, duration: 30)),
+        initialState: ActiveExerciseRowState(set: ExerciseSet(id: "setid", exercise: mockExercise1, duration: 30)),
         reducer: activeExerciseRowReducer,
         environment: ActiveExerciseRowEnvironment()
       )
     )
-  }
-}
-
-extension PreviewProvider {
-  static var mockExercise: Exercise {
-    Exercise(id: "", name: "Mock exercise", image: "preview-exercise-1")
   }
 }

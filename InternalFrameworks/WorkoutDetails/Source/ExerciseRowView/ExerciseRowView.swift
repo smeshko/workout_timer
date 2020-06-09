@@ -34,7 +34,7 @@ struct ExerciseRowView: View {
 
 struct ExerciseRowView_Previews: PreviewProvider {
     static var previews: some View {
-        ExerciseRowView(set: .recovery(5))
+        ExerciseRowView(set: ExerciseSet(id: "setid", exercise: mockExercise1, duration: 30))
     }
 }
 

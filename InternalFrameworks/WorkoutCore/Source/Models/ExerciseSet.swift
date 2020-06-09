@@ -4,18 +4,18 @@ import WorkoutTimerAPI
 
 @dynamicMemberLookup
 public struct ExerciseSet: Identifiable, Codable, Equatable {
-    public var id: UUID
+    public var id: String
     fileprivate let exercise: Exercise
     public let duration: TimeInterval
     
-    public init(exercise: Exercise, duration: TimeInterval) {
-        self.id = UUID()
+    public init(id: String, exercise: Exercise, duration: TimeInterval) {
+        self.id = id
         self.exercise = exercise
         self.duration = duration
     }
     
     public init(dto: ExerciseSetListDto) {
-        self.id = UUID(uuidString: dto.id) ?? UUID()
+        self.id = dto.id
         self.duration = dto.duration
         
         guard let exercise = dto.exercise else { fatalError() }
@@ -36,9 +36,9 @@ public struct ExerciseSet: Identifiable, Codable, Equatable {
     public static func sets(_ count: Int, exercise: Exercise, duration: TimeInterval, pauseInBetween: TimeInterval? = nil) -> [ExerciseSet] {
         var sets: [ExerciseSet] = []
         (0 ..< count).forEach { index in
-            sets.insert(ExerciseSet(exercise: exercise, duration: duration), at: 0)
+            sets.insert(ExerciseSet(id: "\(exercise.id)-\(index)", exercise: exercise, duration: duration), at: 0)
             if let pause = pauseInBetween, index != count - 1 {
-                sets.insert(.recovery(pause), at: 0)
+                sets.insert(ExerciseSet(id: "recovery-set-\(index)", exercise: .recovery, duration: pause), at: 0)
             }
         }
         return sets
@@ -51,9 +51,9 @@ public struct ExerciseSet: Identifiable, Codable, Equatable {
     /// - Returns: an array of exercise sets
     public static func alternating(_ count: Int, _ exercises: [Exercise: TimeInterval]) -> [ExerciseSet] {
         var sets: [ExerciseSet] = []
-        (0 ..< count).forEach { _ in
+        (0 ..< count).forEach { index in
             sets.append(contentsOf: exercises.map { exercise, duration in
-                ExerciseSet(exercise: exercise, duration: duration)
+                ExerciseSet(id: "\(exercise.id)-\(index)", exercise: exercise, duration: duration)
             })
         }
         return sets

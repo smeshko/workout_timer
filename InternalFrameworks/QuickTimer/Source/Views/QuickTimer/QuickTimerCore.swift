@@ -41,15 +41,18 @@ public struct QuickTimerEnvironment {
     var mainQueue: AnySchedulerOf<DispatchQueue>
     var soundClient: SoundClient
     var uuid: () -> UUID
+    var timerStep: DispatchQueue.SchedulerTimeType.Stride
     
     public init(
         uuid: @escaping () -> UUID,
         mainQueue: AnySchedulerOf<DispatchQueue>,
-        soundClient: SoundClient
+        soundClient: SoundClient,
+        timerStep: DispatchQueue.SchedulerTimeType.Stride = .milliseconds(1)
     ) {
         self.uuid = uuid
         self.mainQueue = mainQueue
         self.soundClient = soundClient
+        self.timerStep = timerStep
     }
 }
 
@@ -82,7 +85,7 @@ public let quickTimerReducer =
                         state.updateSegments()
                     }
                     return Effect
-                        .timer(id: TimerId(), every: 0.01, tolerance: .zero, on: environment.mainQueue)
+                        .timer(id: TimerId(), every: environment.timerStep, tolerance: .zero, on: environment.mainQueue)
                         .map { _ in QuickTimerAction.timerTicked }
                 }
                 
@@ -95,8 +98,8 @@ public let quickTimerReducer =
                 }
                 
             case .timerTicked:
-                state.totalTimeLeft -= 0.01
-                state.segmentTimeLeft -= 0.01
+                state.totalTimeLeft -= environment.timerStep.timeInterval.asDouble ?? 0
+                state.segmentTimeLeft -= environment.timerStep.timeInterval.asDouble ?? 0
                 
                 if state.totalTimeLeft <= 0 {
                     return Effect(value: QuickTimerAction.timerFinished)
@@ -184,5 +187,28 @@ private extension QuickTimerState {
 private extension QuickExerciseBuilderState {
     init(state: QuickExerciseBuilderState) {
         self.init(sets: state.setsState.value, workoutTime: state.workoutTimeState.value, breakTime: state.breakTimeState.value)
+    }
+}
+
+extension DispatchTimeInterval {
+    var asDouble: Double? {
+        var result: Double? = 0
+
+        switch self {
+        case .seconds(let value):
+            result = Double(value)
+        case .milliseconds(let value):
+            result = Double(value)*0.001
+        case .microseconds(let value):
+            result = Double(value)*0.000001
+        case .nanoseconds(let value):
+            result = Double(value)*0.000000001
+        case .never:
+            result = nil
+        @unknown default:
+            fatalError()
+        }
+
+        return result
     }
 }

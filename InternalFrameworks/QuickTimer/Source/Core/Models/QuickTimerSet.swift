@@ -8,10 +8,10 @@ public struct QuickTimerSet: Equatable, Identifiable, Hashable {
     
     public var duration: TimeInterval { work.duration + pause.duration }
     
-    public init(id: UUID, work: TimeInterval, pause: TimeInterval) {
-        self.id = id
-        self.work = Segment(id: UUID(), duration: work, category: .workout)
-        self.pause = Segment(id: UUID(), duration: pause, category: .pause)
+    public init(id: () -> UUID, work: TimeInterval, pause: TimeInterval) {
+        self.id = id()
+        self.work = Segment(id: id, duration: work, category: .workout)
+        self.pause = Segment(id: id, duration: pause, category: .pause)
     }
 
     public struct Segment: Equatable, Hashable {
@@ -24,8 +24,8 @@ public struct QuickTimerSet: Equatable, Identifiable, Hashable {
         public let category: Category
         public let id: UUID
         
-        public init(id: UUID, duration: TimeInterval, category: Segment.Category) {
-            self.id = id
+        public init(id: () -> UUID, duration: TimeInterval, category: Segment.Category) {
+            self.id = id()
             self.duration = duration
             self.category = category
         }

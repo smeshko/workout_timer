@@ -21,11 +21,14 @@ class WorkoutFeedTests: XCTestCase {
         )
         
         store.assert(
-            .send(.beginNavigation),
+            .send(.beginNavigation) {
+                $0.loadingState = .loading
+            },
             .do {
                 self.scheduler.advance()
             },
             .receive(.categoriesLoaded(.success([category]))) {
+                $0.loadingState = .done
                 $0.categories = [category]
             },
             .receive(.workoutCategoryChanged(category)) {

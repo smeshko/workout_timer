@@ -13,8 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         initialState: AppState(),
         reducer: appReducer,
         environment: AppEnvironment(
-          mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-          localStorageClient: .live
+          mainQueue: DispatchQueue.main.eraseToAnyScheduler()
         )
       )
     )

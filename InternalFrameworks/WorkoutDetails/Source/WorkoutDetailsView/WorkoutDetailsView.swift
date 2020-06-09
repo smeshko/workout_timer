@@ -52,9 +52,7 @@ public struct WorkoutDetailsView: View {
 
 struct WorkoutDetailsView_Previews: PreviewProvider {
   static var previews: some View {
-    return WorkoutDetailsView(workout: Workout(id: "1", name: "Mock workout", image: "bodyweight",  sets:
-      ExerciseSet.sets(4, exercise: .jumpingJacks, duration: 30, pauseInBetween: 10)
-    ))
+    return WorkoutDetailsView(workout: mockWorkout1)
       .colorScheme(.dark)
       .background(Color.black)
   }

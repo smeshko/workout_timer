@@ -109,7 +109,7 @@ private extension QuickExerciseBuilderState {
     
     mutating func createSegments(uuid: () -> UUID) {
         segments = (0 ..< sets).enumerated().map { index, _ in
-            QuickTimerSet(id: uuid(),
+            QuickTimerSet(id: uuid,
                           work: TimeInterval(workoutTime),
                           pause: TimeInterval(index.isLastIndex(inCount: sets) ? 0 : breakTime))
         }

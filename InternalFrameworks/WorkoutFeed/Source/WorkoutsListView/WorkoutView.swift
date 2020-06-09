@@ -30,9 +30,7 @@ struct WorkoutView: View {
 struct WorkoutView_Previews: PreviewProvider {
     static var previews: some View {
         
-        return WorkoutView(workout: Workout(id: "1", name: "Mock workout", image: "preview-workout-1", sets:
-            ExerciseSet.sets(4, exercise: .pushUps, duration: 30, pauseInBetween: 10)
-        ))
+        return WorkoutView(workout: mockWorkout1)
             .environment(\.colorScheme, .dark)
             .previewLayout(.fixed(width: 375, height: 240))
     }

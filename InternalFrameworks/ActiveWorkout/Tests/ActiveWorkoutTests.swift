@@ -8,8 +8,8 @@ class ActiveWorkoutTests: XCTestCase {
     let scheduler = DispatchQueue.testScheduler
     
     let workout = Workout(id: "", name: "Mock workout", image: "", sets: [
-        ExerciseSet(exercise: Exercise(id: "jump-1", name: "Jumping Jacks", image: ""), duration: 2),
-        ExerciseSet(exercise: Exercise(id: "recovery", name: "Recovery", image: ""), duration: 1)
+        ExerciseSet(id: "jj-1", exercise: Exercise(id: "jump-1", name: "Jumping Jacks", image: ""), duration: 2),
+        ExerciseSet(id: "r-1", exercise: Exercise(id: "recovery", name: "Recovery", image: ""), duration: 1)
     ])
     
     func testFlow() {

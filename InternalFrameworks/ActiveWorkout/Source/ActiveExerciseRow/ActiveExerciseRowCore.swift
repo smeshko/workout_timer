@@ -20,7 +20,7 @@ public struct ActiveExerciseRowState: Identifiable, Equatable {
     (self.duration - secondsLeft) / self.duration
   }
   
-  public var id: UUID {
+  public var id: String {
     self.set.id
   }
   
