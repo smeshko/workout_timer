@@ -1,5 +1,6 @@
 import SwiftUI
 import ComposableArchitecture
+import WorkoutCore
 
 struct QuickTimerControlsView: View {
     let store: Store<QuickTimerControlsState, QuickTimerControlsAction>
@@ -21,7 +22,6 @@ struct QuickTimerControlsView: View {
                 } else {
                     Button("Pause", action: { viewStore.send(.pause) })
                         .oval()
-
                 }
             }
 
@@ -45,11 +45,12 @@ struct TimerControlsView_Previews: PreviewProvider {
 struct Oval: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .padding(20)
+            .padding([.vertical], 8)
+            .padding([.horizontal], 16)
             .foregroundColor(Color.white)
-            .background(Color(.systemOrange))
-            .cornerRadius(.infinity)
-            .shadow(color: Color.black.opacity(0.2), radius: 5)
+            .background(Color.brand3)
+            .cornerRadius(8)
+            .shadow(color: Color.black.opacity(0.4), radius: 5)
     }
 }
 

@@ -14,16 +14,16 @@ public enum QuickTimerAction: Equatable {
 }
 
 public struct QuickTimerState: Equatable {
-    var segments: [Segment] = []
-    var currentSegment: Segment? = nil
+    var segments: [QuickTimerSet] = []
+    var currentSegment: QuickTimerSet.Segment? = nil
     var totalTimeLeft: TimeInterval = 0
     var segmentTimeLeft: TimeInterval = 0
     
     var timerControlsState: QuickTimerControlsState
     var circuitPickerState: QuickExerciseBuilderState
     
-    public init(segments: [Segment] = [],
-                currentSegment: Segment? = nil,
+    public init(segments: [QuickTimerSet] = [],
+                currentSegment: QuickTimerSet.Segment? = nil,
                 totalTimeLeft: TimeInterval = 0,
                 segmentTimeLeft: TimeInterval = 0,
                 circuitPickerState: QuickExerciseBuilderState = QuickExerciseBuilderState(sets: 2, workoutTime: 60, breakTime: 20),
@@ -141,19 +141,25 @@ private extension QuickTimerState {
     }
     
     mutating func moveToNextSegment() {
-        guard let segment = currentSegment, let index = segments.firstIndex(of: segment), index != segments.count - 1 else { return }
-        currentSegment = segments[index + 1]
+        guard let segment = currentSegment, let currentSet = segments[segment], let index = segments.firstIndex(of: segment) else { return }
+        if segment.category == .workout {
+            currentSegment = currentSet.pause
+        } else {
+            if let newSet = segments[safe: index + 1] {
+                currentSegment = newSet.work
+            }
+        }
         segmentTimeLeft = currentSegment?.duration ?? 0
     }
     
     mutating func updateSegments() {
-        currentSegment = segments.first
+        currentSegment = segments.first?.work
         calculateInitialTime()
     }
     
     mutating func reset() {
         self = QuickTimerState()
-        currentSegment = segments.first
+        currentSegment = segments.first?.work
         calculateInitialTime()
     }
     
