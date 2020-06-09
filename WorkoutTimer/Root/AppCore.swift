@@ -8,9 +8,13 @@ import QuickTimer
 enum AppAction {
     case applicationDidStart
     case finishedWritingWorkouts(Result<Void, StorageError>)
+    case didToggleBar(isHidden: Bool)
 }
 
 struct AppState: Equatable {
+    
+    var isBarHidden: Bool = false
+    
     init() {
     }
 }
@@ -51,6 +55,8 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
         case .finishedWritingWorkouts(.success):
             break
             
+        case .didToggleBar(let isHidden):
+            break
         }
         
         return .none
