@@ -12,13 +12,7 @@
 
   },
   "testTargets" : [
-    {
-      "target" : {
-        "containerPath" : "container:WorkoutTimer.xcodeproj",
-        "identifier" : "B8DC6A2A2461D7F6003FC8D3",
-        "name" : "QuickTimerTests"
-      }
-    }
+
   ],
   "version" : 1
 }
