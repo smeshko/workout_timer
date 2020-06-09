@@ -1,0 +1,56 @@
+{
+  "configurations" : [
+    {
+      "id" : "AF6291CA-EB01-490D-AB37-CD43548C9BB2",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:WorkoutTimer.xcodeproj",
+      "identifier" : "B84B0AC22458126600A07A1E",
+      "name" : "WorkoutTimer"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:WorkoutTimer.xcodeproj",
+        "identifier" : "B8DC6A2A2461D7F6003FC8D3",
+        "name" : "QuickTimerTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:WorkoutTimer.xcodeproj",
+        "identifier" : "B8767464246AB7E700438A0F",
+        "name" : "WorkoutCoreTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:WorkoutTimer.xcodeproj",
+        "identifier" : "B87675B7246AD78900438A0F",
+        "name" : "WorkoutFeedTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:WorkoutTimer.xcodeproj",
+        "identifier" : "B8455D03246DB15D00C4FFAE",
+        "name" : "WorkoutDetailsTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:WorkoutTimer.xcodeproj",
+        "identifier" : "B839E37D2471BBC200FE5793",
+        "name" : "ActiveWorkoutTests"
+      }
+    }
+  ],
+  "version" : 1
+}
