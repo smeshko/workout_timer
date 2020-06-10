@@ -10,7 +10,7 @@ struct WorkoutView: View {
     var body: some View {
         ZStack(alignment: .topLeading) {
             RemoteImage(key: workout.image)
-                .frame(width: UIScreen.main.bounds.width, height: 240)
+                .frame(width: 375, height: 240)
                 .aspectRatio(contentMode: .fit)
             
             VStack(alignment: .leading, spacing: 4) {

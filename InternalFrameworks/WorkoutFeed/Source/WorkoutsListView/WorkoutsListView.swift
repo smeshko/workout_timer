@@ -5,7 +5,8 @@ import ComposableArchitecture
 
 struct WorkoutsListView: View {
     private let workouts: [Workout]
-    
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass: UserInterfaceSizeClass?
+
     init(workouts: [Workout]) {
         self.workouts = workouts
     }
@@ -15,7 +16,7 @@ struct WorkoutsListView: View {
             if workouts.isEmpty {
                 Text("Sorry, no workouts")
             } else {
-                ScrollView {
+                ScrollView(self.horizontalSizeClass == .compact ? .vertical : .horizontal) {
                     ForEach(workouts) { workout in
                         NavigationLink(destination: WorkoutDetailsView(workout: workout)) {
                             WorkoutView(workout: workout)

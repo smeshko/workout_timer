@@ -3,6 +3,7 @@ import ComposableArchitecture
 import WorkoutCore
 
 public struct WorkoutsFeedView: View {
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass: UserInterfaceSizeClass?
     
     let store: Store<WorkoutsFeedState, WorkoutsFeedAction>
     
@@ -13,22 +14,38 @@ public struct WorkoutsFeedView: View {
     public var body: some View {
         NavigationView {
             WithViewStore(store) { viewStore in
-                VStack {
-                    WithViewStore(self.store.scope(state: \.selectedCategory, action: WorkoutsFeedAction.workoutCategoryChanged)) { workoutTypeViewStore in
-                        
-                        Picker("Types", selection: workoutTypeViewStore.binding(send: { $0 })) {
+                Group {
+                    if self.horizontalSizeClass == .regular {
+                        ScrollView {
                             ForEach(viewStore.categories, id: \.id) { category in
-                                Text(category.name).tag(category)
+                                VStack(alignment: .leading, spacing: 8) {
+                                    Text(category.name)
+                                        .padding()
+                                        .font(.system(size: 16, weight: .semibold))
+                                    WorkoutsListView(workouts: category.workouts)
+                                }
                             }
                         }
-                        .padding([.leading, .trailing])
-                        .labelsHidden()
-                        .pickerStyle(SegmentedPickerStyle())
+                        .edgesIgnoringSafeArea(.leading)
+                    } else {
+                        VStack {
+                            WithViewStore(self.store.scope(state: \.selectedCategory, action: WorkoutsFeedAction.workoutCategoryChanged)) { workoutTypeViewStore in
+                                
+                                Picker("Types", selection: workoutTypeViewStore.binding(send: { $0 })) {
+                                    ForEach(viewStore.categories, id: \.id) { category in
+                                        Text(category.name).tag(category)
+                                    }
+                                }
+                                .padding([.leading, .trailing])
+                                .labelsHidden()
+                                .pickerStyle(SegmentedPickerStyle())
+                            }
+                            WorkoutsListView(workouts: viewStore.selectedCategory.workouts)
+                            Spacer()
+                        }
                     }
-                    WorkoutsListView(workouts: viewStore.selectedCategory.workouts)
-                        .navigationBarItems(trailing: EmptyView())
-                    Spacer()
                 }
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 .overlay(ActivityIndicator(isAnimating: viewStore.binding(get: \.isLoading, send: WorkoutsFeedAction.loadingIndicatorStoppedLoading)))
                 .onAppear {
                     viewStore.send(.beginNavigation)
@@ -56,13 +73,13 @@ struct WorkoutsFeedView_Previews: PreviewProvider {
 }
 
 struct ActivityIndicator: UIViewRepresentable {
-
+    
     @Binding var isAnimating: Bool
-
+    
     func makeUIView(context: UIViewRepresentableContext<ActivityIndicator>) -> UIActivityIndicatorView {
-        UIActivityIndicatorView(style: .large)
+        UIActivityIndicatorView(style: .medium)
     }
-
+    
     func updateUIView(_ uiView: UIActivityIndicatorView, context: UIViewRepresentableContext<ActivityIndicator>) {
         isAnimating ? uiView.startAnimating() : uiView.stopAnimating()
     }
