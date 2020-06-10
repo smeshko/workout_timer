@@ -4,37 +4,28 @@ import WorkoutCore
 
 struct QuickTimerControlsView: View {
     let store: Store<QuickTimerControlsState, QuickTimerControlsAction>
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass: UserInterfaceSizeClass?
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            if self.horizontalSizeClass == .regular {
-                VStack(spacing: 32, content: { self.buttonContent(viewStore) })
-            } else {
-                HStack(spacing: 32, content: { self.buttonContent(viewStore) })
-            }
-        }
-    }
-    
-    private func buttonContent(_ viewStore: ViewStore<QuickTimerControlsState, QuickTimerControlsAction>) -> some View {
-        Group {
-            if viewStore.timerState.isFinished {
-                Button("Start", action: { viewStore.send(.start) })
-                    .oval()
-                
-            } else if viewStore.timerState == .paused {
-                Button("Continue", action: { viewStore.send(.start) })
-                    .oval()
-                
-                Button("Finish", action: { viewStore.send(.stop) })
-                    .oval()
+            SizeClassAdaptingView(spacing: 32, .horizontal, .vertical) {
+                if viewStore.timerState.isFinished {
+                    Button("Start", action: { viewStore.send(.start) })
+                        .oval()
+                    
+                } else if viewStore.timerState == .paused {
+                    Button("Continue", action: { viewStore.send(.start) })
+                        .oval()
+                    
+                    Button("Finish", action: { viewStore.send(.stop) })
+                        .oval()
 
-            } else {
-                Button("Pause", action: { viewStore.send(.pause) })
-                    .oval()
+                } else {
+                    Button("Pause", action: { viewStore.send(.pause) })
+                        .oval()
+                }
             }
+            .font(.system(size: 22))
         }
-        .font(.system(size: 22))
     }
 }
 
@@ -50,7 +41,7 @@ struct TimerControlsView_Previews: PreviewProvider {
     }
 }
 
-struct Oval: ViewModifier {
+private struct Oval: ViewModifier {
     func body(content: Content) -> some View {
         content
             .padding([.vertical], 8)
@@ -62,7 +53,7 @@ struct Oval: ViewModifier {
     }
 }
 
-extension Button {
+private extension Button {
     func oval() -> some View {
         self.modifier(Oval())
     }

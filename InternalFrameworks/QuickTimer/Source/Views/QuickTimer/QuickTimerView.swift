@@ -25,10 +25,26 @@ public struct QuickTimerView: View {
                             .fillColor(viewStore.currentSegment?.category == .workout ? .brand1 : .brand2)
                             .edgesIgnoringSafeArea(self.progressIgnoredSafeAreas)
                         
-                        if self.horizontalSizeClass == .compact {
-                            VStack(content: { self.runningTimerContent(viewStore) })
-                        } else {
-                            HStack(content: { self.runningTimerContent(viewStore) })
+                        SizeClassAdaptingView {
+                            Text("\(viewStore.state.currentSetIndex) / \(viewStore.segments.count)")
+                                .font(.system(size: 32))
+                                .shadow(color: .black, radius: 4, x: 5, y: 5)
+                            if viewStore.currentSegment?.category == .workout {
+                                Text("Work")
+                                    .font(.system(size: 16))
+                                    .foregroundColor(.gray)
+                            } else {
+                                Text("Recover")
+                            }
+                            
+                            Spacer()
+                            
+                            Text(viewStore.segmentTimeLeft.formattedTimeLeft)
+                                .font(.system(size: 90, design: .monospaced))
+                                .shadow(color: .black, radius: 6, x: 5, y: 5)
+                            Spacer()
+                            QuickTimerControlsView(store: self.store.scope(state: \.timerControlsState, action: QuickTimerAction.timerControlsUpdatedState))
+                                .padding()
                         }
                         
                     } else {
@@ -67,30 +83,6 @@ public struct QuickTimerView: View {
     private var progressIgnoredSafeAreas: Edge.Set {
         horizontalSizeClass == .compact ? .top : .horizontal
     }
-    
-    private func runningTimerContent(_ viewStore: ViewStore<QuickTimerState, QuickTimerAction>) -> some View {
-        Group {
-            Text("\(viewStore.state.currentSetIndex) / \(viewStore.segments.count)")
-                .font(.system(size: 32))
-                .shadow(color: .black, radius: 4, x: 5, y: 5)
-            if viewStore.currentSegment?.category == .workout {
-                Text("Work")
-                    .font(.system(size: 16))
-                    .foregroundColor(.gray)
-            } else {
-                Text("Recover")
-            }
-            
-            Spacer()
-            
-            Text(viewStore.segmentTimeLeft.formattedTimeLeft)
-                .font(.system(size: 90, design: .monospaced))
-                .shadow(color: .black, radius: 6, x: 5, y: 5)
-            Spacer()
-            QuickTimerControlsView(store: self.store.scope(state: \.timerControlsState, action: QuickTimerAction.timerControlsUpdatedState))
-                .padding()
-        }
-    }
 }
 
 struct TimerView_Previews: PreviewProvider {
@@ -104,7 +96,7 @@ struct TimerView_Previews: PreviewProvider {
                 soundClient: .mock
             )
         )
-
+        
         return Group {
             QuickTimerView(store: store)
                 .previewDevice(.iPhone8)
@@ -121,7 +113,7 @@ private extension QuickTimerState {
         guard let segment = currentSegment else { return 1 }
         return (segments.firstIndex(of: segment) ?? 0) + 1
     }
-
+    
     var segmentProgress: Double {
         Double(segmentTimeLeft) / Double(currentSegment?.duration ?? 0)
     }

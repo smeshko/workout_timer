@@ -76,6 +76,7 @@
 		B8BBF957248FCFE000653452 /* PreviewProvider-Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBF956248FCFE000653452 /* PreviewProvider-Mocks.swift */; };
 		B8C7D811246A8495006B95E3 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C7D810246A8495006B95E3 /* RootView.swift */; };
 		B8C82860246BE10B00B1113B /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C8285F246BE10B00B1113B /* Workout.swift */; };
+		B8CA6A2424916C3D00E4EEB5 /* SizeClassAdaptingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CA6A2324916C3D00E4EEB5 /* SizeClassAdaptingView.swift */; };
 		B8CEBFCD246D39F200A88450 /* LocalStorageClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D9EA5246D2ED500DED0F7 /* LocalStorageClient.swift */; };
 		B8CEBFD0246D855700A88450 /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CEBFCF246D855700A88450 /* WorkoutView.swift */; };
 		B8DC5994246054E1003FC8D3 /* AppCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DC5993246054E1003FC8D3 /* AppCore.swift */; };
@@ -348,6 +349,7 @@
 		B8BBF956248FCFE000653452 /* PreviewProvider-Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PreviewProvider-Mocks.swift"; sourceTree = "<group>"; };
 		B8C7D810246A8495006B95E3 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		B8C8285F246BE10B00B1113B /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
+		B8CA6A2324916C3D00E4EEB5 /* SizeClassAdaptingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeClassAdaptingView.swift; sourceTree = "<group>"; };
 		B8CEBFCF246D855700A88450 /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
 		B8DC5993246054E1003FC8D3 /* AppCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCore.swift; sourceTree = "<group>"; };
 		B8DC5995246055A3003FC8D3 /* QuickTimerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerCore.swift; sourceTree = "<group>"; };
@@ -794,6 +796,7 @@
 			children = (
 				B89C1C13248BC9300076E8DA /* ProgressView.swift */,
 				B89C1C1B248C362A0076E8DA /* RemoteImage.swift */,
+				B8CA6A2324916C3D00E4EEB5 /* SizeClassAdaptingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1424,6 +1427,7 @@
 				B8A041A624890FAB0009A32D /* WorkoutCategory.swift in Sources */,
 				B8B6FE4D246ADBF800B22568 /* Exercise.swift in Sources */,
 				B8CEBFCD246D39F200A88450 /* LocalStorageClient.swift in Sources */,
+				B8CA6A2424916C3D00E4EEB5 /* SizeClassAdaptingView.swift in Sources */,
 				B83FC061248D3290007531CF /* Collection-Safe.swift in Sources */,
 				B8C82860246BE10B00B1113B /* Workout.swift in Sources */,
 				B8B21DF4247466620085164A /* String-FormattedTime.swift in Sources */,
