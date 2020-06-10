@@ -4,6 +4,8 @@ import WorkoutCore
 
 public struct QuickTimerView: View {
     
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass: UserInterfaceSizeClass?
+    
     let store: Store<QuickTimerState, QuickTimerAction>
     
     public init(store: Store<QuickTimerState, QuickTimerAction>) {
@@ -13,50 +15,38 @@ public struct QuickTimerView: View {
     public var body: some View {
         NavigationView {
             WithViewStore(self.store) { viewStore in
-                ZStack(alignment: .bottom) {
+                ZStack(alignment: self.zStackAlignment) {
                     if viewStore.timerControlsState.timerState == .running || viewStore.timerControlsState.timerState == .paused {
                         
                         ProgressView(value: viewStore.binding(
                             get: \.segmentProgress,
                             send: QuickTimerAction.progressBarDidUpdate
-                        ), axis: .vertical)
-                            .fillColor(
-                                viewStore.currentSegment?.category == .workout ?
-                                .brand1 : .brand2
-                            )
-                            .edgesIgnoringSafeArea(.top)
+                        ), axis: self.progressAxis)
+                            .fillColor(viewStore.currentSegment?.category == .workout ? .brand1 : .brand2)
+                            .edgesIgnoringSafeArea(self.progressIgnoredSafeAreas)
                         
-                        VStack {
-                            Text("\(viewStore.state.currentSetIndex) / \(viewStore.segments.count)")
-                                .font(.system(size: 32))
-                                .shadow(color: .black, radius: 4, x: 5, y: 5)
-                            if viewStore.currentSegment?.category == .workout {
-                                Text("Work")
-                                    .font(.system(size: 16))
-                                    .foregroundColor(.gray)
-                            } else {
-                                Text("Recover")
-                            }
-                            
-                            Spacer()
-                            
-                            Text(viewStore.segmentTimeLeft.formattedTimeLeft)
-                                .font(.system(size: 90, design: .monospaced))
-                                .shadow(color: .black, radius: 6, x: 5, y: 5)
-                            Spacer()
+                        if self.horizontalSizeClass == .compact {
+                            VStack(content: { self.runningTimerContent(viewStore) })
+                        } else {
+                            HStack(content: { self.runningTimerContent(viewStore) })
                         }
+                        
                     } else {
                         VStack {
                             Spacer()
+                            
                             QuickExerciseBuilderView(store: self.store.scope(state: \.circuitPickerState, action: QuickTimerAction.circuitPickerUpdatedValues))
                                 .padding()
+                            
                             Spacer()
+                            
+                            QuickTimerControlsView(store: self.store.scope(state: \.timerControlsState, action: QuickTimerAction.timerControlsUpdatedState))
+                                .padding()
                         }
                     }
-                    QuickTimerControlsView(store: self.store.scope(state: \.timerControlsState, action: QuickTimerAction.timerControlsUpdatedState))
-                        .padding()
                 }
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+                .navigationBarTitle("")
                 .navigationBarHidden(true)
                 .onAppear {
                     viewStore.send(.setNavigation)
@@ -65,21 +55,64 @@ public struct QuickTimerView: View {
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
+    
+    private var zStackAlignment: Alignment {
+        horizontalSizeClass == .compact ? .bottom : .leading
+    }
+    
+    private var progressAxis: Axis {
+        horizontalSizeClass == .compact ? .vertical : .horizontal
+    }
+    
+    private var progressIgnoredSafeAreas: Edge.Set {
+        horizontalSizeClass == .compact ? .top : .horizontal
+    }
+    
+    private func runningTimerContent(_ viewStore: ViewStore<QuickTimerState, QuickTimerAction>) -> some View {
+        Group {
+            Text("\(viewStore.state.currentSetIndex) / \(viewStore.segments.count)")
+                .font(.system(size: 32))
+                .shadow(color: .black, radius: 4, x: 5, y: 5)
+            if viewStore.currentSegment?.category == .workout {
+                Text("Work")
+                    .font(.system(size: 16))
+                    .foregroundColor(.gray)
+            } else {
+                Text("Recover")
+            }
+            
+            Spacer()
+            
+            Text(viewStore.segmentTimeLeft.formattedTimeLeft)
+                .font(.system(size: 90, design: .monospaced))
+                .shadow(color: .black, radius: 6, x: 5, y: 5)
+            Spacer()
+            QuickTimerControlsView(store: self.store.scope(state: \.timerControlsState, action: QuickTimerAction.timerControlsUpdatedState))
+                .padding()
+        }
+    }
 }
 
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
-        QuickTimerView(
-            store: Store<QuickTimerState, QuickTimerAction>(
-                initialState: QuickTimerState(),
-                reducer: quickTimerReducer,
-                environment: QuickTimerEnvironment(
-                    uuid: UUID.init,
-                    mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-                    soundClient: .mock
-                )
+        let store = Store<QuickTimerState, QuickTimerAction>(
+            initialState: QuickTimerState(),
+            reducer: quickTimerReducer,
+            environment: QuickTimerEnvironment(
+                uuid: UUID.init,
+                mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
+                soundClient: .mock
             )
         )
+
+        return Group {
+            QuickTimerView(store: store)
+                .previewDevice(.iPhone8)
+            
+            QuickTimerView(store: store)
+                .previewDevice(PreviewDevice(rawValue: "iPad Pro (12.9-inch) (3rd generation)"))
+            
+        }
     }
 }
 

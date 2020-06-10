@@ -75,11 +75,11 @@ public struct ActiveWorkoutView: View {
                     }
                 }
             }
+            .navigationBarTitle("")
+            .navigationBarHidden(true)
             .onAppear {
                 viewStore.send(.workoutBegin)
             }
-            .navigationBarTitle("")
-            .navigationBarHidden(true)
         }
     }
 }
