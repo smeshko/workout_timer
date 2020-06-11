@@ -19,7 +19,9 @@ public struct WebClient {
         
         return URLSession.shared
             .dataTaskPublisher(for: url)
-            .map { $0.data }
+            .map {
+                $0.data
+            }
             .mapError { _ in NetworkError.failedConnection }
             .eraseToEffect()
     }

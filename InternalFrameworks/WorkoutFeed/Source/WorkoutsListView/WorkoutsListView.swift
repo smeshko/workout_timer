@@ -12,11 +12,12 @@ struct WorkoutsListView: View {
     }
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             if workouts.isEmpty {
                 Text("Sorry, no workouts")
             } else {
-                ScrollView(self.horizontalSizeClass == .compact ? .vertical : .horizontal) {
+//                ScrollView(self.horizontalSizeClass == .compact ? .vertical : .horizontal) {
+                SizeClassAdaptingView(.vertical, .horizontal) {
                     ForEach(workouts) { workout in
                         NavigationLink(destination: WorkoutDetailsView(workout: workout)) {
                             WorkoutView(workout: workout)

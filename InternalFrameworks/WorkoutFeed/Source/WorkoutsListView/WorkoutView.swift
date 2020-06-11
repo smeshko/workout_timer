@@ -4,25 +4,39 @@ import ComposableArchitecture
 import WorkoutDetails
 
 struct WorkoutView: View {
+    private struct Constants {
+        static let regularImageWidth: CGFloat = 375
+    }
     
     let workout: Workout
-    
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass: UserInterfaceSizeClass?
+
     var body: some View {
-        ZStack(alignment: .topLeading) {
-            RemoteImage(key: workout.image)
-                .frame(width: 375, height: 240)
-                .aspectRatio(contentMode: .fit)
-            
-            VStack(alignment: .leading, spacing: 4) {
-                Text(workout.name)
-                    .font(.system(size: 24, weight: .bold))
-                Text(workout.duration)
-                    .font(.system(size: 32, weight: .heavy))
-                Spacer()
-                Text("\(workout.count) exercises")
-                    .font(.system(size: 16, weight: .semibold))
+        GeometryReader { geometry in
+            ZStack(alignment: .topLeading) {
+                RemoteImage(key: self.workout.image)
+                    .aspectRatio(contentMode: .fit)
+                
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(self.workout.name)
+                        .font(.system(size: 24, weight: .bold))
+                    Text(self.workout.duration)
+                        .font(.system(size: 32, weight: .heavy))
+                    Spacer()
+                    Text("\(self.workout.count) exercises")
+                        .font(.system(size: 16, weight: .semibold))
+                }
+                .padding()
             }
-            .padding()
+            .frame(width: self.imageWidth(in: geometry), height: 240)
+        }
+    }
+    
+    func imageWidth(in geometry: GeometryProxy) -> CGFloat {
+        if horizontalSizeClass == .compact {
+            return geometry.size.width
+        } else {
+            return Constants.regularImageWidth
         }
     }
 }
@@ -49,13 +63,5 @@ private extension Workout {
     
     var count: String {
         "\(sets.filter { $0.name != Exercise.recovery.name }.count)"
-    }
-}
-
-private extension Array {
-    func appending(contentsOf: Array) -> Array {
-        var copy = self
-        copy.append(contentsOf: contentsOf)
-        return copy
     }
 }

@@ -18,11 +18,8 @@ public struct QuickTimerView: View {
                 ZStack(alignment: self.zStackAlignment) {
                     if viewStore.timerControlsState.timerState == .running || viewStore.timerControlsState.timerState == .paused {
                         
-                        ProgressView(value: viewStore.binding(
-                            get: \.segmentProgress,
-                            send: QuickTimerAction.progressBarDidUpdate
-                        ), axis: self.progressAxis)
-                            .fillColor(viewStore.currentSegment?.category == .workout ? .brand1 : .brand2)
+                        ProgressView(viewStore: viewStore, axis: self.progressAxis)
+                            .fillColor(viewStore.currentSegment?.category.progressColor)
                             .edgesIgnoringSafeArea(self.progressIgnoredSafeAreas)
                         
                         SizeClassAdaptingView {
@@ -61,7 +58,6 @@ public struct QuickTimerView: View {
                         }
                     }
                 }
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 .navigationBarTitle("")
                 .navigationBarHidden(true)
                 .onAppear {
@@ -85,6 +81,33 @@ public struct QuickTimerView: View {
     }
 }
 
+private extension ProgressView {
+    
+    init(viewStore:  ViewStore<QuickTimerState, QuickTimerAction>, axis: Axis) {
+        self.init(value: viewStore.binding(
+            get: \.segmentProgress,
+            send: QuickTimerAction.progressBarDidUpdate
+        ), axis: axis)
+    }
+}
+
+private extension QuickTimerSet.Segment.Category {
+    var progressColor: Color {
+        self == .workout ? .brand1 : .brand2
+    }
+}
+
+private extension QuickTimerState {
+    var currentSetIndex: Int {
+        guard let segment = currentSegment else { return 1 }
+        return (segments.firstIndex(of: segment) ?? 0) + 1
+    }
+    
+    var segmentProgress: Double {
+        Double(segmentTimeLeft) / Double(currentSegment?.duration ?? 0)
+    }
+}
+
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
         let store = Store<QuickTimerState, QuickTimerAction>(
@@ -105,16 +128,5 @@ struct TimerView_Previews: PreviewProvider {
                 .previewDevice(PreviewDevice(rawValue: "iPad Pro (12.9-inch) (3rd generation)"))
             
         }
-    }
-}
-
-private extension QuickTimerState {
-    var currentSetIndex: Int {
-        guard let segment = currentSegment else { return 1 }
-        return (segments.firstIndex(of: segment) ?? 0) + 1
-    }
-    
-    var segmentProgress: Double {
-        Double(segmentTimeLeft) / Double(currentSegment?.duration ?? 0)
     }
 }

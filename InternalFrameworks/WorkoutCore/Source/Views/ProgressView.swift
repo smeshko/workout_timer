@@ -3,8 +3,8 @@ import SwiftUI
 public struct ProgressView: View {
     @Binding var value: Double
     private let axis: Axis
-    private var fillColor: Color = Color(.systemTeal)
-    private var remainingColor: Color = .clear
+    private var fillColor: Color? = Color(.systemTeal)
+    private var remainingColor: Color? = .clear
     
     public init(value: Binding<Double>, axis: Axis) {
         self._value = value
@@ -35,13 +35,13 @@ public struct ProgressView: View {
         }
     }
     
-    public func fillColor(_ color: Color) -> Self {
+    public func fillColor(_ color: Color?) -> Self {
         var copy = self
         copy.fillColor = color
         return copy
     }
     
-    public func remainingColor(_ color: Color) -> Self {
+    public func remainingColor(_ color: Color?) -> Self {
         var copy = self
         copy.remainingColor = color
         return copy
