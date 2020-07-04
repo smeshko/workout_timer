@@ -1,5 +1,4 @@
 import SwiftUI
-import ActiveWorkout
 import WorkoutCore
 import ComposableArchitecture
 

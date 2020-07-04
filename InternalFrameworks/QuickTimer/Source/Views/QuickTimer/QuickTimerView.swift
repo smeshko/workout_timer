@@ -18,7 +18,7 @@ public struct QuickTimerView: View {
                 ZStack(alignment: self.zStackAlignment) {
                     if viewStore.timerControlsState.timerState == .running || viewStore.timerControlsState.timerState == .paused {
                         
-                        ProgressView(viewStore: viewStore, axis: self.progressAxis)
+                        WorkoutCore.ProgressView(viewStore: viewStore, axis: self.progressAxis)
                             .fillColor(viewStore.currentSegment?.category.progressColor)
                             .edgesIgnoringSafeArea(self.progressIgnoredSafeAreas)
                         
@@ -81,7 +81,7 @@ public struct QuickTimerView: View {
     }
 }
 
-private extension ProgressView {
+private extension WorkoutCore.ProgressView {
     
     init(viewStore:  ViewStore<QuickTimerState, QuickTimerAction>, axis: Axis) {
         self.init(value: viewStore.binding(
