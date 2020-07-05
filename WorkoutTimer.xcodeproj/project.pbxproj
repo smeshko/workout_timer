@@ -19,6 +19,7 @@
 		B82BC22B24B0AC4E00C69FEA /* ActiveWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B839E3962471BBE600FE5793 /* ActiveWorkoutView.swift */; };
 		B82BC22C24B0AC4E00C69FEA /* ActiveExerciseRowCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B21CAB24727FC60085164A /* ActiveExerciseRowCore.swift */; };
 		B82C8BC424B1FBE500DB914D /* WorkoutCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82C8BC324B1FBE500DB914D /* WorkoutCardView.swift */; };
+		B82C8BC624B2296F00DB914D /* GlobalTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82C8BC524B2296F00DB914D /* GlobalTabBar.swift */; };
 		B83907042462A4DF00676B3D /* ValuePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83907032462A4DF00676B3D /* ValuePicker.swift */; };
 		B83907062462A4F400676B3D /* PickerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83907052462A4F400676B3D /* PickerCore.swift */; };
 		B839E36E2471B7A300FE5793 /* UIImage-Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = B839E36D2471B7A300FE5793 /* UIImage-Asset.swift */; };
@@ -237,6 +238,7 @@
 /* Begin PBXFileReference section */
 		B8244B00248D584600DFC800 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		B82C8BC324B1FBE500DB914D /* WorkoutCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCardView.swift; sourceTree = "<group>"; };
+		B82C8BC524B2296F00DB914D /* GlobalTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalTabBar.swift; sourceTree = "<group>"; };
 		B83907032462A4DF00676B3D /* ValuePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuePicker.swift; sourceTree = "<group>"; };
 		B83907052462A4F400676B3D /* PickerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCore.swift; sourceTree = "<group>"; };
 		B839E36D2471B7A300FE5793 /* UIImage-Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage-Asset.swift"; sourceTree = "<group>"; };
@@ -733,6 +735,7 @@
 				B83FC060248D3290007531CF /* Collection-Safe.swift */,
 				B8BBF956248FCFE000653452 /* PreviewProvider-Mocks.swift */,
 				B86CFAC12490DF9300960CFB /* PreviewDevice-Models.swift */,
+				B82C8BC524B2296F00DB914D /* GlobalTabBar.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1254,6 +1257,7 @@
 			files = (
 				B89C1C1C248C362A0076E8DA /* RemoteImage.swift in Sources */,
 				B83FC05A248D1EE3007531CF /* Color-Custom.swift in Sources */,
+				B82C8BC624B2296F00DB914D /* GlobalTabBar.swift in Sources */,
 				B8CA6A262491888900E4EEB5 /* ActivityIndicator.swift in Sources */,
 				B8B79CF62486BFDC008B92D8 /* EndpointProtocol.swift in Sources */,
 				B8B79CF824877325008B92D8 /* Data-Decode.swift in Sources */,
