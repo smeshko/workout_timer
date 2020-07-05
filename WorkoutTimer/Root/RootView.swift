@@ -22,7 +22,7 @@ struct RootView: View {
                         Text("Quick timer")
                 }
             }
-            .accentColor(.primary)
+            .accentColor(.appPrimary)
             .onAppear {
                 viewStore.send(.applicationDidStart)
             }

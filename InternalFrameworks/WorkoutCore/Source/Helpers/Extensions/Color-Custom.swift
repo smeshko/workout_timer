@@ -9,11 +9,14 @@ extension Color {
     public static let brand4: Color = Color("brand4", bundle: bundle)
     public static let brand5: Color = Color("brand5", bundle: bundle)
     
-    public static let primary: Color = Color("brand1", bundle: bundle)
-    public static let secondary: Color = Color("brand2", bundle: bundle)
-    public static let background: Color = Color("brand3", bundle: bundle)
-    public static let success: Color = Color("brand4", bundle: bundle)
-    public static let error: Color = Color("brand5", bundle: bundle)
-    public static let textPrimary: Color = Color("brand1", bundle: bundle)
-    public static let textSecondary: Color = Color("brand2", bundle: bundle)
+    public static let appPrimary: Color = Color("primary", bundle: bundle)
+    public static let appSecondary: Color = Color("secondary", bundle: bundle)
+    public static let appBackground: Color = Color("background", bundle: bundle)
+    public static let appSuccess: Color = Color("success", bundle: bundle)
+    public static let appError: Color = Color("error", bundle: bundle)
+    public static let appTextPrimary: Color = Color("textPrimary", bundle: bundle)
+    public static let appTextSecondary: Color = Color("textSecondary", bundle: bundle)
+    public static let appWhite: Color = Color("white", bundle: bundle)
+    public static let appBlack: Color = Color("black", bundle: bundle)
+
 }

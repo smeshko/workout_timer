@@ -18,6 +18,7 @@
 		B82BC22A24B0AC4E00C69FEA /* ActiveWorkoutCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B839E3942471BBDA00FE5793 /* ActiveWorkoutCore.swift */; };
 		B82BC22B24B0AC4E00C69FEA /* ActiveWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B839E3962471BBE600FE5793 /* ActiveWorkoutView.swift */; };
 		B82BC22C24B0AC4E00C69FEA /* ActiveExerciseRowCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B21CAB24727FC60085164A /* ActiveExerciseRowCore.swift */; };
+		B82C8BC424B1FBE500DB914D /* WorkoutCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82C8BC324B1FBE500DB914D /* WorkoutCardView.swift */; };
 		B83907042462A4DF00676B3D /* ValuePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83907032462A4DF00676B3D /* ValuePicker.swift */; };
 		B83907062462A4F400676B3D /* PickerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83907052462A4F400676B3D /* PickerCore.swift */; };
 		B839E36E2471B7A300FE5793 /* UIImage-Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = B839E36D2471B7A300FE5793 /* UIImage-Asset.swift */; };
@@ -235,6 +236,7 @@
 
 /* Begin PBXFileReference section */
 		B8244B00248D584600DFC800 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		B82C8BC324B1FBE500DB914D /* WorkoutCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCardView.swift; sourceTree = "<group>"; };
 		B83907032462A4DF00676B3D /* ValuePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuePicker.swift; sourceTree = "<group>"; };
 		B83907052462A4F400676B3D /* PickerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCore.swift; sourceTree = "<group>"; };
 		B839E36D2471B7A300FE5793 /* UIImage-Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage-Asset.swift"; sourceTree = "<group>"; };
@@ -622,6 +624,7 @@
 			children = (
 				B8B6FE4A246ADB2A00B22568 /* WorkoutsListView.swift */,
 				B8CEBFCF246D855700A88450 /* WorkoutView.swift */,
+				B82C8BC324B1FBE500DB914D /* WorkoutCardView.swift */,
 			);
 			path = WorkoutsListView;
 			sourceTree = "<group>";
@@ -1286,6 +1289,7 @@
 			files = (
 				B8B6FE4B246ADB2A00B22568 /* WorkoutsListView.swift in Sources */,
 				B83D9EA1246C728C00DED0F7 /* WorkoutsFeedView.swift in Sources */,
+				B82C8BC424B1FBE500DB914D /* WorkoutCardView.swift in Sources */,
 				B83D72842487A48D0075DA48 /* WorkoutsFetchService.swift in Sources */,
 				B83D9EA3246C72B700DED0F7 /* WorkoutsFeedCore.swift in Sources */,
 				B8CEBFD0246D855700A88450 /* WorkoutView.swift in Sources */,
