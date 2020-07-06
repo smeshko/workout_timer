@@ -18,8 +18,14 @@
 		B82BC22A24B0AC4E00C69FEA /* ActiveWorkoutCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B839E3942471BBDA00FE5793 /* ActiveWorkoutCore.swift */; };
 		B82BC22B24B0AC4E00C69FEA /* ActiveWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B839E3962471BBE600FE5793 /* ActiveWorkoutView.swift */; };
 		B82BC22C24B0AC4E00C69FEA /* ActiveExerciseRowCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B21CAB24727FC60085164A /* ActiveExerciseRowCore.swift */; };
-		B82C8BC424B1FBE500DB914D /* WorkoutCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82C8BC324B1FBE500DB914D /* WorkoutCardView.swift */; };
 		B82C8BC624B2296F00DB914D /* GlobalTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82C8BC524B2296F00DB914D /* GlobalTabBar.swift */; };
+		B82C8BD624B22C0100DB914D /* Home.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B82C8BCD24B22C0100DB914D /* Home.framework */; };
+		B82C8BDD24B22C0100DB914D /* HomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82C8BDC24B22C0100DB914D /* HomeTests.swift */; };
+		B82C8BDF24B22C0100DB914D /* Home.h in Headers */ = {isa = PBXBuildFile; fileRef = B82C8BCF24B22C0100DB914D /* Home.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B82C8BE224B22C0100DB914D /* Home.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B82C8BCD24B22C0100DB914D /* Home.framework */; };
+		B82C8BE324B22C0100DB914D /* Home.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B82C8BCD24B22C0100DB914D /* Home.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B82C8BEC24B22C2000DB914D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82C8BEB24B22C2000DB914D /* HomeView.swift */; };
+		B82C8BED24B22C2F00DB914D /* WorkoutCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82C8BC324B1FBE500DB914D /* WorkoutCardView.swift */; };
 		B83907042462A4DF00676B3D /* ValuePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83907032462A4DF00676B3D /* ValuePicker.swift */; };
 		B83907062462A4F400676B3D /* PickerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83907052462A4F400676B3D /* PickerCore.swift */; };
 		B839E36E2471B7A300FE5793 /* UIImage-Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = B839E36D2471B7A300FE5793 /* UIImage-Asset.swift */; };
@@ -124,6 +130,27 @@
 			remoteGlobalIDString = B87675AF246AD78900438A0F;
 			remoteInfo = WorkoutFeed;
 		};
+		B82C8BD724B22C0100DB914D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B84B0ABB2458126600A07A1E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B82C8BCC24B22C0100DB914D;
+			remoteInfo = Home;
+		};
+		B82C8BD924B22C0100DB914D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B84B0ABB2458126600A07A1E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B84B0AC22458126600A07A1E;
+			remoteInfo = WorkoutTimer;
+		};
+		B82C8BE024B22C0100DB914D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B84B0ABB2458126600A07A1E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B82C8BCC24B22C0100DB914D;
+			remoteInfo = Home;
+		};
 		B8455D06246DB15D00C4FFAE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B84B0ABB2458126600A07A1E /* Project object */;
@@ -198,6 +225,7 @@
 				B8455D12246DB15D00C4FFAE /* WorkoutDetails.framework in Embed Frameworks */,
 				B87675C6246AD78900438A0F /* WorkoutFeed.framework in Embed Frameworks */,
 				B876744C246AB6A500438A0F /* WorkoutCore.framework in Embed Frameworks */,
+				B82C8BE324B22C0100DB914D /* Home.framework in Embed Frameworks */,
 				B8DC59B224605E38003FC8D3 /* QuickTimer.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -239,6 +267,13 @@
 		B8244B00248D584600DFC800 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		B82C8BC324B1FBE500DB914D /* WorkoutCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCardView.swift; sourceTree = "<group>"; };
 		B82C8BC524B2296F00DB914D /* GlobalTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalTabBar.swift; sourceTree = "<group>"; };
+		B82C8BCD24B22C0100DB914D /* Home.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Home.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B82C8BCF24B22C0100DB914D /* Home.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Home.h; sourceTree = "<group>"; };
+		B82C8BD024B22C0100DB914D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B82C8BD524B22C0100DB914D /* HomeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HomeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B82C8BDC24B22C0100DB914D /* HomeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTests.swift; sourceTree = "<group>"; };
+		B82C8BDE24B22C0100DB914D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B82C8BEB24B22C2000DB914D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B83907032462A4DF00676B3D /* ValuePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuePicker.swift; sourceTree = "<group>"; };
 		B83907052462A4F400676B3D /* PickerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCore.swift; sourceTree = "<group>"; };
 		B839E36D2471B7A300FE5793 /* UIImage-Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage-Asset.swift"; sourceTree = "<group>"; };
@@ -325,6 +360,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B82C8BCA24B22C0100DB914D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B82C8BD224B22C0100DB914D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B82C8BD624B22C0100DB914D /* Home.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B8455CF9246DB15D00C4FFAE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -348,6 +398,7 @@
 				B8455D11246DB15D00C4FFAE /* WorkoutDetails.framework in Frameworks */,
 				B87675C5246AD78900438A0F /* WorkoutFeed.framework in Frameworks */,
 				B876744B246AB6A500438A0F /* WorkoutCore.framework in Frameworks */,
+				B82C8BE224B22C0100DB914D /* Home.framework in Frameworks */,
 				B8DC59B124605E38003FC8D3 /* QuickTimer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -405,6 +456,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B82C8BCE24B22C0100DB914D /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B82C8BEA24B22C1000DB914D /* HomeView */,
+				B82C8BCF24B22C0100DB914D /* Home.h */,
+				B82C8BD024B22C0100DB914D /* Info.plist */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B82C8BDB24B22C0100DB914D /* HomeTests */ = {
+			isa = PBXGroup;
+			children = (
+				B82C8BDC24B22C0100DB914D /* HomeTests.swift */,
+				B82C8BDE24B22C0100DB914D /* Info.plist */,
+			);
+			path = HomeTests;
+			sourceTree = "<group>";
+		};
+		B82C8BEA24B22C1000DB914D /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				B82C8BEB24B22C2000DB914D /* HomeView.swift */,
+				B82C8BC324B1FBE500DB914D /* WorkoutCardView.swift */,
+			);
+			path = HomeView;
+			sourceTree = "<group>";
+		};
 		B839E36C2471B6DE00FE5793 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -521,6 +600,8 @@
 			children = (
 				B84B0AC52458126700A07A1E /* WorkoutTimer */,
 				B8FCFDF9246AB2CE005C9A89 /* InternalFrameworks */,
+				B82C8BCE24B22C0100DB914D /* Home */,
+				B82C8BDB24B22C0100DB914D /* HomeTests */,
 				B84B0AC42458126700A07A1E /* Products */,
 				B8DC59C524605F99003FC8D3 /* Frameworks */,
 			);
@@ -538,6 +619,8 @@
 				B87675B8246AD78900438A0F /* WorkoutFeedTests.xctest */,
 				B8455CFC246DB15D00C4FFAE /* WorkoutDetails.framework */,
 				B8455D04246DB15D00C4FFAE /* WorkoutDetailsTests.xctest */,
+				B82C8BCD24B22C0100DB914D /* Home.framework */,
+				B82C8BD524B22C0100DB914D /* HomeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -626,7 +709,6 @@
 			children = (
 				B8B6FE4A246ADB2A00B22568 /* WorkoutsListView.swift */,
 				B8CEBFCF246D855700A88450 /* WorkoutView.swift */,
-				B82C8BC324B1FBE500DB914D /* WorkoutCardView.swift */,
 			);
 			path = WorkoutsListView;
 			sourceTree = "<group>";
@@ -852,6 +934,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		B82C8BC824B22C0100DB914D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B82C8BDF24B22C0100DB914D /* Home.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B8455CF7246DB15D00C4FFAE /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -883,6 +973,43 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		B82C8BCC24B22C0100DB914D /* Home */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B82C8BE424B22C0100DB914D /* Build configuration list for PBXNativeTarget "Home" */;
+			buildPhases = (
+				B82C8BC824B22C0100DB914D /* Headers */,
+				B82C8BC924B22C0100DB914D /* Sources */,
+				B82C8BCA24B22C0100DB914D /* Frameworks */,
+				B82C8BCB24B22C0100DB914D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Home;
+			productName = Home;
+			productReference = B82C8BCD24B22C0100DB914D /* Home.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		B82C8BD424B22C0100DB914D /* HomeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B82C8BE724B22C0100DB914D /* Build configuration list for PBXNativeTarget "HomeTests" */;
+			buildPhases = (
+				B82C8BD124B22C0100DB914D /* Sources */,
+				B82C8BD224B22C0100DB914D /* Frameworks */,
+				B82C8BD324B22C0100DB914D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B82C8BD824B22C0100DB914D /* PBXTargetDependency */,
+				B82C8BDA24B22C0100DB914D /* PBXTargetDependency */,
+			);
+			name = HomeTests;
+			productName = HomeTests;
+			productReference = B82C8BD524B22C0100DB914D /* HomeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		B8455CFB246DB15D00C4FFAE /* WorkoutDetails */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B8455D13246DB15D00C4FFAE /* Build configuration list for PBXNativeTarget "WorkoutDetails" */;
@@ -939,6 +1066,7 @@
 				B82B77912475DAC500774C05 /* PBXTargetDependency */,
 				B82B77932475DAC500774C05 /* PBXTargetDependency */,
 				B82B77952475DAC500774C05 /* PBXTargetDependency */,
+				B82C8BE124B22C0100DB914D /* PBXTargetDependency */,
 			);
 			name = WorkoutTimer;
 			packageProductDependencies = (
@@ -1076,10 +1204,18 @@
 		B84B0ABB2458126600A07A1E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1140;
+				LastSwiftUpdateCheck = 1200;
 				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = tsonevInc;
 				TargetAttributes = {
+					B82C8BCC24B22C0100DB914D = {
+						CreatedOnToolsVersion = 12.0;
+						LastSwiftMigration = 1200;
+					};
+					B82C8BD424B22C0100DB914D = {
+						CreatedOnToolsVersion = 12.0;
+						TestTargetID = B84B0AC22458126600A07A1E;
+					};
 					B8455CFB246DB15D00C4FFAE = {
 						CreatedOnToolsVersion = 11.4.1;
 						LastSwiftMigration = 1140;
@@ -1138,11 +1274,27 @@
 				B87675B7246AD78900438A0F /* WorkoutFeedTests */,
 				B8455CFB246DB15D00C4FFAE /* WorkoutDetails */,
 				B8455D03246DB15D00C4FFAE /* WorkoutDetailsTests */,
+				B82C8BCC24B22C0100DB914D /* Home */,
+				B82C8BD424B22C0100DB914D /* HomeTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B82C8BCB24B22C0100DB914D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B82C8BD324B22C0100DB914D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B8455CFA246DB15D00C4FFAE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1216,6 +1368,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B82C8BC924B22C0100DB914D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B82C8BED24B22C2F00DB914D /* WorkoutCardView.swift in Sources */,
+				B82C8BEC24B22C2000DB914D /* HomeView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B82C8BD124B22C0100DB914D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B82C8BDD24B22C0100DB914D /* HomeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B8455CF8246DB15D00C4FFAE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1293,7 +1462,6 @@
 			files = (
 				B8B6FE4B246ADB2A00B22568 /* WorkoutsListView.swift in Sources */,
 				B83D9EA1246C728C00DED0F7 /* WorkoutsFeedView.swift in Sources */,
-				B82C8BC424B1FBE500DB914D /* WorkoutCardView.swift in Sources */,
 				B83D72842487A48D0075DA48 /* WorkoutsFetchService.swift in Sources */,
 				B83D9EA3246C72B700DED0F7 /* WorkoutsFeedCore.swift in Sources */,
 				B8CEBFD0246D855700A88450 /* WorkoutView.swift in Sources */,
@@ -1363,6 +1531,21 @@
 			target = B87675AF246AD78900438A0F /* WorkoutFeed */;
 			targetProxy = B82B77942475DAC500774C05 /* PBXContainerItemProxy */;
 		};
+		B82C8BD824B22C0100DB914D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B82C8BCC24B22C0100DB914D /* Home */;
+			targetProxy = B82C8BD724B22C0100DB914D /* PBXContainerItemProxy */;
+		};
+		B82C8BDA24B22C0100DB914D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B84B0AC22458126600A07A1E /* WorkoutTimer */;
+			targetProxy = B82C8BD924B22C0100DB914D /* PBXContainerItemProxy */;
+		};
+		B82C8BE124B22C0100DB914D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B82C8BCC24B22C0100DB914D /* Home */;
+			targetProxy = B82C8BE024B22C0100DB914D /* PBXContainerItemProxy */;
+		};
 		B8455D07246DB15D00C4FFAE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B8455CFB246DB15D00C4FFAE /* WorkoutDetails */;
@@ -1407,6 +1590,112 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		B82C8BE524B22C0100DB914D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = GR9SJM3FZP;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Home/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.Home;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B82C8BE624B22C0100DB914D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_IDENTITY = "Apple Distribution: Ivaylo Tsonev (GR9SJM3FZP)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = GR9SJM3FZP;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Home/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.Home;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B82C8BE824B22C0100DB914D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GR9SJM3FZP;
+				INFOPLIST_FILE = HomeTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.HomeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Workout Timer.app/Workout Timer";
+			};
+			name = Debug;
+		};
+		B82C8BE924B22C0100DB914D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GR9SJM3FZP;
+				INFOPLIST_FILE = HomeTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.HomeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Workout Timer.app/Workout Timer";
+			};
+			name = Release;
+		};
 		B8455D14246DB15D00C4FFAE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1987,6 +2276,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B82C8BE424B22C0100DB914D /* Build configuration list for PBXNativeTarget "Home" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B82C8BE524B22C0100DB914D /* Debug */,
+				B82C8BE624B22C0100DB914D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B82C8BE724B22C0100DB914D /* Build configuration list for PBXNativeTarget "HomeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B82C8BE824B22C0100DB914D /* Debug */,
+				B82C8BE924B22C0100DB914D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B8455D13246DB15D00C4FFAE /* Build configuration list for PBXNativeTarget "WorkoutDetails" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
