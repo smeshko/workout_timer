@@ -24,46 +24,49 @@ struct HomeView: View {
     
     
     var body: some View {
-//        NavigationView {
-            ScrollView(.vertical, showsIndicators: false) {
+        ScrollView(.vertical, showsIndicators: false) {
+            VStack(alignment: .leading) {
+                Text("Featured Workouts")
+                    .padding(.top, 18)
+                    .padding(.leading, 28)
+                    .font(.h2)
+                    .foregroundColor(.appTextPrimary)
+                TabView {
+                    ForEach(featuredWorkouts, id: \.id) { _ in
+                        WorkoutCardView()
+                    }
+                }
+                .tabViewStyle(PageTabViewStyle())
+                .frame(width: UIScreen.main.bounds.width, height: 200)
+            }
+            
+            ForEach(workouts, id: \.id) { category in
+                
                 VStack(alignment: .leading) {
-                    Text("Featured Workouts")
+                    Text(category.name)
                         .padding(.leading, 28)
+                        .padding(.top, 18)
                         .font(.h2)
                         .foregroundColor(.appTextPrimary)
-                    TabView {
-                        ForEach(featuredWorkouts, id: \.id) { _ in
-                            WorkoutCardView()
-                        }
-                    }
-                    .tabViewStyle(PageTabViewStyle())
-                    .frame(width: UIScreen.main.bounds.width, height: 200)
-                }
-                
-                ForEach(workouts, id: \.id) { category in
                     
-                    VStack(alignment: .leading) {
-                        Text(category.name)
-                            .padding(.leading, 28)
-                            .padding(.top, 18)
-                            .font(.h2)
-                            .foregroundColor(.appTextPrimary)
-
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack {
-                                ForEach(workouts, id: \.id) { _ in
-                                    WorkoutCardView(layout: .narrow)
-                                }
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack {
+                            ForEach(workouts, id: \.id) { _ in
+                                WorkoutCardView(layout: .narrow)
                             }
                         }
-                        .padding(.leading, 28)
                     }
+                    .padding(.leading, 28)
                 }
             }
-
-            .frame(maxHeight: .infinity)
-            .navigationTitle("Home")
-//        }
+        }
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text("Home")
+            }
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        .frame(maxHeight: .infinity)
     }
 }
 
