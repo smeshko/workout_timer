@@ -5,21 +5,21 @@ struct HomeView: View {
     
     let workouts = [
         WorkoutCategory(id: "1", name: "Boxing", workouts: [
-            Workout(id: "1", name: "Boxing 1", image: "bodyweight-1", sets: []),
-            Workout(id: "2", name: "Boxing 2", image: "bodyweight-3", sets: []),
-            Workout(id: "3", name: "Boxing 3", image: "bodyweight-2", sets: [])
+            Workout(id: "1", name: "Boxing 1", imageKey: "bodyweight-1", sets: []),
+            Workout(id: "2", name: "Boxing 2", imageKey: "bodyweight-3", sets: []),
+            Workout(id: "3", name: "Boxing 3", imageKey: "bodyweight-2", sets: [])
         ]),
         
         WorkoutCategory(id: "2", name: "Cardio", workouts: [
-            Workout(id: "4", name: "Cardio 1", image: "bodyweight-1", sets: []),
-            Workout(id: "5", name: "Cardio 2", image: "bodyweight-3", sets: []),
-            Workout(id: "6", name: "Cardio 3", image: "bodyweight-2", sets: [])
+            Workout(id: "4", name: "Cardio 1", imageKey: "bodyweight-1", sets: []),
+            Workout(id: "5", name: "Cardio 2", imageKey: "bodyweight-3", sets: []),
+            Workout(id: "6", name: "Cardio 3", imageKey: "bodyweight-2", sets: [])
         ])
     ]
     
     let featuredWorkouts = [
-        Workout(id: "1", name: "Full Body Burner", image: "jumprope-1", sets: []),
-        Workout(id: "2", name: "Jumprope Burner", image: "jumprope-2", sets: [])
+        Workout(id: "1", name: "Full Body Burner", imageKey: "jumprope-1", sets: []),
+        Workout(id: "2", name: "Jumprope Burner", imageKey: "jumprope-2", sets: [])
     ]
     
     
@@ -72,6 +72,20 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        NavigationView {
+            Text("Hello")
+        }
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                HStack {
+                    Image(systemName: "heart")
+                    Text("A title")
+                }
+            }
+        }
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
+
+
+

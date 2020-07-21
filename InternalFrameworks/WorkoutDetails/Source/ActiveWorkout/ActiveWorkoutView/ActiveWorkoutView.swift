@@ -22,7 +22,7 @@ public struct ActiveWorkoutView: View {
         WithViewStore(store) { viewStore in
             VStack(spacing: 0) {
                 ZStack(alignment: .top) {
-                    RemoteImage(key: viewStore.currentSet.image)
+                    RemoteImage(key: viewStore.currentSet.imageKey)
                         .aspectRatio(contentMode: .fit)
                         .frame(idealHeight: 240, alignment: .top)
                     
@@ -92,4 +92,4 @@ struct ActiveWorkoutView_Previews: PreviewProvider {
     }
 }
 
-private let mockWorkout = Workout(id: "1", name: "Mock Workout", image: "preview-bodyweight-1", sets: ExerciseSet.sets(5, exercise: Exercise(id: "", name: "Mock", image: "preview-exercise-4"), duration: 45, pauseInBetween: 15))
+private let mockWorkout = Workout(id: "1", name: "Mock Workout", imageKey: "preview-bodyweight-1", sets: ExerciseSet.sets(5, exercise: Exercise(id: "", name: "Mock", imageKey: "preview-exercise-4"), duration: 45, pauseInBetween: 15))

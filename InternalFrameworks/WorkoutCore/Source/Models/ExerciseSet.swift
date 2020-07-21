@@ -2,21 +2,28 @@ import Foundation
 import ComposableArchitecture
 import WorkoutTimerAPI
 
+public enum ExerciseType: String, Codable {
+    case warmup, cooldown, workout,  rest
+}
+
 @dynamicMemberLookup
 public struct ExerciseSet: Identifiable, Codable, Equatable {
     public var id: String
     fileprivate let exercise: Exercise
     public let duration: TimeInterval
+    public let type: ExerciseType
     
-    public init(id: String, exercise: Exercise, duration: TimeInterval) {
+    public init(id: String, exercise: Exercise, duration: TimeInterval, type: ExerciseType = .workout) {
         self.id = id
         self.exercise = exercise
         self.duration = duration
+        self.type = type
     }
     
     public init(dto: ExerciseSetListDto) {
         self.id = dto.id
         self.duration = dto.duration
+        self.type = ExerciseType(rawValue: dto.type) ?? .workout
         
         guard let exercise = dto.exercise else { fatalError() }
         self.exercise = Exercise(dto: exercise)
@@ -37,9 +44,9 @@ public struct ExerciseSet: Identifiable, Codable, Equatable {
         var sets: [ExerciseSet] = []
         (0 ..< count).forEach { index in
             sets.insert(ExerciseSet(id: "\(exercise.id)-\(index)", exercise: exercise, duration: duration), at: 0)
-            if let pause = pauseInBetween, index != count - 1 {
-                sets.insert(ExerciseSet(id: "recovery-set-\(index)", exercise: .recovery, duration: pause), at: 0)
-            }
+//            if let pause = pauseInBetween, index != count - 1 {
+//                sets.insert(ExerciseSet(id: "recovery-set-\(index)", exercise: .recovery, duration: pause), at: 0)
+//            }
         }
         return sets
     }

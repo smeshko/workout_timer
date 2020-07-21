@@ -14,7 +14,7 @@ struct WorkoutView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .topLeading) {
-                RemoteImage(key: self.workout.image)
+                RemoteImage(key: workout.imageKey)
                     .aspectRatio(contentMode: .fit)
                 
                 VStack(alignment: .leading, spacing: 4) {
@@ -62,6 +62,6 @@ private extension Workout {
     }
     
     var count: String {
-        "\(sets.filter { $0.name != Exercise.recovery.name }.count)"
+        "\(sets.filter { $0.type != .rest }.count)"
     }
 }

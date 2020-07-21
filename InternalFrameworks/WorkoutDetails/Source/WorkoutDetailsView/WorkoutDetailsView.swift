@@ -17,7 +17,7 @@ public struct WorkoutDetailsView: View {
     WithViewStore(store) { viewStore in
       ScrollView {
         ZStack {
-            RemoteImage(key: viewStore.workout.image)
+            RemoteImage(key: viewStore.workout.imageKey)
                 .aspectRatio(contentMode: .fit)
           
           VStack(spacing: 64) {

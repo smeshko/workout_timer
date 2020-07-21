@@ -11,7 +11,7 @@ struct ExerciseRowView: View {
             
             HStack(spacing: 0) {
                 if !set.isRecovery {
-                    RemoteImage(key: set.image)
+                    RemoteImage(key: set.imageKey)
                         .frame(width: 96, height: 96)
                         .aspectRatio(contentMode: .fit)
                 }
@@ -40,6 +40,6 @@ struct ExerciseRowView_Previews: PreviewProvider {
 
 private extension ExerciseSet {
     var isRecovery: Bool {
-        self.name == Exercise.recovery.name
+        type == .rest
     }
 }

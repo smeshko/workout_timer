@@ -34,7 +34,7 @@ struct WorkoutsListView: View {
 struct WorkoutsListView_Previews: PreviewProvider {
     static var previews: some View {
         WorkoutsListView(workouts: [
-            Workout(id: "", name: "Recommended Routine", image: "", sets: [])
+            mockWorkout1
         ])
     }
 }
