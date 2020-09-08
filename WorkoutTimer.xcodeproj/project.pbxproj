@@ -483,8 +483,8 @@
 			isa = PBXGroup;
 			children = (
 				B8F9210624C74FAB00EBCC78 /* HomeCore.swift */,
-				B8F9210724C74FAB00EBCC78 /* WorkoutsFetchService.swift */,
 				B82C8BEB24B22C2000DB914D /* HomeView.swift */,
+				B8F9210724C74FAB00EBCC78 /* WorkoutsFetchService.swift */,
 				B82C8BC324B1FBE500DB914D /* WorkoutCardView.swift */,
 			);
 			path = HomeView;

@@ -17,12 +17,14 @@ public enum HTTPMethod: String {
 public enum Endpoint: EndpointProtocol {
     case categories
     case workouts
+    case featured
     case image(String)
     
     public var path: String {
         switch self {
         case .categories: return "/api/categories/public"
         case .workouts: return "/api/workouts"
+        case .featured: return "/api/workouts/featured"
         case .image: return "/api/images"
         }
     }

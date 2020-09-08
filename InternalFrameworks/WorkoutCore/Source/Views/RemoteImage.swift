@@ -48,6 +48,10 @@ public let remoteImageReducer = Reducer<RemoteImageState, RemoteImageAction, Rem
     
     switch action {
     case .keyProvided(let key):
+        guard key.contains("/") else {
+            let data = UIImage(namedSharedAsset: "bodyweight-1").pngData()!
+            return Effect(value: RemoteImageAction.imageLoaded(.success(data)))
+        }
         return environment.client
             .getImageData(at: key)
             .receive(on: DispatchQueue.main)
@@ -55,10 +59,13 @@ public let remoteImageReducer = Reducer<RemoteImageState, RemoteImageAction, Rem
             .map { RemoteImageAction.imageLoaded($0) }
         
     case .imageLoaded(.success(let data)):
-        let image = UIImage(data: data)
+        guard let _ = UIImage(data: data) else {
+            return Effect(value: RemoteImageAction.imageLoaded(.failure(.incorrectResponse)))
+        }
         state.imageData = data
-        
-    default: break
+
+    case .imageLoaded(.failure):
+        state.imageData = UIImage(namedSharedAsset: "bodyweight-1").pngData()
     }
     
     return .none

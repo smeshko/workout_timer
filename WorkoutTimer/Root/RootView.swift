@@ -1,5 +1,5 @@
 import SwiftUI
-import WorkoutFeed
+import Home
 import QuickTimer
 import WorkoutCore
 import ComposableArchitecture
@@ -11,10 +11,10 @@ struct RootView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             TabView {
-                WorkoutsFeedView()
+                HomeView()
                     .tabItem {
-                        Image(systemName: "heart")
-                        Text("Workouts")
+                        Image(systemName: "house")
+                        Text("Home")
                 }
                 QuickTimerView()
                     .tabItem {
@@ -44,13 +44,13 @@ struct RootView_Previews: PreviewProvider {
     }
 }
 
-extension WorkoutsFeedView {
+extension HomeView {
     init() {
         self.init(
-            store: Store<WorkoutsFeedState, WorkoutsFeedAction>(
-                initialState: WorkoutsFeedState(),
-                reducer: workoutsFeedReducer,
-                environment: WorkoutsFeedEnvironment(
+            store: Store<HomeState, HomeAction>(
+                initialState: HomeState(),
+                reducer: homeReducer,
+                environment: HomeEnvironment(
                     mainQueue: DispatchQueue.main.eraseToAnyScheduler()
                 )
             )

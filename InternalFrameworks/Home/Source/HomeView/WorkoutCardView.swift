@@ -8,32 +8,33 @@ struct WorkoutCardView: View {
         case wide
     }
     
-    let layout: Layout
+    private let layout: Layout
+    private let workout: Workout
     
-    init(layout: Layout = .wide) {
+    init(workout: Workout, layout: Layout = .wide) {
+        self.workout = workout
         self.layout = layout
     }
     
     var body: some View {
-        Group {
-            if layout == .wide {
-                WideCardView()
-            } else {
-                NarrowCardView()
-            }
+        if layout == .wide {
+            WideCardView(workout: workout)
+                .cornerRadius(12)
+        } else {
+            NarrowCardView(workout: workout)
+                .cornerRadius(12)
         }
-        .cornerRadius(12)
     }
 }
 
 struct WorkoutCardView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            WorkoutCardView(layout: .wide)
+            WorkoutCardView(workout: mockWorkout1, layout: .wide)
                 .previewLayout(.sizeThatFits)
                 .padding(20)
             
-            WorkoutCardView(layout: .narrow)
+            WorkoutCardView(workout: mockWorkout1, layout: .narrow)
                 .previewLayout(.sizeThatFits)
                 .padding(20)
 
@@ -42,77 +43,95 @@ struct WorkoutCardView_Previews: PreviewProvider {
 }
 
 private struct NarrowCardView: View {
+    private let workout: Workout
+
+    init(workout: Workout) {
+        self.workout = workout
+    }
+
+
     var body: some View {
-        ZStack {
-            Image(uiImage: UIImage(namedSharedAsset: "bodyweight-2"))
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-            
-            VStack(alignment: .leading) {
-                
-                HStack(spacing: 5) {
-                    Image(systemName: "clock")
-                        .font(.label)
-                        .foregroundColor(.appWhite)
+        VStack(alignment: .leading) {
+            GeometryReader { geo in
+                ZStack {
+                    RemoteImage(key: workout.imageKey)
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: geo.size.width, height: geo.size.height)
                     
-                    Text("50 MIN")
-                        .font(.label)
-                        .tracking(1)
-                        .foregroundColor(.appWhite)
-                                        
-                    WorkoutPriceView(isFree: true, showBackground: false)
+                    VStack(alignment: .leading) {
+                        
+                        HStack(spacing: 5) {
+                            Image(systemName: "clock")
+                                .font(.label)
+                                .foregroundColor(.appWhite)
+                            
+                            Text("\(workout.duration) MIN")
+                                .font(.label)
+                                .tracking(1)
+                                .foregroundColor(.appWhite)
+                        }
+                        
+                        Spacer()
+                        
+                        Text(workout.name)
+                            .font(.h2)
+                            .foregroundColor(.appWhite)
+                        
+                        
+                        LevelView(level: workout.level.rawValue, showLabel: false)
+                    }
+                    .frame(width: geo.size.width, height: geo.size.height)
+                    .padding(18)
                 }
-                
-                Spacer()
-                
-                Text("Fat Burner")
-                    .font(.h2)
-                    .foregroundColor(.appWhite)
-                    
-                
-                LevelView(level: 1, showLabel: false)
             }
-            .padding(18)
         }
         .frame(width: 150, height: 180)
     }
 }
 
 private struct WideCardView: View {
+
+    private let workout: Workout
+
+    init(workout: Workout) {
+        self.workout = workout
+    }
+
     var body: some View {
-        ZStack {
-            Image(uiImage: UIImage(namedSharedAsset: "bodyweight-1"))
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-            VStack(alignment: .leading) {
-                
-                WorkoutPriceView(isFree: true, showBackground: true)
-                
-                Spacer()
-                
-                Text("Whole Body Workout")
-                    .font(.h2)
-                    .foregroundColor(.appWhite)
-                
-                HStack {
-                    LevelView(level: 2, showLabel: true)
-                    
+        GeometryReader { geometry in
+            ZStack {
+                RemoteImage(key: workout.imageKey)
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: geometry.size.width, height: 180)
+
+                VStack(alignment: .leading) {
+
                     Spacer()
-                    HStack(spacing: 5) {
-                        Image(systemName: "clock")
-                            .font(.label)
-                            .foregroundColor(.appWhite)
-                        
-                        Text("50 MIN")
-                            .font(.label)
-                            .tracking(1)
-                            .foregroundColor(.appWhite)
+
+                    Text(workout.name)
+                        .font(.h2)
+                        .foregroundColor(.appWhite)
+
+                    HStack {
+                        LevelView(level: workout.level.rawValue, showLabel: true)
+
+                        Spacer()
+                        HStack(spacing: 5) {
+                            Image(systemName: "clock")
+                                .font(.label)
+                                .foregroundColor(.appWhite)
+
+                            Text("\(workout.duration) MIN")
+                                .font(.label)
+                                .tracking(1)
+                                .foregroundColor(.appWhite)
+                        }
                     }
                 }
+                .padding(18)
             }
-            .padding(18)
+            .frame(width: geometry.size.width, height: 180)
         }
-        .frame(width: 320, height: 180)
     }
 }
 
@@ -163,5 +182,15 @@ private struct WorkoutPriceView: View {
                     .cornerRadius(4)
                 : nil
             )
+    }
+}
+
+private extension Workout {
+    var duration: Int {
+        let total = sets
+            .map { $0.duration }
+            .reduce(0, +)
+
+        return Int(ceil(total / 60))
     }
 }

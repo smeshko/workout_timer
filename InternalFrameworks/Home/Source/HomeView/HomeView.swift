@@ -1,63 +1,56 @@
 import SwiftUI
 import WorkoutCore
+import ComposableArchitecture
 
-struct HomeView: View {
+public struct HomeView: View {
+
+    let store: Store<HomeState, HomeAction>
+
+    public init(store: Store<HomeState, HomeAction>) {
+        self.store = store
+    }
     
-    let workouts = [
-        WorkoutCategory(id: "1", name: "Boxing", workouts: [
-            Workout(id: "1", name: "Boxing 1", imageKey: "bodyweight-1", sets: []),
-            Workout(id: "2", name: "Boxing 2", imageKey: "bodyweight-3", sets: []),
-            Workout(id: "3", name: "Boxing 3", imageKey: "bodyweight-2", sets: [])
-        ]),
-        
-        WorkoutCategory(id: "2", name: "Cardio", workouts: [
-            Workout(id: "4", name: "Cardio 1", imageKey: "bodyweight-1", sets: []),
-            Workout(id: "5", name: "Cardio 2", imageKey: "bodyweight-3", sets: []),
-            Workout(id: "6", name: "Cardio 3", imageKey: "bodyweight-2", sets: [])
-        ])
-    ]
-    
-    let featuredWorkouts = [
-        Workout(id: "1", name: "Full Body Burner", imageKey: "jumprope-1", sets: []),
-        Workout(id: "2", name: "Jumprope Burner", imageKey: "jumprope-2", sets: [])
-    ]
-    
-    
-    var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            VStack(alignment: .leading) {
-                Text("Featured Workouts")
-                    .padding(.top, 18)
-                    .padding(.leading, 28)
-                    .font(.h2)
-                    .foregroundColor(.appTextPrimary)
-                TabView {
-                    ForEach(featuredWorkouts, id: \.id) { _ in
-                        WorkoutCardView()
-                    }
-                }
-                .tabViewStyle(PageTabViewStyle())
-                .frame(width: UIScreen.main.bounds.width, height: 200)
-            }
-            
-            ForEach(workouts, id: \.id) { category in
-                
+    public var body: some View {
+        WithViewStore(store) { viewStore in
+            ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading) {
-                    Text(category.name)
-                        .padding(.leading, 28)
+                    Text("Featured Workouts")
                         .padding(.top, 18)
+                        .padding(.leading, 28)
                         .font(.h2)
                         .foregroundColor(.appTextPrimary)
-                    
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack {
-                            ForEach(workouts, id: \.id) { _ in
-                                WorkoutCardView(layout: .narrow)
-                            }
+                    TabView {
+                        ForEach(viewStore.featuredWorkouts, id: \.id) { workout in
+                            WorkoutCardView(workout: workout)
                         }
                     }
-                    .padding(.leading, 28)
+                    .tabViewStyle(PageTabViewStyle())
+                    .frame(width: UIScreen.main.bounds.width, height: 200)
                 }
+
+                ForEach(viewStore.categories, id: \.id) { category in
+
+                    VStack(alignment: .leading) {
+                        Text(category.name)
+                            .padding(.leading, 28)
+                            .padding(.top, 18)
+                            .font(.h2)
+                            .foregroundColor(.appTextPrimary)
+
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack {
+                                ForEach(category.workouts, id: \.id) { workout in
+                                    WorkoutCardView(workout: workout, layout: .narrow)
+                                }
+                            }
+                        }
+                        .padding(.leading, 28)
+                    }
+                }
+            }
+            .frame(maxHeight: .infinity)
+            .onAppear {
+                viewStore.send(.beginNavigation)
             }
         }
         .toolbar {
@@ -66,7 +59,6 @@ struct HomeView: View {
             }
         }
         .navigationBarTitleDisplayMode(.inline)
-        .frame(maxHeight: .infinity)
     }
 }
 

@@ -15,6 +15,7 @@ public enum HomeError: Error, Equatable {
 public enum HomeAction: Equatable {
     case workoutCategoryChanged(WorkoutCategory)
     case categoriesLoaded(Result<[WorkoutCategory], HomeError>)
+    case featuredLoaded(Result<[Workout], HomeError>)
     case loadingIndicatorStoppedLoading(Bool)
     case beginNavigation
 }
@@ -22,6 +23,7 @@ public enum HomeAction: Equatable {
 public struct HomeState: Equatable {
     var selectedCategory: WorkoutCategory = WorkoutCategory(id: "", name: "")
     var categories: [WorkoutCategory] = []
+    var featuredWorkouts: [Workout] = []
     var loadingState: LoadingState = .done
     var isLoading: Bool { loadingState == .loading }
     
@@ -43,9 +45,11 @@ public let homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { state
     switch action {
         
     case .beginNavigation:
-        if state.categories.isEmpty {
+        if state.categories.isEmpty || state.featuredWorkouts.isEmpty {
             state.loadingState = .loading
-            return environment.loadCategories(mainQueue: environment.mainQueue)
+            return Effect
+                .concatenate(environment.loadCategories(mainQueue: environment.mainQueue),
+                             environment.loadFeatured(mainQueue: environment.mainQueue))
         }
         
     case .loadingIndicatorStoppedLoading:
@@ -58,8 +62,12 @@ public let homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { state
         state.loadingState = .done
         state.categories = categories
         return Effect(value: HomeAction.workoutCategoryChanged(categories.first!))
-        
-    case .categoriesLoaded(.failure(let error)):
+
+    case .featuredLoaded(.success(let workouts)):
+        state.loadingState = .done
+        state.featuredWorkouts = workouts
+
+    case .categoriesLoaded(.failure(let error)), .featuredLoaded(.failure(let error)):
         break
     }
     
@@ -73,5 +81,13 @@ private extension HomeEnvironment {
             .mapError { _ in HomeError.failedLoadingWorkouts }
             .catchToEffect()
             .map(HomeAction.categoriesLoaded)
+    }
+
+    func loadFeatured(mainQueue: AnySchedulerOf<DispatchQueue>) -> Effect<HomeAction, Never> {
+        service.featured()
+            .receive(on: mainQueue)
+            .mapError { _ in HomeError.failedLoadingWorkouts }
+            .catchToEffect()
+            .map(HomeAction.featuredLoaded)
     }
 }

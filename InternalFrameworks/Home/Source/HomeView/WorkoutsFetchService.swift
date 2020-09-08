@@ -6,6 +6,7 @@ public struct WorkoutsFetchService {
     
     var workouts: () -> Effect<[Workout], NetworkError>
     var categories: () -> Effect<[WorkoutCategory], NetworkError>
+    var featured: () -> Effect<[Workout], NetworkError>
 }
 
 public extension WorkoutsFetchService {
@@ -23,6 +24,13 @@ public extension WorkoutsFetchService {
                 .map { (dtos: [CategoryListDto]) in
                     dtos.map { WorkoutCategory(dto: $0) }
             }
+        },
+        featured: {
+            WebClient.live
+                .sendRequest(to: Endpoint.featured)
+                .map { (dtos: [WorkoutListDto]) in
+                    dtos.map { Workout(dto: $0) }
+                }
         })
     
     static let mock = WorkoutsFetchService(
@@ -35,6 +43,11 @@ public extension WorkoutsFetchService {
                 WorkoutCategory(id: "category-1", name: "Mock category", workouts: [
                     Workout(id: "workout-1", name: "Mock workout", imageKey: "image", sets: [])
                 ])
+            ])
+        },
+        featured: {
+            Effect<[Workout], NetworkError>(value: [
+                Workout(id: "workout-1", name: "Mock workout", imageKey: "image", sets: [])
             ])
         }
     )
