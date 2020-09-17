@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v1
+      - name: Force XCode 12
+        run: sudo xcode-select -switch /Applications/Xcode_12.app
       - name: Install gpg
         run: brew install gnupg
       - name: Setup provisioning profile
