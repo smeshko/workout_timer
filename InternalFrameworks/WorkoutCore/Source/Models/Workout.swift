@@ -7,7 +7,7 @@ public enum Level: Int, Codable, Equatable {
     case beginner, intermediate, expert
 }
 
-public struct Workout: Codable, Equatable, Identifiable {
+public struct Workout: Codable, Equatable, Identifiable, Hashable {
     
     public let id: String
     public let name: String
@@ -41,5 +41,9 @@ public struct Workout: Codable, Equatable, Identifiable {
         self.thumbnailKey = dto.thumbnailKey
         self.level = Level(rawValue: dto.level) ?? .beginner
         self.sets = dto.exerciseSets.map { ExerciseSet(dto: $0) }
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }

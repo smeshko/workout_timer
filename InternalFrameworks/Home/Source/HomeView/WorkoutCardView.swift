@@ -31,11 +31,11 @@ struct WorkoutCardView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             WorkoutCardView(workout: mockWorkout1, layout: .wide)
-                .previewLayout(.sizeThatFits)
+                .previewLayout(.fixed(width: 375, height: 180))
                 .padding(20)
             
             WorkoutCardView(workout: mockWorkout1, layout: .narrow)
-                .previewLayout(.sizeThatFits)
+                .previewLayout(.fixed(width: 150, height: 180))
                 .padding(20)
 
         }
@@ -52,12 +52,13 @@ private struct NarrowCardView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            GeometryReader { geo in
-                ZStack {
+            ZStack {
+                GeometryReader { geometry in
                     RemoteImage(key: workout.imageKey)
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: geo.size.width, height: geo.size.height)
-                    
+                        .frame(maxWidth: geometry.size.width,
+                               maxHeight: geometry.size.height)
+
                     VStack(alignment: .leading) {
                         
                         HStack(spacing: 5) {
@@ -74,18 +75,16 @@ private struct NarrowCardView: View {
                         Spacer()
                         
                         Text(workout.name)
-                            .font(.h2)
+                            .font(.h3)
                             .foregroundColor(.appWhite)
                         
                         
                         LevelView(level: workout.level.rawValue, showLabel: false)
                     }
-                    .frame(width: geo.size.width, height: geo.size.height)
                     .padding(18)
                 }
             }
         }
-        .frame(width: 150, height: 180)
     }
 }
 
@@ -98,11 +97,12 @@ private struct WideCardView: View {
     }
 
     var body: some View {
-        GeometryReader { geometry in
-            ZStack {
+        ZStack {
+            GeometryReader { geometry in
                 RemoteImage(key: workout.imageKey)
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: geometry.size.width, height: 180)
+                    .frame(maxWidth: geometry.size.width,
+                           maxHeight: 180)
 
                 VStack(alignment: .leading) {
 
@@ -130,7 +130,6 @@ private struct WideCardView: View {
                 }
                 .padding(18)
             }
-            .frame(width: geometry.size.width, height: 180)
         }
     }
 }

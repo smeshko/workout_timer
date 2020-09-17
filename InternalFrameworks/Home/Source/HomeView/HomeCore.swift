@@ -18,15 +18,18 @@ public enum HomeAction: Equatable {
     case featuredLoaded(Result<[Workout], HomeError>)
     case loadingIndicatorStoppedLoading(Bool)
     case beginNavigation
+    case featuredWorkoutsSelectionChanged(Workout)
 }
 
 public struct HomeState: Equatable {
     var selectedCategory: WorkoutCategory = WorkoutCategory(id: "", name: "")
+    var selectedFeaturedWorkout: Workout = Workout(id: "", name: "", imageKey: "")
+
     var categories: [WorkoutCategory] = []
     var featuredWorkouts: [Workout] = []
     var loadingState: LoadingState = .done
     var isLoading: Bool { loadingState == .loading }
-    
+
     public init() {}
 }
 
@@ -66,6 +69,10 @@ public let homeReducer = Reducer<HomeState, HomeAction, HomeEnvironment> { state
     case .featuredLoaded(.success(let workouts)):
         state.loadingState = .done
         state.featuredWorkouts = workouts
+        state.selectedFeaturedWorkout = workouts.first!
+
+    case .featuredWorkoutsSelectionChanged(let index):
+        state.selectedFeaturedWorkout = index
 
     case .categoriesLoaded(.failure(let error)), .featuredLoaded(.failure(let error)):
         break

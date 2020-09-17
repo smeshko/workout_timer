@@ -5,9 +5,11 @@ import ComposableArchitecture
 public struct HomeView: View {
 
     let store: Store<HomeState, HomeAction>
+    let categoryViewStore: ViewStore<Workout, Workout>
 
     public init(store: Store<HomeState, HomeAction>) {
         self.store = store
+        categoryViewStore = ViewStore(store.scope(state: \.selectedFeaturedWorkout, action: HomeAction.featuredWorkoutsSelectionChanged))
     }
     
     public var body: some View {
@@ -19,13 +21,17 @@ public struct HomeView: View {
                         .padding(.leading, 28)
                         .font(.h2)
                         .foregroundColor(.appTextPrimary)
-                    TabView {
+                    TabView(selection: categoryViewStore.binding(
+                        send: { $0 }
+                    )) {
                         ForEach(viewStore.featuredWorkouts, id: \.id) { workout in
                             WorkoutCardView(workout: workout)
+                                .frame(width: 375, height: 180)
+                                .tag(workout)
                         }
                     }
-                    .tabViewStyle(PageTabViewStyle())
                     .frame(width: UIScreen.main.bounds.width, height: 200)
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
                 }
 
                 ForEach(viewStore.categories, id: \.id) { category in
@@ -41,12 +47,15 @@ public struct HomeView: View {
                             HStack {
                                 ForEach(category.workouts, id: \.id) { workout in
                                     WorkoutCardView(workout: workout, layout: .narrow)
+                                        .frame(width: 150, height: 180)
                                 }
                             }
                         }
                         .padding(.leading, 28)
                     }
                 }
+
+                Spacer()
             }
             .frame(maxHeight: .infinity)
             .onAppear {
@@ -64,20 +73,12 @@ public struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            Text("Hello")
-        }
-        .toolbar {
-            ToolbarItem(placement: .principal) {
-                HStack {
-                    Image(systemName: "heart")
-                    Text("A title")
-                }
-            }
-        }
-        .navigationBarTitleDisplayMode(.inline)
+        HomeView(
+            store: Store<HomeState, HomeAction>(
+                initialState: HomeState(),
+                reducer: homeReducer,
+                environment: HomeEnvironment(mainQueue: DispatchQueue.main.eraseToAnyScheduler())
+            )
+        )
     }
 }
-
-
-
