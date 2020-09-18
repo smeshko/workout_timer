@@ -1,5 +1,6 @@
 import SwiftUI
 import WorkoutCore
+import WorkoutDetails
 import ComposableArchitecture
 
 public struct HomeView: View {
@@ -25,10 +26,13 @@ public struct HomeView: View {
                         send: { $0 }
                     )) {
                         ForEach(viewStore.featuredWorkouts, id: \.id) { workout in
-                            WorkoutCardView(workout: workout)
-                                .frame(width: 375, height: 180)
-                                .tag(workout)
+                            NavigationLink(destination: WorkoutDetailsView(workout: workout)) {
+                                WorkoutCardView(workout: workout)
+                                    .frame(width: UIScreen.main.bounds.width, height: 180)
+                                    .tag(workout)
+                            }
                         }
+                        .buttonStyle(PlainButtonStyle())
                     }
                     .frame(width: UIScreen.main.bounds.width, height: 200)
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
@@ -46,9 +50,12 @@ public struct HomeView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
                                 ForEach(category.workouts, id: \.id) { workout in
-                                    WorkoutCardView(workout: workout, layout: .narrow)
-                                        .frame(width: 150, height: 180)
+                                    NavigationLink(destination: WorkoutDetailsView(workout: workout)) {
+                                        WorkoutCardView(workout: workout, layout: .narrow)
+                                            .frame(width: 150, height: 180)
+                                    }
                                 }
+                                .buttonStyle(PlainButtonStyle())
                             }
                         }
                         .padding(.leading, 28)
