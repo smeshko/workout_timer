@@ -30,6 +30,8 @@
 		B83907062462A4F400676B3D /* PickerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83907052462A4F400676B3D /* PickerCore.swift */; };
 		B839E36E2471B7A300FE5793 /* UIImage-Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = B839E36D2471B7A300FE5793 /* UIImage-Asset.swift */; };
 		B839E3702471B89600FE5793 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B839E36F2471B89600FE5793 /* Preview Assets.xcassets */; };
+		B83B3DB42517932D00951214 /* LevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B3DB32517932D00951214 /* LevelView.swift */; };
+		B83B3DBB25179F8D00951214 /* Workout-Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B3DBA25179F8D00951214 /* Workout-Helper.swift */; };
 		B83D72842487A48D0075DA48 /* WorkoutsFetchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D72832487A48D0075DA48 /* WorkoutsFetchService.swift */; };
 		B83D9EA1246C728C00DED0F7 /* WorkoutsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D9EA0246C728C00DED0F7 /* WorkoutsFeedView.swift */; };
 		B83D9EA3246C72B700DED0F7 /* WorkoutsFeedCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D9EA2246C72B700DED0F7 /* WorkoutsFeedCore.swift */; };
@@ -282,6 +284,8 @@
 		B839E3852471BBC200FE5793 /* ActiveWorkoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveWorkoutTests.swift; sourceTree = "<group>"; };
 		B839E3942471BBDA00FE5793 /* ActiveWorkoutCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveWorkoutCore.swift; sourceTree = "<group>"; };
 		B839E3962471BBE600FE5793 /* ActiveWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveWorkoutView.swift; sourceTree = "<group>"; };
+		B83B3DB32517932D00951214 /* LevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelView.swift; sourceTree = "<group>"; };
+		B83B3DBA25179F8D00951214 /* Workout-Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Workout-Helper.swift"; sourceTree = "<group>"; };
 		B83D72832487A48D0075DA48 /* WorkoutsFetchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsFetchService.swift; sourceTree = "<group>"; };
 		B83D9EA0246C728C00DED0F7 /* WorkoutsFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsFeedView.swift; sourceTree = "<group>"; };
 		B83D9EA2246C72B700DED0F7 /* WorkoutsFeedCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsFeedCore.swift; sourceTree = "<group>"; };
@@ -814,6 +818,7 @@
 				B89C1C1B248C362A0076E8DA /* RemoteImage.swift */,
 				B8CA6A2324916C3D00E4EEB5 /* SizeClassAdaptingView.swift */,
 				B8CA6A252491888900E4EEB5 /* ActivityIndicator.swift */,
+				B83B3DB32517932D00951214 /* LevelView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -830,6 +835,7 @@
 				B8BBF956248FCFE000653452 /* PreviewProvider-Mocks.swift */,
 				B86CFAC12490DF9300960CFB /* PreviewDevice-Models.swift */,
 				B82C8BC524B2296F00DB914D /* GlobalTabBar.swift */,
+				B83B3DBA25179F8D00951214 /* Workout-Helper.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1443,6 +1449,7 @@
 				B82C8BC624B2296F00DB914D /* GlobalTabBar.swift in Sources */,
 				B8CA6A262491888900E4EEB5 /* ActivityIndicator.swift in Sources */,
 				B8B79CF62486BFDC008B92D8 /* EndpointProtocol.swift in Sources */,
+				B83B3DB42517932D00951214 /* LevelView.swift in Sources */,
 				B8B79CF824877325008B92D8 /* Data-Decode.swift in Sources */,
 				B880F828246E9EB200789DDA /* ExerciseSet.swift in Sources */,
 				B839E36E2471B7A300FE5793 /* UIImage-Asset.swift in Sources */,
@@ -1456,6 +1463,7 @@
 				B8C82860246BE10B00B1113B /* Workout.swift in Sources */,
 				B8B21DF4247466620085164A /* String-FormattedTime.swift in Sources */,
 				B8BBF957248FCFE000653452 /* PreviewProvider-Mocks.swift in Sources */,
+				B83B3DBB25179F8D00951214 /* Workout-Helper.swift in Sources */,
 				B86CFAC22490DF9300960CFB /* PreviewDevice-Models.swift in Sources */,
 				B89C1C14248BC9300076E8DA /* ProgressView.swift in Sources */,
 				B8B79CF42486BF9B008B92D8 /* WebClient.swift in Sources */,
