@@ -84,6 +84,7 @@
 		B8CA6A262491888900E4EEB5 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CA6A252491888900E4EEB5 /* ActivityIndicator.swift */; };
 		B8CEBFCD246D39F200A88450 /* LocalStorageClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83D9EA5246D2ED500DED0F7 /* LocalStorageClient.swift */; };
 		B8CEBFD0246D855700A88450 /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CEBFCF246D855700A88450 /* WorkoutView.swift */; };
+		B8D11D07251A37A900458A7A /* SegmentedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D11D06251A37A900458A7A /* SegmentedProgressView.swift */; };
 		B8DC5994246054E1003FC8D3 /* AppCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DC5993246054E1003FC8D3 /* AppCore.swift */; };
 		B8DC59B124605E38003FC8D3 /* QuickTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* QuickTimer.framework */; };
 		B8DC59B224605E38003FC8D3 /* QuickTimer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* QuickTimer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -346,6 +347,7 @@
 		B8CA6A2324916C3D00E4EEB5 /* SizeClassAdaptingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeClassAdaptingView.swift; sourceTree = "<group>"; };
 		B8CA6A252491888900E4EEB5 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		B8CEBFCF246D855700A88450 /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
+		B8D11D06251A37A900458A7A /* SegmentedProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedProgressView.swift; sourceTree = "<group>"; };
 		B8DC5993246054E1003FC8D3 /* AppCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCore.swift; sourceTree = "<group>"; };
 		B8DC5995246055A3003FC8D3 /* QuickTimerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerCore.swift; sourceTree = "<group>"; };
 		B8DC599C24605E38003FC8D3 /* QuickTimer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QuickTimer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -797,6 +799,7 @@
 				B8CA6A2324916C3D00E4EEB5 /* SizeClassAdaptingView.swift */,
 				B8CA6A252491888900E4EEB5 /* ActivityIndicator.swift */,
 				B83B3DB32517932D00951214 /* LevelView.swift */,
+				B8D11D06251A37A900458A7A /* SegmentedProgressView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1201,7 +1204,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1200;
-				LastUpgradeCheck = 1140;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = tsonevInc;
 				TargetAttributes = {
 					B82C8BCC24B22C0100DB914D = {
@@ -1422,6 +1425,7 @@
 			files = (
 				B89C1C1C248C362A0076E8DA /* RemoteImage.swift in Sources */,
 				B83FC05A248D1EE3007531CF /* Color-Custom.swift in Sources */,
+				B8D11D07251A37A900458A7A /* SegmentedProgressView.swift in Sources */,
 				B82C8BC624B2296F00DB914D /* GlobalTabBar.swift in Sources */,
 				B8CA6A262491888900E4EEB5 /* ActivityIndicator.swift in Sources */,
 				B8B79CF62486BFDC008B92D8 /* EndpointProtocol.swift in Sources */,
@@ -1624,7 +1628,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CODE_SIGN_IDENTITY = "Apple Distribution: Ivaylo Tsonev (GR9SJM3FZP)";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1731,7 +1735,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Distribution: Ivaylo Tsonev (GR9SJM3FZP)";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1824,6 +1828,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1884,6 +1889,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1997,7 +2003,7 @@
 		B876744F246AB6A600438A0F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Distribution: Ivaylo Tsonev (GR9SJM3FZP)";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Distribution: Ivaylo Tsonev (GR9SJM3FZP)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 3;
@@ -2103,7 +2109,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Apple Distribution: Ivaylo Tsonev (GR9SJM3FZP)";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -2205,7 +2211,7 @@
 		B8DC59B524605E38003FC8D3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Distribution: Ivaylo Tsonev (GR9SJM3FZP)";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Distribution: Ivaylo Tsonev (GR9SJM3FZP)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
