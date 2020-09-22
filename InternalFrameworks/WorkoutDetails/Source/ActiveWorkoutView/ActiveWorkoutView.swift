@@ -45,8 +45,9 @@ public struct ActiveWorkoutView: View {
 
                         Spacer()
 
-                        Text(viewStore.formattedTimeExpired)
-                            .font(.h3)
+                        Text(viewStore.totalTimeExpired.formattedTimeLeft)
+                            .foregroundColor(.appWhite)
+                            .font(.h1)
                     }
                     .padding(.vertical, 28)
                     .padding(.horizontal, 28)
@@ -58,12 +59,12 @@ public struct ActiveWorkoutView: View {
                             .foregroundColor(.appTextSecondary)
                             .font(.display)
 
-                        Text("00:32")
+                        Text(viewStore.currentSetSecondsLeft.formattedTimeLeft)
                             .foregroundColor(.appWhite)
                             .font(.gigantic)
                     }
 
-                    Text("Boxer skip")
+                    Text(viewStore.currentSet?.name ?? "")
                         .foregroundColor(.appWhite)
                         .font(.h2)
 
@@ -94,53 +95,22 @@ public struct ActiveWorkoutView: View {
                 }
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
                 .background(Color.appBlack)
-                .cornerRadius(12)
-//                    VStack {
-//
-//                        HStack {
-//                            Text(viewStore.formattedTimeExpired)
-//                                .font(.system(size: 24, weight: .bold, design: .monospaced))
-//                            Spacer()
-//
-//                            HStack(spacing: 24) {
-//                                Button(action: {
-//                                    if viewStore.isRunning {
-//                                        viewStore.send(.pause)
-//                                    } else {
-//                                        viewStore.send(.resume)
-//                                    }
-//                                }) {
-//                                    Image(systemName: viewStore.isRunning ? "pause.fill" : "play.fill")
-//                                        .font(.system(size: 24))
-//                                }
-//
-//                                Button(action: {
-//                                    viewStore.send(.stopWorkout)
-//                                    self.presentationMode.wrappedValue.dismiss()
-//                                }) {
-//                                    Image(systemName: "xmark")
-//                                        .font(.system(size: 24))
-//                                }
-//                            }
-//                        }
-//                        .padding()
-//                        .accentColor(.primary)
-//
-//                        Text(viewStore.currentSet.name.uppercased())
-//                            .multilineTextAlignment(.center)
-//                            .font(.system(size: 48, weight: .heavy))
-//                            .shadow(color: .black, radius: 5, x: 2, y: 2)
-//                            .padding()
-//                    }
-//                }
-                
-                ScrollView {
-                    VStack(spacing: 0) {
-                        ForEachStore(
-                            self.store.scope(state: \.sets, action: ActiveWorkoutAction.exerciseSet(id:action:)),
-                            content: ActiveExerciseRowView.init(store:)
-                        )
+
+                VStack {
+                    VStack(alignment: .leading, spacing: 8) {
+                        if let set = viewStore.nextSet {
+                            Text("Up next")
+                                .foregroundColor(.appTextSecondary)
+                                .font(.display)
+
+                            ExerciseRowView(set: set)
+                        } else {
+                            Text("That's the last one!")
+                                .foregroundColor(.appTextSecondary)
+                                .font(.display)
+                        }
                     }
+                    .padding(28)
                 }
             }
             .navigationBarTitle("")
@@ -161,3 +131,4 @@ struct ActiveWorkoutView_Previews: PreviewProvider {
 }
 
 private let mockWorkout = Workout(id: "1", name: "Mock Workout", imageKey: "preview-bodyweight-1", sets: ExerciseSet.sets(5, exercise: Exercise(id: "", name: "Mock", imageKey: "preview-exercise-4"), duration: 45, pauseInBetween: 15))
+

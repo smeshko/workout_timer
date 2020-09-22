@@ -15,10 +15,8 @@
 		B82B77872475D9EB00774C05 /* WorkoutCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8767444246AB6A500438A0F /* WorkoutCore.framework */; };
 		B82B77972475DB1900774C05 /* WorkoutDetails.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8455CFC246DB15D00C4FFAE /* WorkoutDetails.framework */; };
 		B82BC22824B0AC3B00C69FEA /* ActiveWorkoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B839E3852471BBC200FE5793 /* ActiveWorkoutTests.swift */; };
-		B82BC22924B0AC4E00C69FEA /* ActiveExerciseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B21CAD24727FE10085164A /* ActiveExerciseRowView.swift */; };
 		B82BC22A24B0AC4E00C69FEA /* ActiveWorkoutCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B839E3942471BBDA00FE5793 /* ActiveWorkoutCore.swift */; };
 		B82BC22B24B0AC4E00C69FEA /* ActiveWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B839E3962471BBE600FE5793 /* ActiveWorkoutView.swift */; };
-		B82BC22C24B0AC4E00C69FEA /* ActiveExerciseRowCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B21CAB24727FC60085164A /* ActiveExerciseRowCore.swift */; };
 		B82C8BC624B2296F00DB914D /* GlobalTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82C8BC524B2296F00DB914D /* GlobalTabBar.swift */; };
 		B82C8BD624B22C0100DB914D /* Home.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B82C8BCD24B22C0100DB914D /* Home.framework */; };
 		B82C8BDD24B22C0100DB914D /* HomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82C8BDC24B22C0100DB914D /* HomeTests.swift */; };
@@ -336,8 +334,6 @@
 		B8A041A9248981950009A32D /* QuickTimerControlsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerControlsTests.swift; sourceTree = "<group>"; };
 		B8A041AC248982480009A32D /* QuickExerciseBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickExerciseBuilderTests.swift; sourceTree = "<group>"; };
 		B8A041AE248983F40009A32D /* ValuePickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuePickerTests.swift; sourceTree = "<group>"; };
-		B8B21CAB24727FC60085164A /* ActiveExerciseRowCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveExerciseRowCore.swift; sourceTree = "<group>"; };
-		B8B21CAD24727FE10085164A /* ActiveExerciseRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveExerciseRowView.swift; sourceTree = "<group>"; };
 		B8B21DF3247466620085164A /* String-FormattedTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String-FormattedTime.swift"; sourceTree = "<group>"; };
 		B8B6FE4A246ADB2A00B22568 /* WorkoutsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsListView.swift; sourceTree = "<group>"; };
 		B8B6FE4C246ADBF800B22568 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
@@ -510,15 +506,6 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		B839E3772471BBC200FE5793 /* ActiveWorkout */ = {
-			isa = PBXGroup;
-			children = (
-				B839E39F2471C71800FE5793 /* ActiveExerciseRow */,
-				B839E3932471BBCC00FE5793 /* ActiveWorkoutView */,
-			);
-			path = ActiveWorkout;
-			sourceTree = "<group>";
-		};
 		B839E3932471BBCC00FE5793 /* ActiveWorkoutView */ = {
 			isa = PBXGroup;
 			children = (
@@ -526,15 +513,6 @@
 				B839E3942471BBDA00FE5793 /* ActiveWorkoutCore.swift */,
 			);
 			path = ActiveWorkoutView;
-			sourceTree = "<group>";
-		};
-		B839E39F2471C71800FE5793 /* ActiveExerciseRow */ = {
-			isa = PBXGroup;
-			children = (
-				B8B21CAD24727FE10085164A /* ActiveExerciseRowView.swift */,
-				B8B21CAB24727FC60085164A /* ActiveExerciseRowCore.swift */,
-			);
-			path = ActiveExerciseRow;
 			sourceTree = "<group>";
 		};
 		B83D9E9D246C725900DED0F7 /* WorkoutsFeedView */ = {
@@ -587,7 +565,7 @@
 		B8455D1D246DB18B00C4FFAE /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				B839E3772471BBC200FE5793 /* ActiveWorkout */,
+				B839E3932471BBCC00FE5793 /* ActiveWorkoutView */,
 				B880FAA1246FFE6400789DDA /* ExerciseRowView */,
 				B8455D1F246DB19D00C4FFAE /* WorkoutDetailsView */,
 			);
@@ -1412,8 +1390,6 @@
 				B82BC22A24B0AC4E00C69FEA /* ActiveWorkoutCore.swift in Sources */,
 				B880FAA3246FFE7E00789DDA /* ExerciseRowView.swift in Sources */,
 				B82BC22B24B0AC4E00C69FEA /* ActiveWorkoutView.swift in Sources */,
-				B82BC22924B0AC4E00C69FEA /* ActiveExerciseRowView.swift in Sources */,
-				B82BC22C24B0AC4E00C69FEA /* ActiveExerciseRowCore.swift in Sources */,
 				B8455D23246DB1D000C4FFAE /* WorkoutDetailsCore.swift in Sources */,
 				B8455D21246DB1AC00C4FFAE /* WorkoutDetailsView.swift in Sources */,
 			);

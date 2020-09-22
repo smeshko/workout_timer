@@ -27,13 +27,14 @@ public struct WorkoutDetailsView: View {
             .padding(.horizontal, 28)
             .padding(.vertical, 28)
 
-
             ZStack(alignment: .bottom) {
                 ScrollView {
                     VStack {
                         ForEach(viewStore.workout.sets, id: \.name) { set in
-                            ExerciseRowView(set: set)
-                                .padding(.bottom, 18)
+                            if set.type != .rest {
+                                ExerciseRowView(set: set)
+                                    .padding(.bottom, 18)
+                            }
                         }
                         .padding(.horizontal, 28)
 
