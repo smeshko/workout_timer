@@ -92,7 +92,7 @@ private struct InfoView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(title)
                     .font(.bodySmall)
-                    .foregroundColor(.appTextSecondary)
+                    .foregroundColor(.appGrey)
                 Text(subtitle)
                     .font(.h4)
                     .foregroundColor(.appTextPrimary)
@@ -117,7 +117,7 @@ private struct LevelView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text("Level")
                     .font(.bodySmall)
-                    .foregroundColor(.appTextSecondary)
+                    .foregroundColor(.appGrey)
                 WorkoutCore.LevelView(level: level, showLabel: false)
             }
         }

@@ -17,7 +17,7 @@ public struct SegmentedProgressView: View {
             if let title = title {
                 Text(title)
                     .font(.bodySmall)
-                    .foregroundColor(.appTextSecondary)
+                    .foregroundColor(.appGrey)
                     .padding(.bottom, 8)
             }
             HStack(spacing: 4) {
@@ -28,7 +28,7 @@ public struct SegmentedProgressView: View {
 
                 ForEach(0 ..< totalSegments - filledSegments) { _ in
                     RoundedRectangle(cornerRadius: 2)
-                        .foregroundColor(.appTextSecondary)
+                        .foregroundColor(.appGrey)
                 }
             }
             .frame(height: 4)

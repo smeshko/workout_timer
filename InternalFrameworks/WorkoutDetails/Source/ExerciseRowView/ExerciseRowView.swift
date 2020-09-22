@@ -14,7 +14,7 @@ struct ExerciseRowView: View {
             
             Text(set.duration.formattedTimeLeft)
                 .padding(.leading, 18)
-                .foregroundColor(.appTextSecondary)
+                .foregroundColor(.appGrey)
                 .font(.h3)
             
             Text("\(set.name)")

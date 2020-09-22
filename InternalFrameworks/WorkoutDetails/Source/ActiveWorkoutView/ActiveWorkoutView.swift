@@ -92,7 +92,7 @@ private struct CurrentExerciseView: View {
         VStack(spacing: 28) {
             VStack(spacing: 8) {
                 Text("Scored Time")
-                    .foregroundColor(.appTextSecondary)
+                    .foregroundColor(.appGrey)
                     .font(.display)
 
                 Text(viewStore.currentSetSecondsLeft.formattedTimeLeft)
@@ -113,7 +113,7 @@ private struct CurrentExerciseView: View {
                         .padding(15)
                         .foregroundColor(.appWhite)
                 })
-                .background(Color.appTextSecondary)
+                .background(Color.appGrey)
                 .cornerRadius(12)
 
                 Button(action: {
@@ -145,13 +145,13 @@ private struct NextExerciseView: View {
             VStack(alignment: .leading, spacing: 8) {
                 if let set = viewStore.nextSet {
                     Text("Up next")
-                        .foregroundColor(.appTextSecondary)
+                        .foregroundColor(.appGrey)
                         .font(.display)
 
                     ExerciseRowView(set: set)
                 } else {
                     Text("That's the last one!")
-                        .foregroundColor(.appTextSecondary)
+                        .foregroundColor(.appGrey)
                         .font(.display)
                 }
             }

@@ -26,10 +26,10 @@ public struct LevelView: View {
                     .foregroundColor(.appSecondary)
                 Circle()
                     .frame(width: 5, height: 5)
-                    .foregroundColor(level > 1 ? .appSecondary : .appTextSecondary)
+                    .foregroundColor(level > 1 ? .appSecondary : .appGrey)
                 Circle()
                     .frame(width: 5, height: 5)
-                    .foregroundColor(level > 2 ? .appTextSecondary : .appTextSecondary)
+                    .foregroundColor(level > 2 ? .appSecondary : .appGrey)
             }
         }
     }

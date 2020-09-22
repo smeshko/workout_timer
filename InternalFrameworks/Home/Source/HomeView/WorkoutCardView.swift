@@ -147,7 +147,7 @@ private struct WorkoutPriceView: View {
             .padding(.vertical, 4)
             .background(showBackground ?
                 Rectangle()
-                    .foregroundColor(.appTextSecondary)
+                    .foregroundColor(.appGrey)
                     .cornerRadius(4)
                 : nil
             )
