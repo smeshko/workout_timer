@@ -21,12 +21,12 @@ public struct SegmentedProgressView: View {
                     .padding(.bottom, 8)
             }
             HStack(spacing: 4) {
-                ForEach(0 ..< filledSegments) { _ in
+                ForEach(0 ..< filledSegments, id: \.self) { _ in
                     RoundedRectangle(cornerRadius: 2)
                         .foregroundColor(.appSecondary)
                 }
 
-                ForEach(0 ..< totalSegments - filledSegments) { _ in
+                ForEach(0 ..< totalSegments - filledSegments, id: \.self) { _ in
                     RoundedRectangle(cornerRadius: 2)
                         .foregroundColor(.appGrey)
                 }
