@@ -7,24 +7,21 @@ struct QuickTimerControlsView: View {
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            SizeClassAdaptingView(spacing: 32, .horizontal, .vertical) {
-                if viewStore.timerState.isFinished {
-                    Button("Start", action: { viewStore.send(.start) })
-                        .oval()
-                    
-                } else if viewStore.timerState == .paused {
-                    Button("Continue", action: { viewStore.send(.start) })
-                        .oval()
-                    
-                    Button("Finish", action: { viewStore.send(.stop) })
-                        .oval()
-
+            HStack(spacing: 18) {
+                if viewStore.timerState.isPaused {
+                    ControlButton(action: {
+                        viewStore.send(.start)
+                    }, image: "play")
                 } else {
-                    Button("Pause", action: { viewStore.send(.pause) })
-                        .oval()
+                    ControlButton(action: {
+                        viewStore.send(.pause)
+                    }, image: "pause")
                 }
+
+                ControlButton(action: {
+                    viewStore.send(.stop)
+                }, image: "stop")
             }
-            .font(.system(size: 22))
         }
     }
 }
@@ -41,20 +38,19 @@ struct TimerControlsView_Previews: PreviewProvider {
     }
 }
 
-private struct Oval: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .padding([.vertical], 8)
-            .padding([.horizontal], 16)
-            .foregroundColor(Color.white)
-            .background(Color.brand3)
-            .cornerRadius(8)
-            .shadow(color: Color.black.opacity(0.4), radius: 5)
-    }
-}
+private struct ControlButton: View {
 
-private extension Button {
-    func oval() -> some View {
-        self.modifier(Oval())
+    let action: () -> Void
+    let image: String
+
+    var body: some View {
+        Button(action: action, label: {
+            Image(systemName: image)
+                .frame(width: 18, height: 18)
+                .padding(15)
+                .foregroundColor(.appWhite)
+        })
+        .background(Color.appGrey)
+        .cornerRadius(12)
     }
 }

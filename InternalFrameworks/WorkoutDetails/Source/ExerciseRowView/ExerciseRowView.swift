@@ -6,28 +6,23 @@ struct ExerciseRowView: View {
     let set: ExerciseSet
     
     var body: some View {
-        VStack(spacing: 0) {
-            Divider()
+        HStack {
+            RemoteImage(key: set.imageKey)
+                .frame(width: 68, height: 68)
+                .aspectRatio(contentMode: .fit)
+                .cornerRadius(12)
             
-            HStack(spacing: 0) {
-                if !set.isRecovery {
-                    RemoteImage(key: set.imageKey)
-                        .frame(width: 96, height: 96)
-                        .aspectRatio(contentMode: .fit)
-                }
-                
-                Text("\(set.name)")
-                    .padding(.leading, 16)
-                    .padding(.vertical, set.isRecovery ? 16 : 0)
-                
-                
-                Spacer()
-                
-                Text(set.duration.formattedTimeLeft)
-                    .padding(.trailing, 16)
-            }
+            Text(set.duration.formattedTimeLeft)
+                .padding(.leading, 18)
+                .foregroundColor(.appGrey)
+                .font(.h3)
             
-            Divider()
+            Text("\(set.name)")
+                .padding(.leading, 18)
+                .foregroundColor(.appDark)
+                .font(.h3)
+            
+            Spacer()
         }
     }
 }

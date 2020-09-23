@@ -9,4 +9,5 @@ extension Font {
     public static let bodyLarge = Font.system(size: 14, weight: .regular)
     public static let bodySmall = Font.system(size: 12, weight: .regular)
     public static let label = Font.system(size: 12, weight: .bold)
+    public static let gigantic = Font.system(size: 48, weight: .bold)
 }

@@ -134,36 +134,6 @@ private struct WideCardView: View {
     }
 }
 
-private struct LevelView: View {
-    
-    let level: Int
-    let showLabel: Bool
-    
-    var body: some View {
-        HStack(spacing: 6) {
-            
-            if showLabel {
-                Text("LEVEL")
-                    .font(.label)
-                    .tracking(1)
-                    .foregroundColor(.appWhite)
-            }
-            
-            HStack(spacing: 4) {
-                Circle()
-                    .frame(width: 5, height: 5)
-                    .foregroundColor(.appSecondary)
-                Circle()
-                    .frame(width: 5, height: 5)
-                    .foregroundColor(level > 1 ? .appSecondary : .appTextSecondary)
-                Circle()
-                    .frame(width: 5, height: 5)
-                    .foregroundColor(level > 2 ? .appTextSecondary : .appTextSecondary)
-            }
-        }
-    }
-}
-
 private struct WorkoutPriceView: View {
     
     let isFree: Bool
@@ -177,19 +147,9 @@ private struct WorkoutPriceView: View {
             .padding(.vertical, 4)
             .background(showBackground ?
                 Rectangle()
-                    .foregroundColor(.appTextSecondary)
+                    .foregroundColor(.appGrey)
                     .cornerRadius(4)
                 : nil
             )
-    }
-}
-
-private extension Workout {
-    var duration: Int {
-        let total = sets
-            .map { $0.duration }
-            .reduce(0, +)
-
-        return Int(ceil(total / 60))
     }
 }

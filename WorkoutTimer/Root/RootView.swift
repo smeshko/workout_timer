@@ -11,16 +11,23 @@ struct RootView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             TabView {
-                HomeView()
-                    .tabItem {
-                        Image(systemName: "house")
-                        Text("Home")
+                NavigationView {
+                    HomeView()
                 }
-                QuickTimerView()
-                    .tabItem {
-                        Image(systemName: "timer")
-                        Text("Quick timer")
+                .tabItem {
+                    Image(systemName: "house")
+                    Text("Home")
                 }
+
+
+                NavigationView {
+                    QuickTimerView()
+                }
+                .tabItem {
+                    Image(systemName: "timer")
+                    Text("Quick timer")
+                }
+
             }
             .accentColor(.appPrimary)
             .onAppear {
