@@ -19,7 +19,7 @@ struct ExerciseRowView: View {
             
             Text("\(set.name)")
                 .padding(.leading, 18)
-                .foregroundColor(.appBlack)
+                .foregroundColor(.appDark)
                 .font(.h3)
             
             Spacer()

@@ -47,7 +47,7 @@ private struct Oval: ViewModifier {
             .padding([.vertical], 8)
             .padding([.horizontal], 16)
             .foregroundColor(Color.white)
-            .background(Color.brand3)
+            .background(Color.appPrimary)
             .cornerRadius(8)
             .shadow(color: Color.black.opacity(0.4), radius: 5)
     }

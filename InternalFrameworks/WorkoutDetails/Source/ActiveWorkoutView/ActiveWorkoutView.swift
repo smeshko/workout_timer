@@ -25,7 +25,7 @@ public struct ActiveWorkoutView: View {
 
                 CurrentExerciseView(viewStore: ViewStore(store))
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                    .background(Color.appBlack)
+                    .background(Color.appDark)
 
                 NextExerciseView(viewStore: ViewStore(store))
             }
@@ -67,7 +67,7 @@ private struct ImageView: View {
                     Image(systemName: "xmark")
                         .frame(width: 18, height: 18)
                         .padding(10)
-                        .foregroundColor(.appBlack)
+                        .foregroundColor(.appDark)
                 })
                 .background(Color.appWhite)
                 .cornerRadius(12)

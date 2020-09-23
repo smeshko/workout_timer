@@ -21,7 +21,7 @@ public struct HomeView: View {
                         .padding(.top, 18)
                         .padding(.leading, 28)
                         .font(.h2)
-                        .foregroundColor(.appTextPrimary)
+                        .foregroundColor(.appWhite)
                     TabView(selection: categoryViewStore.binding(
                         send: { $0 }
                     )) {
@@ -45,7 +45,7 @@ public struct HomeView: View {
                             .padding(.leading, 28)
                             .padding(.top, 18)
                             .font(.h2)
-                            .foregroundColor(.appTextPrimary)
+                            .foregroundColor(.appWhite)
 
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {

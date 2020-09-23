@@ -1,6 +1,5 @@
 import ComposableArchitecture
 import UIKit
-import WorkoutFeed
 import Foundation
 import WorkoutCore
 import QuickTimer

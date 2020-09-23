@@ -95,7 +95,7 @@ private struct InfoView: View {
                     .foregroundColor(.appGrey)
                 Text(subtitle)
                     .font(.h4)
-                    .foregroundColor(.appTextPrimary)
+                    .foregroundColor(.appWhite)
             }
         }
     }

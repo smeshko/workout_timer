@@ -93,7 +93,7 @@ private extension WorkoutCore.ProgressView {
 
 private extension QuickTimerSet.Segment.Category {
     var progressColor: Color {
-        self == .workout ? .brand1 : .brand2
+        self == .workout ? .primary : .secondary
     }
 }
 
