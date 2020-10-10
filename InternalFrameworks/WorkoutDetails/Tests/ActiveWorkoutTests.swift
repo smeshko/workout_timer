@@ -13,14 +13,14 @@ class ActiveWorkoutTests: XCTestCase {
     ])
     
     func testFlow() {
-        let store = TestStore(
-            initialState: ActiveWorkoutState(workout: workout),
-            reducer: activeWorkoutReducer,
-            environment: ActiveWorkoutEnvironment(
-                mainQueue: scheduler.eraseToAnyScheduler(),
-                soundClient: .mock
-            )
-        )
+//        let store = TestStore(
+//            initialState: ActiveWorkoutState(workout: workout),
+//            reducer: activeWorkoutReducer,
+//            environment: ActiveWorkoutEnvironment(
+//                mainQueue: scheduler.eraseToAnyScheduler(),
+//                soundClient: .mock
+//            )
+//        )
         
 //        store.assert(
 //            .send(.workoutBegin) {
@@ -69,14 +69,14 @@ class ActiveWorkoutTests: XCTestCase {
     }
     
     func testStart_Pause() {
-        let store = TestStore(
-            initialState: ActiveWorkoutState(workout: workout),
-            reducer: activeWorkoutReducer,
-            environment: ActiveWorkoutEnvironment(
-                mainQueue: scheduler.eraseToAnyScheduler(),
-                soundClient: .mock
-            )
-        )
+//        let store = TestStore(
+//            initialState: ActiveWorkoutState(workout: workout),
+//            reducer: activeWorkoutReducer,
+//            environment: ActiveWorkoutEnvironment(
+//                mainQueue: scheduler.eraseToAnyScheduler(),
+//                soundClient: .mock
+//            )
+//        )
         
 //        store.assert(
 //            .send(.workoutBegin) {

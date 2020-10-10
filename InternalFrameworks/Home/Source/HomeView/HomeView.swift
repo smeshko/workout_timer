@@ -6,11 +6,9 @@ import ComposableArchitecture
 public struct HomeView: View {
 
     let store: Store<HomeState, HomeAction>
-    let categoryViewStore: ViewStore<Workout, Workout>
 
     public init(store: Store<HomeState, HomeAction>) {
         self.store = store
-        categoryViewStore = ViewStore(store.scope(state: \.selectedFeaturedWorkout, action: HomeAction.featuredWorkoutsSelectionChanged))
     }
     
     public var body: some View {
@@ -22,17 +20,18 @@ public struct HomeView: View {
                         .padding(.leading, 28)
                         .font(.h2)
                         .foregroundColor(.appWhite)
-                    TabView(selection: categoryViewStore.binding(
-                        send: { $0 }
-                    )) {
-                        ForEach(viewStore.featuredWorkouts, id: \.id) { workout in
-                            NavigationLink(destination: WorkoutDetailsView(workout: workout)) {
-                                WorkoutCardView(workout: workout)
-                                    .frame(width: UIScreen.main.bounds.width, height: 180)
-                                    .tag(workout)
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack {
+                            ForEach(viewStore.featuredWorkouts, id: \.id) { workout in
+                                NavigationLink(destination: WorkoutDetailsView(workout: workout)) {
+                                    WorkoutCardView(workout: workout)
+                                        .frame(width: UIScreen.main.bounds.width, height: 180)
+                                        .tag(workout)
+                                }
                             }
+                            .buttonStyle(PlainButtonStyle())
                         }
-                        .buttonStyle(PlainButtonStyle())
+                        .padding(.horizontal, 28)
                     }
                     .frame(width: UIScreen.main.bounds.width, height: 200)
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))

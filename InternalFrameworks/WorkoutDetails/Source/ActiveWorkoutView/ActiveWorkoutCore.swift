@@ -22,7 +22,7 @@ public struct ActiveWorkoutState: Equatable {
     var isRunning = false
     var isFinished = false
 
-    var finishedWorkoutSets: Int = 1
+    var finishedWorkoutSets: Int = 0
     var totalWorkoutSets: Int {
         workout.sets.filter { $0.type != .rest }.count
     }
@@ -78,7 +78,6 @@ public let activeWorkoutReducer = Reducer<ActiveWorkoutState, ActiveWorkoutActio
         }
 
     case .moveToNextExercise:
-        state.finishedWorkoutSets += 1
         return state.moveToNextExercise(soundClient: environment.soundClient)
 
     case .workoutFinished:
@@ -96,6 +95,9 @@ private extension ActiveWorkoutState {
             return Effect(value: ActiveWorkoutAction.workoutFinished)
         }
 
+        if currentSet?.type != .rest {
+            finishedWorkoutSets += 1
+        }
         currentSet = next
         currentSetSecondsLeft = next.duration
         nextSet = workout.sets.object(after: next)

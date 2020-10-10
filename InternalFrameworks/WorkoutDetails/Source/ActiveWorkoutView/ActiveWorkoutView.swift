@@ -51,7 +51,7 @@ private struct ImageView: View {
 
     var body: some View {
         ZStack(alignment: .top) {
-//                    RemoteImage(key: viewStore.currentSet.imageKey)
+//            RemoteImage(key: viewStore.currentSet?.imageKey ?? "")
             Image(namedSharedAsset: "bodyweight-2")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
@@ -106,9 +106,9 @@ private struct CurrentExerciseView: View {
 
             HStack(spacing: 18) {
                 Button(action: {
-                    viewStore.send(.pause)
+                    viewStore.send(viewStore.isRunning ? .pause : .resume)
                 }, label: {
-                    Image(systemName: "pause")
+                    Image(systemName: viewStore.isRunning ? "pause" : "play")
                         .frame(width: 18, height: 18)
                         .padding(15)
                         .foregroundColor(.appWhite)
@@ -117,7 +117,7 @@ private struct CurrentExerciseView: View {
                 .cornerRadius(12)
 
                 Button(action: {
-
+                    viewStore.send(.moveToNextExercise)
                 }, label: {
                     Text("Next")
                         .padding(.vertical, 18)

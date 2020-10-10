@@ -14,16 +14,16 @@ class TimerCoreTests: XCTestCase {
     let segments = [QuickTimerSet(id: uuid, work: 1, pause: 1), QuickTimerSet(id: uuid, work: 1, pause: 0)]
     
     func testFlow() {
-        let store = TestStore(
-            initialState: QuickTimerState(circuitPickerState: QuickExerciseBuilderState(sets: 1, workoutTime: 60, breakTime: 20)),
-            reducer: quickTimerReducer,
-            environment: QuickTimerEnvironment(
-                uuid: TimerCoreTests.uuid,
-                mainQueue: AnyScheduler(self.scheduler),
-                soundClient: .mock,
-                timerStep: 1
-            )
-        )
+//        let store = TestStore(
+//            initialState: QuickTimerState(circuitPickerState: QuickExerciseBuilderState(sets: 1, workoutTime: 60, breakTime: 20)),
+//            reducer: quickTimerReducer,
+//            environment: QuickTimerEnvironment(
+//                uuid: TimerCoreTests.uuid,
+//                mainQueue: AnyScheduler(self.scheduler),
+//                soundClient: .mock,
+//                timerStep: 1
+//            )
+//        )
         
 //        store.assert(
 //            .send(.circuitPickerUpdatedValues(.updatedSegments(segments))) {
