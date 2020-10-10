@@ -3,8 +3,6 @@ import ComposableArchitecture
 import WorkoutCore
 
 public struct QuickTimerView: View {
-    
-    @State private var isPresented = false
 
     let store: Store<QuickTimerState, QuickTimerAction>
     
@@ -24,7 +22,7 @@ public struct QuickTimerView: View {
                     Spacer()
 
                     Button(action: {
-                        self.isPresented.toggle()
+                        viewStore.send(.setRunningTimer(isPresented: true))
                     }, label: {
                         Text("Start")
                             .padding(.vertical, 18)
@@ -36,9 +34,19 @@ public struct QuickTimerView: View {
                     })
                     .padding(.horizontal, 28)
                     .padding(.bottom, 18)
-                    .fullScreenCover(isPresented: $isPresented, content: {
+                    .fullScreenCover(
+                      isPresented: viewStore.binding(
+                        get: { $0.isRunningTimerPresented },
+                        send: QuickTimerAction.setRunningTimer(isPresented:)
+                      )
+                    ) {
                         RunningTimerView(store: self.store.scope(state: \.runningTimerState, action: QuickTimerAction.runningTimerAction))
-                    })
+                    }
+
+
+//                    .fullScreenCover(isPresented: $isPresented, content: {
+//                        RunningTimerView(store: self.store.scope(state: \.runningTimerState, action: QuickTimerAction.runningTimerAction))
+//                    })
                 }
                 .navigationBarTitle("")
                 .navigationBarHidden(true)

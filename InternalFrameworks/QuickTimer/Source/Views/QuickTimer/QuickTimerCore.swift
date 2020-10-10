@@ -3,12 +3,15 @@ import Foundation
 import WorkoutCore
 
 public enum QuickTimerAction: Equatable {
+    case setRunningTimer(isPresented: Bool)
     case circuitPickerUpdatedValues(QuickExerciseBuilderAction)
     case runningTimerAction(RunningTimerAction)
 }
 
 public struct QuickTimerState: Equatable {
 
+    var isRunningTimerPresented = false
+    var segments: [QuickTimerSet] = []
     var circuitPickerState: QuickExerciseBuilderState
     var runningTimerState: RunningTimerState = RunningTimerState()
     
@@ -42,6 +45,13 @@ public let quickTimerReducer =
             struct TimerId: Hashable {}
             
             switch action {
+            case .setRunningTimer(isPresented: true):
+                state.isRunningTimerPresented = true
+                state.runningTimerState = RunningTimerState(segments: state.segments)
+
+            case .setRunningTimer(isPresented: false):
+                state.isRunningTimerPresented = false
+                state.runningTimerState = RunningTimerState()
 
             case .runningTimerAction(let action):
                 break
@@ -49,7 +59,7 @@ public let quickTimerReducer =
             case .circuitPickerUpdatedValues(let circuitPickerAction):
                 switch circuitPickerAction {
                 case .updatedSegments(let segments):
-                    state.runningTimerState.segments = segments
+                    state.segments = segments
                 default: break
                 }
                 

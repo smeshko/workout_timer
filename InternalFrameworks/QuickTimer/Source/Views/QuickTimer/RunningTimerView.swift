@@ -26,10 +26,14 @@ struct RunningTimerView: View {
                     })
                     .background(Color.appWhite)
                     .cornerRadius(12)
-
+                    
                     Spacer()
+                    
+                    Text(viewStore.totalTimeLeft.formattedTimeLeft)
+                        .foregroundColor(.appWhite)
+                        .font(.h1)
                 }
-
+                
                 SegmentedProgressView(totalSegments: viewStore.segments.count,
                                       filledSegments: viewStore.finishedSegments,
                                       title: "Segments")
