@@ -15,9 +15,9 @@ class QuickExerciseBuilderTests: XCTestCase {
 
     func testFlow() {
         let store = TestStore(
-            initialState: QuickExerciseBuilderState(),
+            initialState: AddTimerSegmentState(),
             reducer: quickExerciseBuilderReducer,
-            environment: QuickExerciseBuilderEnvironment(uuid: self.uuid)
+            environment: AddTimerSegmentEnvironment(uuid: self.uuid)
         )
         
         store.assert(

@@ -14,10 +14,18 @@ public struct QuickTimerView: View {
         NavigationView {
             WithViewStore(self.store) { viewStore in
                 VStack {
-                    Spacer()
-
-                    QuickExerciseBuilderView(store: self.store.scope(state: \.circuitPickerState, action: QuickTimerAction.circuitPickerUpdatedValues))
-                        .padding()
+                    ScrollView(showsIndicators: false) {
+                        ForEachStore(self.store.scope(state: { $0.addTimerSegments }, action: QuickTimerAction.addTimerSegmentAction(id:action:))) { viewStore in
+                            AddTimerSegmentView(store: viewStore)
+                                .padding(.horizontal, 18)
+                                .padding(.vertical, 18)
+                                .background(Color.appDark.opacity(0.5))
+                                .cornerRadius(12)
+                                .padding(.bottom, 8)
+                            
+                        }
+                    }
+                    .padding(.horizontal, 28)
 
                     Spacer()
 
@@ -42,14 +50,13 @@ public struct QuickTimerView: View {
                     ) {
                         RunningTimerView(store: self.store.scope(state: \.runningTimerState, action: QuickTimerAction.runningTimerAction))
                     }
-
-
-//                    .fullScreenCover(isPresented: $isPresented, content: {
-//                        RunningTimerView(store: self.store.scope(state: \.runningTimerState, action: QuickTimerAction.runningTimerAction))
-//                    })
                 }
+                .navigationBarTitleDisplayMode(.inline)
                 .navigationBarTitle("")
                 .navigationBarHidden(true)
+                .onAppear {
+                    viewStore.send(.onAppear)
+                }
 
             }
         }

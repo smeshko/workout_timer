@@ -16,7 +16,7 @@ class TimerCoreTests: XCTestCase {
     func testFlow() {
         let store = TestStore(
             initialState: QuickTimerState(
-                circuitPickerState: QuickExerciseBuilderState(sets: 1, workoutTime: 60, breakTime: 20)),
+                circuitPickerState: AddTimerSegmentState(sets: 1, workoutTime: 60, breakTime: 20)),
             reducer: quickTimerReducer,
             environment: QuickTimerEnvironment(
                 uuid: TimerCoreTests.uuid,

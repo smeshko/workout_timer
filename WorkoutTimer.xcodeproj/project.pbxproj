@@ -87,8 +87,8 @@
 		B8DC59C424605F3F003FC8D3 /* KeyboardHeightPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893DF99245AD55900C43360 /* KeyboardHeightPublisher.swift */; };
 		B8DC6A2E2461D7F6003FC8D3 /* TimerCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DC6A2D2461D7F6003FC8D3 /* TimerCoreTests.swift */; };
 		B8DC6A302461D7F6003FC8D3 /* QuickTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* QuickTimer.framework */; };
-		B8ED77652468493E001B9DEE /* QuickExerciseBuilderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED77642468493E001B9DEE /* QuickExerciseBuilderView.swift */; };
-		B8ED776724684976001B9DEE /* QuickExerciseBuilderCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED776624684976001B9DEE /* QuickExerciseBuilderCore.swift */; };
+		B8ED77652468493E001B9DEE /* AddTimerSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED77642468493E001B9DEE /* AddTimerSegmentView.swift */; };
+		B8ED776724684976001B9DEE /* AddTimerSegmentCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED776624684976001B9DEE /* AddTimerSegmentCore.swift */; };
 		B8ED7769246854D0001B9DEE /* QuickTimerControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED7768246854D0001B9DEE /* QuickTimerControlsView.swift */; };
 		B8ED776C246858A9001B9DEE /* TimerControlsCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED776B246858A8001B9DEE /* TimerControlsCore.swift */; };
 		B8F9210824C74FAB00EBCC78 /* WorkoutsFetchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F9210724C74FAB00EBCC78 /* WorkoutsFetchService.swift */; };
@@ -313,8 +313,8 @@
 		B8DC6A2B2461D7F6003FC8D3 /* QuickTimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickTimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8DC6A2D2461D7F6003FC8D3 /* TimerCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCoreTests.swift; sourceTree = "<group>"; };
 		B8DC6A2F2461D7F6003FC8D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B8ED77642468493E001B9DEE /* QuickExerciseBuilderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickExerciseBuilderView.swift; sourceTree = "<group>"; };
-		B8ED776624684976001B9DEE /* QuickExerciseBuilderCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickExerciseBuilderCore.swift; sourceTree = "<group>"; };
+		B8ED77642468493E001B9DEE /* AddTimerSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTimerSegmentView.swift; sourceTree = "<group>"; };
+		B8ED776624684976001B9DEE /* AddTimerSegmentCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTimerSegmentCore.swift; sourceTree = "<group>"; };
 		B8ED7768246854D0001B9DEE /* QuickTimerControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerControlsView.swift; sourceTree = "<group>"; };
 		B8ED776B246858A8001B9DEE /* TimerControlsCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerControlsCore.swift; sourceTree = "<group>"; };
 		B8F9210624C74FAB00EBCC78 /* HomeCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCore.swift; sourceTree = "<group>"; };
@@ -798,8 +798,8 @@
 		B8ED776D24685953001B9DEE /* QuickExerciseBuilder */ = {
 			isa = PBXGroup;
 			children = (
-				B8ED77642468493E001B9DEE /* QuickExerciseBuilderView.swift */,
-				B8ED776624684976001B9DEE /* QuickExerciseBuilderCore.swift */,
+				B8ED77642468493E001B9DEE /* AddTimerSegmentView.swift */,
+				B8ED776624684976001B9DEE /* AddTimerSegmentCore.swift */,
 			);
 			path = QuickExerciseBuilder;
 			sourceTree = "<group>";
@@ -1280,7 +1280,7 @@
 				B8DC59BF24605ED9003FC8D3 /* QuickTimerCore.swift in Sources */,
 				B8DC59C224605F3F003FC8D3 /* View-UpdateKeyPath.swift in Sources */,
 				B8DC59C324605F3F003FC8D3 /* UIResponder-Current.swift in Sources */,
-				B8ED776724684976001B9DEE /* QuickExerciseBuilderCore.swift in Sources */,
+				B8ED776724684976001B9DEE /* AddTimerSegmentCore.swift in Sources */,
 				B83FC063248D32DC007531CF /* Array-QuickTimerSet.swift in Sources */,
 				B8DC59BC24605ED0003FC8D3 /* QuickTimerView.swift in Sources */,
 				B83907062462A4F400676B3D /* PickerCore.swift in Sources */,
@@ -1289,7 +1289,7 @@
 				B8DC59BE24605ED5003FC8D3 /* KeyboardAdaptive.swift in Sources */,
 				B8D12CF2251B944500458A7A /* RunningTimerView.swift in Sources */,
 				B8DC59C424605F3F003FC8D3 /* KeyboardHeightPublisher.swift in Sources */,
-				B8ED77652468493E001B9DEE /* QuickExerciseBuilderView.swift in Sources */,
+				B8ED77652468493E001B9DEE /* AddTimerSegmentView.swift in Sources */,
 				B8D12CF8251B945100458A7A /* RunningTimerCore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
