@@ -17,58 +17,52 @@ public struct WorkoutDetailsView: View {
     public var body: some View {
         WithViewStore(store) { viewStore in
 
-            HStack {
-                InfoView(image: "clock.fill", title: "Duration", subtitle: "\(viewStore.workout.duration)m")
-                Spacer()
-                InfoView(image: "heart.fill", title: "Exercises", subtitle: "\(viewStore.workout.exerciseCount) Exercises")
-                Spacer()
-                LevelView(level: 2)
-            }
-            .padding(.horizontal, 28)
-            .padding(.vertical, 28)
-
-            ZStack(alignment: .bottom) {
-                ScrollView {
-                    VStack {
-                        ForEach(viewStore.workout.sets, id: \.name) { set in
-                            if set.type != .rest {
-                                ExerciseRowView(set: set)
-                                    .padding(.bottom, 18)
-                            }
-                        }
-                        .padding(.horizontal, 28)
-
-                        Spacer()
-                    }
+            VStack {
+                HStack {
+                    InfoView(image: "clock.fill", title: "Duration", subtitle: "\(viewStore.workout.duration)m")
+                    Spacer()
+                    InfoView(image: "heart.fill", title: "Exercises", subtitle: "\(viewStore.workout.exerciseCount) Exercises")
+                    Spacer()
+                    LevelView(level: 2)
                 }
-
-                Button(action: {
-                    self.isPresented.toggle()
-                }, label: {
-                    Text("Start Now")
-                        .padding(.vertical, 18)
-                        .frame(maxWidth: .infinity)
-                        .background(Color.appPrimary)
-                        .foregroundColor(.appWhite)
-                        .font(.h3)
-                        .cornerRadius(12)
-                })
                 .padding(.horizontal, 28)
-                .padding(.bottom, 18)
-                .fullScreenCover(isPresented: $isPresented, content: {
-                    ActiveWorkoutView(workout: viewStore.workout)
-                })
+                .padding(.vertical, 28)
+                
+                ZStack(alignment: .bottom) {
+                    ScrollView {
+                        VStack {
+                            ForEach(viewStore.workout.sets, id: \.name) { set in
+                                if set.type != .rest {
+                                    ExerciseRowView(set: set)
+                                        .padding(.bottom, 18)
+                                }
+                            }
+                            .padding(.horizontal, 28)
+                            
+                            Spacer()
+                        }
+                    }
+                    
+                    Button(action: {
+                        self.isPresented.toggle()
+                    }, label: {
+                        Text("Start Now")
+                            .padding(.vertical, 18)
+                            .frame(maxWidth: .infinity)
+                            .background(Color.appPrimary)
+                            .foregroundColor(.appWhite)
+                            .font(.h3)
+                            .cornerRadius(12)
+                    })
+                    .padding(.horizontal, 28)
+                    .padding(.bottom, 18)
+                    .fullScreenCover(isPresented: $isPresented, content: {
+                        ActiveWorkoutView(workout: viewStore.workout)
+                    })
+                }
             }
             .navigationBarTitle(viewStore.workout.name, displayMode: .large)
         }
-    }
-}
-
-struct WorkoutDetailsView_Previews: PreviewProvider {
-    static var previews: some View {
-        return WorkoutDetailsView(workout: mockWorkout1)
-            .colorScheme(.dark)
-            .background(Color.black)
     }
 }
 
@@ -95,7 +89,7 @@ private struct InfoView: View {
                     .foregroundColor(.appGrey)
                 Text(subtitle)
                     .font(.h4)
-                    .foregroundColor(.appWhite)
+                    .foregroundColor(.appText)
             }
         }
     }
@@ -124,3 +118,15 @@ private struct LevelView: View {
     }
 }
 
+struct WorkoutDetailsView_Previews: PreviewProvider {
+    static var previews: some View {
+        return Group {
+            WorkoutDetailsView(workout: mockWorkout1)
+                .preferredColorScheme(.dark)
+                .previewDevice(.iPhone11)
+
+            WorkoutDetailsView(workout: mockWorkout1)
+                .previewDevice(.iPadPro)
+        }
+    }
+}

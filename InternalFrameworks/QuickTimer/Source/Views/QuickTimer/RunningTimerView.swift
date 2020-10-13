@@ -22,15 +22,15 @@ struct RunningTimerView: View {
                         Image(systemName: "xmark")
                             .frame(width: 18, height: 18)
                             .padding(10)
-                            .foregroundColor(.appDark)
+                            .foregroundColor(.appText)
                     })
-                    .background(Color.appWhite)
+                    .background(Color.appCardBackground)
                     .cornerRadius(12)
                     
                     Spacer()
                     
                     Text(viewStore.totalTimeLeft.formattedTimeLeft)
-                        .foregroundColor(.appWhite)
+                        .foregroundColor(.appText)
                         .font(.h1)
                 }
                 
@@ -48,11 +48,11 @@ struct RunningTimerView: View {
                         .font(.display)
 
                     Text(viewStore.segmentTimeLeft.formattedTimeLeft)
-                        .foregroundColor(.appWhite)
+                        .foregroundColor(.appText)
                         .font(.gigantic)
 
                     Text(viewStore.currentSegmentName)
-                        .foregroundColor(.appWhite)
+                        .foregroundColor(.appText)
                         .font(.h2)
                 }
 
@@ -70,16 +70,28 @@ struct RunningTimerView: View {
 
 struct RunningTimerView_Previews: PreviewProvider {
     static var previews: some View {
-        RunningTimerView(
-            store: Store<RunningTimerState, RunningTimerAction>(
-                initialState: RunningTimerState(),
-                reducer: runningTimerReducer,
-                environment: RunningTimerEnvironment(uuid: UUID.init,
-                                                     mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-                                                     soundClient: .mock
-                )
+
+        let store = Store<RunningTimerState, RunningTimerAction>(
+            initialState: RunningTimerState(
+                segments: [QuickTimerSet(id: UUID.init, work: 30, pause: 10)],
+                currentSegment: QuickTimerSet.Segment(id: UUID.init, duration: 30, category: .workout),
+                timerControlsState: QuickTimerControlsState(timerState: .running)
+            ),
+            reducer: runningTimerReducer,
+            environment: RunningTimerEnvironment(uuid: UUID.init,
+                                                 mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
+                                                 soundClient: .mock
             )
         )
+
+        return Group {
+            RunningTimerView(store: store)
+                .preferredColorScheme(.dark)
+                .previewDevice(.iPhone11)
+
+            RunningTimerView(store: store)
+                .previewDevice(.iPadPro)
+        }
     }
 }
 

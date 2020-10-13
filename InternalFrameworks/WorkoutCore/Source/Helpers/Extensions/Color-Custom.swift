@@ -11,5 +11,7 @@ extension Color {
     public static let appError: Color = Color("error", bundle: bundle)
     public static let appGrey: Color = Color("grey", bundle: bundle)
     public static let appLightGrey: Color = Color("lightGrey", bundle: bundle)
-
+    public static let appCardBackground: Color = Color("cardBackground", bundle: bundle)
+    public static let appText: Color = Color("text", bundle: bundle)
+    public static let appBackground: Color = Color("background", bundle: bundle)
 }

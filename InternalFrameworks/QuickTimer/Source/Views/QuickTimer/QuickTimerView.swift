@@ -19,7 +19,7 @@ public struct QuickTimerView: View {
                             AddTimerSegmentView(store: viewStore)
                                 .padding(.horizontal, 18)
                                 .padding(.vertical, 18)
-                                .background(Color.appDark.opacity(0.5))
+                                .background(Color.appCardBackground)
                                 .cornerRadius(12)
                                 .padding(.bottom, 8)
                             

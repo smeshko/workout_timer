@@ -20,4 +20,19 @@ public extension PreviewProvider {
             ExerciseSet(id: "mock-set-3", exercise: mockExercise3, duration: 60)
         ])
     }
+
+    static var mockWorkout2: Workout {
+        Workout(id: "mock-workout-2", name: "Mock Workout 2", imageKey: "preview-workout-1", sets: [
+            ExerciseSet(id: "mock-set-1", exercise: mockExercise1, duration: 60),
+            ExerciseSet(id: "mock-set-2", exercise: mockExercise2, duration: 45),
+            ExerciseSet(id: "mock-set-3", exercise: mockExercise3, duration: 60)
+        ])
+    }
+
+    static var mockCategory1: WorkoutCategory {
+        WorkoutCategory(id: "category-1", name: "Mock Category 1", workouts: [
+            mockWorkout1,
+            mockWorkout2
+        ])
+    }
 }

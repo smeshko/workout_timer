@@ -31,6 +31,18 @@ public struct HomeState: Equatable {
     var isLoading: Bool { loadingState == .loading }
 
     public init() {}
+    init(selectedCategory: WorkoutCategory = WorkoutCategory(id: "", name: ""),
+                selectedFeaturedWorkout: Workout = Workout(id: "", name: "", imageKey: ""),
+                categories: [WorkoutCategory] = [],
+                featuredWorkouts: [Workout] = [],
+                loadingState: LoadingState = .done
+    ) {
+        self.selectedCategory = selectedCategory
+        self.selectedFeaturedWorkout = selectedFeaturedWorkout
+        self.categories = categories
+        self.featuredWorkouts = featuredWorkouts
+        self.loadingState = loadingState
+    }
 }
 
 public struct HomeEnvironment {

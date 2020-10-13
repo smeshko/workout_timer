@@ -19,7 +19,7 @@ public struct HomeView: View {
                         .padding(.top, 18)
                         .padding(.leading, 28)
                         .font(.h2)
-                        .foregroundColor(.appWhite)
+                        .foregroundColor(.appText)
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
                             ForEach(viewStore.featuredWorkouts, id: \.id) { workout in
@@ -44,7 +44,7 @@ public struct HomeView: View {
                             .padding(.leading, 28)
                             .padding(.top, 18)
                             .font(.h2)
-                            .foregroundColor(.appWhite)
+                            .foregroundColor(.appText)
 
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
@@ -79,12 +79,22 @@ public struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(
-            store: Store<HomeState, HomeAction>(
-                initialState: HomeState(),
+        let store = Store<HomeState, HomeAction>(
+                initialState: HomeState(
+                    categories: [mockCategory1],
+                    featuredWorkouts: [mockWorkout1]),
                 reducer: homeReducer,
                 environment: HomeEnvironment(mainQueue: DispatchQueue.main.eraseToAnyScheduler())
             )
-        )
+
+        return Group {
+            HomeView(store: store)
+                .preferredColorScheme(.dark)
+                .previewDevice(.iPhone11)
+
+            HomeView(store: store)
+                .previewDevice(.iPadPro)
+        }
+
     }
 }

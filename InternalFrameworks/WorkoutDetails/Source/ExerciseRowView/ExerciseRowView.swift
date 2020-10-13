@@ -19,7 +19,7 @@ struct ExerciseRowView: View {
             
             Text("\(set.name)")
                 .padding(.leading, 18)
-                .foregroundColor(.appDark)
+                .foregroundColor(.appText)
                 .font(.h3)
             
             Spacer()
@@ -29,7 +29,16 @@ struct ExerciseRowView: View {
 
 struct ExerciseRowView_Previews: PreviewProvider {
     static var previews: some View {
-        ExerciseRowView(set: ExerciseSet(id: "setid", exercise: mockExercise1, duration: 30))
+        Group {
+            ExerciseRowView(set: ExerciseSet(id: "setid", exercise: mockExercise1, duration: 30))
+                .padding()
+                .previewLayout(.sizeThatFits)
+                .preferredColorScheme(.dark)
+
+                ExerciseRowView(set: ExerciseSet(id: "setid", exercise: mockExercise1, duration: 30))
+                    .padding()
+                    .previewLayout(.sizeThatFits)
+        }
     }
 }
 

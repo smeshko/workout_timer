@@ -25,22 +25,18 @@ public struct ActiveWorkoutView: View {
 
                 CurrentExerciseView(viewStore: ViewStore(store))
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                    .background(Color.appDark)
+                    .background(Color.appBackground)
 
                 NextExerciseView(viewStore: ViewStore(store))
+                    .background(Color.appCardBackground)
             }
+            .edgesIgnoringSafeArea(.bottom)
             .navigationBarTitle("")
             .navigationBarHidden(true)
             .onAppear {
                 viewStore.send(.workoutBegin)
             }
         }
-    }
-}
-
-struct ActiveWorkoutView_Previews: PreviewProvider {
-    static var previews: some View {
-        ActiveWorkoutView(workout: mockWorkout1)
     }
 }
 
@@ -96,12 +92,12 @@ private struct CurrentExerciseView: View {
                     .font(.display)
 
                 Text(viewStore.currentSetSecondsLeft.formattedTimeLeft)
-                    .foregroundColor(.appWhite)
+                    .foregroundColor(.appText)
                     .font(.gigantic)
             }
 
             Text(viewStore.currentSet?.name ?? "")
-                .foregroundColor(.appWhite)
+                .foregroundColor(.appText)
                 .font(.h2)
 
             HStack(spacing: 18) {
@@ -134,6 +130,7 @@ private struct CurrentExerciseView: View {
                                   title: "Exercises")
                 .padding(.horizontal, 28)
         }
+        .padding(.vertical, 18)
     }
 }
 
@@ -156,6 +153,19 @@ private struct NextExerciseView: View {
                 }
             }
             .padding(28)
+        }
+    }
+}
+
+struct ActiveWorkoutView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            ActiveWorkoutView(workout: mockWorkout1)
+                .previewDevice(.iPhone11)
+                .preferredColorScheme(.dark)
+
+            ActiveWorkoutView(workout: mockWorkout1)
+                .previewDevice(.iPadPro)
         }
     }
 }

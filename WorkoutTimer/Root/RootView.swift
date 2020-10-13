@@ -27,6 +27,7 @@ struct RootView: View {
                     Image(systemName: "timer")
                     Text("Quick timer")
                 }
+                .background(Color.appBackground)
 
             }
             .accentColor(.appPrimary)
