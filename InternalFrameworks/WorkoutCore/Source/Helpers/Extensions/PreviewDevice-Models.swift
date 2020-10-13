@@ -2,9 +2,8 @@ import SwiftUI
 
 public extension PreviewDevice {
     static let iPhone8 = PreviewDevice(rawValue: "iPhone 8")
-    static let iPadPro = PreviewDevice(rawValue: "iPad Pro (11-inch)")
     static let iPhone11 = PreviewDevice(rawValue: "iPhone 11")
-    static let iPhone11Pro = PreviewDevice(rawValue: "iPad Pro (12.9-inch) (3rd generation)")
+    static let iPadPro = PreviewDevice(rawValue: "iPad Pro (12.9-inch) (3rd generation)")
 }
 
 /// Overrides the device for a preview.

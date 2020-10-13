@@ -52,6 +52,7 @@ public let quickTimerReducer =
             
             switch action {
             case .onAppear:
+                guard state.addTimerSegments.isEmpty else { return .none }
                 state.addTimerSegments.append(defaultSegmentState(with: environment.uuid()))
 
             case .setRunningTimer(isPresented: true):

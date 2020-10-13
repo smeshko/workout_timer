@@ -57,10 +57,18 @@ public struct QuickTimerView: View {
                 .onAppear {
                     viewStore.send(.onAppear)
                 }
-
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
+        .gesture(
+            DragGesture()
+                .onChanged { _ in
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                }
+        )
+        .onTapGesture {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        }
     }
 }
 
@@ -78,11 +86,11 @@ struct TimerView_Previews: PreviewProvider {
         
         return Group {
             QuickTimerView(store: store)
-                .previewDevice(.iPhone8)
-            
+                .previewDevice(.iPhone11)
+                .environment(\.colorScheme, .dark)
+
             QuickTimerView(store: store)
-                .previewDevice(PreviewDevice(rawValue: "iPad Pro (12.9-inch) (3rd generation)"))
-            
+                .previewDevice(.iPadPro)
         }
     }
 }

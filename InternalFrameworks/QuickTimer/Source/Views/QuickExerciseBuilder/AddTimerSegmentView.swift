@@ -40,15 +40,6 @@ struct AddTimerSegmentView: View {
                 .cornerRadius(12)
             }
             .padding(.horizontal, 28)
-//            .gesture(
-//                DragGesture()
-//                    .onChanged { _ in
-//                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-//                    }
-//            )
-//            .onTapGesture {
-//                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-//            }
         }
     }
 }
