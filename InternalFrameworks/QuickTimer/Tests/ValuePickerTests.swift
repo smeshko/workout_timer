@@ -13,12 +13,8 @@ class ValuePickerTests: XCTestCase {
         )
         
         store.assert(
-            .send(.valueUpdated(5)) {
-                $0.isShowingPicker = false
-                $0.value = 5
-            },
-            .send(.togglePickerVisibility) {
-                $0.isShowingPicker = true
+            .send(.valueUpdated("5")) {
+                $0.value = "5"
             }
         )
     }
