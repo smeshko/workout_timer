@@ -15,7 +15,8 @@ class TimerCoreTests: XCTestCase {
     
     func testFlow() {
 //        let store = TestStore(
-//            initialState: QuickTimerState(circuitPickerState: QuickExerciseBuilderState(sets: 1, workoutTime: 60, breakTime: 20)),
+//            initialState: QuickTimerState(
+//                circuitPickerState: AddTimerSegmentState(sets: 1, workoutTime: 60, breakTime: 20)),
 //            reducer: quickTimerReducer,
 //            environment: QuickTimerEnvironment(
 //                uuid: TimerCoreTests.uuid,
@@ -24,57 +25,18 @@ class TimerCoreTests: XCTestCase {
 //                timerStep: 1
 //            )
 //        )
-        
+//
 //        store.assert(
 //            .send(.circuitPickerUpdatedValues(.updatedSegments(segments))) {
-//                $0.currentSegment = self.segments.first?.work
-//                $0.totalTimeLeft = 3
-//                $0.segmentTimeLeft = 1
 //                $0.segments = self.segments
 //            },
-//            .send(.timerControlsUpdatedState(.start)) {
-//                $0.timerControlsState.timerState = .running
-//                $0.circuitPickerState.breakTimeState.isInteractionDisabled = true
-//                $0.circuitPickerState.workoutTimeState.isInteractionDisabled = true
-//                $0.circuitPickerState.setsState.isInteractionDisabled = true
+//            .send(.setRunningTimer(isPresented: true)) {
+//                $0.isRunningTimerPresented = true
+//                $0.runningTimerState = RunningTimerState(segments: self.segments)
 //            },
-//            .do {
-//                self.scheduler.advance(by: 1)
-//            },
-//            .receive(.timerTicked) {
-//                $0.totalTimeLeft = 2
-//                $0.segmentTimeLeft = 0
-//            },
-//            .receive(.segmentEnded) {
-//                $0.segmentTimeLeft = 1
-//                $0.currentSegment = self.segments.first?.pause
-//            },
-//            .do {
-//                self.scheduler.advance(by: 1)
-//            },
-//            .receive(.timerTicked) {
-//                $0.totalTimeLeft = 1
-//                $0.segmentTimeLeft = 0
-//            },
-//            .receive(.segmentEnded) {
-//                $0.segmentTimeLeft = 1
-//                $0.currentSegment = self.segments.last?.work
-//            },
-//            .do {
-//                self.scheduler.advance(by: 1)
-//            },
-//            .receive(.timerTicked) {
-//                $0.totalTimeLeft = 0
-//                $0.segmentTimeLeft = 0
-//            },
-//            .receive(.timerFinished) {
-//                $0.circuitPickerState.setsState.value = 2
-//                $0.segments = []
-//                $0.currentSegment = nil
-//                $0.timerControlsState.timerState = .finished
-//                $0.circuitPickerState.breakTimeState.isInteractionDisabled = false
-//                $0.circuitPickerState.workoutTimeState.isInteractionDisabled = false
-//                $0.circuitPickerState.setsState.isInteractionDisabled = false
+//            .send(.setRunningTimer(isPresented: false)) {
+//                $0.isRunningTimerPresented = false
+//                $0.runningTimerState = RunningTimerState()
 //            }
 //        )
     }

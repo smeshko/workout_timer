@@ -4,20 +4,21 @@ import WorkoutCore
 
 public enum QuickTimerAction: Equatable {
     case setRunningTimer(isPresented: Bool)
-    case circuitPickerUpdatedValues(QuickExerciseBuilderAction)
+    case circuitPickerUpdatedValues(AddTimerSegmentAction)
     case runningTimerAction(RunningTimerAction)
+    case addTimerSegmentAction(id: UUID, action: AddTimerSegmentAction)
+    case onAppear
 }
 
 public struct QuickTimerState: Equatable {
 
     var isRunningTimerPresented = false
     var segments: [QuickTimerSet] = []
-    var circuitPickerState: QuickExerciseBuilderState
+
+    var addTimerSegments: IdentifiedArrayOf<AddTimerSegmentState> = []
     var runningTimerState: RunningTimerState = RunningTimerState()
     
-    public init(circuitPickerState: QuickExerciseBuilderState = QuickExerciseBuilderState(sets: 2, workoutTime: 60, breakTime: 20)) {
-        self.circuitPickerState = circuitPickerState
-    }
+    public init() {}
 }
 
 public struct QuickTimerEnvironment {
@@ -41,10 +42,19 @@ public struct QuickTimerEnvironment {
 
 public let quickTimerReducer =
     Reducer<QuickTimerState, QuickTimerAction, QuickTimerEnvironment>.combine(
+        addTimerSegmentReducer.forEach(
+            state: \.addTimerSegments,
+            action: /QuickTimerAction.addTimerSegmentAction(id:action:),
+            environment: { AddTimerSegmentEnvironment(uuid: $0.uuid) }
+        ),
         Reducer { state, action, environment in
             struct TimerId: Hashable {}
             
             switch action {
+            case .onAppear:
+                guard state.addTimerSegments.isEmpty else { return .none }
+                state.addTimerSegments.append(defaultSegmentState(with: environment.uuid()))
+
             case .setRunningTimer(isPresented: true):
                 state.isRunningTimerPresented = true
                 state.runningTimerState = RunningTimerState(segments: state.segments)
@@ -56,25 +66,29 @@ public let quickTimerReducer =
             case .runningTimerAction(let action):
                 break
 
-            case .circuitPickerUpdatedValues(let circuitPickerAction):
-                switch circuitPickerAction {
-                case .updatedSegments(let segments):
-                    state.segments = segments
-                default: break
+            case .addTimerSegmentAction(let id, .updatedSegments(let action, let segments)):
+                switch action {
+                case .add:
+                    state.segments.append(contentsOf: segments)
+                    state.addTimerSegments.append(defaultSegmentState(with: environment.uuid()))
+                case .remove:
+                    state.segments.removeAll { segments.map { $0.id }.contains($0.id) }
+                    state.addTimerSegments.remove(id: id)
                 }
-                
+
+
+            default: break
             }
             
             return .none
         },
-        quickExerciseBuilderReducer.pullback(
-            state: \.circuitPickerState,
-            action: /QuickTimerAction.circuitPickerUpdatedValues,
-            environment: { env in QuickExerciseBuilderEnvironment(uuid: env.uuid) }
-        ),
         runningTimerReducer.pullback(
             state: \.runningTimerState,
             action: /QuickTimerAction.runningTimerAction,
             environment: { env in RunningTimerEnvironment(uuid: env.uuid, mainQueue: env.mainQueue, soundClient: env.soundClient)}
         )
 )
+
+private func defaultSegmentState(with id: UUID) -> AddTimerSegmentState {
+    AddTimerSegmentState(id: id, sets: 2, workoutTime: 60, breakTime: 20)
+}
