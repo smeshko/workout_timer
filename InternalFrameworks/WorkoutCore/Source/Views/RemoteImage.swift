@@ -16,7 +16,6 @@ public struct RemoteImage: View {
             reducer: remoteImageReducer,
             environment: RemoteImageEnvironment()
         )
-
     }
     
     public var body: some View {

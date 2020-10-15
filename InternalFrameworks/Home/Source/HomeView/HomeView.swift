@@ -93,7 +93,7 @@ struct HomeView_Previews: PreviewProvider {
                 .previewDevice(.iPhone11)
 
             HomeView(store: store)
-                .previewDevice(.iPadPro)
+                .previewDevice(.iPhone8)
         }
 
     }

@@ -90,7 +90,7 @@ struct RunningTimerView_Previews: PreviewProvider {
                 .previewDevice(.iPhone11)
 
             RunningTimerView(store: store)
-                .previewDevice(.iPadPro)
+                .previewDevice(.iPhone8)
         }
     }
 }

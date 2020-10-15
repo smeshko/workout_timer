@@ -34,10 +34,10 @@ struct ExerciseRowView_Previews: PreviewProvider {
                 .padding()
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.dark)
-
-                ExerciseRowView(set: ExerciseSet(id: "setid", exercise: mockExercise1, duration: 30))
-                    .padding()
-                    .previewLayout(.sizeThatFits)
+            
+            ExerciseRowView(set: ExerciseSet(id: "setid", exercise: mockExercise1, duration: 30))
+                .padding()
+                .previewLayout(.sizeThatFits)
         }
     }
 }

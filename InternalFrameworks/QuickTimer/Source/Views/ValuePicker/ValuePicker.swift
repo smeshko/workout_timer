@@ -24,14 +24,22 @@ struct ValuePicker: View {
 
 struct ValuePicker_Previews: PreviewProvider {
     static var previews: some View {
-        ValuePicker(
-            store: Store<PickerState, PickerAction>(
-                initialState: PickerState(),
-                reducer: pickerReducer,
-                environment: PickerEnvironment()
-            ),
-            valueName: "Sets",
-            tint: .orange
+
+        let store = Store<PickerState, PickerAction>(
+            initialState: PickerState(),
+            reducer: pickerReducer,
+            environment: PickerEnvironment()
         )
+
+        return Group {
+            ValuePicker(store: store, valueName: "Sets", tint: .orange)
+                .padding()
+                .previewLayout(.sizeThatFits)
+
+            ValuePicker(store: store, valueName: "Sets", tint: .orange)
+                .preferredColorScheme(.dark)
+                .padding()
+                .previewLayout(.sizeThatFits)
+        }
     }
 }

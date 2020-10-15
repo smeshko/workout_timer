@@ -90,7 +90,7 @@ struct TimerView_Previews: PreviewProvider {
                 .environment(\.colorScheme, .dark)
 
             QuickTimerView(store: store)
-                .previewDevice(.iPadPro)
+                .previewDevice(.iPhone8)
         }
     }
 }

@@ -1,11 +1,21 @@
 import ComposableArchitecture
 
+private struct Constants {
+    static let maxLength = 3
+}
+
 public enum PickerAction: Equatable {
     case valueUpdated(String)
 }
 
 public struct PickerState: Equatable {
-    var value: String = ""
+    var value: String = "" {
+        didSet {
+            if value.count > Constants.maxLength && oldValue.count <= Constants.maxLength {
+                value = oldValue
+            }
+        }
+    }
 
     public init(value: Int = 0) {
         self.value = "\(value)"
@@ -18,7 +28,9 @@ public let pickerReducer = Reducer<PickerState, PickerAction, PickerEnvironment>
 
     switch action {
     case .valueUpdated(let value):
-        state.value = value
+        if value.count <= Constants.maxLength {
+            state.value = value
+        }
     }
 
     return .none

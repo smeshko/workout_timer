@@ -165,7 +165,7 @@ struct ActiveWorkoutView_Previews: PreviewProvider {
                 .preferredColorScheme(.dark)
 
             ActiveWorkoutView(workout: mockWorkout1)
-                .previewDevice(.iPadPro)
+                .previewDevice(.iPhone8)
         }
     }
 }

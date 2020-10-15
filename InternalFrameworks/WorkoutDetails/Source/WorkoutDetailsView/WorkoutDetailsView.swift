@@ -27,7 +27,7 @@ public struct WorkoutDetailsView: View {
                 }
                 .padding(.horizontal, 28)
                 .padding(.vertical, 28)
-                
+
                 ZStack(alignment: .bottom) {
                     ScrollView {
                         VStack {
@@ -38,11 +38,11 @@ public struct WorkoutDetailsView: View {
                                 }
                             }
                             .padding(.horizontal, 28)
-                            
+
                             Spacer()
                         }
                     }
-                    
+
                     Button(action: {
                         self.isPresented.toggle()
                     }, label: {
@@ -126,7 +126,7 @@ struct WorkoutDetailsView_Previews: PreviewProvider {
                 .previewDevice(.iPhone11)
 
             WorkoutDetailsView(workout: mockWorkout1)
-                .previewDevice(.iPadPro)
+                .previewDevice(.iPhone8)
         }
     }
 }

@@ -27,21 +27,6 @@ struct WorkoutCardView: View {
     }
 }
 
-struct WorkoutCardView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            WorkoutCardView(workout: mockWorkout1, layout: .wide)
-                .previewLayout(.fixed(width: 375, height: 180))
-                .padding(20)
-            
-            WorkoutCardView(workout: mockWorkout1, layout: .narrow)
-                .previewLayout(.fixed(width: 150, height: 180))
-                .padding(20)
-
-        }
-    }
-}
-
 private struct NarrowCardView: View {
     private let workout: Workout
 
@@ -151,5 +136,20 @@ private struct WorkoutPriceView: View {
                     .cornerRadius(4)
                 : nil
             )
+    }
+}
+
+struct WorkoutCardView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            WorkoutCardView(workout: mockWorkout1, layout: .wide)
+                .previewLayout(.fixed(width: 375, height: 180))
+                .padding(20)
+
+            WorkoutCardView(workout: mockWorkout1, layout: .narrow)
+                .previewLayout(.fixed(width: 150, height: 180))
+                .padding(20)
+
+        }
     }
 }

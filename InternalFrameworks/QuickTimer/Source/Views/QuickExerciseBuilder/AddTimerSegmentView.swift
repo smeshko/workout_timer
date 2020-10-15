@@ -46,12 +46,21 @@ struct AddTimerSegmentView: View {
 
 struct CircuitPickerView_Previews: PreviewProvider {
     static var previews: some View {
-        AddTimerSegmentView(
-            store: Store<AddTimerSegmentState, AddTimerSegmentAction>(
-                initialState: AddTimerSegmentState(id: UUID(), sets: 5, workoutTime: 30, breakTime: 30),
-                reducer: addTimerSegmentReducer,
-                environment: AddTimerSegmentEnvironment(uuid: UUID.init)
-            )
+        let store = Store<AddTimerSegmentState, AddTimerSegmentAction>(
+            initialState: AddTimerSegmentState(id: UUID(), sets: 5, workoutTime: 30, breakTime: 30),
+            reducer: addTimerSegmentReducer,
+            environment: AddTimerSegmentEnvironment(uuid: UUID.init)
         )
+
+        return Group {
+            AddTimerSegmentView(store: store)
+                .padding()
+                .previewLayout(.sizeThatFits)
+
+            AddTimerSegmentView(store: store)
+                .padding()
+                .preferredColorScheme(.dark)
+                .previewLayout(.sizeThatFits)
+        }
     }
 }
