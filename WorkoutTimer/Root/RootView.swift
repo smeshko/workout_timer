@@ -38,20 +38,6 @@ struct RootView: View {
     }
 }
 
-struct RootView_Previews: PreviewProvider {
-    static var previews: some View {
-        RootView(
-            store: Store<AppState, AppAction>(
-                initialState: AppState(),
-                reducer: appReducer,
-                environment: AppEnvironment(
-                    mainQueue: DispatchQueue.main.eraseToAnyScheduler()
-                )
-            )
-        )
-    }
-}
-
 extension HomeView {
     init() {
         self.init(
