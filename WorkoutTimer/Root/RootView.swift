@@ -3,6 +3,7 @@ import Home
 import QuickTimer
 import WorkoutCore
 import ComposableArchitecture
+import CorePersistence
 
 struct RootView: View {
     
@@ -61,7 +62,8 @@ extension QuickTimerView {
                 environment: QuickTimerEnvironment(
                     uuid: UUID.init,
                     mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-                    soundClient: .live
+                    soundClient: .live,
+                    repository: QuickTimerRepository()
                 )
             )
         )

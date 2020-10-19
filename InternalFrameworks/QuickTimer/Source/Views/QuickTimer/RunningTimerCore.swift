@@ -1,6 +1,7 @@
 import Foundation
 import ComposableArchitecture
 import WorkoutCore
+import CorePersistence
 
 public enum RunningTimerAction: Equatable {
     case timerTicked

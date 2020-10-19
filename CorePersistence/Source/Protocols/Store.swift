@@ -7,16 +7,5 @@ public enum PersistenceError: Error {
 protocol Store {
     func create<T: DomainEntity>(_ object: T) -> AnyPublisher<T, PersistenceError>
     func delete<T: DomainEntity>(_ object: T) -> AnyPublisher<Void, PersistenceError>
-}
-
-public class Repository {
-    let store: LocalStore
-
-    init() {
-        store = LocalStore.init(client: .shared)
-    }
-
-    func createSet(_ set: QuickTimerSet) {
-        let _ = store.create(set)
-    }
+    func fetchAll<T: DomainEntity>(_ type: T.Type) -> AnyPublisher<[T], PersistenceError>
 }

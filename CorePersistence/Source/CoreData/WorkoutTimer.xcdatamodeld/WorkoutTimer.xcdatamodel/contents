@@ -10,8 +10,22 @@
         <relationship name="pause" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="QuickTimerSegmentDao"/>
         <relationship name="work" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="QuickTimerSegmentDao"/>
     </entity>
+    <entity name="QuickWorkoutDao" representedClassName="QuickWorkoutDao" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="segments" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="QuickWorkoutSegmentDao" inverseName="workout" inverseEntity="QuickWorkoutSegmentDao" spotlightIndexingEnabled="YES"/>
+    </entity>
+    <entity name="QuickWorkoutSegmentDao" representedClassName="QuickWorkoutSegmentDao" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="pause" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="sets" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="work" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="workout" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="QuickWorkoutDao" inverseName="segments" inverseEntity="QuickWorkoutDao"/>
+    </entity>
     <elements>
         <element name="QuickTimerSetDao" positionX="-54" positionY="18" width="128" height="88"/>
         <element name="QuickTimerSegmentDao" positionX="-36" positionY="27" width="128" height="88"/>
+        <element name="QuickWorkoutDao" positionX="-18" positionY="72" width="128" height="88"/>
+        <element name="QuickWorkoutSegmentDao" positionX="0" positionY="81" width="128" height="118"/>
     </elements>
 </model>

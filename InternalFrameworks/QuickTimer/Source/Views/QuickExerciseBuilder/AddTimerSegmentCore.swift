@@ -1,6 +1,7 @@
 import ComposableArchitecture
 import WorkoutCore
 import Foundation
+import CorePersistence
 
 public enum AddTimerSegmentAction: Equatable {
     public enum UpdateSegmentsAction: Equatable {

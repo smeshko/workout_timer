@@ -1,3 +1,5 @@
+import CorePersistence
+
 extension Array where Element == QuickTimerSet {
     func firstIndex(of segment: QuickTimerSet.Segment) -> Int? {
         firstIndex {

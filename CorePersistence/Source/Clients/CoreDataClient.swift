@@ -40,6 +40,43 @@ struct CoreDataClient {
 
     private var viewContext: NSManagedObjectContext { container.viewContext }
 
+    func fetchAll<T: DomainEntity>(_ type: T.Type) -> Future<[T], CoreDataError> {
+        Future { promise in
+            let request = T.EntityObject.fetchRequest()
+            request.predicate = NSPredicate()
+
+            do {
+                let result = try container.viewContext.fetch(request)
+                guard let items = result as? [T] else {
+                    promise(.failure(.objectNotFound))
+                    return
+                }
+                promise(.success(items))
+            } catch {
+                promise(.failure(.failedUpdatingContext))
+            }
+        }
+
+    }
+
+    func fetch<T: DomainEntity>(with predicate: NSPredicate) -> Future<[T], CoreDataError> {
+        Future { promise in
+            let request = T.EntityObject.fetchRequest()
+            request.predicate = predicate
+
+            do {
+                let result = try container.viewContext.fetch(request)
+                guard let items = result as? [T] else {
+                    promise(.failure(.objectNotFound))
+                    return
+                }
+                promise(.success(items))
+            } catch {
+                promise(.failure(.failedUpdatingContext))
+            }
+        }
+    }
+
     func insert<T: DomainEntity>(_ object: T) -> Future<T, CoreDataError> {
         Future { promise in
             let _ = object.createDatabaseEntity(in: viewContext)
@@ -78,7 +115,14 @@ struct CoreDataClient {
     }
 
     init(inMemory: Bool = false) {
-        container = NSPersistentCloudKitContainer(name: "WorkoutTimer")
+        guard let persistenceBundle = Bundle(identifier: "com.tsonevInc.mobile.ios.CorePersistence"),
+              let modelURL = persistenceBundle.url(forResource: "WorkoutTimer", withExtension: "momd"),
+              let managedObjectModel = NSManagedObjectModel(contentsOf: modelURL) else {
+
+            fatalError("Unable to instantiate managed object model")
+        }
+
+        container = NSPersistentCloudKitContainer(name: "WorkoutTimer", managedObjectModel: managedObjectModel)
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
         }
@@ -89,5 +133,4 @@ struct CoreDataClient {
             }
         })
     }
-
 }

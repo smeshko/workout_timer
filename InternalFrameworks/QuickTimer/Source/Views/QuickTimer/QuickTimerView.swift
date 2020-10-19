@@ -1,6 +1,7 @@
 import SwiftUI
 import ComposableArchitecture
 import WorkoutCore
+import CorePersistence
 
 public struct QuickTimerView: View {
 
@@ -80,7 +81,8 @@ struct TimerView_Previews: PreviewProvider {
             environment: QuickTimerEnvironment(
                 uuid: UUID.init,
                 mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-                soundClient: .mock
+                soundClient: .mock,
+                repository: QuickTimerRepository()
             )
         )
         

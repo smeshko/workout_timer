@@ -7,6 +7,13 @@ struct LocalStore: Store {
         self.client = client
     }
 
+    func fetchAll<T: DomainEntity>(_ type: T.Type) -> AnyPublisher<[T], PersistenceError> {
+        client
+            .fetchAll(type)
+            .mapError { _ in PersistenceError.generalError }
+            .eraseToAnyPublisher()
+    }
+
     func delete<T>(_ object: T) -> AnyPublisher<Void, PersistenceError> where T : DomainEntity {
         client
             .delete(object)

@@ -29,7 +29,6 @@
 		B83B3DBB25179F8D00951214 /* Workout-Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B3DBA25179F8D00951214 /* Workout-Helper.swift */; };
 		B83FC05A248D1EE3007531CF /* Color-Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83FC059248D1EE3007531CF /* Color-Custom.swift */; };
 		B83FC05C248D1FB7007531CF /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B83FC05B248D1FB6007531CF /* Colors.xcassets */; };
-		B83FC05F248D2676007531CF /* QuickTimerSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893DF94245AC46100C43360 /* QuickTimerSet.swift */; };
 		B83FC061248D3290007531CF /* Collection-Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83FC060248D3290007531CF /* Collection-Safe.swift */; };
 		B83FC063248D32DC007531CF /* Array-QuickTimerSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83FC062248D32DC007531CF /* Array-QuickTimerSet.swift */; };
 		B8401E862538F403007F2F31 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8401E852538F403007F2F31 /* App.swift */; };
@@ -58,6 +57,12 @@
 		B84C048C253D6471000CD4CC /* QuickTimerSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C048B253D6471000CD4CC /* QuickTimerSet.swift */; };
 		B84C04A6253D671F000CD4CC /* DatabaseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C04A5253D671F000CD4CC /* DatabaseEntity.swift */; };
 		B84C05DA253D937D000CD4CC /* QuickTimerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C05D9253D937D000CD4CC /* QuickTimerRepository.swift */; };
+		B84C0939253DB70A000CD4CC /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C0938253DB70A000CD4CC /* SwiftUIView.swift */; };
+		B84C09A6253DFFDB000CD4CC /* QuickWorkoutSegmentDao+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C09A2253DFFDB000CD4CC /* QuickWorkoutSegmentDao+CoreDataProperties.swift */; };
+		B84C09A7253DFFDB000CD4CC /* QuickWorkoutSegmentDao+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C09A3253DFFDB000CD4CC /* QuickWorkoutSegmentDao+CoreDataClass.swift */; };
+		B84C09D6253E006D000CD4CC /* QuickWorkoutDao+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C09D4253E006D000CD4CC /* QuickWorkoutDao+CoreDataProperties.swift */; };
+		B84C09D7253E006D000CD4CC /* QuickWorkoutDao+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C09D5253E006D000CD4CC /* QuickWorkoutDao+CoreDataClass.swift */; };
+		B84C09DF253E009F000CD4CC /* QuickTimerWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C09DE253E009F000CD4CC /* QuickTimerWorkout.swift */; };
 		B86CFABE248FD7AD00960CFB /* WorkoutCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86CFABD248FD7AD00960CFB /* WorkoutCoreTests.swift */; };
 		B86CFAC22490DF9300960CFB /* PreviewDevice-Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86CFAC12490DF9300960CFB /* PreviewDevice-Models.swift */; };
 		B87160A42532278700FCF96A /* RunningTimerCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871609A2532277500FCF96A /* RunningTimerCoreTests.swift */; };
@@ -322,6 +327,12 @@
 		B84C048B253D6471000CD4CC /* QuickTimerSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerSet.swift; sourceTree = "<group>"; };
 		B84C04A5253D671F000CD4CC /* DatabaseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseEntity.swift; sourceTree = "<group>"; };
 		B84C05D9253D937D000CD4CC /* QuickTimerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerRepository.swift; sourceTree = "<group>"; };
+		B84C0938253DB70A000CD4CC /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		B84C09A2253DFFDB000CD4CC /* QuickWorkoutSegmentDao+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QuickWorkoutSegmentDao+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B84C09A3253DFFDB000CD4CC /* QuickWorkoutSegmentDao+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QuickWorkoutSegmentDao+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B84C09D4253E006D000CD4CC /* QuickWorkoutDao+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QuickWorkoutDao+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B84C09D5253E006D000CD4CC /* QuickWorkoutDao+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QuickWorkoutDao+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B84C09DE253E009F000CD4CC /* QuickTimerWorkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerWorkout.swift; sourceTree = "<group>"; };
 		B86CFABD248FD7AD00960CFB /* WorkoutCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCoreTests.swift; sourceTree = "<group>"; };
 		B86CFAC12490DF9300960CFB /* PreviewDevice-Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PreviewDevice-Models.swift"; sourceTree = "<group>"; };
 		B871609A2532277500FCF96A /* RunningTimerCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningTimerCoreTests.swift; sourceTree = "<group>"; };
@@ -333,7 +344,6 @@
 		B880FA9F246FF90900789DDA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B880FAA2246FFE7E00789DDA /* ExerciseRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRowView.swift; sourceTree = "<group>"; };
 		B88C1B3924B0B1CE00520572 /* Font-Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font-Custom.swift"; sourceTree = "<group>"; };
-		B893DF94245AC46100C43360 /* QuickTimerSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerSet.swift; sourceTree = "<group>"; };
 		B893DF97245AD53700C43360 /* UIResponder-Current.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder-Current.swift"; sourceTree = "<group>"; };
 		B893DF99245AD55900C43360 /* KeyboardHeightPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHeightPublisher.swift; sourceTree = "<group>"; };
 		B893DF9C245AD57900C43360 /* KeyboardAdaptive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAdaptive.swift; sourceTree = "<group>"; };
@@ -535,24 +545,13 @@
 			path = Clients;
 			sourceTree = "<group>";
 		};
-		B83FC05E248D2663007531CF /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				B893DF94245AC46100C43360 /* QuickTimerSet.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		B8401FEB2539DE82007F2F31 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CoreData;
-			sourceTree = "<group>";
-		};
 		B84020012539E0E5007F2F31 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				B84C09D5253E006D000CD4CC /* QuickWorkoutDao+CoreDataClass.swift */,
+				B84C09D4253E006D000CD4CC /* QuickWorkoutDao+CoreDataProperties.swift */,
+				B84C09A3253DFFDB000CD4CC /* QuickWorkoutSegmentDao+CoreDataClass.swift */,
+				B84C09A2253DFFDB000CD4CC /* QuickWorkoutSegmentDao+CoreDataProperties.swift */,
 				B84C03FC253B18E8000CD4CC /* QuickTimerSegmentDao+CoreDataClass.swift */,
 				B84C03FE253B18E8000CD4CC /* QuickTimerSegmentDao+CoreDataProperties.swift */,
 				B84C03FB253B18E8000CD4CC /* QuickTimerSetDao+CoreDataClass.swift */,
@@ -676,6 +675,7 @@
 				B84C04BA253D674E000CD4CC /* Clients */,
 				B84C04B3253D6745000CD4CC /* Protocols */,
 				B84C04C1253D6753000CD4CC /* Stores */,
+				B84C0938253DB70A000CD4CC /* SwiftUIView.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -684,6 +684,7 @@
 			isa = PBXGroup;
 			children = (
 				B84C048B253D6471000CD4CC /* QuickTimerSet.swift */,
+				B84C09DE253E009F000CD4CC /* QuickTimerWorkout.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -743,7 +744,6 @@
 		B8767450246AB6C100438A0F /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				B8401FEB2539DE82007F2F31 /* CoreData */,
 				B89C1C12248BC9190076E8DA /* Views */,
 				B839E36C2471B6DE00FE5793 /* Helpers */,
 				B880FA9E246FF8FD00789DDA /* Assets */,
@@ -912,7 +912,6 @@
 		B8DC59BA24605E48003FC8D3 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				B83FC05E248D2663007531CF /* Models */,
 				B893DF96245AD52800C43360 /* Helpers */,
 			);
 			path = Core;
@@ -1467,14 +1466,20 @@
 			files = (
 				B84C040F253B1932000CD4CC /* QuickTimerSegmentDao+CoreDataClass.swift in Sources */,
 				B84C0410253B1932000CD4CC /* QuickTimerSegmentDao+CoreDataProperties.swift in Sources */,
+				B84C0939253DB70A000CD4CC /* SwiftUIView.swift in Sources */,
+				B84C09A6253DFFDB000CD4CC /* QuickWorkoutSegmentDao+CoreDataProperties.swift in Sources */,
 				B84C0441253C6059000CD4CC /* DomainEntity.swift in Sources */,
 				B84C0411253B1932000CD4CC /* QuickTimerSetDao+CoreDataClass.swift in Sources */,
+				B84C09DF253E009F000CD4CC /* QuickTimerWorkout.swift in Sources */,
 				B84C0475253D640F000CD4CC /* Store.swift in Sources */,
+				B84C09A7253DFFDB000CD4CC /* QuickWorkoutSegmentDao+CoreDataClass.swift in Sources */,
 				B84C047D253D6415000CD4CC /* LocalStore.swift in Sources */,
 				B84C0412253B1932000CD4CC /* QuickTimerSetDao+CoreDataProperties.swift in Sources */,
 				B84C048C253D6471000CD4CC /* QuickTimerSet.swift in Sources */,
+				B84C09D6253E006D000CD4CC /* QuickWorkoutDao+CoreDataProperties.swift in Sources */,
 				B84C0380253B12E2000CD4CC /* CoreDataClient.swift in Sources */,
 				B84C04A6253D671F000CD4CC /* DatabaseEntity.swift in Sources */,
+				B84C09D7253E006D000CD4CC /* QuickWorkoutDao+CoreDataClass.swift in Sources */,
 				B84C05DA253D937D000CD4CC /* QuickTimerRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1531,7 +1536,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8ED776C246858A9001B9DEE /* TimerControlsCore.swift in Sources */,
-				B83FC05F248D2676007531CF /* QuickTimerSet.swift in Sources */,
 				B8DC59BF24605ED9003FC8D3 /* QuickTimerCore.swift in Sources */,
 				B8DC59C224605F3F003FC8D3 /* View-UpdateKeyPath.swift in Sources */,
 				B8DC59C324605F3F003FC8D3 /* UIResponder-Current.swift in Sources */,
