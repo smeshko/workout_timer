@@ -5,6 +5,8 @@ public struct QuickWorkoutsListView: View {
 
     let store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>
 
+    @State var isPresenting = false
+
     public init(store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>) {
         self.store = store
     }
@@ -26,16 +28,12 @@ public struct QuickWorkoutsListView: View {
                 .toolbar {
                     HStack {
                         Button(action: {
-                            viewStore.send(.setCreateWorkout(isPresented: true))
+                            isPresenting = true
                         }) {
                             Image(systemName: "plus")
                         }
-                        .sheet(
-                            isPresented: viewStore.binding(
-                                get: \.isCreateWorkoutPresented,
-                                send: QuickWorkoutsListAction.setCreateWorkout(isPresented:)
-                            ), content: {
-                                CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState, action: QuickWorkoutsListAction.createWorkoutAction))
+                        .sheet(isPresented: $isPresenting, content: {
+                            CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState, action: QuickWorkoutsListAction.createWorkoutAction))
                         })
                     }
                 }

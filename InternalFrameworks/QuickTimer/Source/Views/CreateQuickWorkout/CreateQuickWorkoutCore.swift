@@ -7,6 +7,9 @@ public enum CreateQuickWorkoutAction: Equatable {
     case addTimerSegmentAction(id: UUID, action: AddTimerSegmentAction)
     case updateName(String)
     case onAppear
+    case cancel
+    case save
+    case didSaveSuccessfully(Result<QuickWorkout, PersistenceError>)
 }
 
 public struct CreateQuickWorkoutState: Equatable {
@@ -39,7 +42,7 @@ public let createQuickWorkoutReducer =
             switch action {
             case .onAppear:
                 guard state.addTimerSegments.isEmpty else { break }
-                state.addTimerSegments.append(defaultSegmentState(with: environment.uuid()))
+                state.addTimerSegments.insert(defaultSegmentState(with: environment.uuid()), at: 0)
 
             case .updateName(let name):
                 state.name = name
@@ -47,10 +50,18 @@ public let createQuickWorkoutReducer =
             case .addTimerSegmentAction(let id, .updatedSegments(let action, let segments)):
                 switch action {
                 case .add:
-                    state.addTimerSegments.append(defaultSegmentState(with: environment.uuid()))
+                    state.addTimerSegments.insert(defaultSegmentState(with: environment.uuid()), at: 0)
                 case .remove:
                     state.addTimerSegments.remove(id: id)
                 }
+
+            case .save:
+                return environment
+                    .repository
+                    .createWorkout(QuickWorkout(state: state))
+                    .receive(on: environment.mainQueue)
+                    .catchToEffect()
+                    .map(CreateQuickWorkoutAction.didSaveSuccessfully)
 
             default: break
             }
@@ -60,4 +71,16 @@ public let createQuickWorkoutReducer =
 
 private func defaultSegmentState(with id: UUID) -> AddTimerSegmentState {
     AddTimerSegmentState(id: id, sets: 2, workoutTime: 60, breakTime: 20)
+}
+
+private extension QuickWorkoutSegment {
+    init(state: AddTimerSegmentState) {
+        self.init(id: UUID(), sets: Int(state.setsState.value) ?? 0, work: Int(state.workoutTimeState.value) ?? 0, pause: Int(state.breakTimeState.value) ?? 0)
+    }
+}
+
+private extension QuickWorkout {
+    init(state: CreateQuickWorkoutState) {
+        self.init(id: UUID(), name: state.name, segments: state.addTimerSegments.map(QuickWorkoutSegment.init(state:)))
+    }
 }

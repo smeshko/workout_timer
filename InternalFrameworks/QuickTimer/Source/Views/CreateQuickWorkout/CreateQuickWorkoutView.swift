@@ -6,17 +6,18 @@ struct CreateQuickWorkoutView: View {
     let store: Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>
 
     @State var color: Color = .blue
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     var body: some View {
-        NavigationView {
-            WithViewStore(store) { viewStore in
+        WithViewStore(store) { viewStore in
+            NavigationView {
                 ScrollView {
                     VStack(spacing: 18) {
                         TextField("Workout name", text: viewStore.binding(get: \.name, send: CreateQuickWorkoutAction.updateName))
 
                         ColorPicker("Colors", selection: $color)
 
-                        ForEachStore(self.store.scope(state: { $0.addTimerSegments }, action: CreateQuickWorkoutAction.addTimerSegmentAction(id:action:))) { viewStore in
+                        ForEachStore(store.scope(state: { $0.addTimerSegments }, action: CreateQuickWorkoutAction.addTimerSegmentAction(id:action:))) { viewStore in
                             AddTimerSegmentView(store: viewStore)
                                 .padding(.horizontal, 18)
                                 .padding(.vertical, 18)
@@ -32,10 +33,16 @@ struct CreateQuickWorkoutView: View {
                 }
                 .toolbar {
                     ToolbarItem(placement: .confirmationAction) {
-                        Button("Save", action: {})
+                        Button("Save", action: {
+                            viewStore.send(.save)
+                            presentationMode.wrappedValue.dismiss()
+                        })
                     }
                     ToolbarItem(placement: .cancellationAction) {
-                        Button("Cancel", action: {})
+                        Button("Cancel", action: {
+                            viewStore.send(.cancel)
+                            presentationMode.wrappedValue.dismiss()
+                        })
                     }
                 }
             }
