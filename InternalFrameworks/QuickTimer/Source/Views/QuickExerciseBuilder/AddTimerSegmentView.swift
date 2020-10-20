@@ -36,7 +36,7 @@ struct AddTimerSegmentView: View {
                         .padding(10)
                         .foregroundColor(.appWhite)
                 })
-                .background(Color.appSuccess)
+                .background(viewStore.isAdded ? Color.red : Color.appSuccess)
                 .cornerRadius(12)
             }
             .padding(.horizontal, 28)

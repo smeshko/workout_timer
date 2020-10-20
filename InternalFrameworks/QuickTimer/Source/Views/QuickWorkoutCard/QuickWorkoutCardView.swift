@@ -8,15 +8,15 @@ struct QuickWorkoutCardView: View {
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 18) {
 
-                Text("\(viewStore.duration) mins")
-                    .font(.h3)
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("\(viewStore.duration) mins")
+                        .font(.h3)
 
-                Text("\(viewStore.segmentsCount) segments")
-                    .font(.bodySmall)
-
-                Spacer()
+                    Text("\(viewStore.segmentsCount) segments")
+                        .font(.bodySmall)
+                }
 
                 HStack {
                     Text(viewStore.workout.name)

@@ -7,10 +7,15 @@ public enum QuickWorkoutsListAction: Equatable {
     case didFinishSaving(Result<QuickWorkout, PersistenceError>)
     case addWorkout
     case workoutCardAction(id: UUID, action: QuickWorkoutCardAction)
+    case setCreateWorkout(isPresented: Bool)
+    case createWorkoutAction(CreateQuickWorkoutAction)
+
 }
 
 public struct QuickWorkoutsListState: Equatable {
     var workoutStates: IdentifiedArrayOf<QuickWorkoutCardState> = []
+    var isCreateWorkoutPresented = false
+    var createWorkoutState = CreateQuickWorkoutState()
 
     public init() {}
 }
@@ -41,22 +46,25 @@ public let quickWorkoutsListReducer =
                     .catchToEffect()
                     .map(QuickWorkoutsListAction.didFetchWorkouts)
 
+            case .setCreateWorkout(let isPresented):
+                state.isCreateWorkoutPresented = isPresented
             case .didFetchWorkouts(.success(let workouts)):
                 state.workoutStates = IdentifiedArray(workouts.map { QuickWorkoutCardState(workout: $0) })
 
             case .addWorkout:
-                let new = QuickWorkout(id: UUID(), name: "Quick Workout", segments: [
-                    QuickWorkoutSegment(id: UUID(), sets: 5, work: 40, pause: 15),
-                    QuickWorkoutSegment(id: UUID(), sets: 5, work: 40, pause: 15)
-                ])
-                return environment.repository.createWorkout(new)
-                    .receive(on: environment.mainQueue)
-                    .catchToEffect()
-                    .map(QuickWorkoutsListAction.didFinishSaving)
+                state.createWorkoutState = CreateQuickWorkoutState()
+                break
+//                let new = QuickWorkout(id: UUID(), name: "Quick Workout", segments: [
+//                    QuickWorkoutSegment(id: UUID(), sets: 5, work: 40, pause: 15),
+//                    QuickWorkoutSegment(id: UUID(), sets: 5, work: 40, pause: 15)
+//                ])
+//                return environment.repository.createWorkout(new)
+//                    .receive(on: environment.mainQueue)
+//                    .catchToEffect()
+//                    .map(QuickWorkoutsListAction.didFinishSaving)
 
             case .didFinishSaving(.success(let new)):
-                break
-//                state.workouts.append(new)
+                state.workoutStates.append(QuickWorkoutCardState(workout: new))
 
             case .didFetchWorkouts(.failure(_)):
                 break
@@ -66,10 +74,19 @@ public let quickWorkoutsListReducer =
 
             case .workoutCardAction(let id, let action):
                 break
+
+            case .createWorkoutAction(let action):
+                break
             }
 
             return .none
-        })
+        },
+        createQuickWorkoutReducer.pullback(
+            state: \.createWorkoutState,
+            action: /QuickWorkoutsListAction.createWorkoutAction,
+            environment: { env in CreateQuickWorkoutEnvironment(uuid: UUID.init, mainQueue: env.mainQueue, repository: env.repository)}
+        )
+    )
 
 extension QuickWorkoutSegment {
     var stringRepresentation: String {

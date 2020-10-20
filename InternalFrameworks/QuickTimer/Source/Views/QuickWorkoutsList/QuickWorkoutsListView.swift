@@ -12,15 +12,35 @@ public struct QuickWorkoutsListView: View {
     public var body: some View {
         NavigationView {
             WithViewStore(store) { viewStore in
-                VStack {
+                ScrollView {
                     if viewStore.workoutStates.isEmpty {
                         Text("No workouts")
                     } else {
                         ForEachStore(store.scope(state: { $0.workoutStates }, action: QuickWorkoutsListAction.workoutCardAction(id:action:))) { viewStore in
-                            QuickWorkoutCardView(store: viewStore)
-                                .padding(.bottom, 8)
+                                QuickWorkoutCardView(store: viewStore)
+                                    .padding(.horizontal, 28)
+                                    .padding(.bottom, 8)
                         }
                     }
+                }
+                .toolbar {
+                    HStack {
+                        Button(action: {
+                            viewStore.send(.setCreateWorkout(isPresented: true))
+                        }) {
+                            Image(systemName: "plus")
+                        }
+                        .sheet(
+                            isPresented: viewStore.binding(
+                                get: \.isCreateWorkoutPresented,
+                                send: QuickWorkoutsListAction.setCreateWorkout(isPresented:)
+                            ), content: {
+                                CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState, action: QuickWorkoutsListAction.createWorkoutAction))
+                        })
+                    }
+                }
+                .onAppear {
+                    viewStore.send(.onAppear)
                 }
             }
             .navigationTitle("Workouts")

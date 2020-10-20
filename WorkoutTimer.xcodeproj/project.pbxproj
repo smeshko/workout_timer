@@ -67,6 +67,8 @@
 		B84C0BC0253EF485000CD4CC /* QuickWorkoutsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C0BBF253EF485000CD4CC /* QuickWorkoutsListView.swift */; };
 		B84C0BDB253EF520000CD4CC /* QuickWorkoutCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C0BDA253EF520000CD4CC /* QuickWorkoutCard.swift */; };
 		B84C0BE3253EF531000CD4CC /* QuickWorkoutCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C0BE2253EF531000CD4CC /* QuickWorkoutCardView.swift */; };
+		B84C0D8F253F26E5000CD4CC /* CreateQuickWorkoutCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C0D8E253F26E5000CD4CC /* CreateQuickWorkoutCore.swift */; };
+		B84C0DA3253F2700000CD4CC /* CreateQuickWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C0DA2253F2700000CD4CC /* CreateQuickWorkoutView.swift */; };
 		B86CFABE248FD7AD00960CFB /* WorkoutCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86CFABD248FD7AD00960CFB /* WorkoutCoreTests.swift */; };
 		B86CFAC22490DF9300960CFB /* PreviewDevice-Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86CFAC12490DF9300960CFB /* PreviewDevice-Models.swift */; };
 		B87160A42532278700FCF96A /* RunningTimerCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871609A2532277500FCF96A /* RunningTimerCoreTests.swift */; };
@@ -341,6 +343,8 @@
 		B84C0BBF253EF485000CD4CC /* QuickWorkoutsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickWorkoutsListView.swift; sourceTree = "<group>"; };
 		B84C0BDA253EF520000CD4CC /* QuickWorkoutCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickWorkoutCard.swift; sourceTree = "<group>"; };
 		B84C0BE2253EF531000CD4CC /* QuickWorkoutCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickWorkoutCardView.swift; sourceTree = "<group>"; };
+		B84C0D8E253F26E5000CD4CC /* CreateQuickWorkoutCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuickWorkoutCore.swift; sourceTree = "<group>"; };
+		B84C0DA2253F2700000CD4CC /* CreateQuickWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuickWorkoutView.swift; sourceTree = "<group>"; };
 		B86CFABD248FD7AD00960CFB /* WorkoutCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCoreTests.swift; sourceTree = "<group>"; };
 		B86CFAC12490DF9300960CFB /* PreviewDevice-Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PreviewDevice-Models.swift"; sourceTree = "<group>"; };
 		B871609A2532277500FCF96A /* RunningTimerCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningTimerCoreTests.swift; sourceTree = "<group>"; };
@@ -739,11 +743,13 @@
 			path = Repositories;
 			sourceTree = "<group>";
 		};
-		B84C0BAF253EB2CD000CD4CC /* Workouts */ = {
+		B84C0BAF253EB2CD000CD4CC /* CreateQuickWorkout */ = {
 			isa = PBXGroup;
 			children = (
+				B84C0DA2253F2700000CD4CC /* CreateQuickWorkoutView.swift */,
+				B84C0D8E253F26E5000CD4CC /* CreateQuickWorkoutCore.swift */,
 			);
-			path = Workouts;
+			path = CreateQuickWorkout;
 			sourceTree = "<group>";
 		};
 		B84C0BBE253EF46C000CD4CC /* QuickWorkoutsList */ = {
@@ -955,7 +961,7 @@
 			children = (
 				B84C0BD9253EF50F000CD4CC /* QuickWorkoutCard */,
 				B84C0BBE253EF46C000CD4CC /* QuickWorkoutsList */,
-				B84C0BAF253EB2CD000CD4CC /* Workouts */,
+				B84C0BAF253EB2CD000CD4CC /* CreateQuickWorkout */,
 				B8806CA0246844EA00C32F80 /* QuickTimer */,
 				B8ED776D24685953001B9DEE /* QuickExerciseBuilder */,
 				B8806C9B246841EA00C32F80 /* ValuePicker */,
@@ -1576,6 +1582,7 @@
 				B84C0BE3253EF531000CD4CC /* QuickWorkoutCardView.swift in Sources */,
 				B8DC59C224605F3F003FC8D3 /* View-UpdateKeyPath.swift in Sources */,
 				B8DC59C324605F3F003FC8D3 /* UIResponder-Current.swift in Sources */,
+				B84C0DA3253F2700000CD4CC /* CreateQuickWorkoutView.swift in Sources */,
 				B8ED776724684976001B9DEE /* AddTimerSegmentCore.swift in Sources */,
 				B84C0BC0253EF485000CD4CC /* QuickWorkoutsListView.swift in Sources */,
 				B83FC063248D32DC007531CF /* Array-QuickTimerSet.swift in Sources */,
@@ -1586,6 +1593,7 @@
 				B8ED7769246854D0001B9DEE /* QuickTimerControlsView.swift in Sources */,
 				B83907042462A4DF00676B3D /* ValuePicker.swift in Sources */,
 				B8DC59BE24605ED5003FC8D3 /* KeyboardAdaptive.swift in Sources */,
+				B84C0D8F253F26E5000CD4CC /* CreateQuickWorkoutCore.swift in Sources */,
 				B8D12CF2251B944500458A7A /* RunningTimerView.swift in Sources */,
 				B8DC59C424605F3F003FC8D3 /* KeyboardHeightPublisher.swift in Sources */,
 				B8ED77652468493E001B9DEE /* AddTimerSegmentView.swift in Sources */,
