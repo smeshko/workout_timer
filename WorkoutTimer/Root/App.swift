@@ -2,6 +2,7 @@ import SwiftUI
 import WorkoutCore
 import ComposableArchitecture
 import CorePersistence
+import QuickTimer
 
 @main
 struct MainApp: App {
@@ -10,15 +11,27 @@ struct MainApp: App {
 
     var body: some Scene {
         WindowGroup {
-            RootView(
-                store: Store<AppState, AppAction>(
-                    initialState: AppState(),
-                    reducer: appReducer,
-                    environment: AppEnvironment(
-                        mainQueue: DispatchQueue.main.eraseToAnyScheduler()
+//            NavigationView {
+                QuickWorkoutsListView(
+                    store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>(
+                        initialState: QuickWorkoutsListState(),
+                        reducer: quickWorkoutsListReducer,
+                        environment: QuickWorkoutsListEnvironment(
+                            repository: QuickTimerRepository(),
+                            mainQueue: DispatchQueue.main.eraseToAnyScheduler()
+                        )
                     )
                 )
-            )
+//            }
+//            RootView(
+//                store: Store<AppState, AppAction>(
+//                    initialState: AppState(),
+//                    reducer: appReducer,
+//                    environment: AppEnvironment(
+//                        mainQueue: DispatchQueue.main.eraseToAnyScheduler()
+//                    )
+//                )
+//            )
         }
         .onChange(of: scenePhase) { newScenePhase in
             switch newScenePhase {
