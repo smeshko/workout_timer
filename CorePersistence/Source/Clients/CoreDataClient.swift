@@ -43,15 +43,14 @@ struct CoreDataClient {
     func fetchAll<T: DomainEntity>(_ type: T.Type) -> Future<[T], CoreDataError> {
         Future { promise in
             let request = T.EntityObject.fetchRequest()
-            request.predicate = NSPredicate()
 
             do {
                 let result = try container.viewContext.fetch(request)
-                guard let items = result as? [T] else {
+                guard let items = result as? [T.EntityObject] else {
                     promise(.failure(.objectNotFound))
                     return
                 }
-                promise(.success(items))
+                promise(.success(items.compactMap({ $0.toDomainEntity() as? T })))
             } catch {
                 promise(.failure(.failedUpdatingContext))
             }
@@ -66,11 +65,11 @@ struct CoreDataClient {
 
             do {
                 let result = try container.viewContext.fetch(request)
-                guard let items = result as? [T] else {
+                guard let items = result as? [T.EntityObject] else {
                     promise(.failure(.objectNotFound))
                     return
                 }
-                promise(.success(items))
+                promise(.success(items.compactMap({ $0.toDomainEntity() as? T })))
             } catch {
                 promise(.failure(.failedUpdatingContext))
             }

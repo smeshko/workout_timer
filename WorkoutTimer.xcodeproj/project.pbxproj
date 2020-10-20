@@ -62,7 +62,8 @@
 		B84C09A7253DFFDB000CD4CC /* QuickWorkoutSegmentDao+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C09A3253DFFDB000CD4CC /* QuickWorkoutSegmentDao+CoreDataClass.swift */; };
 		B84C09D6253E006D000CD4CC /* QuickWorkoutDao+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C09D4253E006D000CD4CC /* QuickWorkoutDao+CoreDataProperties.swift */; };
 		B84C09D7253E006D000CD4CC /* QuickWorkoutDao+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C09D5253E006D000CD4CC /* QuickWorkoutDao+CoreDataClass.swift */; };
-		B84C09DF253E009F000CD4CC /* QuickTimerWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C09DE253E009F000CD4CC /* QuickTimerWorkout.swift */; };
+		B84C09DF253E009F000CD4CC /* QuickWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C09DE253E009F000CD4CC /* QuickWorkout.swift */; };
+		B84C0BB1253EB2DE000CD4CC /* QuickWorkoutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C0BB0253EB2DE000CD4CC /* QuickWorkoutsView.swift */; };
 		B86CFABE248FD7AD00960CFB /* WorkoutCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86CFABD248FD7AD00960CFB /* WorkoutCoreTests.swift */; };
 		B86CFAC22490DF9300960CFB /* PreviewDevice-Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86CFAC12490DF9300960CFB /* PreviewDevice-Models.swift */; };
 		B87160A42532278700FCF96A /* RunningTimerCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871609A2532277500FCF96A /* RunningTimerCoreTests.swift */; };
@@ -332,7 +333,8 @@
 		B84C09A3253DFFDB000CD4CC /* QuickWorkoutSegmentDao+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QuickWorkoutSegmentDao+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B84C09D4253E006D000CD4CC /* QuickWorkoutDao+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QuickWorkoutDao+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B84C09D5253E006D000CD4CC /* QuickWorkoutDao+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QuickWorkoutDao+CoreDataClass.swift"; sourceTree = "<group>"; };
-		B84C09DE253E009F000CD4CC /* QuickTimerWorkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerWorkout.swift; sourceTree = "<group>"; };
+		B84C09DE253E009F000CD4CC /* QuickWorkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickWorkout.swift; sourceTree = "<group>"; };
+		B84C0BB0253EB2DE000CD4CC /* QuickWorkoutsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickWorkoutsView.swift; sourceTree = "<group>"; };
 		B86CFABD248FD7AD00960CFB /* WorkoutCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCoreTests.swift; sourceTree = "<group>"; };
 		B86CFAC12490DF9300960CFB /* PreviewDevice-Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PreviewDevice-Models.swift"; sourceTree = "<group>"; };
 		B871609A2532277500FCF96A /* RunningTimerCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningTimerCoreTests.swift; sourceTree = "<group>"; };
@@ -684,7 +686,7 @@
 			isa = PBXGroup;
 			children = (
 				B84C048B253D6471000CD4CC /* QuickTimerSet.swift */,
-				B84C09DE253E009F000CD4CC /* QuickTimerWorkout.swift */,
+				B84C09DE253E009F000CD4CC /* QuickWorkout.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -729,6 +731,14 @@
 				B84C05D9253D937D000CD4CC /* QuickTimerRepository.swift */,
 			);
 			path = Repositories;
+			sourceTree = "<group>";
+		};
+		B84C0BAF253EB2CD000CD4CC /* Workouts */ = {
+			isa = PBXGroup;
+			children = (
+				B84C0BB0253EB2DE000CD4CC /* QuickWorkoutsView.swift */,
+			);
+			path = Workouts;
 			sourceTree = "<group>";
 		};
 		B8767445246AB6A500438A0F /* WorkoutCore */ = {
@@ -920,6 +930,7 @@
 		B8DC59BB24605E4C003FC8D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B84C0BAF253EB2CD000CD4CC /* Workouts */,
 				B8806CA0246844EA00C32F80 /* QuickTimer */,
 				B8ED776D24685953001B9DEE /* QuickExerciseBuilder */,
 				B8806C9B246841EA00C32F80 /* ValuePicker */,
@@ -1470,7 +1481,7 @@
 				B84C09A6253DFFDB000CD4CC /* QuickWorkoutSegmentDao+CoreDataProperties.swift in Sources */,
 				B84C0441253C6059000CD4CC /* DomainEntity.swift in Sources */,
 				B84C0411253B1932000CD4CC /* QuickTimerSetDao+CoreDataClass.swift in Sources */,
-				B84C09DF253E009F000CD4CC /* QuickTimerWorkout.swift in Sources */,
+				B84C09DF253E009F000CD4CC /* QuickWorkout.swift in Sources */,
 				B84C0475253D640F000CD4CC /* Store.swift in Sources */,
 				B84C09A7253DFFDB000CD4CC /* QuickWorkoutSegmentDao+CoreDataClass.swift in Sources */,
 				B84C047D253D6415000CD4CC /* LocalStore.swift in Sources */,
@@ -1543,6 +1554,7 @@
 				B83FC063248D32DC007531CF /* Array-QuickTimerSet.swift in Sources */,
 				B8DC59BC24605ED0003FC8D3 /* QuickTimerView.swift in Sources */,
 				B83907062462A4F400676B3D /* PickerCore.swift in Sources */,
+				B84C0BB1253EB2DE000CD4CC /* QuickWorkoutsView.swift in Sources */,
 				B8ED7769246854D0001B9DEE /* QuickTimerControlsView.swift in Sources */,
 				B83907042462A4DF00676B3D /* ValuePicker.swift in Sources */,
 				B8DC59BE24605ED5003FC8D3 /* KeyboardAdaptive.swift in Sources */,
