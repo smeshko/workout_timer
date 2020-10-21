@@ -31,7 +31,7 @@ struct QuickWorkoutCardView: View {
                             Image(systemName: "play.fill")
                                 .padding(12)
                                 .foregroundColor(.appText)
-                                .background(Color(.sRGB, red: 48/255, green: 99/255, blue: 142/255, opacity: 1))
+                                .background(Color(hue: viewStore.workout.color.hue, saturation: viewStore.workout.color.saturation, brightness: viewStore.workout.color.brightness))
                                 .mask(Circle())
 
                         })
@@ -49,7 +49,10 @@ struct QuickWorkoutCardView_Previews: PreviewProvider {
     static var previews: some View {
 
         let store = Store<QuickWorkoutCardState, QuickWorkoutCardAction>(
-            initialState: QuickWorkoutCardState(workout: QuickWorkout(id: UUID(), name: "Quick Workout", segments: [
+            initialState: QuickWorkoutCardState(workout: QuickWorkout(id: UUID(),
+                                                                      name: "Quick Workout",
+                                                                      color: WorkoutColor(hue: 0, saturation: 0, brightness: 0),
+                                                                      segments: [
                 QuickWorkoutSegment(id: UUID(), sets: 4, work: 20, pause: 10),
                 QuickWorkoutSegment(id: UUID(), sets: 2, work: 60, pause: 10)
             ]), canStart: true),
@@ -65,20 +68,3 @@ struct QuickWorkoutCardView_Previews: PreviewProvider {
         }
     }
 }
-
-extension UIColor {
-      func toHexString() -> String {
-          var h:CGFloat = 0
-          var s:CGFloat = 0
-          var b:CGFloat = 0
-          var a:CGFloat = 0
-
-        getHue(&h, saturation: &s, brightness: &b, alpha: &a)
-//          getRed(&r, green: &g, blue: &b, alpha: &a)
-
-//          let rgb:Int = (Int)(r*255)<<16 | (Int)(g*255)<<8 | (Int)(b*255)<<0
-
-//          return String(format:"#%06x", rgb)
-        return ""
-      }
-  }

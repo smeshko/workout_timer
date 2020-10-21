@@ -69,6 +69,7 @@
 		B84C0BE3253EF531000CD4CC /* QuickWorkoutCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C0BE2253EF531000CD4CC /* QuickWorkoutCardView.swift */; };
 		B84C0D8F253F26E5000CD4CC /* CreateQuickWorkoutCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C0D8E253F26E5000CD4CC /* CreateQuickWorkoutCore.swift */; };
 		B84C0DA3253F2700000CD4CC /* CreateQuickWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C0DA2253F2700000CD4CC /* CreateQuickWorkoutView.swift */; };
+		B853475C253FFFBD005D170F /* WorkoutColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B853475B253FFFBD005D170F /* WorkoutColor.swift */; };
 		B86CFABE248FD7AD00960CFB /* WorkoutCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86CFABD248FD7AD00960CFB /* WorkoutCoreTests.swift */; };
 		B86CFAC22490DF9300960CFB /* PreviewDevice-Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86CFAC12490DF9300960CFB /* PreviewDevice-Models.swift */; };
 		B87160A42532278700FCF96A /* RunningTimerCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871609A2532277500FCF96A /* RunningTimerCoreTests.swift */; };
@@ -345,6 +346,7 @@
 		B84C0BE2253EF531000CD4CC /* QuickWorkoutCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickWorkoutCardView.swift; sourceTree = "<group>"; };
 		B84C0D8E253F26E5000CD4CC /* CreateQuickWorkoutCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuickWorkoutCore.swift; sourceTree = "<group>"; };
 		B84C0DA2253F2700000CD4CC /* CreateQuickWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuickWorkoutView.swift; sourceTree = "<group>"; };
+		B853475B253FFFBD005D170F /* WorkoutColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutColor.swift; sourceTree = "<group>"; };
 		B86CFABD248FD7AD00960CFB /* WorkoutCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCoreTests.swift; sourceTree = "<group>"; };
 		B86CFAC12490DF9300960CFB /* PreviewDevice-Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PreviewDevice-Models.swift"; sourceTree = "<group>"; };
 		B871609A2532277500FCF96A /* RunningTimerCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningTimerCoreTests.swift; sourceTree = "<group>"; };
@@ -697,6 +699,7 @@
 			children = (
 				B84C048B253D6471000CD4CC /* QuickTimerSet.swift */,
 				B84C09DE253E009F000CD4CC /* QuickWorkout.swift */,
+				B853475B253FFFBD005D170F /* WorkoutColor.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1507,6 +1510,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B84C040F253B1932000CD4CC /* QuickTimerSegmentDao+CoreDataClass.swift in Sources */,
+				B853475C253FFFBD005D170F /* WorkoutColor.swift in Sources */,
 				B84C0410253B1932000CD4CC /* QuickTimerSegmentDao+CoreDataProperties.swift in Sources */,
 				B84C0939253DB70A000CD4CC /* SwiftUIView.swift in Sources */,
 				B84C09A6253DFFDB000CD4CC /* QuickWorkoutSegmentDao+CoreDataProperties.swift in Sources */,

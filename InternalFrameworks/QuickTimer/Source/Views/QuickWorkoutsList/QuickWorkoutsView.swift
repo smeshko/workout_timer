@@ -45,13 +45,13 @@ public let quickWorkoutsListReducer =
                     .map(QuickWorkoutsListAction.didFetchWorkouts)
 
             case .didFetchWorkouts(.success(let workouts)):
-                state.workoutStates = IdentifiedArray(workouts.map { QuickWorkoutCardState(workout: $0) })
+                state.workoutStates = IdentifiedArray(workouts.map { QuickWorkoutCardState(workout: $0, canStart: true) })
 
             case .addWorkout:
                 state.createWorkoutState = CreateQuickWorkoutState()
 
             case .didFinishSaving(.success(let new)):
-                state.workoutStates.append(QuickWorkoutCardState(workout: new))
+                state.workoutStates.append(QuickWorkoutCardState(workout: new, canStart: true))
 
             case .didFetchWorkouts(.failure(_)):
                 break
@@ -66,7 +66,7 @@ public let quickWorkoutsListReducer =
                 state.createWorkoutState = CreateQuickWorkoutState()
 
             case .createWorkoutAction(.didSaveSuccessfully(.success(let workout))):
-                state.workoutStates.insert(QuickWorkoutCardState(workout: workout), at: 0)
+                state.workoutStates.insert(QuickWorkoutCardState(workout: workout, canStart: true), at: 0)
                 state.createWorkoutState = CreateQuickWorkoutState()
 
             default: break

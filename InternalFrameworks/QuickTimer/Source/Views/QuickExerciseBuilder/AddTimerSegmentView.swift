@@ -4,6 +4,8 @@ import WorkoutCore
 
 struct AddTimerSegmentView: View {    
     let store: Store<AddTimerSegmentState, AddTimerSegmentAction>
+
+    let color: Color
     
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -36,7 +38,7 @@ struct AddTimerSegmentView: View {
                         .padding(10)
                         .foregroundColor(.appWhite)
                 })
-                .background(viewStore.isAdded ? Color.red : Color.appSuccess)
+                .background(viewStore.isAdded ? Color.red : color)
                 .cornerRadius(12)
             }
             .padding(.horizontal, 28)
@@ -53,11 +55,11 @@ struct CircuitPickerView_Previews: PreviewProvider {
         )
 
         return Group {
-            AddTimerSegmentView(store: store)
+            AddTimerSegmentView(store: store, color: .appSuccess)
                 .padding()
                 .previewLayout(.sizeThatFits)
 
-            AddTimerSegmentView(store: store)
+            AddTimerSegmentView(store: store, color: .appSuccess)
                 .padding()
                 .preferredColorScheme(.dark)
                 .previewLayout(.sizeThatFits)

@@ -10,7 +10,9 @@ extension QuickWorkoutDao {
     @NSManaged public var id: UUID?
     @NSManaged public var name: String?
     @NSManaged public var segments: NSOrderedSet?
-
+    @NSManaged public var colorHue: Double
+    @NSManaged public var colorSaturation: Double
+    @NSManaged public var colorBrightness: Double
 }
 
 // MARK: Generated accessors for segments
@@ -53,6 +55,7 @@ extension QuickWorkoutDao: DatabaseEntity {
     func toDomainEntity() -> QuickWorkout {
         QuickWorkout(id: id ?? UUID(),
                      name: name ?? "",
+                     color: WorkoutColor(hue: colorHue, saturation: colorSaturation, brightness: colorBrightness),
                      segments: segments?.compactMap { $0 as? QuickWorkoutSegmentDao }.map { $0.toDomainEntity() } ?? []
         )
     }

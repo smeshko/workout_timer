@@ -84,7 +84,6 @@ public let quickTimerReducer =
                 }
 
             case .didFetchSets(.success(let sets)):
-//                state.addTimerSegments =
                 guard state.addTimerSegments.isEmpty else { return .none }
                 state.addTimerSegments.append(defaultSegmentState(with: environment.uuid()))
 

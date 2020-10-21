@@ -17,7 +17,7 @@ public struct QuickTimerView: View {
                 VStack {
                     ScrollView(showsIndicators: false) {
                         ForEachStore(self.store.scope(state: { $0.addTimerSegments }, action: QuickTimerAction.addTimerSegmentAction(id:action:))) { viewStore in
-                            AddTimerSegmentView(store: viewStore)
+                            AddTimerSegmentView(store: viewStore, color: .appSuccess)
                                 .padding(.horizontal, 18)
                                 .padding(.vertical, 18)
                                 .background(Color.appCardBackground)

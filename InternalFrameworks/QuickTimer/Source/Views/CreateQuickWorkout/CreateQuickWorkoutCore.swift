@@ -10,11 +10,27 @@ public enum CreateQuickWorkoutAction: Equatable {
     case cancel
     case save
     case didSaveSuccessfully(Result<QuickWorkout, PersistenceError>)
+    case updateColorComponents(ColorComponents)
+}
+
+public struct ColorComponents: Equatable {
+    let hue: Double
+    let brightness: Double
+    let saturation: Double
 }
 
 public struct CreateQuickWorkoutState: Equatable {
     var addTimerSegments: IdentifiedArrayOf<AddTimerSegmentState> = []
     var name: String = ""
+
+    var isFormIncomplete: Bool {
+        name.isEmpty || addTimerSegments.filter(\.isAdded).isEmpty
+    }
+
+    var colorComponents = ColorComponents(hue: 0, brightness: 0, saturation: 0)
+    var complementComponents: ColorComponents {
+        ColorComponents(hue: colorComponents.hue, brightness: colorComponents.brightness - 0.1, saturation: colorComponents.saturation - 0.2)
+    }
 
     public init() {}
 }
@@ -63,6 +79,9 @@ public let createQuickWorkoutReducer =
                     .catchToEffect()
                     .map(CreateQuickWorkoutAction.didSaveSuccessfully)
 
+            case .updateColorComponents(let components):
+                state.colorComponents = components
+
             default: break
             }
             return .none
@@ -81,6 +100,12 @@ private extension QuickWorkoutSegment {
 
 private extension QuickWorkout {
     init(state: CreateQuickWorkoutState) {
-        self.init(id: UUID(), name: state.name, segments: state.addTimerSegments.map(QuickWorkoutSegment.init(state:)))
+        self.init(id: UUID(), name: state.name, color: WorkoutColor(components: state.colorComponents), segments: state.addTimerSegments.map(QuickWorkoutSegment.init(state:)))
+    }
+}
+
+private extension WorkoutColor {
+    convenience init(components: ColorComponents) {
+        self.init(hue: components.hue, saturation: components.saturation, brightness: components.brightness)
     }
 }
