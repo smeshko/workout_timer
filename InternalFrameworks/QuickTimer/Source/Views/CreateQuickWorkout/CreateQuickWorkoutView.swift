@@ -13,11 +13,12 @@ struct CreateQuickWorkoutView: View {
             NavigationView {
                 ScrollView {
                     VStack(spacing: 18) {
+
                         TextField("Workout name", text: viewStore.binding(get: \.name, send: CreateQuickWorkoutAction.updateName))
                             .padding(12)
                             .overlay(RoundedRectangle(cornerRadius: 12).stroke(viewStore.color, lineWidth: 1))
 
-                        ColorPicker("Colors", selection: viewStore.binding(
+                        ColorPicker("Choose workout color", selection: viewStore.binding(
                             get: {
                                 Color(hue: $0.colorComponents.hue,
                                       saturation: $0.colorComponents.saturation,
@@ -58,6 +59,7 @@ struct CreateQuickWorkoutView: View {
                         })
                     }
                 }
+                .navigationTitle("Create workout")
             }
         }
     }

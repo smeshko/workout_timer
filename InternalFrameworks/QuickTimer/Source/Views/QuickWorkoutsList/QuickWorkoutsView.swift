@@ -19,10 +19,10 @@ public struct QuickWorkoutsListState: Equatable {
 }
 
 public struct QuickWorkoutsListEnvironment {
-    let repository: QuickTimerRepository
+    let repository: QuickWorkoutsRepository
     let mainQueue: AnySchedulerOf<DispatchQueue>
 
-    public init(repository: QuickTimerRepository, mainQueue: AnySchedulerOf<DispatchQueue>) {
+    public init(repository: QuickWorkoutsRepository, mainQueue: AnySchedulerOf<DispatchQueue>) {
         self.repository = repository
         self.mainQueue = mainQueue
     }

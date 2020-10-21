@@ -17,7 +17,7 @@ struct MainApp: App {
                         initialState: QuickWorkoutsListState(),
                         reducer: quickWorkoutsListReducer,
                         environment: QuickWorkoutsListEnvironment(
-                            repository: QuickTimerRepository(),
+                            repository: QuickWorkoutsRepository(),
                             mainQueue: DispatchQueue.main.eraseToAnyScheduler()
                         )
                     )

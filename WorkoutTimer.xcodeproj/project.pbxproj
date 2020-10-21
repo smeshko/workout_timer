@@ -30,7 +30,6 @@
 		B83FC05A248D1EE3007531CF /* Color-Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83FC059248D1EE3007531CF /* Color-Custom.swift */; };
 		B83FC05C248D1FB7007531CF /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B83FC05B248D1FB6007531CF /* Colors.xcassets */; };
 		B83FC061248D3290007531CF /* Collection-Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83FC060248D3290007531CF /* Collection-Safe.swift */; };
-		B83FC063248D32DC007531CF /* Array-QuickTimerSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83FC062248D32DC007531CF /* Array-QuickTimerSet.swift */; };
 		B8401E862538F403007F2F31 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8401E852538F403007F2F31 /* App.swift */; };
 		B8455D05246DB15D00C4FFAE /* WorkoutDetails.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8455CFC246DB15D00C4FFAE /* WorkoutDetails.framework */; };
 		B8455D0C246DB15D00C4FFAE /* WorkoutDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8455D0B246DB15D00C4FFAE /* WorkoutDetailsTests.swift */; };
@@ -46,18 +45,11 @@
 		B84C035E253B12B5000CD4CC /* CorePersistence.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B84C0349253B12B5000CD4CC /* CorePersistence.framework */; };
 		B84C035F253B12B5000CD4CC /* CorePersistence.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B84C0349253B12B5000CD4CC /* CorePersistence.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B84C0380253B12E2000CD4CC /* CoreDataClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8401FF32539DEBE007F2F31 /* CoreDataClient.swift */; };
-		B84C040F253B1932000CD4CC /* QuickTimerSegmentDao+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C03FC253B18E8000CD4CC /* QuickTimerSegmentDao+CoreDataClass.swift */; };
-		B84C0410253B1932000CD4CC /* QuickTimerSegmentDao+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C03FE253B18E8000CD4CC /* QuickTimerSegmentDao+CoreDataProperties.swift */; };
-		B84C0411253B1932000CD4CC /* QuickTimerSetDao+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C03FB253B18E8000CD4CC /* QuickTimerSetDao+CoreDataClass.swift */; };
-		B84C0412253B1932000CD4CC /* QuickTimerSetDao+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C03FD253B18E8000CD4CC /* QuickTimerSetDao+CoreDataProperties.swift */; };
-		B84C0425253B1A62000CD4CC /* WorkoutTimer.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = B8401FEC2539DE9F007F2F31 /* WorkoutTimer.xcdatamodeld */; };
 		B84C0441253C6059000CD4CC /* DomainEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C0440253C6059000CD4CC /* DomainEntity.swift */; };
 		B84C0475253D640F000CD4CC /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C0474253D640F000CD4CC /* Store.swift */; };
 		B84C047D253D6415000CD4CC /* LocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C047C253D6415000CD4CC /* LocalStore.swift */; };
-		B84C048C253D6471000CD4CC /* QuickTimerSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C048B253D6471000CD4CC /* QuickTimerSet.swift */; };
 		B84C04A6253D671F000CD4CC /* DatabaseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C04A5253D671F000CD4CC /* DatabaseEntity.swift */; };
 		B84C05DA253D937D000CD4CC /* QuickTimerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C05D9253D937D000CD4CC /* QuickTimerRepository.swift */; };
-		B84C0939253DB70A000CD4CC /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C0938253DB70A000CD4CC /* SwiftUIView.swift */; };
 		B84C09A6253DFFDB000CD4CC /* QuickWorkoutSegmentDao+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C09A2253DFFDB000CD4CC /* QuickWorkoutSegmentDao+CoreDataProperties.swift */; };
 		B84C09A7253DFFDB000CD4CC /* QuickWorkoutSegmentDao+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C09A3253DFFDB000CD4CC /* QuickWorkoutSegmentDao+CoreDataClass.swift */; };
 		B84C09D6253E006D000CD4CC /* QuickWorkoutDao+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C09D4253E006D000CD4CC /* QuickWorkoutDao+CoreDataProperties.swift */; };
@@ -76,6 +68,8 @@
 		B876744B246AB6A500438A0F /* WorkoutCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8767444246AB6A500438A0F /* WorkoutCore.framework */; };
 		B876744C246AB6A500438A0F /* WorkoutCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8767444246AB6A500438A0F /* WorkoutCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B876746A246AB7E700438A0F /* WorkoutCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8767444246AB6A500438A0F /* WorkoutCore.framework */; };
+		B87FD03F2540979000EAFF02 /* QuickWorkoutSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87FD03E2540979000EAFF02 /* QuickWorkoutSegment.swift */; };
+		B87FD07C2540A29C00EAFF02 /* WorkoutTimer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B8401FEC2539DE9F007F2F31 /* WorkoutTimer.xcdatamodeld */; };
 		B880F828246E9EB200789DDA /* ExerciseSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880F827246E9EB200789DDA /* ExerciseSet.swift */; };
 		B880FAA0246FF90900789DDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B880FA9F246FF90900789DDA /* Assets.xcassets */; };
 		B880FAA3246FFE7E00789DDA /* ExerciseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880FAA2246FFE7E00789DDA /* ExerciseRowView.swift */; };
@@ -105,12 +99,8 @@
 		B8DC5994246054E1003FC8D3 /* AppCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DC5993246054E1003FC8D3 /* AppCore.swift */; };
 		B8DC59B124605E38003FC8D3 /* QuickTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* QuickTimer.framework */; };
 		B8DC59B224605E38003FC8D3 /* QuickTimer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* QuickTimer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B8DC59BC24605ED0003FC8D3 /* QuickTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84B0ACA2458126700A07A1E /* QuickTimerView.swift */; };
-		B8DC59BE24605ED5003FC8D3 /* KeyboardAdaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893DF9C245AD57900C43360 /* KeyboardAdaptive.swift */; };
-		B8DC59BF24605ED9003FC8D3 /* QuickTimerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DC5995246055A3003FC8D3 /* QuickTimerCore.swift */; };
 		B8DC59C224605F3F003FC8D3 /* View-UpdateKeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893DFA3245C230300C43360 /* View-UpdateKeyPath.swift */; };
 		B8DC59C324605F3F003FC8D3 /* UIResponder-Current.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893DF97245AD53700C43360 /* UIResponder-Current.swift */; };
-		B8DC59C424605F3F003FC8D3 /* KeyboardHeightPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B893DF99245AD55900C43360 /* KeyboardHeightPublisher.swift */; };
 		B8DC6A2E2461D7F6003FC8D3 /* TimerCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DC6A2D2461D7F6003FC8D3 /* TimerCoreTests.swift */; };
 		B8DC6A302461D7F6003FC8D3 /* QuickTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* QuickTimer.framework */; };
 		B8ED77652468493E001B9DEE /* AddTimerSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED77642468493E001B9DEE /* AddTimerSegmentView.swift */; };
@@ -302,7 +292,6 @@
 		B83FC059248D1EE3007531CF /* Color-Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color-Custom.swift"; sourceTree = "<group>"; };
 		B83FC05B248D1FB6007531CF /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		B83FC060248D3290007531CF /* Collection-Safe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection-Safe.swift"; sourceTree = "<group>"; };
-		B83FC062248D32DC007531CF /* Array-QuickTimerSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array-QuickTimerSet.swift"; sourceTree = "<group>"; };
 		B8401E852538F403007F2F31 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		B8401FED2539DE9F007F2F31 /* WorkoutTimer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WorkoutTimer.xcdatamodel; sourceTree = "<group>"; };
 		B8401FF32539DEBE007F2F31 /* CoreDataClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataClient.swift; sourceTree = "<group>"; };
@@ -314,7 +303,6 @@
 		B8455D20246DB1AC00C4FFAE /* WorkoutDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailsView.swift; sourceTree = "<group>"; };
 		B8455D22246DB1D000C4FFAE /* WorkoutDetailsCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDetailsCore.swift; sourceTree = "<group>"; };
 		B84B0AC32458126700A07A1E /* Workout Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Workout Timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B84B0ACA2458126700A07A1E /* QuickTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerView.swift; sourceTree = "<group>"; };
 		B84B0ACC2458126B00A07A1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B84B0ACF2458126B00A07A1E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B84B0AD22458126B00A07A1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -324,17 +312,11 @@
 		B84C0351253B12B5000CD4CC /* CorePersistenceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CorePersistenceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B84C0358253B12B5000CD4CC /* CorePersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorePersistenceTests.swift; sourceTree = "<group>"; };
 		B84C035A253B12B5000CD4CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B84C03FB253B18E8000CD4CC /* QuickTimerSetDao+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QuickTimerSetDao+CoreDataClass.swift"; sourceTree = "<group>"; };
-		B84C03FC253B18E8000CD4CC /* QuickTimerSegmentDao+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QuickTimerSegmentDao+CoreDataClass.swift"; sourceTree = "<group>"; };
-		B84C03FD253B18E8000CD4CC /* QuickTimerSetDao+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QuickTimerSetDao+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		B84C03FE253B18E8000CD4CC /* QuickTimerSegmentDao+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QuickTimerSegmentDao+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B84C0440253C6059000CD4CC /* DomainEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainEntity.swift; sourceTree = "<group>"; };
 		B84C0474253D640F000CD4CC /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		B84C047C253D6415000CD4CC /* LocalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStore.swift; sourceTree = "<group>"; };
-		B84C048B253D6471000CD4CC /* QuickTimerSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerSet.swift; sourceTree = "<group>"; };
 		B84C04A5253D671F000CD4CC /* DatabaseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseEntity.swift; sourceTree = "<group>"; };
 		B84C05D9253D937D000CD4CC /* QuickTimerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerRepository.swift; sourceTree = "<group>"; };
-		B84C0938253DB70A000CD4CC /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		B84C09A2253DFFDB000CD4CC /* QuickWorkoutSegmentDao+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QuickWorkoutSegmentDao+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B84C09A3253DFFDB000CD4CC /* QuickWorkoutSegmentDao+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QuickWorkoutSegmentDao+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B84C09D4253E006D000CD4CC /* QuickWorkoutDao+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QuickWorkoutDao+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -354,13 +336,12 @@
 		B8767447246AB6A500438A0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8767465246AB7E700438A0F /* WorkoutCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WorkoutCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8767470246AB84700438A0F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B87FD03E2540979000EAFF02 /* QuickWorkoutSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickWorkoutSegment.swift; sourceTree = "<group>"; };
 		B880F827246E9EB200789DDA /* ExerciseSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSet.swift; sourceTree = "<group>"; };
 		B880FA9F246FF90900789DDA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B880FAA2246FFE7E00789DDA /* ExerciseRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseRowView.swift; sourceTree = "<group>"; };
 		B88C1B3924B0B1CE00520572 /* Font-Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font-Custom.swift"; sourceTree = "<group>"; };
 		B893DF97245AD53700C43360 /* UIResponder-Current.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder-Current.swift"; sourceTree = "<group>"; };
-		B893DF99245AD55900C43360 /* KeyboardHeightPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHeightPublisher.swift; sourceTree = "<group>"; };
-		B893DF9C245AD57900C43360 /* KeyboardAdaptive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAdaptive.swift; sourceTree = "<group>"; };
 		B893DFA3245C230300C43360 /* View-UpdateKeyPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View-UpdateKeyPath.swift"; sourceTree = "<group>"; };
 		B89C1C13248BC9300076E8DA /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		B89C1C1B248C362A0076E8DA /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
@@ -382,7 +363,6 @@
 		B8D12CF1251B944500458A7A /* RunningTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningTimerView.swift; sourceTree = "<group>"; };
 		B8D12CF7251B945100458A7A /* RunningTimerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningTimerCore.swift; sourceTree = "<group>"; };
 		B8DC5993246054E1003FC8D3 /* AppCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCore.swift; sourceTree = "<group>"; };
-		B8DC5995246055A3003FC8D3 /* QuickTimerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerCore.swift; sourceTree = "<group>"; };
 		B8DC599C24605E38003FC8D3 /* QuickTimer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QuickTimer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8DC599F24605E38003FC8D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8DC6A2B2461D7F6003FC8D3 /* QuickTimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickTimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -566,10 +546,6 @@
 				B84C09D4253E006D000CD4CC /* QuickWorkoutDao+CoreDataProperties.swift */,
 				B84C09A3253DFFDB000CD4CC /* QuickWorkoutSegmentDao+CoreDataClass.swift */,
 				B84C09A2253DFFDB000CD4CC /* QuickWorkoutSegmentDao+CoreDataProperties.swift */,
-				B84C03FC253B18E8000CD4CC /* QuickTimerSegmentDao+CoreDataClass.swift */,
-				B84C03FE253B18E8000CD4CC /* QuickTimerSegmentDao+CoreDataProperties.swift */,
-				B84C03FB253B18E8000CD4CC /* QuickTimerSetDao+CoreDataClass.swift */,
-				B84C03FD253B18E8000CD4CC /* QuickTimerSetDao+CoreDataProperties.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -618,7 +594,6 @@
 			children = (
 				B84B0AC52458126700A07A1E /* WorkoutTimer */,
 				B8FCFDF9246AB2CE005C9A89 /* InternalFrameworks */,
-				B84C034A253B12B5000CD4CC /* CorePersistence */,
 				B84B0AC42458126700A07A1E /* Products */,
 				B8DC59C524605F99003FC8D3 /* Frameworks */,
 			);
@@ -689,7 +664,6 @@
 				B84C04BA253D674E000CD4CC /* Clients */,
 				B84C04B3253D6745000CD4CC /* Protocols */,
 				B84C04C1253D6753000CD4CC /* Stores */,
-				B84C0938253DB70A000CD4CC /* SwiftUIView.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -697,8 +671,8 @@
 		B84C048A253D6456000CD4CC /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B84C048B253D6471000CD4CC /* QuickTimerSet.swift */,
 				B84C09DE253E009F000CD4CC /* QuickWorkout.swift */,
+				B87FD03E2540979000EAFF02 /* QuickWorkoutSegment.swift */,
 				B853475B253FFFBD005D170F /* WorkoutColor.swift */,
 			);
 			path = Models;
@@ -813,15 +787,13 @@
 			path = ValuePicker;
 			sourceTree = "<group>";
 		};
-		B8806CA0246844EA00C32F80 /* QuickTimer */ = {
+		B8806CA0246844EA00C32F80 /* RunningTimer */ = {
 			isa = PBXGroup;
 			children = (
-				B84B0ACA2458126700A07A1E /* QuickTimerView.swift */,
-				B8DC5995246055A3003FC8D3 /* QuickTimerCore.swift */,
 				B8D12CF1251B944500458A7A /* RunningTimerView.swift */,
 				B8D12CF7251B945100458A7A /* RunningTimerCore.swift */,
 			);
-			path = QuickTimer;
+			path = RunningTimer;
 			sourceTree = "<group>";
 		};
 		B880FA9E246FF8FD00789DDA /* Assets */ = {
@@ -856,17 +828,8 @@
 			isa = PBXGroup;
 			children = (
 				B893DFA1245C22EF00C43360 /* Extension */,
-				B893DF99245AD55900C43360 /* KeyboardHeightPublisher.swift */,
 			);
 			path = Helpers;
-			sourceTree = "<group>";
-		};
-		B893DF9B245AD56F00C43360 /* Modifiers */ = {
-			isa = PBXGroup;
-			children = (
-				B893DF9C245AD57900C43360 /* KeyboardAdaptive.swift */,
-			);
-			path = Modifiers;
 			sourceTree = "<group>";
 		};
 		B893DFA1245C22EF00C43360 /* Extension */ = {
@@ -874,7 +837,6 @@
 			children = (
 				B893DFA3245C230300C43360 /* View-UpdateKeyPath.swift */,
 				B893DF97245AD53700C43360 /* UIResponder-Current.swift */,
-				B83FC062248D32DC007531CF /* Array-QuickTimerSet.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -965,11 +927,10 @@
 				B84C0BD9253EF50F000CD4CC /* QuickWorkoutCard */,
 				B84C0BBE253EF46C000CD4CC /* QuickWorkoutsList */,
 				B84C0BAF253EB2CD000CD4CC /* CreateQuickWorkout */,
-				B8806CA0246844EA00C32F80 /* QuickTimer */,
+				B8806CA0246844EA00C32F80 /* RunningTimer */,
 				B8ED776D24685953001B9DEE /* QuickExerciseBuilder */,
 				B8806C9B246841EA00C32F80 /* ValuePicker */,
 				B8ED776A2468589A001B9DEE /* QuickTimerControls */,
-				B893DF9B245AD56F00C43360 /* Modifiers */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1013,6 +974,7 @@
 		B8FCFDF9246AB2CE005C9A89 /* InternalFrameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B84C034A253B12B5000CD4CC /* CorePersistence */,
 				B82C8BCE24B22C0100DB914D /* Home */,
 				B8455CFD246DB15D00C4FFAE /* WorkoutDetails */,
 				B8767445246AB6A500438A0F /* WorkoutCore */,
@@ -1410,7 +1372,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84C0425253B1A62000CD4CC /* WorkoutTimer.xcdatamodeld in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1509,22 +1470,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84C040F253B1932000CD4CC /* QuickTimerSegmentDao+CoreDataClass.swift in Sources */,
+				B87FD07C2540A29C00EAFF02 /* WorkoutTimer.xcdatamodeld in Sources */,
 				B853475C253FFFBD005D170F /* WorkoutColor.swift in Sources */,
-				B84C0410253B1932000CD4CC /* QuickTimerSegmentDao+CoreDataProperties.swift in Sources */,
-				B84C0939253DB70A000CD4CC /* SwiftUIView.swift in Sources */,
 				B84C09A6253DFFDB000CD4CC /* QuickWorkoutSegmentDao+CoreDataProperties.swift in Sources */,
 				B84C0441253C6059000CD4CC /* DomainEntity.swift in Sources */,
-				B84C0411253B1932000CD4CC /* QuickTimerSetDao+CoreDataClass.swift in Sources */,
 				B84C09DF253E009F000CD4CC /* QuickWorkout.swift in Sources */,
 				B84C0475253D640F000CD4CC /* Store.swift in Sources */,
 				B84C09A7253DFFDB000CD4CC /* QuickWorkoutSegmentDao+CoreDataClass.swift in Sources */,
 				B84C047D253D6415000CD4CC /* LocalStore.swift in Sources */,
-				B84C0412253B1932000CD4CC /* QuickTimerSetDao+CoreDataProperties.swift in Sources */,
-				B84C048C253D6471000CD4CC /* QuickTimerSet.swift in Sources */,
 				B84C09D6253E006D000CD4CC /* QuickWorkoutDao+CoreDataProperties.swift in Sources */,
 				B84C0380253B12E2000CD4CC /* CoreDataClient.swift in Sources */,
 				B84C04A6253D671F000CD4CC /* DatabaseEntity.swift in Sources */,
+				B87FD03F2540979000EAFF02 /* QuickWorkoutSegment.swift in Sources */,
 				B84C09D7253E006D000CD4CC /* QuickWorkoutDao+CoreDataClass.swift in Sources */,
 				B84C05DA253D937D000CD4CC /* QuickTimerRepository.swift in Sources */,
 			);
@@ -1582,24 +1539,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8ED776C246858A9001B9DEE /* TimerControlsCore.swift in Sources */,
-				B8DC59BF24605ED9003FC8D3 /* QuickTimerCore.swift in Sources */,
 				B84C0BE3253EF531000CD4CC /* QuickWorkoutCardView.swift in Sources */,
 				B8DC59C224605F3F003FC8D3 /* View-UpdateKeyPath.swift in Sources */,
 				B8DC59C324605F3F003FC8D3 /* UIResponder-Current.swift in Sources */,
 				B84C0DA3253F2700000CD4CC /* CreateQuickWorkoutView.swift in Sources */,
 				B8ED776724684976001B9DEE /* AddTimerSegmentCore.swift in Sources */,
 				B84C0BC0253EF485000CD4CC /* QuickWorkoutsListView.swift in Sources */,
-				B83FC063248D32DC007531CF /* Array-QuickTimerSet.swift in Sources */,
 				B84C0BDB253EF520000CD4CC /* QuickWorkoutCard.swift in Sources */,
-				B8DC59BC24605ED0003FC8D3 /* QuickTimerView.swift in Sources */,
 				B83907062462A4F400676B3D /* PickerCore.swift in Sources */,
 				B84C0BB1253EB2DE000CD4CC /* QuickWorkoutsView.swift in Sources */,
 				B8ED7769246854D0001B9DEE /* QuickTimerControlsView.swift in Sources */,
 				B83907042462A4DF00676B3D /* ValuePicker.swift in Sources */,
-				B8DC59BE24605ED5003FC8D3 /* KeyboardAdaptive.swift in Sources */,
 				B84C0D8F253F26E5000CD4CC /* CreateQuickWorkoutCore.swift in Sources */,
 				B8D12CF2251B944500458A7A /* RunningTimerView.swift in Sources */,
-				B8DC59C424605F3F003FC8D3 /* KeyboardHeightPublisher.swift in Sources */,
 				B8ED77652468493E001B9DEE /* AddTimerSegmentView.swift in Sources */,
 				B8D12CF8251B945100458A7A /* RunningTimerCore.swift in Sources */,
 			);
@@ -1740,7 +1692,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CODE_SIGN_IDENTITY = "Apple Distribution: Ivaylo Tsonev (GR9SJM3FZP)";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -2096,7 +2048,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = CorePersistence/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/CorePersistence/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2117,15 +2069,15 @@
 		B84C0361253B12B5000CD4CC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Distribution: Ivaylo Tsonev (GR9SJM3FZP)";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = CorePersistence/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/CorePersistence/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2149,7 +2101,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = CorePersistenceTests/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/CorePersistence/Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2170,7 +2122,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = CorePersistenceTests/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/CorePersistence/Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

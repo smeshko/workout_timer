@@ -37,10 +37,10 @@ public struct CreateQuickWorkoutState: Equatable {
 
 public struct CreateQuickWorkoutEnvironment {
     var mainQueue: AnySchedulerOf<DispatchQueue>
-    var repository: QuickTimerRepository
+    var repository: QuickWorkoutsRepository
     var uuid: () -> UUID
 
-    public init(uuid: @escaping () -> UUID, mainQueue: AnySchedulerOf<DispatchQueue>, repository: QuickTimerRepository) {
+    public init(uuid: @escaping () -> UUID, mainQueue: AnySchedulerOf<DispatchQueue>, repository: QuickWorkoutsRepository) {
         self.uuid = uuid
         self.mainQueue = mainQueue
         self.repository = repository
@@ -63,12 +63,15 @@ public let createQuickWorkoutReducer =
             case .updateName(let name):
                 state.name = name
 
-            case .addTimerSegmentAction(let id, .updatedSegments(let action, let segments)):
+            case .addTimerSegmentAction(let id, let action):
                 switch action {
-                case .add:
+                case .addSegments:
                     state.addTimerSegments.insert(defaultSegmentState(with: environment.uuid()), at: 0)
-                case .remove:
+                case .removeSegments:
                     state.addTimerSegments.remove(id: id)
+
+                default:
+                    break
                 }
 
             case .save:

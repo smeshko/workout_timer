@@ -12,19 +12,21 @@ public enum RunningTimerAction: Equatable {
 }
 
 public struct RunningTimerState: Equatable {
-    var segments: [QuickTimerSet] = []
-    var currentSegment: QuickTimerSet.Segment? = nil
+    var currentSection: TimerSection? = nil
     var totalTimeLeft: TimeInterval = 0
-    var segmentTimeLeft: TimeInterval = 0
+    var sectionTimeLeft: TimeInterval = 0
     var timerControlsState: QuickTimerControlsState
-    var finishedSegments: Int = 0
+    var finishedSections: Int = 0
+    var workout: QuickWorkout
+    var timerSections: [TimerSection]
 
-    public init(segments: [QuickTimerSet] = [],
-                currentSegment: QuickTimerSet.Segment? = nil,
+    public init(workout: QuickWorkout,
+                currentSection: TimerSection? = nil,
                 timerControlsState: QuickTimerControlsState = QuickTimerControlsState()) {
-        self.segments = segments
-        self.currentSegment = currentSegment
+        self.workout = workout
         self.timerControlsState = timerControlsState
+        self.timerSections = workout.segments.map { TimerSection.create(from: $0, isLast: false) }.flatMap { $0 }
+        self.currentSection = currentSection ?? timerSections.first
     }
 }
 
@@ -74,25 +76,25 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
 
         case .timerTicked:
             state.totalTimeLeft -= environment.timerStep.timeInterval.asDouble ?? 0
-            state.segmentTimeLeft -= environment.timerStep.timeInterval.asDouble ?? 0
+            state.sectionTimeLeft -= environment.timerStep.timeInterval.asDouble ?? 0
             
             if state.totalTimeLeft <= 0 {
                 return Effect(value: RunningTimerAction.timerFinished)
             }
 
-            if state.segmentTimeLeft <= 0, !state.isCurrentSegmentLast {
+            if state.sectionTimeLeft <= 0, !state.isCurrentSegmentLast {
                 return Effect(value: RunningTimerAction.segmentEnded)
             }
 
         case .segmentEnded:
-            state.moveToNextSegment()
+            state.moveToNextSection()
             return environment
                 .soundClient.play(.segment)
                 .fireAndForget()
 
         case .timerFinished:
             state.reset()
-            return Effect<QuickTimerAction, Never>
+            return Effect<RunningTimerAction, Never>
                 .cancel(id: TimerId())
                 .flatMap { _ in environment.soundClient.play(.segment).fireAndForget() }
                 .eraseToEffect()
@@ -108,37 +110,38 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
 
 private extension RunningTimerState {
     mutating func calculateInitialTime() {
-        totalTimeLeft = segments.map { $0.duration }.reduce(0, +)
-        segmentTimeLeft = currentSegment?.duration ?? 0
+        totalTimeLeft = TimeInterval(workout.segments.map { $0.sets * ($0.pause + $0.work) }.reduce(0, +))
+        sectionTimeLeft = currentSection?.duration ?? 0
     }
 
-    mutating func moveToNextSegment() {
-        guard let segment = currentSegment, let currentSet = segments[segment], let index = segments.firstIndex(of: segment) else { return }
-        if segment.category == .workout {
-            currentSegment = currentSet.pause
-            finishedSegments += 1
-        } else {
-            if let newSet = segments[safe: index + 1] {
-                currentSegment = newSet.work
+    mutating func moveToNextSection() {
+        guard let section = currentSection,
+              let index = timerSections.firstIndex(of: section) else { return }
+
+        if let newSet = timerSections[safe: index + 1] {
+            if section.type == .work {
+                finishedSections += 1
             }
+            currentSection = newSet
         }
-        segmentTimeLeft = currentSegment?.duration ?? 0
+
+        sectionTimeLeft = currentSection?.duration ?? 0
     }
 
     mutating func updateSegments() {
-        currentSegment = segments.first?.work
+        currentSection = timerSections.first
         calculateInitialTime()
     }
 
     mutating func reset() {
-        self = RunningTimerState()
-        currentSegment = segments.first?.work
+        self = RunningTimerState(workout: QuickWorkout(id: UUID(), name: "", color: WorkoutColor(hue: 0, saturation: 0, brightness: 0), segments: []))
+        currentSection = timerSections.first
         calculateInitialTime()
     }
 
     var isCurrentSegmentLast: Bool {
-        guard let segment = currentSegment, let index = segments.firstIndex(of: segment) else { return true }
-        return index == segments.count - 1
+        guard let section = currentSection, let index = timerSections.firstIndex(of: section) else { return true }
+        return index == timerSections.count - 1
     }
 }
 
@@ -162,5 +165,27 @@ extension DispatchTimeInterval {
         }
 
         return result
+    }
+}
+
+public struct TimerSection: Equatable {
+    enum SectionType {
+        case work, pause
+    }
+
+    let duration: TimeInterval
+    let type: SectionType
+
+    static func create(from segment: QuickWorkoutSegment, isLast: Bool) -> [TimerSection] {
+        var sections: [TimerSection] = []
+
+        (0 ..< segment.sets).forEach { index in
+            sections.append(TimerSection(duration: TimeInterval(segment.work), type: .work))
+            if !(isLast && index == segment.sets - 1) {
+                sections.append(TimerSection(duration: TimeInterval(segment.work), type: .pause))
+            }
+        }
+
+        return sections
     }
 }

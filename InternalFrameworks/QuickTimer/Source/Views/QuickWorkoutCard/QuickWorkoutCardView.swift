@@ -6,6 +6,8 @@ struct QuickWorkoutCardView: View {
 
     let store: Store<QuickWorkoutCardState, QuickWorkoutCardAction>
 
+    @State var isPresented = false
+
     var body: some View {
         WithViewStore(store) { viewStore in
             VStack(alignment: .leading, spacing: 18) {
@@ -27,6 +29,7 @@ struct QuickWorkoutCardView: View {
                     if viewStore.canStart {
                         Button(action: {
                             viewStore.send(.tapStart)
+                            isPresented = true
                         }, label: {
                             Image(systemName: "play.fill")
                                 .padding(12)
@@ -35,6 +38,11 @@ struct QuickWorkoutCardView: View {
                                 .mask(Circle())
 
                         })
+                        .fullScreenCover(isPresented: $isPresented) {
+                            RunningTimerView(store: self.store.scope(state: \.runningTimerState,
+                                                                     action: QuickWorkoutCardAction.runningTimerAction))
+                        }
+
                     }
                 }
             }

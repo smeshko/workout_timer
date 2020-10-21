@@ -4,16 +4,10 @@ import Foundation
 import CorePersistence
 
 public enum AddTimerSegmentAction: Equatable {
-    public enum UpdateSegmentsAction: Equatable {
-        case add
-        case remove
-    }
-
     case changeSetsCount(PickerAction)
     case changeBreakTime(PickerAction)
     case changeWorkoutTime(PickerAction)
-    
-    case updatedSegments(UpdateSegmentsAction, [QuickTimerSet])
+
     case addSegments
     case removeSegments
 }
@@ -25,7 +19,6 @@ public struct AddTimerSegmentState: Equatable, Identifiable {
     var workoutTimeState = PickerState()
     var breakTimeState = PickerState()
     var isAdded: Bool = false
-    var segments: [QuickTimerSet] = []
     
     fileprivate var sets: Int { Int(setsState.value) ?? 0 }
     fileprivate var workoutTime: Int { Int(workoutTimeState.value) ?? 0 }
@@ -65,18 +58,11 @@ public let addTimerSegmentReducer =
             case .changeWorkoutTime(.valueUpdated(let value)):
                 state.workoutTimeState.value = value
 
-            case .updatedSegments: break
-
             case .removeSegments:
                 state.isAdded = false
-                let copiedSegments = state.segments
-                state.segments = []
-                return Effect(value: .updatedSegments(.remove, copiedSegments))
 
             case .addSegments:
                 state.isAdded = true
-                state.createSegments(uuid: environment.uuid)
-                return Effect(value: .updatedSegments(.add, state.segments))
             }
             
             return .none
@@ -99,15 +85,6 @@ public let addTimerSegmentReducer =
 )
 
 private extension AddTimerSegmentState {
-    
-    mutating func createSegments(uuid: () -> UUID) {
-        segments = (0 ..< sets).enumerated().map { index, _ in
-            QuickTimerSet(id: uuid,
-                          work: TimeInterval(workoutTime),
-                          pause: TimeInterval(breakTime))
-        }
-    }
-    
 }
 
 extension Int {

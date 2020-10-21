@@ -19,17 +19,6 @@ struct RootView: View {
                     Image(systemName: "house")
                     Text("Home")
                 }
-
-
-                NavigationView {
-                    QuickTimerView()
-                }
-                .tabItem {
-                    Image(systemName: "timer")
-                    Text("Quick timer")
-                }
-                .background(Color.appBackground)
-
             }
             .accentColor(.appPrimary)
             .onAppear {
@@ -47,23 +36,6 @@ extension HomeView {
                 reducer: homeReducer,
                 environment: HomeEnvironment(
                     mainQueue: DispatchQueue.main.eraseToAnyScheduler()
-                )
-            )
-        )
-    }
-}
-
-extension QuickTimerView {
-    init() {
-        self.init(
-            store: Store<QuickTimerState, QuickTimerAction>(
-                initialState: QuickTimerState(),
-                reducer: quickTimerReducer,
-                environment: QuickTimerEnvironment(
-                    uuid: UUID.init,
-                    mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-                    soundClient: .live,
-                    repository: QuickTimerRepository()
                 )
             )
         )

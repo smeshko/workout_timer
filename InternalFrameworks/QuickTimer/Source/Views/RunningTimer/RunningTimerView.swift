@@ -35,8 +35,8 @@ struct RunningTimerView: View {
                         .font(.h1)
                 }
                 
-                SegmentedProgressView(totalSegments: viewStore.segments.count,
-                                      filledSegments: viewStore.finishedSegments,
+                SegmentedProgressView(totalSegments: viewStore.timerSections.count,
+                                      filledSegments: viewStore.finishedSections,
                                       title: "Segments")
                     .padding(.top, 28)
 
@@ -48,7 +48,7 @@ struct RunningTimerView: View {
                         .foregroundColor(.appGrey)
                         .font(.display)
 
-                    Text(viewStore.segmentTimeLeft.formattedTimeLeft)
+                    Text(viewStore.sectionTimeLeft.formattedTimeLeft)
                         .foregroundColor(.appText)
                         .font(.gigantic)
 
@@ -71,33 +71,33 @@ struct RunningTimerView: View {
 
 struct RunningTimerView_Previews: PreviewProvider {
     static var previews: some View {
-
-        let store = Store<RunningTimerState, RunningTimerAction>(
-            initialState: RunningTimerState(
-                segments: [QuickTimerSet(id: UUID.init, work: 30, pause: 10)],
-                currentSegment: QuickTimerSet.Segment(id: UUID.init, duration: 30, category: .workout),
-                timerControlsState: QuickTimerControlsState(timerState: .running)
-            ),
-            reducer: runningTimerReducer,
-            environment: RunningTimerEnvironment(uuid: UUID.init,
-                                                 mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-                                                 soundClient: .mock
-            )
-        )
-
-        return Group {
-            RunningTimerView(store: store)
-                .preferredColorScheme(.dark)
-                .previewDevice(.iPhone11)
-
-            RunningTimerView(store: store)
-                .previewDevice(.iPhone8)
-        }
+Text("")
+//        let store = Store<RunningTimerState, RunningTimerAction>(
+//            initialState: RunningTimerState(
+//                segments: [QuickTimerSet(id: UUID.init, work: 30, pause: 10)],
+//                currentSegment: QuickTimerSet.Segment(id: UUID.init, duration: 30, category: .workout),
+//                timerControlsState: QuickTimerControlsState(timerState: .running)
+//            ),
+//            reducer: runningTimerReducer,
+//            environment: RunningTimerEnvironment(uuid: UUID.init,
+//                                                 mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
+//                                                 soundClient: .mock
+//            )
+//        )
+//
+//        return Group {
+//            RunningTimerView(store: store)
+//                .preferredColorScheme(.dark)
+//                .previewDevice(.iPhone11)
+//
+//            RunningTimerView(store: store)
+//                .previewDevice(.iPhone8)
+//        }
     }
 }
 
 private extension RunningTimerState {
     var currentSegmentName: String {
-        currentSegment?.category == .workout ? "Work out" : "Recover"
+        currentSection?.type == .work ? "Work out" : "Recover"
     }
 }

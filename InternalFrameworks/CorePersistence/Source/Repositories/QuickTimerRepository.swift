@@ -1,19 +1,11 @@
 import Combine
 
-public class QuickTimerRepository {
+public class QuickWorkoutsRepository {
 
     private let store: LocalStore
 
     public init() {
         store = LocalStore(client: .shared)
-    }
-
-    public func fetchAllSets() -> AnyPublisher<[QuickTimerSet], PersistenceError> {
-        store.fetchAll(QuickTimerSet.self)
-    }
-
-    public func createTimerSet(_ set: QuickTimerSet) -> AnyPublisher<QuickTimerSet, PersistenceError> {
-        store.create(set)
     }
 
     public func fetchAllWorkouts() -> AnyPublisher<[QuickWorkout], PersistenceError> {

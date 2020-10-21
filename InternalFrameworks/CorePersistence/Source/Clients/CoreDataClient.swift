@@ -13,20 +13,20 @@ struct CoreDataClient {
     static var preview: CoreDataClient = {
         let result = CoreDataClient(inMemory: true)
         let viewContext = result.container.viewContext
-        for index in 1..<10 {
-
-            let pause = QuickTimerSegmentDao(context: viewContext)
-            pause.duration = Double(index * 5)
-            pause.category = 1
-
-            let work = QuickTimerSegmentDao(context: viewContext)
-            work.duration = Double(index * 10)
-            work.category = 0
-
-            let set = QuickTimerSetDao(context: viewContext)
-            set.pause = pause
-            set.work = work
-        }
+//        for index in 1..<10 {
+//
+//            let pause = QuickTimerSegmentDao(context: viewContext)
+//            pause.duration = Double(index * 5)
+//            pause.category = 1
+//
+//            let work = QuickTimerSegmentDao(context: viewContext)
+//            work.duration = Double(index * 10)
+//            work.category = 0
+//
+//            let set = QuickTimerSetDao(context: viewContext)
+//            set.pause = pause
+//            set.work = work
+//        }
         do {
             try viewContext.save()
         } catch {
