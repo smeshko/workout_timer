@@ -3,11 +3,16 @@ import ComposableArchitecture
 import WorkoutCore
 import CorePersistence
 
+fileprivate struct Constants {
+    static let preCountdown: TimeInterval = 3
+}
+
 public enum RunningTimerAction: Equatable {
     case timerTicked
     case segmentEnded
     case timerFinished
     case didAppear
+    case preCountdownFinished
     case timerControlsUpdatedState(QuickTimerControlsAction)
 }
 
@@ -19,6 +24,9 @@ public struct RunningTimerState: Equatable {
     var finishedSections: Int = 0
     var workout: QuickWorkout
     var timerSections: [TimerSection]
+
+    var preCountdownTimeLeft: TimeInterval = Constants.preCountdown
+    var isInPreCountdown: Bool = false
 
     public init(workout: QuickWorkout,
                 currentSection: TimerSection? = nil,
@@ -58,6 +66,7 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
 
         case .didAppear:
             state.updateSegments()
+            state.isInPreCountdown = true
             return Effect(value: RunningTimerAction.timerControlsUpdatedState(.start))
 
         case .timerControlsUpdatedState(let controlsAction):
@@ -75,9 +84,17 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
             }
 
         case .timerTicked:
-            state.totalTimeLeft -= environment.timerStep.timeInterval.asDouble ?? 0
-            state.sectionTimeLeft -= environment.timerStep.timeInterval.asDouble ?? 0
-            
+            if state.isInPreCountdown {
+                state.preCountdownTimeLeft -= environment.timerStep.timeInterval.asDouble ?? 0
+            } else {
+                state.totalTimeLeft -= environment.timerStep.timeInterval.asDouble ?? 0
+                state.sectionTimeLeft -= environment.timerStep.timeInterval.asDouble ?? 0
+            }
+
+            if state.isInPreCountdown && state.preCountdownTimeLeft <= 0 {
+                return Effect(value: RunningTimerAction.preCountdownFinished)
+            }
+
             if state.totalTimeLeft <= 0 {
                 return Effect(value: RunningTimerAction.timerFinished)
             }
@@ -85,6 +102,9 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
             if state.sectionTimeLeft <= 0, !state.isCurrentSegmentLast {
                 return Effect(value: RunningTimerAction.segmentEnded)
             }
+
+        case .preCountdownFinished:
+            state.isInPreCountdown = false
 
         case .segmentEnded:
             state.moveToNextSection()
