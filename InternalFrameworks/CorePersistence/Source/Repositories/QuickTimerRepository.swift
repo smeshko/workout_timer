@@ -20,7 +20,11 @@ public class QuickWorkoutsRepository {
         store.create(segment)
     }
 
-    public func delete(_ workout: QuickWorkout) -> AnyPublisher<Void, PersistenceError> {
+    public func delete(_ workout: QuickWorkout) -> AnyPublisher<String, PersistenceError> {
         store.delete(workout)
+    }
+
+    public func delete(_ workouts: [QuickWorkout]) -> AnyPublisher<[String], PersistenceError> {
+        store.delete(workouts)
     }
 }

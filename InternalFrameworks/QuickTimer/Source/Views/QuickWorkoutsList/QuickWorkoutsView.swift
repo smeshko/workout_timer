@@ -4,11 +4,12 @@ import ComposableArchitecture
 public enum QuickWorkoutsListAction: Equatable {
     case onAppear
     case didFetchWorkouts(Result<[QuickWorkout], PersistenceError>)
+    case didFinishDeletingWorkouts(Result<[String], PersistenceError>)
     case didFinishSaving(Result<QuickWorkout, PersistenceError>)
     case addWorkout
     case workoutCardAction(id: UUID, action: QuickWorkoutCardAction)
     case createWorkoutAction(CreateQuickWorkoutAction)
-
+    case deleteWorkouts(IndexSet)
 }
 
 public struct QuickWorkoutsListState: Equatable {
@@ -53,6 +54,12 @@ public let quickWorkoutsListReducer =
             case .didFinishSaving(.success(let new)):
                 state.workoutStates.append(QuickWorkoutCardState(workout: new, canStart: true))
 
+            case .didFinishDeletingWorkouts(.success(let ids)):
+                ids.forEach { state.workoutStates.remove(id: UUID(uuidString: $0) ?? UUID()) }
+
+            case .didFinishDeletingWorkouts(.failure(let error)):
+                break
+                
             case .didFetchWorkouts(.failure(_)):
                 break
                 
@@ -68,6 +75,16 @@ public let quickWorkoutsListReducer =
             case .createWorkoutAction(.didSaveSuccessfully(.success(let workout))):
                 state.workoutStates.insert(QuickWorkoutCardState(workout: workout, canStart: true), at: 0)
                 state.createWorkoutState = CreateQuickWorkoutState()
+
+            case .deleteWorkouts(let indices):
+                let objects = indices.compactMap { state.workoutStates[safe: $0]?.workout }
+                return environment
+                    .repository
+                    .delete(objects)
+                    .receive(on: environment.mainQueue)
+                    .catchToEffect()
+                    .map(QuickWorkoutsListAction.didFinishDeletingWorkouts(_:))
+                
 
             default: break
             }

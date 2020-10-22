@@ -6,6 +6,7 @@ public enum PersistenceError: Error {
 
 protocol Store {
     func create<T: DomainEntity>(_ object: T) -> AnyPublisher<T, PersistenceError>
-    func delete<T: DomainEntity>(_ object: T) -> AnyPublisher<Void, PersistenceError>
+    func delete<T: DomainEntity>(_ object: T) -> AnyPublisher<String, PersistenceError>
+    func delete<T: DomainEntity>(_ objects: [T]) -> AnyPublisher<[String], PersistenceError>
     func fetchAll<T: DomainEntity>(_ type: T.Type) -> AnyPublisher<[T], PersistenceError>
 }

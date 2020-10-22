@@ -14,7 +14,7 @@ struct LocalStore: Store {
             .eraseToAnyPublisher()
     }
 
-    func delete<T>(_ object: T) -> AnyPublisher<Void, PersistenceError> where T : DomainEntity {
+    func delete<T>(_ object: T) -> AnyPublisher<String, PersistenceError> where T : DomainEntity {
         client
             .delete(object)
             .mapError { _ in PersistenceError.generalError }
@@ -27,6 +27,12 @@ struct LocalStore: Store {
             .insert(object)
             .mapError { _ in PersistenceError.generalError }
             .eraseToAnyPublisher()
+    }
 
+    func delete<T>(_ objects: [T]) -> AnyPublisher<[String], PersistenceError> where T : DomainEntity {
+        Publishers.MergeMany(objects.map({ client.delete($0) }))
+            .collect()
+            .mapError { _ in PersistenceError.generalError }
+            .eraseToAnyPublisher()
     }
 }

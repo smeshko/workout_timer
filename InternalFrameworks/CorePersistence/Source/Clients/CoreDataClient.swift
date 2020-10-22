@@ -96,7 +96,7 @@ struct CoreDataClient {
         }
     }
 
-    func delete<T: DomainEntity>(_ object: T) -> Future<Void, CoreDataError> {
+    func delete<T: DomainEntity>(_ object: T) -> Future<String, CoreDataError> {
         Future { promise in
             let request = T.EntityObject.fetchRequest()
             let predicate = NSPredicate(format: "id = %@", object.objectId)
@@ -109,7 +109,7 @@ struct CoreDataClient {
                     return
                 }
                 container.viewContext.delete(managedObject)
-                promise(.success(()))
+                promise(.success(object.objectId))
             } catch {
                 promise(.failure(.failedUpdatingContext))
             }

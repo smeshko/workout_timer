@@ -14,31 +14,41 @@ public struct QuickWorkoutsListView: View {
     public var body: some View {
         NavigationView {
             WithViewStore(store) { viewStore in
+//                VStack {
                 ScrollView {
                     if viewStore.workoutStates.isEmpty {
                         Text("No workouts")
                     } else {
-                        ForEachStore(store.scope(state: { $0.workoutStates }, action: QuickWorkoutsListAction.workoutCardAction(id:action:))) { viewStore in
+//                        List {
+                        LazyVStack {
+                            ForEachStore(store.scope(state: { $0.workoutStates }, action: QuickWorkoutsListAction.workoutCardAction(id:action:))) { viewStore in
                                 QuickWorkoutCardView(store: viewStore)
                                     .padding(.horizontal, 28)
-                                    .padding(.bottom, 8)
+                                    .padding(.bottom, 18)
+                            }
+//                            .onDelete(perform: { indexSet in
+//                                viewStore.send(.deleteWorkouts(indexSet))
+//                            })
+//                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+//                            .listRowInsets(EdgeInsets(top: -1, leading: -1, bottom: -1, trailing: -1))
+//                            .background(Color(.systemBackground))
                         }
-                    }
-                }
-                .toolbar {
-                    HStack {
-                        Button(action: {
-                            isPresenting = true
-                        }) {
-                            Image(systemName: "plus")
-                        }
-                        .sheet(isPresented: $isPresenting, content: {
-                            CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState, action: QuickWorkoutsListAction.createWorkoutAction))
-                        })
                     }
                 }
                 .onAppear {
                     viewStore.send(.onAppear)
+                }
+            }
+            .toolbar {
+                HStack {
+                    Button(action: {
+                        isPresenting = true
+                    }) {
+                        Image(systemName: "plus")
+                    }
+                    .sheet(isPresented: $isPresenting, content: {
+                        CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState, action: QuickWorkoutsListAction.createWorkoutAction))
+                    })
                 }
             }
             .navigationTitle("Workouts")
