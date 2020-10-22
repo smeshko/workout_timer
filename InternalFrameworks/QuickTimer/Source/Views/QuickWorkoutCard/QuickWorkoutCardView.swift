@@ -33,7 +33,7 @@ struct QuickWorkoutCardView: View {
                         }, label: {
                             Image(systemName: "play.fill")
                                 .padding(12)
-                                .foregroundColor(.appText)
+                                .foregroundColor(.appWhite)
                                 .background(Color(hue: viewStore.workout.color.hue, saturation: viewStore.workout.color.saturation, brightness: viewStore.workout.color.brightness))
                                 .mask(Circle())
 

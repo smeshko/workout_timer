@@ -35,9 +35,10 @@ struct RunningTimerView: View {
                         .font(.h1)
                 }
                 
-                SegmentedProgressView(totalSegments: viewStore.timerSections.count,
+                SegmentedProgressView(totalSegments: viewStore.timerSections.count / 2,
                                       filledSegments: viewStore.finishedSections,
-                                      title: "Segments")
+                                      title: "Segments",
+                                      color: viewStore.color)
                     .padding(.top, 28)
 
                 Spacer()
@@ -99,5 +100,9 @@ Text("")
 private extension RunningTimerState {
     var currentSegmentName: String {
         currentSection?.type == .work ? "Work out" : "Recover"
+    }
+
+    var color: Color {
+        Color(hue: workout.color.hue, saturation: workout.color.saturation, brightness: workout.color.brightness)
     }
 }

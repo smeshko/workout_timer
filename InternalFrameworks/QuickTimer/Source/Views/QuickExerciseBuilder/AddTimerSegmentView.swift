@@ -43,6 +43,11 @@ struct AddTimerSegmentView: View {
             }
             .padding(.horizontal, 28)
         }
+        .padding(.horizontal, 18)
+        .padding(.vertical, 18)
+        .background(Color.appCardBackground)
+        .cornerRadius(12)
+        .overlay(RoundedRectangle(cornerRadius: 12).stroke(color, lineWidth: 1))
     }
 }
 

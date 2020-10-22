@@ -13,6 +13,12 @@ extension QuickWorkoutDao {
     @NSManaged public var colorHue: Double
     @NSManaged public var colorSaturation: Double
     @NSManaged public var colorBrightness: Double
+    @NSManaged public var createdAt: Date?
+
+    override func awakeFromInsert() {
+        super.awakeFromInsert()
+        createdAt = Date()
+    }
 }
 
 // MARK: Generated accessors for segments

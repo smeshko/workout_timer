@@ -4,6 +4,7 @@
         <attribute name="colorBrightness" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="colorHue" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="colorSaturation" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="segments" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="QuickWorkoutSegmentDao" inverseName="workout" inverseEntity="QuickWorkoutSegmentDao" spotlightIndexingEnabled="YES"/>
@@ -16,7 +17,7 @@
         <relationship name="workout" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="QuickWorkoutDao" inverseName="segments" inverseEntity="QuickWorkoutDao"/>
     </entity>
     <elements>
-        <element name="QuickWorkoutDao" positionX="-18" positionY="72" width="128" height="133"/>
+        <element name="QuickWorkoutDao" positionX="-18" positionY="72" width="128" height="148"/>
         <element name="QuickWorkoutSegmentDao" positionX="0" positionY="81" width="128" height="118"/>
     </elements>
 </model>

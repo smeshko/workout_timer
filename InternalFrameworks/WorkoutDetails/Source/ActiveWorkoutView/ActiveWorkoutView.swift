@@ -127,7 +127,8 @@ private struct CurrentExerciseView: View {
 
             SegmentedProgressView(totalSegments: viewStore.totalWorkoutSets,
                                   filledSegments: viewStore.finishedWorkoutSets,
-                                  title: "Exercises")
+                                  title: "Exercises",
+                                  color: .appSecondary)
                 .padding(.horizontal, 28)
         }
         .padding(.vertical, 18)

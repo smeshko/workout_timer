@@ -41,10 +41,3 @@ extension HomeView {
         )
     }
 }
-
-extension UITabBar {
-    override open func didMoveToSuperview() {
-        super.didMoveToSuperview()
-        GlobalTabBar.tabBar = self
-    }
-}
