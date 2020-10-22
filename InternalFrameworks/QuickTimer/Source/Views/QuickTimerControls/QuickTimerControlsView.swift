@@ -18,10 +18,6 @@ struct QuickTimerControlsView: View {
                         viewStore.send(.pause)
                     }, image: "pause", tint: tint)
                 }
-
-                ControlButton(action: {
-                    viewStore.send(.stop)
-                }, image: "stop", tint: .appGrey)
             }
         }
     }
@@ -48,9 +44,10 @@ private struct ControlButton: View {
     var body: some View {
         Button(action: action, label: {
             Image(systemName: image)
-                .frame(width: 18, height: 18)
+                .frame(width: 40, height: 40)
                 .padding(15)
                 .foregroundColor(.appWhite)
+                .font(.h1)
         })
         .background(tint)
         .cornerRadius(12)

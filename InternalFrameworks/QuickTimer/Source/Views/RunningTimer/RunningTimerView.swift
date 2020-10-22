@@ -18,7 +18,7 @@ struct RunningTimerView: View {
                 if viewStore.isInPreCountdown {
                     ZStack {
                         Spacer()
-                        RoundedRectangle(cornerRadius: 25.0)
+                        RoundedRectangle(cornerRadius: 25)
                             .frame(width: 125, height: 125)
                             .foregroundColor(viewStore.color)
 
@@ -33,14 +33,22 @@ struct RunningTimerView: View {
                     VStack(spacing: 28) {
                         HStack(spacing: 18) {
                             Button(action: {
-                                viewStore.send(.timerFinished)
-                                self.presentationMode.wrappedValue.dismiss()
+                                viewStore.send(.alertButtonTapped)
                             }, label: {
                                 Image(systemName: "xmark")
                                     .frame(width: 18, height: 18)
                                     .padding(10)
                                     .foregroundColor(.appText)
                             })
+                            .alert(
+                              self.store.scope(state: { $0.alert }),
+                              dismiss: .alertDismissed
+                            )
+                            .onChange(of: viewStore.isPresented) { isPresented in
+                                if !isPresented {
+                                    presentationMode.wrappedValue.dismiss()
+                                }
+                            }
                             .background(Color.appCardBackground)
                             .cornerRadius(12)
 

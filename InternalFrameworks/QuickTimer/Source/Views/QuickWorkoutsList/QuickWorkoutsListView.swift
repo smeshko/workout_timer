@@ -21,10 +21,21 @@ public struct QuickWorkoutsListView: View {
                     } else {
 //                        List {
                         LazyVStack {
-                            ForEachStore(store.scope(state: { $0.workoutStates }, action: QuickWorkoutsListAction.workoutCardAction(id:action:))) { viewStore in
-                                QuickWorkoutCardView(store: viewStore)
+                            ForEachStore(store.scope(state: { $0.workoutStates }, action: QuickWorkoutsListAction.workoutCardAction(id:action:))) { cardViewStore in
+                                QuickWorkoutCardView(store: cardViewStore)
                                     .padding(.horizontal, 28)
                                     .padding(.bottom, 18)
+                                    .contextMenu {
+                                        Button(action: {
+                                            withAnimation {
+                                                viewStore.send(QuickWorkoutsListAction.deleteWorkout(ViewStore(cardViewStore).workout))
+                                            }
+                                        }, label: {
+                                            Label("Delete", systemImage: "trash")
+                                                .foregroundColor(.red)
+                                        })
+                                    }
+
                             }
 //                            .onDelete(perform: { indexSet in
 //                                viewStore.send(.deleteWorkouts(indexSet))

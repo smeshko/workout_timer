@@ -11,9 +11,13 @@ public enum RunningTimerAction: Equatable {
     case timerTicked
     case segmentEnded
     case timerFinished
+    case timerClosed
     case didAppear
     case preCountdownFinished
     case timerControlsUpdatedState(QuickTimerControlsAction)
+    case alertButtonTapped
+    case alertCancelTapped
+    case alertDismissed
 }
 
 public struct RunningTimerState: Equatable {
@@ -24,6 +28,8 @@ public struct RunningTimerState: Equatable {
     var finishedSections: Int = 0
     var workout: QuickWorkout
     var timerSections: [TimerSection]
+    var alert: AlertState<RunningTimerAction>?
+    var isPresented = true
 
     var preCountdownTimeLeft: TimeInterval = Constants.preCountdown
     var isInPreCountdown: Bool = false
@@ -75,7 +81,7 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
                 return Effect<RunningTimerAction, Never>.cancel(id: TimerId())
 
             case .stop:
-                return Effect(value: RunningTimerAction.timerFinished)
+                return Effect(value: RunningTimerAction.alertButtonTapped)
 
             case .start:
                 return Effect
@@ -112,12 +118,26 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
                 .soundClient.play(.segment)
                 .fireAndForget()
 
+        case .alertButtonTapped:
+            state.alert = .init(
+                title: "Stop workout?",
+                message: "Are you sure you want to stop this workout?",
+                primaryButton: .cancel(send: .timerControlsUpdatedState(.start)),
+                secondaryButton: .default("Yes", send: .timerClosed)
+            )
+            return Effect(value: RunningTimerAction.timerControlsUpdatedState(.pause))
+
         case .timerFinished:
             state.reset()
             return Effect<RunningTimerAction, Never>
                 .cancel(id: TimerId())
                 .flatMap { _ in environment.soundClient.play(.segment).fireAndForget() }
                 .eraseToEffect()
+
+        case .timerClosed:
+            state.isPresented = false
+
+        default: break
         }
         return .none
     },

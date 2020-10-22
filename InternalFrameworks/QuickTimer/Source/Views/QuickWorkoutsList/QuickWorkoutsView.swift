@@ -10,6 +10,7 @@ public enum QuickWorkoutsListAction: Equatable {
     case workoutCardAction(id: UUID, action: QuickWorkoutCardAction)
     case createWorkoutAction(CreateQuickWorkoutAction)
     case deleteWorkouts(IndexSet)
+    case deleteWorkout(QuickWorkout)
 }
 
 public struct QuickWorkoutsListState: Equatable {
@@ -75,6 +76,16 @@ public let quickWorkoutsListReducer =
             case .createWorkoutAction(.didSaveSuccessfully(.success(let workout))):
                 state.workoutStates.insert(QuickWorkoutCardState(workout: workout, canStart: true), at: 0)
                 state.createWorkoutState = CreateQuickWorkoutState()
+
+            case .deleteWorkout(let workout):
+                return environment
+                    .repository
+                    .delete(workout)
+                    .receive(on: environment.mainQueue)
+                    .catchToEffect()
+                    .map {
+                        QuickWorkoutsListAction.didFinishDeletingWorkouts($0.map { [$0] })
+                    }
 
             case .deleteWorkouts(let indices):
                 let objects = indices.compactMap { state.workoutStates[safe: $0]?.workout }
