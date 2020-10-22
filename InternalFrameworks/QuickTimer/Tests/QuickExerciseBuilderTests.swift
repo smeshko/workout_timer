@@ -9,9 +9,9 @@ class QuickExerciseBuilderTests: XCTestCase {
         UUID(uuidString: "00000000-0000-0000-0000-000000000000")!
     }
     
-    func segment(pause: TimeInterval, work: TimeInterval) -> QuickTimerSet {
-        QuickTimerSet(id: uuid, work: work, pause: pause)
-    }
+//    func segment(pause: TimeInterval, work: TimeInterval) -> QuickTimerSet {
+//        QuickTimerSet(id: uuid, work: work, pause: pause)
+//    }
 
     func testFlow() {
 //        let store = TestStore(

@@ -11,7 +11,7 @@ class TimerCoreTests: XCTestCase {
         UUID(uuidString: "00000000-0000-0000-0000-000000000000")!
     }
     
-    let segments = [QuickTimerSet(id: uuid, work: 1, pause: 1), QuickTimerSet(id: uuid, work: 1, pause: 0)]
+//    let segments = [QuickTimerSet(id: uuid, work: 1, pause: 1), QuickTimerSet(id: uuid, work: 1, pause: 0)]
     
     func testFlow() {
 //        let store = TestStore(
