@@ -27,17 +27,18 @@ public struct CreateQuickWorkoutState: Equatable {
     var name: String = ""
     let preselectedTints: [TintColor] = Color.tints
     var selectedTint: TintColor? = nil
-    var colorComponents = ColorComponents(hue: 0, brightness: 0, saturation: 0)
-    var selectedColor: Color
+    var selectedColor: Color = .appSuccess
 
     var isFormIncomplete: Bool {
         name.isEmpty || addTimerSegmentStates.filter(\.isAdded).isEmpty
     }
 
-    public init() {
-        selectedColor = Color.tints.first?.color ?? .appSuccess
-        selectedTint = Color.tints.first
+    var colorComponents: ColorComponents {
+        let components = UIColor(selectedColor).components()
+        return ColorComponents(hue: components.h, brightness: components.b, saturation: components.s)
     }
+
+    public init() {}
 }
 
 public struct CreateQuickWorkoutEnvironment {
@@ -65,6 +66,9 @@ public let createQuickWorkoutReducer =
                 guard state.addTimerSegmentStates.isEmpty else { break }
                 state.addTimerSegmentStates.insert(defaultSegmentState(with: environment.uuid()), at: 0)
 
+                let randomTint = Color.tints[safe: Int.random(in: 0...Color.tints.count - 1)]?.color ?? .appSuccess
+                return Effect(value: CreateQuickWorkoutAction.selectColor(randomTint))
+
             case .updateName(let name):
                 state.name = name
 
@@ -89,10 +93,8 @@ public let createQuickWorkoutReducer =
                     .map(CreateQuickWorkoutAction.didSaveSuccessfully)
 
             case .selectColor(let color):
-                let components = UIColor(color).components()
                 state.selectedColor = color
                 state.selectedTint = Color.tints[color]
-                state.colorComponents = ColorComponents(hue: components.h, brightness: components.b, saturation: components.s)
 
             default: break
             }
@@ -144,9 +146,3 @@ private extension UIColor {
         return (Double(h), Double(s), Double(b))
     }
 }
-
-//private extension CreateQuickWorkoutState {
-//    var color: Color {
-//        Color(hue: colorComponents.hue, saturation: colorComponents.saturation, brightness: colorComponents.brightness)
-//    }
-//}

@@ -5,6 +5,7 @@ import CorePersistence
 
 struct RunningTimerView: View {
     let store: Store<RunningTimerState, RunningTimerAction>
+    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     public init(store: Store<RunningTimerState, RunningTimerAction>) {
@@ -15,7 +16,7 @@ struct RunningTimerView: View {
         WithViewStore(store) { viewStore in
             VStack(spacing: 28) {
 
-                HStack {
+                HStack(spacing: 18) {
                     Button(action: {
                         viewStore.send(.timerFinished)
                         self.presentationMode.wrappedValue.dismiss()
@@ -27,6 +28,10 @@ struct RunningTimerView: View {
                     })
                     .background(Color.appCardBackground)
                     .cornerRadius(12)
+
+                    Text(viewStore.workout.name)
+                        .font(.h3)
+                        .foregroundColor(.appText)
                     
                     Spacer()
                     
@@ -37,7 +42,7 @@ struct RunningTimerView: View {
                 
                 SegmentedProgressView(totalSegments: viewStore.timerSections.count / 2,
                                       filledSegments: viewStore.finishedSections,
-                                      title: "Segments",
+                                      title: "Sections",
                                       color: viewStore.color)
                     .padding(.top, 28)
 
@@ -60,7 +65,7 @@ struct RunningTimerView: View {
 
                 Spacer()
 
-                QuickTimerControlsView(store: self.store.scope(state: \.timerControlsState, action: RunningTimerAction.timerControlsUpdatedState))
+                QuickTimerControlsView(store: self.store.scope(state: \.timerControlsState, action: RunningTimerAction.timerControlsUpdatedState), tint: viewStore.color)
             }
             .padding(28)
             .onAppear {

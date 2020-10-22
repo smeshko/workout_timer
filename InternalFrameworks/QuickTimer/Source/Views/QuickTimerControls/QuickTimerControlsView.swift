@@ -4,6 +4,7 @@ import WorkoutCore
 
 struct QuickTimerControlsView: View {
     let store: Store<QuickTimerControlsState, QuickTimerControlsAction>
+    let tint: Color
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -11,16 +12,16 @@ struct QuickTimerControlsView: View {
                 if viewStore.timerState.isPaused {
                     ControlButton(action: {
                         viewStore.send(.start)
-                    }, image: "play")
+                    }, image: "play", tint: tint)
                 } else {
                     ControlButton(action: {
                         viewStore.send(.pause)
-                    }, image: "pause")
+                    }, image: "pause", tint: tint)
                 }
 
                 ControlButton(action: {
                     viewStore.send(.stop)
-                }, image: "stop")
+                }, image: "stop", tint: .appGrey)
             }
         }
     }
@@ -33,7 +34,7 @@ struct TimerControlsView_Previews: PreviewProvider {
                 initialState: QuickTimerControlsState(timerState: .paused),
                 reducer: quickTimerControlsReducer,
                 environment: QuickTimerControlsEnvironment()
-            )
+            ), tint: .appSuccess
         )
     }
 }
@@ -42,6 +43,7 @@ private struct ControlButton: View {
 
     let action: () -> Void
     let image: String
+    let tint: Color
 
     var body: some View {
         Button(action: action, label: {
@@ -50,7 +52,7 @@ private struct ControlButton: View {
                 .padding(15)
                 .foregroundColor(.appWhite)
         })
-        .background(Color.appGrey)
+        .background(tint)
         .cornerRadius(12)
     }
 }
