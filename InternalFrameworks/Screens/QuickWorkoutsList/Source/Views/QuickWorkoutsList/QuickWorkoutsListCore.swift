@@ -81,8 +81,9 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
                 .receive(on: environment.mainQueue)
                 .catchToEffect()
                 .map(QuickWorkoutsListAction.didFinishDeleting(_:))
-        }
+        default: break
 
+        }
         return .none
     },
     createQuickWorkoutReducer.pullback(

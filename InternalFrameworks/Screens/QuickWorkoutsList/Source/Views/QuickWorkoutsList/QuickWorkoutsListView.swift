@@ -1,5 +1,4 @@
 import SwiftUI
-import CoreLogic
 import ComposableArchitecture
 import QuickWorkoutForm
 

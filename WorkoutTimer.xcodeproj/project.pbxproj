@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B82B77842475D9C200774C05 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = B82B77832475D9C200774C05 /* ComposableArchitecture */; };
 		B82B77852475D9E100774C05 /* CoreLogic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8767444246AB6A500438A0F /* CoreLogic.framework */; };
+		B834419A2544690500062451 /* CoreLogic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8767444246AB6A500438A0F /* CoreLogic.framework */; };
 		B83FC061248D3290007531CF /* Collection-Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83FC060248D3290007531CF /* Collection-Safe.swift */; };
 		B8401E862538F403007F2F31 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8401E852538F403007F2F31 /* App.swift */; };
 		B84B0ACD2458126B00A07A1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B84B0ACC2458126B00A07A1E /* Assets.xcassets */; };
@@ -47,11 +48,8 @@
 		B87FDD25254417D500EAFF02 /* QuickWorkoutSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87FD03E2540979000EAFF02 /* QuickWorkoutSegment.swift */; };
 		B87FDD2F2544182100EAFF02 /* QuickWorkout-DomainEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87FDD2E2544182100EAFF02 /* QuickWorkout-DomainEntity.swift */; };
 		B87FDD762544197800EAFF02 /* CoreInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87FDD6D2544197800EAFF02 /* CoreInterface.framework */; };
-		B87FDD7D2544197800EAFF02 /* CoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87FDD7C2544197800EAFF02 /* CoreUITests.swift */; };
 		B87FDD822544197800EAFF02 /* CoreInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87FDD6D2544197800EAFF02 /* CoreInterface.framework */; };
 		B87FDD832544197800EAFF02 /* CoreInterface.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B87FDD6D2544197800EAFF02 /* CoreInterface.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B87FDDA92544199700EAFF02 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89C1C1B248C362A0076E8DA /* RemoteImage.swift */; };
-		B87FDDAA2544199700EAFF02 /* LevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B3DB32517932D00951214 /* LevelView.swift */; };
 		B87FDDAB2544199700EAFF02 /* SegmentedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D11D06251A37A900458A7A /* SegmentedProgressView.swift */; };
 		B87FDDCB254419EE00EAFF02 /* Color-Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83FC059248D1EE3007531CF /* Color-Custom.swift */; };
 		B87FDDCC254419EE00EAFF02 /* PreviewProvider-Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBF956248FCFE000653452 /* PreviewProvider-Mocks.swift */; };
@@ -82,6 +80,7 @@
 		B87FDF9625443E3300EAFF02 /* PickerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83907052462A4F400676B3D /* PickerCore.swift */; };
 		B87FDF9725443E3300EAFF02 /* CreateQuickWorkoutCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C0D8E253F26E5000CD4CC /* CreateQuickWorkoutCore.swift */; };
 		B87FDF9825443E3300EAFF02 /* AddTimerSegmentCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED776624684976001B9DEE /* AddTimerSegmentCore.swift */; };
+		B87FE01625445B9400EAFF02 /* QuickWorkoutSegment-DomainEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87FE01525445B9400EAFF02 /* QuickWorkoutSegment-DomainEntity.swift */; };
 		B8A041A22488F81A0009A32D /* WorkoutTimerAPI in Frameworks */ = {isa = PBXBuildFile; productRef = B8A041A12488F81A0009A32D /* WorkoutTimerAPI */; };
 		B8A041AB248981AF0009A32D /* QuickTimerControlsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A041A9248981950009A32D /* QuickTimerControlsTests.swift */; };
 		B8A041AD248982480009A32D /* QuickExerciseBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A041AC248982480009A32D /* QuickExerciseBuilderTests.swift */; };
@@ -284,7 +283,6 @@
 		B83907052462A4F400676B3D /* PickerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCore.swift; sourceTree = "<group>"; };
 		B839E36D2471B7A300FE5793 /* UIImage-Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage-Asset.swift"; sourceTree = "<group>"; };
 		B839E36F2471B89600FE5793 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		B83B3DB32517932D00951214 /* LevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelView.swift; sourceTree = "<group>"; };
 		B83FC059248D1EE3007531CF /* Color-Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color-Custom.swift"; sourceTree = "<group>"; };
 		B83FC05B248D1FB6007531CF /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		B83FC060248D3290007531CF /* Collection-Safe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection-Safe.swift"; sourceTree = "<group>"; };
@@ -336,7 +334,6 @@
 		B87FDD6D2544197800EAFF02 /* CoreInterface.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreInterface.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B87FDD702544197800EAFF02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B87FDD752544197800EAFF02 /* CoreInterfaceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreInterfaceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B87FDD7C2544197800EAFF02 /* CoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreUITests.swift; sourceTree = "<group>"; };
 		B87FDD7E2544197800EAFF02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B87FDF15254436D800EAFF02 /* RunningTimer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RunningTimer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B87FDF18254436D800EAFF02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -348,9 +345,9 @@
 		B87FDF7225443E1100EAFF02 /* QuickWorkoutFormTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickWorkoutFormTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B87FDF7925443E1100EAFF02 /* QuickWorkoutFormTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickWorkoutFormTests.swift; sourceTree = "<group>"; };
 		B87FDF7B25443E1100EAFF02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B87FE01525445B9400EAFF02 /* QuickWorkoutSegment-DomainEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuickWorkoutSegment-DomainEntity.swift"; sourceTree = "<group>"; };
 		B880FA9F246FF90900789DDA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B88C1B3924B0B1CE00520572 /* Font-Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font-Custom.swift"; sourceTree = "<group>"; };
-		B89C1C1B248C362A0076E8DA /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
 		B8A041A9248981950009A32D /* QuickTimerControlsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerControlsTests.swift; sourceTree = "<group>"; };
 		B8A041AC248982480009A32D /* QuickExerciseBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickExerciseBuilderTests.swift; sourceTree = "<group>"; };
 		B8A041AE248983F40009A32D /* ValuePickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuePickerTests.swift; sourceTree = "<group>"; };
@@ -473,6 +470,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B834419A2544690500062451 /* CoreLogic.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -611,6 +609,7 @@
 			isa = PBXGroup;
 			children = (
 				B87FDD2E2544182100EAFF02 /* QuickWorkout-DomainEntity.swift */,
+				B87FE01525445B9400EAFF02 /* QuickWorkoutSegment-DomainEntity.swift */,
 			);
 			path = DomainEntities;
 			sourceTree = "<group>";
@@ -754,7 +753,6 @@
 		B87FDD7B2544197800EAFF02 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				B87FDD7C2544197800EAFF02 /* CoreUITests.swift */,
 				B87FDD7E2544197800EAFF02 /* Info.plist */,
 			);
 			path = Tests;
@@ -902,8 +900,6 @@
 		B89C1C12248BC9190076E8DA /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B89C1C1B248C362A0076E8DA /* RemoteImage.swift */,
-				B83B3DB32517932D00951214 /* LevelView.swift */,
 				B8D11D06251A37A900458A7A /* SegmentedProgressView.swift */,
 			);
 			path = Views;
@@ -1579,6 +1575,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B87FDD2F2544182100EAFF02 /* QuickWorkout-DomainEntity.swift in Sources */,
+				B87FE01625445B9400EAFF02 /* QuickWorkoutSegment-DomainEntity.swift in Sources */,
 				B87FD07C2540A29C00EAFF02 /* WorkoutTimer.xcdatamodeld in Sources */,
 				B84C09A6253DFFDB000CD4CC /* QuickWorkoutSegmentDao+CoreDataProperties.swift in Sources */,
 				B84C0441253C6059000CD4CC /* DomainEntity.swift in Sources */,
@@ -1647,11 +1644,9 @@
 				B87FDDCE254419EE00EAFF02 /* Font-Custom.swift in Sources */,
 				B87FDDCD254419EE00EAFF02 /* PreviewDevice-Models.swift in Sources */,
 				B87FDDCB254419EE00EAFF02 /* Color-Custom.swift in Sources */,
-				B87FDDA92544199700EAFF02 /* RemoteImage.swift in Sources */,
 				B87FDDCF254419EE00EAFF02 /* UIImage-Asset.swift in Sources */,
 				B87FDDD0254419EE00EAFF02 /* Color-PredefinedTints.swift in Sources */,
 				B87FDDCC254419EE00EAFF02 /* PreviewProvider-Mocks.swift in Sources */,
-				B87FDDAA2544199700EAFF02 /* LevelView.swift in Sources */,
 				B87FDDAB2544199700EAFF02 /* SegmentedProgressView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1660,7 +1655,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B87FDD7D2544197800EAFF02 /* CoreUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
