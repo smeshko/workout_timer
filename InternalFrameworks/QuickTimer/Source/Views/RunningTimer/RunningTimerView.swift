@@ -1,6 +1,6 @@
 import SwiftUI
 import ComposableArchitecture
-import WorkoutCore
+import CoreUI
 import CorePersistence
 
 struct RunningTimerView: View {

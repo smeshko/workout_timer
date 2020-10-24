@@ -1,5 +1,6 @@
 import SwiftUI
 import WorkoutCore
+import CoreUI
 
 struct WorkoutCardView: View {
     

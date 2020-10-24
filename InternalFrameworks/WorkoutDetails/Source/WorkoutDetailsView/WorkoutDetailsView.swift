@@ -1,6 +1,7 @@
 import SwiftUI
 import WorkoutCore
 import ComposableArchitecture
+import CoreUI
 
 public struct WorkoutDetailsView: View {
     let store: Store<WorkoutDetailsState, WorkoutDetailsAction>
@@ -112,7 +113,7 @@ private struct LevelView: View {
                 Text("Level")
                     .font(.bodySmall)
                     .foregroundColor(.appGrey)
-                WorkoutCore.LevelView(level: level, showLabel: false)
+                CoreUI.LevelView(level: level, showLabel: false)
             }
         }
     }

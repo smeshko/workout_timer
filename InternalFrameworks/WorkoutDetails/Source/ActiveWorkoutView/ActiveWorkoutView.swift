@@ -1,6 +1,7 @@
 import SwiftUI
 import WorkoutCore
 import ComposableArchitecture
+import CoreUI
 
 public struct ActiveWorkoutView: View {
     

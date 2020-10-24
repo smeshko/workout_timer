@@ -1,6 +1,6 @@
 import SwiftUI
 import ComposableArchitecture
-import WorkoutCore
+import CoreUI
 
 struct QuickTimerControlsView: View {
     let store: Store<QuickTimerControlsState, QuickTimerControlsAction>
