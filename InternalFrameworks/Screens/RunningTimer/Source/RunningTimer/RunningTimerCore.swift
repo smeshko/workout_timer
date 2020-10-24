@@ -46,7 +46,7 @@ public struct RunningTimerState: Equatable {
         self.workout = workout
         self.timerControlsState = timerControlsState
         self.isInPreCountdown = isInPreCountdown
-        self.timerSections = workout.segments.map { TimerSection.create(from: $0, isLast: false) }.flatMap { $0 }
+        self.timerSections = workout.segments.map { TimerSection.create(from: $0) }.flatMap { $0 }.dropLast()
         self.currentSection = currentSection ?? timerSections.first
     }
 }
@@ -139,6 +139,7 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
 
         case .timerClosed:
             state.isPresented = false
+            return Effect(value: RunningTimerAction.timerFinished)
 
         default: break
         }
@@ -153,7 +154,7 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
 
 private extension RunningTimerState {
     mutating func calculateInitialTime() {
-        totalTimeLeft = TimeInterval(workout.segments.map { $0.sets * ($0.pause + $0.work) }.reduce(0, +))
+        totalTimeLeft = TimeInterval(timerSections.map(\.duration).reduce(0, +))
         sectionTimeLeft = currentSection?.duration ?? 0
     }
 
@@ -218,14 +219,12 @@ public struct TimerSection: Equatable {
     let duration: TimeInterval
     let type: SectionType
 
-    static func create(from segment: QuickWorkoutSegment, isLast: Bool) -> [TimerSection] {
+    static func create(from segment: QuickWorkoutSegment) -> [TimerSection] {
         var sections: [TimerSection] = []
 
         (0 ..< segment.sets).forEach { index in
             sections.append(TimerSection(duration: TimeInterval(segment.work), type: .work))
-            if !(isLast && index == segment.sets - 1) {
-                sections.append(TimerSection(duration: TimeInterval(segment.pause), type: .pause))
-            }
+            sections.append(TimerSection(duration: TimeInterval(segment.pause), type: .pause))
         }
 
         return sections

@@ -11,8 +11,6 @@ class QuickTimerControlsTests: XCTestCase {
             environment: QuickTimerControlsEnvironment()
         )
 
-        
-        
         store.assert(
             .send(.start) {
                 $0.timerState = .running
