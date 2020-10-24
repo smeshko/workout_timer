@@ -1,6 +1,7 @@
 import SwiftUI
 import DomainEntities
 import ComposableArchitecture
+import RunningTimer
 
 struct QuickWorkoutCardView: View {
 

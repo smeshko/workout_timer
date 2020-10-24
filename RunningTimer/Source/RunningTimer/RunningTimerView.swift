@@ -3,7 +3,7 @@ import ComposableArchitecture
 import CoreInterface
 import CorePersistence
 
-struct RunningTimerView: View {
+public struct RunningTimerView: View {
     let store: Store<RunningTimerState, RunningTimerAction>
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -12,7 +12,7 @@ struct RunningTimerView: View {
         self.store = store
     }
 
-    var body: some View {
+    public var body: some View {
         WithViewStore(store) { viewStore in
             VStack {
                 if viewStore.isInPreCountdown {

@@ -1,6 +1,7 @@
 import Foundation
 import DomainEntities
 import ComposableArchitecture
+import RunningTimer
 
 public enum QuickWorkoutCardAction: Equatable {
     case tapStart
