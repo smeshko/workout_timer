@@ -482,7 +482,6 @@
 			children = (
 				B84B0AC52458126700A07A1E /* WorkoutTimer */,
 				B8FCFDF9246AB2CE005C9A89 /* InternalFrameworks */,
-				B87FDF16254436D800EAFF02 /* RunningTimer */,
 				B87FDF23254436D900EAFF02 /* RunningTimerTests */,
 				B84B0AC42458126700A07A1E /* Products */,
 				B8DC59C524605F99003FC8D3 /* Frameworks */,
@@ -750,6 +749,7 @@
 		B87FDF08254433AC00EAFF02 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				B87FDF16254436D800EAFF02 /* RunningTimer */,
 				B8DC599D24605E38003FC8D3 /* QuickTimer */,
 			);
 			path = Screens;
@@ -2243,7 +2243,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = RunningTimer/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/Screens/RunningTimer/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2272,7 +2272,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = RunningTimer/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/Screens/RunningTimer/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2296,7 +2296,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = RunningTimerTests/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/Screens/RunningTimerTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2317,7 +2317,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = RunningTimerTests/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/Screens/RunningTimerTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
