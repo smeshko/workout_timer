@@ -1,7 +1,7 @@
 import ComposableArchitecture
 import CorePersistence
 import Foundation
-import QuickTimer
+import QuickWorkoutsList
 import DomainEntities
 
 enum AppAction {

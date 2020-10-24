@@ -92,10 +92,10 @@
 		B8B79CF62486BFDC008B92D8 /* EndpointProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B79CF52486BFDC008B92D8 /* EndpointProtocol.swift */; };
 		B8B79CF824877325008B92D8 /* Data-Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B79CF724877325008B92D8 /* Data-Decode.swift */; };
 		B8DC5994246054E1003FC8D3 /* AppCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DC5993246054E1003FC8D3 /* AppCore.swift */; };
-		B8DC59B124605E38003FC8D3 /* QuickTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* QuickTimer.framework */; };
-		B8DC59B224605E38003FC8D3 /* QuickTimer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* QuickTimer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B8DC59B124605E38003FC8D3 /* QuickWorkoutsList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* QuickWorkoutsList.framework */; };
+		B8DC59B224605E38003FC8D3 /* QuickWorkoutsList.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* QuickWorkoutsList.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B8DC6A2E2461D7F6003FC8D3 /* TimerCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DC6A2D2461D7F6003FC8D3 /* TimerCoreTests.swift */; };
-		B8DC6A302461D7F6003FC8D3 /* QuickTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* QuickTimer.framework */; };
+		B8DC6A302461D7F6003FC8D3 /* QuickWorkoutsList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* QuickWorkoutsList.framework */; };
 		B8ED7769246854D0001B9DEE /* QuickTimerControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED7768246854D0001B9DEE /* QuickTimerControlsView.swift */; };
 		B8ED776C246858A9001B9DEE /* TimerControlsCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED776B246858A8001B9DEE /* TimerControlsCore.swift */; };
 /* End PBXBuildFile section */
@@ -250,7 +250,7 @@
 				B876744C246AB6A500438A0F /* CoreLogic.framework in Embed Frameworks */,
 				B84C035F253B12B5000CD4CC /* CorePersistence.framework in Embed Frameworks */,
 				B87FDF8025443E1100EAFF02 /* QuickWorkoutForm.framework in Embed Frameworks */,
-				B8DC59B224605E38003FC8D3 /* QuickTimer.framework in Embed Frameworks */,
+				B8DC59B224605E38003FC8D3 /* QuickWorkoutsList.framework in Embed Frameworks */,
 				B87FDF2B254436D900EAFF02 /* RunningTimer.framework in Embed Frameworks */,
 				B87FDD832544197800EAFF02 /* CoreInterface.framework in Embed Frameworks */,
 			);
@@ -363,9 +363,9 @@
 		B8D12CF1251B944500458A7A /* RunningTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningTimerView.swift; sourceTree = "<group>"; };
 		B8D12CF7251B945100458A7A /* RunningTimerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningTimerCore.swift; sourceTree = "<group>"; };
 		B8DC5993246054E1003FC8D3 /* AppCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCore.swift; sourceTree = "<group>"; };
-		B8DC599C24605E38003FC8D3 /* QuickTimer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QuickTimer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8DC599C24605E38003FC8D3 /* QuickWorkoutsList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QuickWorkoutsList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8DC599F24605E38003FC8D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B8DC6A2B2461D7F6003FC8D3 /* QuickTimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickTimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8DC6A2B2461D7F6003FC8D3 /* QuickWorkoutsListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickWorkoutsListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8DC6A2D2461D7F6003FC8D3 /* TimerCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCoreTests.swift; sourceTree = "<group>"; };
 		B8DC6A2F2461D7F6003FC8D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8ED77642468493E001B9DEE /* AddTimerSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTimerSegmentView.swift; sourceTree = "<group>"; };
@@ -384,7 +384,7 @@
 				B876744B246AB6A500438A0F /* CoreLogic.framework in Frameworks */,
 				B84C035E253B12B5000CD4CC /* CorePersistence.framework in Frameworks */,
 				B87FDF7F25443E1100EAFF02 /* QuickWorkoutForm.framework in Frameworks */,
-				B8DC59B124605E38003FC8D3 /* QuickTimer.framework in Frameworks */,
+				B8DC59B124605E38003FC8D3 /* QuickWorkoutsList.framework in Frameworks */,
 				B87FDF2A254436D900EAFF02 /* RunningTimer.framework in Frameworks */,
 				B87FDD822544197800EAFF02 /* CoreInterface.framework in Frameworks */,
 			);
@@ -496,7 +496,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8DC6A302461D7F6003FC8D3 /* QuickTimer.framework in Frameworks */,
+				B8DC6A302461D7F6003FC8D3 /* QuickWorkoutsList.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,9 +529,6 @@
 			children = (
 				B84B0AC52458126700A07A1E /* WorkoutTimer */,
 				B8FCFDF9246AB2CE005C9A89 /* InternalFrameworks */,
-				B87FDF23254436D900EAFF02 /* RunningTimerTests */,
-				B87FDF6B25443E1000EAFF02 /* QuickWorkoutForm */,
-				B87FDF7825443E1100EAFF02 /* QuickWorkoutFormTests */,
 				B84B0AC42458126700A07A1E /* Products */,
 				B8DC59C524605F99003FC8D3 /* Frameworks */,
 			);
@@ -541,8 +538,8 @@
 			isa = PBXGroup;
 			children = (
 				B84B0AC32458126700A07A1E /* Workout Timer.app */,
-				B8DC599C24605E38003FC8D3 /* QuickTimer.framework */,
-				B8DC6A2B2461D7F6003FC8D3 /* QuickTimerTests.xctest */,
+				B8DC599C24605E38003FC8D3 /* QuickWorkoutsList.framework */,
+				B8DC6A2B2461D7F6003FC8D3 /* QuickWorkoutsListTests.xctest */,
 				B8767444246AB6A500438A0F /* CoreLogic.framework */,
 				B8767465246AB7E700438A0F /* CoreLogicTests.xctest */,
 				B84C0349253B12B5000CD4CC /* CorePersistence.framework */,
@@ -800,8 +797,9 @@
 		B87FDF08254433AC00EAFF02 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				B87FDF6B25443E1000EAFF02 /* QuickWorkoutForm */,
 				B87FDF16254436D800EAFF02 /* RunningTimer */,
-				B8DC599D24605E38003FC8D3 /* QuickTimer */,
+				B8DC599D24605E38003FC8D3 /* QuickWorkoutsList */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -810,18 +808,19 @@
 			isa = PBXGroup;
 			children = (
 				B87FDF3C254436ED00EAFF02 /* Source */,
+				B87FDF23254436D900EAFF02 /* Tests */,
 				B87FDF18254436D800EAFF02 /* Info.plist */,
 			);
 			path = RunningTimer;
 			sourceTree = "<group>";
 		};
-		B87FDF23254436D900EAFF02 /* RunningTimerTests */ = {
+		B87FDF23254436D900EAFF02 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				B87FDF24254436D900EAFF02 /* RunningTimerTests.swift */,
 				B87FDF26254436D900EAFF02 /* Info.plist */,
 			);
-			path = RunningTimerTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		B87FDF3C254436ED00EAFF02 /* Source */ = {
@@ -837,18 +836,19 @@
 			isa = PBXGroup;
 			children = (
 				B87FDF9225443E1500EAFF02 /* Source */,
+				B87FDF7825443E1100EAFF02 /* Tests */,
 				B87FDF6D25443E1000EAFF02 /* Info.plist */,
 			);
 			path = QuickWorkoutForm;
 			sourceTree = "<group>";
 		};
-		B87FDF7825443E1100EAFF02 /* QuickWorkoutFormTests */ = {
+		B87FDF7825443E1100EAFF02 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				B87FDF7925443E1100EAFF02 /* QuickWorkoutFormTests.swift */,
 				B87FDF7B25443E1100EAFF02 /* Info.plist */,
 			);
-			path = QuickWorkoutFormTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		B87FDF9225443E1500EAFF02 /* Source */ = {
@@ -928,14 +928,14 @@
 			path = Root;
 			sourceTree = "<group>";
 		};
-		B8DC599D24605E38003FC8D3 /* QuickTimer */ = {
+		B8DC599D24605E38003FC8D3 /* QuickWorkoutsList */ = {
 			isa = PBXGroup;
 			children = (
 				B8DC59B924605E43003FC8D3 /* Source */,
 				B8DC59AA24605E38003FC8D3 /* Tests */,
 				B8DC599F24605E38003FC8D3 /* Info.plist */,
 			);
-			path = QuickTimer;
+			path = QuickWorkoutsList;
 			sourceTree = "<group>";
 		};
 		B8DC59AA24605E38003FC8D3 /* Tests */ = {
@@ -1309,9 +1309,9 @@
 			productReference = B87FDF7225443E1100EAFF02 /* QuickWorkoutFormTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		B8DC599B24605E38003FC8D3 /* QuickTimer */ = {
+		B8DC599B24605E38003FC8D3 /* QuickWorkoutsList */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8DC59B324605E38003FC8D3 /* Build configuration list for PBXNativeTarget "QuickTimer" */;
+			buildConfigurationList = B8DC59B324605E38003FC8D3 /* Build configuration list for PBXNativeTarget "QuickWorkoutsList" */;
 			buildPhases = (
 				B8DC599724605E38003FC8D3 /* Headers */,
 				B8DC599824605E38003FC8D3 /* Sources */,
@@ -1323,16 +1323,16 @@
 			);
 			dependencies = (
 			);
-			name = QuickTimer;
+			name = QuickWorkoutsList;
 			packageProductDependencies = (
 			);
 			productName = Timer;
-			productReference = B8DC599C24605E38003FC8D3 /* QuickTimer.framework */;
+			productReference = B8DC599C24605E38003FC8D3 /* QuickWorkoutsList.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		B8DC6A2A2461D7F6003FC8D3 /* QuickTimerTests */ = {
+		B8DC6A2A2461D7F6003FC8D3 /* QuickWorkoutsListTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8DC6A332461D7F6003FC8D3 /* Build configuration list for PBXNativeTarget "QuickTimerTests" */;
+			buildConfigurationList = B8DC6A332461D7F6003FC8D3 /* Build configuration list for PBXNativeTarget "QuickWorkoutsListTests" */;
 			buildPhases = (
 				B8DC6A272461D7F6003FC8D3 /* Sources */,
 				B8DC6A282461D7F6003FC8D3 /* Frameworks */,
@@ -1344,11 +1344,11 @@
 			dependencies = (
 				B8DC6A322461D7F6003FC8D3 /* PBXTargetDependency */,
 			);
-			name = QuickTimerTests;
+			name = QuickWorkoutsListTests;
 			packageProductDependencies = (
 			);
 			productName = TimerCoreTests;
-			productReference = B8DC6A2B2461D7F6003FC8D3 /* QuickTimerTests.xctest */;
+			productReference = B8DC6A2B2461D7F6003FC8D3 /* QuickWorkoutsListTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -1432,8 +1432,8 @@
 			projectRoot = "";
 			targets = (
 				B84B0AC22458126600A07A1E /* WorkoutTimer */,
-				B8DC599B24605E38003FC8D3 /* QuickTimer */,
-				B8DC6A2A2461D7F6003FC8D3 /* QuickTimerTests */,
+				B8DC599B24605E38003FC8D3 /* QuickWorkoutsList */,
+				B8DC6A2A2461D7F6003FC8D3 /* QuickWorkoutsListTests */,
 				B8767443246AB6A500438A0F /* CoreLogic */,
 				B8767464246AB7E700438A0F /* CoreLogicTests */,
 				B84C0348253B12B5000CD4CC /* CorePersistence */,
@@ -1734,7 +1734,7 @@
 /* Begin PBXTargetDependency section */
 		B82B778F2475DAC500774C05 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B8DC599B24605E38003FC8D3 /* QuickTimer */;
+			target = B8DC599B24605E38003FC8D3 /* QuickWorkoutsList */;
 			targetProxy = B82B778E2475DAC500774C05 /* PBXContainerItemProxy */;
 		};
 		B84C0354253B12B5000CD4CC /* PBXTargetDependency */ = {
@@ -1819,7 +1819,7 @@
 		};
 		B8DC6A322461D7F6003FC8D3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B8DC599B24605E38003FC8D3 /* QuickTimer */;
+			target = B8DC599B24605E38003FC8D3 /* QuickWorkoutsList */;
 			targetProxy = B8DC6A312461D7F6003FC8D3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -2470,7 +2470,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = InternalFrameworks/Screens/RunningTimerTests/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/Screens/RunningTimer/Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2491,7 +2491,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = InternalFrameworks/Screens/RunningTimerTests/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/Screens/RunningTimer/Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2516,7 +2516,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = QuickWorkoutForm/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/Screens/QuickWorkoutForm/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2545,7 +2545,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = QuickWorkoutForm/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/Screens/QuickWorkoutForm/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2569,7 +2569,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = QuickWorkoutFormTests/Info.plist;
+				INFOPLIST_EXPAND_BUILD_SETTINGS = YES;
+				INFOPLIST_FILE = InternalFrameworks/Screens/QuickWorkoutForm/Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2590,7 +2591,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = QuickWorkoutFormTests/Info.plist;
+				INFOPLIST_EXPAND_BUILD_SETTINGS = YES;
+				INFOPLIST_FILE = InternalFrameworks/Screens/QuickWorkoutForm/Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2616,7 +2618,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = InternalFrameworks/Screens/QuickTimer/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/Screens/QuickWorkoutsList/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2624,7 +2626,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.QuickTimer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.QuickWorkoutsList;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
@@ -2649,7 +2651,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = InternalFrameworks/Screens/QuickTimer/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/Screens/QuickWorkoutsList/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2657,7 +2659,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.QuickTimer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.QuickWorkoutsList;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
@@ -2675,14 +2677,14 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = InternalFrameworks/Screens/QuickTimer/Tests/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/Screens/QuickWorkoutsList/Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.TimerCoreTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.QuickWorkoutsListTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2694,14 +2696,14 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = InternalFrameworks/Screens/QuickTimer/Tests/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/Screens/QuickWorkoutsList/Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.TimerCoreTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.QuickWorkoutsListTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2837,7 +2839,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B8DC59B324605E38003FC8D3 /* Build configuration list for PBXNativeTarget "QuickTimer" */ = {
+		B8DC59B324605E38003FC8D3 /* Build configuration list for PBXNativeTarget "QuickWorkoutsList" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8DC59B424605E38003FC8D3 /* Debug */,
@@ -2846,7 +2848,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B8DC6A332461D7F6003FC8D3 /* Build configuration list for PBXNativeTarget "QuickTimerTests" */ = {
+		B8DC6A332461D7F6003FC8D3 /* Build configuration list for PBXNativeTarget "QuickWorkoutsListTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B8DC6A342461D7F6003FC8D3 /* Debug */,

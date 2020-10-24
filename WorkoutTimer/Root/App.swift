@@ -2,7 +2,7 @@ import SwiftUI
 import CoreLogic
 import ComposableArchitecture
 import CorePersistence
-import QuickTimer
+import QuickWorkoutsList
 
 @main
 struct MainApp: App {

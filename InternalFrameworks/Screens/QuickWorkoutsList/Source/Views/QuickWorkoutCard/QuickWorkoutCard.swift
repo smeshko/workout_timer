@@ -8,7 +8,7 @@ public enum QuickWorkoutCardAction: Equatable {
     case runningTimerAction(RunningTimerAction)
 }
 
-public struct QuickWorkoutCardState: Equatable, Identifiable {
+struct QuickWorkoutCardState: Equatable, Identifiable {
 
     public var id: UUID { workout.id }
     var workout: QuickWorkout
@@ -29,12 +29,12 @@ public struct QuickWorkoutCardState: Equatable, Identifiable {
     }
 }
 
-public struct QuickWorkoutCardEnvironment: Equatable {
+struct QuickWorkoutCardEnvironment: Equatable {
 
     public init() {}
 }
 
-public let quickWorkoutCardReducer = Reducer<QuickWorkoutCardState, QuickWorkoutCardAction, QuickWorkoutCardEnvironment>.combine(
+let quickWorkoutCardReducer = Reducer<QuickWorkoutCardState, QuickWorkoutCardAction, QuickWorkoutCardEnvironment>.combine(
     
     runningTimerReducer.optional().pullback(
         state: \.runningTimerState,
