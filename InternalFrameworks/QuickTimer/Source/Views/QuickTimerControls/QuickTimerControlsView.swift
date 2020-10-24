@@ -25,13 +25,28 @@ struct QuickTimerControlsView: View {
 
 struct TimerControlsView_Previews: PreviewProvider {
     static var previews: some View {
-        QuickTimerControlsView(
-            store: Store<QuickTimerControlsState, QuickTimerControlsAction>(
-                initialState: QuickTimerControlsState(timerState: .paused),
-                reducer: quickTimerControlsReducer,
-                environment: QuickTimerControlsEnvironment()
-            ), tint: .appSuccess
+        let pausedStore = Store<QuickTimerControlsState, QuickTimerControlsAction>(
+            initialState: QuickTimerControlsState(timerState: .paused),
+            reducer: quickTimerControlsReducer,
+            environment: QuickTimerControlsEnvironment()
         )
+
+        let runningStore = Store<QuickTimerControlsState, QuickTimerControlsAction>(
+            initialState: QuickTimerControlsState(timerState: .running),
+            reducer: quickTimerControlsReducer,
+            environment: QuickTimerControlsEnvironment()
+        )
+
+        return Group {
+            QuickTimerControlsView(store: pausedStore, tint: .appSuccess)
+                .padding()
+                .previewLayout(.sizeThatFits)
+
+            QuickTimerControlsView(store: runningStore, tint: .appSuccess)
+                .preferredColorScheme(.dark)
+                .padding()
+                .previewLayout(.sizeThatFits)
+        }
     }
 }
 

@@ -38,7 +38,7 @@ public let quickWorkoutCardReducer = Reducer<QuickWorkoutCardState, QuickWorkout
     runningTimerReducer.optional().pullback(
         state: \.runningTimerState,
         action: /QuickWorkoutCardAction.runningTimerAction,
-        environment: { env in RunningTimerEnvironment(uuid: UUID.init, mainQueue: DispatchQueue.main.eraseToAnyScheduler(), soundClient: .live)}
+        environment: { env in RunningTimerEnvironment(mainQueue: DispatchQueue.main.eraseToAnyScheduler(), soundClient: .live)}
     ),
     Reducer { state, action, environment in
         

@@ -8,13 +8,18 @@ fileprivate struct Constants {
 }
 
 public enum RunningTimerAction: Equatable {
+    case timerControlsUpdatedState(QuickTimerControlsAction)
+
     case timerTicked
-    case segmentEnded
     case timerFinished
     case timerClosed
-    case didAppear
+
+    case onAppear
+
     case preCountdownFinished
-    case timerControlsUpdatedState(QuickTimerControlsAction)
+
+    case sectionEnded
+
     case alertButtonTapped
     case alertCancelTapped
     case alertDismissed
@@ -32,13 +37,15 @@ public struct RunningTimerState: Equatable {
     var isPresented = true
 
     var preCountdownTimeLeft: TimeInterval = Constants.preCountdown
-    var isInPreCountdown: Bool = false
+    var isInPreCountdown: Bool
 
     public init(workout: QuickWorkout,
                 currentSection: TimerSection? = nil,
-                timerControlsState: QuickTimerControlsState = QuickTimerControlsState()) {
+                timerControlsState: QuickTimerControlsState = QuickTimerControlsState(),
+                isInPreCountdown: Bool = true) {
         self.workout = workout
         self.timerControlsState = timerControlsState
+        self.isInPreCountdown = isInPreCountdown
         self.timerSections = workout.segments.map { TimerSection.create(from: $0, isLast: false) }.flatMap { $0 }
         self.currentSection = currentSection ?? timerSections.first
     }
@@ -48,16 +55,13 @@ public struct RunningTimerEnvironment {
   
     var mainQueue: AnySchedulerOf<DispatchQueue>
     var soundClient: SoundClient
-    var uuid: () -> UUID
     var timerStep: DispatchQueue.SchedulerTimeType.Stride
 
     public init(
-        uuid: @escaping () -> UUID,
         mainQueue: AnySchedulerOf<DispatchQueue>,
         soundClient: SoundClient,
         timerStep: DispatchQueue.SchedulerTimeType.Stride = .seconds(1)
     ) {
-        self.uuid = uuid
         self.mainQueue = mainQueue
         self.soundClient = soundClient
         self.timerStep = timerStep
@@ -70,9 +74,8 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
 
         switch action {
 
-        case .didAppear:
+        case .onAppear:
             state.updateSegments()
-            state.isInPreCountdown = true
             return Effect(value: RunningTimerAction.timerControlsUpdatedState(.start))
 
         case .timerControlsUpdatedState(let controlsAction):
@@ -106,13 +109,13 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
             }
 
             if state.sectionTimeLeft <= 0, !state.isCurrentSegmentLast {
-                return Effect(value: RunningTimerAction.segmentEnded)
+                return Effect(value: RunningTimerAction.sectionEnded)
             }
 
         case .preCountdownFinished:
             state.isInPreCountdown = false
 
-        case .segmentEnded:
+        case .sectionEnded:
             state.moveToNextSection()
             return environment
                 .soundClient.play(.segment)
