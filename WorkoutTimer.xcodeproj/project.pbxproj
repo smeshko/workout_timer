@@ -681,6 +681,25 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		B87FDF002544332100EAFF02 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B87FDCEE254417B400EAFF02 /* DomainEntities */,
+				B87FDD6E2544197800EAFF02 /* CoreInterface */,
+				B84C034A253B12B5000CD4CC /* CorePersistence */,
+				B8767445246AB6A500438A0F /* CoreLogic */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		B87FDF08254433AC00EAFF02 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				B8DC599D24605E38003FC8D3 /* QuickTimer */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
 		B8806C9B246841EA00C32F80 /* ValuePicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -821,11 +840,8 @@
 		B8FCFDF9246AB2CE005C9A89 /* InternalFrameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B87FDD6E2544197800EAFF02 /* CoreInterface */,
-				B87FDCEE254417B400EAFF02 /* DomainEntities */,
-				B84C034A253B12B5000CD4CC /* CorePersistence */,
-				B8767445246AB6A500438A0F /* CoreLogic */,
-				B8DC599D24605E38003FC8D3 /* QuickTimer */,
+				B87FDF002544332100EAFF02 /* Core */,
+				B87FDF08254433AC00EAFF02 /* Screens */,
 			);
 			path = InternalFrameworks;
 			sourceTree = "<group>";
@@ -1644,7 +1660,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = InternalFrameworks/CorePersistence/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/Core/CorePersistence/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1673,7 +1689,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = InternalFrameworks/CorePersistence/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/Core/CorePersistence/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1697,7 +1713,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = InternalFrameworks/CorePersistence/Tests/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/Core/CorePersistence/Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1718,7 +1734,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = InternalFrameworks/CorePersistence/Tests/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/Core/CorePersistence/Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1744,7 +1760,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = InternalFrameworks/CoreLogic/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/Core/CoreLogic/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1777,7 +1793,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = InternalFrameworks/CoreLogic/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/Core/CoreLogic/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1804,7 +1820,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = InternalFrameworks/CoreLogic/Tests/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/Core/CoreLogic/Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1825,7 +1841,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = InternalFrameworks/CoreLogic/Tests/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/Core/CoreLogic/Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1849,7 +1865,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = InternalFrameworks/DomainEntities/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/Core/DomainEntities/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1878,7 +1894,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = InternalFrameworks/DomainEntities/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/Core/DomainEntities/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1902,7 +1918,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = InternalFrameworks/DomainEntities/Tests/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/Core/DomainEntities/Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1923,7 +1939,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = InternalFrameworks/DomainEntities/Tests/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/Core/DomainEntities/Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1948,7 +1964,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = InternalFrameworks/CoreInterface/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/Core/CoreInterface/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1977,7 +1993,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = InternalFrameworks/CoreInterface/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/Core/CoreInterface/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2001,7 +2017,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = InternalFrameworks/CoreInterface/Tests/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/Core/CoreInterface/Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2022,7 +2038,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = InternalFrameworks/CoreInterface/Tests/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/Core/CoreInterface/Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2048,7 +2064,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = InternalFrameworks/QuickTimer/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/Screens/QuickTimer/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2081,7 +2097,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = InternalFrameworks/QuickTimer/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/Screens/QuickTimer/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2107,7 +2123,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = InternalFrameworks/QuickTimer/Tests/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/Screens/QuickTimer/Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2126,7 +2142,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = InternalFrameworks/QuickTimer/Tests/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/Screens/QuickTimer/Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
