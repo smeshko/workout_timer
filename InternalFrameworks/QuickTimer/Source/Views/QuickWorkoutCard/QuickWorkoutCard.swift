@@ -1,5 +1,5 @@
 import Foundation
-import CorePersistence
+import DomainEntities
 import ComposableArchitecture
 
 public enum QuickWorkoutCardAction: Equatable {

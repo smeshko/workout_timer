@@ -3,6 +3,7 @@ import SwiftUI
 import WorkoutCore
 import ComposableArchitecture
 import CorePersistence
+import DomainEntities
 
 public enum CreateQuickWorkoutAction: Equatable {
     case circuitPickerUpdatedValues(AddTimerSegmentAction)

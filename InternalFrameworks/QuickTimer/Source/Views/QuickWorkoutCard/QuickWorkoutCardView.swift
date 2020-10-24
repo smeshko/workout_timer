@@ -1,5 +1,5 @@
 import SwiftUI
-import CorePersistence
+import DomainEntities
 import ComposableArchitecture
 
 struct QuickWorkoutCardView: View {

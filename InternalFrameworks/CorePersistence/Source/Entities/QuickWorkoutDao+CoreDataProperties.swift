@@ -1,5 +1,6 @@
 import Foundation
 import CoreData
+import DomainEntities
 
 extension QuickWorkoutDao {
 

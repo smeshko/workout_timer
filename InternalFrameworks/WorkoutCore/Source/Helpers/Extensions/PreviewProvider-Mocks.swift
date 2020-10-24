@@ -1,5 +1,5 @@
 import SwiftUI
-import CorePersistence
+import DomainEntities
 
 public extension PreviewProvider {
     static var mockExercise1: Exercise {

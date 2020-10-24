@@ -2,6 +2,7 @@ import ComposableArchitecture
 import CorePersistence
 import Foundation
 import QuickTimer
+import DomainEntities
 
 enum AppAction {
     case appDidBecomeActive

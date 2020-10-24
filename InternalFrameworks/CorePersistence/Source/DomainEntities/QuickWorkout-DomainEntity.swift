@@ -1,17 +1,16 @@
-import Foundation
+import DomainEntities
 import CoreData
 
-public struct QuickWorkout: Equatable, Identifiable, Hashable {
-    public let id: UUID
-    public let name: String
-    public let color: WorkoutColor
-    public let segments: [QuickWorkoutSegment]
+extension QuickWorkoutSegment: DomainEntity {
+    var objectId: String { id.uuidString }
 
-    public init(id: UUID, name: String, color: WorkoutColor, segments: [QuickWorkoutSegment]) {
-        self.id = id
-        self.name = name
-        self.color = color
-        self.segments = segments
+    func createDatabaseEntity(in context: NSManagedObjectContext) -> QuickWorkoutSegmentDao {
+        let segment = QuickWorkoutSegmentDao(context: context)
+        segment.id = id
+        segment.sets = Int16(sets)
+        segment.work = Int16(work)
+        segment.pause = Int16(pause)
+        return segment
     }
 }
 

@@ -1,7 +1,7 @@
 import Foundation
 import ComposableArchitecture
 import WorkoutCore
-import CorePersistence
+import DomainEntities
 
 fileprivate struct Constants {
     static let preCountdown: TimeInterval = 3

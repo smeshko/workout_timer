@@ -1,5 +1,6 @@
 import Combine
 import Foundation
+import DomainEntities
 
 public struct QuickWorkoutsRepository {
 
