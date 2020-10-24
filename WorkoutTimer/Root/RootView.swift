@@ -21,9 +21,6 @@ struct RootView: View {
                 }
             }
             .accentColor(.appPrimary)
-            .onAppear {
-                viewStore.send(.applicationDidStart)
-            }
         }
     }
 }

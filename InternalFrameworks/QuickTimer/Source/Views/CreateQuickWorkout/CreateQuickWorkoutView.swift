@@ -3,10 +3,8 @@ import WorkoutCore
 import ComposableArchitecture
 
 struct CreateQuickWorkoutView: View {
-
     let store: Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>
 
-    @State var color: Color = .blue
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     var body: some View {

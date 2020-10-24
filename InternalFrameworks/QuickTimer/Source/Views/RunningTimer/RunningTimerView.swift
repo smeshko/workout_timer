@@ -44,11 +44,6 @@ struct RunningTimerView: View {
                               self.store.scope(state: { $0.alert }),
                               dismiss: .alertDismissed
                             )
-                            .onChange(of: viewStore.isPresented) { isPresented in
-                                if !isPresented {
-                                    presentationMode.wrappedValue.dismiss()
-                                }
-                            }
                             .background(Color.appCardBackground)
                             .cornerRadius(12)
 
@@ -88,7 +83,11 @@ struct RunningTimerView: View {
 
                         Spacer()
                     }
-
+                    .onChange(of: viewStore.isPresented) { isPresented in
+                        if !isPresented {
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                    }
                     QuickTimerControlsView(store: self.store.scope(state: \.timerControlsState, action: RunningTimerAction.timerControlsUpdatedState), tint: viewStore.color)
                 }
             }

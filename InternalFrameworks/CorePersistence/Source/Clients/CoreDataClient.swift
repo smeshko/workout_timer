@@ -13,20 +13,31 @@ struct CoreDataClient {
     static var preview: CoreDataClient = {
         let result = CoreDataClient(inMemory: true)
         let viewContext = result.container.viewContext
-//        for index in 1..<10 {
-//
-//            let pause = QuickTimerSegmentDao(context: viewContext)
-//            pause.duration = Double(index * 5)
-//            pause.category = 1
-//
-//            let work = QuickTimerSegmentDao(context: viewContext)
-//            work.duration = Double(index * 10)
-//            work.category = 0
-//
-//            let set = QuickTimerSetDao(context: viewContext)
-//            set.pause = pause
-//            set.work = work
-//        }
+
+        let mock1 = QuickWorkoutSegmentDao(context: viewContext)
+        mock1.id = UUID()
+        mock1.sets = 2
+        mock1.work = 40
+        mock1.pause = 20
+
+        let mock2 = QuickWorkoutSegmentDao(context: viewContext)
+        mock2.id = UUID()
+        mock2.sets = 4
+        mock2.work = 60
+        mock2.pause = 20
+
+        let mock3 = QuickWorkoutSegmentDao(context: viewContext)
+        mock3.id = UUID()
+        mock3.sets = 10
+        mock3.work = 30
+        mock3.pause = 10
+
+        let mock4 = QuickWorkoutSegmentDao(context: viewContext)
+        mock4.id = UUID()
+        mock4.sets = 8
+        mock4.work = 60
+        mock4.pause = 40
+
         do {
             try viewContext.save()
         } catch {
@@ -109,7 +120,8 @@ struct CoreDataClient {
                     return
                 }
                 container.viewContext.delete(managedObject)
-                promise(.success(object.objectId))
+                saveContext(promise: promise, successObject: object.objectId)
+//                promise(.success(object.objectId))
             } catch {
                 promise(.failure(.failedUpdatingContext))
             }
@@ -134,5 +146,20 @@ struct CoreDataClient {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+    }
+}
+
+private extension CoreDataClient {
+    func saveContext<T>(promise: (Result<T, CoreDataError>) -> Void, successObject: T) {
+        guard viewContext.hasChanges else {
+            promise(.failure(.noChangesPending))
+            return
+        }
+        do {
+            try viewContext.save()
+            promise(.success(successObject))
+        } catch {
+            promise(.failure(.failedUpdatingContext))
+        }
     }
 }

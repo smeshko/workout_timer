@@ -1,32 +1,65 @@
 import ComposableArchitecture
-import UIKit
+import CorePersistence
 import Foundation
-import WorkoutCore
 import QuickTimer
 
 enum AppAction {
-    case applicationDidStart
+    case appDidBecomeActive
+    case appDidBecomeInactive
+    case appDidGoToBackground
+
+    case workoutsListAction(QuickWorkoutsListAction)
+
+    case didFetchWorkouts(Result<[QuickWorkout], PersistenceError>)
+
 }
 
 struct AppState: Equatable {
-        
-    init() {
-    }
+    var workoutsListState = QuickWorkoutsListState()
+
+    init() {}
 }
 
 struct AppEnvironment {
     var mainQueue: AnySchedulerOf<DispatchQueue>
+    var repository: QuickWorkoutsRepository
 }
 
 let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
-    Reducer<AppState, AppAction, AppEnvironment> { state, action, env in
+    Reducer<AppState, AppAction, AppEnvironment> { state, action, environment in
         struct LocalStorageReadId: Hashable {}
          
         switch action {
-        case .applicationDidStart:
+        case .appDidBecomeActive:
+            return environment.repository.fetchAllWorkouts()
+                .receive(on: environment.mainQueue)
+                .catchToEffect()
+                .map(AppAction.didFetchWorkouts)
+
+        case .appDidGoToBackground:
+        return environment.repository.fetchAllWorkouts()
+            .receive(on: environment.mainQueue)
+            .catchToEffect()
+            .map(AppAction.didFetchWorkouts)
+
+        case .appDidBecomeInactive:
+            break
+
+        case .didFetchWorkouts(.success(let workouts)):
+            state.workoutsListState = QuickWorkoutsListState(workouts: workouts)
+
+        case .didFetchWorkouts(.failure(_)):
+            break
+
+        case .workoutsListAction:
             break
         }
         
         return .none
-    }
+    },
+    quickWorkoutsListReducer.pullback(
+        state: \.workoutsListState,
+        action: /AppAction.workoutsListAction,
+        environment: { QuickWorkoutsListEnvironment(repository: $0.repository, mainQueue: $0.mainQueue) }
+    )
 )

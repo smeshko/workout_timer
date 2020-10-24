@@ -1,30 +1,34 @@
 import Combine
+import Foundation
 
-public class QuickWorkoutsRepository {
+public struct QuickWorkoutsRepository {
 
-    private let store: LocalStore
+    public var fetchAllWorkouts: () -> AnyPublisher<[QuickWorkout], PersistenceError>
+    public var createWorkout: (QuickWorkout) -> AnyPublisher<QuickWorkout, PersistenceError>
+    public var createSegment: (QuickWorkoutSegment) -> AnyPublisher<QuickWorkoutSegment, PersistenceError>
+    public var delete: (QuickWorkout) -> AnyPublisher<String, PersistenceError>
+    public var deleteMultiple: ([QuickWorkout]) -> AnyPublisher<[String], PersistenceError>
+}
 
-    public init() {
-        store = LocalStore(client: .shared)
-    }
+public extension QuickWorkoutsRepository {
+    static let live = QuickWorkoutsRepository(
+        fetchAllWorkouts: { LocalStore(client: .shared).fetchAll(QuickWorkout.self) },
+        createWorkout: LocalStore(client: .shared).create(_:),
+        createSegment: LocalStore(client: .shared).create(_:),
+        delete: LocalStore(client: .shared).delete(_:),
+        deleteMultiple: LocalStore(client: .shared).delete(_:)
+    )
 
-    public func fetchAllWorkouts() -> AnyPublisher<[QuickWorkout], PersistenceError> {
-        store.fetchAll(QuickWorkout.self)
-    }
-
-    public func createWorkout(_ workout: QuickWorkout) -> AnyPublisher<QuickWorkout, PersistenceError> {
-        store.create(workout)
-    }
-
-    public func createSegment(_ segment: QuickWorkoutSegment) -> AnyPublisher<QuickWorkoutSegment, PersistenceError> {
-        store.create(segment)
-    }
-
-    public func delete(_ workout: QuickWorkout) -> AnyPublisher<String, PersistenceError> {
-        store.delete(workout)
-    }
-
-    public func delete(_ workouts: [QuickWorkout]) -> AnyPublisher<[String], PersistenceError> {
-        store.delete(workouts)
+    static let mock = QuickWorkoutsRepository
+    {
+        LocalStore(client: .preview).fetchAll(QuickWorkout.self)
+    } createWorkout: {
+        LocalStore(client: .preview).create($0)
+    } createSegment: {
+        LocalStore(client: .preview).create($0)
+    } delete: {
+        LocalStore(client: .preview).delete($0)
+    } deleteMultiple: {
+        LocalStore(client: .preview).delete($0)
     }
 }

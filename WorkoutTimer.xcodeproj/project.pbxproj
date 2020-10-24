@@ -54,7 +54,7 @@
 		B84C09D6253E006D000CD4CC /* QuickWorkoutDao+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C09D4253E006D000CD4CC /* QuickWorkoutDao+CoreDataProperties.swift */; };
 		B84C09D7253E006D000CD4CC /* QuickWorkoutDao+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C09D5253E006D000CD4CC /* QuickWorkoutDao+CoreDataClass.swift */; };
 		B84C09DF253E009F000CD4CC /* QuickWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C09DE253E009F000CD4CC /* QuickWorkout.swift */; };
-		B84C0BB1253EB2DE000CD4CC /* QuickWorkoutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C0BB0253EB2DE000CD4CC /* QuickWorkoutsView.swift */; };
+		B84C0BB1253EB2DE000CD4CC /* QuickWorkoutsListCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C0BB0253EB2DE000CD4CC /* QuickWorkoutsListCore.swift */; };
 		B84C0BC0253EF485000CD4CC /* QuickWorkoutsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C0BBF253EF485000CD4CC /* QuickWorkoutsListView.swift */; };
 		B84C0BDB253EF520000CD4CC /* QuickWorkoutCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C0BDA253EF520000CD4CC /* QuickWorkoutCard.swift */; };
 		B84C0BE3253EF531000CD4CC /* QuickWorkoutCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C0BE2253EF531000CD4CC /* QuickWorkoutCardView.swift */; };
@@ -309,7 +309,7 @@
 		B84C09D4253E006D000CD4CC /* QuickWorkoutDao+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QuickWorkoutDao+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B84C09D5253E006D000CD4CC /* QuickWorkoutDao+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QuickWorkoutDao+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B84C09DE253E009F000CD4CC /* QuickWorkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickWorkout.swift; sourceTree = "<group>"; };
-		B84C0BB0253EB2DE000CD4CC /* QuickWorkoutsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickWorkoutsView.swift; sourceTree = "<group>"; };
+		B84C0BB0253EB2DE000CD4CC /* QuickWorkoutsListCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickWorkoutsListCore.swift; sourceTree = "<group>"; };
 		B84C0BBF253EF485000CD4CC /* QuickWorkoutsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickWorkoutsListView.swift; sourceTree = "<group>"; };
 		B84C0BDA253EF520000CD4CC /* QuickWorkoutCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickWorkoutCard.swift; sourceTree = "<group>"; };
 		B84C0BE2253EF531000CD4CC /* QuickWorkoutCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickWorkoutCardView.swift; sourceTree = "<group>"; };
@@ -716,7 +716,7 @@
 			isa = PBXGroup;
 			children = (
 				B84C0BBF253EF485000CD4CC /* QuickWorkoutsListView.swift */,
-				B84C0BB0253EB2DE000CD4CC /* QuickWorkoutsView.swift */,
+				B84C0BB0253EB2DE000CD4CC /* QuickWorkoutsListCore.swift */,
 			);
 			path = QuickWorkoutsList;
 			sourceTree = "<group>";
@@ -1495,7 +1495,7 @@
 				B84C0BC0253EF485000CD4CC /* QuickWorkoutsListView.swift in Sources */,
 				B84C0BDB253EF520000CD4CC /* QuickWorkoutCard.swift in Sources */,
 				B83907062462A4F400676B3D /* PickerCore.swift in Sources */,
-				B84C0BB1253EB2DE000CD4CC /* QuickWorkoutsView.swift in Sources */,
+				B84C0BB1253EB2DE000CD4CC /* QuickWorkoutsListCore.swift in Sources */,
 				B8ED7769246854D0001B9DEE /* QuickTimerControlsView.swift in Sources */,
 				B83907042462A4DF00676B3D /* ValuePicker.swift in Sources */,
 				B84C0D8F253F26E5000CD4CC /* CreateQuickWorkoutCore.swift in Sources */,

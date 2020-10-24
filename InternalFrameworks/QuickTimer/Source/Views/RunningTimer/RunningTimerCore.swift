@@ -222,7 +222,7 @@ public struct TimerSection: Equatable {
         (0 ..< segment.sets).forEach { index in
             sections.append(TimerSection(duration: TimeInterval(segment.work), type: .work))
             if !(isLast && index == segment.sets - 1) {
-                sections.append(TimerSection(duration: TimeInterval(segment.work), type: .pause))
+                sections.append(TimerSection(duration: TimeInterval(segment.pause), type: .pause))
             }
         }
 

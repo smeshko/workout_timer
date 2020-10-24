@@ -39,8 +39,8 @@ struct QuickWorkoutCardView: View {
 
                         })
                         .fullScreenCover(isPresented: $isPresented) {
-                            RunningTimerView(store: self.store.scope(state: \.runningTimerState,
-                                                                     action: QuickWorkoutCardAction.runningTimerAction))
+                            IfLetStore(store.scope(state: \.runningTimerState, action: QuickWorkoutCardAction.runningTimerAction),
+                                       then: RunningTimerView.init(store:))
                         }
 
                     }
@@ -57,13 +57,15 @@ struct QuickWorkoutCardView_Previews: PreviewProvider {
     static var previews: some View {
 
         let store = Store<QuickWorkoutCardState, QuickWorkoutCardAction>(
-            initialState: QuickWorkoutCardState(workout: QuickWorkout(id: UUID(),
-                                                                      name: "Quick Workout",
-                                                                      color: WorkoutColor(hue: 0, saturation: 0, brightness: 0),
-                                                                      segments: [
-                QuickWorkoutSegment(id: UUID(), sets: 4, work: 20, pause: 10),
-                QuickWorkoutSegment(id: UUID(), sets: 2, work: 60, pause: 10)
-            ]), canStart: true),
+            initialState: QuickWorkoutCardState(
+                workout: QuickWorkout(id: UUID(),
+                                      name: "Quick Workout",
+                                      color: WorkoutColor(hue: 0.53, saturation: 0.54, brightness: 0.33),
+                                      segments: [
+                                        QuickWorkoutSegment(id: UUID(), sets: 4, work: 20, pause: 10),
+                                        QuickWorkoutSegment(id: UUID(), sets: 2, work: 60, pause: 10)
+                                      ]),
+                canStart: true),
             reducer: quickWorkoutCardReducer,
             environment: QuickWorkoutCardEnvironment()
         )
@@ -73,6 +75,10 @@ struct QuickWorkoutCardView_Previews: PreviewProvider {
                 .padding()
                 .previewLayout(.fixed(width: 375, height: 180))
                 .preferredColorScheme(.dark)
+
+            QuickWorkoutCardView(store: store)
+                .padding()
+                .previewLayout(.fixed(width: 375, height: 180))
         }
     }
 }

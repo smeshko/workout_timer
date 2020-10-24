@@ -38,7 +38,9 @@ public struct CreateQuickWorkoutState: Equatable {
         return ColorComponents(hue: components.h, brightness: components.b, saturation: components.s)
     }
 
-    public init() {}
+    public init(workoutSegments: [QuickWorkoutSegment] = []) {
+
+    }
 }
 
 public struct CreateQuickWorkoutEnvironment {
