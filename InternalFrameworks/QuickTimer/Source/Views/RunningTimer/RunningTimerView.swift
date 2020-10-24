@@ -126,6 +126,7 @@ struct RunningTimerView_Previews: PreviewProvider {
     }
 }
 
+
 private extension RunningTimerState {
     var currentSegmentName: String {
         currentSection?.type == .work ? "Work out" : "Rest"
@@ -136,7 +137,7 @@ private extension RunningTimerState {
     }
 }
 
-extension TimeInterval {
+private extension TimeInterval {
     var clean: String {
         return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(self)
     }

@@ -86,6 +86,6 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
     createQuickWorkoutReducer.pullback(
         state: \.createWorkoutState,
         action: /QuickWorkoutsListAction.createWorkoutAction,
-        environment: { env in CreateQuickWorkoutEnvironment(uuid: UUID.init, mainQueue: env.mainQueue, repository: env.repository)}
+        environment: { env in CreateQuickWorkoutEnvironment(mainQueue: env.mainQueue, repository: env.repository)}
     )
 )
