@@ -624,8 +624,6 @@
 			children = (
 				B84B0AC52458126700A07A1E /* WorkoutTimer */,
 				B8FCFDF9246AB2CE005C9A89 /* InternalFrameworks */,
-				B87FDCEE254417B400EAFF02 /* DomainEntities */,
-				B87FDCFB254417B400EAFF02 /* DomainEntitiesTests */,
 				B84B0AC42458126700A07A1E /* Products */,
 				B8DC59C524605F99003FC8D3 /* Frameworks */,
 			);
@@ -814,18 +812,19 @@
 			isa = PBXGroup;
 			children = (
 				B87FDD12254417BB00EAFF02 /* Source */,
+				B87FDCFB254417B400EAFF02 /* Tests */,
 				B87FDCF0254417B400EAFF02 /* Info.plist */,
 			);
 			path = DomainEntities;
 			sourceTree = "<group>";
 		};
-		B87FDCFB254417B400EAFF02 /* DomainEntitiesTests */ = {
+		B87FDCFB254417B400EAFF02 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				B87FDCFC254417B400EAFF02 /* DomainEntitiesTests.swift */,
 				B87FDCFE254417B400EAFF02 /* Info.plist */,
 			);
-			path = DomainEntitiesTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		B87FDD12254417BB00EAFF02 /* Source */ = {
@@ -1004,6 +1003,7 @@
 		B8FCFDF9246AB2CE005C9A89 /* InternalFrameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B87FDCEE254417B400EAFF02 /* DomainEntities */,
 				B84C034A253B12B5000CD4CC /* CorePersistence */,
 				B82C8BCE24B22C0100DB914D /* Home */,
 				B8455CFD246DB15D00C4FFAE /* WorkoutDetails */,
@@ -2370,7 +2370,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = DomainEntities/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/DomainEntities/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2399,7 +2399,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = DomainEntities/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/DomainEntities/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2423,7 +2423,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = DomainEntitiesTests/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/DomainEntities/Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2444,7 +2444,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = DomainEntitiesTests/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/DomainEntities/Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
