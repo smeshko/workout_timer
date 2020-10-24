@@ -1,5 +1,5 @@
 import SwiftUI
-import WorkoutCore
+import CoreLogic
 import ComposableArchitecture
 
 public struct QuickWorkoutsListView: View {

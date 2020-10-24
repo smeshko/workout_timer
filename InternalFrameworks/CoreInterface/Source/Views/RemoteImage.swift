@@ -2,7 +2,7 @@ import Foundation
 import ComposableArchitecture
 import UIKit
 import SwiftUI
-import WorkoutCore
+import CoreLogic
 
 public struct RemoteImage: View {
     

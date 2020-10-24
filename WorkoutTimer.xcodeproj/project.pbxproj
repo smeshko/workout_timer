@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B82B77842475D9C200774C05 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = B82B77832475D9C200774C05 /* ComposableArchitecture */; };
-		B82B77852475D9E100774C05 /* WorkoutCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8767444246AB6A500438A0F /* WorkoutCore.framework */; };
+		B82B77852475D9E100774C05 /* CoreLogic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8767444246AB6A500438A0F /* CoreLogic.framework */; };
 		B83907042462A4DF00676B3D /* ValuePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83907032462A4DF00676B3D /* ValuePicker.swift */; };
 		B83907062462A4F400676B3D /* PickerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83907052462A4F400676B3D /* PickerCore.swift */; };
 		B83B3DBB25179F8D00951214 /* Workout-Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B3DBA25179F8D00951214 /* Workout-Helper.swift */; };
@@ -39,9 +39,9 @@
 		B84C0DA3253F2700000CD4CC /* CreateQuickWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C0DA2253F2700000CD4CC /* CreateQuickWorkoutView.swift */; };
 		B86CFABE248FD7AD00960CFB /* WorkoutCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86CFABD248FD7AD00960CFB /* WorkoutCoreTests.swift */; };
 		B87160A42532278700FCF96A /* RunningTimerCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B871609A2532277500FCF96A /* RunningTimerCoreTests.swift */; };
-		B876744B246AB6A500438A0F /* WorkoutCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8767444246AB6A500438A0F /* WorkoutCore.framework */; };
-		B876744C246AB6A500438A0F /* WorkoutCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8767444246AB6A500438A0F /* WorkoutCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B876746A246AB7E700438A0F /* WorkoutCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8767444246AB6A500438A0F /* WorkoutCore.framework */; };
+		B876744B246AB6A500438A0F /* CoreLogic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8767444246AB6A500438A0F /* CoreLogic.framework */; };
+		B876744C246AB6A500438A0F /* CoreLogic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8767444246AB6A500438A0F /* CoreLogic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B876746A246AB7E700438A0F /* CoreLogic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8767444246AB6A500438A0F /* CoreLogic.framework */; };
 		B87FD07C2540A29C00EAFF02 /* WorkoutTimer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B8401FEC2539DE9F007F2F31 /* WorkoutTimer.xcdatamodeld */; };
 		B87FDCF6254417B400EAFF02 /* DomainEntities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87FDCED254417B400EAFF02 /* DomainEntities.framework */; };
 		B87FDCFD254417B400EAFF02 /* DomainEntitiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87FDCFC254417B400EAFF02 /* DomainEntitiesTests.swift */; };
@@ -67,7 +67,7 @@
 		B87FDDE5254419F600EAFF02 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B839E36F2471B89600FE5793 /* Preview Assets.xcassets */; };
 		B87FDDE6254419F600EAFF02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B880FA9F246FF90900789DDA /* Assets.xcassets */; };
 		B87FDDE7254419F600EAFF02 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B83FC05B248D1FB6007531CF /* Colors.xcassets */; };
-		B87FDE2E25441C8100EAFF02 /* WorkoutCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8767444246AB6A500438A0F /* WorkoutCore.framework */; };
+		B87FDE2E25441C8100EAFF02 /* CoreLogic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8767444246AB6A500438A0F /* CoreLogic.framework */; };
 		B880F828246E9EB200789DDA /* ExerciseSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880F827246E9EB200789DDA /* ExerciseSet.swift */; };
 		B8A041A22488F81A0009A32D /* WorkoutTimerAPI in Frameworks */ = {isa = PBXBuildFile; productRef = B8A041A12488F81A0009A32D /* WorkoutTimerAPI */; };
 		B8A041A624890FAB0009A32D /* WorkoutCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A041A524890FAB0009A32D /* WorkoutCategory.swift */; };
@@ -200,7 +200,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				B87FDD03254417B400EAFF02 /* DomainEntities.framework in Embed Frameworks */,
-				B876744C246AB6A500438A0F /* WorkoutCore.framework in Embed Frameworks */,
+				B876744C246AB6A500438A0F /* CoreLogic.framework in Embed Frameworks */,
 				B84C035F253B12B5000CD4CC /* CorePersistence.framework in Embed Frameworks */,
 				B8DC59B224605E38003FC8D3 /* QuickTimer.framework in Embed Frameworks */,
 				B87FDD832544197800EAFF02 /* CoreInterface.framework in Embed Frameworks */,
@@ -274,9 +274,9 @@
 		B86CFABD248FD7AD00960CFB /* WorkoutCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCoreTests.swift; sourceTree = "<group>"; };
 		B86CFAC12490DF9300960CFB /* PreviewDevice-Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PreviewDevice-Models.swift"; sourceTree = "<group>"; };
 		B871609A2532277500FCF96A /* RunningTimerCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningTimerCoreTests.swift; sourceTree = "<group>"; };
-		B8767444246AB6A500438A0F /* WorkoutCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WorkoutCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8767444246AB6A500438A0F /* CoreLogic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreLogic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8767447246AB6A500438A0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B8767465246AB7E700438A0F /* WorkoutCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WorkoutCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B8767465246AB7E700438A0F /* CoreLogicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreLogicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8767470246AB84700438A0F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B87FD03E2540979000EAFF02 /* QuickWorkoutSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickWorkoutSegment.swift; sourceTree = "<group>"; };
 		B87FD4DF25417E4600EAFF02 /* Color-PredefinedTints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color-PredefinedTints.swift"; sourceTree = "<group>"; };
@@ -328,7 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B87FDD02254417B400EAFF02 /* DomainEntities.framework in Frameworks */,
-				B876744B246AB6A500438A0F /* WorkoutCore.framework in Frameworks */,
+				B876744B246AB6A500438A0F /* CoreLogic.framework in Frameworks */,
 				B84C035E253B12B5000CD4CC /* CorePersistence.framework in Frameworks */,
 				B8DC59B124605E38003FC8D3 /* QuickTimer.framework in Frameworks */,
 				B87FDD822544197800EAFF02 /* CoreInterface.framework in Frameworks */,
@@ -363,7 +363,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B876746A246AB7E700438A0F /* WorkoutCore.framework in Frameworks */,
+				B876746A246AB7E700438A0F /* CoreLogic.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,7 +386,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B87FDE2E25441C8100EAFF02 /* WorkoutCore.framework in Frameworks */,
+				B87FDE2E25441C8100EAFF02 /* CoreLogic.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,7 +402,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B82B77852475D9E100774C05 /* WorkoutCore.framework in Frameworks */,
+				B82B77852475D9E100774C05 /* CoreLogic.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,8 +463,8 @@
 				B84B0AC32458126700A07A1E /* Workout Timer.app */,
 				B8DC599C24605E38003FC8D3 /* QuickTimer.framework */,
 				B8DC6A2B2461D7F6003FC8D3 /* QuickTimerTests.xctest */,
-				B8767444246AB6A500438A0F /* WorkoutCore.framework */,
-				B8767465246AB7E700438A0F /* WorkoutCoreTests.xctest */,
+				B8767444246AB6A500438A0F /* CoreLogic.framework */,
+				B8767465246AB7E700438A0F /* CoreLogicTests.xctest */,
 				B84C0349253B12B5000CD4CC /* CorePersistence.framework */,
 				B84C0351253B12B5000CD4CC /* CorePersistenceTests.xctest */,
 				B87FDCED254417B400EAFF02 /* DomainEntities.framework */,
@@ -603,14 +603,14 @@
 			path = QuickWorkoutCard;
 			sourceTree = "<group>";
 		};
-		B8767445246AB6A500438A0F /* WorkoutCore */ = {
+		B8767445246AB6A500438A0F /* CoreLogic */ = {
 			isa = PBXGroup;
 			children = (
 				B8767450246AB6C100438A0F /* Source */,
 				B8767452246AB7C400438A0F /* Tests */,
 				B8767447246AB6A500438A0F /* Info.plist */,
 			);
-			path = WorkoutCore;
+			path = CoreLogic;
 			sourceTree = "<group>";
 		};
 		B8767450246AB6C100438A0F /* Source */ = {
@@ -858,7 +858,7 @@
 				B87FDD6E2544197800EAFF02 /* CoreInterface */,
 				B87FDCEE254417B400EAFF02 /* DomainEntities */,
 				B84C034A253B12B5000CD4CC /* CorePersistence */,
-				B8767445246AB6A500438A0F /* WorkoutCore */,
+				B8767445246AB6A500438A0F /* CoreLogic */,
 				B8DC599D24605E38003FC8D3 /* QuickTimer */,
 			);
 			path = InternalFrameworks;
@@ -966,9 +966,9 @@
 			productReference = B84C0351253B12B5000CD4CC /* CorePersistenceTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		B8767443246AB6A500438A0F /* WorkoutCore */ = {
+		B8767443246AB6A500438A0F /* CoreLogic */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B876744D246AB6A600438A0F /* Build configuration list for PBXNativeTarget "WorkoutCore" */;
+			buildConfigurationList = B876744D246AB6A600438A0F /* Build configuration list for PBXNativeTarget "CoreLogic" */;
 			buildPhases = (
 				B876743F246AB6A500438A0F /* Headers */,
 				B8767440246AB6A500438A0F /* Sources */,
@@ -980,18 +980,18 @@
 			);
 			dependencies = (
 			);
-			name = WorkoutCore;
+			name = CoreLogic;
 			packageProductDependencies = (
 				B82B77832475D9C200774C05 /* ComposableArchitecture */,
 				B8A041A12488F81A0009A32D /* WorkoutTimerAPI */,
 			);
 			productName = WorkoutCore;
-			productReference = B8767444246AB6A500438A0F /* WorkoutCore.framework */;
+			productReference = B8767444246AB6A500438A0F /* CoreLogic.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		B8767464246AB7E700438A0F /* WorkoutCoreTests */ = {
+		B8767464246AB7E700438A0F /* CoreLogicTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B876746D246AB7E700438A0F /* Build configuration list for PBXNativeTarget "WorkoutCoreTests" */;
+			buildConfigurationList = B876746D246AB7E700438A0F /* Build configuration list for PBXNativeTarget "CoreLogicTests" */;
 			buildPhases = (
 				B8767461246AB7E700438A0F /* Sources */,
 				B8767462246AB7E700438A0F /* Frameworks */,
@@ -1002,9 +1002,9 @@
 			dependencies = (
 				B876746C246AB7E700438A0F /* PBXTargetDependency */,
 			);
-			name = WorkoutCoreTests;
+			name = CoreLogicTests;
 			productName = WorkoutCoreTests;
-			productReference = B8767465246AB7E700438A0F /* WorkoutCoreTests.xctest */;
+			productReference = B8767465246AB7E700438A0F /* CoreLogicTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		B87FDCEC254417B400EAFF02 /* DomainEntities */ = {
@@ -1192,8 +1192,8 @@
 				B84B0AC22458126600A07A1E /* WorkoutTimer */,
 				B8DC599B24605E38003FC8D3 /* QuickTimer */,
 				B8DC6A2A2461D7F6003FC8D3 /* QuickTimerTests */,
-				B8767443246AB6A500438A0F /* WorkoutCore */,
-				B8767464246AB7E700438A0F /* WorkoutCoreTests */,
+				B8767443246AB6A500438A0F /* CoreLogic */,
+				B8767464246AB7E700438A0F /* CoreLogicTests */,
 				B84C0348253B12B5000CD4CC /* CorePersistence */,
 				B84C0350253B12B5000CD4CC /* CorePersistenceTests */,
 				B87FDCEC254417B400EAFF02 /* DomainEntities */,
@@ -1454,7 +1454,7 @@
 		};
 		B876746C246AB7E700438A0F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B8767443246AB6A500438A0F /* WorkoutCore */;
+			target = B8767443246AB6A500438A0F /* CoreLogic */;
 			targetProxy = B876746B246AB7E700438A0F /* PBXContainerItemProxy */;
 		};
 		B87FDCF8254417B400EAFF02 /* PBXTargetDependency */ = {
@@ -1784,7 +1784,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = InternalFrameworks/WorkoutCore/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/CoreLogic/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1792,7 +1792,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.WorkoutCore;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.CoreLogic;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
@@ -1817,7 +1817,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = InternalFrameworks/WorkoutCore/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/CoreLogic/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1825,7 +1825,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.WorkoutCore;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.CoreLogic;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
@@ -1844,14 +1844,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = InternalFrameworks/WorkoutCore/Tests/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/CoreLogic/Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.WorkoutCoreTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.CoreLogicTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1865,14 +1865,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = InternalFrameworks/WorkoutCore/Tests/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/CoreLogic/Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.WorkoutCoreTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.CoreLogicTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2219,7 +2219,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B876744D246AB6A600438A0F /* Build configuration list for PBXNativeTarget "WorkoutCore" */ = {
+		B876744D246AB6A600438A0F /* Build configuration list for PBXNativeTarget "CoreLogic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B876744E246AB6A600438A0F /* Debug */,
@@ -2228,7 +2228,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B876746D246AB7E700438A0F /* Build configuration list for PBXNativeTarget "WorkoutCoreTests" */ = {
+		B876746D246AB7E700438A0F /* Build configuration list for PBXNativeTarget "CoreLogicTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B876746E246AB7E700438A0F /* Debug */,

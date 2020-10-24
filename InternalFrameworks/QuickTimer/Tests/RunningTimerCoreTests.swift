@@ -1,5 +1,5 @@
 import XCTest
-import WorkoutCore
+import CoreLogic
 @testable import QuickTimer
 import ComposableArchitecture
 

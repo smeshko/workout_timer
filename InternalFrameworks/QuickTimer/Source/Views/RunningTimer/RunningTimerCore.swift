@@ -1,6 +1,6 @@
 import Foundation
 import ComposableArchitecture
-import WorkoutCore
+import CoreLogic
 import DomainEntities
 
 fileprivate struct Constants {

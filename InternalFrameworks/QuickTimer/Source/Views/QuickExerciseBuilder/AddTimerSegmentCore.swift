@@ -1,5 +1,5 @@
 import ComposableArchitecture
-import WorkoutCore
+import CoreLogic
 import Foundation
 import CorePersistence
 
