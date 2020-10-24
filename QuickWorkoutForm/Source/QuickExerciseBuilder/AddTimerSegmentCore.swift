@@ -12,7 +12,7 @@ public enum AddTimerSegmentAction: Equatable {
     case removeSegments
 }
 
-public struct AddTimerSegmentState: Equatable, Identifiable {
+struct AddTimerSegmentState: Equatable, Identifiable {
 
     public var id: UUID
     var setsState = PickerState()
@@ -36,7 +36,7 @@ public struct AddTimerSegmentState: Equatable, Identifiable {
     }
 }
 
-public struct AddTimerSegmentEnvironment {
+struct AddTimerSegmentEnvironment {
     var uuid: () -> UUID
     
     init(uuid: @escaping () -> UUID) {
@@ -44,7 +44,7 @@ public struct AddTimerSegmentEnvironment {
     }
 }
 
-public let addTimerSegmentReducer =
+let addTimerSegmentReducer =
     Reducer<AddTimerSegmentState, AddTimerSegmentAction, AddTimerSegmentEnvironment>.combine(
         Reducer { state, action, environment in
             
@@ -83,12 +83,3 @@ public let addTimerSegmentReducer =
             environment: { _ in PickerEnvironment() }
         )
 )
-
-private extension AddTimerSegmentState {
-}
-
-extension Int {
-    func isLastIndex(inCount count: Int) -> Bool {
-        self == count - 1
-    }
-}

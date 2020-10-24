@@ -2,12 +2,16 @@ import SwiftUI
 import CoreLogic
 import ComposableArchitecture
 
-struct CreateQuickWorkoutView: View {
+public struct CreateQuickWorkoutView: View {
     let store: Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
-    var body: some View {
+    public init(store: Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>) {
+        self.store = store
+    }
+
+    public var body: some View {
         WithViewStore(store) { viewStore in
             NavigationView {
                 ScrollView {

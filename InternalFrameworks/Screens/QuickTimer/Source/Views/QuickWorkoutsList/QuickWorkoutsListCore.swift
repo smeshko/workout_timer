@@ -1,6 +1,7 @@
 import CorePersistence
 import ComposableArchitecture
 import DomainEntities
+import QuickWorkoutForm
 
 public enum QuickWorkoutsListAction: Equatable {
     case workoutCardAction(id: UUID, action: QuickWorkoutCardAction)
