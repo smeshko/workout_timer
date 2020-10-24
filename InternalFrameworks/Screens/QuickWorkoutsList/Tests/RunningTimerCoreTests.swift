@@ -1,6 +1,6 @@
 import XCTest
 import CoreLogic
-@testable import QuickTimer
+@testable import QuickWorkoutsList
 import ComposableArchitecture
 
 class RunningTimerCoreTests: XCTestCase {

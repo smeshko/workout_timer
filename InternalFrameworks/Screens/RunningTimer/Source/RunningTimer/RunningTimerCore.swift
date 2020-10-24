@@ -131,7 +131,7 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
             return Effect(value: RunningTimerAction.timerControlsUpdatedState(.pause))
 
         case .timerFinished:
-            state.reset()
+            state.finish()
             return Effect<RunningTimerAction, Never>
                 .cancel(id: TimerId())
                 .flatMap { _ in environment.soundClient.play(.segment).fireAndForget() }
@@ -176,10 +176,9 @@ private extension RunningTimerState {
         calculateInitialTime()
     }
 
-    mutating func reset() {
-        self = RunningTimerState(workout: QuickWorkout(id: UUID(), name: "", color: WorkoutColor(hue: 0, saturation: 0, brightness: 0), segments: []))
-        currentSection = timerSections.first
-        calculateInitialTime()
+    mutating func finish() {
+        timerControlsState = QuickTimerControlsState(timerState: .finished)
+        alert = nil
     }
 
     var isCurrentSegmentLast: Bool {

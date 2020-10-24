@@ -1,34 +1,27 @@
-//
-//  QuickWorkoutFormTests.swift
-//  QuickWorkoutFormTests
-//
-//  Created by Tsonev Ivaylo on 24.10.20.
-//  Copyright © 2020 tsonevInc. All rights reserved.
-//
-
 import XCTest
+import ComposableArchitecture
+import CorePersistence
 @testable import QuickWorkoutForm
 
 class QuickWorkoutFormTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+    func testFlow() {
+        let store = TestStore(
+            initialState: PickerState(),
+            reducer: pickerReducer,
+            environment: PickerEnvironment()
+        )
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+        let store2 = TestStore(
+            initialState: AddTimerSegmentState(id: UUID()),
+            reducer: addTimerSegmentReducer,
+            environment: AddTimerSegmentEnvironment(uuid: UUID.init)
+        )
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let store3 = TestStore(
+            initialState: CreateQuickWorkoutState(),
+            reducer: createQuickWorkoutReducer,
+            environment: CreateQuickWorkoutEnvironment(mainQueue: AnyScheduler(DispatchQueue.testScheduler), repository: .mock)
+        )
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }

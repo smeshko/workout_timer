@@ -1,7 +1,6 @@
 import XCTest
-import CoreLogic
-@testable import QuickTimer
 import ComposableArchitecture
+@testable import RunningTimer
 
 class QuickTimerControlsTests: XCTestCase {
     
@@ -11,6 +10,8 @@ class QuickTimerControlsTests: XCTestCase {
             reducer: quickTimerControlsReducer,
             environment: QuickTimerControlsEnvironment()
         )
+
+        
         
         store.assert(
             .send(.start) {

@@ -1,5 +1,4 @@
 import Foundation
-import CoreData
 
 public struct QuickWorkoutSegment: Equatable, Identifiable, Hashable {
     public let id: UUID

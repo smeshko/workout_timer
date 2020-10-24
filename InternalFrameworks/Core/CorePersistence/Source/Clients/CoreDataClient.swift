@@ -47,9 +47,28 @@ struct CoreDataClient {
         return result
     }()
 
-    let container: NSPersistentCloudKitContainer
-
+    private let container: NSPersistentCloudKitContainer
     private var viewContext: NSManagedObjectContext { container.viewContext }
+
+    init(inMemory: Bool = false) {
+        guard let persistenceBundle = Bundle(identifier: "com.tsonevInc.mobile.ios.CorePersistence"),
+              let modelURL = persistenceBundle.url(forResource: "WorkoutTimer", withExtension: "momd"),
+              let managedObjectModel = NSManagedObjectModel(contentsOf: modelURL) else {
+
+            fatalError("Unable to instantiate managed object model")
+        }
+
+        container = NSPersistentCloudKitContainer(name: "WorkoutTimer", managedObjectModel: managedObjectModel)
+        if inMemory {
+            container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
+        }
+
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+    }
 
     func fetchAll<T: DomainEntity>(_ type: T.Type) -> Future<[T], CoreDataError> {
         Future { promise in
@@ -93,17 +112,7 @@ struct CoreDataClient {
     func insert<T: DomainEntity>(_ object: T) -> Future<T, CoreDataError> {
         Future { promise in
             let _ = object.createDatabaseEntity(in: viewContext)
-
-            guard viewContext.hasChanges else {
-                promise(.failure(.noChangesPending))
-                return
-            }
-            do {
-                try viewContext.save()
-                promise(.success(object))
-            } catch {
-                promise(.failure(.failedUpdatingContext))
-            }
+            saveContext(promise: promise, successObject: object)
         }
     }
 
@@ -121,31 +130,10 @@ struct CoreDataClient {
                 }
                 container.viewContext.delete(managedObject)
                 saveContext(promise: promise, successObject: object.objectId)
-//                promise(.success(object.objectId))
             } catch {
                 promise(.failure(.failedUpdatingContext))
             }
         }
-    }
-
-    init(inMemory: Bool = false) {
-        guard let persistenceBundle = Bundle(identifier: "com.tsonevInc.mobile.ios.CorePersistence"),
-              let modelURL = persistenceBundle.url(forResource: "WorkoutTimer", withExtension: "momd"),
-              let managedObjectModel = NSManagedObjectModel(contentsOf: modelURL) else {
-
-            fatalError("Unable to instantiate managed object model")
-        }
-
-        container = NSPersistentCloudKitContainer(name: "WorkoutTimer", managedObjectModel: managedObjectModel)
-        if inMemory {
-            container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
-        }
-
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        })
     }
 }
 
