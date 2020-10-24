@@ -68,10 +68,10 @@
 		B87FDD24254417D500EAFF02 /* QuickWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C09DE253E009F000CD4CC /* QuickWorkout.swift */; };
 		B87FDD25254417D500EAFF02 /* QuickWorkoutSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87FD03E2540979000EAFF02 /* QuickWorkoutSegment.swift */; };
 		B87FDD2F2544182100EAFF02 /* QuickWorkout-DomainEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87FDD2E2544182100EAFF02 /* QuickWorkout-DomainEntity.swift */; };
-		B87FDD762544197800EAFF02 /* CoreUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87FDD6D2544197800EAFF02 /* CoreUI.framework */; };
+		B87FDD762544197800EAFF02 /* CoreInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87FDD6D2544197800EAFF02 /* CoreInterface.framework */; };
 		B87FDD7D2544197800EAFF02 /* CoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87FDD7C2544197800EAFF02 /* CoreUITests.swift */; };
-		B87FDD822544197800EAFF02 /* CoreUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87FDD6D2544197800EAFF02 /* CoreUI.framework */; };
-		B87FDD832544197800EAFF02 /* CoreUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B87FDD6D2544197800EAFF02 /* CoreUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B87FDD822544197800EAFF02 /* CoreInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87FDD6D2544197800EAFF02 /* CoreInterface.framework */; };
+		B87FDD832544197800EAFF02 /* CoreInterface.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B87FDD6D2544197800EAFF02 /* CoreInterface.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B87FDDA92544199700EAFF02 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89C1C1B248C362A0076E8DA /* RemoteImage.swift */; };
 		B87FDDAA2544199700EAFF02 /* LevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B3DB32517932D00951214 /* LevelView.swift */; };
 		B87FDDAB2544199700EAFF02 /* SegmentedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D11D06251A37A900458A7A /* SegmentedProgressView.swift */; };
@@ -84,6 +84,7 @@
 		B87FDDE5254419F600EAFF02 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B839E36F2471B89600FE5793 /* Preview Assets.xcassets */; };
 		B87FDDE6254419F600EAFF02 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B880FA9F246FF90900789DDA /* Assets.xcassets */; };
 		B87FDDE7254419F600EAFF02 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B83FC05B248D1FB6007531CF /* Colors.xcassets */; };
+		B87FDE2E25441C8100EAFF02 /* WorkoutCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8767444246AB6A500438A0F /* WorkoutCore.framework */; };
 		B880F828246E9EB200789DDA /* ExerciseSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880F827246E9EB200789DDA /* ExerciseSet.swift */; };
 		B880FAA3246FFE7E00789DDA /* ExerciseRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B880FAA2246FFE7E00789DDA /* ExerciseRowView.swift */; };
 		B8A041A22488F81A0009A32D /* WorkoutTimerAPI in Frameworks */ = {isa = PBXBuildFile; productRef = B8A041A12488F81A0009A32D /* WorkoutTimerAPI */; };
@@ -283,7 +284,7 @@
 				B84C035F253B12B5000CD4CC /* CorePersistence.framework in Embed Frameworks */,
 				B82C8BE324B22C0100DB914D /* Home.framework in Embed Frameworks */,
 				B8DC59B224605E38003FC8D3 /* QuickTimer.framework in Embed Frameworks */,
-				B87FDD832544197800EAFF02 /* CoreUI.framework in Embed Frameworks */,
+				B87FDD832544197800EAFF02 /* CoreInterface.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -383,9 +384,9 @@
 		B87FDCFC254417B400EAFF02 /* DomainEntitiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainEntitiesTests.swift; sourceTree = "<group>"; };
 		B87FDCFE254417B400EAFF02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B87FDD2E2544182100EAFF02 /* QuickWorkout-DomainEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuickWorkout-DomainEntity.swift"; sourceTree = "<group>"; };
-		B87FDD6D2544197800EAFF02 /* CoreUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B87FDD6D2544197800EAFF02 /* CoreInterface.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreInterface.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B87FDD702544197800EAFF02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B87FDD752544197800EAFF02 /* CoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B87FDD752544197800EAFF02 /* CoreInterfaceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreInterfaceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B87FDD7C2544197800EAFF02 /* CoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreUITests.swift; sourceTree = "<group>"; };
 		B87FDD7E2544197800EAFF02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B880F827246E9EB200789DDA /* ExerciseSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSet.swift; sourceTree = "<group>"; };
@@ -465,7 +466,7 @@
 				B84C035E253B12B5000CD4CC /* CorePersistence.framework in Frameworks */,
 				B82C8BE224B22C0100DB914D /* Home.framework in Frameworks */,
 				B8DC59B124605E38003FC8D3 /* QuickTimer.framework in Frameworks */,
-				B87FDD822544197800EAFF02 /* CoreUI.framework in Frameworks */,
+				B87FDD822544197800EAFF02 /* CoreInterface.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,6 +521,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B87FDE2E25441C8100EAFF02 /* WorkoutCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,7 +529,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B87FDD762544197800EAFF02 /* CoreUI.framework in Frameworks */,
+				B87FDD762544197800EAFF02 /* CoreInterface.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -671,8 +673,6 @@
 			children = (
 				B84B0AC52458126700A07A1E /* WorkoutTimer */,
 				B8FCFDF9246AB2CE005C9A89 /* InternalFrameworks */,
-				B87FDD6E2544197800EAFF02 /* CoreUI */,
-				B87FDD7B2544197800EAFF02 /* CoreUITests */,
 				B84B0AC42458126700A07A1E /* Products */,
 				B8DC59C524605F99003FC8D3 /* Frameworks */,
 			);
@@ -694,8 +694,8 @@
 				B84C0351253B12B5000CD4CC /* CorePersistenceTests.xctest */,
 				B87FDCED254417B400EAFF02 /* DomainEntities.framework */,
 				B87FDCF5254417B400EAFF02 /* DomainEntitiesTests.xctest */,
-				B87FDD6D2544197800EAFF02 /* CoreUI.framework */,
-				B87FDD752544197800EAFF02 /* CoreUITests.xctest */,
+				B87FDD6D2544197800EAFF02 /* CoreInterface.framework */,
+				B87FDD752544197800EAFF02 /* CoreInterfaceTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -886,22 +886,23 @@
 			path = Source;
 			sourceTree = "<group>";
 		};
-		B87FDD6E2544197800EAFF02 /* CoreUI */ = {
+		B87FDD6E2544197800EAFF02 /* CoreInterface */ = {
 			isa = PBXGroup;
 			children = (
 				B87FDD942544198200EAFF02 /* Source */,
+				B87FDD7B2544197800EAFF02 /* Tests */,
 				B87FDD702544197800EAFF02 /* Info.plist */,
 			);
-			path = CoreUI;
+			path = CoreInterface;
 			sourceTree = "<group>";
 		};
-		B87FDD7B2544197800EAFF02 /* CoreUITests */ = {
+		B87FDD7B2544197800EAFF02 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				B87FDD7C2544197800EAFF02 /* CoreUITests.swift */,
 				B87FDD7E2544197800EAFF02 /* Info.plist */,
 			);
-			path = CoreUITests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		B87FDD942544198200EAFF02 /* Source */ = {
@@ -1087,6 +1088,7 @@
 		B8FCFDF9246AB2CE005C9A89 /* InternalFrameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B87FDD6E2544197800EAFF02 /* CoreInterface */,
 				B87FDCEE254417B400EAFF02 /* DomainEntities */,
 				B84C034A253B12B5000CD4CC /* CorePersistence */,
 				B82C8BCE24B22C0100DB914D /* Home */,
@@ -1371,9 +1373,9 @@
 			productReference = B87FDCF5254417B400EAFF02 /* DomainEntitiesTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		B87FDD6C2544197800EAFF02 /* CoreUI */ = {
+		B87FDD6C2544197800EAFF02 /* CoreInterface */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B87FDD842544197800EAFF02 /* Build configuration list for PBXNativeTarget "CoreUI" */;
+			buildConfigurationList = B87FDD842544197800EAFF02 /* Build configuration list for PBXNativeTarget "CoreInterface" */;
 			buildPhases = (
 				B87FDD682544197800EAFF02 /* Headers */,
 				B87FDD692544197800EAFF02 /* Sources */,
@@ -1384,14 +1386,14 @@
 			);
 			dependencies = (
 			);
-			name = CoreUI;
+			name = CoreInterface;
 			productName = CoreUI;
-			productReference = B87FDD6D2544197800EAFF02 /* CoreUI.framework */;
+			productReference = B87FDD6D2544197800EAFF02 /* CoreInterface.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		B87FDD742544197800EAFF02 /* CoreUITests */ = {
+		B87FDD742544197800EAFF02 /* CoreInterfaceTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B87FDD872544197800EAFF02 /* Build configuration list for PBXNativeTarget "CoreUITests" */;
+			buildConfigurationList = B87FDD872544197800EAFF02 /* Build configuration list for PBXNativeTarget "CoreInterfaceTests" */;
 			buildPhases = (
 				B87FDD712544197800EAFF02 /* Sources */,
 				B87FDD722544197800EAFF02 /* Frameworks */,
@@ -1403,9 +1405,9 @@
 				B87FDD782544197800EAFF02 /* PBXTargetDependency */,
 				B87FDD7A2544197800EAFF02 /* PBXTargetDependency */,
 			);
-			name = CoreUITests;
+			name = CoreInterfaceTests;
 			productName = CoreUITests;
-			productReference = B87FDD752544197800EAFF02 /* CoreUITests.xctest */;
+			productReference = B87FDD752544197800EAFF02 /* CoreInterfaceTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		B8DC599B24605E38003FC8D3 /* QuickTimer */ = {
@@ -1544,8 +1546,8 @@
 				B84C0350253B12B5000CD4CC /* CorePersistenceTests */,
 				B87FDCEC254417B400EAFF02 /* DomainEntities */,
 				B87FDCF4254417B400EAFF02 /* DomainEntitiesTests */,
-				B87FDD6C2544197800EAFF02 /* CoreUI */,
-				B87FDD742544197800EAFF02 /* CoreUITests */,
+				B87FDD6C2544197800EAFF02 /* CoreInterface */,
+				B87FDD742544197800EAFF02 /* CoreInterfaceTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1918,7 +1920,7 @@
 		};
 		B87FDD782544197800EAFF02 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B87FDD6C2544197800EAFF02 /* CoreUI */;
+			target = B87FDD6C2544197800EAFF02 /* CoreInterface */;
 			targetProxy = B87FDD772544197800EAFF02 /* PBXContainerItemProxy */;
 		};
 		B87FDD7A2544197800EAFF02 /* PBXTargetDependency */ = {
@@ -1928,7 +1930,7 @@
 		};
 		B87FDD812544197800EAFF02 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B87FDD6C2544197800EAFF02 /* CoreUI */;
+			target = B87FDD6C2544197800EAFF02 /* CoreInterface */;
 			targetProxy = B87FDD802544197800EAFF02 /* PBXContainerItemProxy */;
 		};
 		B8D12D2B251BBF4100458A7A /* PBXTargetDependency */ = {
@@ -2651,7 +2653,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = CoreUI/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/CoreInterface/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2659,7 +2661,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.CoreUI;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.CoreInterface;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -2680,7 +2682,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = CoreUI/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/CoreInterface/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2688,7 +2690,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.CoreUI;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.CoreInterface;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -2704,14 +2706,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = CoreUITests/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/CoreInterface/Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.CoreUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.CoreInterfaceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2725,14 +2727,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = CoreUITests/Info.plist;
+				INFOPLIST_FILE = InternalFrameworks/CoreInterface/Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.CoreUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.CoreInterfaceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2954,7 +2956,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B87FDD842544197800EAFF02 /* Build configuration list for PBXNativeTarget "CoreUI" */ = {
+		B87FDD842544197800EAFF02 /* Build configuration list for PBXNativeTarget "CoreInterface" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B87FDD852544197800EAFF02 /* Debug */,
@@ -2963,7 +2965,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B87FDD872544197800EAFF02 /* Build configuration list for PBXNativeTarget "CoreUITests" */ = {
+		B87FDD872544197800EAFF02 /* Build configuration list for PBXNativeTarget "CoreInterfaceTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B87FDD882544197800EAFF02 /* Debug */,

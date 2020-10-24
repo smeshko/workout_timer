@@ -1,6 +1,6 @@
 import SwiftUI
 import WorkoutCore
-import CoreUI
+import CoreInterface
 
 struct ExerciseRowView: View {
     

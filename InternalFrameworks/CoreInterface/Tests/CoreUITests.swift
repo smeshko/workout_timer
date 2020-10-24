@@ -1,15 +1,15 @@
 //
-//  CoreUITests.swift
-//  CoreUITests
+//  CoreInterfaceTests.swift
+//  CoreInterfaceTests
 //
 //  Created by Tsonev Ivaylo on 24.10.20.
 //  Copyright © 2020 tsonevInc. All rights reserved.
 //
 
 import XCTest
-@testable import CoreUI
+@testable import CoreInterface
 
-class CoreUITests: XCTestCase {
+class CoreInterfaceTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

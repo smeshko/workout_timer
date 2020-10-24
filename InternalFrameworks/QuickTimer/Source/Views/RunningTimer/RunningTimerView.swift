@@ -1,6 +1,6 @@
 import SwiftUI
 import ComposableArchitecture
-import CoreUI
+import CoreInterface
 import CorePersistence
 
 struct RunningTimerView: View {

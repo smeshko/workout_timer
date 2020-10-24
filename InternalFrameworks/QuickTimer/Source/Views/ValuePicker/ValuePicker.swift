@@ -1,6 +1,6 @@
 import SwiftUI
 import ComposableArchitecture
-import CoreUI
+import CoreInterface
 
 struct ValuePicker: View {
 
