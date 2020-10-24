@@ -47,7 +47,6 @@
 		B87FDD24254417D500EAFF02 /* QuickWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84C09DE253E009F000CD4CC /* QuickWorkout.swift */; };
 		B87FDD25254417D500EAFF02 /* QuickWorkoutSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87FD03E2540979000EAFF02 /* QuickWorkoutSegment.swift */; };
 		B87FDD2F2544182100EAFF02 /* QuickWorkout-DomainEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87FDD2E2544182100EAFF02 /* QuickWorkout-DomainEntity.swift */; };
-		B87FDD762544197800EAFF02 /* CoreInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87FDD6D2544197800EAFF02 /* CoreInterface.framework */; };
 		B87FDD822544197800EAFF02 /* CoreInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87FDD6D2544197800EAFF02 /* CoreInterface.framework */; };
 		B87FDD832544197800EAFF02 /* CoreInterface.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B87FDD6D2544197800EAFF02 /* CoreInterface.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B87FDDAB2544199700EAFF02 /* SegmentedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D11D06251A37A900458A7A /* SegmentedProgressView.swift */; };
@@ -152,20 +151,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = B87FDCEC254417B400EAFF02;
 			remoteInfo = DomainEntities;
-		};
-		B87FDD772544197800EAFF02 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B84B0ABB2458126600A07A1E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B87FDD6C2544197800EAFF02;
-			remoteInfo = CoreUI;
-		};
-		B87FDD792544197800EAFF02 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B84B0ABB2458126600A07A1E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B84B0AC22458126600A07A1E;
-			remoteInfo = WorkoutTimer;
 		};
 		B87FDD802544197800EAFF02 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -322,8 +307,6 @@
 		B87FDD2E2544182100EAFF02 /* QuickWorkout-DomainEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuickWorkout-DomainEntity.swift"; sourceTree = "<group>"; };
 		B87FDD6D2544197800EAFF02 /* CoreInterface.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreInterface.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B87FDD702544197800EAFF02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B87FDD752544197800EAFF02 /* CoreInterfaceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreInterfaceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B87FDD7E2544197800EAFF02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B87FDF15254436D800EAFF02 /* RunningTimer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RunningTimer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B87FDF18254436D800EAFF02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B87FDF1D254436D900EAFF02 /* RunningTimerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunningTimerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -431,14 +414,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B87FDD722544197800EAFF02 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B87FDD762544197800EAFF02 /* CoreInterface.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		B87FDF12254436D800EAFF02 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -534,7 +509,6 @@
 				B87FDCED254417B400EAFF02 /* DomainEntities.framework */,
 				B87FDCF5254417B400EAFF02 /* DomainEntitiesTests.xctest */,
 				B87FDD6D2544197800EAFF02 /* CoreInterface.framework */,
-				B87FDD752544197800EAFF02 /* CoreInterfaceTests.xctest */,
 				B87FDF15254436D800EAFF02 /* RunningTimer.framework */,
 				B87FDF1D254436D900EAFF02 /* RunningTimerTests.xctest */,
 				B87FDF6A25443E1000EAFF02 /* QuickWorkoutForm.framework */,
@@ -732,18 +706,9 @@
 			isa = PBXGroup;
 			children = (
 				B87FDD942544198200EAFF02 /* Source */,
-				B87FDD7B2544197800EAFF02 /* Tests */,
 				B87FDD702544197800EAFF02 /* Info.plist */,
 			);
 			path = CoreInterface;
-			sourceTree = "<group>";
-		};
-		B87FDD7B2544197800EAFF02 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				B87FDD7E2544197800EAFF02 /* Info.plist */,
-			);
-			path = Tests;
 			sourceTree = "<group>";
 		};
 		B87FDD942544198200EAFF02 /* Source */ = {
@@ -1192,25 +1157,6 @@
 			productReference = B87FDD6D2544197800EAFF02 /* CoreInterface.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		B87FDD742544197800EAFF02 /* CoreInterfaceTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B87FDD872544197800EAFF02 /* Build configuration list for PBXNativeTarget "CoreInterfaceTests" */;
-			buildPhases = (
-				B87FDD712544197800EAFF02 /* Sources */,
-				B87FDD722544197800EAFF02 /* Frameworks */,
-				B87FDD732544197800EAFF02 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B87FDD782544197800EAFF02 /* PBXTargetDependency */,
-				B87FDD7A2544197800EAFF02 /* PBXTargetDependency */,
-			);
-			name = CoreInterfaceTests;
-			productName = CoreUITests;
-			productReference = B87FDD752544197800EAFF02 /* CoreInterfaceTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		B87FDF14254436D800EAFF02 /* RunningTimer */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B87FDF2C254436D900EAFF02 /* Build configuration list for PBXNativeTarget "RunningTimer" */;
@@ -1363,10 +1309,6 @@
 					B87FDD6C2544197800EAFF02 = {
 						CreatedOnToolsVersion = 12.0;
 					};
-					B87FDD742544197800EAFF02 = {
-						CreatedOnToolsVersion = 12.0;
-						TestTargetID = B84B0AC22458126600A07A1E;
-					};
 					B87FDF14254436D800EAFF02 = {
 						CreatedOnToolsVersion = 12.0;
 					};
@@ -1415,7 +1357,6 @@
 				B87FDCEC254417B400EAFF02 /* DomainEntities */,
 				B87FDCF4254417B400EAFF02 /* DomainEntitiesTests */,
 				B87FDD6C2544197800EAFF02 /* CoreInterface */,
-				B87FDD742544197800EAFF02 /* CoreInterfaceTests */,
 				B87FDF14254436D800EAFF02 /* RunningTimer */,
 				B87FDF1C254436D900EAFF02 /* RunningTimerTests */,
 				B87FDF6925443E1000EAFF02 /* QuickWorkoutForm */,
@@ -1484,13 +1425,6 @@
 				B87FDDE7254419F600EAFF02 /* Colors.xcassets in Resources */,
 				B87FDDE6254419F600EAFF02 /* Assets.xcassets in Resources */,
 				B87FDDE5254419F600EAFF02 /* Preview Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B87FDD732544197800EAFF02 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1628,13 +1562,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B87FDD712544197800EAFF02 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		B87FDF11254436D800EAFF02 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1740,16 +1667,6 @@
 			isa = PBXTargetDependency;
 			target = B87FDCEC254417B400EAFF02 /* DomainEntities */;
 			targetProxy = B87FDD00254417B400EAFF02 /* PBXContainerItemProxy */;
-		};
-		B87FDD782544197800EAFF02 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B87FDD6C2544197800EAFF02 /* CoreInterface */;
-			targetProxy = B87FDD772544197800EAFF02 /* PBXContainerItemProxy */;
-		};
-		B87FDD7A2544197800EAFF02 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B84B0AC22458126600A07A1E /* WorkoutTimer */;
-			targetProxy = B87FDD792544197800EAFF02 /* PBXContainerItemProxy */;
 		};
 		B87FDD812544197800EAFF02 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2329,48 +2246,6 @@
 			};
 			name = Release;
 		};
-		B87FDD882544197800EAFF02 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = InternalFrameworks/Core/CoreInterface/Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.CoreInterfaceTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Workout Timer.app/Workout Timer";
-			};
-			name = Debug;
-		};
-		B87FDD892544197800EAFF02 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GR9SJM3FZP;
-				INFOPLIST_FILE = InternalFrameworks/Core/CoreInterface/Tests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.tsonevInc.mobile.ios.CoreInterfaceTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Workout Timer.app/Workout Timer";
-			};
-			name = Release;
-		};
 		B87FDF2D254436D900EAFF02 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2752,15 +2627,6 @@
 			buildConfigurations = (
 				B87FDD852544197800EAFF02 /* Debug */,
 				B87FDD862544197800EAFF02 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B87FDD872544197800EAFF02 /* Build configuration list for PBXNativeTarget "CoreInterfaceTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B87FDD882544197800EAFF02 /* Debug */,
-				B87FDD892544197800EAFF02 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
