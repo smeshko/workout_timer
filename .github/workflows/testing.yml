@@ -10,8 +10,12 @@ jobs:
         uses: actions/checkout@v1
       - name: Force XCode 12
         run: sudo xcode-select -switch /Applications/Xcode_12.app
+      - name: Install xcodegen
+        run: brew install xcodegen
+      - name: Generate project
+        run: xcodegen generate
       - name: Testing iOS app
         run: |
-          xcodebuild -project ./WorkoutTimer.xcodeproj -list
+          xcodebuild -project ./QuickTimers.xcodeproj
           chmod 755 .github/scripts/test_app.sh 
           exec ./.github/scripts/test_app.sh
