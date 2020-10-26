@@ -16,6 +16,6 @@ jobs:
         run: xcodegen generate
       - name: Testing iOS app
         run: |
-          xcodebuild -project ./QuickTimers.xcodeproj
+          xcodebuild -project ./QuickWorkouts.xcodeproj
           chmod 755 .github/scripts/test_app.sh 
           exec ./.github/scripts/test_app.sh
