@@ -88,6 +88,11 @@
 		B8B79CF42486BF9B008B92D8 /* WebClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B79CF32486BF9B008B92D8 /* WebClient.swift */; };
 		B8B79CF62486BFDC008B92D8 /* EndpointProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B79CF52486BFDC008B92D8 /* EndpointProtocol.swift */; };
 		B8B79CF824877325008B92D8 /* Data-Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B79CF724877325008B92D8 /* Data-Decode.swift */; };
+		B8CE9A0F2544DDE000833B28 /* DomainEntities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87FDCED254417B400EAFF02 /* DomainEntities.framework */; };
+		B8CE9A102544DDEE00833B28 /* DomainEntities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87FDCED254417B400EAFF02 /* DomainEntities.framework */; };
+		B8CE9A1B2544DE2100833B28 /* RunningTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87FDF15254436D800EAFF02 /* RunningTimer.framework */; };
+		B8CE9A262544DE5D00833B28 /* CoreInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87FDD6D2544197800EAFF02 /* CoreInterface.framework */; };
+		B8CE9A272544DE6E00833B28 /* CoreInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B87FDD6D2544197800EAFF02 /* CoreInterface.framework */; };
 		B8DC5994246054E1003FC8D3 /* AppCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DC5993246054E1003FC8D3 /* AppCore.swift */; };
 		B8DC59B124605E38003FC8D3 /* QuickWorkoutsList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* QuickWorkoutsList.framework */; };
 		B8DC59B224605E38003FC8D3 /* QuickWorkoutsList.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8DC599C24605E38003FC8D3 /* QuickWorkoutsList.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -193,6 +198,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = B87FDF6925443E1000EAFF02;
 			remoteInfo = QuickWorkoutForm;
+		};
+		B8CE99F72544D59F00833B28 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B84B0ABB2458126600A07A1E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B8767443246AB6A500438A0F;
+			remoteInfo = CoreLogic;
 		};
 		B8DC6A312461D7F6003FC8D3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -363,6 +375,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8CE9A0F2544DDE000833B28 /* DomainEntities.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +423,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8CE9A102544DDEE00833B28 /* DomainEntities.framework in Frameworks */,
 				B87FDE2E25441C8100EAFF02 /* CoreLogic.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -418,6 +432,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8CE9A272544DE6E00833B28 /* CoreInterface.framework in Frameworks */,
 				B87FDF3B254436E800EAFF02 /* CoreLogic.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -434,6 +449,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8CE9A262544DE5D00833B28 /* CoreInterface.framework in Frameworks */,
 				B834419A2544690500062451 /* CoreLogic.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -450,6 +466,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8CE9A1B2544DE2100833B28 /* RunningTimer.framework in Frameworks */,
 				B82B77852475D9E100774C05 /* CoreLogic.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1010,6 +1027,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				B8CE99F82544D59F00833B28 /* PBXTargetDependency */,
 				B82B778F2475DAC500774C05 /* PBXTargetDependency */,
 				B84C035D253B12B5000CD4CC /* PBXTargetDependency */,
 				B87FDD01254417B400EAFF02 /* PBXTargetDependency */,
@@ -1697,6 +1715,11 @@
 			isa = PBXTargetDependency;
 			target = B87FDF6925443E1000EAFF02 /* QuickWorkoutForm */;
 			targetProxy = B87FDF7D25443E1100EAFF02 /* PBXContainerItemProxy */;
+		};
+		B8CE99F82544D59F00833B28 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B8767443246AB6A500438A0F /* CoreLogic */;
+			targetProxy = B8CE99F72544D59F00833B28 /* PBXContainerItemProxy */;
 		};
 		B8DC6A322461D7F6003FC8D3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
