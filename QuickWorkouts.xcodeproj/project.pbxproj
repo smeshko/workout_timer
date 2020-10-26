@@ -1,0 +1,2294 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00CC110E04D91596702E1858 /* Color-PredefinedTints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C1034FA0C812C56B292571 /* Color-PredefinedTints.swift */; };
+		033877A742B6C2F948DA4E83 /* Data-Decode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43073A57BA720F64944E384 /* Data-Decode.swift */; };
+		03E9F9D7F63E5F3E7571D38E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3A94CE645D6509B904590FC /* Assets.xcassets */; };
+		046CAAE0188B4FF92F7796E2 /* RunningTimerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A7BBD700618E5E1B45F058 /* RunningTimerCore.swift */; };
+		0706531DA85031A45C5F73F0 /* AddTimerSegmentCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907B914687E9E92E4784903D /* AddTimerSegmentCore.swift */; };
+		0BDDF6746AF24CCF9EE0F024 /* QuickWorkoutSegmentDao+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E0A9B91D3E11A80C6B9527 /* QuickWorkoutSegmentDao+CoreDataProperties.swift */; };
+		0C62A19FF30BEE0A78CDDF35 /* QuickWorkoutSegmentDao+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69FC41D8D717B459299DFAA /* QuickWorkoutSegmentDao+CoreDataClass.swift */; };
+		0EFD5B4593FCB09FD8F3CCBD /* SoundClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2557EFFA7155DA7F98C784A /* SoundClient.swift */; };
+		113237E330E5BA178E726547 /* CoreInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C8435F238F12E6F858D316E /* CoreInterface.framework */; };
+		13D3B1069F1F3E74767485E0 /* CoreLogic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D9C8823AE790AD3596FF769 /* CoreLogic.framework */; };
+		14CC0A6C238753EB090417A3 /* RunningTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7E63397B80E91E15849254 /* RunningTimerView.swift */; };
+		155561FAF2227C08DF8DDBBF /* DomainEntities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8911766912BBF763D237D37C /* DomainEntities.framework */; };
+		188F867BE61E6A6E2770E165 /* DomainEntities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8911766912BBF763D237D37C /* DomainEntities.framework */; };
+		1AF8217FC67A7BD948FD7CE8 /* QuickTimerControlsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC5F4F4173ED20697D0A411 /* QuickTimerControlsTests.swift */; };
+		1CD84AD222774B324D5B8C55 /* QuickWorkoutForm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC8E272BA837D8A3C88AA9B3 /* QuickWorkoutForm.framework */; };
+		20DEA355F78C6FB083B4B727 /* LocalStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD357991DF6B34E5BF656941 /* LocalStore.swift */; };
+		211783B0325F42E588862C07 /* QuickWorkoutCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649F9E668CC3A4129EA3C8B9 /* QuickWorkoutCard.swift */; };
+		235DEF9BAE2AC87415B7122D /* CoreInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C8435F238F12E6F858D316E /* CoreInterface.framework */; };
+		237C8AE70E524B384420788D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11F5F4BF0728CE743996AAEC /* Preview Assets.xcassets */; };
+		29DDD8A20574FA2C68C30E67 /* QuickWorkoutDao+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A151207452E5227096B090 /* QuickWorkoutDao+CoreDataClass.swift */; };
+		2C8750A3F34682FBE0DB9CF9 /* CreateQuickWorkoutCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA51805C2CD567E52773BA0 /* CreateQuickWorkoutCore.swift */; };
+		35A86DE572ED877B67999C27 /* DomainEntities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8911766912BBF763D237D37C /* DomainEntities.framework */; };
+		3A3248556CE9EC876FA4024E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B9F190EF78DEACCE1A6A8A1 /* Preview Assets.xcassets */; };
+		4171F1A0545DB74F7D962253 /* QuickWorkoutsList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACBF68584876A49ED03B051C /* QuickWorkoutsList.framework */; };
+		4507FACB3B57E1001DEE831C /* DomainEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB662DE2A3436F95D7137506 /* DomainEntity.swift */; };
+		4731952D2862CC8BC4BA2149 /* QuickWorkout-DomainEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A204FE23ED27B6382FFEF1B9 /* QuickWorkout-DomainEntity.swift */; };
+		4B1C70568577951EA8BD52D2 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = B4FA45C1A141D9F83D7F1751 /* ComposableArchitecture */; };
+		54AFAC2A34FFCDB36BC2B5E4 /* CoreLogic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D9C8823AE790AD3596FF769 /* CoreLogic.framework */; };
+		56E3372659F02DC2934EED03 /* TimerCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39BC6C05A55F0D2786F3C4D8 /* TimerCoreTests.swift */; };
+		5AA8A5F048B2BC7DF5669DDF /* QuickWorkoutSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F24A6A773A7F3F82E740D92 /* QuickWorkoutSegment.swift */; };
+		6059681FB5FD594C6BC8F245 /* CoreDataClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33C5D21200032EEFCEF2C3C /* CoreDataClient.swift */; };
+		62DF26A7ABDE926A2B3909DE /* DatabaseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EBD0E3EB5BA32251AE4D4D /* DatabaseEntity.swift */; };
+		67D49D0200B171EA643D091F /* CorePersistence.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5F82A934D504F10E8271D4 /* CorePersistence.framework */; };
+		6AB2F83F08EF7D015A3C3846 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94A40D56E1DFF6EC5E9288F8 /* Colors.xcassets */; };
+		6B38F38036BF43C80714C287 /* TimerControlsCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBD19F4477B7051A2FFF0DE /* TimerControlsCore.swift */; };
+		76CE2C75A8CA9E891B8C7A3A /* CoreLogic.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5D9C8823AE790AD3596FF769 /* CoreLogic.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7A7FB3F76143CD20DBBCF84E /* CorePersistence.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BC5F82A934D504F10E8271D4 /* CorePersistence.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		81247351B0AFB8B3A9104C0B /* CorePersistence.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5F82A934D504F10E8271D4 /* CorePersistence.framework */; };
+		826655470E162D02A43B1D69 /* CorePersistence.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5F82A934D504F10E8271D4 /* CorePersistence.framework */; };
+		859126B1221C5F55F8FA339A /* CreateQuickWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8E06036B946AB9AFC71F5C /* CreateQuickWorkoutView.swift */; };
+		85EF3F166307B0CD3BB9BC84 /* RunningTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C00511ADE1489E60E7D35D /* RunningTimerTests.swift */; };
+		8E5508A87183688699DB1A50 /* Collection-Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5463788DDF346AD319E114 /* Collection-Safe.swift */; };
+		956D1C7891B6D175F4BA12A8 /* QuickTimerControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9DB89B727EAABC6A1416F9 /* QuickTimerControlsView.swift */; };
+		95B46BB3BAEE1F83E858557E /* RunningTimer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32DD1B05D08FFCB2800D44D3 /* RunningTimer.framework */; };
+		98A92E8C130C8816BE167D6D /* QuickTimerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B013D4A796D38996317CB3D /* QuickTimerRepository.swift */; };
+		9B425EF7DE088D49449FB19F /* QuickWorkoutsListCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B572803181EE4712C041E9EC /* QuickWorkoutsListCore.swift */; };
+		9BFBEEB880A5D58E7F0F90E6 /* QuickWorkoutSegment-DomainEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6C1C268A9F5C9BE5D59057 /* QuickWorkoutSegment-DomainEntity.swift */; };
+		9CE698B9CA5C5179564BFDC4 /* WorkoutTimer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 25689D7C4D4D05054DCA9C6C /* WorkoutTimer.xcdatamodeld */; };
+		9DB8314951B84AE76B5E49FC /* Color-Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8E983F6875E530B0FB90F /* Color-Custom.swift */; };
+		9E1907718163E37178B6B6D7 /* exportOptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 918343C862431FE91C8B1C26 /* exportOptions.plist */; };
+		9E4B0BE998E5A3FABB2DFE69 /* QuickWorkoutFormTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F93D81F341B0A6EF70CFA26 /* QuickWorkoutFormTests.swift */; };
+		9EC98FBAE1E0F80EFA352AB4 /* QuickWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA05A5094BE071B72EC6836 /* QuickWorkout.swift */; };
+		9EEA353EF48DE6B14CEB3EC3 /* PreviewDevice-Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362B473D6A5436BE131D67C4 /* PreviewDevice-Models.swift */; };
+		9F89D5536EADD76B27614848 /* QuickExerciseBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37111F60C5E7E53540A2423 /* QuickExerciseBuilderTests.swift */; };
+		A0F9600DC8BDE499F2A4F6B1 /* CoreInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C8435F238F12E6F858D316E /* CoreInterface.framework */; };
+		A2FE87BD3229D72343634BE1 /* RunningTimerCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C284CCA46C5F2F9EFA6059CD /* RunningTimerCoreTests.swift */; };
+		A37A96B7E1A17FAF412D7534 /* DomainEntities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8911766912BBF763D237D37C /* DomainEntities.framework */; };
+		A6FDBAEEC36620986D716D04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB9CB1D3AB597E23BF5D78CA /* Assets.xcassets */; };
+		B08FF68FA8EB5E3CBEEA1544 /* CoreLogic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D9C8823AE790AD3596FF769 /* CoreLogic.framework */; };
+		B5415DBD8BFDACEC2B4FEC75 /* UIImage-Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44254FAD7319A9325253118A /* UIImage-Asset.swift */; };
+		B5518E6B6B9253D158BA3485 /* CoreLogic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D9C8823AE790AD3596FF769 /* CoreLogic.framework */; };
+		B71012317883C35203C18A2F /* String-FormattedTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF38A84F32CFB99CF3FE5FF /* String-FormattedTime.swift */; };
+		B8CAB3953F0189D6BF03ED76 /* QuickWorkoutCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB753D72D475C4329289141 /* QuickWorkoutCardView.swift */; };
+		B8D3EE33529691F78CE8E50B /* QuickWorkoutsList.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = ACBF68584876A49ED03B051C /* QuickWorkoutsList.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B8D91B31C4FF795B86DB8FC3 /* AppCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9ADDBC671372F6E815E577 /* AppCore.swift */; };
+		B95CB8E9CFEF3E59F51BDD67 /* DomainEntities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8911766912BBF763D237D37C /* DomainEntities.framework */; };
+		BACB8B4EE7C3C2DE656B7A4A /* AddTimerSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8CF0225E1B3CA66EED92D48 /* AddTimerSegmentView.swift */; };
+		BBA0D88CAC331157624F1E7C /* ValuePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97528C5DF41FDEB139B0B631 /* ValuePicker.swift */; };
+		C0A06C21C996C139BA2C82F8 /* QuickWorkoutsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63CACF4A6F9A74DDA4DF449 /* QuickWorkoutsListView.swift */; };
+		C2187552242B94AAAC0E47CC /* PreviewProvider-Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1231440ED987426830EB045 /* PreviewProvider-Mocks.swift */; };
+		C8AA1CEA30C5A0836437D35C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCC577A210C546A9BD7988EE /* LaunchScreen.storyboard */; };
+		CEBE1C6436D6C1D25BCC1729 /* SegmentedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA5523B795432858DC039CB /* SegmentedProgressView.swift */; };
+		D365986E9EC7921B5DDB4D70 /* ValuePickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C324092E367304B19183EAF3 /* ValuePickerTests.swift */; };
+		D3BAF03EB314533B648FA4B4 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA94C54994C5E72357CDBCE /* App.swift */; };
+		D3E29F9095334BCFF4BBB575 /* WorkoutColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C4E83C2AB09384A0D558BC /* WorkoutColor.swift */; };
+		D60FBC6AC62CB784F0F5585D /* DomainEntities.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8911766912BBF763D237D37C /* DomainEntities.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D8EC4FA31C8E9FB261E03B4D /* PickerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02AC564EB44B22BFEC3E9EB /* PickerCore.swift */; };
+		DC075042BDF734C943E77C4C /* DomainEntities.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8911766912BBF763D237D37C /* DomainEntities.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E65ABFDC8A4C4C88CB3930CC /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEC9FE3B1141668CBE472B0 /* Store.swift */; };
+		F264696EB4372986E4D4161D /* WebClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28535902F14ABDF4D71C45F2 /* WebClient.swift */; };
+		F71A1ED4CCA3EFD341351610 /* Font-Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D3E0225F8E371B4B2383C1 /* Font-Custom.swift */; };
+		FAAA59DCFF8745C09911C48B /* QuickWorkoutDao+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D45F82F1D57D8270A9618D8 /* QuickWorkoutDao+CoreDataProperties.swift */; };
+		FDAD121212BEED217761C2DA /* CorePersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B368539A63A57A477B26A9B /* CorePersistenceTests.swift */; };
+		FFF7F3E6EE0ECDB9CFFF000B /* EndpointProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA94211500392291070AD81 /* EndpointProtocol.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		05FC271F33E1AE31D699C3D6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 616A1CD0E39A9ABD89F786E3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 08179C30D6CAB54AF2F03B20;
+			remoteInfo = DomainEntities;
+		};
+		0AE7EA1C5AA38B7AE2843EE5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 616A1CD0E39A9ABD89F786E3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5F979B24CECB96B0E0081FA7;
+			remoteInfo = CoreLogic;
+		};
+		15700642CD7F0A8ECEB55AA8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 616A1CD0E39A9ABD89F786E3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FFED0F83F6AF12509B011F0B;
+			remoteInfo = CoreInterface;
+		};
+		39510A4D916BCF2DC91A89EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 616A1CD0E39A9ABD89F786E3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5F979B24CECB96B0E0081FA7;
+			remoteInfo = CoreLogic;
+		};
+		3A9B16AB1A983EF277A0D38C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 616A1CD0E39A9ABD89F786E3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 00AF1C08DBA71D9ABC18EA04;
+			remoteInfo = RunningTimer;
+		};
+		4BD49F6746ADF82B72C92694 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 616A1CD0E39A9ABD89F786E3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 213937149F3F9BF4AC1C05A2;
+			remoteInfo = QuickWorkoutForm;
+		};
+		5790F6BC325B0C65C4AA15CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 616A1CD0E39A9ABD89F786E3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 441D27302315C8653CA268F5;
+			remoteInfo = CorePersistence;
+		};
+		7B949A32D5F3CDC0E63AA901 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 616A1CD0E39A9ABD89F786E3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FFED0F83F6AF12509B011F0B;
+			remoteInfo = CoreInterface;
+		};
+		87721C239C953C68A9944FAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 616A1CD0E39A9ABD89F786E3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 441D27302315C8653CA268F5;
+			remoteInfo = CorePersistence;
+		};
+		89B470E6DE664D3D8542B149 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 616A1CD0E39A9ABD89F786E3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 441D27302315C8653CA268F5;
+			remoteInfo = CorePersistence;
+		};
+		A622BEA8D06937A59F724388 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 616A1CD0E39A9ABD89F786E3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 08179C30D6CAB54AF2F03B20;
+			remoteInfo = DomainEntities;
+		};
+		AD21C01139809AFC661F5C80 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 616A1CD0E39A9ABD89F786E3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 08179C30D6CAB54AF2F03B20;
+			remoteInfo = DomainEntities;
+		};
+		B376BC9C3E91448FE4B0F5B1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 616A1CD0E39A9ABD89F786E3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 08179C30D6CAB54AF2F03B20;
+			remoteInfo = DomainEntities;
+		};
+		C537AE9E74C429A297B9692E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 616A1CD0E39A9ABD89F786E3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5F979B24CECB96B0E0081FA7;
+			remoteInfo = CoreLogic;
+		};
+		CEC8B12F8A02C47109E83801 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 616A1CD0E39A9ABD89F786E3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FFED0F83F6AF12509B011F0B;
+			remoteInfo = CoreInterface;
+		};
+		D4DFFBC4DCE4F3FA541E65FE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 616A1CD0E39A9ABD89F786E3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3CD8BF404DCE4226F195E7BB;
+			remoteInfo = QuickWorkoutsList;
+		};
+		D50AD4C4F53C07A0D99AC983 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 616A1CD0E39A9ABD89F786E3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 08179C30D6CAB54AF2F03B20;
+			remoteInfo = DomainEntities;
+		};
+		EF90E6299DB8E93F798149B3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 616A1CD0E39A9ABD89F786E3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5F979B24CECB96B0E0081FA7;
+			remoteInfo = CoreLogic;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		45D26E30821BEFB5F3F2030A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				DC075042BDF734C943E77C4C /* DomainEntities.framework in Embed Frameworks */,
+				76CE2C75A8CA9E891B8C7A3A /* CoreLogic.framework in Embed Frameworks */,
+				B8D3EE33529691F78CE8E50B /* QuickWorkoutsList.framework in Embed Frameworks */,
+				D60FBC6AC62CB784F0F5585D /* DomainEntities.framework in Embed Frameworks */,
+				7A7FB3F76143CD20DBBCF84E /* CorePersistence.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0CA94211500392291070AD81 /* EndpointProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointProtocol.swift; sourceTree = "<group>"; };
+		0F9ADDBC671372F6E815E577 /* AppCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCore.swift; sourceTree = "<group>"; };
+		119F12B17477A1D373D076D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		11F5F4BF0728CE743996AAEC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		14C00511ADE1489E60E7D35D /* RunningTimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningTimerTests.swift; sourceTree = "<group>"; };
+		1FA51805C2CD567E52773BA0 /* CreateQuickWorkoutCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuickWorkoutCore.swift; sourceTree = "<group>"; };
+		20DCA075243C329C5204949B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		24C4E83C2AB09384A0D558BC /* WorkoutColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutColor.swift; sourceTree = "<group>"; };
+		27EBD0E3EB5BA32251AE4D4D /* DatabaseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseEntity.swift; sourceTree = "<group>"; };
+		28535902F14ABDF4D71C45F2 /* WebClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebClient.swift; sourceTree = "<group>"; };
+		2A6E422ADCD3E0E00F872AAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2AA94C54994C5E72357CDBCE /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		2D6C1C268A9F5C9BE5D59057 /* QuickWorkoutSegment-DomainEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuickWorkoutSegment-DomainEntity.swift"; sourceTree = "<group>"; };
+		32DD1B05D08FFCB2800D44D3 /* RunningTimer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RunningTimer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		33D3E0225F8E371B4B2383C1 /* Font-Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font-Custom.swift"; sourceTree = "<group>"; };
+		362B473D6A5436BE131D67C4 /* PreviewDevice-Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PreviewDevice-Models.swift"; sourceTree = "<group>"; };
+		3976E1CB3E740DC1630B13AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		39BC6C05A55F0D2786F3C4D8 /* TimerCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCoreTests.swift; sourceTree = "<group>"; };
+		3BD7E094D6AC93D8DE8178C6 /* CoreInterfaceUnitTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = CoreInterfaceUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		41E0A9B91D3E11A80C6B9527 /* QuickWorkoutSegmentDao+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuickWorkoutSegmentDao+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		44254FAD7319A9325253118A /* UIImage-Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage-Asset.swift"; sourceTree = "<group>"; };
+		47B595A5124DEF601C9F0D3F /* Release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Release.entitlements; sourceTree = "<group>"; };
+		494172ADB323C47A49DDBE88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		4B368539A63A57A477B26A9B /* CorePersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorePersistenceTests.swift; sourceTree = "<group>"; };
+		4C9DB89B727EAABC6A1416F9 /* QuickTimerControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerControlsView.swift; sourceTree = "<group>"; };
+		4D45F82F1D57D8270A9618D8 /* QuickWorkoutDao+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuickWorkoutDao+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4F24A6A773A7F3F82E740D92 /* QuickWorkoutSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickWorkoutSegment.swift; sourceTree = "<group>"; };
+		4FB753D72D475C4329289141 /* QuickWorkoutCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickWorkoutCardView.swift; sourceTree = "<group>"; };
+		55F14446AB216FFC80229B02 /* RunningTimerUnitTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = RunningTimerUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		582BAEF9338A1ED8C9E7AC1A /* QuickWorkouts.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = QuickWorkouts.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5CA05A5094BE071B72EC6836 /* QuickWorkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickWorkout.swift; sourceTree = "<group>"; };
+		5D9C8823AE790AD3596FF769 /* CoreLogic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreLogic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F93D81F341B0A6EF70CFA26 /* QuickWorkoutFormTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickWorkoutFormTests.swift; sourceTree = "<group>"; };
+		63FBDC608BE95DA346CD87EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		649F9E668CC3A4129EA3C8B9 /* QuickWorkoutCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickWorkoutCard.swift; sourceTree = "<group>"; };
+		6B013D4A796D38996317CB3D /* QuickTimerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerRepository.swift; sourceTree = "<group>"; };
+		6B9F190EF78DEACCE1A6A8A1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		6C8435F238F12E6F858D316E /* CoreInterface.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreInterface.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		75C1034FA0C812C56B292571 /* Color-PredefinedTints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color-PredefinedTints.swift"; sourceTree = "<group>"; };
+		76A151207452E5227096B090 /* QuickWorkoutDao+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuickWorkoutDao+CoreDataClass.swift"; sourceTree = "<group>"; };
+		7BBC89D95613BAA88194B3D7 /* QuickWorkoutsListUnitTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = QuickWorkoutsListUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7CA5523B795432858DC039CB /* SegmentedProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedProgressView.swift; sourceTree = "<group>"; };
+		81A7BBD700618E5E1B45F058 /* RunningTimerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningTimerCore.swift; sourceTree = "<group>"; };
+		8911766912BBF763D237D37C /* DomainEntities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DomainEntities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CC5F4F4173ED20697D0A411 /* QuickTimerControlsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickTimerControlsTests.swift; sourceTree = "<group>"; };
+		8EE53AD59D0F887C07847329 /* Debug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Debug.entitlements; sourceTree = "<group>"; };
+		907B914687E9E92E4784903D /* AddTimerSegmentCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTimerSegmentCore.swift; sourceTree = "<group>"; };
+		9168A63D6DBECB2C9A7BDDE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		918343C862431FE91C8B1C26 /* exportOptions.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = exportOptions.plist; sourceTree = "<group>"; };
+		93F729694F28B7C16AEBC8C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		94A40D56E1DFF6EC5E9288F8 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		967D756416E93532A7E7F2A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		97528C5DF41FDEB139B0B631 /* ValuePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuePicker.swift; sourceTree = "<group>"; };
+		9B10E1789D76E7CEEE4BBEAE /* QuickWorkoutFormUnitTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = QuickWorkoutFormUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C5463788DDF346AD319E114 /* Collection-Safe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection-Safe.swift"; sourceTree = "<group>"; };
+		A02AC564EB44B22BFEC3E9EB /* PickerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCore.swift; sourceTree = "<group>"; };
+		A204FE23ED27B6382FFEF1B9 /* QuickWorkout-DomainEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuickWorkout-DomainEntity.swift"; sourceTree = "<group>"; };
+		A37111F60C5E7E53540A2423 /* QuickExerciseBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickExerciseBuilderTests.swift; sourceTree = "<group>"; };
+		ABEC9FE3B1141668CBE472B0 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		AC475E20E94B6D68FC3321F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		ACBF68584876A49ED03B051C /* QuickWorkoutsList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QuickWorkoutsList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACE9904F7776A66DA132A57E /* CoreLogicUnitTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = CoreLogicUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD0C9A194B5FC66543ECA2B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		AE8E06036B946AB9AFC71F5C /* CreateQuickWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateQuickWorkoutView.swift; sourceTree = "<group>"; };
+		AFF38A84F32CFB99CF3FE5FF /* String-FormattedTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String-FormattedTime.swift"; sourceTree = "<group>"; };
+		B4E8CC3A024010F643091702 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B572803181EE4712C041E9EC /* QuickWorkoutsListCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickWorkoutsListCore.swift; sourceTree = "<group>"; };
+		B63CACF4A6F9A74DDA4DF449 /* QuickWorkoutsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickWorkoutsListView.swift; sourceTree = "<group>"; };
+		B78DE0916284D0323ED0C1F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		BB662DE2A3436F95D7137506 /* DomainEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainEntity.swift; sourceTree = "<group>"; };
+		BC5F82A934D504F10E8271D4 /* CorePersistence.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CorePersistence.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD357991DF6B34E5BF656941 /* LocalStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStore.swift; sourceTree = "<group>"; };
+		BFBD19F4477B7051A2FFF0DE /* TimerControlsCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerControlsCore.swift; sourceTree = "<group>"; };
+		C0E8E983F6875E530B0FB90F /* Color-Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color-Custom.swift"; sourceTree = "<group>"; };
+		C284CCA46C5F2F9EFA6059CD /* RunningTimerCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningTimerCoreTests.swift; sourceTree = "<group>"; };
+		C324092E367304B19183EAF3 /* ValuePickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuePickerTests.swift; sourceTree = "<group>"; };
+		C43D2DB1A81774F61F2AAA43 /* WorkoutTimer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WorkoutTimer.xcdatamodel; sourceTree = "<group>"; };
+		C7C342FB6161F690CAC583C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CB9CB1D3AB597E23BF5D78CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CC7E63397B80E91E15849254 /* RunningTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningTimerView.swift; sourceTree = "<group>"; };
+		CC8E272BA837D8A3C88AA9B3 /* QuickWorkoutForm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QuickWorkoutForm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2557EFFA7155DA7F98C784A /* SoundClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundClient.swift; sourceTree = "<group>"; };
+		D33C5D21200032EEFCEF2C3C /* CoreDataClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataClient.swift; sourceTree = "<group>"; };
+		D3A94CE645D6509B904590FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D43073A57BA720F64944E384 /* Data-Decode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data-Decode.swift"; sourceTree = "<group>"; };
+		D69FC41D8D717B459299DFAA /* QuickWorkoutSegmentDao+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuickWorkoutSegmentDao+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E11777D7BF5727D4F461F400 /* CorePersistenceUnitTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = CorePersistenceUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1231440ED987426830EB045 /* PreviewProvider-Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PreviewProvider-Mocks.swift"; sourceTree = "<group>"; };
+		F8CF0225E1B3CA66EED92D48 /* AddTimerSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTimerSegmentView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		066DCCE7A606D481549DE415 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				113237E330E5BA178E726547 /* CoreInterface.framework in Frameworks */,
+				B08FF68FA8EB5E3CBEEA1544 /* CoreLogic.framework in Frameworks */,
+				A37A96B7E1A17FAF412D7534 /* DomainEntities.framework in Frameworks */,
+				67D49D0200B171EA643D091F /* CorePersistence.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0DE776D3F5391FA9C860183E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B95CB8E9CFEF3E59F51BDD67 /* DomainEntities.framework in Frameworks */,
+				B5518E6B6B9253D158BA3485 /* CoreLogic.framework in Frameworks */,
+				4171F1A0545DB74F7D962253 /* QuickWorkoutsList.framework in Frameworks */,
+				155561FAF2227C08DF8DDBBF /* DomainEntities.framework in Frameworks */,
+				81247351B0AFB8B3A9104C0B /* CorePersistence.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6BA29087A163B52CD9EF7C42 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0F9600DC8BDE499F2A4F6B1 /* CoreInterface.framework in Frameworks */,
+				54AFAC2A34FFCDB36BC2B5E4 /* CoreLogic.framework in Frameworks */,
+				188F867BE61E6A6E2770E165 /* DomainEntities.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5EE3DC9CEF80C7387E42908 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B1C70568577951EA8BD52D2 /* ComposableArchitecture in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E6E509EC75F836ABC56F8B8E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				235DEF9BAE2AC87415B7122D /* CoreInterface.framework in Frameworks */,
+				13D3B1069F1F3E74767485E0 /* CoreLogic.framework in Frameworks */,
+				35A86DE572ED877B67999C27 /* DomainEntities.framework in Frameworks */,
+				95B46BB3BAEE1F83E858557E /* RunningTimer.framework in Frameworks */,
+				1CD84AD222774B324D5B8C55 /* QuickWorkoutForm.framework in Frameworks */,
+				826655470E162D02A43B1D69 /* CorePersistence.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0158F2BF2BD9B996ED897008 /* CorePersistence */ = {
+			isa = PBXGroup;
+			children = (
+				E05071674E75FD7ED774253A /* Source */,
+				70F72DAFAA1A9DA8899F821E /* Tests */,
+			);
+			path = CorePersistence;
+			sourceTree = "<group>";
+		};
+		0229445801B317715C6226E4 /* QuickWorkoutsList */ = {
+			isa = PBXGroup;
+			children = (
+				B572803181EE4712C041E9EC /* QuickWorkoutsListCore.swift */,
+				B63CACF4A6F9A74DDA4DF449 /* QuickWorkoutsListView.swift */,
+			);
+			path = QuickWorkoutsList;
+			sourceTree = "<group>";
+		};
+		08CB576DE44C7B05FAC15805 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9C5463788DDF346AD319E114 /* Collection-Safe.swift */,
+				D43073A57BA720F64944E384 /* Data-Decode.swift */,
+				AFF38A84F32CFB99CF3FE5FF /* String-FormattedTime.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0FEF4D1089A51B78F2684C7C /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				366DD5481096DA41CCFD1251 /* QuickWorkoutForm */,
+				BE109CC64C03C21013230ABB /* QuickWorkoutsList */,
+				4E6FBD71839C2977942360B7 /* RunningTimer */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		11E2B118A6D651E079B9FF3F /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				6FA83F17763EF12E38677B04 /* CoreInterface */,
+				FAF84C98243CE0F4D1AEBA32 /* CoreLogic */,
+				0158F2BF2BD9B996ED897008 /* CorePersistence */,
+				25C7CCADE38364019F897936 /* DomainEntities */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		1A765E50A15FAA6A96582D97 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				C7C342FB6161F690CAC583C8 /* Info.plist */,
+				5CA05A5094BE071B72EC6836 /* QuickWorkout.swift */,
+				4F24A6A773A7F3F82E740D92 /* QuickWorkoutSegment.swift */,
+				24C4E83C2AB09384A0D558BC /* WorkoutColor.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		25C7CCADE38364019F897936 /* DomainEntities */ = {
+			isa = PBXGroup;
+			children = (
+				1A765E50A15FAA6A96582D97 /* Source */,
+			);
+			path = DomainEntities;
+			sourceTree = "<group>";
+		};
+		276D70A6D8FA9635A4B7A3BB /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				BD357991DF6B34E5BF656941 /* LocalStore.swift */,
+			);
+			path = Stores;
+			sourceTree = "<group>";
+		};
+		2CCEB199589D807A24FC3F32 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7CA5523B795432858DC039CB /* SegmentedProgressView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		366DD5481096DA41CCFD1251 /* QuickWorkoutForm */ = {
+			isa = PBXGroup;
+			children = (
+				B1CAB453727BB95F4807A97E /* Source */,
+				4F71D4DDBE2B5C84114C036C /* Tests */,
+			);
+			path = QuickWorkoutForm;
+			sourceTree = "<group>";
+		};
+		4C80BA81EC4375E1E5377266 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C0E8E983F6875E530B0FB90F /* Color-Custom.swift */,
+				75C1034FA0C812C56B292571 /* Color-PredefinedTints.swift */,
+				33D3E0225F8E371B4B2383C1 /* Font-Custom.swift */,
+				362B473D6A5436BE131D67C4 /* PreviewDevice-Models.swift */,
+				E1231440ED987426830EB045 /* PreviewProvider-Mocks.swift */,
+				44254FAD7319A9325253118A /* UIImage-Asset.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		4E6FBD71839C2977942360B7 /* RunningTimer */ = {
+			isa = PBXGroup;
+			children = (
+				826365F30762324431F01E1E /* Source */,
+				A93C8EFE1ADB26D91E466BA2 /* Tests */,
+			);
+			path = RunningTimer;
+			sourceTree = "<group>";
+		};
+		4F71D4DDBE2B5C84114C036C /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				494172ADB323C47A49DDBE88 /* Info.plist */,
+				5F93D81F341B0A6EF70CFA26 /* QuickWorkoutFormTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		537F9D1E1AF4FF04F80B9919 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				71F0FF275A01535CABFBE206 /* Assets */,
+				4C80BA81EC4375E1E5377266 /* Extensions */,
+				2CCEB199589D807A24FC3F32 /* Views */,
+				B4E8CC3A024010F643091702 /* Info.plist */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		578E88BA0A2A46083A18C628 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				2AA94C54994C5E72357CDBCE /* App.swift */,
+				0F9ADDBC671372F6E815E577 /* AppCore.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		62FC671BD1AAE118D4E21546 /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				0CA94211500392291070AD81 /* EndpointProtocol.swift */,
+				D2557EFFA7155DA7F98C784A /* SoundClient.swift */,
+				28535902F14ABDF4D71C45F2 /* WebClient.swift */,
+			);
+			path = Clients;
+			sourceTree = "<group>";
+		};
+		63CC02C360A1975D95F84143 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		6FA83F17763EF12E38677B04 /* CoreInterface */ = {
+			isa = PBXGroup;
+			children = (
+				537F9D1E1AF4FF04F80B9919 /* Source */,
+				63CC02C360A1975D95F84143 /* Tests */,
+			);
+			path = CoreInterface;
+			sourceTree = "<group>";
+		};
+		70F72DAFAA1A9DA8899F821E /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4B368539A63A57A477B26A9B /* CorePersistenceTests.swift */,
+				119F12B17477A1D373D076D9 /* Info.plist */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		71F0FF275A01535CABFBE206 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				CB9CB1D3AB597E23BF5D78CA /* Assets.xcassets */,
+				94A40D56E1DFF6EC5E9288F8 /* Colors.xcassets */,
+				11F5F4BF0728CE743996AAEC /* Preview Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		73C12977F121958239CCC6F4 = {
+			isa = PBXGroup;
+			children = (
+				CF453455557C0B82D800DC31 /* InternalFrameworks */,
+				A7B3DD8594C82D5E34260308 /* QuickWorkout */,
+				9E80218C9A2013B4E5EE1DAA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		741F0D2347D5723C61912DFE /* QuickTimerControls */ = {
+			isa = PBXGroup;
+			children = (
+				4C9DB89B727EAABC6A1416F9 /* QuickTimerControlsView.swift */,
+				BFBD19F4477B7051A2FFF0DE /* TimerControlsCore.swift */,
+			);
+			path = QuickTimerControls;
+			sourceTree = "<group>";
+		};
+		77A16F835D865656A974A7D0 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				7F0C82DC46C19433AE958089 /* QuickWorkoutCard */,
+				0229445801B317715C6226E4 /* QuickWorkoutsList */,
+				2A6E422ADCD3E0E00F872AAE /* Info.plist */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		7F0C82DC46C19433AE958089 /* QuickWorkoutCard */ = {
+			isa = PBXGroup;
+			children = (
+				649F9E668CC3A4129EA3C8B9 /* QuickWorkoutCard.swift */,
+				4FB753D72D475C4329289141 /* QuickWorkoutCardView.swift */,
+			);
+			path = QuickWorkoutCard;
+			sourceTree = "<group>";
+		};
+		826365F30762324431F01E1E /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				741F0D2347D5723C61912DFE /* QuickTimerControls */,
+				D015AD228EB45450E655CA67 /* RunningTimer */,
+				B78DE0916284D0323ED0C1F8 /* Info.plist */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		83055D39B75CEED78C90DFA6 /* DomainEntities */ = {
+			isa = PBXGroup;
+			children = (
+				A204FE23ED27B6382FFEF1B9 /* QuickWorkout-DomainEntity.swift */,
+				2D6C1C268A9F5C9BE5D59057 /* QuickWorkoutSegment-DomainEntity.swift */,
+			);
+			path = DomainEntities;
+			sourceTree = "<group>";
+		};
+		8CA6AEA966E4781A22FD1D8E /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				25689D7C4D4D05054DCA9C6C /* WorkoutTimer.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		90E59AC48A776FEA7141A428 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				967D756416E93532A7E7F2A7 /* Info.plist */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		92D90FBF32374B43C48B9B2D /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				AD0C9A194B5FC66543ECA2B3 /* Info.plist */,
+				A37111F60C5E7E53540A2423 /* QuickExerciseBuilderTests.swift */,
+				C284CCA46C5F2F9EFA6059CD /* RunningTimerCoreTests.swift */,
+				39BC6C05A55F0D2786F3C4D8 /* TimerCoreTests.swift */,
+				C324092E367304B19183EAF3 /* ValuePickerTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		96979C6DE50618E0B5382DF0 /* QuickExerciseBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				907B914687E9E92E4784903D /* AddTimerSegmentCore.swift */,
+				F8CF0225E1B3CA66EED92D48 /* AddTimerSegmentView.swift */,
+			);
+			path = QuickExerciseBuilder;
+			sourceTree = "<group>";
+		};
+		9BE6089F1D785ABD64D42188 /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				D33C5D21200032EEFCEF2C3C /* CoreDataClient.swift */,
+			);
+			path = Clients;
+			sourceTree = "<group>";
+		};
+		9E80218C9A2013B4E5EE1DAA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6C8435F238F12E6F858D316E /* CoreInterface.framework */,
+				3BD7E094D6AC93D8DE8178C6 /* CoreInterfaceUnitTests.xctest */,
+				5D9C8823AE790AD3596FF769 /* CoreLogic.framework */,
+				ACE9904F7776A66DA132A57E /* CoreLogicUnitTests.xctest */,
+				BC5F82A934D504F10E8271D4 /* CorePersistence.framework */,
+				E11777D7BF5727D4F461F400 /* CorePersistenceUnitTests.xctest */,
+				8911766912BBF763D237D37C /* DomainEntities.framework */,
+				CC8E272BA837D8A3C88AA9B3 /* QuickWorkoutForm.framework */,
+				9B10E1789D76E7CEEE4BBEAE /* QuickWorkoutFormUnitTests.xctest */,
+				582BAEF9338A1ED8C9E7AC1A /* QuickWorkouts.app */,
+				ACBF68584876A49ED03B051C /* QuickWorkoutsList.framework */,
+				7BBC89D95613BAA88194B3D7 /* QuickWorkoutsListUnitTests.xctest */,
+				32DD1B05D08FFCB2800D44D3 /* RunningTimer.framework */,
+				55F14446AB216FFC80229B02 /* RunningTimerUnitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A74651DEEDE658C498F26367 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				27EBD0E3EB5BA32251AE4D4D /* DatabaseEntity.swift */,
+				BB662DE2A3436F95D7137506 /* DomainEntity.swift */,
+				ABEC9FE3B1141668CBE472B0 /* Store.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		A7B3DD8594C82D5E34260308 /* QuickWorkout */ = {
+			isa = PBXGroup;
+			children = (
+				B5AEF673229F768BBAFCCAF6 /* Preview Content */,
+				A9F4E680E4F59D620F57BD11 /* Product */,
+				578E88BA0A2A46083A18C628 /* Root */,
+			);
+			path = QuickWorkout;
+			sourceTree = "<group>";
+		};
+		A93C8EFE1ADB26D91E466BA2 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				20DCA075243C329C5204949B /* Info.plist */,
+				8CC5F4F4173ED20697D0A411 /* QuickTimerControlsTests.swift */,
+				14C00511ADE1489E60E7D35D /* RunningTimerTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		A9F4E680E4F59D620F57BD11 /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				E4FCC2D6EB5654C6E508C162 /* Entitlements */,
+				D3A94CE645D6509B904590FC /* Assets.xcassets */,
+				918343C862431FE91C8B1C26 /* exportOptions.plist */,
+				63FBDC608BE95DA346CD87EE /* Info.plist */,
+				CCC577A210C546A9BD7988EE /* LaunchScreen.storyboard */,
+			);
+			path = Product;
+			sourceTree = "<group>";
+		};
+		B1CAB453727BB95F4807A97E /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				EA00518EF14BBE75C3370E75 /* CreateQuickWorkout */,
+				96979C6DE50618E0B5382DF0 /* QuickExerciseBuilder */,
+				F3FF04BF5B931206D83078A9 /* ValuePicker */,
+				AC475E20E94B6D68FC3321F7 /* Info.plist */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		B5AEF673229F768BBAFCCAF6 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				6B9F190EF78DEACCE1A6A8A1 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BE109CC64C03C21013230ABB /* QuickWorkoutsList */ = {
+			isa = PBXGroup;
+			children = (
+				77A16F835D865656A974A7D0 /* Source */,
+				92D90FBF32374B43C48B9B2D /* Tests */,
+			);
+			path = QuickWorkoutsList;
+			sourceTree = "<group>";
+		};
+		BE6F2C83685537C1E0B35811 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				62FC671BD1AAE118D4E21546 /* Clients */,
+				08CB576DE44C7B05FAC15805 /* Extensions */,
+				93F729694F28B7C16AEBC8C8 /* Info.plist */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		BEF05B68E968890CCEE911B8 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				76A151207452E5227096B090 /* QuickWorkoutDao+CoreDataClass.swift */,
+				4D45F82F1D57D8270A9618D8 /* QuickWorkoutDao+CoreDataProperties.swift */,
+				D69FC41D8D717B459299DFAA /* QuickWorkoutSegmentDao+CoreDataClass.swift */,
+				41E0A9B91D3E11A80C6B9527 /* QuickWorkoutSegmentDao+CoreDataProperties.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		CA6B06E1AE3F5A69428A7CBC /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				6B013D4A796D38996317CB3D /* QuickTimerRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		CF453455557C0B82D800DC31 /* InternalFrameworks */ = {
+			isa = PBXGroup;
+			children = (
+				11E2B118A6D651E079B9FF3F /* Core */,
+				0FEF4D1089A51B78F2684C7C /* Screens */,
+			);
+			path = InternalFrameworks;
+			sourceTree = "<group>";
+		};
+		D015AD228EB45450E655CA67 /* RunningTimer */ = {
+			isa = PBXGroup;
+			children = (
+				81A7BBD700618E5E1B45F058 /* RunningTimerCore.swift */,
+				CC7E63397B80E91E15849254 /* RunningTimerView.swift */,
+			);
+			path = RunningTimer;
+			sourceTree = "<group>";
+		};
+		E05071674E75FD7ED774253A /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				9BE6089F1D785ABD64D42188 /* Clients */,
+				8CA6AEA966E4781A22FD1D8E /* CoreData */,
+				83055D39B75CEED78C90DFA6 /* DomainEntities */,
+				BEF05B68E968890CCEE911B8 /* Entities */,
+				A74651DEEDE658C498F26367 /* Protocols */,
+				CA6B06E1AE3F5A69428A7CBC /* Repositories */,
+				276D70A6D8FA9635A4B7A3BB /* Stores */,
+				3976E1CB3E740DC1630B13AC /* Info.plist */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		E4FCC2D6EB5654C6E508C162 /* Entitlements */ = {
+			isa = PBXGroup;
+			children = (
+				8EE53AD59D0F887C07847329 /* Debug.entitlements */,
+				47B595A5124DEF601C9F0D3F /* Release.entitlements */,
+			);
+			path = Entitlements;
+			sourceTree = "<group>";
+		};
+		EA00518EF14BBE75C3370E75 /* CreateQuickWorkout */ = {
+			isa = PBXGroup;
+			children = (
+				1FA51805C2CD567E52773BA0 /* CreateQuickWorkoutCore.swift */,
+				AE8E06036B946AB9AFC71F5C /* CreateQuickWorkoutView.swift */,
+			);
+			path = CreateQuickWorkout;
+			sourceTree = "<group>";
+		};
+		F3FF04BF5B931206D83078A9 /* ValuePicker */ = {
+			isa = PBXGroup;
+			children = (
+				A02AC564EB44B22BFEC3E9EB /* PickerCore.swift */,
+				97528C5DF41FDEB139B0B631 /* ValuePicker.swift */,
+			);
+			path = ValuePicker;
+			sourceTree = "<group>";
+		};
+		FAF84C98243CE0F4D1AEBA32 /* CoreLogic */ = {
+			isa = PBXGroup;
+			children = (
+				BE6F2C83685537C1E0B35811 /* Source */,
+				90E59AC48A776FEA7141A428 /* Tests */,
+			);
+			path = CoreLogic;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		00AF1C08DBA71D9ABC18EA04 /* RunningTimer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9746B3F67EE03F3A118B8515 /* Build configuration list for PBXNativeTarget "RunningTimer" */;
+			buildPhases = (
+				DA501EBD736C8B0F590B27D6 /* Sources */,
+				6BA29087A163B52CD9EF7C42 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E4DC06D84E65C29E7B0D8AA4 /* PBXTargetDependency */,
+				EF311C33F7FD15CAB105ED97 /* PBXTargetDependency */,
+				6EF0328A633407837F8DC733 /* PBXTargetDependency */,
+			);
+			name = RunningTimer;
+			productName = RunningTimer;
+			productReference = 32DD1B05D08FFCB2800D44D3 /* RunningTimer.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		08179C30D6CAB54AF2F03B20 /* DomainEntities */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AD8FCA8379F1091BED6C744F /* Build configuration list for PBXNativeTarget "DomainEntities" */;
+			buildPhases = (
+				824659CF627E87DDF7E6F0A1 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DomainEntities;
+			productName = DomainEntities;
+			productReference = 8911766912BBF763D237D37C /* DomainEntities.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		213937149F3F9BF4AC1C05A2 /* QuickWorkoutForm */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 85F04CF9B0EA564937DF28D4 /* Build configuration list for PBXNativeTarget "QuickWorkoutForm" */;
+			buildPhases = (
+				111372CF05D18F30DB4E217C /* Sources */,
+				066DCCE7A606D481549DE415 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B066523DBB38D9800B111A94 /* PBXTargetDependency */,
+				066D31FD244FD07C02D30B6E /* PBXTargetDependency */,
+				91FEA7A55F68B03D5D86B1BA /* PBXTargetDependency */,
+				45549895ADCFE1D22E692BC2 /* PBXTargetDependency */,
+			);
+			name = QuickWorkoutForm;
+			productName = QuickWorkoutForm;
+			productReference = CC8E272BA837D8A3C88AA9B3 /* QuickWorkoutForm.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		21EEB9DEDC7954CBE9B6D64F /* QuickWorkoutFormUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6262F2B54D4974BD243E6276 /* Build configuration list for PBXNativeTarget "QuickWorkoutFormUnitTests" */;
+			buildPhases = (
+				BEA112AB7FCE7B67AEEF606B /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QuickWorkoutFormUnitTests;
+			productName = QuickWorkoutFormUnitTests;
+			productReference = 9B10E1789D76E7CEEE4BBEAE /* QuickWorkoutFormUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2ABC8B906C7E35D3B20F8788 /* RunningTimerUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 54FA60E6087164BD50783DB6 /* Build configuration list for PBXNativeTarget "RunningTimerUnitTests" */;
+			buildPhases = (
+				FA8F407AECEBAE7B5C9733E1 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RunningTimerUnitTests;
+			productName = RunningTimerUnitTests;
+			productReference = 55F14446AB216FFC80229B02 /* RunningTimerUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		2EE610BED71CAF328FC9D361 /* CorePersistenceUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E0B810DDCA39D2973E37F747 /* Build configuration list for PBXNativeTarget "CorePersistenceUnitTests" */;
+			buildPhases = (
+				4749F33A546F6DD1CAC3F29D /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CorePersistenceUnitTests;
+			productName = CorePersistenceUnitTests;
+			productReference = E11777D7BF5727D4F461F400 /* CorePersistenceUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3AEA7A1CE1A81CBC52B04860 /* QuickWorkoutsListUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8B3C7A5ED17D0CDE7D926EC0 /* Build configuration list for PBXNativeTarget "QuickWorkoutsListUnitTests" */;
+			buildPhases = (
+				BE4AD2ECEE11F4CBD6BA20BA /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QuickWorkoutsListUnitTests;
+			productName = QuickWorkoutsListUnitTests;
+			productReference = 7BBC89D95613BAA88194B3D7 /* QuickWorkoutsListUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3CD8BF404DCE4226F195E7BB /* QuickWorkoutsList */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 64093B7EEA04907E2AA5137D /* Build configuration list for PBXNativeTarget "QuickWorkoutsList" */;
+			buildPhases = (
+				69993703510CC6B9737C777D /* Sources */,
+				E6E509EC75F836ABC56F8B8E /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D3C0CF2D25170A194308D77B /* PBXTargetDependency */,
+				9263E59DD55F1E67FDC011CE /* PBXTargetDependency */,
+				8DFECCBC59A15C143EADBBCE /* PBXTargetDependency */,
+				4FAF2669C19C37A24A3CB905 /* PBXTargetDependency */,
+				F6556C4EA9D1DF6EAF1EE946 /* PBXTargetDependency */,
+				98BFB68FB4FAA660F19778A7 /* PBXTargetDependency */,
+			);
+			name = QuickWorkoutsList;
+			productName = QuickWorkoutsList;
+			productReference = ACBF68584876A49ED03B051C /* QuickWorkoutsList.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		441D27302315C8653CA268F5 /* CorePersistence */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF4AF8523490F83D8B8EF9CA /* Build configuration list for PBXNativeTarget "CorePersistence" */;
+			buildPhases = (
+				68DB00096E5A995D1BEDB3C3 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CorePersistence;
+			productName = CorePersistence;
+			productReference = BC5F82A934D504F10E8271D4 /* CorePersistence.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		4546C50B7188D99EB3D52764 /* QuickWorkouts */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4D53D63DBE206F2FA0C8C7B6 /* Build configuration list for PBXNativeTarget "QuickWorkouts" */;
+			buildPhases = (
+				882225EEED7C013DDC4970D9 /* Sources */,
+				EF648AC82068A6CA3E08A6F6 /* Resources */,
+				0DE776D3F5391FA9C860183E /* Frameworks */,
+				45D26E30821BEFB5F3F2030A /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				153C63EEBA0766A1997FD549 /* PBXTargetDependency */,
+				6EFFA7A239B0A766A9CB3AB6 /* PBXTargetDependency */,
+				C2C2BD1F8E83A80434098B98 /* PBXTargetDependency */,
+				64082E981750A92CA23DEF61 /* PBXTargetDependency */,
+				59E388575F928B6BEB19C2AC /* PBXTargetDependency */,
+			);
+			name = QuickWorkouts;
+			productName = QuickWorkouts;
+			productReference = 582BAEF9338A1ED8C9E7AC1A /* QuickWorkouts.app */;
+			productType = "com.apple.product-type.application";
+		};
+		557FA0301327F51ADD9876B5 /* CoreLogicUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E0556745EF9298421E3E685D /* Build configuration list for PBXNativeTarget "CoreLogicUnitTests" */;
+			buildPhases = (
+				8C1515C99EF8A03C7F5BDBB3 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CoreLogicUnitTests;
+			productName = CoreLogicUnitTests;
+			productReference = ACE9904F7776A66DA132A57E /* CoreLogicUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5F979B24CECB96B0E0081FA7 /* CoreLogic */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 672F8397984A3B5E0F74A7FE /* Build configuration list for PBXNativeTarget "CoreLogic" */;
+			buildPhases = (
+				E4E0B936C6427A314B0AE084 /* Sources */,
+				B5EE3DC9CEF80C7387E42908 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CoreLogic;
+			packageProductDependencies = (
+				B4FA45C1A141D9F83D7F1751 /* ComposableArchitecture */,
+			);
+			productName = CoreLogic;
+			productReference = 5D9C8823AE790AD3596FF769 /* CoreLogic.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		C762247966B63905E8DCA558 /* CoreInterfaceUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 16885383F7A103CA93322B50 /* Build configuration list for PBXNativeTarget "CoreInterfaceUnitTests" */;
+			buildPhases = (
+				238014E0173EB65E0618D985 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CoreInterfaceUnitTests;
+			productName = CoreInterfaceUnitTests;
+			productReference = 3BD7E094D6AC93D8DE8178C6 /* CoreInterfaceUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FFED0F83F6AF12509B011F0B /* CoreInterface */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 431878C327EF118241D41DDB /* Build configuration list for PBXNativeTarget "CoreInterface" */;
+			buildPhases = (
+				7E90BEA07D22B129BE8F96FB /* Sources */,
+				64404307245EAE48DAC52C07 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CoreInterface;
+			productName = CoreInterface;
+			productReference = 6C8435F238F12E6F858D316E /* CoreInterface.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		616A1CD0E39A9ABD89F786E3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1200;
+				TargetAttributes = {
+					4546C50B7188D99EB3D52764 = {
+						DevelopmentTeam = GR9SJM3FZP;
+						ProvisioningStyle = Manual;
+					};
+				};
+			};
+			buildConfigurationList = B72023A3AA7ED96CBCC9C65C /* Build configuration list for PBXProject "QuickWorkouts" */;
+			compatibilityVersion = "Xcode 10.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 73C12977F121958239CCC6F4;
+			packageReferences = (
+				143D1C302B2E0607C0494168 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+			);
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FFED0F83F6AF12509B011F0B /* CoreInterface */,
+				C762247966B63905E8DCA558 /* CoreInterfaceUnitTests */,
+				5F979B24CECB96B0E0081FA7 /* CoreLogic */,
+				557FA0301327F51ADD9876B5 /* CoreLogicUnitTests */,
+				441D27302315C8653CA268F5 /* CorePersistence */,
+				2EE610BED71CAF328FC9D361 /* CorePersistenceUnitTests */,
+				08179C30D6CAB54AF2F03B20 /* DomainEntities */,
+				213937149F3F9BF4AC1C05A2 /* QuickWorkoutForm */,
+				21EEB9DEDC7954CBE9B6D64F /* QuickWorkoutFormUnitTests */,
+				4546C50B7188D99EB3D52764 /* QuickWorkouts */,
+				3CD8BF404DCE4226F195E7BB /* QuickWorkoutsList */,
+				3AEA7A1CE1A81CBC52B04860 /* QuickWorkoutsListUnitTests */,
+				00AF1C08DBA71D9ABC18EA04 /* RunningTimer */,
+				2ABC8B906C7E35D3B20F8788 /* RunningTimerUnitTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		64404307245EAE48DAC52C07 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6FDBAEEC36620986D716D04 /* Assets.xcassets in Resources */,
+				6AB2F83F08EF7D015A3C3846 /* Colors.xcassets in Resources */,
+				237C8AE70E524B384420788D /* Preview Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF648AC82068A6CA3E08A6F6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03E9F9D7F63E5F3E7571D38E /* Assets.xcassets in Resources */,
+				C8AA1CEA30C5A0836437D35C /* LaunchScreen.storyboard in Resources */,
+				3A3248556CE9EC876FA4024E /* Preview Assets.xcassets in Resources */,
+				9E1907718163E37178B6B6D7 /* exportOptions.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		111372CF05D18F30DB4E217C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0706531DA85031A45C5F73F0 /* AddTimerSegmentCore.swift in Sources */,
+				BACB8B4EE7C3C2DE656B7A4A /* AddTimerSegmentView.swift in Sources */,
+				2C8750A3F34682FBE0DB9CF9 /* CreateQuickWorkoutCore.swift in Sources */,
+				859126B1221C5F55F8FA339A /* CreateQuickWorkoutView.swift in Sources */,
+				D8EC4FA31C8E9FB261E03B4D /* PickerCore.swift in Sources */,
+				BBA0D88CAC331157624F1E7C /* ValuePicker.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		238014E0173EB65E0618D985 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4749F33A546F6DD1CAC3F29D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FDAD121212BEED217761C2DA /* CorePersistenceTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68DB00096E5A995D1BEDB3C3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6059681FB5FD594C6BC8F245 /* CoreDataClient.swift in Sources */,
+				62DF26A7ABDE926A2B3909DE /* DatabaseEntity.swift in Sources */,
+				4507FACB3B57E1001DEE831C /* DomainEntity.swift in Sources */,
+				20DEA355F78C6FB083B4B727 /* LocalStore.swift in Sources */,
+				98A92E8C130C8816BE167D6D /* QuickTimerRepository.swift in Sources */,
+				4731952D2862CC8BC4BA2149 /* QuickWorkout-DomainEntity.swift in Sources */,
+				29DDD8A20574FA2C68C30E67 /* QuickWorkoutDao+CoreDataClass.swift in Sources */,
+				FAAA59DCFF8745C09911C48B /* QuickWorkoutDao+CoreDataProperties.swift in Sources */,
+				9BFBEEB880A5D58E7F0F90E6 /* QuickWorkoutSegment-DomainEntity.swift in Sources */,
+				0C62A19FF30BEE0A78CDDF35 /* QuickWorkoutSegmentDao+CoreDataClass.swift in Sources */,
+				0BDDF6746AF24CCF9EE0F024 /* QuickWorkoutSegmentDao+CoreDataProperties.swift in Sources */,
+				E65ABFDC8A4C4C88CB3930CC /* Store.swift in Sources */,
+				9CE698B9CA5C5179564BFDC4 /* WorkoutTimer.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		69993703510CC6B9737C777D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				211783B0325F42E588862C07 /* QuickWorkoutCard.swift in Sources */,
+				B8CAB3953F0189D6BF03ED76 /* QuickWorkoutCardView.swift in Sources */,
+				9B425EF7DE088D49449FB19F /* QuickWorkoutsListCore.swift in Sources */,
+				C0A06C21C996C139BA2C82F8 /* QuickWorkoutsListView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E90BEA07D22B129BE8F96FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9DB8314951B84AE76B5E49FC /* Color-Custom.swift in Sources */,
+				00CC110E04D91596702E1858 /* Color-PredefinedTints.swift in Sources */,
+				F71A1ED4CCA3EFD341351610 /* Font-Custom.swift in Sources */,
+				9EEA353EF48DE6B14CEB3EC3 /* PreviewDevice-Models.swift in Sources */,
+				C2187552242B94AAAC0E47CC /* PreviewProvider-Mocks.swift in Sources */,
+				CEBE1C6436D6C1D25BCC1729 /* SegmentedProgressView.swift in Sources */,
+				B5415DBD8BFDACEC2B4FEC75 /* UIImage-Asset.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		824659CF627E87DDF7E6F0A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9EC98FBAE1E0F80EFA352AB4 /* QuickWorkout.swift in Sources */,
+				5AA8A5F048B2BC7DF5669DDF /* QuickWorkoutSegment.swift in Sources */,
+				D3E29F9095334BCFF4BBB575 /* WorkoutColor.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		882225EEED7C013DDC4970D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3BAF03EB314533B648FA4B4 /* App.swift in Sources */,
+				B8D91B31C4FF795B86DB8FC3 /* AppCore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C1515C99EF8A03C7F5BDBB3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE4AD2ECEE11F4CBD6BA20BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F89D5536EADD76B27614848 /* QuickExerciseBuilderTests.swift in Sources */,
+				A2FE87BD3229D72343634BE1 /* RunningTimerCoreTests.swift in Sources */,
+				56E3372659F02DC2934EED03 /* TimerCoreTests.swift in Sources */,
+				D365986E9EC7921B5DDB4D70 /* ValuePickerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEA112AB7FCE7B67AEEF606B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E4B0BE998E5A3FABB2DFE69 /* QuickWorkoutFormTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DA501EBD736C8B0F590B27D6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				956D1C7891B6D175F4BA12A8 /* QuickTimerControlsView.swift in Sources */,
+				046CAAE0188B4FF92F7796E2 /* RunningTimerCore.swift in Sources */,
+				14CC0A6C238753EB090417A3 /* RunningTimerView.swift in Sources */,
+				6B38F38036BF43C80714C287 /* TimerControlsCore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E4E0B936C6427A314B0AE084 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E5508A87183688699DB1A50 /* Collection-Safe.swift in Sources */,
+				033877A742B6C2F948DA4E83 /* Data-Decode.swift in Sources */,
+				FFF7F3E6EE0ECDB9CFFF000B /* EndpointProtocol.swift in Sources */,
+				0EFD5B4593FCB09FD8F3CCBD /* SoundClient.swift in Sources */,
+				B71012317883C35203C18A2F /* String-FormattedTime.swift in Sources */,
+				F264696EB4372986E4D4161D /* WebClient.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA8F407AECEBAE7B5C9733E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1AF8217FC67A7BD948FD7CE8 /* QuickTimerControlsTests.swift in Sources */,
+				85EF3F166307B0CD3BB9BC84 /* RunningTimerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		066D31FD244FD07C02D30B6E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5F979B24CECB96B0E0081FA7 /* CoreLogic */;
+			targetProxy = C537AE9E74C429A297B9692E /* PBXContainerItemProxy */;
+		};
+		153C63EEBA0766A1997FD549 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 08179C30D6CAB54AF2F03B20 /* DomainEntities */;
+			targetProxy = D50AD4C4F53C07A0D99AC983 /* PBXContainerItemProxy */;
+		};
+		45549895ADCFE1D22E692BC2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 441D27302315C8653CA268F5 /* CorePersistence */;
+			targetProxy = 87721C239C953C68A9944FAA /* PBXContainerItemProxy */;
+		};
+		4FAF2669C19C37A24A3CB905 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 00AF1C08DBA71D9ABC18EA04 /* RunningTimer */;
+			targetProxy = 3A9B16AB1A983EF277A0D38C /* PBXContainerItemProxy */;
+		};
+		59E388575F928B6BEB19C2AC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 441D27302315C8653CA268F5 /* CorePersistence */;
+			targetProxy = 89B470E6DE664D3D8542B149 /* PBXContainerItemProxy */;
+		};
+		64082E981750A92CA23DEF61 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 08179C30D6CAB54AF2F03B20 /* DomainEntities */;
+			targetProxy = AD21C01139809AFC661F5C80 /* PBXContainerItemProxy */;
+		};
+		6EF0328A633407837F8DC733 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 08179C30D6CAB54AF2F03B20 /* DomainEntities */;
+			targetProxy = B376BC9C3E91448FE4B0F5B1 /* PBXContainerItemProxy */;
+		};
+		6EFFA7A239B0A766A9CB3AB6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5F979B24CECB96B0E0081FA7 /* CoreLogic */;
+			targetProxy = 39510A4D916BCF2DC91A89EF /* PBXContainerItemProxy */;
+		};
+		8DFECCBC59A15C143EADBBCE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 08179C30D6CAB54AF2F03B20 /* DomainEntities */;
+			targetProxy = A622BEA8D06937A59F724388 /* PBXContainerItemProxy */;
+		};
+		91FEA7A55F68B03D5D86B1BA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 08179C30D6CAB54AF2F03B20 /* DomainEntities */;
+			targetProxy = 05FC271F33E1AE31D699C3D6 /* PBXContainerItemProxy */;
+		};
+		9263E59DD55F1E67FDC011CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5F979B24CECB96B0E0081FA7 /* CoreLogic */;
+			targetProxy = EF90E6299DB8E93F798149B3 /* PBXContainerItemProxy */;
+		};
+		98BFB68FB4FAA660F19778A7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 441D27302315C8653CA268F5 /* CorePersistence */;
+			targetProxy = 5790F6BC325B0C65C4AA15CE /* PBXContainerItemProxy */;
+		};
+		B066523DBB38D9800B111A94 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FFED0F83F6AF12509B011F0B /* CoreInterface */;
+			targetProxy = 15700642CD7F0A8ECEB55AA8 /* PBXContainerItemProxy */;
+		};
+		C2C2BD1F8E83A80434098B98 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3CD8BF404DCE4226F195E7BB /* QuickWorkoutsList */;
+			targetProxy = D4DFFBC4DCE4F3FA541E65FE /* PBXContainerItemProxy */;
+		};
+		D3C0CF2D25170A194308D77B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FFED0F83F6AF12509B011F0B /* CoreInterface */;
+			targetProxy = CEC8B12F8A02C47109E83801 /* PBXContainerItemProxy */;
+		};
+		E4DC06D84E65C29E7B0D8AA4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FFED0F83F6AF12509B011F0B /* CoreInterface */;
+			targetProxy = 7B949A32D5F3CDC0E63AA901 /* PBXContainerItemProxy */;
+		};
+		EF311C33F7FD15CAB105ED97 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5F979B24CECB96B0E0081FA7 /* CoreLogic */;
+			targetProxy = 0AE7EA1C5AA38B7AE2843EE5 /* PBXContainerItemProxy */;
+		};
+		F6556C4EA9D1DF6EAF1EE946 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 213937149F3F9BF4AC1C05A2 /* QuickWorkoutForm */;
+			targetProxy = 4BD49F6746ADF82B72C92694 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CCC577A210C546A9BD7988EE /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9168A63D6DBECB2C9A7BDDE2 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		033BEFFD7EAFAA46F0EFA9FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = InternalFrameworks/Screens/RunningTimer/Source/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.RunningTimer;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		18E5D14F3209FA1DDA61D9F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = InternalFrameworks/Core/CoreInterface/Source/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.CoreInterface;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		1E838A32B103D03CCA8F1607 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = InternalFrameworks/Core/DomainEntities/Source/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.DomainEntities;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		22768EDA463ED040B97CBFF1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		2D6146D41F4B2A3887DFF99E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = InternalFrameworks/Screens/QuickWorkoutsList/Source/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.QuickWorkoutsList;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		30129A351F65A2A2695E849D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = InternalFrameworks/Screens/QuickWorkoutsList/Source/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.QuickWorkoutsList;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		436F79327528DA4BCBC04405 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = InternalFrameworks/Core/CoreLogic/Source/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.CoreLogic;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		48A627A5BB89B78FD5EEA25A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = InternalFrameworks/Core/CorePersistence/Source/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.CorePersistence;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		5E08F648A93698D36E23D2AC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = InternalFrameworks/Screens/QuickWorkoutForm/Source/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.QuickWorkoutForm;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		5FC945F6CE63EB33904C031B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = InternalFrameworks/Core/CoreLogic/Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.CoreLogicUnitTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6D0B777CFB4F0C149FA07280 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = InternalFrameworks/Core/CoreLogic/Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.CoreLogicUnitTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		743AF9A4FADF097CF739D1D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = InternalFrameworks/Core/CoreInterface/Source/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.CoreInterface;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		7BB6B4C103F46A4F07D43732 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = InternalFrameworks/Screens/RunningTimer/Source/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.RunningTimer;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		800F2CBC8C6FFB398A5F65C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = InternalFrameworks/Screens/QuickWorkoutForm/Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.QuickWorkoutFormUnitTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		85C9F9AF3FC50C480A5EB9AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = InternalFrameworks/Screens/QuickWorkoutForm/Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.QuickWorkoutFormUnitTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8A1029B8413869BCBFC25A76 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = InternalFrameworks/Screens/RunningTimer/Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.RunningTimerUnitTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		9846C62E3A8B45B716AC9733 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		9929C0B48C934DCE014A986B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = QuickWorkout/Product/Entitlements/Debug.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = GR9SJM3FZP;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = QuickWorkout/Product/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.QuickWorkouts.debug;
+				PRODUCT_NAME = "Quick Workouts";
+				PROVISIONING_PROFILE_SPECIFIER = "QuickWorkouts Development";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9F8BF8D419C67757D7196AA6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.CoreInterfaceUnitTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A5682E22FD8EFB5B759E521E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = InternalFrameworks/Screens/QuickWorkoutsList/Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.QuickWorkoutsListUnitTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B0EED5EF0C9103E6CCF1BEAC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = InternalFrameworks/Screens/QuickWorkoutsList/Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.QuickWorkoutsListUnitTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BB5B6CC3A396EF3BC31566EC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = InternalFrameworks/Screens/RunningTimer/Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.RunningTimerUnitTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BB6297AD9CFCABBF495D9D2F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.CoreInterfaceUnitTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C5FE6BE43EB4A7B797FC3651 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = InternalFrameworks/Core/DomainEntities/Source/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.DomainEntities;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		DBD8816962C6A184AB844762 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = InternalFrameworks/Core/CoreLogic/Source/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.CoreLogic;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		DE138F7ADD532F294A50C342 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = InternalFrameworks/Core/CorePersistence/Source/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.CorePersistence;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		E2D9FEBC3EA7512602182D5B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = InternalFrameworks/Core/CorePersistence/Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.CorePersistenceUnitTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E5DA76DA37910518837F89E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = InternalFrameworks/Core/CorePersistence/Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.CorePersistenceUnitTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EA051986B88CC66C37F88458 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = QuickWorkout/Product/Entitlements/Release.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = GR9SJM3FZP;
+				ENABLE_BITCODE = YES;
+				INFOPLIST_FILE = QuickWorkout/Product/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.QuickWorkouts;
+				PRODUCT_NAME = "Quick Workouts";
+				PROVISIONING_PROFILE_SPECIFIER = "QuickWorkouts Distribution";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EE1212400E3EA9FCE7AC19AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = InternalFrameworks/Screens/QuickWorkoutForm/Source/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.QuickWorkoutForm;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		16885383F7A103CA93322B50 /* Build configuration list for PBXNativeTarget "CoreInterfaceUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F8BF8D419C67757D7196AA6 /* Debug */,
+				BB6297AD9CFCABBF495D9D2F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		431878C327EF118241D41DDB /* Build configuration list for PBXNativeTarget "CoreInterface" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18E5D14F3209FA1DDA61D9F9 /* Debug */,
+				743AF9A4FADF097CF739D1D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		4D53D63DBE206F2FA0C8C7B6 /* Build configuration list for PBXNativeTarget "QuickWorkouts" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9929C0B48C934DCE014A986B /* Debug */,
+				EA051986B88CC66C37F88458 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		54FA60E6087164BD50783DB6 /* Build configuration list for PBXNativeTarget "RunningTimerUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB5B6CC3A396EF3BC31566EC /* Debug */,
+				8A1029B8413869BCBFC25A76 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		6262F2B54D4974BD243E6276 /* Build configuration list for PBXNativeTarget "QuickWorkoutFormUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				800F2CBC8C6FFB398A5F65C5 /* Debug */,
+				85C9F9AF3FC50C480A5EB9AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		64093B7EEA04907E2AA5137D /* Build configuration list for PBXNativeTarget "QuickWorkoutsList" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30129A351F65A2A2695E849D /* Debug */,
+				2D6146D41F4B2A3887DFF99E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		672F8397984A3B5E0F74A7FE /* Build configuration list for PBXNativeTarget "CoreLogic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				436F79327528DA4BCBC04405 /* Debug */,
+				DBD8816962C6A184AB844762 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		85F04CF9B0EA564937DF28D4 /* Build configuration list for PBXNativeTarget "QuickWorkoutForm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EE1212400E3EA9FCE7AC19AE /* Debug */,
+				5E08F648A93698D36E23D2AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8B3C7A5ED17D0CDE7D926EC0 /* Build configuration list for PBXNativeTarget "QuickWorkoutsListUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0EED5EF0C9103E6CCF1BEAC /* Debug */,
+				A5682E22FD8EFB5B759E521E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		9746B3F67EE03F3A118B8515 /* Build configuration list for PBXNativeTarget "RunningTimer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7BB6B4C103F46A4F07D43732 /* Debug */,
+				033BEFFD7EAFAA46F0EFA9FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		AD8FCA8379F1091BED6C744F /* Build configuration list for PBXNativeTarget "DomainEntities" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E838A32B103D03CCA8F1607 /* Debug */,
+				C5FE6BE43EB4A7B797FC3651 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		B72023A3AA7ED96CBCC9C65C /* Build configuration list for PBXProject "QuickWorkouts" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				22768EDA463ED040B97CBFF1 /* Debug */,
+				9846C62E3A8B45B716AC9733 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		BF4AF8523490F83D8B8EF9CA /* Build configuration list for PBXNativeTarget "CorePersistence" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				48A627A5BB89B78FD5EEA25A /* Debug */,
+				DE138F7ADD532F294A50C342 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E0556745EF9298421E3E685D /* Build configuration list for PBXNativeTarget "CoreLogicUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5FC945F6CE63EB33904C031B /* Debug */,
+				6D0B777CFB4F0C149FA07280 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E0B810DDCA39D2973E37F747 /* Build configuration list for PBXNativeTarget "CorePersistenceUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5DA76DA37910518837F89E1 /* Debug */,
+				E2D9FEBC3EA7512602182D5B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		143D1C302B2E0607C0494168 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B4FA45C1A141D9F83D7F1751 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 143D1C302B2E0607C0494168 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		25689D7C4D4D05054DCA9C6C /* WorkoutTimer.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C43D2DB1A81774F61F2AAA43 /* WorkoutTimer.xcdatamodel */,
+			);
+			currentVersion = C43D2DB1A81774F61F2AAA43 /* WorkoutTimer.xcdatamodel */;
+			path = WorkoutTimer.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 616A1CD0E39A9ABD89F786E3 /* Project object */;
+}
