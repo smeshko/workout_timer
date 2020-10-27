@@ -15,6 +15,9 @@ targets:
       - target: QuickWorkoutsList
       - target: DomainEntities
       - target: CorePersistence
+      - target: CoreInterface
+      - target: QuickWorkoutForm
+      - target: RunningTimer
     scheme:
       gatherCoverageData: true
       testTargets:

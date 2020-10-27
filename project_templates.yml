@@ -16,8 +16,6 @@ targetTemplates:
     platform: iOS
     deploymentTarget: "14.0"
     sources: QuickWorkout
-    dependencies:
-      - target: DomainEntities
     configFiles:
       Debug: QuickWorkout/Product/Debug.xcconfig
       Release: QuickWorkout/Product/Release.xcconfig
