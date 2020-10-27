@@ -51,7 +51,7 @@ struct CoreDataClient {
     private var viewContext: NSManagedObjectContext { container.viewContext }
 
     init(inMemory: Bool = false) {
-        guard let persistenceBundle = Bundle(identifier: "com.tsonevInc.mobile.ios.CorePersistence"),
+        guard let persistenceBundle = Bundle(identifier: "com.tsonev.mobile.ios.CorePersistence"),
               let modelURL = persistenceBundle.url(forResource: "WorkoutTimer", withExtension: "momd"),
               let managedObjectModel = NSManagedObjectModel(contentsOf: modelURL) else {
 

@@ -3,7 +3,7 @@ import SwiftUI
 
 public extension UIImage {
   convenience init(namedSharedAsset name: String) {
-    self.init(named: name, in: Bundle(identifier: "com.tsonevInc.mobile.ios.CoreInterface"), compatibleWith: nil)!
+    self.init(named: name, in: Bundle(identifier: "com.tsonev.mobile.ios.CoreInterface"), compatibleWith: nil)!
   }
 }
 

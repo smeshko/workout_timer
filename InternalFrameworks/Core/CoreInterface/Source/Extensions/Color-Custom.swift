@@ -1,7 +1,7 @@
 import SwiftUI
 
 extension Color {
-    private static let bundle = Bundle(identifier: "com.tsonevInc.mobile.ios.CoreInterface")
+    private static let bundle = Bundle(identifier: "com.tsonev.mobile.ios.CoreInterface")
 
     public static let appDark = Color("dark", bundle: bundle)
     public static let appWhite = Color("white", bundle: bundle)
