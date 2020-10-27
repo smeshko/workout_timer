@@ -37,9 +37,13 @@ targets:
     templates: [CoreUnitTests]
     templateAttributes:
       frameworkName: CoreLogic
+    dependencies:
+      - package: ComposableArchitecture
 
   CoreInterface:
     templates: [CoreFramework]
+    dependencies: 
+      - target: DomainEntities
 
   CoreInterfaceUnitTests:
     templates: [CoreUnitTests]
@@ -48,11 +52,15 @@ targets:
 
   CorePersistence:
     templates: [CoreFramework]
+    dependencies:
+      - target: DomainEntities
 
   CorePersistenceUnitTests:
     templates: [CoreUnitTests]
     templateAttributes:
       frameworkName: CorePersistence
+    dependencies:
+      - target: DomainEntities
 
   QuickWorkoutForm:
     templates: [ScreenFramework]
@@ -63,6 +71,8 @@ targets:
     templates: [ScreenUnitTests]
     templateAttributes:
       frameworkName: QuickWorkoutForm
+    dependencies:
+      - target: CorePersistence
 
   RunningTimer:
     templates: [ScreenFramework]
@@ -83,3 +93,7 @@ targets:
     templates: [ScreenUnitTests]
     templateAttributes:
       frameworkName: QuickWorkoutsList
+    dependencies:
+      - target: RunningTimer
+      - target: QuickWorkoutForm
+      - target: CorePersistence

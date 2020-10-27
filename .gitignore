@@ -4,7 +4,8 @@ xcuserdata/
 *.dSYM.zip
 *.dSYM
 
-.build/
+*.build/
+build/
 *.xcworkspace
 xcshareddata/
 *.pbxproj

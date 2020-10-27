@@ -21,6 +21,9 @@ targetTemplates:
     settings:
       base:
         PRODUCT_NAME: Quick Workouts
+        SWIFT_INSTALL_OBJC_HEADER: NO
+        SWIFT_OBJC_INTERFACE_HEADER_NAME: ""
+        SWIFT_PRECOMPILE_BRIDGING_HEADER: NO
         CODE_SIGN_STYLE: Manual
         TARGETED_DEVICE_FAMILY: 1,2
         ENABLE_BITCODE: NO
@@ -48,6 +51,11 @@ targetTemplates:
     type: framework
     platform: iOS
     sources: InternalFrameworks/Core/${target_name}/Source
+    settings:
+      base:
+        SWIFT_INSTALL_OBJC_HEADER: NO
+        SWIFT_OBJC_INTERFACE_HEADER_NAME: ""
+        SWIFT_PRECOMPILE_BRIDGING_HEADER: NO
 
   ScreenFramework:
     type: framework
@@ -57,15 +65,27 @@ targetTemplates:
       - target: CoreInterface
       - target: CoreLogic
       - target: DomainEntities
+    settings:
+      base:
+        SWIFT_INSTALL_OBJC_HEADER: NO
+        SWIFT_OBJC_INTERFACE_HEADER_NAME: ""
+        SWIFT_PRECOMPILE_BRIDGING_HEADER: NO
 
   CoreUnitTests:
     type: bundle.unit-test
     platform: iOS
     sources: InternalFrameworks/Core/${frameworkName}/Tests
+    dependencies:
+      - target: DomainEntities
     scheme:
       testTargets:
         - name: ${frameworkName}UnitTests
       gatherCoverageData: true
+    settings:
+      base:
+        SWIFT_INSTALL_OBJC_HEADER: NO
+        SWIFT_OBJC_INTERFACE_HEADER_NAME: ""
+        SWIFT_PRECOMPILE_BRIDGING_HEADER: NO
 
   ScreenUnitTests:
     type: bundle.unit-test
@@ -74,9 +94,18 @@ targetTemplates:
       - path: InternalFrameworks/Screens/${frameworkName}/Tests
         excludes:
           - "**/__Snapshots__"
+    dependencies:
+      - target: CoreLogic
+      - target: DomainEntities
+      - target: ${frameworkName}
     scheme:
       testTargets:
         - name: ${frameworkName}UnitTests
       gatherCoverageData: true
+    settings:
+      base:
+        SWIFT_INSTALL_OBJC_HEADER: NO
+        SWIFT_OBJC_INTERFACE_HEADER_NAME: ""
+        SWIFT_PRECOMPILE_BRIDGING_HEADER: NO
 
 
