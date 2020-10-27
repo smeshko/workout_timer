@@ -19,8 +19,8 @@ targetTemplates:
     dependencies:
       - target: DomainEntities
     configFiles:
-      Debug: Sources/MoVeApps/Tenants/${tenant}/Debug.xcconfig
-      Release: Sources/MoVeApps/Tenants/${tenant}/Release.xcconfig
+      Debug: QuickWorkout/Product/Debug.xcconfig
+      Release: QuickWorkout/Product/Release.xcconfig
     settings:
       base:
         PRODUCT_NAME: Quick Workouts
