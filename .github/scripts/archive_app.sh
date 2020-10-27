@@ -2,9 +2,9 @@
 
 set -eo pipefail
 
-xcodebuild -project WorkoutTimer.xcodeproj \
-            -scheme WorkoutTimer \
+xcodebuild -project QuickWorkouts.xcodeproj \
+            -scheme QuickWorkouts \
             -sdk iphoneos \
             -configuration Release \
-            -archivePath $PWD/build/WorkoutTimer.xcarchive \
+            -archivePath $PWD/build/QuickWorkouts.xcarchive \
             clean archive | xcpretty
