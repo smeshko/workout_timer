@@ -30,23 +30,17 @@ targetTemplates:
         ENABLE_BITCODE: NO
       configs:
         Debug:
-          # CODE_SIGN_IDENTITY: Apple Development
           DEVELOPMENT_TEAM: GR9SJM3FZP
           PRODUCT_BUNDLE_IDENTIFIER: com.tsonev.mobile.ios.${target_name}.debug
-          # PRODUCT_BUNDLE_IDENTIFIER: com.tsonevInc.mobile.ios.WorkoutTimer
           PROVISIONING_PROFILE_SPECIFIER: QuickWorkouts Development
-          # PROVISIONING_PROFILE_SPECIFIER: match Development com.tsonevInc.mobile.ios.WorkoutTimer
           CODE_SIGN_ENTITLEMENTS: QuickWorkout/Product/Entitlements/Debug.entitlements
         Release:
           ENABLE_BITCODE: YES
-          # PRODUCT_BUNDLE_IDENTIFIER: com.tsonev.mobile.ios.${target_name}
           PRODUCT_BUNDLE_IDENTIFIER: com.tsonev.mobile.ios.${target_name}
           PROVISIONING_PROFILE_SPECIFIER: QuickWorkouts Distribution
           CODE_SIGN_ENTITLEMENTS: QuickWorkout/Product/Entitlements/Release.entitlements
           CODE_SIGN_IDENTITY: iPhone Distribution
           DEVELOPMENT_TEAM: GR9SJM3FZP
-          # Apple Distribution: Ivaylo Tsonev (GR9SJM3FZP)
-          # PROVISIONING_PROFILE_SPECIFIER: match Apple Distribution com.tsonev.mobile.ios.${target_name}
 
   CoreFramework:
     type: framework
