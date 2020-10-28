@@ -21,7 +21,7 @@ public struct RunningTimerView: View {
                     VStack(spacing: 28) {
                         HeaderView(store: store)
 
-                        SegmentedProgressView(totalSegments: viewStore.timerSections.count / 2,
+                        SegmentedProgressView(totalSegments: viewStore.progressSegmentsCount,
                                               filledSegments: viewStore.finishedSections,
                                               title: "Sections",
                                               color: viewStore.color)

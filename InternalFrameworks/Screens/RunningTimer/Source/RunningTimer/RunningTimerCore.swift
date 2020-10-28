@@ -15,9 +15,7 @@ public enum RunningTimerAction: Equatable {
     case timerClosed
 
     case onAppear
-
     case preCountdownFinished
-
     case sectionEnded
 
     case alertButtonTapped
@@ -38,6 +36,10 @@ public struct RunningTimerState: Equatable {
 
     var preCountdownTimeLeft: TimeInterval = Constants.preCountdown
     var isInPreCountdown: Bool
+
+    var progressSegmentsCount: Int {
+        timerSections.filter { $0.type == .work }.count
+    }
 
     public init(workout: QuickWorkout,
                 currentSection: TimerSection? = nil,
@@ -105,6 +107,7 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
             }
 
             if state.totalTimeLeft <= 0 {
+                state.finishedSections += 1
                 return Effect(value: RunningTimerAction.timerFinished)
             }
 
