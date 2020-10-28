@@ -54,6 +54,9 @@ public struct CreateQuickWorkoutView: View {
                 }
                 .navigationTitle("Create workout")
             }
+            .onAppear {
+                viewStore.send(.onAppear)
+            }
         }
     }
 }
@@ -72,7 +75,8 @@ struct CreateQuickWorkoutView_Previews: PreviewProvider {
         let filledStore = Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>(
             initialState: CreateQuickWorkoutState(
                 workoutSegments: [mockSegment1, mockSegment2, mockSegment3],
-                name: "My Workout"),
+                name: "My Workout"
+            ),
             reducer: createQuickWorkoutReducer,
             environment: CreateQuickWorkoutEnvironment(
                 mainQueue: DispatchQueue.main.eraseToAnyScheduler(),

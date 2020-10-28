@@ -1,6 +1,7 @@
 import CorePersistence
 import ComposableArchitecture
 import DomainEntities
+import CoreInterface
 import QuickWorkoutForm
 
 public enum QuickWorkoutsListAction: Equatable {
@@ -25,17 +26,24 @@ public struct QuickWorkoutsListState: Equatable {
     }
 }
 
-public struct QuickWorkoutsListEnvironment {
+public struct QuickWorkoutsListEnvironment<T> {
     let repository: QuickWorkoutsRepository
     let mainQueue: AnySchedulerOf<DispatchQueue>
+    let uuid: () -> UUID
+    let randomElementGenerator: ([T]) -> T?
 
-    public init(repository: QuickWorkoutsRepository, mainQueue: AnySchedulerOf<DispatchQueue>) {
+    public init(repository: QuickWorkoutsRepository,
+                mainQueue: AnySchedulerOf<DispatchQueue>,
+                uuid: @escaping () -> UUID = UUID.init,
+                randomElementGenerator: @escaping (_ elements: [T]) -> T? = { $0.randomElement() }) {
         self.repository = repository
         self.mainQueue = mainQueue
+        self.uuid = uuid
+        self.randomElementGenerator = randomElementGenerator
     }
 }
 
-public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorkoutsListAction, QuickWorkoutsListEnvironment>.combine(
+public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorkoutsListAction, QuickWorkoutsListEnvironment<TintColor>>.combine(
     quickWorkoutCardReducer.forEach(
         state: \.workoutStates,
         action: /QuickWorkoutsListAction.workoutCardAction(id:action:),
@@ -88,6 +96,6 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
     createQuickWorkoutReducer.pullback(
         state: \.createWorkoutState,
         action: /QuickWorkoutsListAction.createWorkoutAction,
-        environment: { env in CreateQuickWorkoutEnvironment(mainQueue: env.mainQueue, repository: env.repository)}
+        environment: { env in CreateQuickWorkoutEnvironment(mainQueue: env.mainQueue, repository: env.repository, uuid: env.uuid, randomElementGenerator: env.randomElementGenerator)}
     )
 )

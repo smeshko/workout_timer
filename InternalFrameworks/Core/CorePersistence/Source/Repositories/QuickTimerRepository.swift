@@ -20,16 +20,11 @@ public extension QuickWorkoutsRepository {
         deleteMultiple: LocalStore(client: .shared).delete(_:)
     )
 
-    static let mock = QuickWorkoutsRepository
-    {
-        LocalStore(client: .preview).fetchAll(QuickWorkout.self)
-    } createWorkout: {
-        LocalStore(client: .preview).create($0)
-    } createSegment: {
-        LocalStore(client: .preview).create($0)
-    } delete: {
-        LocalStore(client: .preview).delete($0)
-    } deleteMultiple: {
-        LocalStore(client: .preview).delete($0)
-    }
+    static let mock = QuickWorkoutsRepository(
+        fetchAllWorkouts: { LocalStore(client: .preview).fetchAll(QuickWorkout.self) },
+        createWorkout: LocalStore(client: .preview).create(_:),
+        createSegment: LocalStore(client: .preview).create(_:),
+        delete: LocalStore(client: .preview).delete(_:),
+        deleteMultiple: LocalStore(client: .preview).delete(_:)
+    )
 }
