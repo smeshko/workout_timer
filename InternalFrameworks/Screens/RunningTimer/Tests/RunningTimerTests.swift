@@ -10,30 +10,26 @@ class RunningTimerTests: XCTestCase {
     let testScheduler = DispatchQueue.testScheduler
 
     func testFlow() {
+        let state = RunningTimerState(
+            workout: QuickWorkout(
+                id: UUID(),
+                name: "Mock Workout",
+                color: WorkoutColor(hue: 0, saturation: 0, brightness: 0),
+                segments: [
+                    QuickWorkoutSegment(id: UUID(), sets: 1, work: 2, pause: 1),
+                    QuickWorkoutSegment(id: UUID(), sets: 1, work: 4, pause: 1)
+                ])
+            )
+        let sections = state.timerSections
+
         let store = TestStore(
-            initialState: RunningTimerState(
-                workout: QuickWorkout(
-                    id: UUID(),
-                    name: "Mock Workout",
-                    color: WorkoutColor(hue: 0, saturation: 0, brightness: 0),
-                    segments: [
-                        QuickWorkoutSegment(id: UUID(), sets: 1, work: 2, pause: 1),
-                        QuickWorkoutSegment(id: UUID(), sets: 1, work: 4, pause: 1)
-                    ])
-                ),
+            initialState: state,
                 reducer: runningTimerReducer,
                 environment: RunningTimerEnvironment(
                     mainQueue: AnyScheduler(testScheduler),
                     soundClient: .mock
                 )
             )
-
-        let sections = [
-            TimerSection(duration: 2, type: .work),
-            TimerSection(duration: 1, type: .pause),
-            TimerSection(duration: 4, type: .work),
-            TimerSection(duration: 1, type: .pause)
-        ]
 
         store.assert(
             .send(.onAppear) {
@@ -111,6 +107,7 @@ class RunningTimerTests: XCTestCase {
             .receive(.timerTicked) {
                 $0.totalTimeLeft = 0
                 $0.sectionTimeLeft = 0
+                $0.finishedSections = 2
             },
 
             // finish
@@ -121,27 +118,25 @@ class RunningTimerTests: XCTestCase {
     }
 
     func testCloseTimer() {
+        let state = RunningTimerState(
+            workout: QuickWorkout(
+                id: UUID(),
+                name: "Mock Workout",
+                color: WorkoutColor(hue: 0, saturation: 0, brightness: 0),
+                segments: [
+                    QuickWorkoutSegment(id: UUID(), sets: 1, work: 2, pause: 1)
+                ])
+            )
+        let sections = state.timerSections
+
         let store = TestStore(
-            initialState: RunningTimerState(
-                workout: QuickWorkout(
-                    id: UUID(),
-                    name: "Mock Workout",
-                    color: WorkoutColor(hue: 0, saturation: 0, brightness: 0),
-                    segments: [
-                        QuickWorkoutSegment(id: UUID(), sets: 1, work: 2, pause: 1)
-                    ])
-                ),
+            initialState: state,
                 reducer: runningTimerReducer,
                 environment: RunningTimerEnvironment(
                     mainQueue: AnyScheduler(testScheduler),
                     soundClient: .mock
                 )
             )
-
-        let sections = [
-            TimerSection(duration: 2, type: .work),
-            TimerSection(duration: 1, type: .pause)
-        ]
 
         store.assert(
             .send(.onAppear) {
@@ -200,27 +195,25 @@ class RunningTimerTests: XCTestCase {
     }
 
     func testPlayPause() {
+        let state = RunningTimerState(
+            workout: QuickWorkout(
+                id: UUID(),
+                name: "Mock Workout",
+                color: WorkoutColor(hue: 0, saturation: 0, brightness: 0),
+                segments: [
+                    QuickWorkoutSegment(id: UUID(), sets: 1, work: 2, pause: 1)
+                ])
+            )
+        let sections = state.timerSections
+        
         let store = TestStore(
-            initialState: RunningTimerState(
-                workout: QuickWorkout(
-                    id: UUID(),
-                    name: "Mock Workout",
-                    color: WorkoutColor(hue: 0, saturation: 0, brightness: 0),
-                    segments: [
-                        QuickWorkoutSegment(id: UUID(), sets: 1, work: 2, pause: 1)
-                    ])
-                ),
+            initialState: state,
                 reducer: runningTimerReducer,
                 environment: RunningTimerEnvironment(
                     mainQueue: AnyScheduler(testScheduler),
                     soundClient: .mock
                 )
             )
-
-        let sections = [
-            TimerSection(duration: 2, type: .work),
-            TimerSection(duration: 1, type: .pause)
-        ]
 
         store.assert(
             .send(.onAppear) {

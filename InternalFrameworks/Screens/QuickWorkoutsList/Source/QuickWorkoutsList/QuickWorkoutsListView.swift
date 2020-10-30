@@ -27,15 +27,15 @@ public struct QuickWorkoutsListView: View {
                             }, label: {
                                 Image(systemName: "plus")
                             })
-                            .sheet(isPresented: $isPresenting) {
-                                CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState,
-                                                                          action: QuickWorkoutsListAction.createWorkoutAction))
-                            }
                         }
                     }
                     .navigationTitle("Workouts")
                 }
             }
+        }
+        .sheet(isPresented: $isPresenting) {
+            CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState,
+                                                      action: QuickWorkoutsListAction.createWorkoutAction))
         }
     }
 }
@@ -112,7 +112,7 @@ private struct WorkoutsList: View {
     }
 
     var body: some View {
-        LazyVStack {
+        VStack {
             ForEachStore(store.scope(state: { $0.workoutStates }, action: QuickWorkoutsListAction.workoutCardAction(id:action:))) { cardViewStore in
                 QuickWorkoutCardView(store: cardViewStore)
                     .padding(.horizontal, 28)
@@ -124,7 +124,6 @@ private struct WorkoutsList: View {
                             }
                         }, label: {
                             Label("Delete", systemImage: "trash")
-                                .foregroundColor(.red)
                         })
                     }
             }

@@ -219,6 +219,7 @@ public struct TimerSection: Equatable {
         case work, pause
     }
 
+    let id: UUID
     let duration: TimeInterval
     let type: SectionType
 
@@ -226,8 +227,8 @@ public struct TimerSection: Equatable {
         var sections: [TimerSection] = []
 
         (0 ..< segment.sets).forEach { index in
-            sections.append(TimerSection(duration: TimeInterval(segment.work), type: .work))
-            sections.append(TimerSection(duration: TimeInterval(segment.pause), type: .pause))
+            sections.append(TimerSection(id: UUID(), duration: TimeInterval(segment.work), type: .work))
+            sections.append(TimerSection(id: UUID(), duration: TimeInterval(segment.pause), type: .pause))
         }
 
         return sections

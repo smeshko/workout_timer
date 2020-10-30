@@ -43,7 +43,7 @@ class QuickWorkoutFormTests: XCTestCase {
             },
             .send(.addTimerSegmentAction(id: uuid(), action: .removeSegments)) {
                 $0.addTimerSegmentStates = []
-            },
+            }
         )
     }
 }

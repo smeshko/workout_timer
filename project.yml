@@ -62,8 +62,6 @@ targets:
     templates: [CoreUnitTests]
     templateAttributes:
       frameworkName: CorePersistence
-    dependencies:
-      - target: DomainEntities
 
   QuickWorkoutForm:
     templates: [ScreenFramework]
