@@ -1,47 +1,109 @@
 import SwiftUI
+import ComposableArchitecture
 
 public struct SegmentedProgressView: View {
-    let totalSegments: Int
-    let filledSegments: Int
-    let title: String?
+    private let store: Store<SegmentedProgressState, SegmentedProgressAction>
+
     let color: Color
 
-    public init(totalSegments: Int, filledSegments: Int, title: String? = nil, color: Color) {
-        assert(totalSegments >= filledSegments, "Total segments should be more than or equal to filled segments")
-        self.totalSegments = totalSegments
-        self.filledSegments = filledSegments
-        self.title = title
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+
+    public init(store: Store<SegmentedProgressState, SegmentedProgressAction>, color: Color) {
+        self.store = store
         self.color = color
     }
 
     public var body: some View {
-        VStack(alignment: .leading) {
-            if let title = title {
-                Text(title)
-                    .font(.bodySmall)
-                    .foregroundColor(.appGrey)
-                    .padding(.bottom, 8)
-            }
-            HStack(spacing: 4) {
-                ForEach(0 ..< filledSegments, id: \.self) { _ in
-                    RoundedRectangle(cornerRadius: 2)
-                        .foregroundColor(color)
-                }
-
-                ForEach(0 ..< totalSegments - filledSegments, id: \.self) { _ in
-                    RoundedRectangle(cornerRadius: 2)
+        WithViewStore(store) { viewStore in
+            VStack(alignment: .leading) {
+                if let title = viewStore.title {
+                    Text(title)
+                        .lineLimit(1)
+                        .font(.bodySmall)
                         .foregroundColor(.appGrey)
+                        .padding(.bottom, 8)
+                }
+                HStack(alignment: .bottom, spacing: 4) {
+                    ForEach(0 ..< viewStore.filledSegments, id: \.self) { index in
+                        VStack(alignment: .trailing) {
+                            if viewStore.shouldShowLabels {
+                                Text(label(forIndex: index, filled: true, store: viewStore))
+                                    .font(.label)
+                                    .foregroundColor(.appText)
+                            }
+                            RoundedRectangle(cornerRadius: 2)
+                                .foregroundColor(color)
+                                .frame(height: 4)
+                        }
+                    }
+
+                    ForEach(0 ..< viewStore.leftSegments, id: \.self) { index in
+                        VStack(alignment: .trailing) {
+                            if viewStore.shouldShowLabels {
+                                Text(label(forIndex: index, filled: false, store: viewStore))
+                                    .font(.label)
+                                    .foregroundColor(.appText)
+                            }
+                            RoundedRectangle(cornerRadius: 2)
+                                .foregroundColor(.appGrey)
+                                .frame(height: 4)
+                        }
+                    }
                 }
             }
-            .frame(height: 4)
+            .onAppear {
+                viewStore.send(.onAppear)
+            }
         }
     }
+
+    func label(forIndex index: Int, filled: Bool, store: ViewStore<SegmentedProgressState, SegmentedProgressAction>) -> String {
+        if filled {
+            return "\((index + 1) * store.segmentLabelModifier)"
+        } else {
+            if (index + 1) == store.leftSegments {
+                return "\(store.originalTotalCount)"
+            } else {
+                return "\((index + 1 + store.filledSegments) * store.segmentLabelModifier)"
+            }
+        }
+    }
+
 }
 
 struct SegmentedProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        SegmentedProgressView(totalSegments: 26, filledSegments: 17, title: "Round 1", color: .appSecondary)
-            .previewLayout(.sizeThatFits)
-            .padding()
+        let compactStore = Store<SegmentedProgressState, SegmentedProgressAction>(
+            initialState: SegmentedProgressState(
+                totalSegments: 7,
+                filledSegments: 4,
+                title: "Some title",
+                isCompact: true
+            ),
+            reducer: segmentedProgressReducer,
+            environment: SegmentedProgressEnvironment()
+        )
+
+        let regularStore = Store<SegmentedProgressState, SegmentedProgressAction>(
+            initialState: SegmentedProgressState(
+                totalSegments: 19,
+                filledSegments: 6,
+                title: "Some title",
+                isCompact: false
+            ),
+            reducer: segmentedProgressReducer,
+            environment: SegmentedProgressEnvironment()
+        )
+
+        return Group {
+            SegmentedProgressView(store: compactStore, color: .appSuccess)
+                .previewDevice(.iPhone11)
+                .padding()
+
+            SegmentedProgressView(store: regularStore, color: .appSuccess)
+                .previewDevice(.iPadPro)
+                .padding()
+
+        }
     }
 }

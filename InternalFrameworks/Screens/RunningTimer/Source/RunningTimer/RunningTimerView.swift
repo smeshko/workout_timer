@@ -7,6 +7,7 @@ public struct RunningTimerView: View {
     let store: Store<RunningTimerState, RunningTimerAction>
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
     public init(store: Store<RunningTimerState, RunningTimerAction>) {
         self.store = store
@@ -21,11 +22,11 @@ public struct RunningTimerView: View {
                     VStack(spacing: 28) {
                         HeaderView(store: store)
 
-                        SegmentedProgressView(totalSegments: viewStore.progressSegmentsCount,
-                                              filledSegments: viewStore.finishedSections,
-                                              title: "Sections",
-                                              color: viewStore.color)
-                            .padding(.top, 28)
+                        SegmentedProgressView(
+                            store: store.scope(state: \.segmentedProgressState, action: RunningTimerAction.segmentedProgressAction),
+                            color: viewStore.color
+                        )
+                        .padding(.top, 28)
 
                         Spacer()
 
@@ -35,6 +36,9 @@ public struct RunningTimerView: View {
 
                         QuickTimerControlsView(store: self.store.scope(state: \.timerControlsState, action: RunningTimerAction.timerControlsUpdatedState), tint: viewStore.color)
 
+                    }
+                    .onChange(of: viewStore.finishedSections) { change in
+                        viewStore.send(.segmentedProgressAction(.moveToNextSegment))
                     }
                     .onChange(of: viewStore.isPresented) { isPresented in
                         if !isPresented {

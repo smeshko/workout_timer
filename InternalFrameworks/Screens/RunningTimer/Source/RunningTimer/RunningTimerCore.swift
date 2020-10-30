@@ -1,4 +1,5 @@
 import Foundation
+import CoreInterface
 import ComposableArchitecture
 import CoreLogic
 import DomainEntities
@@ -9,6 +10,7 @@ fileprivate struct Constants {
 
 public enum RunningTimerAction: Equatable {
     case timerControlsUpdatedState(QuickTimerControlsAction)
+    case segmentedProgressAction(SegmentedProgressAction)
 
     case timerTicked
     case timerFinished
@@ -28,6 +30,7 @@ public struct RunningTimerState: Equatable {
     var totalTimeLeft: TimeInterval = 0
     var sectionTimeLeft: TimeInterval = 0
     var timerControlsState: QuickTimerControlsState
+    var segmentedProgressState: SegmentedProgressState
     var finishedSections: Int = 0
     var workout: QuickWorkout
     var timerSections: [TimerSection]
@@ -44,9 +47,12 @@ public struct RunningTimerState: Equatable {
     public init(workout: QuickWorkout,
                 currentSection: TimerSection? = nil,
                 timerControlsState: QuickTimerControlsState = QuickTimerControlsState(),
-                isInPreCountdown: Bool = true) {
+                segmentedProgressState: SegmentedProgressState = SegmentedProgressState(totalSegments: 0, isCompact: true),
+                isInPreCountdown: Bool = true,
+                isCompact: Bool = true) {
         self.workout = workout
         self.timerControlsState = timerControlsState
+        self.segmentedProgressState = segmentedProgressState
         self.isInPreCountdown = isInPreCountdown
         self.timerSections = workout.segments.map { TimerSection.create(from: $0) }.flatMap { $0 }.dropLast()
         self.currentSection = currentSection ?? timerSections.first
@@ -93,6 +99,9 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
                     .timer(id: TimerId(), every: environment.timerStep, tolerance: .zero, on: environment.mainQueue)
                     .map { _ in RunningTimerAction.timerTicked }
             }
+
+        case .segmentedProgressAction:
+            break
 
         case .timerTicked:
             if state.isInPreCountdown {
@@ -152,6 +161,11 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
         state: \.timerControlsState,
         action: /RunningTimerAction.timerControlsUpdatedState,
         environment: { _ in QuickTimerControlsEnvironment()}
+    ),
+    segmentedProgressReducer.pullback(
+        state: \.segmentedProgressState,
+        action: /RunningTimerAction.segmentedProgressAction,
+        environment: { _ in SegmentedProgressEnvironment() }
     )
 )
 
@@ -172,10 +186,12 @@ private extension RunningTimerState {
             currentSection = newSet
         }
 
+//        segmentedProgressState = SegmentedProgressState(totalSegments: progressSegmentsCount, filledSegments: finishedSections, title: "Sections", isCompact: true)
         sectionTimeLeft = currentSection?.duration ?? 0
     }
 
     mutating func updateSegments() {
+        segmentedProgressState = SegmentedProgressState(totalSegments: progressSegmentsCount, filledSegments: 0, title: "Sections", isCompact: true)
         currentSection = timerSections.first
         calculateInitialTime()
     }

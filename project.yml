@@ -47,6 +47,7 @@ targets:
     templates: [CoreFramework]
     dependencies: 
       - target: DomainEntities
+      - target: CoreLogic
 
   CoreInterfaceUnitTests:
     templates: [CoreUnitTests]
