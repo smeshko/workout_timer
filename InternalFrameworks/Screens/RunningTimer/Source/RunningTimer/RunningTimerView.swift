@@ -104,7 +104,6 @@ private struct PreCountdownView: View {
             Text("\(viewStore.preCountdownTimeLeft.clean)")
                 .foregroundColor(.appWhite)
                 .font(.system(size: 72, weight: .heavy))
-                .transition(.scale)
             Spacer()
         }
     }
@@ -182,5 +181,15 @@ private extension RunningTimerState {
 private extension TimeInterval {
     var clean: String {
         return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(self)
+    }
+}
+
+extension AnyTransition {
+    static var moveAndFade: AnyTransition {
+        let insertion = AnyTransition.move(edge: .trailing)
+            .combined(with: .opacity)
+        let removal = AnyTransition.scale
+            .combined(with: .opacity)
+        return .asymmetric(insertion: insertion, removal: removal)
     }
 }
