@@ -10,9 +10,6 @@ enum AppAction {
     case appDidGoToBackground
 
     case workoutsListAction(QuickWorkoutsListAction)
-
-    case didFetchWorkouts(Result<[QuickWorkout], PersistenceError>)
-
 }
 
 struct AppState: Equatable {
@@ -32,24 +29,12 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
          
         switch action {
         case .appDidBecomeActive:
-            return environment.repository.fetchAllWorkouts()
-                .receive(on: environment.mainQueue)
-                .catchToEffect()
-                .map(AppAction.didFetchWorkouts)
-
-        case .appDidGoToBackground:
-        return environment.repository.fetchAllWorkouts()
-            .receive(on: environment.mainQueue)
-            .catchToEffect()
-            .map(AppAction.didFetchWorkouts)
-
-        case .appDidBecomeInactive:
             break
 
-        case .didFetchWorkouts(.success(let workouts)):
-            state.workoutsListState = QuickWorkoutsListState(workouts: workouts)
+        case .appDidGoToBackground:
+            break
 
-        case .didFetchWorkouts(.failure(_)):
+        case .appDidBecomeInactive:
             break
 
         case .workoutsListAction:

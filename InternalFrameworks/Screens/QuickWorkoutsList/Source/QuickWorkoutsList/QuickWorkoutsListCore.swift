@@ -1,4 +1,5 @@
 import CorePersistence
+import CoreLogic
 import ComposableArchitecture
 import DomainEntities
 import CoreInterface
@@ -11,6 +12,9 @@ public enum QuickWorkoutsListAction: Equatable {
     case deleteWorkouts(IndexSet)
     case deleteWorkout(QuickWorkout)
     case didFinishDeleting(Result<[String], PersistenceError>)
+    case didFetchWorkouts(Result<[QuickWorkout], PersistenceError>)
+
+    case onAppear
 }
 
 public struct QuickWorkoutsListState: Equatable {
@@ -19,6 +23,7 @@ public struct QuickWorkoutsListState: Equatable {
 
     var workoutStates: IdentifiedArrayOf<QuickWorkoutCardState> = []
     var createWorkoutState = CreateQuickWorkoutState()
+    var loadingState: LoadingState = .finished
 
     public init(workouts: [QuickWorkout] = []) {
         self.workouts = workouts
@@ -52,10 +57,20 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
     Reducer { state, action, environment in
 
         switch action {
+        case .onAppear:
+            state.loadingState = .loading
+            return environment.fetchWorkouts()
+            
         case .didFinishDeleting(.success(let ids)):
             ids.forEach { state.workoutStates.remove(id: UUID(uuidString: $0) ?? UUID()) }
 
-        case .didFinishDeleting(.failure):
+        case .didFetchWorkouts(.success(let workouts)):
+            state.loadingState = .finished
+            state.workouts = workouts
+            state.workoutStates = IdentifiedArray(workouts.map { QuickWorkoutCardState(workout: $0, canStart: true) })
+
+        case .didFinishDeleting(.failure), .didFetchWorkouts(.failure):
+            state.loadingState = .error
             break
 
         case .workoutCardAction(let id, let action):
@@ -89,7 +104,6 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
                 .receive(on: environment.mainQueue)
                 .catchToEffect()
                 .map(QuickWorkoutsListAction.didFinishDeleting(_:))
-
         }
         return .none
     },
@@ -99,3 +113,12 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
         environment: { env in CreateQuickWorkoutEnvironment(mainQueue: env.mainQueue, repository: env.repository, uuid: env.uuid, randomElementGenerator: env.randomElementGenerator)}
     )
 )
+
+private extension QuickWorkoutsListEnvironment {
+    func fetchWorkouts() -> Effect<QuickWorkoutsListAction, Never> {
+        repository.fetchAllWorkouts()
+            .receive(on: mainQueue)
+            .catchToEffect()
+            .map(QuickWorkoutsListAction.didFetchWorkouts)
+    }
+}

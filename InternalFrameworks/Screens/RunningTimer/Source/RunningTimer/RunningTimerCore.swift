@@ -186,7 +186,6 @@ private extension RunningTimerState {
             currentSection = newSet
         }
 
-//        segmentedProgressState = SegmentedProgressState(totalSegments: progressSegmentsCount, filledSegments: finishedSections, title: "Sections", isCompact: true)
         sectionTimeLeft = currentSection?.duration ?? 0
     }
 

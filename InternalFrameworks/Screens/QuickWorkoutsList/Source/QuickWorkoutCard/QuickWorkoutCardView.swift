@@ -40,8 +40,7 @@ struct QuickWorkoutCardView: View {
 
                         })
                         .fullScreenCover(isPresented: $isPresented) {
-                            IfLetStore(store.scope(state: \.runningTimerState, action: QuickWorkoutCardAction.runningTimerAction),
-                                       then: RunningTimerView.init(store:))
+                            RunningTimerView(store: store.scope(state: \.runningTimerState, action: QuickWorkoutCardAction.runningTimerAction))
                         }
 
                     }

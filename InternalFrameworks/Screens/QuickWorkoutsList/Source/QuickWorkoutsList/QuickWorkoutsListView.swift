@@ -5,52 +5,55 @@ import QuickWorkoutForm
 public struct QuickWorkoutsListView: View {
 
     let store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>
+    @ObservedObject var viewStore: ViewStore<QuickWorkoutsListState, QuickWorkoutsListAction>
+
     @State var isPresenting: Bool = false
     @State var editMode: EditMode = .inactive
 
     public init(store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>) {
         self.store = store
+        self.viewStore = ViewStore(store)
     }
 
     public var body: some View {
         NavigationView {
-            WithViewStore(store) { viewStore in
-                if viewStore.workoutStates.isEmpty {
-                    NoWorkoutsView(store: store)
-                } else {
-                    WorkoutsList(store: store, isPresenting: $isPresenting)
-                        .environment(\.editMode, $editMode)
-                        .toolbar {
-                            HStack(spacing: 12) {
-                                Button(action: {
-                                    withAnimation {
-                                        editMode.toggle()
-                                    }
-                                }, label: {
-                                    if editMode.isEditing {
-                                        Text("Done")
-                                    } else {
-                                        Image(systemName: "pencil.circle")
-                                            .font(.system(size: 28))
-                                    }
-                                })
-                                
-                                Button(action: {
-                                    isPresenting = true
-                                }, label: {
-                                    Image(systemName: "plus.circle")
+            if viewStore.workoutStates.isEmpty && viewStore.loadingState.isFinished {
+                NoWorkoutsView(store: store)
+            } else {
+                WorkoutsList(store: store, isPresenting: $isPresenting)
+                    .environment(\.editMode, $editMode)
+                    .toolbar {
+                        HStack(spacing: 12) {
+                            Button(action: {
+                                withAnimation {
+                                    editMode.toggle()
+                                }
+                            }, label: {
+                                if editMode.isEditing {
+                                    Text("Done")
+                                } else {
+                                    Image(systemName: "pencil.circle")
                                         .font(.system(size: 28))
-                                })
-                                .disabled(editMode.isEditing)
-                            }
-                        }
+                                }
+                            })
 
-                }
+                            Button(action: {
+                                isPresenting = true
+                            }, label: {
+                                Image(systemName: "plus.circle")
+                                    .font(.system(size: 28))
+                            })
+                            .disabled(editMode.isEditing)
+                        }
+                    }
             }
         }
         .sheet(isPresented: $isPresenting) {
             CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState,
                                                       action: QuickWorkoutsListAction.createWorkoutAction))
+        }
+        .onAppear {
+            viewStore.send(.onAppear)
         }
     }
 }

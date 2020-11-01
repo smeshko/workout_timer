@@ -13,7 +13,7 @@ struct QuickWorkoutCardState: Equatable, Identifiable {
     public var id: UUID { workout.id }
     var workout: QuickWorkout
     var canStart: Bool = false
-    var runningTimerState: RunningTimerState?
+    var runningTimerState: RunningTimerState
 
     var segmentsCount: Int {
         workout.segments.count
@@ -26,6 +26,7 @@ struct QuickWorkoutCardState: Equatable, Identifiable {
     public init(workout: QuickWorkout, canStart: Bool = false) {
         self.workout = workout
         self.canStart = canStart
+        self.runningTimerState = RunningTimerState(workout: workout)
     }
 }
 
@@ -36,7 +37,7 @@ struct QuickWorkoutCardEnvironment: Equatable {
 
 let quickWorkoutCardReducer = Reducer<QuickWorkoutCardState, QuickWorkoutCardAction, QuickWorkoutCardEnvironment>.combine(
     
-    runningTimerReducer.optional().pullback(
+    runningTimerReducer.pullback(
         state: \.runningTimerState,
         action: /QuickWorkoutCardAction.runningTimerAction,
         environment: { env in RunningTimerEnvironment(mainQueue: DispatchQueue.main.eraseToAnyScheduler(), soundClient: .live)}
