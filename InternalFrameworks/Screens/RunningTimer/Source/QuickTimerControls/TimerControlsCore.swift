@@ -1,26 +1,31 @@
 import ComposableArchitecture
 
-public enum TimerState {
-    case running
-    case paused
-    case finished
-    
-    var isRunning: Bool { self == .running }
-    var isFinished: Bool { self == .finished }
-    var isPaused: Bool { self == .paused }
-}
-
-public enum QuickTimerControlsAction: Equatable {
+public enum TimerControlsAction: Equatable {
     case start
     case stop
     case pause
 }
 
-public struct QuickTimerControlsState: Equatable {
-    var timerState: TimerState = .finished
+@dynamicMemberLookup
+public struct TimerControlsState: Equatable {
+    public enum TimerValue {
+        case running
+        case paused
+        case finished
+
+        var isRunning: Bool { self == .running }
+        var isFinished: Bool { self == .finished }
+        var isPaused: Bool { self == .paused }
+    }
+
+    var timerState: TimerValue = .finished
+
+    subscript<T>(dynamicMember keyPath: KeyPath<TimerValue, T>) -> T {
+        timerState[keyPath: keyPath]
+    }
     
     public init() {}
-    public init(timerState: TimerState) {
+    public init(timerState: TimerValue) {
         self.timerState = timerState
     }
 }
@@ -29,7 +34,7 @@ public struct QuickTimerControlsEnvironment: Equatable {
     public init() {}
 }
 
-public let quickTimerControlsReducer = Reducer<QuickTimerControlsState, QuickTimerControlsAction, QuickTimerControlsEnvironment> { state, action, _ in
+public let quickTimerControlsReducer = Reducer<TimerControlsState, TimerControlsAction, QuickTimerControlsEnvironment> { state, action, _ in
     
     switch action {
     case .start:

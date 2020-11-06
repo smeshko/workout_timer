@@ -3,7 +3,7 @@ import ComposableArchitecture
 import CoreInterface
 
 struct QuickTimerControlsView: View {
-    let store: Store<QuickTimerControlsState, QuickTimerControlsAction>
+    let store: Store<TimerControlsState, TimerControlsAction>
     let tint: Color
 
     var body: some View {
@@ -25,14 +25,14 @@ struct QuickTimerControlsView: View {
 
 struct TimerControlsView_Previews: PreviewProvider {
     static var previews: some View {
-        let pausedStore = Store<QuickTimerControlsState, QuickTimerControlsAction>(
-            initialState: QuickTimerControlsState(timerState: .paused),
+        let pausedStore = Store<TimerControlsState, TimerControlsAction>(
+            initialState: TimerControlsState(timerState: .paused),
             reducer: quickTimerControlsReducer,
             environment: QuickTimerControlsEnvironment()
         )
 
-        let runningStore = Store<QuickTimerControlsState, QuickTimerControlsAction>(
-            initialState: QuickTimerControlsState(timerState: .running),
+        let runningStore = Store<TimerControlsState, TimerControlsAction>(
+            initialState: TimerControlsState(timerState: .running),
             reducer: quickTimerControlsReducer,
             environment: QuickTimerControlsEnvironment()
         )

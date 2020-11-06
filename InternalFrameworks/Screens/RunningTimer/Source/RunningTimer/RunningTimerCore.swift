@@ -9,7 +9,7 @@ fileprivate struct Constants {
 }
 
 public enum RunningTimerAction: Equatable {
-    case timerControlsUpdatedState(QuickTimerControlsAction)
+    case timerControlsUpdatedState(TimerControlsAction)
     case segmentedProgressAction(SegmentedProgressAction)
 
     case timerTicked
@@ -32,7 +32,7 @@ public struct RunningTimerState: Equatable {
     var currentSection: TimerSection? = nil
     var totalTimeLeft: TimeInterval = 0
     var sectionTimeLeft: TimeInterval = 0
-    var timerControlsState: QuickTimerControlsState
+    var timerControlsState: TimerControlsState
     var segmentedProgressState: SegmentedProgressState
     var finishedSections: Int = 0
     var workout: QuickWorkout
@@ -49,7 +49,7 @@ public struct RunningTimerState: Equatable {
 
     public init(workout: QuickWorkout,
                 currentSection: TimerSection? = nil,
-                timerControlsState: QuickTimerControlsState = QuickTimerControlsState(),
+                timerControlsState: TimerControlsState = TimerControlsState(),
                 segmentedProgressState: SegmentedProgressState = SegmentedProgressState(totalSegments: 0, isCompact: true),
                 isInPreCountdown: Bool = true,
                 isCompact: Bool = true) {
@@ -213,7 +213,7 @@ private extension RunningTimerState {
     }
 
     mutating func finish() {
-        timerControlsState = QuickTimerControlsState(timerState: .finished)
+        timerControlsState = TimerControlsState(timerState: .finished)
         alert = nil
     }
 

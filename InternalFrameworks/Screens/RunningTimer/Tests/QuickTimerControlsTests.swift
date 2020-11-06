@@ -6,7 +6,7 @@ class QuickTimerControlsTests: XCTestCase {
     
     func testFlow() {
         let store = TestStore(
-            initialState: QuickTimerControlsState(),
+            initialState: TimerControlsState(),
             reducer: quickTimerControlsReducer,
             environment: QuickTimerControlsEnvironment()
         )

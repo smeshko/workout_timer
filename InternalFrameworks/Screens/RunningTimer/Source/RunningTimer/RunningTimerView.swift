@@ -31,7 +31,11 @@ public struct RunningTimerView: View {
 
                         Spacer()
 
-                        TimerView(viewStore: viewStore)
+                        if viewStore.timerControlsState.isPaused {
+                            PausedView(viewStore: viewStore)
+                        } else {
+                            TimerView(viewStore: viewStore)
+                        }
 
                         Spacer()
 
@@ -71,7 +75,7 @@ struct RunningTimerView_Previews: PreviewProvider {
             initialState: RunningTimerState(
                 workout: mockQuickWorkout1,
                 currentSection: TimerSection(id: UUID(), duration: 45, type: .work),
-                timerControlsState: QuickTimerControlsState(timerState: .running),
+                timerControlsState: TimerControlsState(timerState: .running),
                 isInPreCountdown: false
             ),
             reducer: runningTimerReducer,
@@ -108,7 +112,6 @@ private struct PreCountdownView: View {
 
     var body: some View {
         ZStack {
-            Spacer()
             RoundedRectangle(cornerRadius: 25)
                 .frame(width: 125, height: 125)
                 .foregroundColor(viewStore.color)
@@ -116,8 +119,17 @@ private struct PreCountdownView: View {
             Text("\(viewStore.preCountdownTimeLeft.clean)")
                 .foregroundColor(.appWhite)
                 .font(.system(size: 72, weight: .heavy))
-            Spacer()
         }
+    }
+}
+
+private struct PausedView: View {
+    let viewStore: ViewStore<RunningTimerState, RunningTimerAction>
+
+    var body: some View {
+        Text("Pause")
+            .foregroundColor(.appText)
+            .font(.system(size: 72, weight: .heavy))
     }
 }
 
@@ -193,15 +205,5 @@ private extension RunningTimerState {
 private extension TimeInterval {
     var clean: String {
         return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(self)
-    }
-}
-
-extension AnyTransition {
-    static var moveAndFade: AnyTransition {
-        let insertion = AnyTransition.move(edge: .trailing)
-            .combined(with: .opacity)
-        let removal = AnyTransition.scale
-            .combined(with: .opacity)
-        return .asymmetric(insertion: insertion, removal: removal)
     }
 }
