@@ -1,4 +1,5 @@
 import ComposableArchitecture
+import CoreLogic
 import CorePersistence
 import Foundation
 import QuickWorkoutsList
@@ -10,6 +11,8 @@ enum AppAction {
     case appDidGoToBackground
 
     case workoutsListAction(QuickWorkoutsListAction)
+
+    case notificationAuthResult(Result<Bool, Error>)
 }
 
 struct AppState: Equatable {
@@ -21,6 +24,7 @@ struct AppState: Equatable {
 struct AppEnvironment {
     var mainQueue: AnySchedulerOf<DispatchQueue>
     var repository: QuickWorkoutsRepository
+    let notificationClient: LocalNotificationClient
 }
 
 let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
@@ -29,7 +33,11 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
          
         switch action {
         case .appDidBecomeActive:
-            break
+            return environment
+                .notificationClient
+                .requestAuthorisation()
+                .catchToEffect()
+                .map(AppAction.notificationAuthResult)
 
         case .appDidGoToBackground:
             break
@@ -39,6 +47,9 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
 
         case .workoutsListAction:
             break
+
+        case .notificationAuthResult:
+            break
         }
         
         return .none
@@ -46,6 +57,6 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
     quickWorkoutsListReducer.pullback(
         state: \.workoutsListState,
         action: /AppAction.workoutsListAction,
-        environment: { QuickWorkoutsListEnvironment(repository: $0.repository, mainQueue: $0.mainQueue) }
+        environment: { QuickWorkoutsListEnvironment(repository: $0.repository, mainQueue: $0.mainQueue, notificationClient: $0.notificationClient) }
     )
 )

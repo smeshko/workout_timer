@@ -1,4 +1,5 @@
 import Foundation
+import CoreLogic
 import DomainEntities
 import ComposableArchitecture
 import RunningTimer
@@ -30,9 +31,13 @@ struct QuickWorkoutCardState: Equatable, Identifiable {
     }
 }
 
-struct QuickWorkoutCardEnvironment: Equatable {
+struct QuickWorkoutCardEnvironment {
 
-    public init() {}
+    var notificationClient: LocalNotificationClient
+
+    public init(notificationClient: LocalNotificationClient) {
+        self.notificationClient = notificationClient
+    }
 }
 
 let quickWorkoutCardReducer = Reducer<QuickWorkoutCardState, QuickWorkoutCardAction, QuickWorkoutCardEnvironment>.combine(
@@ -40,7 +45,7 @@ let quickWorkoutCardReducer = Reducer<QuickWorkoutCardState, QuickWorkoutCardAct
     runningTimerReducer.pullback(
         state: \.runningTimerState,
         action: /QuickWorkoutCardAction.runningTimerAction,
-        environment: { env in RunningTimerEnvironment(mainQueue: DispatchQueue.main.eraseToAnyScheduler(), soundClient: .live)}
+        environment: { env in RunningTimerEnvironment(mainQueue: DispatchQueue.main.eraseToAnyScheduler(), soundClient: .live, notificationClient: env.notificationClient)}
     ),
     Reducer { state, action, environment in
         

@@ -65,7 +65,8 @@ struct QuickWorkoutsListView_Previews: PreviewProvider {
             reducer: quickWorkoutsListReducer,
             environment: QuickWorkoutsListEnvironment(
                 repository: .mock,
-                mainQueue: DispatchQueue.main.eraseToAnyScheduler()
+                mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
+                notificationClient: .mock
             )
         )
 
@@ -74,7 +75,8 @@ struct QuickWorkoutsListView_Previews: PreviewProvider {
             reducer: quickWorkoutsListReducer,
             environment: QuickWorkoutsListEnvironment(
                 repository: .mock,
-                mainQueue: DispatchQueue.main.eraseToAnyScheduler()
+                mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
+                notificationClient: .mock
             )
         )
 

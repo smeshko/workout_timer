@@ -35,14 +35,17 @@ public struct QuickWorkoutsListEnvironment<T> {
     let repository: QuickWorkoutsRepository
     let mainQueue: AnySchedulerOf<DispatchQueue>
     let uuid: () -> UUID
+    var notificationClient: LocalNotificationClient
     let randomElementGenerator: ([T]) -> T?
 
     public init(repository: QuickWorkoutsRepository,
                 mainQueue: AnySchedulerOf<DispatchQueue>,
+                notificationClient: LocalNotificationClient,
                 uuid: @escaping () -> UUID = UUID.init,
                 randomElementGenerator: @escaping (_ elements: [T]) -> T? = { $0.randomElement() }) {
         self.repository = repository
         self.mainQueue = mainQueue
+        self.notificationClient = notificationClient
         self.uuid = uuid
         self.randomElementGenerator = randomElementGenerator
     }
@@ -52,7 +55,7 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
     quickWorkoutCardReducer.forEach(
         state: \.workoutStates,
         action: /QuickWorkoutsListAction.workoutCardAction(id:action:),
-        environment: { _ in QuickWorkoutCardEnvironment() }
+        environment: { QuickWorkoutCardEnvironment(notificationClient: $0.notificationClient) }
     ),
     Reducer { state, action, environment in
 

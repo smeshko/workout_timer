@@ -8,6 +8,7 @@ public struct RunningTimerView: View {
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    @Environment(\.scenePhase) var scenePahse
 
     public init(store: Store<RunningTimerState, RunningTimerAction>) {
         self.store = store
@@ -51,6 +52,15 @@ public struct RunningTimerView: View {
             .onAppear {
                 viewStore.send(.onAppear)
             }
+            .onChange(of: scenePahse) { newScene in
+                switch newScene {
+                case .active:
+                    viewStore.send(.onActive)
+                case .background:
+                    viewStore.send(.onBackground)
+                default: break
+                }
+            }
         }
     }
 }
@@ -66,7 +76,8 @@ struct RunningTimerView_Previews: PreviewProvider {
             ),
             reducer: runningTimerReducer,
             environment: RunningTimerEnvironment(mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-                                                 soundClient: .mock
+                                                 soundClient: .mock,
+                                                 notificationClient: .mock
             )
         )
         let preCountdownStore = Store<RunningTimerState, RunningTimerAction>(
@@ -76,7 +87,8 @@ struct RunningTimerView_Previews: PreviewProvider {
             ),
             reducer: runningTimerReducer,
             environment: RunningTimerEnvironment(mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-                                                 soundClient: .mock
+                                                 soundClient: .mock,
+                                                 notificationClient: .mock
             )
         )
 

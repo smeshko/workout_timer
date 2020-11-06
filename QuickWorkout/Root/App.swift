@@ -18,7 +18,8 @@ struct MainApp: App {
             reducer: appReducer,
             environment: AppEnvironment(
                 mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-                repository: .live
+                repository: .live,
+                notificationClient: .live
             )
         )
         viewStore = ViewStore(store)

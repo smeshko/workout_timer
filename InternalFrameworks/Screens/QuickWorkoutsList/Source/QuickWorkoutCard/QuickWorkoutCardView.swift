@@ -67,7 +67,7 @@ struct QuickWorkoutCardView_Previews: PreviewProvider {
                                       ]),
                 canStart: true),
             reducer: quickWorkoutCardReducer,
-            environment: QuickWorkoutCardEnvironment()
+            environment: QuickWorkoutCardEnvironment(notificationClient: .mock)
         )
 
         return Group {

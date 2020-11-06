@@ -17,6 +17,9 @@ public enum RunningTimerAction: Equatable {
     case timerClosed
 
     case onAppear
+    case onActive
+    case onBackground
+
     case preCountdownFinished
     case sectionEnded
 
@@ -63,15 +66,18 @@ public struct RunningTimerEnvironment {
   
     var mainQueue: AnySchedulerOf<DispatchQueue>
     var soundClient: SoundClient
+    var notificationClient: LocalNotificationClient
     var timerStep: DispatchQueue.SchedulerTimeType.Stride
 
     public init(
         mainQueue: AnySchedulerOf<DispatchQueue>,
         soundClient: SoundClient,
+        notificationClient: LocalNotificationClient,
         timerStep: DispatchQueue.SchedulerTimeType.Stride = .seconds(1)
     ) {
         self.mainQueue = mainQueue
         self.soundClient = soundClient
+        self.notificationClient = notificationClient
         self.timerStep = timerStep
     }
 }
@@ -85,6 +91,17 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
         case .onAppear:
             state.updateSegments()
             return Effect(value: RunningTimerAction.timerControlsUpdatedState(.start))
+
+        case .onActive:
+            if state.isInPreCountdown {
+                return Effect(value: RunningTimerAction.timerControlsUpdatedState(.start))
+            }
+
+        case .onBackground:
+            return environment.notificationClient.scheduleLocalNotification(.timerPaused, .immediately)
+                .map { _ in
+                    RunningTimerAction.timerControlsUpdatedState(.pause)
+                }
 
         case .timerControlsUpdatedState(let controlsAction):
             switch controlsAction {
@@ -206,46 +223,6 @@ private extension RunningTimerState {
     }
 }
 
-extension DispatchTimeInterval {
-    var asDouble: Double? {
-        var result: Double? = 0
-
-        switch self {
-        case .seconds(let value):
-            result = Double(value)
-        case .milliseconds(let value):
-            result = Double(value)*0.001
-        case .microseconds(let value):
-            result = Double(value)*0.000001
-        case .nanoseconds(let value):
-            result = Double(value)*0.000000001
-        case .never:
-            result = nil
-        @unknown default:
-            fatalError()
-        }
-
-        return result
-    }
-}
-
-public struct TimerSection: Equatable {
-    enum SectionType {
-        case work, pause
-    }
-
-    let id: UUID
-    let duration: TimeInterval
-    let type: SectionType
-
-    static func create(from segment: QuickWorkoutSegment) -> [TimerSection] {
-        var sections: [TimerSection] = []
-
-        (0 ..< segment.sets).forEach { index in
-            sections.append(TimerSection(id: UUID(), duration: TimeInterval(segment.work), type: .work))
-            sections.append(TimerSection(id: UUID(), duration: TimeInterval(segment.pause), type: .pause))
-        }
-
-        return sections
-    }
+private extension LocalNotificationClient.Content {
+    static let timerPaused = LocalNotificationClient.Content(title: "Timer paused", message: "Timer has been paused. Open the app to continue workout")
 }
