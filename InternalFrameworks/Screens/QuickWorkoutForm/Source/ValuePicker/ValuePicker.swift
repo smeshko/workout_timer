@@ -13,13 +13,16 @@ struct ValuePicker: View {
     private var allNumbers: [Int] = []
     private let tint: Color
     private let textHeight = 20
+    private let shouldUseScrollView: Bool
 
     public init(store: Store<PickerState, PickerAction>,
+                shouldUseScrollView: Bool = false,
                 maxCount: Int,
                 valueName: String,
                 tint: Color) {
         self.allNumbers = Array(0...maxCount)
         self.tint = tint
+        self.shouldUseScrollView = shouldUseScrollView
         self.store = store
         self.valueName = valueName
         self.viewStore = ViewStore(store)
@@ -27,27 +30,37 @@ struct ValuePicker: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            ScrollView(contentOffset: $contentOffset) {
-                ForEach(viewStore.allNumbers, id: \.self) { number in
-                    Text("\(number)")
-                        .id(number)
-                        .frame(height: CGFloat(textHeight))
-                        .font(viewStore.value == number ? .h2 : .h3)
-                        .foregroundColor(viewStore.value == number ? tint : .appGrey)
-                }
-            }
-            .onDecelerate(onScrollViewStopMoving)
-            .overlay(RoundedRectangle(cornerRadius: 12).stroke(tint, lineWidth: 2))
-            .frame(width: 50, height: 40)
-            .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    onScrollViewStopMoving(CGPoint(x: 0, y: CGFloat(viewStore.value * textHeight)))
-                }
-            }
+            if !shouldUseScrollView {
+                TextField(valueName, text: viewStore.binding(get: \.stringValue, send: PickerAction.stringValueUpdated))
+                    .font(.h2)
+                    .keyboardType(.numberPad)
 
-            Text(valueName)
-                .font(.label)
-                .foregroundColor(.appText)
+                Text(valueName)
+                    .foregroundColor(tint)
+                    .font(.label)
+            } else {
+                ScrollView(contentOffset: $contentOffset) {
+                    ForEach(viewStore.allNumbers, id: \.self) { number in
+                        Text("\(number)")
+                            .id(number)
+                            .frame(height: CGFloat(textHeight))
+                            .font(viewStore.value == number ? .h2 : .h3)
+                            .foregroundColor(viewStore.value == number ? tint : .appGrey)
+                    }
+                }
+                .onDecelerate(onScrollViewStopMoving)
+                .overlay(RoundedRectangle(cornerRadius: 12).stroke(tint, lineWidth: 2))
+                .frame(width: 50, height: 40)
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        onScrollViewStopMoving(CGPoint(x: 0, y: CGFloat(viewStore.value * textHeight)))
+                    }
+                }
+
+                Text(valueName)
+                    .font(.label)
+                    .foregroundColor(.appText)
+            }
         }
     }
 

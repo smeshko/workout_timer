@@ -60,6 +60,8 @@ let addTimerSegmentReducer =
 
             case .addSegments:
                 state.isAdded = true
+
+            default: break
             }
             
             return .none

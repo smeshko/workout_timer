@@ -1,7 +1,11 @@
 import SwiftUI
 
-public extension Color {
-    static var tints: [TintColor] {
+public struct TintColor: Identifiable, Equatable {
+    public var id: String { name }
+    public let name: String
+    public let color: Color
+
+    public static var allTints: [TintColor] {
         [
             TintColor(name: "Red Salsa", color: Color(red: 249 / 255, green: 65 / 255, blue: 68 / 255)),
             TintColor(name: "Orange red", color: Color(red: 243 / 255, green: 114 / 255, blue: 44 / 255)),
@@ -17,8 +21,8 @@ public extension Color {
     }
 }
 
-public struct TintColor: Identifiable, Equatable {
-    public var id: String { name }
-    public let name: String
-    public let color: Color
+public extension Array where Element == TintColor {
+    subscript(_ color: Color) -> TintColor? {
+        first { $0.color == color }
+    }
 }

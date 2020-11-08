@@ -1,11 +1,17 @@
 import SwiftUI
+import DomainEntities
 import ComposableArchitecture
 import CoreInterface
 
-struct AddTimerSegmentView: View {    
-    let store: Store<AddTimerSegmentState, AddTimerSegmentAction>
+struct AddTimerSegmentView: View {
+    @Environment(\.colorScheme) var colorScheme
 
+    let store: Store<AddTimerSegmentState, AddTimerSegmentAction>
     let color: Color
+
+    private var workoutColor: WorkoutColor {
+        WorkoutColor(color: color)
+    }
     
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -13,21 +19,21 @@ struct AddTimerSegmentView: View {
                 ValuePicker(store: self.store.scope(state: \.setsState, action: AddTimerSegmentAction.changeSetsCount),
                             maxCount: 20,
                             valueName: "Sets",
-                            tint: .orange
+                            tint: workoutColor.monochromatic(for: colorScheme).color
                 )
                 .disabled(viewStore.isAdded)
 
                 ValuePicker(store: self.store.scope(state: \.workoutTimeState, action: AddTimerSegmentAction.changeWorkoutTime),
                             maxCount: 180,
                             valueName: "Work",
-                            tint: .red
+                            tint: workoutColor.monochromatic(for: colorScheme).color
                 )
                 .disabled(viewStore.isAdded)
 
                 ValuePicker(store: self.store.scope(state: \.breakTimeState, action: AddTimerSegmentAction.changeBreakTime),
                             maxCount: 180,
                             valueName: "Break",
-                            tint: .purple
+                            tint: workoutColor.monochromatic(for: colorScheme).color
                 )
                 .disabled(viewStore.isAdded)
 
@@ -72,5 +78,14 @@ struct CircuitPickerView_Previews: PreviewProvider {
                 .preferredColorScheme(.dark)
                 .previewLayout(.sizeThatFits)
         }
+    }
+}
+
+private extension WorkoutColor {
+    func monochromatic(for scheme: ColorScheme) -> WorkoutColor {
+        let brightnessModifier = scheme == .dark ? 0.3 : -0.3
+        return WorkoutColor(hue: hue,
+                            saturation: saturation + 0.2,
+                            brightness: brightness + brightnessModifier)
     }
 }

@@ -16,17 +16,11 @@ public enum CreateQuickWorkoutAction: Equatable {
     case selectColor(Color)
 }
 
-public struct ColorComponents: Equatable {
-    let hue: Double
-    let brightness: Double
-    let saturation: Double
-}
-
 public struct CreateQuickWorkoutState: Equatable {
     var addTimerSegmentStates: IdentifiedArrayOf<AddTimerSegmentState> = []
     var workoutSegments: [QuickWorkoutSegment]
     var name: String
-    let preselectedTints: [TintColor] = Color.tints
+    let preselectedTints: [TintColor] = TintColor.allTints
     var selectedTint: TintColor? = nil
     var selectedColor: Color = .black
 
@@ -35,8 +29,7 @@ public struct CreateQuickWorkoutState: Equatable {
     }
 
     var colorComponents: ColorComponents {
-        let components = UIColor(selectedColor).components()
-        return ColorComponents(hue: components.h, brightness: components.b, saturation: components.s)
+        ColorComponents(color: selectedColor)
     }
 
     public init(workoutSegments: [QuickWorkoutSegment] = [], name: String = "") {
@@ -76,7 +69,7 @@ public let createQuickWorkoutReducer =
                 state.addTimerSegmentStates = IdentifiedArray(state.workoutSegments.map(AddTimerSegmentState.init(segment:)))
                 state.addTimerSegmentStates.insert(defaultSegmentState(with: environment.uuid()), at: 0)
 
-                let randomTint = environment.randomElementGenerator(Color.tints)
+                let randomTint = environment.randomElementGenerator(TintColor.allTints)
                 state.selectedColor = randomTint?.color ?? .appSuccess
                 state.selectedTint = randomTint
 
@@ -105,7 +98,7 @@ public let createQuickWorkoutReducer =
 
             case .selectColor(let color):
                 state.selectedColor = color
-                state.selectedTint = Color.tints[color]
+                state.selectedTint = TintColor.allTints[color]
 
             default: break
             }
@@ -136,30 +129,5 @@ private extension QuickWorkout {
 private extension AddTimerSegmentState {
     init(segment: QuickWorkoutSegment) {
         self.init(id: segment.id, sets: segment.sets, workoutTime: segment.work, breakTime: segment.pause, isAdded: true)
-    }
-}
-
-private extension WorkoutColor {
-    convenience init(components: ColorComponents) {
-        self.init(hue: components.hue, saturation: components.saturation, brightness: components.brightness)
-    }
-}
-
-private extension Array where Element == TintColor {
-    subscript(_ color: Color) -> TintColor? {
-        first { $0.color == color }
-    }
-}
-
-private extension UIColor {
-    func components() -> (h: Double, s: Double, b: Double) {
-        var h: CGFloat = 0
-        var s: CGFloat = 0
-        var b: CGFloat = 0
-        var a: CGFloat = 0
-
-        getHue(&h, saturation: &s, brightness: &b, alpha: &a)
-
-        return (Double(h), Double(s), Double(b))
     }
 }
