@@ -20,19 +20,15 @@ struct AddTimerSegmentState: Equatable, Identifiable {
     var breakTimeState = PickerState()
     var isAdded: Bool = false
     
-    fileprivate var sets: Int { Int(setsState.value) ?? 0 }
-    fileprivate var workoutTime: Int { Int(workoutTimeState.value) ?? 0 }
-    fileprivate var breakTime: Int { Int(breakTimeState.value) ?? 0 }
-    
     public init(id: UUID) {
         self.id = id
     }
     
     public init(id: UUID, sets: Int, workoutTime: Int, breakTime: Int, isAdded: Bool = false) {
         self.id = id
-        setsState = PickerState(value: sets)
-        workoutTimeState = PickerState(value: workoutTime)
-        breakTimeState = PickerState(value: breakTime)
+        setsState = PickerState(value: sets, allNumbers: Array(0...30))
+        workoutTimeState = PickerState(value: workoutTime, allNumbers: Array(0...300))
+        breakTimeState = PickerState(value: breakTime, allNumbers: Array(0...300))
         self.isAdded = isAdded
     }
 }

@@ -9,20 +9,23 @@ struct AddTimerSegmentView: View {
     
     var body: some View {
         WithViewStore(store) { viewStore in
-            HStack {
+            HStack(spacing: 12) {
                 ValuePicker(store: self.store.scope(state: \.setsState, action: AddTimerSegmentAction.changeSetsCount),
+                            maxCount: 20,
                             valueName: "Sets",
                             tint: .orange
                 )
                 .disabled(viewStore.isAdded)
 
                 ValuePicker(store: self.store.scope(state: \.workoutTimeState, action: AddTimerSegmentAction.changeWorkoutTime),
+                            maxCount: 180,
                             valueName: "Work",
                             tint: .red
                 )
                 .disabled(viewStore.isAdded)
 
                 ValuePicker(store: self.store.scope(state: \.breakTimeState, action: AddTimerSegmentAction.changeBreakTime),
+                            maxCount: 180,
                             valueName: "Break",
                             tint: .purple
                 )
@@ -40,6 +43,7 @@ struct AddTimerSegmentView: View {
                 })
                 .background(viewStore.isAdded ? Color.red : color)
                 .cornerRadius(12)
+                .padding(.leading, 8)
             }
             .padding(.horizontal, 28)
         }
@@ -47,7 +51,6 @@ struct AddTimerSegmentView: View {
         .padding(.vertical, 18)
         .background(Color.appCardBackground)
         .cornerRadius(12)
-        .overlay(RoundedRectangle(cornerRadius: 12).stroke(color, lineWidth: 1))
     }
 }
 

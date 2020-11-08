@@ -119,7 +119,7 @@ private func defaultSegmentState(with id: UUID) -> AddTimerSegmentState {
 
 private extension QuickWorkoutSegment {
     init(state: AddTimerSegmentState) {
-        self.init(id: UUID(), sets: Int(state.setsState.value) ?? 0, work: Int(state.workoutTimeState.value) ?? 0, pause: Int(state.breakTimeState.value) ?? 0)
+        self.init(id: UUID(), sets: state.setsState.value, work: state.workoutTimeState.value, pause: state.breakTimeState.value)
     }
 }
 

@@ -1,14 +1,16 @@
 import ComposableArchitecture
 
 public enum PickerAction: Equatable {
-    case valueUpdated(String)
+    case valueUpdated(Int)
 }
 
 struct PickerState: Equatable {
-    var value: String = ""
+    var value: Int
+    var allNumbers: [Int]
 
-    public init(value: Int = 0) {
-        self.value = "\(value)"
+    public init(value: Int = 0, allNumbers: [Int] = Array(0...100)) {
+        self.value = value
+        self.allNumbers = allNumbers
     }
 }
 
