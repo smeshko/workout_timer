@@ -10,11 +10,11 @@ public struct SegmentedProgressState: Equatable {
     var totalSegments: Int = 0
     var filledSegments: Int = 0
 
-    let title: String?
-    let isCompact: Bool
+    var title: String?
+    var isCompact: Bool
     
     var totalFilledSegments: Int = 0
-    let originalTotalCount: Int
+    var originalTotalCount: Int
 
     var shouldShowLabels: Bool {
         isAboveThreshold

@@ -12,7 +12,7 @@ class QuickWorkoutCardTests: XCTestCase {
         let store = TestStore(
             initialState: QuickWorkoutCardState(workout: workout),
             reducer: quickWorkoutCardReducer,
-            environment: QuickWorkoutCardEnvironment()
+            environment: QuickWorkoutCardEnvironment(notificationClient: .mock)
         )
 
         store.assert(

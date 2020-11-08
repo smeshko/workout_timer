@@ -7,7 +7,7 @@ import CorePersistence
 @testable import QuickWorkoutForm
 
 private let uuid = { UUID(uuidString: "c06e5e63-d74f-4291-8673-35ce994754dc")! }
-private let randomTintGenerator: ([TintColor]) -> TintColor? = { _ in Color.tints.first }
+private let randomTintGenerator: ([TintColor]) -> TintColor? = { _ in TintColor.allTints.first }
 private let randomTint = randomTintGenerator([])!
 private let newWorkout = QuickWorkout(id: uuid(), name: "", color: .empty, segments: [])
 
