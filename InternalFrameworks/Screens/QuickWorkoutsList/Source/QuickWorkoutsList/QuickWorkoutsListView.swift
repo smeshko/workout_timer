@@ -1,6 +1,8 @@
 import SwiftUI
+import DomainEntities
 import ComposableArchitecture
 import QuickWorkoutForm
+import CoreInterface
 
 public struct QuickWorkoutsListView: View {
 
@@ -136,28 +138,89 @@ private struct WorkoutsList: View {
     }
 
     var body: some View {
-        List {
-            ForEachStore(store.scope(state: { $0.workoutStates },
-                                     action: QuickWorkoutsListAction.workoutCardAction(id:action:))) { cardViewStore in
-                QuickWorkoutCardView(store: cardViewStore)
-                    .padding(.horizontal, 18)
-                    .padding(.vertical, 9)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-                    .listRowInsets(EdgeInsets(top: -1, leading: -1, bottom: -1, trailing: -1))
-                    .background(Color(.systemBackground))
-                    .listRowBackground(Color(.clear))
+        List(store.scope(state: { $0.workoutStates },
+                         action: QuickWorkoutsListAction.workoutCardAction(id:action:))) { cardViewStore in
+            QuickWorkoutCardView(store: cardViewStore)
+                .padding(.horizontal, 18)
+                .padding(.vertical, 9)
+        }
+        .onDelete { insets in
+            withAnimation {
+                viewStore.send(QuickWorkoutsListAction.deleteWorkouts(insets))
+                editMode?.animation().wrappedValue.toggle()
             }
-            .onDelete { insets in
-                withAnimation {
-                    viewStore.send(QuickWorkoutsListAction.deleteWorkouts(insets))
-                    editMode?.animation().wrappedValue.toggle()
+        }
+        .actionProvider { index in
+            let deleteAction = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) { action in
+                viewStore.send(.deleteWorkouts(index))
+            }
+
+            let start = UIAction(title: "Start", image: UIImage(systemName: "play.fill")) { action in
+                viewStore.send(.workoutCardAction(id: UUID(), action: .tapStart))
+            }
+
+            let deleteMenu = UIMenu(title: "Delete", image: UIImage(systemName: "trash"), options: .destructive, children: [deleteAction])
+
+            return UIMenu(title: "", children: [start, deleteMenu])
+        }
+        .previewProvider { store in
+            WorkoutPreview(store: store)
+        }
+        .destination { viewStore in
+            WorkoutPreview(store: viewStore)
+        }
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+        .edgesIgnoringSafeArea(.all)
+        .navigationTitle("Workouts")
+    }
+}
+
+private struct WorkoutPreview: View {
+    let store: Store<QuickWorkoutCardState, QuickWorkoutCardAction>
+
+    var body: some View {
+        WithViewStore(store) { viewStore in
+            VStack(alignment: .leading) {
+                HStack {
+                    Text(viewStore.workout.name)
+                        .font(.h1)
+                        .foregroundColor(.appWhite)
+
+                    Spacer()
+
+                    Text("\(viewStore.duration) mins")
+                        .font(.h2)
+                        .foregroundColor(.appWhite)
+                }
+
+                ForEach(viewStore.workout.segments) { segment in
+                    HStack {
+                        Text("\(segment.sets) sets")
+                        Spacer()
+                        Text("\(segment.work)sec")
+                    }
+                    .frame(minWidth: 0, idealWidth: .infinity, maxWidth: .infinity)
+                    .font(.h3)
+                    .foregroundColor(.appWhite)
+                    .padding(18)
+                    .background(
+                        RoundedRectangle(cornerRadius: 12)
+                            .foregroundColor(viewStore.workout.color.color.opacity(0.6))
+                            .shadow(color: Color.black.opacity(0.1), radius: 5, x: 5, y: 5)
+                    )
+                    .padding(.top, 12)
                 }
             }
-            .buttonStyle(PlainButtonStyle())
+            .padding(28)
+            .frame(minWidth: 0, idealWidth: .infinity, maxWidth: .infinity, minHeight: 0, idealHeight: .infinity, maxHeight: .infinity, alignment: .topLeading)
+            .background(viewStore.workout.color.monochromatic)
         }
-        .background(Color.clear)
-        .padding(.top, 28)
-        .navigationTitle("Workouts")
+    }
+}
+
+private extension WorkoutColor {
+    var monochromatic: Color {
+        Color(hue: hue, saturation: saturation - 0.2, brightness: brightness - 0.1)
     }
 }
 
