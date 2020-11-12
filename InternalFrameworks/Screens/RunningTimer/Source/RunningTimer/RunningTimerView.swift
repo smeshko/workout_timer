@@ -18,7 +18,7 @@ public struct RunningTimerView: View {
         WithViewStore(store) { viewStore in
             VStack {
                 if viewStore.isInPreCountdown {
-                    PreCountdownView(viewStore: viewStore)
+                    PreCountdownView(store: store)
                 } else {
                     VStack(spacing: 28) {
                         HeaderView(store: store)
@@ -32,14 +32,15 @@ public struct RunningTimerView: View {
                         Spacer()
 
                         if viewStore.timerControlsState.isPaused {
-                            PausedView(viewStore: viewStore)
+                            PausedView(store: store)
                         } else {
-                            TimerView(viewStore: viewStore)
+                            TimerView(store: store)
                         }
 
                         Spacer()
 
-                        QuickTimerControlsView(store: self.store.scope(state: \.timerControlsState, action: RunningTimerAction.timerControlsUpdatedState), tint: viewStore.color)
+                        QuickTimerControlsView(store: store.scope(state: \.timerControlsState,
+                                                                  action: RunningTimerAction.timerControlsUpdatedState), tint: viewStore.color)
 
                     }
                     .onChange(of: viewStore.finishedSections) { change in
@@ -108,7 +109,13 @@ struct RunningTimerView_Previews: PreviewProvider {
 }
 
 private struct PreCountdownView: View {
+    let store: Store<RunningTimerState, RunningTimerAction>
     let viewStore: ViewStore<RunningTimerState, RunningTimerAction>
+
+    init(store: Store<RunningTimerState, RunningTimerAction>) {
+        self.store = store
+        self.viewStore = ViewStore(store)
+    }
 
     var body: some View {
         ZStack {
@@ -124,7 +131,13 @@ private struct PreCountdownView: View {
 }
 
 private struct PausedView: View {
+    let store: Store<RunningTimerState, RunningTimerAction>
     let viewStore: ViewStore<RunningTimerState, RunningTimerAction>
+
+    init(store: Store<RunningTimerState, RunningTimerAction>) {
+        self.store = store
+        self.viewStore = ViewStore(store)
+    }
 
     var body: some View {
         Text("Pause")
@@ -173,7 +186,13 @@ private struct HeaderView: View {
 }
 
 private struct TimerView: View {
+    let store: Store<RunningTimerState, RunningTimerAction>
     let viewStore: ViewStore<RunningTimerState, RunningTimerAction>
+
+    init(store: Store<RunningTimerState, RunningTimerAction>) {
+        self.store = store
+        self.viewStore = ViewStore(store)
+    }
 
     var body: some View {
         VStack(spacing: 8) {

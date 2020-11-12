@@ -14,7 +14,7 @@ struct QuickWorkoutCardState: Equatable, Identifiable {
     public var id: UUID { workout.id }
     var workout: QuickWorkout
     var canStart: Bool = false
-    var runningTimerState: RunningTimerState
+    public var runningTimerState: RunningTimerState
 
     var segmentsCount: Int {
         workout.segments.count

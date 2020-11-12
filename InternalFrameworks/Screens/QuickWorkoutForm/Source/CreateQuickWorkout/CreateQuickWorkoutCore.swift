@@ -23,6 +23,7 @@ public struct CreateQuickWorkoutState: Equatable {
     let preselectedTints: [TintColor] = TintColor.allTints
     var selectedTint: TintColor? = nil
     var selectedColor: Color = .black
+    var isEditing = false
 
     var isFormIncomplete: Bool {
         name.isEmpty || addTimerSegmentStates.filter(\.isAdded).isEmpty
@@ -32,8 +33,11 @@ public struct CreateQuickWorkoutState: Equatable {
         ColorComponents(color: selectedColor)
     }
 
-    public init(workoutSegments: [QuickWorkoutSegment] = [], name: String = "") {
+    public init(workoutSegments: [QuickWorkoutSegment] = [],
+                name: String = "",
+                isEditing: Bool = false) {
         self.name = name
+        self.isEditing = isEditing
         self.workoutSegments = workoutSegments
     }
 }

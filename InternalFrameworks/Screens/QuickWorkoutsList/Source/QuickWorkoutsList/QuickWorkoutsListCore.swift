@@ -15,6 +15,7 @@ public enum QuickWorkoutsListAction: Equatable {
     case didFetchWorkouts(Result<[QuickWorkout], PersistenceError>)
 
     case onAppear
+    case onTapWorkout(QuickWorkout)
 }
 
 public struct QuickWorkoutsListState: Equatable {
@@ -63,6 +64,13 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
         case .onAppear:
             state.loadingState = .loading
             return environment.fetchWorkouts()
+
+        case .onTapWorkout(let workout):
+            state.createWorkoutState = CreateQuickWorkoutState(
+                workoutSegments: workout.segments,
+                name: workout.name,
+                isEditing: true
+            )
             
         case .didFinishDeleting(.success(let ids)):
             ids.forEach { state.workoutStates.remove(id: UUID(uuidString: $0) ?? UUID()) }
