@@ -11,7 +11,7 @@ extension QuickWorkout: DomainEntity {
         workout.colorHue = color.hue
         workout.colorBrightness = color.brightness
         workout.colorSaturation = color.saturation
-        workout.segments = NSOrderedSet(array: segments.map { $0.createDatabaseEntity(in: context) })
+        workout.segments = NSSet(array: segments.map { $0.createDatabaseEntity(in: context) })
         return workout
     }
 }

@@ -10,7 +10,7 @@ extension QuickWorkoutDao {
 
     @NSManaged public var id: UUID?
     @NSManaged public var name: String?
-    @NSManaged public var segments: NSOrderedSet?
+    @NSManaged public var segments: NSSet?
     @NSManaged public var colorHue: Double
     @NSManaged public var colorSaturation: Double
     @NSManaged public var colorBrightness: Double
@@ -25,24 +25,6 @@ extension QuickWorkoutDao {
 // MARK: Generated accessors for segments
 extension QuickWorkoutDao {
 
-    @objc(insertObject:inSegmentsAtIndex:)
-    @NSManaged public func insertIntoSegments(_ value: QuickWorkoutSegmentDao, at idx: Int)
-
-    @objc(removeObjectFromSegmentsAtIndex:)
-    @NSManaged public func removeFromSegments(at idx: Int)
-
-    @objc(insertSegments:atIndexes:)
-    @NSManaged public func insertIntoSegments(_ values: [QuickWorkoutSegmentDao], at indexes: NSIndexSet)
-
-    @objc(removeSegmentsAtIndexes:)
-    @NSManaged public func removeFromSegments(at indexes: NSIndexSet)
-
-    @objc(replaceObjectInSegmentsAtIndex:withObject:)
-    @NSManaged public func replaceSegments(at idx: Int, with value: QuickWorkoutSegmentDao)
-
-    @objc(replaceSegmentsAtIndexes:withSegments:)
-    @NSManaged public func replaceSegments(at indexes: NSIndexSet, with values: [QuickWorkoutSegmentDao])
-
     @objc(addSegmentsObject:)
     @NSManaged public func addToSegments(_ value: QuickWorkoutSegmentDao)
 
@@ -50,10 +32,10 @@ extension QuickWorkoutDao {
     @NSManaged public func removeFromSegments(_ value: QuickWorkoutSegmentDao)
 
     @objc(addSegments:)
-    @NSManaged public func addToSegments(_ values: NSOrderedSet)
+    @NSManaged public func addToSegments(_ values: NSSet)
 
     @objc(removeSegments:)
-    @NSManaged public func removeFromSegments(_ values: NSOrderedSet)
+    @NSManaged public func removeFromSegments(_ values: NSSet)
 
 }
 
@@ -63,7 +45,10 @@ extension QuickWorkoutDao: DatabaseEntity {
         QuickWorkout(id: id ?? UUID(),
                      name: name ?? "",
                      color: WorkoutColor(hue: colorHue, saturation: colorSaturation, brightness: colorBrightness),
-                     segments: segments?.compactMap { $0 as? QuickWorkoutSegmentDao }.map { $0.toDomainEntity() } ?? []
+                     segments: segments?
+                        .compactMap { $0 as? QuickWorkoutSegmentDao }
+                        .sorted(by: { ($0.createdAt ?? Date()) > ($1.createdAt ?? Date()) })
+                        .map { $0.toDomainEntity() } ?? []
         )
     }
 }

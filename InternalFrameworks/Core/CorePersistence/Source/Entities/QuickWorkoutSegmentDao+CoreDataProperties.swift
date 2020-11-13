@@ -13,7 +13,12 @@ extension QuickWorkoutSegmentDao {
     @NSManaged public var work: Int16
     @NSManaged public var pause: Int16
     @NSManaged public var workout: QuickWorkoutDao?
+    @NSManaged public var createdAt: Date?
 
+    override func awakeFromInsert() {
+        super.awakeFromInsert()
+        createdAt = Date()
+    }
 }
 
 extension QuickWorkoutSegmentDao: Identifiable {}

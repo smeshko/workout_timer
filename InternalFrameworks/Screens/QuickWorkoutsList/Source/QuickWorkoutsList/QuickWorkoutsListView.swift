@@ -28,18 +28,18 @@ public struct QuickWorkoutsListView: View {
                     .environment(\.editMode, $editMode)
                     .toolbar {
                         HStack(spacing: 12) {
-                            Button(action: {
-                                withAnimation {
-                                    editMode.toggle()
-                                }
-                            }, label: {
-                                if editMode.isEditing {
-                                    Text("Done")
-                                } else {
-                                    Image(systemName: "pencil.circle")
-                                        .font(.system(size: 28))
-                                }
-                            })
+//                            Button(action: {
+//                                withAnimation {
+//                                    editMode.toggle()
+//                                }
+//                            }, label: {
+//                                if editMode.isEditing {
+//                                    Text("Done")
+//                                } else {
+//                                    Image(systemName: "pencil.circle")
+//                                        .font(.system(size: 28))
+//                                }
+//                            })
 
                             Button(action: {
                                 isWorkoutFormPresented = true

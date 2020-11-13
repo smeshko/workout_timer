@@ -59,6 +59,8 @@ struct CoreDataClient {
         }
 
         container = NSPersistentCloudKitContainer(name: "WorkoutTimer", managedObjectModel: managedObjectModel)
+        container.viewContext.automaticallyMergesChangesFromParent = true
+
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
         }
