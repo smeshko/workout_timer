@@ -54,20 +54,6 @@ targetTemplates:
         SWIFT_OBJC_INTERFACE_HEADER_NAME: ""
         SWIFT_PRECOMPILE_BRIDGING_HEADER: NO
 
-  ScreenFramework:
-    type: framework
-    platform: iOS
-    sources: InternalFrameworks/Screens/${target_name}/Source
-    dependencies:
-      - target: CoreInterface
-      - target: CoreLogic
-      - target: DomainEntities
-    settings:
-      base:
-        SWIFT_INSTALL_OBJC_HEADER: NO
-        SWIFT_OBJC_INTERFACE_HEADER_NAME: ""
-        SWIFT_PRECOMPILE_BRIDGING_HEADER: NO
-
   CoreUnitTests:
     type: bundle.unit-test
     platform: iOS
@@ -78,6 +64,20 @@ targetTemplates:
       testTargets:
         - name: ${frameworkName}UnitTests
       gatherCoverageData: true
+    settings:
+      base:
+        SWIFT_INSTALL_OBJC_HEADER: NO
+        SWIFT_OBJC_INTERFACE_HEADER_NAME: ""
+        SWIFT_PRECOMPILE_BRIDGING_HEADER: NO
+
+  ScreenFramework:
+    type: framework
+    platform: iOS
+    sources: InternalFrameworks/Screens/${target_name}/Source
+    dependencies:
+      - target: CoreInterface
+      - target: CoreLogic
+      - target: DomainEntities
     settings:
       base:
         SWIFT_INSTALL_OBJC_HEADER: NO

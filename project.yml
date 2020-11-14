@@ -78,6 +78,8 @@ targets:
 
   RunningTimer:
     templates: [ScreenFramework]
+    dependencies:
+      - target: CorePersistence
 
   RunningTimerUnitTests:
     templates: [ScreenUnitTests]

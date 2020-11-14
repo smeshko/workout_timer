@@ -11,16 +11,16 @@ class RunningTimerTests: XCTestCase {
     let testScheduler = DispatchQueue.testScheduler
 
     func testFlow() {
-        let state = RunningTimerState(
-            workout: QuickWorkout(
-                id: UUID(),
-                name: "Mock Workout",
-                color: WorkoutColor(hue: 0, saturation: 0, brightness: 0),
-                segments: [
-                    QuickWorkoutSegment(id: UUID(), sets: 1, work: 2, pause: 1),
-                    QuickWorkoutSegment(id: UUID(), sets: 1, work: 4, pause: 1)
-                ])
-            )
+        let workout = QuickWorkout(
+            id: UUID(),
+            name: "Mock Workout",
+            color: WorkoutColor(hue: 0, saturation: 0, brightness: 0),
+            segments: [
+                QuickWorkoutSegment(id: UUID(), sets: 1, work: 2, pause: 1),
+                QuickWorkoutSegment(id: UUID(), sets: 1, work: 4, pause: 1)
+            ])
+
+        let state = RunningTimerState(workout: workout)
         let sections = state.timerSections
 
         let store = TestStore(
@@ -117,20 +117,21 @@ class RunningTimerTests: XCTestCase {
             // finish
             .receive(.timerFinished) {
                 $0.timerControlsState.timerState = .finished
+                $0.finishedWorkoutState = FinishedWorkoutState(workout: workout)
             }
         )
     }
 
     func testCloseTimer() {
-        let state = RunningTimerState(
-            workout: QuickWorkout(
-                id: UUID(),
-                name: "Mock Workout",
-                color: WorkoutColor(hue: 0, saturation: 0, brightness: 0),
-                segments: [
-                    QuickWorkoutSegment(id: UUID(), sets: 1, work: 2, pause: 1)
-                ])
-            )
+        let workout = QuickWorkout(
+            id: UUID(),
+            name: "Mock Workout",
+            color: WorkoutColor(hue: 0, saturation: 0, brightness: 0),
+            segments: [
+                QuickWorkoutSegment(id: UUID(), sets: 1, work: 2, pause: 1)
+            ])
+
+        let state = RunningTimerState(workout: workout)
         let sections = state.timerSections
 
         let store = TestStore(
@@ -148,7 +149,7 @@ class RunningTimerTests: XCTestCase {
                 $0.currentSection = sections.first
                 $0.totalTimeLeft = 2
                 $0.sectionTimeLeft = 2
-                $0.segmentedProgressState.originalTotalCount = 2
+                $0.segmentedProgressState.originalTotalCount = 1
                 $0.segmentedProgressState.title = "Sections"
             },
 
@@ -197,6 +198,7 @@ class RunningTimerTests: XCTestCase {
             .receive(.timerFinished) {
                 $0.alert = nil
                 $0.timerControlsState.timerState = .finished
+                $0.finishedWorkoutState = FinishedWorkoutState(workout: workout)
             }
         )
     }
@@ -228,7 +230,7 @@ class RunningTimerTests: XCTestCase {
                 $0.currentSection = sections.first
                 $0.totalTimeLeft = 2
                 $0.sectionTimeLeft = 2
-                $0.segmentedProgressState.originalTotalCount = 2
+                $0.segmentedProgressState.originalTotalCount = 1
                 $0.segmentedProgressState.title = "Sections"
             },
 
