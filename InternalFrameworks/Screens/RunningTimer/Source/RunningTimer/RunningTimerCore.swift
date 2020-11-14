@@ -11,6 +11,7 @@ fileprivate struct Constants {
 public enum RunningTimerAction: Equatable {
     case timerControlsUpdatedState(TimerControlsAction)
     case segmentedProgressAction(SegmentedProgressAction)
+    case finishedWorkoutAction(FinishedWorkoutAction)
 
     case timerTicked
     case timerFinished
@@ -19,6 +20,7 @@ public enum RunningTimerAction: Equatable {
     case onAppear
     case onActive
     case onBackground
+    case onPush
 
     case preCountdownFinished
     case sectionEnded
@@ -39,6 +41,7 @@ public struct RunningTimerState: Equatable {
     var timerSections: [TimerSection]
     var alert: AlertState<RunningTimerAction>?
     var isPresented = true
+    var finishedWorkoutState: FinishedWorkoutState?
 
     var preCountdownTimeLeft: TimeInterval = Constants.preCountdown
     var isInPreCountdown: Bool
@@ -170,6 +173,9 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
             state.isPresented = false
             return Effect(value: RunningTimerAction.timerFinished)
 
+        case .finishedWorkoutAction(.didTapDoneButton):
+            state.isPresented = false
+
         default: break
         }
         return .none
@@ -183,6 +189,11 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
         state: \.segmentedProgressState,
         action: /RunningTimerAction.segmentedProgressAction,
         environment: { _ in SegmentedProgressEnvironment() }
+    ),
+    finishedWorkoutReducer.optional().pullback(
+        state: \.finishedWorkoutState,
+        action: /RunningTimerAction.finishedWorkoutAction,
+        environment: { _ in FinishedWorkoutEnvironment(repository: .live) }
     )
 )
 
@@ -213,6 +224,7 @@ private extension RunningTimerState {
     }
 
     mutating func finish() {
+        finishedWorkoutState = FinishedWorkoutState(workout: workout)
         timerControlsState = TimerControlsState(timerState: .finished)
         alert = nil
     }

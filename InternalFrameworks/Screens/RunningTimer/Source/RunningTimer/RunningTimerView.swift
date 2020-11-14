@@ -15,56 +15,67 @@ public struct RunningTimerView: View {
     }
 
     public var body: some View {
-        WithViewStore(store) { viewStore in
-            VStack {
-                if viewStore.isInPreCountdown {
-                    PreCountdownView(store: store)
-                } else {
-                    VStack(spacing: 28) {
-                        HeaderView(store: store)
+        NavigationView {
+            WithViewStore(store) { viewStore in
+                VStack {
+                    if viewStore.isInPreCountdown {
+                        PreCountdownView(store: store)
+                    } else {
+                        VStack(spacing: 28) {
+                            HeaderView(store: store)
 
-                        SegmentedProgressView(
-                            store: store.scope(state: \.segmentedProgressState, action: RunningTimerAction.segmentedProgressAction),
-                            color: viewStore.color
-                        )
-                        .padding(.top, 28)
+                            SegmentedProgressView(
+                                store: store.scope(state: \.segmentedProgressState, action: RunningTimerAction.segmentedProgressAction),
+                                color: viewStore.color
+                            )
+                            .padding(.top, 28)
 
-                        Spacer()
+                            Spacer()
 
-                        if viewStore.timerControlsState.isPaused {
-                            PausedView(store: store)
-                        } else {
-                            TimerView(store: store)
+                            if viewStore.timerControlsState.isPaused {
+                                PausedView(store: store)
+                            } else {
+                                TimerView(store: store)
+                            }
+
+                            Spacer()
+
+                            QuickTimerControlsView(store: store.scope(state: \.timerControlsState,
+                                                                      action: RunningTimerAction.timerControlsUpdatedState), tint: viewStore.color)
+
+                            NavigationLink(
+                                destination: IfLetStore(store.scope(state: \.finishedWorkoutState, action: RunningTimerAction.finishedWorkoutAction),
+                                                        then: FinishedWorkoutView.init),
+                                isActive: viewStore.binding(get: \.timerControlsState.timerState.isFinished, send: RunningTimerAction.onPush),
+                                label: { EmptyView() }
+                            )
+
                         }
-
-                        Spacer()
-
-                        QuickTimerControlsView(store: store.scope(state: \.timerControlsState,
-                                                                  action: RunningTimerAction.timerControlsUpdatedState), tint: viewStore.color)
-
-                    }
-                    .onChange(of: viewStore.finishedSections) { change in
-                        viewStore.send(.segmentedProgressAction(.moveToNextSegment))
-                    }
-                    .onChange(of: viewStore.isPresented) { isPresented in
-                        if !isPresented {
-                            presentationMode.wrappedValue.dismiss()
+                        .onChange(of: viewStore.finishedSections) { change in
+                            viewStore.send(.segmentedProgressAction(.moveToNextSegment))
+                        }
+                        .onChange(of: viewStore.isPresented) { isPresented in
+                            if !isPresented {
+                                presentationMode.wrappedValue.dismiss()
+                            }
                         }
                     }
                 }
-            }
-            .padding(28)
-            .onAppear {
-                viewStore.send(.onAppear)
-            }
-            .onChange(of: scenePahse) { newScene in
-                switch newScene {
-                case .active:
-                    viewStore.send(.onActive)
-                case .background:
-                    viewStore.send(.onBackground)
-                default: break
+                .padding(28)
+                .onAppear {
+                    viewStore.send(.onAppear)
                 }
+                .onChange(of: scenePahse) { newScene in
+                    switch newScene {
+                    case .active:
+                        viewStore.send(.onActive)
+                    case .background:
+                        viewStore.send(.onBackground)
+                    default: break
+                    }
+                }
+                .navigationTitle("")
+                .navigationBarHidden(true)
             }
         }
     }

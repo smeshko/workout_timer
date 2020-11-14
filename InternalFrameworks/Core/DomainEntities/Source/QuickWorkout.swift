@@ -13,3 +13,9 @@ public struct QuickWorkout: Equatable, Identifiable, Hashable {
         self.segments = segments
     }
 }
+
+public extension QuickWorkout {
+    var duration: Int {
+        segments.map { $0.duration }.reduce(0, +)
+    }
+}

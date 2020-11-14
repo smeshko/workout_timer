@@ -13,3 +13,9 @@ public struct QuickWorkoutSegment: Equatable, Identifiable, Hashable {
         self.pause = pause
     }
 }
+
+public extension QuickWorkoutSegment {
+    var duration: Int {
+        sets * (work + pause)
+    }
+}

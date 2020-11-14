@@ -21,7 +21,7 @@ struct QuickWorkoutCardState: Equatable, Identifiable {
     }
 
     var duration: Int {
-        Int(workout.segments.map { $0.sets * ($0.pause + $0.work) }.reduce(0, +) / 60)
+        Int(workout.duration / 60)
     }
 
     public init(workout: QuickWorkout, canStart: Bool = false) {
