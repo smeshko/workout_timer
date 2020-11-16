@@ -35,4 +35,11 @@ struct LocalStore: Store {
             .mapError { _ in PersistenceError.generalError }
             .eraseToAnyPublisher()
     }
+
+    func update<T>(_ object: T) -> AnyPublisher<T.EntityObject.Entity, PersistenceError> where T : DomainEntity {
+        client
+            .update(object)
+            .mapError { _ in PersistenceError.generalError }
+            .eraseToAnyPublisher()
+    }
 }

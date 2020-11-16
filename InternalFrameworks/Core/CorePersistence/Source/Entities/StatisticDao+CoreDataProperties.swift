@@ -25,4 +25,10 @@ extension StatisticDao: DatabaseEntity {
             workoutDuration: workoutDuration
         )
     }
+
+    func update(with new: Statistic, in context: NSManagedObjectContext) {
+        date = new.date
+        workoutName = new.workoutName
+        workoutDuration = new.workoutDuration
+    }
 }

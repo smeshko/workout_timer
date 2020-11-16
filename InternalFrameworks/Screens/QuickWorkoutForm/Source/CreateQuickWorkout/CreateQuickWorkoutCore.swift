@@ -18,12 +18,12 @@ public enum CreateQuickWorkoutAction: Equatable {
 
 public struct CreateQuickWorkoutState: Equatable {
     var addTimerSegmentStates: IdentifiedArrayOf<AddTimerSegmentState> = []
-    var workoutSegments: [QuickWorkoutSegment]
+    var workout: QuickWorkout?
     var name: String
     let preselectedTints: [TintColor] = TintColor.allTints
     var selectedTint: TintColor? = nil
     var selectedColor: Color = .black
-    var isEditing = false
+    let isEditing: Bool
 
     var isFormIncomplete: Bool {
         name.isEmpty || addTimerSegmentStates.filter(\.isAdded).isEmpty
@@ -33,12 +33,10 @@ public struct CreateQuickWorkoutState: Equatable {
         ColorComponents(color: selectedColor)
     }
 
-    public init(workoutSegments: [QuickWorkoutSegment] = [],
-                name: String = "",
-                isEditing: Bool = false) {
-        self.name = name
-        self.isEditing = isEditing
-        self.workoutSegments = workoutSegments
+    public init(workout: QuickWorkout? = nil) {
+        self.name = workout?.name ?? ""
+        self.workout = workout
+        self.isEditing = workout != nil
     }
 }
 
@@ -70,12 +68,17 @@ public let createQuickWorkoutReducer =
             switch action {
 
             case .onAppear:
-                state.addTimerSegmentStates = IdentifiedArray(state.workoutSegments.map(AddTimerSegmentState.init(segment:)))
-                state.addTimerSegmentStates.insert(defaultSegmentState(with: environment.uuid()), at: 0)
+                state.addTimerSegmentStates = IdentifiedArray(state.workout?.segments.map(AddTimerSegmentState.init(segment:)) ?? [])
+                state.addTimerSegmentStates.append(defaultSegmentState(with: environment.uuid()))
 
-                let randomTint = environment.randomElementGenerator(TintColor.allTints)
-                state.selectedColor = randomTint?.color ?? .appSuccess
-                state.selectedTint = randomTint
+                if state.isEditing {
+                    state.selectedColor = state.workout?.color.color ?? .appSuccess
+                    state.selectedTint = TintColor.allTints[state.selectedColor]
+                } else {
+                    let randomTint = environment.randomElementGenerator(TintColor.allTints)
+                    state.selectedColor = randomTint?.color ?? .appSuccess
+                    state.selectedTint = randomTint
+                }
 
             case .updateName(let name):
                 state.name = name
@@ -93,12 +96,10 @@ public let createQuickWorkoutReducer =
                 }
 
             case .save:
-                return environment
-                    .repository
-                    .createWorkout(QuickWorkout(state: state, uuid: environment.uuid))
-                    .receive(on: environment.mainQueue)
-                    .catchToEffect()
-                    .map(CreateQuickWorkoutAction.didSaveSuccessfully)
+                return environment.createOrUpdate(
+                    QuickWorkout(state: state, uuid: environment.uuid),
+                    isEditing: state.isEditing
+                )
 
             case .selectColor(let color):
                 state.selectedColor = color
@@ -122,7 +123,7 @@ private extension QuickWorkoutSegment {
 
 private extension QuickWorkout {
     init(state: CreateQuickWorkoutState, uuid: () -> UUID) {
-        self.init(id: uuid(),
+        self.init(id: state.workout?.id ?? uuid(),
                   name: state.name,
                   color: WorkoutColor(components: state.colorComponents),
                   segments: state.addTimerSegmentStates.filter({ $0.isAdded }).map(QuickWorkoutSegment.init(state:))
@@ -133,5 +134,23 @@ private extension QuickWorkout {
 private extension AddTimerSegmentState {
     init(segment: QuickWorkoutSegment) {
         self.init(id: segment.id, sets: segment.sets, workoutTime: segment.work, breakTime: segment.pause, isAdded: true)
+    }
+}
+
+private extension CreateQuickWorkoutEnvironment {
+    func createOrUpdate(_ workout: QuickWorkout, isEditing: Bool) -> Effect<CreateQuickWorkoutAction, Never> {
+        if isEditing {
+            return repository
+                .updateWorkout(workout)
+                .receive(on: mainQueue)
+                .catchToEffect()
+                .map(CreateQuickWorkoutAction.didSaveSuccessfully)
+        } else {
+            return repository
+                .createWorkout(workout)
+                .receive(on: mainQueue)
+                .catchToEffect()
+                .map(CreateQuickWorkoutAction.didSaveSuccessfully)
+        }
     }
 }

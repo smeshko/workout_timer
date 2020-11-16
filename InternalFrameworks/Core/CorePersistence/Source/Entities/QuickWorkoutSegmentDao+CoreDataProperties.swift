@@ -31,4 +31,10 @@ extension QuickWorkoutSegmentDao: DatabaseEntity {
             pause: Int(pause)
         )
     }
+
+    func update(with new: QuickWorkoutSegment, in context: NSManagedObjectContext) {
+        sets = Int16(new.sets)
+        work = Int16(new.work)
+        pause = Int16(new.pause)
+    }
 }

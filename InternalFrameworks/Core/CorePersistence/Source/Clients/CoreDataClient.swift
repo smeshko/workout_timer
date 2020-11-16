@@ -118,6 +118,30 @@ struct CoreDataClient {
         }
     }
 
+    func update<T: DomainEntity>(_ object: T) -> Future<T.EntityObject.Entity, CoreDataError> {
+        Future { promise in
+            let request = T.EntityObject.fetchRequest()
+            let predicate = NSPredicate(format: "id = %@", object.objectId)
+            request.predicate = predicate
+
+            do {
+                let result = try container.viewContext.fetch(request)
+                guard result.count == 1, let managedObject = result.first as? T.EntityObject else {
+                    promise(.failure(.objectNotFound))
+                    return
+                }
+
+                if let new = object as? T.EntityObject.Entity {
+                    managedObject.update(with: new, in: viewContext)
+                }
+                saveContext(promise: promise, successObject: managedObject.toDomainEntity())
+            } catch {
+                promise(.failure(.failedUpdatingContext))
+            }
+        }
+
+    }
+
     func delete<T: DomainEntity>(_ object: T) -> Future<String, CoreDataError> {
         Future { promise in
             let request = T.EntityObject.fetchRequest()

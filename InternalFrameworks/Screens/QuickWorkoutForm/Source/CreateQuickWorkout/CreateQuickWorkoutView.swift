@@ -14,9 +14,9 @@ public struct CreateQuickWorkoutView: View {
     public var body: some View {
         WithViewStore(store) { viewStore in
             VStack {
-                if viewStore.isEditing {
+                NavigationView {
                     WorkoutForm(store: store)
-                        .navigationTitle("Edit workout")
+                        .navigationTitle(viewStore.isEditing ? "Edit Workout" : "Create workout")
                         .toolbar {
                             ToolbarItem(placement: .confirmationAction) {
                                 Button("Save", action: {
@@ -25,27 +25,13 @@ public struct CreateQuickWorkoutView: View {
                                 })
                                 .disabled(viewStore.isFormIncomplete)
                             }
-                        }
-                } else {
-                    NavigationView {
-                        WorkoutForm(store: store)
-                            .navigationTitle("Create workout")
-                            .toolbar {
-                                ToolbarItem(placement: .confirmationAction) {
-                                    Button("Save", action: {
-                                        presentationMode.wrappedValue.dismiss()
-                                        viewStore.send(.save)
-                                    })
-                                    .disabled(viewStore.isFormIncomplete)
-                                }
-                                ToolbarItem(placement: .cancellationAction) {
-                                    Button("Cancel", action: {
-                                        presentationMode.wrappedValue.dismiss()
-                                        viewStore.send(.cancel)
-                                    })
-                                }
+                            ToolbarItem(placement: .cancellationAction) {
+                                Button("Cancel", action: {
+                                    presentationMode.wrappedValue.dismiss()
+                                    viewStore.send(.cancel)
+                                })
                             }
-                    }
+                        }
                 }
             }
             .onAppear {
@@ -68,8 +54,7 @@ struct CreateQuickWorkoutView_Previews: PreviewProvider {
 
         let filledStore = Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>(
             initialState: CreateQuickWorkoutState(
-                workoutSegments: [mockSegment1, mockSegment2, mockSegment3],
-                name: "My Workout"
+                workout: mockQuickWorkout1
             ),
             reducer: createQuickWorkoutReducer,
             environment: CreateQuickWorkoutEnvironment(

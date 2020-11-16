@@ -13,9 +13,9 @@ public enum QuickWorkoutsListAction: Equatable {
     case deleteWorkout(QuickWorkout)
     case didFinishDeleting(Result<[String], PersistenceError>)
     case didFetchWorkouts(Result<[QuickWorkout], PersistenceError>)
+    case editWorkout(QuickWorkout)
 
     case onAppear
-    case onTapWorkout(QuickWorkout)
 }
 
 public struct QuickWorkoutsListState: Equatable {
@@ -64,13 +64,6 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
         case .onAppear:
             state.loadingState = .loading
             return environment.fetchWorkouts()
-
-        case .onTapWorkout(let workout):
-            state.createWorkoutState = CreateQuickWorkoutState(
-                workoutSegments: workout.segments,
-                name: workout.name,
-                isEditing: true
-            )
             
         case .didFinishDeleting(.success(let ids)):
             ids.forEach { state.workoutStates.remove(id: UUID(uuidString: $0) ?? UUID()) }
@@ -88,8 +81,10 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
             break
 
         case .createWorkoutAction(.didSaveSuccessfully(.success(let workout))):
-            state.workoutStates.insert(QuickWorkoutCardState(workout: workout, canStart: true), at: 0)
+//            state.workoutStates.insert(QuickWorkoutCardState(workout: workout, canStart: true), at: 0)
             state.createWorkoutState = CreateQuickWorkoutState()
+            state.loadingState = .loading
+            return environment.fetchWorkouts()
 
         case .createWorkoutAction(.cancel):
             state.createWorkoutState = CreateQuickWorkoutState()
@@ -115,6 +110,9 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
                 .receive(on: environment.mainQueue)
                 .catchToEffect()
                 .map(QuickWorkoutsListAction.didFinishDeleting(_:))
+
+        case .editWorkout(let workout):
+            state.createWorkoutState = CreateQuickWorkoutState(workout: workout)
         }
         return .none
     },

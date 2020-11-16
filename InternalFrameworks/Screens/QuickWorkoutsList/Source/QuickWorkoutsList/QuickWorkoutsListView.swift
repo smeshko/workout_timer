@@ -165,6 +165,7 @@ private struct WorkoutsList: View {
                 }
 
                 let edit = UIAction(title: "Edit", image: UIImage(systemName: "pencil")) { _ in
+                    viewStore.send(.editWorkout(ViewStore(cardViewStore).workout))
                     isWorkoutFormPresented = true
                 }
 
@@ -181,6 +182,7 @@ private struct WorkoutsList: View {
                 return UIMenu(title: "", children: [start, edit, deleteMenu])
             }
             .onPreviewTap {
+                viewStore.send(.editWorkout(ViewStore(cardViewStore).workout))
                 isWorkoutFormPresented = true
             }
             .frame(height: cellSize.height)

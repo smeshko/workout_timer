@@ -47,8 +47,20 @@ extension QuickWorkoutDao: DatabaseEntity {
                      color: WorkoutColor(hue: colorHue, saturation: colorSaturation, brightness: colorBrightness),
                      segments: segments?
                         .compactMap { $0 as? QuickWorkoutSegmentDao }
-                        .sorted(by: { ($0.createdAt ?? Date()) > ($1.createdAt ?? Date()) })
+                        .sorted(by: { ($0.createdAt ?? Date()) < ($1.createdAt ?? Date()) })
                         .map { $0.toDomainEntity() } ?? []
         )
+    }
+
+    func update(with new: QuickWorkout, in context: NSManagedObjectContext) {
+        name = new.name
+        colorHue = new.color.hue
+        colorSaturation = new.color.saturation
+        colorBrightness = new.color.brightness
+
+        if let segments = segments {
+            removeFromSegments(segments)
+            addToSegments(NSSet(array: new.segments.map { $0.createDatabaseEntity(in: context) }))
+        }
     }
 }
