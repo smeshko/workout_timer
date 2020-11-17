@@ -23,6 +23,6 @@ public struct TintColor: Identifiable, Equatable {
 
 public extension Array where Element == TintColor {
     subscript(_ color: Color) -> TintColor? {
-        first { $0.color == color }
+        first { $0.color.description == color.description }
     }
 }

@@ -81,7 +81,6 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
             break
 
         case .createWorkoutAction(.didSaveSuccessfully(.success(let workout))):
-//            state.workoutStates.insert(QuickWorkoutCardState(workout: workout, canStart: true), at: 0)
             state.createWorkoutState = CreateQuickWorkoutState()
             state.loadingState = .loading
             return environment.fetchWorkouts()
