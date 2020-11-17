@@ -205,3 +205,45 @@ private struct ScrollView<Content: View>: UIViewRepresentable {
         }
     }
 }
+
+private struct StepperInput: View {
+    let store: Store<PickerState, PickerAction>
+    let viewStore: ViewStore<PickerState, PickerAction>
+    let name: String
+    let tint: Color
+
+    init(store: Store<PickerState, PickerAction>, name: String, tint: Color) {
+        self.store = store
+        self.viewStore = ViewStore(store)
+        self.name = name
+        self.tint = tint
+    }
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            HStack(spacing: 8) {
+                FastForwardButton {
+                    viewStore.send(.valueUpdated(viewStore.value - 1))
+                } buttonContent: {
+                    Image(systemName: "minus")
+                        .font(.bodySmall)
+                        .foregroundColor(tint)
+                }
+
+                Text("\(viewStore.value)")
+                    .font(.h2)
+
+                FastForwardButton {
+                    viewStore.send(.valueUpdated(viewStore.value + 1))
+                } buttonContent: {
+                    Image(systemName: "plus")
+                        .font(.bodySmall)
+                        .foregroundColor(tint)
+                }
+            }
+            Text(name)
+                .foregroundColor(tint)
+                .font(.label)
+        }
+    }
+}

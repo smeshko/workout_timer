@@ -12,7 +12,7 @@ struct AddTimerSegmentView: View {
     private var workoutColor: WorkoutColor {
         WorkoutColor(color: color)
     }
-    
+
     var body: some View {
         WithViewStore(store) { viewStore in
             HStack(spacing: 12) {
