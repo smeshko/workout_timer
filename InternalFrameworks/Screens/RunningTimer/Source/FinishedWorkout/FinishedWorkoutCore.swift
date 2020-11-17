@@ -1,4 +1,5 @@
 import Foundation
+import CoreLogic
 import CorePersistence
 import DomainEntities
 import ComposableArchitecture
@@ -21,9 +22,12 @@ public struct FinishedWorkoutState: Equatable {
 public struct FinishedWorkoutEnvironment {
 
     let repository: StatisticsRepository
+    let soundClient: SoundClient
 
-    public init(repository: StatisticsRepository) {
+    public init(repository: StatisticsRepository,
+                soundClient: SoundClient = .live) {
         self.repository = repository
+        self.soundClient = soundClient
     }
 }
 
@@ -39,6 +43,7 @@ public let finishedWorkoutReducer = Reducer<FinishedWorkoutState, FinishedWorkou
 
     case .didSaveFinishedWorkout(.success(let statistic)):
         state.statistic = statistic
+        return environment.soundClient.play(.workout).fireAndForget()
 
     case .didSaveFinishedWorkout(.failure):
         break

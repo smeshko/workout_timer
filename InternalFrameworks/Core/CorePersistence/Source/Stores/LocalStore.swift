@@ -22,7 +22,6 @@ struct LocalStore: Store {
     }
 
     func create<T>(_ object: T) -> AnyPublisher<T, PersistenceError> where T : DomainEntity {
-        
         client
             .insert(object)
             .mapError { _ in PersistenceError.generalError }

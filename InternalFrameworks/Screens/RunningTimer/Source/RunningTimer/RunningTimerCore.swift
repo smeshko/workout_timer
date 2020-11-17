@@ -150,7 +150,8 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
         case .sectionEnded:
             state.moveToNextSection()
             return environment
-                .soundClient.play(.segment)
+                .soundClient
+                .play(.segment)
                 .fireAndForget()
 
         case .alertButtonTapped:
