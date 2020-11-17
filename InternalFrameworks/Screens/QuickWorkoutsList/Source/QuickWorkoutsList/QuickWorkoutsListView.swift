@@ -12,7 +12,6 @@ public struct QuickWorkoutsListView: View {
 
     @State var isWorkoutFormPresented: Bool = false
     @State var isRunningTimerPresented: (Bool, Store<RunningTimerState, RunningTimerAction>?) = (false, nil)
-    @State var editMode: EditMode = .inactive
 
     public init(store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>) {
         self.store = store
@@ -25,29 +24,14 @@ public struct QuickWorkoutsListView: View {
                 NoWorkoutsView(store: store, isWorkoutFormPresented: $isWorkoutFormPresented)
             } else {
                 WorkoutsList(store: store, isWorkoutFormPresented: $isWorkoutFormPresented, isRunningTimerPresented: $isRunningTimerPresented)
-                    .environment(\.editMode, $editMode)
                     .toolbar {
                         HStack(spacing: 12) {
-//                            Button(action: {
-//                                withAnimation {
-//                                    editMode.toggle()
-//                                }
-//                            }, label: {
-//                                if editMode.isEditing {
-//                                    Text("Done")
-//                                } else {
-//                                    Image(systemName: "pencil.circle")
-//                                        .font(.system(size: 28))
-//                                }
-//                            })
-
                             Button(action: {
                                 isWorkoutFormPresented = true
                             }, label: {
                                 Image(systemName: "plus.circle")
                                     .font(.system(size: 28))
                             })
-                            .disabled(editMode.isEditing)
                         }
                     }
             }
@@ -136,7 +120,6 @@ private struct WorkoutsList: View {
     @Binding var isWorkoutFormPresented: Bool
     @Binding var isRunningTimerPresented: (Bool, Store<RunningTimerState, RunningTimerAction>?)
     @State var cellSize: CGSize = .zero
-    @Environment(\.editMode) var editMode
 
     init(store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>,
          isWorkoutFormPresented: Binding<Bool>,
@@ -190,10 +173,8 @@ private struct WorkoutsList: View {
         .onDelete { insets in
             withAnimation {
                 viewStore.send(QuickWorkoutsListAction.deleteWorkouts(insets))
-                editMode?.animation().wrappedValue.toggle()
             }
         }
-        .isEditing(editMode?.wrappedValue == .active)
         .sheet(isPresented: $isWorkoutFormPresented) {
             CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState,
                                                       action: QuickWorkoutsListAction.createWorkoutAction))
@@ -250,12 +231,6 @@ private struct WorkoutPreview: View {
 private extension WorkoutColor {
     var monochromatic: Color {
         Color(hue: hue, saturation: saturation - 0.2, brightness: brightness - 0.1)
-    }
-}
-
-private extension EditMode {
-    mutating func toggle() {
-        self = self == .active ? .inactive : .active
     }
 }
 

@@ -10,7 +10,6 @@ where Data: Collection, RowContent: View, EachState: Identifiable, EachState.ID 
     private let store: Store<IdentifiedArray<ID, EachState>, (ID, EachAction)>
     private let content: (Store<EachState, EachAction>) -> RowContent
 
-    private var isEditing: Bool = false
     private var onDelete: (IndexSet) -> Void = { _ in }
 
     public init(_ store: Store<Data, (ID, EachAction)>,
@@ -40,7 +39,6 @@ where Data: Collection, RowContent: View, EachState: Identifiable, EachState.ID 
                         action: { (item.id, $0) })
         }
         controller.view.layoutIfNeeded()
-        controller.tableView.setEditing(isEditing, animated: true)
 
         if let _ = context.transaction.animation {
             UIView.transition(with: controller.tableView, duration: 0.15, options: .transitionCrossDissolve, animations: { controller.tableView.reloadData() })
@@ -55,10 +53,6 @@ where Data: Collection, RowContent: View, EachState: Identifiable, EachState.ID 
 
     public func onDelete(_ action: @escaping (IndexSet) -> Void) -> List {
         update(\.onDelete, value: action)
-    }
-
-    public func isEditing(_ editing: Bool) -> List {
-        update(\.isEditing, value: editing)
     }
 
     public class Coordinator: NSObject, UITableViewDataSource, UITableViewDelegate {
