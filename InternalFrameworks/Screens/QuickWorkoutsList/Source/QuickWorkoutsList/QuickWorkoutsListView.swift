@@ -46,6 +46,11 @@ public struct QuickWorkoutsListView: View {
         .onAppear {
             viewStore.send(.onAppear)
         }
+        .overlay(
+            viewStore.loadingState.isLoading ?
+            ProgressView().progressViewStyle(CircularProgressViewStyle()) :
+            nil
+        )
     }
 }
 
