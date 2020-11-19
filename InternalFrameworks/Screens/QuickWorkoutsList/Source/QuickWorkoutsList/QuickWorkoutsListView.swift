@@ -185,58 +185,9 @@ private struct WorkoutsList: View {
     }
 }
 
-private struct WorkoutPreview: View {
-    let store: Store<QuickWorkoutCardState, QuickWorkoutCardAction>
-
-    var body: some View {
-        WithViewStore(store) { viewStore in
-            VStack(alignment: .leading) {
-                HStack {
-                    Text(viewStore.workout.name)
-                        .font(.h1)
-                        .foregroundColor(.appWhite)
-
-                    Spacer()
-
-                    Text("\(viewStore.duration) mins")
-                        .font(.h2)
-                        .foregroundColor(.appWhite)
-                }
-
-                ForEach(viewStore.workout.segments) { segment in
-                    HStack {
-                        Text("\(segment.sets) sets")
-                        Spacer()
-                        Text("\(segment.work)sec")
-                    }
-                    .frame(minWidth: 0, idealWidth: .infinity, maxWidth: .infinity)
-                    .font(.h3)
-                    .foregroundColor(.appWhite)
-                    .padding(18)
-                    .background(
-                        RoundedRectangle(cornerRadius: 12)
-                            .foregroundColor(viewStore.workout.color.color.opacity(0.6))
-                            .shadow(color: Color.black.opacity(0.1), radius: 5, x: 5, y: 5)
-                    )
-                    .padding(.top, 12)
-                }
-            }
-            .padding(28)
-            .frame(minWidth: 0, idealWidth: .infinity, maxWidth: .infinity, minHeight: 0, idealHeight: .infinity, maxHeight: .infinity, alignment: .topLeading)
-            .background(viewStore.workout.color.monochromatic)
-        }
-    }
-}
-
-private extension WorkoutColor {
-    var monochromatic: Color {
-        Color(hue: hue, saturation: saturation - 0.2, brightness: brightness - 0.1)
-    }
-}
-
 private extension View {
     func settingSize(_ binding: Binding<CGSize>) -> some View {
-        self.background(
+        background(
             GeometryReader { proxy in
                 Color.clear
                     .onAppear { binding.wrappedValue = proxy.size }

@@ -3,7 +3,7 @@ import SwiftUI
 import ComposableArchitecture
 import CoreLogic
 
-public struct List<EachState, EachAction, RowContent, Data, ID>: UIViewControllerRepresentable, KeyPathUpdateable
+public struct List<EachState, EachAction, RowContent, Data, ID>: UIViewRepresentable, KeyPathUpdateable
 where Data: Collection, RowContent: View, EachState: Identifiable, EachState.ID == ID {
 
     private let data: IdentifiedArray<ID, EachState>
@@ -22,28 +22,31 @@ where Data: Collection, RowContent: View, EachState: Identifiable, EachState.ID 
         self.content = content
     }
 
-    public func makeUIViewController(context: Context) -> UITableViewController {
-        let tableViewController = UITableViewController()
-        tableViewController.tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableViewController.tableView.dataSource = context.coordinator
-        tableViewController.tableView.delegate = context.coordinator
-        tableViewController.tableView.separatorStyle = .none
-        tableViewController.tableView.allowsMultipleSelection = true
-        tableViewController.tableView.register(HostingCell<RowContent>.self, forCellReuseIdentifier: "Cell")
-        return tableViewController
+    public func makeUIView(context: Context) -> UITableView {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.dataSource = context.coordinator
+        tableView.delegate = context.coordinator
+        tableView.separatorStyle = .none
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = UITableView.automaticDimension
+        tableView.register(HostingCell<RowContent>.self, forCellReuseIdentifier: "Cell")
+        return tableView
     }
 
-    public func updateUIViewController(_ controller: UITableViewController, context: Context) {
+    public func updateUIView(_ uiView: UITableView, context: Context) {
         context.coordinator.rows = data.enumerated().map { offset, item in
             store.scope(state: { $0[safe: offset] ?? item },
                         action: { (item.id, $0) })
         }
-        controller.view.layoutIfNeeded()
+
+        uiView.setNeedsLayout()
+        uiView.setNeedsDisplay()
 
         if let _ = context.transaction.animation {
-            UIView.transition(with: controller.tableView, duration: 0.15, options: .transitionCrossDissolve, animations: { controller.tableView.reloadData() })
+            UIView.transition(with: uiView, duration: 0.15, options: .transitionCrossDissolve, animations: { uiView.reloadData() })
         } else {
-            controller.tableView.reloadData()
+            uiView.reloadData()
         }
     }
 
@@ -113,6 +116,7 @@ private class HostingCell<Content: View>: UITableViewCell {
         } else {
             host?.rootView = view
         }
+
         setNeedsLayout()
     }
 }

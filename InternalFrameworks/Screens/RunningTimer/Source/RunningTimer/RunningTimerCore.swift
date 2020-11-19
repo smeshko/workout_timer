@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 import CoreInterface
 import ComposableArchitecture
 import CoreLogic
@@ -53,7 +54,7 @@ public struct RunningTimerState: Equatable {
     public init(workout: QuickWorkout,
                 currentSection: TimerSection? = nil,
                 timerControlsState: TimerControlsState = TimerControlsState(),
-                segmentedProgressState: SegmentedProgressState = SegmentedProgressState(totalSegments: 0, isCompact: true),
+                segmentedProgressState: SegmentedProgressState = SegmentedProgressState(totalSegments: 0, isCompact: UITraitCollection.current.horizontalSizeClass == .compact),
                 isInPreCountdown: Bool = true,
                 isCompact: Bool = true) {
         self.workout = workout
@@ -219,7 +220,7 @@ private extension RunningTimerState {
     }
 
     mutating func updateSegments() {
-        segmentedProgressState = SegmentedProgressState(totalSegments: progressSegmentsCount, filledSegments: 0, title: "Sections", isCompact: true)
+        segmentedProgressState = SegmentedProgressState(totalSegments: progressSegmentsCount, filledSegments: 0, title: "Sections", isCompact: UITraitCollection.current.horizontalSizeClass == .compact)
         currentSection = timerSections.first
         calculateInitialTime()
     }
