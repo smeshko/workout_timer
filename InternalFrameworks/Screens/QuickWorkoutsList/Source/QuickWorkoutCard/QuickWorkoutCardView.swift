@@ -12,14 +12,9 @@ struct QuickWorkoutCardView: View {
 
     @Binding var origin: CGPoint
 
-    @Binding var timerStore: Store<RunningTimerState, RunningTimerAction>?
-
-    init(store: Store<QuickWorkoutCardState, QuickWorkoutCardAction>,
-         timerStore: Binding<Store<RunningTimerState, RunningTimerAction>?>,
-         origin: Binding<CGPoint>) {
+    init(store: Store<QuickWorkoutCardState, QuickWorkoutCardAction>, origin: Binding<CGPoint>) {
         self.store = store
         self._origin = origin
-        self._timerStore = timerStore
         self.viewStore = ViewStore(store)
     }
 
@@ -49,10 +44,6 @@ struct QuickWorkoutCardView: View {
                                 origin = CGPoint(
                                     x: buttonOrigin.x + buttonProxy.size.width / 2,
                                     y: buttonOrigin.y + buttonProxy.size.height / 2
-                                )
-                                timerStore = store.scope(
-                                    state: \.runningTimerState,
-                                    action: QuickWorkoutCardAction.runningTimerAction
                                 )
                             }
                         }, label: {
@@ -87,16 +78,16 @@ struct QuickWorkoutCardView_Previews: PreviewProvider {
                                         QuickWorkoutSegment(id: UUID(), sets: 2, work: 60, pause: 10)
                                       ])),
             reducer: quickWorkoutCardReducer,
-            environment: QuickWorkoutCardEnvironment(notificationClient: .mock)
+            environment: QuickWorkoutCardEnvironment()
         )
 
         return Group {
-            QuickWorkoutCardView(store: store, timerStore: .constant(nil), origin: .constant(.zero))
+            QuickWorkoutCardView(store: store, origin: .constant(.zero))
                 .padding()
                 .previewLayout(.fixed(width: 375, height: 180))
                 .preferredColorScheme(.dark)
 
-            QuickWorkoutCardView(store: store, timerStore: .constant(nil), origin: .constant(.zero))
+            QuickWorkoutCardView(store: store, origin: .constant(.zero))
                 .padding()
                 .previewLayout(.fixed(width: 375, height: 180))
         }

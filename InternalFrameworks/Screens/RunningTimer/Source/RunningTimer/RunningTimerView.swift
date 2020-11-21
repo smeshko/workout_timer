@@ -45,12 +45,15 @@ public struct RunningTimerView: View {
                     QuickTimerControlsView(store: store.scope(state: \.timerControlsState,
                                                               action: RunningTimerAction.timerControlsUpdatedState), tint: viewStore.color)
 
-                    NavigationLink(
-                        destination: IfLetStore(store.scope(state: \.finishedWorkoutState, action: RunningTimerAction.finishedWorkoutAction),
-                                                then: FinishedWorkoutView.init),
-                        isActive: viewStore.binding(get: \.timerControlsState.timerState.isFinished, send: RunningTimerAction.onPush),
-                        label: { EmptyView() }
-                    )
+                    if viewStore.timerControlsState.timerState.isFinished {
+                        NavigationLink(
+                            destination: IfLetStore(store.scope(state: \.finishedWorkoutState, action: RunningTimerAction.finishedWorkoutAction),
+                                                    then: FinishedWorkoutView.init),
+                            isActive: .constant(true),
+                            label: { EmptyView() }
+                        )
+
+                    }
 
                 }
                 .onChange(of: viewStore.finishedSections) { change in

@@ -9,6 +9,7 @@ import RunningTimer
 public enum QuickWorkoutsListAction: Equatable {
     case workoutCardAction(id: UUID, action: QuickWorkoutCardAction)
     case createWorkoutAction(CreateQuickWorkoutAction)
+    case runningTimerAction(RunningTimerAction)
 
     case deleteWorkouts(IndexSet)
     case deleteWorkout(QuickWorkout)
@@ -25,6 +26,7 @@ public struct QuickWorkoutsListState: Equatable {
 
     var workoutStates: IdentifiedArrayOf<QuickWorkoutCardState> = []
     var createWorkoutState = CreateQuickWorkoutState()
+    var runningTimerState: RunningTimerState?
     var loadingState: LoadingState = .finished
     var isPresentingTimer = false
 
@@ -58,7 +60,12 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
     quickWorkoutCardReducer.forEach(
         state: \.workoutStates,
         action: /QuickWorkoutsListAction.workoutCardAction(id:action:),
-        environment: { QuickWorkoutCardEnvironment(notificationClient: $0.notificationClient) }
+        environment: { _ in QuickWorkoutCardEnvironment() }
+    ),
+    runningTimerReducer.optional().pullback(
+        state: \.runningTimerState,
+        action: /QuickWorkoutsListAction.runningTimerAction,
+        environment: { RunningTimerEnvironment(mainQueue: $0.mainQueue, soundClient: .live, notificationClient: .live) }
     ),
     Reducer { state, action, environment in
 
@@ -79,13 +86,16 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
             state.loadingState = .error
             break
 
-        case .workoutCardAction(_, action: .tapStart):
+        case .workoutCardAction(let id, action: .tapStart):
+            guard let workout = state.workoutStates[id: id]?.workout else { break }
+            state.runningTimerState = RunningTimerState(workout: workout)
             state.isPresentingTimer = true
 
-        case .workoutCardAction(_, action: .runningTimerAction(.finishedWorkoutAction(.didTapDoneButton))):
+        case .runningTimerAction(.finishedWorkoutAction(.didTapDoneButton)):
+            state.runningTimerState = nil
             state.isPresentingTimer = false
 
-        case .workoutCardAction:
+        case .runningTimerAction:
             break
 
         case .createWorkoutAction(.didSaveSuccessfully(.success(let workout))):

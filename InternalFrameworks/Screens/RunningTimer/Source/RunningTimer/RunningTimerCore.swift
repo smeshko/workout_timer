@@ -21,7 +21,6 @@ public enum RunningTimerAction: Equatable {
     case onAppear
     case onActive
     case onBackground
-    case onPush
 
     case preCountdownFinished
     case sectionEnded

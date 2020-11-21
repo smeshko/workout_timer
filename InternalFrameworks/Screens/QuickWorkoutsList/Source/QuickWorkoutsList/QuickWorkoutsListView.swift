@@ -11,12 +11,7 @@ public struct QuickWorkoutsListView: View {
     @ObservedObject var viewStore: ViewStore<QuickWorkoutsListState, QuickWorkoutsListAction>
 
     @State var isWorkoutFormPresented: Bool = false
-    @State var isRunningTimerPresented: (Bool, Store<RunningTimerState, RunningTimerAction>?) = (false, nil)
-
-    @State var runningTimerStore: Store<RunningTimerState, RunningTimerAction>?
     @State var origin: CGPoint = .zero
-
-    let proxy = UIScreen.main.bounds
 
     public init(store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>) {
         self.store = store
@@ -29,15 +24,10 @@ public struct QuickWorkoutsListView: View {
                 NoWorkoutsView(store: store, isWorkoutFormPresented: $isWorkoutFormPresented)
             } else {
                 if viewStore.isPresentingTimer {
-                    RunningTimerView(store: runningTimerStore!, origin: origin)
-                        .zIndex(1)
+                    IfLetStore(store.scope(state: \.runningTimerState, action: QuickWorkoutsListAction.runningTimerAction),
+                               then: { RunningTimerView(store: $0, origin: origin).zIndex(1) })
                 } else {
-
-                    WorkoutsList(store: store,
-                                 isWorkoutFormPresented: $isWorkoutFormPresented,
-                                 isRunningTimerPresented: $isRunningTimerPresented,
-                                 runningTimerStore: $runningTimerStore,
-                                 origin: $origin)
+                    WorkoutsList(store: store, isWorkoutFormPresented: $isWorkoutFormPresented, origin: $origin)
                         .toolbar {
                             HStack(spacing: 12) {
                                 Button(action: {
@@ -54,9 +44,6 @@ public struct QuickWorkoutsListView: View {
         .sheet(isPresented: $isWorkoutFormPresented) {
             CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState,
                                                       action: QuickWorkoutsListAction.createWorkoutAction))
-        }
-        .fullScreenCover(isPresented: $isRunningTimerPresented.0) {
-            RunningTimerView(store: isRunningTimerPresented.1!, origin: origin)
         }
         .onAppear {
             viewStore.send(.onAppear)
@@ -137,80 +124,68 @@ private struct WorkoutsList: View {
     let store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>
     let viewStore: ViewStore<QuickWorkoutsListState, QuickWorkoutsListAction>
 
-    @Binding var isWorkoutFormPresented: Bool
-    @Binding var isRunningTimerPresented: (Bool, Store<RunningTimerState, RunningTimerAction>?)
+    @Binding private var isWorkoutFormPresented: Bool
+    @Binding private var origin: CGPoint
 
-    @State var cellSize: CGSize = .zero
-    @Binding var runningTimerStore: Store<RunningTimerState, RunningTimerAction>?
-    @Binding var origin: CGPoint
+    @State private var cellSize: CGSize = .zero
 
     init(store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>,
          isWorkoutFormPresented: Binding<Bool>,
-         isRunningTimerPresented: Binding<(Bool, Store<RunningTimerState, RunningTimerAction>?)>,
-         runningTimerStore: Binding<Store<RunningTimerState, RunningTimerAction>?>,
          origin: Binding<CGPoint>
     ) {
         self.store = store
         self.viewStore = ViewStore(store)
         self._isWorkoutFormPresented = isWorkoutFormPresented
-        self._isRunningTimerPresented = isRunningTimerPresented
-        self._runningTimerStore = runningTimerStore
         self._origin = origin
     }
 
     var body: some View {
-                List(store.scope(state: { $0.workoutStates },
-                                 action: QuickWorkoutsListAction.workoutCardAction(id:action:))) { cardViewStore in
-                    ContextMenuView {
-                        QuickWorkoutCardView(store: cardViewStore,
-                                             timerStore: $runningTimerStore,
-                                             origin: $origin)
-                            .padding(.horizontal, 18)
-                            .padding(.vertical, 9)
-                            .settingSize($cellSize)
-                    } previewProvider: {
-                        WorkoutPreview(store: cardViewStore)
-                    }
-                    .actionProvider {
-                        let deleteAction = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) { action in
-                            viewStore.send(.deleteWorkout(ViewStore(cardViewStore).workout))
-                        }
-
-                        let edit = UIAction(title: "Edit", image: UIImage(systemName: "pencil")) { _ in
-                            viewStore.send(.editWorkout(ViewStore(cardViewStore).workout))
-                            isWorkoutFormPresented = true
-                        }
-
-                        let start = UIAction(title: "Start", image: UIImage(systemName: "play.fill")) { action in
-                            ViewStore(cardViewStore).send(.tapStart)
-                            isRunningTimerPresented = (
-                                true,
-                                cardViewStore.scope(state: \.runningTimerState, action: QuickWorkoutCardAction.runningTimerAction)
-                            )
-                        }
-
-                        let deleteMenu = UIMenu(title: "Delete", image: UIImage(systemName: "trash"), options: .destructive, children: [deleteAction])
-
-                        return UIMenu(title: "", children: [start, edit, deleteMenu])
-                    }
-                    .onPreviewTap {
-                        viewStore.send(.editWorkout(ViewStore(cardViewStore).workout))
-                        isWorkoutFormPresented = true
-                    }
-                    .frame(height: cellSize.height)
+        List(store.scope(state: { $0.workoutStates },
+                         action: QuickWorkoutsListAction.workoutCardAction(id:action:))) { cardViewStore in
+            ContextMenuView {
+                QuickWorkoutCardView(store: cardViewStore, origin: $origin)
+                    .padding(.horizontal, 18)
+                    .padding(.vertical, 9)
+                    .settingSize($cellSize)
+            } previewProvider: {
+                WorkoutPreview(store: cardViewStore)
+            }
+            .actionProvider {
+                let deleteAction = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) { action in
+                    viewStore.send(.deleteWorkout(ViewStore(cardViewStore).workout))
                 }
-                .onDelete { insets in
-                    withAnimation {
-                        viewStore.send(QuickWorkoutsListAction.deleteWorkouts(insets))
-                    }
+
+                let edit = UIAction(title: "Edit", image: UIImage(systemName: "pencil")) { _ in
+                    viewStore.send(.editWorkout(ViewStore(cardViewStore).workout))
+                    isWorkoutFormPresented = true
                 }
-                .sheet(isPresented: $isWorkoutFormPresented) {
-                    CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState,
-                                                              action: QuickWorkoutsListAction.createWorkoutAction))
+
+                let start = UIAction(title: "Start", image: UIImage(systemName: "play.fill")) { action in
+                    ViewStore(cardViewStore).send(.tapStart)
                 }
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                .edgesIgnoringSafeArea(.all)
-                .navigationTitle("Workouts")
+
+                let deleteMenu = UIMenu(title: "Delete", image: UIImage(systemName: "trash"), options: .destructive, children: [deleteAction])
+
+                return UIMenu(title: "", children: [start, edit, deleteMenu])
+            }
+            .onPreviewTap {
+                viewStore.send(.editWorkout(ViewStore(cardViewStore).workout))
+                isWorkoutFormPresented = true
+            }
+            .frame(height: cellSize.height)
+        }
+        .onDelete { insets in
+            withAnimation {
+                viewStore.send(QuickWorkoutsListAction.deleteWorkouts(insets))
+            }
+        }
+        .sheet(isPresented: $isWorkoutFormPresented) {
+            CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState,
+                                                      action: QuickWorkoutsListAction.createWorkoutAction))
+        }
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+        .edgesIgnoringSafeArea(.all)
+        .navigationTitle("Workouts")
 
     }
 }
