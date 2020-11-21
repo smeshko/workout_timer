@@ -4,6 +4,7 @@ import ComposableArchitecture
 import DomainEntities
 import CoreInterface
 import QuickWorkoutForm
+import RunningTimer
 
 public enum QuickWorkoutsListAction: Equatable {
     case workoutCardAction(id: UUID, action: QuickWorkoutCardAction)
@@ -25,10 +26,11 @@ public struct QuickWorkoutsListState: Equatable {
     var workoutStates: IdentifiedArrayOf<QuickWorkoutCardState> = []
     var createWorkoutState = CreateQuickWorkoutState()
     var loadingState: LoadingState = .finished
+    var isPresentingTimer = false
 
     public init(workouts: [QuickWorkout] = []) {
         self.workouts = workouts
-        workoutStates = IdentifiedArray(workouts.map { QuickWorkoutCardState(workout: $0, canStart: true) })
+        workoutStates = IdentifiedArray(workouts.map { QuickWorkoutCardState(workout: $0) })
     }
 }
 
@@ -71,13 +73,19 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
         case .didFetchWorkouts(.success(let workouts)):
             state.loadingState = .finished
             state.workouts = workouts
-            state.workoutStates = IdentifiedArray(workouts.map { QuickWorkoutCardState(workout: $0, canStart: true) })
+            state.workoutStates = IdentifiedArray(workouts.map { QuickWorkoutCardState(workout: $0) })
 
         case .didFinishDeleting(.failure), .didFetchWorkouts(.failure):
             state.loadingState = .error
             break
 
-        case .workoutCardAction(let id, let action):
+        case .workoutCardAction(_, action: .tapStart):
+            state.isPresentingTimer = true
+
+        case .workoutCardAction(_, action: .runningTimerAction(.finishedWorkoutAction(.didTapDoneButton))):
+            state.isPresentingTimer = false
+
+        case .workoutCardAction:
             break
 
         case .createWorkoutAction(.didSaveSuccessfully(.success(let workout))):

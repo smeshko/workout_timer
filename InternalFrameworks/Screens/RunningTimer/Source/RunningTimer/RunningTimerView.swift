@@ -5,79 +5,80 @@ import CorePersistence
 
 public struct RunningTimerView: View {
     let store: Store<RunningTimerState, RunningTimerAction>
+    let viewStore: ViewStore<RunningTimerState, RunningTimerAction>
+    let origin: CGPoint
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.scenePhase) var scenePahse
 
-    public init(store: Store<RunningTimerState, RunningTimerAction>) {
+    public init(store: Store<RunningTimerState, RunningTimerAction>, origin: CGPoint) {
         self.store = store
+        self.origin = origin
+        self.viewStore = ViewStore(store)
     }
 
     public var body: some View {
-        NavigationView {
-            WithViewStore(store) { viewStore in
-                VStack {
-                    if viewStore.isInPreCountdown {
-                        PreCountdownView(store: store)
+        VStack {
+            if viewStore.isInPreCountdown {
+                PreCountdownView(store: store, origin: origin)
+            } else {
+                VStack(spacing: 28) {
+                    HeaderView(store: store)
+
+                    SegmentedProgressView(
+                        store: store.scope(state: \.segmentedProgressState, action: RunningTimerAction.segmentedProgressAction),
+                        color: viewStore.color
+                    )
+                    .padding(.top, 28)
+
+                    Spacer()
+
+                    if viewStore.timerControlsState.isPaused {
+                        PausedView(store: store)
                     } else {
-                        VStack(spacing: 28) {
-                            HeaderView(store: store)
+                        TimerView(store: store)
+                    }
 
-                            SegmentedProgressView(
-                                store: store.scope(state: \.segmentedProgressState, action: RunningTimerAction.segmentedProgressAction),
-                                color: viewStore.color
-                            )
-                            .padding(.top, 28)
+                    Spacer()
 
-                            Spacer()
+                    QuickTimerControlsView(store: store.scope(state: \.timerControlsState,
+                                                              action: RunningTimerAction.timerControlsUpdatedState), tint: viewStore.color)
 
-                            if viewStore.timerControlsState.isPaused {
-                                PausedView(store: store)
-                            } else {
-                                TimerView(store: store)
-                            }
+                    NavigationLink(
+                        destination: IfLetStore(store.scope(state: \.finishedWorkoutState, action: RunningTimerAction.finishedWorkoutAction),
+                                                then: FinishedWorkoutView.init),
+                        isActive: viewStore.binding(get: \.timerControlsState.timerState.isFinished, send: RunningTimerAction.onPush),
+                        label: { EmptyView() }
+                    )
 
-                            Spacer()
-
-                            QuickTimerControlsView(store: store.scope(state: \.timerControlsState,
-                                                                      action: RunningTimerAction.timerControlsUpdatedState), tint: viewStore.color)
-
-                            NavigationLink(
-                                destination: IfLetStore(store.scope(state: \.finishedWorkoutState, action: RunningTimerAction.finishedWorkoutAction),
-                                                        then: FinishedWorkoutView.init),
-                                isActive: viewStore.binding(get: \.timerControlsState.timerState.isFinished, send: RunningTimerAction.onPush),
-                                label: { EmptyView() }
-                            )
-
-                        }
-                        .onChange(of: viewStore.finishedSections) { change in
-                            viewStore.send(.segmentedProgressAction(.moveToNextSegment))
-                        }
-                        .onChange(of: viewStore.isPresented) { isPresented in
-                            if !isPresented {
-                                presentationMode.wrappedValue.dismiss()
-                            }
-                        }
+                }
+                .onChange(of: viewStore.finishedSections) { change in
+                    viewStore.send(.segmentedProgressAction(.moveToNextSegment))
+                }
+                .onChange(of: viewStore.isPresented) { isPresented in
+                    if !isPresented {
+                        presentationMode.wrappedValue.dismiss()
                     }
                 }
-                .padding(28)
-                .onAppear {
-                    viewStore.send(.onAppear)
-                }
-                .onChange(of: scenePahse) { newScene in
-                    switch newScene {
-                    case .active:
-                        viewStore.send(.onActive)
-                    case .background:
-                        viewStore.send(.onBackground)
-                    default: break
-                    }
-                }
-                .navigationTitle("")
-                .navigationBarHidden(true)
             }
         }
+        .animation(Animation.easeInOut(duration: 0.6))
+        .padding(28)
+        .onAppear {
+            viewStore.send(.onAppear)
+        }
+        .onChange(of: scenePahse) { newScene in
+            switch newScene {
+            case .active:
+                viewStore.send(.onActive)
+            case .background:
+                viewStore.send(.onBackground)
+            default: break
+            }
+        }
+        .navigationTitle("")
+        .navigationBarHidden(true)
     }
 }
 
@@ -109,10 +110,10 @@ struct RunningTimerView_Previews: PreviewProvider {
         )
 
         return Group {
-            RunningTimerView(store: preCountdownStore)
+            RunningTimerView(store: preCountdownStore, origin: .zero)
                 .previewDevice(.iPhone11)
 
-            RunningTimerView(store: runningStore)
+            RunningTimerView(store: runningStore, origin: .zero)
                 .previewDevice(.iPhone11)
                 .preferredColorScheme(.dark)
         }
@@ -123,21 +124,46 @@ private struct PreCountdownView: View {
     let store: Store<RunningTimerState, RunningTimerAction>
     let viewStore: ViewStore<RunningTimerState, RunningTimerAction>
 
-    init(store: Store<RunningTimerState, RunningTimerAction>) {
+    let proxy = UIScreen.main.bounds
+    let origin: CGPoint
+
+    @State var startAnimation = false
+
+    init(store: Store<RunningTimerState, RunningTimerAction>, origin: CGPoint) {
         self.store = store
+        self.origin = origin
         self.viewStore = ViewStore(store)
     }
 
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 25)
-                .frame(width: 125, height: 125)
-                .foregroundColor(viewStore.color)
-
             Text("\(viewStore.preCountdownTimeLeft.clean)")
-                .foregroundColor(.appWhite)
-                .font(.system(size: 72, weight: .heavy))
+                .opacity(startAnimation ? 1 : 0)
+                .foregroundColor(.white)
+                .font(.system(size: 72, weight: .heavy, design: .monospaced))
         }
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+        .transition(
+            AnyTransition.asymmetric(
+                insertion: AnyTransition
+                    .scale(scale: 0, anchor: .init(x: origin.x / proxy.size.width, y: origin.y / proxy.size.height)),
+                removal: AnyTransition
+                    .scale(scale: 0, anchor: .center)
+            )
+        )
+        .background(
+            Circle()
+                .scale(startAnimation ? 5 : 0)
+                .foregroundColor(viewStore.color)
+        )
+        .onAppear {
+            startAnimation = true
+        }
+        .onDisappear {
+            startAnimation = false
+        }
+        .navigationTitle("")
+        .navigationBarHidden(true)
     }
 }
 
@@ -191,7 +217,7 @@ private struct HeaderView: View {
 
             Text(viewStore.totalTimeLeft.formattedTimeLeft)
                 .foregroundColor(.appText)
-                .font(.h1)
+                .font(.h1Mono)
         }
     }
 }
@@ -213,7 +239,7 @@ private struct TimerView: View {
 
             Text(viewStore.sectionTimeLeft.formattedTimeLeft)
                 .foregroundColor(.appText)
-                .font(.gigantic)
+                .font(.giganticMono)
 
             Text(viewStore.currentSegmentName)
                 .foregroundColor(.appText)

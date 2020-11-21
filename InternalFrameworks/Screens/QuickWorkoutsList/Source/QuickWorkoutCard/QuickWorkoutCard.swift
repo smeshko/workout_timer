@@ -13,8 +13,8 @@ struct QuickWorkoutCardState: Equatable, Identifiable {
 
     public var id: UUID { workout.id }
     var workout: QuickWorkout
-    var canStart: Bool = false
-    public var runningTimerState: RunningTimerState
+    var runningTimerState: RunningTimerState
+    var isShowingTimer = false
 
     var segmentsCount: Int {
         workout.segments.count
@@ -24,9 +24,8 @@ struct QuickWorkoutCardState: Equatable, Identifiable {
         Int(workout.duration / 60)
     }
 
-    public init(workout: QuickWorkout, canStart: Bool = false) {
+    public init(workout: QuickWorkout) {
         self.workout = workout
-        self.canStart = canStart
         self.runningTimerState = RunningTimerState(workout: workout)
     }
 }
@@ -51,9 +50,13 @@ let quickWorkoutCardReducer = Reducer<QuickWorkoutCardState, QuickWorkoutCardAct
         
         switch action {
         case .tapStart:
+            state.isShowingTimer = true
             state.runningTimerState = RunningTimerState(workout: state.workout)
             
-        case .runningTimerAction(_):
+        case .runningTimerAction(.finishedWorkoutAction(.didTapDoneButton)):
+            state.isShowingTimer = false
+
+        case .runningTimerAction:
             break
         }
         
