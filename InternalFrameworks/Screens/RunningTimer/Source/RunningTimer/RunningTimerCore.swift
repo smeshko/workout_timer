@@ -21,6 +21,7 @@ public enum RunningTimerAction: Equatable {
     case onAppear
     case onActive
     case onBackground
+    case onSizeClassChange(isCompact: Bool)
 
     case preCountdownFinished
     case sectionEnded
@@ -35,12 +36,13 @@ public struct RunningTimerState: Equatable {
     var totalTimeLeft: TimeInterval = 0
     var sectionTimeLeft: TimeInterval = 0
     var timerControlsState: TimerControlsState
-    var segmentedProgressState: SegmentedProgressState
+    var segmentedProgressState = SegmentedProgressState(totalSegments: 0)
     var finishedSections: Int = 0
     var workout: QuickWorkout
     var timerSections: [TimerSection]
     var alert: AlertState<RunningTimerAction>?
     var isPresented = true
+    var isCompact = true
     var finishedWorkoutState: FinishedWorkoutState?
 
     var preCountdownTimeLeft: TimeInterval = Constants.preCountdown
@@ -53,15 +55,14 @@ public struct RunningTimerState: Equatable {
     public init(workout: QuickWorkout,
                 currentSection: TimerSection? = nil,
                 timerControlsState: TimerControlsState = TimerControlsState(),
-                segmentedProgressState: SegmentedProgressState = SegmentedProgressState(totalSegments: 0, isCompact: UITraitCollection.current.horizontalSizeClass == .compact),
                 isInPreCountdown: Bool = true,
                 isCompact: Bool = true) {
         self.workout = workout
         self.timerControlsState = timerControlsState
-        self.segmentedProgressState = segmentedProgressState
         self.isInPreCountdown = isInPreCountdown
         self.timerSections = workout.segments.map { TimerSection.create(from: $0) }.flatMap { $0 }.dropLast()
         self.currentSection = currentSection ?? timerSections.first
+        self.isCompact = isCompact
     }
 }
 
@@ -76,7 +77,7 @@ public struct RunningTimerEnvironment {
         mainQueue: AnySchedulerOf<DispatchQueue>,
         soundClient: SoundClient,
         notificationClient: LocalNotificationClient,
-        timerStep: DispatchQueue.SchedulerTimeType.Stride = .seconds(1)
+        timerStep: DispatchQueue.SchedulerTimeType.Stride = .milliseconds(1)
     ) {
         self.mainQueue = mainQueue
         self.soundClient = soundClient
@@ -99,6 +100,9 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
             if state.isInPreCountdown {
                 return Effect(value: RunningTimerAction.timerControlsUpdatedState(.start))
             }
+
+        case .onSizeClassChange(let compact):
+            state.isCompact = compact
 
         case .onBackground:
             return environment.notificationClient.scheduleLocalNotification(.timerPaused, .immediately)
@@ -219,7 +223,7 @@ private extension RunningTimerState {
     }
 
     mutating func updateSegments() {
-        segmentedProgressState = SegmentedProgressState(totalSegments: progressSegmentsCount, filledSegments: 0, title: "Sections", isCompact: UITraitCollection.current.horizontalSizeClass == .compact)
+        segmentedProgressState = SegmentedProgressState(totalSegments: progressSegmentsCount, filledSegments: 0, title: "Sections", isCompact: isCompact)
         currentSection = timerSections.first
         calculateInitialTime()
     }
