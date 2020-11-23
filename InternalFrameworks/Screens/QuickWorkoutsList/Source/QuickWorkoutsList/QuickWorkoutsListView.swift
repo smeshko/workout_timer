@@ -19,27 +19,27 @@ public struct QuickWorkoutsListView: View {
     public var body: some View {
         NavigationView {
             ZStack {
-            if viewStore.workoutStates.isEmpty && viewStore.loadingState.isFinished {
-                NoWorkoutsView(store: store, isWorkoutFormPresented: $isWorkoutFormPresented)
-            } else {
-                if viewStore.isPresentingTimer {
-                    IfLetStore(store.scope(state: \.runningTimerState, action: QuickWorkoutsListAction.runningTimerAction),
-                               then: { RunningTimerView(store: $0, origin: origin).zIndex(1) })
+                if viewStore.workoutStates.isEmpty && viewStore.loadingState.isFinished {
+                    NoWorkoutsView(store: store, isWorkoutFormPresented: $isWorkoutFormPresented)
                 } else {
-                    WorkoutsList(store: store, isWorkoutFormPresented: $isWorkoutFormPresented, origin: $origin)
-                        .toolbar {
-                            HStack(spacing: 12) {
-                                Button(action: {
-                                    isWorkoutFormPresented = true
-                                }, label: {
-                                    Image(systemName: "plus.circle")
-                                        .font(.system(size: 28))
-                                })
+                    if viewStore.isPresentingTimer {
+                        IfLetStore(store.scope(state: \.runningTimerState, action: QuickWorkoutsListAction.runningTimerAction),
+                                   then: { RunningTimerView(store: $0, origin: origin).zIndex(1) })
+                    } else {
+                        WorkoutsList(store: store, isWorkoutFormPresented: $isWorkoutFormPresented, origin: $origin)
+                            .toolbar {
+                                HStack(spacing: 12) {
+                                    Button(action: {
+                                        isWorkoutFormPresented = true
+                                    }, label: {
+                                        Image(systemName: "plus.circle")
+                                            .font(.system(size: 28))
+                                    })
+                                }
                             }
-                        }
-                        .animation(.none)
+                            .animation(.none)
+                    }
                 }
-            }
             }
             .animation(Animation.easeInOut(duration: 0.55))
         }
@@ -52,8 +52,8 @@ public struct QuickWorkoutsListView: View {
         }
         .overlay(
             viewStore.loadingState.isLoading ?
-            ProgressView().progressViewStyle(CircularProgressViewStyle()) :
-            nil
+                ProgressView().progressViewStyle(CircularProgressViewStyle()) :
+                nil
         )
     }
 }

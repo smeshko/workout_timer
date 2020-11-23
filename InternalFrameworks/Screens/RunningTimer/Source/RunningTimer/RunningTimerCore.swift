@@ -71,7 +71,7 @@ public struct RunningTimerEnvironment {
         mainQueue: AnySchedulerOf<DispatchQueue>,
         soundClient: SoundClient,
         notificationClient: LocalNotificationClient,
-        timerStep: DispatchQueue.SchedulerTimeType.Stride = .milliseconds(1)
+        timerStep: DispatchQueue.SchedulerTimeType.Stride = .seconds(0.05)
     ) {
         self.mainQueue = mainQueue
         self.soundClient = soundClient
@@ -128,7 +128,6 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
         case .timerTicked:
             state.totalTimeLeft -= environment.timerStep.timeInterval.asDouble ?? 0
             state.sectionTimeLeft -= environment.timerStep.timeInterval.asDouble ?? 0
-            print(state.totalTimeLeft)
 
             if state.totalTimeLeft <= 0 {
                 state.finishedSections += 1
