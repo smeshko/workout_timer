@@ -5,14 +5,11 @@ import ComposableArchitecture
 import CoreLogic
 import DomainEntities
 
-fileprivate struct Constants {
-    static let preCountdown: TimeInterval = 3
-}
-
 public enum RunningTimerAction: Equatable {
     case timerControlsUpdatedState(TimerControlsAction)
     case segmentedProgressAction(SegmentedProgressAction)
     case finishedWorkoutAction(FinishedWorkoutAction)
+    case preCountdownAction(PreCountdownAction)
 
     case timerTicked
     case timerFinished
@@ -23,7 +20,6 @@ public enum RunningTimerAction: Equatable {
     case onBackground
     case onSizeClassChange(isCompact: Bool)
 
-    case preCountdownFinished
     case sectionEnded
 
     case alertButtonTapped
@@ -32,6 +28,8 @@ public enum RunningTimerAction: Equatable {
 }
 
 public struct RunningTimerState: Equatable {
+    var precountdownState: PreCountdownState?
+
     var currentSection: TimerSection? = nil
     var totalTimeLeft: TimeInterval = 0
     var sectionTimeLeft: TimeInterval = 0
@@ -45,9 +43,6 @@ public struct RunningTimerState: Equatable {
     var isCompact = true
     var finishedWorkoutState: FinishedWorkoutState?
 
-    var preCountdownTimeLeft: TimeInterval = Constants.preCountdown
-    var isInPreCountdown: Bool
-
     var progressSegmentsCount: Int {
         timerSections.filter { $0.type == .work }.count
     }
@@ -55,11 +50,10 @@ public struct RunningTimerState: Equatable {
     public init(workout: QuickWorkout,
                 currentSection: TimerSection? = nil,
                 timerControlsState: TimerControlsState = TimerControlsState(),
-                isInPreCountdown: Bool = true,
                 isCompact: Bool = true) {
         self.workout = workout
         self.timerControlsState = timerControlsState
-        self.isInPreCountdown = isInPreCountdown
+        self.precountdownState = PreCountdownState(workoutColor: workout.color)
         self.timerSections = workout.segments.map { TimerSection.create(from: $0) }.flatMap { $0 }.dropLast()
         self.currentSection = currentSection ?? timerSections.first
         self.isCompact = isCompact
@@ -87,19 +81,23 @@ public struct RunningTimerEnvironment {
 }
 
 public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, RunningTimerEnvironment>.combine(
+    preCountdownReducer.optional().pullback(
+        state: \.precountdownState,
+        action: /RunningTimerAction.preCountdownAction,
+        environment: { PreCountdownEnvironment(mainQueue: $0.mainQueue) }
+    ),
     Reducer { state, action, environment in
         struct TimerId: Hashable {}
+        let id = TimerId()
 
         switch action {
 
         case .onAppear:
             state.updateSegments()
-            return Effect(value: RunningTimerAction.timerControlsUpdatedState(.start))
 
-        case .onActive:
-            if state.isInPreCountdown {
-                return Effect(value: RunningTimerAction.timerControlsUpdatedState(.start))
-            }
+        case .preCountdownAction(.finished):
+            state.precountdownState = nil
+            return Effect(value: RunningTimerAction.timerControlsUpdatedState(.start))
 
         case .onSizeClassChange(let compact):
             state.isCompact = compact
@@ -113,14 +111,14 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
         case .timerControlsUpdatedState(let controlsAction):
             switch controlsAction {
             case .pause:
-                return Effect<RunningTimerAction, Never>.cancel(id: TimerId())
+                return Effect<RunningTimerAction, Never>.cancel(id: id)
 
             case .stop:
                 return Effect(value: RunningTimerAction.alertButtonTapped)
 
             case .start:
                 return Effect
-                    .timer(id: TimerId(), every: environment.timerStep, tolerance: .zero, on: environment.mainQueue)
+                    .timer(id: id, every: environment.timerStep, tolerance: .zero, on: environment.mainQueue)
                     .map { _ in RunningTimerAction.timerTicked }
             }
 
@@ -128,16 +126,9 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
             break
 
         case .timerTicked:
-            if state.isInPreCountdown {
-                state.preCountdownTimeLeft -= environment.timerStep.timeInterval.asDouble ?? 0
-            } else {
-                state.totalTimeLeft -= environment.timerStep.timeInterval.asDouble ?? 0
-                state.sectionTimeLeft -= environment.timerStep.timeInterval.asDouble ?? 0
-            }
-
-            if state.isInPreCountdown && state.preCountdownTimeLeft <= 0 {
-                return Effect(value: RunningTimerAction.preCountdownFinished)
-            }
+            state.totalTimeLeft -= environment.timerStep.timeInterval.asDouble ?? 0
+            state.sectionTimeLeft -= environment.timerStep.timeInterval.asDouble ?? 0
+            print(state.totalTimeLeft)
 
             if state.totalTimeLeft <= 0 {
                 state.finishedSections += 1
@@ -147,9 +138,6 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
             if state.sectionTimeLeft <= 0, !state.isCurrentSegmentLast {
                 return Effect(value: RunningTimerAction.sectionEnded)
             }
-
-        case .preCountdownFinished:
-            state.isInPreCountdown = false
 
         case .sectionEnded:
             state.moveToNextSection()

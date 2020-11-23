@@ -18,6 +18,7 @@ public struct QuickWorkoutsListView: View {
 
     public var body: some View {
         NavigationView {
+            ZStack {
             if viewStore.workoutStates.isEmpty && viewStore.loadingState.isFinished {
                 NoWorkoutsView(store: store, isWorkoutFormPresented: $isWorkoutFormPresented)
             } else {
@@ -36,8 +37,11 @@ public struct QuickWorkoutsListView: View {
                                 })
                             }
                         }
+                        .animation(.none)
                 }
             }
+            }
+            .animation(Animation.easeInOut(duration: 0.55))
         }
         .sheet(isPresented: $isWorkoutFormPresented) {
             CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState,

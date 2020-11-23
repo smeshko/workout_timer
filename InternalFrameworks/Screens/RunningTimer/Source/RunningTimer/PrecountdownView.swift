@@ -2,46 +2,50 @@ import SwiftUI
 import ComposableArchitecture
 
 struct PreCountdownView: View {
-    private let store: Store<RunningTimerState, RunningTimerAction>
-    @ObservedObject private var viewStore: ViewStore<RunningTimerState, RunningTimerAction>
+    private let store: Store<PreCountdownState, PreCountdownAction>
+    @ObservedObject private var viewStore: ViewStore<PreCountdownState, PreCountdownAction>
 
     let proxy = UIScreen.main.bounds
     let origin: CGPoint
 
     @State var startAnimation = false
 
-    init(store: Store<RunningTimerState, RunningTimerAction>, origin: CGPoint) {
+    init(store: Store<PreCountdownState, PreCountdownAction>, origin: CGPoint) {
         self.store = store
         self.origin = origin
         self.viewStore = ViewStore(store)
     }
 
     var body: some View {
-        ZStack {
-            Text("\(viewStore.preCountdownTimeLeft.clean)")
-                .opacity(startAnimation ? 1 : 0)
-                .foregroundColor(.white)
-                .font(.system(size: 72, weight: .heavy, design: .monospaced))
-        }
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-        .transition(
-            AnyTransition.asymmetric(
-                insertion: AnyTransition
-                    .scale(scale: 0, anchor: .init(x: origin.x / proxy.size.width, y: origin.y / proxy.size.height)),
-                removal: AnyTransition
-                    .scale(scale: 0, anchor: .center)
+        WithViewStore(store) { viewStore in
+        Circle()
+            .scaleEffect(5)
+            .overlay(Text("\(viewStore.timeLeft.clean)")
+                        .opacity(startAnimation ? 1 : 0)
+                        .foregroundColor(.white)
+                        .font(.system(size: 72, weight: .heavy, design: .monospaced))
+                        .animation(Animation.easeInOut(duration: 0.6))
             )
-        )
-        .background(
-            Circle()
-                .scale(startAnimation ? 5 : 0)
-                .foregroundColor(viewStore.color)
-        )
-        .onAppear {
-            startAnimation = true
-        }
-        .onDisappear {
-            startAnimation = false
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+            .foregroundColor(viewStore.workoutColor.color)
+            .transition(
+                AnyTransition.asymmetric(
+                    insertion: .scale(scale: 0, anchor: .init(x: origin.x / proxy.size.width, y: (origin.y - 40) / proxy.size.height)),
+                    removal: .scale(scale: 0, anchor: .center)
+                )
+            )
+
+            .onAppear {
+                withAnimation {
+                    viewStore.send(.onAppear)
+                    startAnimation = true
+                }
+            }
+            .onDisappear {
+                withAnimation {
+                    startAnimation = false
+                }
+            }
         }
         .navigationTitle("")
         .navigationBarHidden(true)
@@ -50,14 +54,10 @@ struct PreCountdownView: View {
 struct PrecountdownView_Previews: PreviewProvider {
     static var previews: some View {
         PreCountdownView(
-            store: Store<RunningTimerState, RunningTimerAction>(
-                initialState: RunningTimerState(workout: mockQuickWorkout1),
-                reducer: runningTimerReducer,
-                environment: RunningTimerEnvironment(
-                    mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-                    soundClient: .mock,
-                    notificationClient: .mock
-                )
+            store: Store<PreCountdownState, PreCountdownAction>(
+                initialState: PreCountdownState(workoutColor: .empty),
+                reducer: preCountdownReducer,
+                environment: PreCountdownEnvironment()
             ),
             origin: .zero
         )
