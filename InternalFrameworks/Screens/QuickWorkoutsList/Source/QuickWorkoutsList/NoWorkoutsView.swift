@@ -35,6 +35,8 @@ struct NoWorkoutsView: View {
             CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState,
                                                       action: QuickWorkoutsListAction.createWorkoutAction))
         }
+        .navigationTitle("")
+        .navigationBarHidden(true)
     }
 }
 

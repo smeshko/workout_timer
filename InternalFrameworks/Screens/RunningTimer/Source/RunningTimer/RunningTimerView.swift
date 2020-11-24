@@ -4,6 +4,8 @@ import CoreInterface
 import CorePersistence
 
 public struct RunningTimerView: View {
+
+
     let store: Store<RunningTimerState, RunningTimerAction>
     let origin: CGPoint
 
@@ -14,6 +16,7 @@ public struct RunningTimerView: View {
 
     @State private var isShowingTimer = false
 
+    @State private var phase = Phase.countdown
 
     public init(store: Store<RunningTimerState, RunningTimerAction>, origin: CGPoint) {
         self.store = store
@@ -23,24 +26,25 @@ public struct RunningTimerView: View {
 
     public var body: some View {
         WithViewStore(store) { viewStore in
-            if isShowingTimer {
+            switch phase {
+            case .timer:
                 MainView(store: store)
                     .animation(.none)
-            } else {
+            case .countdown:
                 IfLetStore(store.scope(state: \.precountdownState, action: RunningTimerAction.preCountdownAction),
                            then: { PreCountdownView(store: $0, origin: origin) })
+            case .finished:
+                IfLetStore(store.scope(state: \.finishedWorkoutState, action: RunningTimerAction.finishedWorkoutAction),
+                           then: FinishedWorkoutView.init)
             }
-        }.onChange(of: viewStore.precountdownState, perform: { value in
-            if value == nil {
-                withAnimation {
-                    isShowingTimer = true
-                }
+        }
+        .animation(.default)
+        .onChange(of: viewStore.phase, perform: { value in
+            withAnimation {
+                phase = value
             }
         })
         .padding(28)
-        .onAppear {
-            viewStore.send(.onAppear)
-        }
         .onChange(of: scenePahse) { newScene in
             switch newScene {
             case .active:
@@ -93,7 +97,7 @@ struct RunningTimerView_Previews: PreviewProvider {
 
 private struct MainView: View {
     let store: Store<RunningTimerState, RunningTimerAction>
-    let viewStore: ViewStore<RunningTimerState, RunningTimerAction>
+    @ObservedObject var viewStore: ViewStore<RunningTimerState, RunningTimerAction>
 
     init(store: Store<RunningTimerState, RunningTimerAction>) {
         self.store = store
@@ -108,6 +112,7 @@ private struct MainView: View {
                 store: store.scope(state: \.segmentedProgressState, action: RunningTimerAction.segmentedProgressAction),
                 color: viewStore.color
             )
+            .animation(.none)
 
             .padding(.top, 28)
 
@@ -120,14 +125,11 @@ private struct MainView: View {
             QuickTimerControlsView(store: store.scope(state: \.timerControlsState,
                                                       action: RunningTimerAction.timerControlsUpdatedState), tint: viewStore.color)
 
-            if viewStore.timerControlsState.timerState.isFinished {
-                NavigationLink(
-                    destination: IfLetStore(store.scope(state: \.finishedWorkoutState, action: RunningTimerAction.finishedWorkoutAction),
-                                            then: FinishedWorkoutView.init),
-                    isActive: .constant(true),
-                    label: { EmptyView() }
-                )
-            }
+            if viewStore.isCompact {}
+        }
+        .animation(.default)
+        .onAppear {
+            viewStore.send(.onAppear)
         }
         .onChange(of: viewStore.finishedSections) { change in
             viewStore.send(.segmentedProgressAction(.moveToNextSegment))

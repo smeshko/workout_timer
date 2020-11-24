@@ -5,6 +5,12 @@ import ComposableArchitecture
 import CoreLogic
 import DomainEntities
 
+enum Phase {
+    case countdown
+    case timer
+    case finished
+}
+
 public enum RunningTimerAction: Equatable {
     case timerControlsUpdatedState(TimerControlsAction)
     case segmentedProgressAction(SegmentedProgressAction)
@@ -29,6 +35,7 @@ public enum RunningTimerAction: Equatable {
 
 public struct RunningTimerState: Equatable {
     var precountdownState: PreCountdownState?
+    var phase: Phase = .countdown
 
     var currentSection: TimerSection? = nil
     var totalTimeLeft: TimeInterval = 0
@@ -97,6 +104,7 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
 
         case .preCountdownAction(.finished):
             state.precountdownState = nil
+            state.phase = .timer
             return Effect(value: RunningTimerAction.timerControlsUpdatedState(.start))
 
         case .onSizeClassChange(let compact):
@@ -218,6 +226,7 @@ private extension RunningTimerState {
     mutating func finish() {
         finishedWorkoutState = FinishedWorkoutState(workout: workout)
         timerControlsState = TimerControlsState(timerState: .finished)
+        phase = .finished
         alert = nil
     }
 

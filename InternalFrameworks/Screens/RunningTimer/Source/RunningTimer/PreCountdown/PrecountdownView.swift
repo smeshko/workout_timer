@@ -18,34 +18,30 @@ struct PreCountdownView: View {
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            Circle()
-                .scaleEffect(5)
-                .overlay(Text("\(viewStore.timeLeft.clean)")
+            ZStack {
+                Circle()
+                    .scaleEffect(5)
+                    .foregroundColor(viewStore.workoutColor.color)
+
+                Text("\(viewStore.timeLeft.clean)")
                             .opacity(startAnimation ? 1 : 0)
                             .foregroundColor(.white)
                             .font(.system(size: 72, weight: .heavy, design: .monospaced))
-                            .animation(Animation.easeInOut(duration: 0.6))
-                )
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                .foregroundColor(viewStore.workoutColor.color)
-                .transition(
-                    AnyTransition.asymmetric(
-                        insertion: .scale(scale: 0, anchor: .init(x: origin.x / proxy.size.width, y: origin.y / proxy.size.height)),
-                        removal: .scale(scale: 0, anchor: .center)
-                    )
-                )
-
-                .onAppear {
-                    withAnimation {
-                        viewStore.send(.onAppear)
-                        startAnimation = true
-                    }
-                }
-                .onDisappear {
-                    withAnimation {
-                        startAnimation = false
-                    }
-                }
+            }
+            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+            .transition(
+                AnyTransition.asymmetric(
+                    insertion: .scale(scale: 0, anchor: .init(x: origin.x / proxy.size.width, y: origin.y / proxy.size.height)),
+                    removal: .scale(scale: 0, anchor: .center)
+                )            )
+            .animation(Animation.easeInOut(duration: 0.3).delay(0.6))
+            .onAppear {
+                viewStore.send(.onAppear)
+                startAnimation = true
+            }
+            .onDisappear {
+                startAnimation = false
+            }
         }
         .navigationTitle("")
         .navigationBarHidden(true)

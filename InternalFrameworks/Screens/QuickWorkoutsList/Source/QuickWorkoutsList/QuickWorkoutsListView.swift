@@ -19,7 +19,9 @@ public struct QuickWorkoutsListView: View {
     public var body: some View {
         NavigationView {
             ZStack {
-                if viewStore.workoutStates.isEmpty && viewStore.loadingState.isFinished {
+                if viewStore.loadingState.isLoading {
+                    ProgressView().progressViewStyle(CircularProgressViewStyle())
+                } else if viewStore.workoutStates.isEmpty && viewStore.loadingState.isFinished {
                     NoWorkoutsView(store: store, isWorkoutFormPresented: $isWorkoutFormPresented)
                 } else {
                     if viewStore.isPresentingTimer {
@@ -50,11 +52,6 @@ public struct QuickWorkoutsListView: View {
         .onAppear {
             viewStore.send(.onAppear)
         }
-        .overlay(
-            viewStore.loadingState.isLoading ?
-                ProgressView().progressViewStyle(CircularProgressViewStyle()) :
-                nil
-        )
     }
 }
 

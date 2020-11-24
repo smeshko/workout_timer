@@ -92,8 +92,8 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
             state.isPresentingTimer = true
 
         case .runningTimerAction(.finishedWorkoutAction(.didTapDoneButton)):
-            state.runningTimerState = nil
             state.isPresentingTimer = false
+            state.runningTimerState = nil
 
         case .runningTimerAction:
             break
