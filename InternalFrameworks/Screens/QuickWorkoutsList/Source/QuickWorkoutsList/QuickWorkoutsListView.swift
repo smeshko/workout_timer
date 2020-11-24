@@ -52,6 +52,7 @@ public struct QuickWorkoutsListView: View {
         .onAppear {
             viewStore.send(.onAppear)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
