@@ -29,7 +29,8 @@ class RunningTimerTests: XCTestCase {
                 environment: RunningTimerEnvironment(
                     mainQueue: AnyScheduler(testScheduler),
                     soundClient: .mock,
-                    notificationClient: .mock
+                    notificationClient: .mock,
+                    timerStep: .seconds(1)
                 )
             )
 
@@ -41,25 +42,11 @@ class RunningTimerTests: XCTestCase {
                 $0.segmentedProgressState.originalTotalCount = 2
                 $0.segmentedProgressState.title = "Sections"
             },
-
-            // pre countdown
+            .send(.preCountdownAction(.finished)) {
+                $0.precountdownState = nil
+            },
             .receive(.timerControlsUpdatedState(.start)) {
                 $0.timerControlsState.timerState = .running
-            },
-            .do { self.testScheduler.advance(by: 1) },
-            .receive(.timerTicked) {
-                $0.preCountdownTimeLeft = 2
-            },
-            .do { self.testScheduler.advance(by: 1) },
-            .receive(.timerTicked) {
-                $0.preCountdownTimeLeft = 1
-            },
-            .do { self.testScheduler.advance(by: 1) },
-            .receive(.timerTicked) {
-                $0.preCountdownTimeLeft = 0
-            },
-            .receive(.preCountdownFinished) {
-                $0.isInPreCountdown = false
             },
 
             // 1. work section
@@ -140,7 +127,8 @@ class RunningTimerTests: XCTestCase {
                 environment: RunningTimerEnvironment(
                     mainQueue: AnyScheduler(testScheduler),
                     soundClient: .mock,
-                    notificationClient: .mock
+                    notificationClient: .mock,
+                    timerStep: .seconds(1)
                 )
             )
 
@@ -152,25 +140,11 @@ class RunningTimerTests: XCTestCase {
                 $0.segmentedProgressState.originalTotalCount = 1
                 $0.segmentedProgressState.title = "Sections"
             },
-
-            // pre countdown
+            .send(.preCountdownAction(.finished)) {
+                $0.precountdownState = nil
+            },
             .receive(.timerControlsUpdatedState(.start)) {
                 $0.timerControlsState.timerState = .running
-            },
-            .do { self.testScheduler.advance(by: 1) },
-            .receive(.timerTicked) {
-                $0.preCountdownTimeLeft = 2
-            },
-            .do { self.testScheduler.advance(by: 1) },
-            .receive(.timerTicked) {
-                $0.preCountdownTimeLeft = 1
-            },
-            .do { self.testScheduler.advance(by: 1) },
-            .receive(.timerTicked) {
-                $0.preCountdownTimeLeft = 0
-            },
-            .receive(.preCountdownFinished) {
-                $0.isInPreCountdown = false
             },
 
             // close
@@ -221,7 +195,8 @@ class RunningTimerTests: XCTestCase {
                 environment: RunningTimerEnvironment(
                     mainQueue: AnyScheduler(testScheduler),
                     soundClient: .mock,
-                    notificationClient: .mock
+                    notificationClient: .mock,
+                    timerStep: .seconds(1)
                 )
             )
 
@@ -233,25 +208,11 @@ class RunningTimerTests: XCTestCase {
                 $0.segmentedProgressState.originalTotalCount = 1
                 $0.segmentedProgressState.title = "Sections"
             },
-
-            // pre countdown
+            .send(.preCountdownAction(.finished)) {
+                $0.precountdownState = nil
+            },
             .receive(.timerControlsUpdatedState(.start)) {
                 $0.timerControlsState.timerState = .running
-            },
-            .do { self.testScheduler.advance(by: 1) },
-            .receive(.timerTicked) {
-                $0.preCountdownTimeLeft = 2
-            },
-            .do { self.testScheduler.advance(by: 1) },
-            .receive(.timerTicked) {
-                $0.preCountdownTimeLeft = 1
-            },
-            .do { self.testScheduler.advance(by: 1) },
-            .receive(.timerTicked) {
-                $0.preCountdownTimeLeft = 0
-            },
-            .receive(.preCountdownFinished) {
-                $0.isInPreCountdown = false
             },
 
             // pause / play / pause
@@ -290,7 +251,8 @@ class RunningTimerTests: XCTestCase {
                 environment: RunningTimerEnvironment(
                     mainQueue: AnyScheduler(testScheduler),
                     soundClient: .mock,
-                    notificationClient: .mock
+                    notificationClient: .mock,
+                    timerStep: .seconds(1)
                 )
             )
 
@@ -302,17 +264,20 @@ class RunningTimerTests: XCTestCase {
                 $0.segmentedProgressState.originalTotalCount = 1
                 $0.segmentedProgressState.title = "Sections"
             },
-            // pre countdown
+            .send(.preCountdownAction(.finished)) {
+                $0.precountdownState = nil
+            },
             .receive(.timerControlsUpdatedState(.start)) {
                 $0.timerControlsState.timerState = .running
             },
+
             .do { self.testScheduler.advance(by: 1) },
             .receive(.timerTicked) {
-                $0.preCountdownTimeLeft = 2
+                $0.totalTimeLeft -= 1
+                $0.sectionTimeLeft = 1
             },
             .send(.onBackground),
             .send(.onActive),
-            .receive(.timerControlsUpdatedState(.start)),
             .send(.timerControlsUpdatedState(.pause)) {
                 $0.timerControlsState.timerState = .paused
             }

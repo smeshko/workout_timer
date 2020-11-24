@@ -4,10 +4,12 @@ import ComposableArchitecture
 import DomainEntities
 import CoreInterface
 import QuickWorkoutForm
+import RunningTimer
 
 public enum QuickWorkoutsListAction: Equatable {
     case workoutCardAction(id: UUID, action: QuickWorkoutCardAction)
     case createWorkoutAction(CreateQuickWorkoutAction)
+    case runningTimerAction(RunningTimerAction)
 
     case deleteWorkouts(IndexSet)
     case deleteWorkout(QuickWorkout)
@@ -24,11 +26,13 @@ public struct QuickWorkoutsListState: Equatable {
 
     var workoutStates: IdentifiedArrayOf<QuickWorkoutCardState> = []
     var createWorkoutState = CreateQuickWorkoutState()
+    var runningTimerState: RunningTimerState?
     var loadingState: LoadingState = .finished
+    var isPresentingTimer = false
 
     public init(workouts: [QuickWorkout] = []) {
         self.workouts = workouts
-        workoutStates = IdentifiedArray(workouts.map { QuickWorkoutCardState(workout: $0, canStart: true) })
+        workoutStates = IdentifiedArray(workouts.map { QuickWorkoutCardState(workout: $0) })
     }
 }
 
@@ -56,7 +60,12 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
     quickWorkoutCardReducer.forEach(
         state: \.workoutStates,
         action: /QuickWorkoutsListAction.workoutCardAction(id:action:),
-        environment: { QuickWorkoutCardEnvironment(notificationClient: $0.notificationClient) }
+        environment: { _ in QuickWorkoutCardEnvironment() }
+    ),
+    runningTimerReducer.optional().pullback(
+        state: \.runningTimerState,
+        action: /QuickWorkoutsListAction.runningTimerAction,
+        environment: { RunningTimerEnvironment(mainQueue: $0.mainQueue, soundClient: .live, notificationClient: .live) }
     ),
     Reducer { state, action, environment in
 
@@ -71,13 +80,22 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
         case .didFetchWorkouts(.success(let workouts)):
             state.loadingState = .finished
             state.workouts = workouts
-            state.workoutStates = IdentifiedArray(workouts.map { QuickWorkoutCardState(workout: $0, canStart: true) })
+            state.workoutStates = IdentifiedArray(workouts.map { QuickWorkoutCardState(workout: $0) })
 
         case .didFinishDeleting(.failure), .didFetchWorkouts(.failure):
             state.loadingState = .error
             break
 
-        case .workoutCardAction(let id, let action):
+        case .workoutCardAction(let id, action: .tapStart):
+            guard let workout = state.workoutStates[id: id]?.workout else { break }
+            state.runningTimerState = RunningTimerState(workout: workout)
+            state.isPresentingTimer = true
+
+        case .runningTimerAction(.finishedWorkoutAction(.didTapDoneButton)):
+            state.isPresentingTimer = false
+            state.runningTimerState = nil
+
+        case .runningTimerAction:
             break
 
         case .createWorkoutAction(.didSaveSuccessfully(.success(let workout))):

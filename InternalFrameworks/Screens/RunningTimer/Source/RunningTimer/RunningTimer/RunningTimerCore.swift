@@ -5,14 +5,17 @@ import ComposableArchitecture
 import CoreLogic
 import DomainEntities
 
-fileprivate struct Constants {
-    static let preCountdown: TimeInterval = 3
+enum Phase {
+    case countdown
+    case timer
+    case finished
 }
 
 public enum RunningTimerAction: Equatable {
     case timerControlsUpdatedState(TimerControlsAction)
     case segmentedProgressAction(SegmentedProgressAction)
     case finishedWorkoutAction(FinishedWorkoutAction)
+    case preCountdownAction(PreCountdownAction)
 
     case timerTicked
     case timerFinished
@@ -21,9 +24,8 @@ public enum RunningTimerAction: Equatable {
     case onAppear
     case onActive
     case onBackground
-    case onPush
+    case onSizeClassChange(isCompact: Bool)
 
-    case preCountdownFinished
     case sectionEnded
 
     case alertButtonTapped
@@ -32,20 +34,21 @@ public enum RunningTimerAction: Equatable {
 }
 
 public struct RunningTimerState: Equatable {
+    var precountdownState: PreCountdownState?
+    var phase: Phase = .countdown
+
     var currentSection: TimerSection? = nil
     var totalTimeLeft: TimeInterval = 0
     var sectionTimeLeft: TimeInterval = 0
     var timerControlsState: TimerControlsState
-    var segmentedProgressState: SegmentedProgressState
+    var segmentedProgressState = SegmentedProgressState(totalSegments: 0)
     var finishedSections: Int = 0
     var workout: QuickWorkout
     var timerSections: [TimerSection]
     var alert: AlertState<RunningTimerAction>?
     var isPresented = true
+    var isCompact = true
     var finishedWorkoutState: FinishedWorkoutState?
-
-    var preCountdownTimeLeft: TimeInterval = Constants.preCountdown
-    var isInPreCountdown: Bool
 
     var progressSegmentsCount: Int {
         timerSections.filter { $0.type == .work }.count
@@ -54,15 +57,13 @@ public struct RunningTimerState: Equatable {
     public init(workout: QuickWorkout,
                 currentSection: TimerSection? = nil,
                 timerControlsState: TimerControlsState = TimerControlsState(),
-                segmentedProgressState: SegmentedProgressState = SegmentedProgressState(totalSegments: 0, isCompact: UITraitCollection.current.horizontalSizeClass == .compact),
-                isInPreCountdown: Bool = true,
                 isCompact: Bool = true) {
         self.workout = workout
         self.timerControlsState = timerControlsState
-        self.segmentedProgressState = segmentedProgressState
-        self.isInPreCountdown = isInPreCountdown
+        self.precountdownState = PreCountdownState(workoutColor: workout.color)
         self.timerSections = workout.segments.map { TimerSection.create(from: $0) }.flatMap { $0 }.dropLast()
         self.currentSection = currentSection ?? timerSections.first
+        self.isCompact = isCompact
     }
 }
 
@@ -77,7 +78,7 @@ public struct RunningTimerEnvironment {
         mainQueue: AnySchedulerOf<DispatchQueue>,
         soundClient: SoundClient,
         notificationClient: LocalNotificationClient,
-        timerStep: DispatchQueue.SchedulerTimeType.Stride = .seconds(1)
+        timerStep: DispatchQueue.SchedulerTimeType.Stride = .seconds(0.05)
     ) {
         self.mainQueue = mainQueue
         self.soundClient = soundClient
@@ -87,19 +88,27 @@ public struct RunningTimerEnvironment {
 }
 
 public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, RunningTimerEnvironment>.combine(
+    preCountdownReducer.optional().pullback(
+        state: \.precountdownState,
+        action: /RunningTimerAction.preCountdownAction,
+        environment: { PreCountdownEnvironment(mainQueue: $0.mainQueue) }
+    ),
     Reducer { state, action, environment in
         struct TimerId: Hashable {}
+        let id = TimerId()
 
         switch action {
 
         case .onAppear:
             state.updateSegments()
+
+        case .preCountdownAction(.finished):
+            state.precountdownState = nil
+            state.phase = .timer
             return Effect(value: RunningTimerAction.timerControlsUpdatedState(.start))
 
-        case .onActive:
-            if state.isInPreCountdown {
-                return Effect(value: RunningTimerAction.timerControlsUpdatedState(.start))
-            }
+        case .onSizeClassChange(let compact):
+            state.isCompact = compact
 
         case .onBackground:
             return environment.notificationClient.scheduleLocalNotification(.timerPaused, .immediately)
@@ -110,14 +119,14 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
         case .timerControlsUpdatedState(let controlsAction):
             switch controlsAction {
             case .pause:
-                return Effect<RunningTimerAction, Never>.cancel(id: TimerId())
+                return Effect<RunningTimerAction, Never>.cancel(id: id)
 
             case .stop:
                 return Effect(value: RunningTimerAction.alertButtonTapped)
 
             case .start:
                 return Effect
-                    .timer(id: TimerId(), every: environment.timerStep, tolerance: .zero, on: environment.mainQueue)
+                    .timer(id: id, every: environment.timerStep, tolerance: .zero, on: environment.mainQueue)
                     .map { _ in RunningTimerAction.timerTicked }
             }
 
@@ -125,16 +134,8 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
             break
 
         case .timerTicked:
-            if state.isInPreCountdown {
-                state.preCountdownTimeLeft -= environment.timerStep.timeInterval.asDouble ?? 0
-            } else {
-                state.totalTimeLeft -= environment.timerStep.timeInterval.asDouble ?? 0
-                state.sectionTimeLeft -= environment.timerStep.timeInterval.asDouble ?? 0
-            }
-
-            if state.isInPreCountdown && state.preCountdownTimeLeft <= 0 {
-                return Effect(value: RunningTimerAction.preCountdownFinished)
-            }
+            state.totalTimeLeft -= environment.timerStep.timeInterval.asDouble ?? 0
+            state.sectionTimeLeft -= environment.timerStep.timeInterval.asDouble ?? 0
 
             if state.totalTimeLeft <= 0 {
                 state.finishedSections += 1
@@ -144,9 +145,6 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
             if state.sectionTimeLeft <= 0, !state.isCurrentSegmentLast {
                 return Effect(value: RunningTimerAction.sectionEnded)
             }
-
-        case .preCountdownFinished:
-            state.isInPreCountdown = false
 
         case .sectionEnded:
             state.moveToNextSection()
@@ -220,7 +218,7 @@ private extension RunningTimerState {
     }
 
     mutating func updateSegments() {
-        segmentedProgressState = SegmentedProgressState(totalSegments: progressSegmentsCount, filledSegments: 0, title: "Sections", isCompact: UITraitCollection.current.horizontalSizeClass == .compact)
+        segmentedProgressState = SegmentedProgressState(totalSegments: progressSegmentsCount, filledSegments: 0, title: "Sections", isCompact: isCompact)
         currentSection = timerSections.first
         calculateInitialTime()
     }
@@ -228,6 +226,7 @@ private extension RunningTimerState {
     mutating func finish() {
         finishedWorkoutState = FinishedWorkoutState(workout: workout)
         timerControlsState = TimerControlsState(timerState: .finished)
+        phase = .finished
         alert = nil
     }
 

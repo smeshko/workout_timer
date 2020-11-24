@@ -6,11 +6,20 @@ import RunningTimer
 struct QuickWorkoutCardView: View {
 
     let store: Store<QuickWorkoutCardState, QuickWorkoutCardAction>
+    let viewStore: ViewStore<QuickWorkoutCardState, QuickWorkoutCardAction>
 
-    @State var isPresented = false
+    let size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+
+    @Binding var origin: CGPoint
+
+    init(store: Store<QuickWorkoutCardState, QuickWorkoutCardAction>, origin: Binding<CGPoint>) {
+        self.store = store
+        self._origin = origin
+        self.viewStore = ViewStore(store)
+    }
 
     var body: some View {
-        WithViewStore(store) { viewStore in
+        ZStack {
             VStack(alignment: .leading, spacing: 18) {
 
                 VStack(alignment: .leading, spacing: 4) {
@@ -27,23 +36,26 @@ struct QuickWorkoutCardView: View {
 
                     Spacer()
 
-                    if viewStore.canStart {
+                    GeometryReader { buttonProxy in
                         Button(action: {
-                            viewStore.send(.tapStart)
-                            isPresented = true
+                            withAnimation {
+                                viewStore.send(.tapStart)
+                                let buttonOrigin = buttonProxy.frame(in: .global).origin
+                                origin = CGPoint(
+                                    x: buttonOrigin.x + buttonProxy.size.width / 2,
+                                    y: buttonOrigin.y + buttonProxy.size.height / 2
+                                )
+                            }
                         }, label: {
                             Image(systemName: "play.fill")
                                 .padding(12)
                                 .foregroundColor(.appWhite)
-                                .background(Color(hue: viewStore.workout.color.hue, saturation: viewStore.workout.color.saturation, brightness: viewStore.workout.color.brightness))
+                                .background(viewStore.workout.color.color)
                                 .mask(Circle())
 
                         })
-                        .fullScreenCover(isPresented: $isPresented) {
-                            RunningTimerView(store: store.scope(state: \.runningTimerState, action: QuickWorkoutCardAction.runningTimerAction))
-                        }
-
                     }
+                    .frame(width: 40, height: 40)
                 }
             }
             .padding(18)
@@ -64,19 +76,18 @@ struct QuickWorkoutCardView_Previews: PreviewProvider {
                                       segments: [
                                         QuickWorkoutSegment(id: UUID(), sets: 4, work: 20, pause: 10),
                                         QuickWorkoutSegment(id: UUID(), sets: 2, work: 60, pause: 10)
-                                      ]),
-                canStart: true),
+                                      ])),
             reducer: quickWorkoutCardReducer,
-            environment: QuickWorkoutCardEnvironment(notificationClient: .mock)
+            environment: QuickWorkoutCardEnvironment()
         )
 
         return Group {
-            QuickWorkoutCardView(store: store)
+            QuickWorkoutCardView(store: store, origin: .constant(.zero))
                 .padding()
                 .previewLayout(.fixed(width: 375, height: 180))
                 .preferredColorScheme(.dark)
 
-            QuickWorkoutCardView(store: store)
+            QuickWorkoutCardView(store: store, origin: .constant(.zero))
                 .padding()
                 .previewLayout(.fixed(width: 375, height: 180))
         }

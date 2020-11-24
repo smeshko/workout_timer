@@ -33,7 +33,7 @@ public struct SegmentedProgressState: Equatable {
         step
     }
 
-    public init(totalSegments: Int, filledSegments: Int = 0, title: String? = nil, isCompact: Bool) {
+    public init(totalSegments: Int, filledSegments: Int = 0, title: String? = nil, isCompact: Bool = true) {
         self.originalTotalCount = totalSegments
         self.totalFilledSegments = filledSegments
         self.title = title
