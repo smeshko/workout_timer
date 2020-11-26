@@ -63,6 +63,7 @@ struct WorkoutsList: View {
                 viewStore.send(QuickWorkoutsListAction.deleteWorkouts(insets))
             }
         }
+        .rowHeight(cellSize.height)
         .sheet(isPresented: $isWorkoutFormPresented) {
             CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState,
                                                       action: QuickWorkoutsListAction.createWorkoutAction))
