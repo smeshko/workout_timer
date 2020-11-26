@@ -1,4 +1,5 @@
 import SwiftUI
+import CoreInterface
 import ComposableArchitecture
 
 struct FinishedWorkoutView: View {
@@ -14,10 +15,13 @@ struct FinishedWorkoutView: View {
         VStack {
             Spacer()
 
-            Text("Congratulations!")
-                .font(.h1)
-                .foregroundColor(viewStore.workout.color.color)
+            ZStack {
+                Text("Congratulations!")
+                    .font(.h1)
+                    .foregroundColor(viewStore.workout.color.color)
 
+                Confetti()
+            }
             Text("Another one in the books")
                 .font(.h2)
                 .foregroundColor(.appText)
