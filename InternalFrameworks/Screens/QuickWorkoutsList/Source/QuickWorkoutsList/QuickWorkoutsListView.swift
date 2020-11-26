@@ -9,7 +9,7 @@ public struct QuickWorkoutsListView: View {
     @ObservedObject private var viewStore: ViewStore<QuickWorkoutsListState, QuickWorkoutsListAction>
 
     @State private var isWorkoutFormPresented: Bool = false
-    @State private var origin: CGPoint = .zero
+    @State private var origin: CGPoint = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
 
     public init(store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>) {
         self.store = store

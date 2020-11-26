@@ -42,8 +42,8 @@ struct QuickWorkoutCardView: View {
                                 viewStore.send(.tapStart)
                                 let buttonOrigin = buttonProxy.frame(in: .global).origin
                                 origin = CGPoint(
-                                    x: buttonOrigin.x + buttonProxy.size.width / 2,
-                                    y: buttonOrigin.y + buttonProxy.size.height / 2
+                                    x: buttonOrigin.x,
+                                    y: buttonOrigin.y - buttonProxy.size.height / 2
                                 )
                             }
                         }, label: {
