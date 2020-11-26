@@ -1,4 +1,5 @@
 import XCTest
+import CoreLogic
 import DomainEntities
 import SwiftUI
 import CoreInterface
@@ -18,11 +19,14 @@ class QuickWorkoutFormTests: XCTestCase {
         let store = TestStore(
             initialState: CreateQuickWorkoutState(),
             reducer: createQuickWorkoutReducer,
-            environment: CreateQuickWorkoutEnvironment(
-                mainQueue: AnyScheduler(DispatchQueue.testScheduler),
-                repository: .mock,
-                uuid: uuid,
-                randomElementGenerator: randomTintGenerator
+            environment: .mock(
+                environment:
+                    CreateQuickWorkoutEnvironment(
+                        repository: .mock,
+                        randomElementGenerator: randomTintGenerator
+                    ),
+                mainQueue: { AnyScheduler(DispatchQueue.testScheduler) },
+                uuid: uuid
             )
         )
 

@@ -6,9 +6,17 @@ import ComposableArchitecture
 @testable import RunningTimer
 @testable import CoreInterface
 
-class RunningTimerTests: XCTestCase {
+let testScheduler = DispatchQueue.testScheduler
 
-    let testScheduler = DispatchQueue.testScheduler
+extension SystemEnvironment where Environment == RunningTimerEnvironment {
+    static let test = SystemEnvironment.mock(
+        environment: RunningTimerEnvironment(soundClient: .mock, notificationClient: .mock, timerStep: .seconds(1)),
+        mainQueue: { AnyScheduler(testScheduler) },
+        uuid: { UUID(uuidString: "c06e5e63-d74f-4291-8673-35ce994754dc")! }
+    )
+}
+
+class RunningTimerTests: XCTestCase {
 
     func testFlow() {
         let workout = QuickWorkout(
@@ -25,14 +33,9 @@ class RunningTimerTests: XCTestCase {
 
         let store = TestStore(
             initialState: state,
-                reducer: runningTimerReducer,
-                environment: RunningTimerEnvironment(
-                    mainQueue: AnyScheduler(testScheduler),
-                    soundClient: .mock,
-                    notificationClient: .mock,
-                    timerStep: .seconds(1)
-                )
-            )
+            reducer: runningTimerReducer,
+            environment: .test
+        )
 
         store.assert(
             .send(.onAppear) {
@@ -44,18 +47,19 @@ class RunningTimerTests: XCTestCase {
             },
             .send(.preCountdownAction(.finished)) {
                 $0.precountdownState = nil
+                $0.phase = .timer
             },
             .receive(.timerControlsUpdatedState(.start)) {
                 $0.timerControlsState.timerState = .running
             },
 
             // 1. work section
-            .do { self.testScheduler.advance(by: 1) },
+            .do { testScheduler.advance(by: 1) },
             .receive(.timerTicked) {
                 $0.totalTimeLeft = 6
                 $0.sectionTimeLeft = 1
             },
-            .do { self.testScheduler.advance(by: 1) },
+            .do { testScheduler.advance(by: 1) },
             .receive(.timerTicked) {
                 $0.totalTimeLeft = 5
                 $0.sectionTimeLeft = 0
@@ -67,7 +71,7 @@ class RunningTimerTests: XCTestCase {
                 $0.sectionTimeLeft = 1
                 $0.finishedSections = 1
             },
-            .do { self.testScheduler.advance(by: 1) },
+            .do { testScheduler.advance(by: 1) },
             .receive(.timerTicked) {
                 $0.totalTimeLeft = 4
                 $0.sectionTimeLeft = 0
@@ -79,22 +83,22 @@ class RunningTimerTests: XCTestCase {
                 $0.currentSection = sections[2]
                 $0.sectionTimeLeft = 4
             },
-            .do { self.testScheduler.advance(by: 1) },
+            .do {testScheduler.advance(by: 1) },
             .receive(.timerTicked) {
                 $0.totalTimeLeft = 3
                 $0.sectionTimeLeft = 3
             },
-            .do { self.testScheduler.advance(by: 1) },
+            .do {testScheduler.advance(by: 1) },
             .receive(.timerTicked) {
                 $0.totalTimeLeft = 2
                 $0.sectionTimeLeft = 2
             },
-            .do { self.testScheduler.advance(by: 1) },
+            .do {testScheduler.advance(by: 1) },
             .receive(.timerTicked) {
                 $0.totalTimeLeft = 1
                 $0.sectionTimeLeft = 1
             },
-            .do { self.testScheduler.advance(by: 1) },
+            .do {testScheduler.advance(by: 1) },
             .receive(.timerTicked) {
                 $0.totalTimeLeft = 0
                 $0.sectionTimeLeft = 0
@@ -103,6 +107,7 @@ class RunningTimerTests: XCTestCase {
 
             // finish
             .receive(.timerFinished) {
+                $0.phase = .finished
                 $0.timerControlsState.timerState = .finished
                 $0.finishedWorkoutState = FinishedWorkoutState(workout: workout)
             }
@@ -123,14 +128,9 @@ class RunningTimerTests: XCTestCase {
 
         let store = TestStore(
             initialState: state,
-                reducer: runningTimerReducer,
-                environment: RunningTimerEnvironment(
-                    mainQueue: AnyScheduler(testScheduler),
-                    soundClient: .mock,
-                    notificationClient: .mock,
-                    timerStep: .seconds(1)
-                )
-            )
+            reducer: runningTimerReducer,
+            environment: .test
+        )
 
         store.assert(
             .send(.onAppear) {
@@ -141,6 +141,7 @@ class RunningTimerTests: XCTestCase {
                 $0.segmentedProgressState.title = "Sections"
             },
             .send(.preCountdownAction(.finished)) {
+                $0.phase = .timer
                 $0.precountdownState = nil
             },
             .receive(.timerControlsUpdatedState(.start)) {
@@ -148,7 +149,7 @@ class RunningTimerTests: XCTestCase {
             },
 
             // close
-            .do { self.testScheduler.advance(by: 1) },
+            .do {testScheduler.advance(by: 1) },
             .receive(.timerTicked) {
                 $0.totalTimeLeft = 1
                 $0.sectionTimeLeft = 1
@@ -170,6 +171,7 @@ class RunningTimerTests: XCTestCase {
 
             // finish
             .receive(.timerFinished) {
+                $0.phase = .finished
                 $0.alert = nil
                 $0.timerControlsState.timerState = .finished
                 $0.finishedWorkoutState = FinishedWorkoutState(workout: workout)
@@ -191,14 +193,9 @@ class RunningTimerTests: XCTestCase {
         
         let store = TestStore(
             initialState: state,
-                reducer: runningTimerReducer,
-                environment: RunningTimerEnvironment(
-                    mainQueue: AnyScheduler(testScheduler),
-                    soundClient: .mock,
-                    notificationClient: .mock,
-                    timerStep: .seconds(1)
-                )
-            )
+            reducer: runningTimerReducer,
+            environment: .test
+        )
 
         store.assert(
             .send(.onAppear) {
@@ -209,6 +206,7 @@ class RunningTimerTests: XCTestCase {
                 $0.segmentedProgressState.title = "Sections"
             },
             .send(.preCountdownAction(.finished)) {
+                $0.phase = .timer
                 $0.precountdownState = nil
             },
             .receive(.timerControlsUpdatedState(.start)) {
@@ -216,7 +214,7 @@ class RunningTimerTests: XCTestCase {
             },
 
             // pause / play / pause
-            .do { self.testScheduler.advance(by: 1) },
+            .do {testScheduler.advance(by: 1) },
             .receive(.timerTicked) {
                 $0.totalTimeLeft = 1
                 $0.sectionTimeLeft = 1
@@ -247,14 +245,9 @@ class RunningTimerTests: XCTestCase {
 
         let store = TestStore(
             initialState: state,
-                reducer: runningTimerReducer,
-                environment: RunningTimerEnvironment(
-                    mainQueue: AnyScheduler(testScheduler),
-                    soundClient: .mock,
-                    notificationClient: .mock,
-                    timerStep: .seconds(1)
-                )
-            )
+            reducer: runningTimerReducer,
+            environment: .test
+        )
 
         store.assert(
             .send(.onAppear) {
@@ -265,13 +258,14 @@ class RunningTimerTests: XCTestCase {
                 $0.segmentedProgressState.title = "Sections"
             },
             .send(.preCountdownAction(.finished)) {
+                $0.phase = .timer
                 $0.precountdownState = nil
             },
             .receive(.timerControlsUpdatedState(.start)) {
                 $0.timerControlsState.timerState = .running
             },
 
-            .do { self.testScheduler.advance(by: 1) },
+            .do {testScheduler.advance(by: 1) },
             .receive(.timerTicked) {
                 $0.totalTimeLeft -= 1
                 $0.sectionTimeLeft = 1
