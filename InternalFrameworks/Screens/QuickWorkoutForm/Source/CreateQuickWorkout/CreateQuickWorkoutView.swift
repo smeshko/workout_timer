@@ -46,10 +46,7 @@ struct CreateQuickWorkoutView_Previews: PreviewProvider {
         let emptyStore = Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>(
             initialState: CreateQuickWorkoutState(),
             reducer: createQuickWorkoutReducer,
-            environment: CreateQuickWorkoutEnvironment(
-                mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-                repository: .mock
-            )
+            environment: .preview
         )
 
         let filledStore = Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>(
@@ -57,10 +54,7 @@ struct CreateQuickWorkoutView_Previews: PreviewProvider {
                 workout: mockQuickWorkout1
             ),
             reducer: createQuickWorkoutReducer,
-            environment: CreateQuickWorkoutEnvironment(
-                mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-                repository: .mock
-            )
+            environment: .preview
         )
 
         return Group {

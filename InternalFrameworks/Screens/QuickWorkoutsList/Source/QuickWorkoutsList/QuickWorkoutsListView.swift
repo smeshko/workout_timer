@@ -61,21 +61,13 @@ struct QuickWorkoutsListView_Previews: PreviewProvider {
         let emptyStore = Store<QuickWorkoutsListState, QuickWorkoutsListAction>(
             initialState: QuickWorkoutsListState(),
             reducer: quickWorkoutsListReducer,
-            environment: QuickWorkoutsListEnvironment(
-                repository: .mock,
-                mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-                notificationClient: .mock
-            )
+            environment: .preview
         )
 
         let filledStore = Store<QuickWorkoutsListState, QuickWorkoutsListAction>(
             initialState: QuickWorkoutsListState(workouts: [mockQuickWorkout1, mockQuickWorkout2]),
             reducer: quickWorkoutsListReducer,
-            environment: QuickWorkoutsListEnvironment(
-                repository: .mock,
-                mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-                notificationClient: .mock
-            )
+            environment: .preview
         )
 
         return Group {

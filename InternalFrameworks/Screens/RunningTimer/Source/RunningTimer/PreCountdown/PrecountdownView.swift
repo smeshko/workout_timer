@@ -53,7 +53,7 @@ struct PrecountdownView_Previews: PreviewProvider {
             store: Store<PreCountdownState, PreCountdownAction>(
                 initialState: PreCountdownState(workoutColor: .empty),
                 reducer: preCountdownReducer,
-                environment: PreCountdownEnvironment()
+                environment: .preview
             ),
             origin: .zero
         )

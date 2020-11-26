@@ -17,11 +17,7 @@ struct MainApp: App {
         store = Store<AppState, AppAction>(
             initialState: AppState(),
             reducer: appReducer,
-            environment: AppEnvironment(
-                mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-                repository: .live,
-                notificationClient: .live
-            )
+            environment: .live
         )
         viewStore = ViewStore(store)
     }

@@ -47,11 +47,7 @@ struct TimerView_Previews: PreviewProvider {
                     timerControlsState: TimerControlsState(timerState: .paused)
                 ),
                 reducer: runningTimerReducer,
-                environment: RunningTimerEnvironment(
-                    mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-                    soundClient: .mock,
-                    notificationClient: .mock
-                )
+                environment: .preview
             )
         )
     }

@@ -68,20 +68,14 @@ struct RunningTimerView_Previews: PreviewProvider {
                 timerControlsState: TimerControlsState(timerState: .running)
             ),
             reducer: runningTimerReducer,
-            environment: RunningTimerEnvironment(mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-                                                 soundClient: .mock,
-                                                 notificationClient: .mock
-            )
+            environment: .preview
         )
         let preCountdownStore = Store<RunningTimerState, RunningTimerAction>(
             initialState: RunningTimerState(
                 workout: mockQuickWorkout1
             ),
             reducer: runningTimerReducer,
-            environment: RunningTimerEnvironment(mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-                                                 soundClient: .mock,
-                                                 notificationClient: .mock
-            )
+            environment: .preview
         )
 
         return Group {

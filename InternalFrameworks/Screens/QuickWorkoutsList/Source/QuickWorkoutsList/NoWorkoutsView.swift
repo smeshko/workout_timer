@@ -46,11 +46,7 @@ struct NoWorkoutsView_Previews: PreviewProvider {
             store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>(
                 initialState: QuickWorkoutsListState(workouts: []),
                 reducer: quickWorkoutsListReducer,
-                environment: QuickWorkoutsListEnvironment(
-                    repository: .mock,
-                    mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-                    notificationClient: .mock
-                )
+                environment: .preview
             ),
             isWorkoutFormPresented: .constant(false)
         )

@@ -46,11 +46,7 @@ struct HeaderView_Previews: PreviewProvider {
             store: Store<RunningTimerState, RunningTimerAction>(
                 initialState: RunningTimerState(workout: mockQuickWorkout1),
                 reducer: runningTimerReducer,
-                environment: RunningTimerEnvironment(
-                    mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-                    soundClient: .mock,
-                    notificationClient: .mock
-                )
+                environment: .preview
             )
         )
     }

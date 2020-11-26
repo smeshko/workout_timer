@@ -1,4 +1,5 @@
 import Foundation
+import CoreLogic
 import SwiftUI
 import ComposableArchitecture
 import CorePersistence
@@ -41,24 +42,23 @@ public struct CreateQuickWorkoutState: Equatable {
 }
 
 public struct CreateQuickWorkoutEnvironment<T> {
-    let mainQueue: AnySchedulerOf<DispatchQueue>
     let repository: QuickWorkoutsRepository
-    let uuid: () -> UUID
     let randomElementGenerator: ([T]) -> T?
 
-    public init(mainQueue: AnySchedulerOf<DispatchQueue>,
-                repository: QuickWorkoutsRepository,
-                uuid: @escaping () -> UUID = UUID.init,
+    public init(repository: QuickWorkoutsRepository,
                 randomElementGenerator: @escaping (_ elements: [T]) -> T? = { $0.randomElement() }) {
-        self.mainQueue = mainQueue
         self.repository = repository
-        self.uuid = uuid
         self.randomElementGenerator = randomElementGenerator
     }
 }
 
+public extension SystemEnvironment where Environment == CreateQuickWorkoutEnvironment<TintColor> {
+    static let preview = SystemEnvironment.live(environment: CreateQuickWorkoutEnvironment(repository: .mock))
+    static let live = SystemEnvironment.live(environment: CreateQuickWorkoutEnvironment(repository: .live))
+}
+
 public let createQuickWorkoutReducer =
-    Reducer<CreateQuickWorkoutState, CreateQuickWorkoutAction, CreateQuickWorkoutEnvironment<TintColor>>.combine(
+    Reducer<CreateQuickWorkoutState, CreateQuickWorkoutAction, SystemEnvironment<CreateQuickWorkoutEnvironment<TintColor>>>.combine(
         addTimerSegmentReducer.forEach(
             state: \.addTimerSegmentStates,
             action: /CreateQuickWorkoutAction.addTimerSegmentAction(id:action:),
@@ -137,18 +137,18 @@ private extension AddTimerSegmentState {
     }
 }
 
-private extension CreateQuickWorkoutEnvironment {
+private extension SystemEnvironment where Environment == CreateQuickWorkoutEnvironment<TintColor> {
     func createOrUpdate(_ workout: QuickWorkout, isEditing: Bool) -> Effect<CreateQuickWorkoutAction, Never> {
         if isEditing {
-            return repository
+            return environment.repository
                 .updateWorkout(workout)
-                .receive(on: mainQueue)
+                .receive(on: mainQueue())
                 .catchToEffect()
                 .map(CreateQuickWorkoutAction.didSaveSuccessfully)
         } else {
-            return repository
+            return environment.repository
                 .createWorkout(workout)
-                .receive(on: mainQueue)
+                .receive(on: mainQueue())
                 .catchToEffect()
                 .map(CreateQuickWorkoutAction.didSaveSuccessfully)
         }

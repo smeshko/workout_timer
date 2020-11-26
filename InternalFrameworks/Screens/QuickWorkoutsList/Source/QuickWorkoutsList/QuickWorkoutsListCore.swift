@@ -36,27 +36,23 @@ public struct QuickWorkoutsListState: Equatable {
     }
 }
 
-public struct QuickWorkoutsListEnvironment<T> {
+public struct QuickWorkoutsListEnvironment {
     let repository: QuickWorkoutsRepository
-    let mainQueue: AnySchedulerOf<DispatchQueue>
-    let uuid: () -> UUID
-    var notificationClient: LocalNotificationClient
-    let randomElementGenerator: ([T]) -> T?
+    let notificationClient: LocalNotificationClient
 
     public init(repository: QuickWorkoutsRepository,
-                mainQueue: AnySchedulerOf<DispatchQueue>,
-                notificationClient: LocalNotificationClient,
-                uuid: @escaping () -> UUID = UUID.init,
-                randomElementGenerator: @escaping (_ elements: [T]) -> T? = { $0.randomElement() }) {
+                notificationClient: LocalNotificationClient) {
         self.repository = repository
-        self.mainQueue = mainQueue
         self.notificationClient = notificationClient
-        self.uuid = uuid
-        self.randomElementGenerator = randomElementGenerator
     }
 }
 
-public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorkoutsListAction, QuickWorkoutsListEnvironment<TintColor>>.combine(
+public extension SystemEnvironment where Environment == QuickWorkoutsListEnvironment {
+    static let preview = SystemEnvironment.live(environment: QuickWorkoutsListEnvironment(repository: .mock, notificationClient: .mock))
+    static let live = SystemEnvironment.live(environment: QuickWorkoutsListEnvironment(repository: .live, notificationClient: .live))
+}
+
+public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorkoutsListAction, SystemEnvironment<QuickWorkoutsListEnvironment>>.combine(
     quickWorkoutCardReducer.forEach(
         state: \.workoutStates,
         action: /QuickWorkoutsListAction.workoutCardAction(id:action:),
@@ -65,7 +61,7 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
     runningTimerReducer.optional().pullback(
         state: \.runningTimerState,
         action: /QuickWorkoutsListAction.runningTimerAction,
-        environment: { RunningTimerEnvironment(mainQueue: $0.mainQueue, soundClient: .live, notificationClient: .live) }
+        environment: { _ in .live }
     ),
     Reducer { state, action, environment in
 
@@ -113,7 +109,7 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
             return environment
                 .repository
                 .delete(workout)
-                .receive(on: environment.mainQueue)
+                .receive(on: environment.mainQueue())
                 .catchToEffect()
                 .map {
                     QuickWorkoutsListAction.didFinishDeleting($0.map { [$0] })
@@ -124,7 +120,7 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
             return environment
                 .repository
                 .deleteMultiple(objects)
-                .receive(on: environment.mainQueue)
+                .receive(on: environment.mainQueue())
                 .catchToEffect()
                 .map(QuickWorkoutsListAction.didFinishDeleting(_:))
 
@@ -136,14 +132,15 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
     createQuickWorkoutReducer.pullback(
         state: \.createWorkoutState,
         action: /QuickWorkoutsListAction.createWorkoutAction,
-        environment: { env in CreateQuickWorkoutEnvironment(mainQueue: env.mainQueue, repository: env.repository, uuid: env.uuid, randomElementGenerator: env.randomElementGenerator)}
+        environment: { _ in .live }
     )
 )
 
-private extension QuickWorkoutsListEnvironment {
+private extension SystemEnvironment where Environment == QuickWorkoutsListEnvironment {
     func fetchWorkouts() -> Effect<QuickWorkoutsListAction, Never> {
-        repository.fetchAllWorkouts()
-            .receive(on: mainQueue)
+        environment.repository
+            .fetchAllWorkouts()
+            .receive(on: mainQueue())
             .catchToEffect()
             .map(QuickWorkoutsListAction.didFetchWorkouts)
     }

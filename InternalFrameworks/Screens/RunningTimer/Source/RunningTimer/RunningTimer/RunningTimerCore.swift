@@ -68,30 +68,31 @@ public struct RunningTimerState: Equatable {
 }
 
 public struct RunningTimerEnvironment {
-  
-    var mainQueue: AnySchedulerOf<DispatchQueue>
     var soundClient: SoundClient
     var notificationClient: LocalNotificationClient
     var timerStep: DispatchQueue.SchedulerTimeType.Stride
 
     public init(
-        mainQueue: AnySchedulerOf<DispatchQueue>,
         soundClient: SoundClient,
         notificationClient: LocalNotificationClient,
         timerStep: DispatchQueue.SchedulerTimeType.Stride = .seconds(0.05)
     ) {
-        self.mainQueue = mainQueue
         self.soundClient = soundClient
         self.notificationClient = notificationClient
         self.timerStep = timerStep
     }
 }
 
-public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, RunningTimerEnvironment>.combine(
+public extension SystemEnvironment where Environment == RunningTimerEnvironment {
+    static let preview = SystemEnvironment.live(environment: RunningTimerEnvironment(soundClient: .mock, notificationClient: .mock))
+    static let live = SystemEnvironment.live(environment: RunningTimerEnvironment(soundClient: .live, notificationClient: .live))
+}
+
+public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, SystemEnvironment<RunningTimerEnvironment>>.combine(
     preCountdownReducer.optional().pullback(
         state: \.precountdownState,
         action: /RunningTimerAction.preCountdownAction,
-        environment: { PreCountdownEnvironment(mainQueue: $0.mainQueue) }
+        environment: { _ in .live }
     ),
     Reducer { state, action, environment in
         struct TimerId: Hashable {}
@@ -126,7 +127,7 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
 
             case .start:
                 return Effect
-                    .timer(id: id, every: environment.timerStep, tolerance: .zero, on: environment.mainQueue)
+                    .timer(id: id, every: environment.timerStep, tolerance: .zero, on: environment.mainQueue())
                     .map { _ in RunningTimerAction.timerTicked }
             }
 
