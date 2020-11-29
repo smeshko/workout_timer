@@ -4,6 +4,7 @@ import ComposableArchitecture
 public enum SegmentedProgressAction: Equatable {
     case moveToNextSegment
     case onAppear
+    case onChangeSizeClass(isCompact: Bool)
 }
 
 public struct SegmentedProgressState: Equatable {
@@ -72,6 +73,9 @@ public let segmentedProgressReducer = Reducer<SegmentedProgressState, SegmentedP
         } else {
             state.filledSegments = adjustFilledSegments(state.totalFilledSegments, isAboveThreshold: state.isAboveThreshold, isCompact: state.isCompact)
         }
+
+    case .onChangeSizeClass(let isCompact):
+        state.isCompact = isCompact
     }
     return .none
 }

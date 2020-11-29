@@ -1,6 +1,7 @@
 import SwiftUI
 import CoreInterface
 import ComposableArchitecture
+import DomainEntities
 
 struct TimerView: View {
     private let store: Store<RunningTimerState, RunningTimerAction>
@@ -16,58 +17,30 @@ struct TimerView: View {
     }
 
     var body: some View {
-//        IfLetStore(store.scope(state: \.finishedWorkoutState, action: RunningTimerAction.finishedWorkoutAction),
-//                   then: FinishedWorkoutView.init,
-//                   else: ZStack {
-//                    ProgressTrack(tint: progressColor)
-//                    ProgressBar(elapsed: (viewStore.currentSection?.duration ?? 0) - viewStore.sectionTimeLeft,
-//                                total: (viewStore.currentSection?.duration ?? 0))
-//
-//                    VStack(spacing: 8) {
-//                        Text(viewStore.sectionTimeLeft.formattedTimeLeft)
-//                            .foregroundColor(.appText)
-//                            .font(.giganticMono)
-//
-//                        Text(viewStore.currentSegmentName)
-//                            .foregroundColor(.appText)
-//                            .font(.h2)
-//                    }
-//                    .pulsatingAnimation(viewStore.timerControlsState.isPaused)
-//                })
-//        if isFinished {
-//            ZStack {
-//                Text("Congratulations")
-//                    .font(.h1)
-//                    .foregroundColor(viewStore.workout.color.color)
-//
-//                Confetti()
-//            }
-//
-//        } else {
-            ZStack {
-                ProgressTrack(tint: progressColor)
-                ProgressBar(elapsed: (viewStore.currentSection?.duration ?? 0) - viewStore.sectionTimeLeft,
-                            total: (viewStore.currentSection?.duration ?? 0))
+        ZStack {
+            ProgressBar(elapsed: (viewStore.currentSection?.duration ?? 0) - viewStore.sectionTimeLeft,
+                        total: (viewStore.currentSection?.duration ?? 0),
+                        tint: progressColor)
 
-                VStack(spacing: 8) {
-                    Text(viewStore.sectionTimeLeft.formattedTimeLeft)
-                        .foregroundColor(.appText)
-                        .font(.giganticMono)
+            VStack(spacing: 8) {
+                Text(viewStore.sectionTimeLeft.formattedTimeLeft)
+                    .foregroundColor(.appText)
+                    .font(.giganticMono)
 
-                    Text(viewStore.currentSegmentName)
-                        .foregroundColor(.appText)
-                        .font(.h2)
-                }
-                .pulsatingAnimation(viewStore.timerControlsState.isPaused)
+                Text(viewStore.currentSegmentName)
+                    .foregroundColor(.appText)
+                    .font(.h2)
             }
-//        }
+            .pulsatingAnimation(viewStore.timerControlsState.isPaused)
+        }
+        .animation(.none)
     }
 
-    private var progressColor: Color {
+    private var progressColor: WorkoutColor {
         if viewStore.currentSection?.type == .pause {
-            return .green
+            return WorkoutColor(color: .green)
         } else {
-            return viewStore.workout.color.color
+            return viewStore.workout.color
         }
     }
 }
@@ -84,44 +57,29 @@ struct TimerView_Previews: PreviewProvider {
                 environment: .preview
             )
         )
-    }
-}
-
-private struct ProgressTrack: View {
-    let tint: Color
-
-    var body: some View {
-        Circle()
-            .fill(Color.clear)
-            .overlay(
-                Circle().stroke(tint, lineWidth: 15)
-        )
+        .padding()
     }
 }
 
 private struct ProgressBar: View {
     var elapsed: TimeInterval
     var total: TimeInterval
+    let tint: WorkoutColor
 
     var body: some View {
-        Circle()
-            .fill(Color.clear)
-            .overlay(
-                Circle().trim(from: 0, to: progress)
-                    .stroke(
-                        style: StrokeStyle(
-                            lineWidth: 16,
-                            lineCap: .square,
-                            lineJoin: .round
-                        )
-                    )
-                    .foregroundColor(Color(.systemBackground))
-                ).animation(
-                    .easeInOut(duration: 0.2)
-                )
+        ZStack {
+            Circle()
+                .stroke(lineWidth: 16)
+                .foregroundColor(Color(.systemBackground))
+            Circle()
+                .trim(from: 0.0, to: CGFloat(min(progress, 1.0)))
+                .stroke(tint.color ,style: StrokeStyle(lineWidth: 16, lineCap: .round, lineJoin: .round))
+                .rotationEffect(Angle(degrees: 270.0))
+                .animation(.linear, value: progress)
+        }
     }
 
-    var progress: CGFloat {
+    private var progress: CGFloat {
         CGFloat(elapsed) / CGFloat(total)
     }
 }

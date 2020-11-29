@@ -10,7 +10,6 @@ public struct RunningTimerView: View {
 
     @ObservedObject var viewStore: ViewStore<RunningTimerState, RunningTimerAction>
 
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.scenePhase) var scenePahse
 
     public init(store: Store<RunningTimerState, RunningTimerAction>, origin: CGPoint) {
@@ -20,12 +19,10 @@ public struct RunningTimerView: View {
     }
 
     public var body: some View {
-        WithViewStore(store) { viewStore in
-            IfLetStore(store.scope(state: \.precountdownState, action: RunningTimerAction.preCountdownAction),
-                       then: { PreCountdownView(store: $0, origin: origin) },
-                       else: MainView(store: store)
-            )
-        }
+        IfLetStore(store.scope(state: \.precountdownState, action: RunningTimerAction.preCountdownAction),
+                   then: { PreCountdownView(store: $0, origin: origin) },
+                   else: MainView(store: store)
+        )
         .padding(28)
         .onChange(of: scenePahse) { newScene in
             switch newScene {
@@ -88,16 +85,16 @@ private struct MainView: View {
         VStack(spacing: 28) {
             HeaderView(store: store)
                 .transition(.slide)
-                .animation(.easeInOut(duration: 0.55))
+                .animation(.easeInOut(duration: 2))
 
             if !isFinished {
                 SegmentedProgressView(
                     store: store.scope(state: \.segmentedProgressState, action: RunningTimerAction.segmentedProgressAction),
-                    color: viewStore.color
+                    color: viewStore.workout.color.color
                 )
                 .padding(.top, 28)
                 .transition(.move(edge: .leading))
-                .animation(.easeInOut(duration: 0.55))
+                .animation(isFinished ? .easeInOut(duration: 2) : .none)
             }
 
             Spacer()
@@ -111,7 +108,7 @@ private struct MainView: View {
 
             if !isFinished {
                 QuickTimerControlsView(store: store.scope(state: \.timerControlsState,
-                                                          action: RunningTimerAction.timerControlsUpdatedState), tint: viewStore.color)
+                                                          action: RunningTimerAction.timerControlsUpdatedState), tint: viewStore.workout.color.color)
             }
         }
         .onAppear {
@@ -120,14 +117,5 @@ private struct MainView: View {
         .onChange(of: viewStore.finishedSections) { change in
             viewStore.send(.segmentedProgressAction(.moveToNextSegment))
         }
-//        .onChange(of: horizontalSizeClass) { sizeClass in
-//            viewStore.send(.onSizeClassChange(isCompact: sizeClass == .compact))
-//        }
-    }
-}
-
-extension RunningTimerState {
-    var color: Color {
-        Color(hue: workout.color.hue, saturation: workout.color.saturation, brightness: workout.color.brightness)
     }
 }

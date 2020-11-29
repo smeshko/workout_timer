@@ -94,10 +94,11 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
         switch action {
 
         case .onAppear:
-            state.updateSegments()
+            break
 
         case .preCountdownAction(.finished):
             state.precountdownState = nil
+            state.updateSegments()
             return Effect(value: RunningTimerAction.timerControlsUpdatedState(.start))
 
         case .onSizeClassChange(let compact):
