@@ -5,12 +5,6 @@ import ComposableArchitecture
 import CoreLogic
 import DomainEntities
 
-enum Phase {
-    case countdown
-    case timer
-    case finished
-}
-
 public enum RunningTimerAction: Equatable {
     case timerControlsUpdatedState(TimerControlsAction)
     case segmentedProgressAction(SegmentedProgressAction)
@@ -35,7 +29,6 @@ public enum RunningTimerAction: Equatable {
 
 public struct RunningTimerState: Equatable {
     var precountdownState: PreCountdownState?
-    var phase: Phase = .countdown
 
     var currentSection: TimerSection? = nil
     var totalTimeLeft: TimeInterval = 0
@@ -105,7 +98,6 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
 
         case .preCountdownAction(.finished):
             state.precountdownState = nil
-            state.phase = .timer
             return Effect(value: RunningTimerAction.timerControlsUpdatedState(.start))
 
         case .onSizeClassChange(let compact):
@@ -155,13 +147,17 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
                 .fireAndForget()
 
         case .alertButtonTapped:
-            state.alert = .init(
-                title: "Stop workout?",
-                message: "Are you sure you want to stop this workout?",
-                primaryButton: .cancel(send: .timerControlsUpdatedState(.start)),
-                secondaryButton: .default("Yes", send: .timerClosed)
-            )
-            return Effect(value: RunningTimerAction.timerControlsUpdatedState(.pause))
+            if state.timerControlsState.isFinished {
+                return Effect(value: RunningTimerAction.timerClosed)
+            } else {
+                state.alert = .init(
+                    title: "Stop workout?",
+                    message: "Are you sure you want to stop this workout?",
+                    primaryButton: .cancel(send: .timerControlsUpdatedState(.start)),
+                    secondaryButton: .default("Yes", send: .timerFinished)
+                )
+                return Effect(value: RunningTimerAction.timerControlsUpdatedState(.pause))
+            }
 
         case .timerFinished:
             state.finish()
@@ -171,11 +167,7 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
                 .eraseToEffect()
 
         case .timerClosed:
-            state.isPresented = false
-            return Effect(value: RunningTimerAction.timerFinished)
-
-        case .finishedWorkoutAction(.didTapDoneButton):
-            state.isPresented = false
+            break
 
         default: break
         }
@@ -227,7 +219,6 @@ private extension RunningTimerState {
     mutating func finish() {
         finishedWorkoutState = FinishedWorkoutState(workout: workout)
         timerControlsState = TimerControlsState(timerState: .finished)
-        phase = .finished
         alert = nil
     }
 

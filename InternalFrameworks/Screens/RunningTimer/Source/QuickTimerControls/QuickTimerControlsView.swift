@@ -13,6 +13,10 @@ struct QuickTimerControlsView: View {
                     ControlButton(action: {
                         viewStore.send(.start)
                     }, image: "play", tint: tint)
+//                } else if viewStore.timerState.isFinished {
+//                    ControlButton(action: {
+//                        viewStore.send(.done)
+//                    }, image: "checkmark", tint: tint)
                 } else {
                     ControlButton(action: {
                         viewStore.send(.pause)

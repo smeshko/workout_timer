@@ -3,8 +3,10 @@ import CoreInterface
 import ComposableArchitecture
 
 struct FinishedWorkoutView: View {
-    let store: Store<FinishedWorkoutState, FinishedWorkoutAction>
-    let viewStore: ViewStore<FinishedWorkoutState, FinishedWorkoutAction>
+    private let store: Store<FinishedWorkoutState, FinishedWorkoutAction>
+    @ObservedObject private var viewStore: ViewStore<FinishedWorkoutState, FinishedWorkoutAction>
+
+    @State private var beginAnimation = false
 
     init(store: Store<FinishedWorkoutState, FinishedWorkoutAction>) {
         self.store = store
@@ -12,37 +14,59 @@ struct FinishedWorkoutView: View {
     }
 
     var body: some View {
-        VStack {
-            Spacer()
+        ZStack {
+            Text("Congratulations")
+                .font(.h1)
+                .foregroundColor(viewStore.workout.color.color)
+                .animation(.easeInOut(duration: 0.55))
 
-            ZStack {
-                Text("Congratulations!")
-                    .font(.h1)
-                    .foregroundColor(viewStore.workout.color.color)
-
-                Confetti()
-            }
-            Text("Another one in the books")
-                .font(.h2)
-                .foregroundColor(.appText)
-
-            Spacer()
-
-            Button {
-                viewStore.send(.didTapDoneButton)
-            } label: {
-                Text("Done")
-                    .font(.h3)
-                    .foregroundColor(.appWhite)
-                    .padding()
-            }
-            .background(Color.appSuccess)
-            .cornerRadius(12)
-            .padding(.bottom, 28)
+            Confetti()
         }
         .onAppear {
             viewStore.send(.onAppear)
         }
+
+//        VStack {
+//            Spacer()
+//
+//            ZStack {
+//                Text("Congratulations!")
+//                    .font(.h1)
+//                    .foregroundColor(viewStore.workout.color.color)
+//                    .animation(.easeInOut(duration: 0.55))
+//
+//                Confetti()
+//            }
+//            Text("Another one in the books")
+//                .font(.h2)
+//                .foregroundColor(.appText)
+//                .animation(.easeInOut(duration: 0.55))
+//
+//            Spacer()
+//
+//            Button {
+//                withAnimation {
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//                        viewStore.send(.didTapDoneButton)
+//                    }
+//                    beginAnimation = false
+//                }
+//            } label: {
+//                Text("Done")
+//                    .font(.h3)
+//                    .foregroundColor(.appWhite)
+//                    .padding()
+//            }
+//            .background(Color.appSuccess)
+//            .cornerRadius(12)
+//            .padding(.bottom, 28)
+//            .animation(.easeInOut(duration: 0.55))
+//        }
+//        .opacity(beginAnimation ? 1 : 0)
+//        .onAppear {
+//            viewStore.send(.onAppear)
+//            beginAnimation = true
+//        }
     }
 }
 

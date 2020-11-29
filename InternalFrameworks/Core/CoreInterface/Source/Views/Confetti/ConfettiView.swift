@@ -88,7 +88,7 @@ private struct SingleConfetti: View {
     let color: Color
 
     var body: some View {
-        Rectangle()
+        Circle()
             .foregroundColor(color)
             .frame(width: 20, height: 20, alignment: .center)
             .onAppear {
@@ -104,7 +104,7 @@ private struct SingleConfetti: View {
                     .repeatForever(autoreverses: false), value: animate
             )
             .rotation3DEffect(
-                .degrees(animate ? 360:0),
+                .degrees(animate ? 360 : 0),
                 axis: (x: 0, y: 0, z: 1),
                 anchor: UnitPoint(x: anchor, y: anchor)
             )

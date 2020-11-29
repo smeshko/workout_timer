@@ -41,6 +41,8 @@ public let preCountdownReducer = Reducer<PreCountdownState, PreCountdownAction, 
         state.timeLeft -= 1
         if state.timeLeft <= 0 {
             return Effect(value: PreCountdownAction.finished)
+                .delay(for: .seconds(0.5), scheduler: environment.mainQueue())
+                .eraseToEffect()
         }
 
     case .finished:

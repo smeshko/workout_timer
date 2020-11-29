@@ -5,7 +5,6 @@ import CorePersistence
 
 public struct RunningTimerView: View {
 
-
     let store: Store<RunningTimerState, RunningTimerAction>
     let origin: CGPoint
 
@@ -13,10 +12,6 @@ public struct RunningTimerView: View {
 
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(\.scenePhase) var scenePahse
-
-    @State private var isShowingTimer = false
-
-    @State private var phase = Phase.countdown
 
     public init(store: Store<RunningTimerState, RunningTimerAction>, origin: CGPoint) {
         self.store = store
@@ -26,24 +21,11 @@ public struct RunningTimerView: View {
 
     public var body: some View {
         WithViewStore(store) { viewStore in
-            switch phase {
-            case .timer:
-                MainView(store: store)
-                    .animation(.none)
-            case .countdown:
-                IfLetStore(store.scope(state: \.precountdownState, action: RunningTimerAction.preCountdownAction),
-                           then: { PreCountdownView(store: $0, origin: origin) })
-            case .finished:
-                IfLetStore(store.scope(state: \.finishedWorkoutState, action: RunningTimerAction.finishedWorkoutAction),
-                           then: FinishedWorkoutView.init)
-            }
+            IfLetStore(store.scope(state: \.precountdownState, action: RunningTimerAction.preCountdownAction),
+                       then: { PreCountdownView(store: $0, origin: origin) },
+                       else: MainView(store: store)
+            )
         }
-        .animation(.default)
-        .onChange(of: viewStore.phase, perform: { value in
-            withAnimation {
-                phase = value
-            }
-        })
         .padding(28)
         .onChange(of: scenePahse) { newScene in
             switch newScene {
@@ -93,6 +75,10 @@ private struct MainView: View {
     let store: Store<RunningTimerState, RunningTimerAction>
     @ObservedObject var viewStore: ViewStore<RunningTimerState, RunningTimerAction>
 
+    private var isFinished: Bool {
+        viewStore.timerControlsState.isFinished
+    }
+
     init(store: Store<RunningTimerState, RunningTimerAction>) {
         self.store = store
         self.viewStore = ViewStore(store)
@@ -101,27 +87,33 @@ private struct MainView: View {
     var body: some View {
         VStack(spacing: 28) {
             HeaderView(store: store)
+                .transition(.slide)
+                .animation(.easeInOut(duration: 0.55))
 
-            SegmentedProgressView(
-                store: store.scope(state: \.segmentedProgressState, action: RunningTimerAction.segmentedProgressAction),
-                color: viewStore.color
+            if !isFinished {
+                SegmentedProgressView(
+                    store: store.scope(state: \.segmentedProgressState, action: RunningTimerAction.segmentedProgressAction),
+                    color: viewStore.color
+                )
+                .padding(.top, 28)
+                .transition(.move(edge: .leading))
+                .animation(.easeInOut(duration: 0.55))
+            }
+
+            Spacer()
+
+            IfLetStore(store.scope(state: \.finishedWorkoutState, action: RunningTimerAction.finishedWorkoutAction),
+                       then: FinishedWorkoutView.init,
+                       else: TimerView(store: store)
             )
-            .animation(.none)
-
-            .padding(.top, 28)
 
             Spacer()
 
-            TimerView(store: store)
-
-            Spacer()
-
-            QuickTimerControlsView(store: store.scope(state: \.timerControlsState,
-                                                      action: RunningTimerAction.timerControlsUpdatedState), tint: viewStore.color)
-
-            if viewStore.isCompact {}
+            if !isFinished {
+                QuickTimerControlsView(store: store.scope(state: \.timerControlsState,
+                                                          action: RunningTimerAction.timerControlsUpdatedState), tint: viewStore.color)
+            }
         }
-        .animation(.default)
         .onAppear {
             viewStore.send(.onAppear)
         }

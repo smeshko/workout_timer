@@ -27,15 +27,23 @@ struct HeaderView: View {
             .background(Color.appCardBackground)
             .cornerRadius(12)
 
-            Text(viewStore.workout.name)
-                .font(.h3)
-                .foregroundColor(.appText)
+            if viewStore.timerControlsState.isFinished {
+                Spacer()
+            } else {
+                HStack {
+                    Text(viewStore.workout.name)
+                        .font(.h3)
+                        .foregroundColor(.appText)
 
-            Spacer()
+                    Spacer()
 
-            Text(viewStore.totalTimeLeft.formattedTimeLeft)
-                .foregroundColor(.appText)
-                .font(.h1Mono)
+                    Text(viewStore.totalTimeLeft.formattedTimeLeft)
+                        .foregroundColor(.appText)
+                        .font(.h1Mono)
+                }
+                .transition(.move(edge: .trailing))
+                .animation(.easeInOut(duration: 0.55))
+            }
         }
     }
 }

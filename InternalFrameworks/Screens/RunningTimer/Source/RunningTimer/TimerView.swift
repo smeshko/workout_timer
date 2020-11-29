@@ -1,9 +1,14 @@
 import SwiftUI
+import CoreInterface
 import ComposableArchitecture
 
 struct TimerView: View {
     private let store: Store<RunningTimerState, RunningTimerAction>
     @ObservedObject var viewStore: ViewStore<RunningTimerState, RunningTimerAction>
+
+    private var isFinished: Bool {
+        viewStore.timerControlsState.isFinished
+    }
 
     init(store: Store<RunningTimerState, RunningTimerAction>) {
         self.store = store
@@ -11,22 +16,51 @@ struct TimerView: View {
     }
 
     var body: some View {
-        ZStack {
-            ProgressTrack(tint: progressColor)
-            ProgressBar(elapsed: (viewStore.currentSection?.duration ?? 0) - viewStore.sectionTimeLeft,
-                        total: (viewStore.currentSection?.duration ?? 0))
+//        IfLetStore(store.scope(state: \.finishedWorkoutState, action: RunningTimerAction.finishedWorkoutAction),
+//                   then: FinishedWorkoutView.init,
+//                   else: ZStack {
+//                    ProgressTrack(tint: progressColor)
+//                    ProgressBar(elapsed: (viewStore.currentSection?.duration ?? 0) - viewStore.sectionTimeLeft,
+//                                total: (viewStore.currentSection?.duration ?? 0))
+//
+//                    VStack(spacing: 8) {
+//                        Text(viewStore.sectionTimeLeft.formattedTimeLeft)
+//                            .foregroundColor(.appText)
+//                            .font(.giganticMono)
+//
+//                        Text(viewStore.currentSegmentName)
+//                            .foregroundColor(.appText)
+//                            .font(.h2)
+//                    }
+//                    .pulsatingAnimation(viewStore.timerControlsState.isPaused)
+//                })
+//        if isFinished {
+//            ZStack {
+//                Text("Congratulations")
+//                    .font(.h1)
+//                    .foregroundColor(viewStore.workout.color.color)
+//
+//                Confetti()
+//            }
+//
+//        } else {
+            ZStack {
+                ProgressTrack(tint: progressColor)
+                ProgressBar(elapsed: (viewStore.currentSection?.duration ?? 0) - viewStore.sectionTimeLeft,
+                            total: (viewStore.currentSection?.duration ?? 0))
 
-            VStack(spacing: 8) {
-                Text(viewStore.sectionTimeLeft.formattedTimeLeft)
-                    .foregroundColor(.appText)
-                    .font(.giganticMono)
+                VStack(spacing: 8) {
+                    Text(viewStore.sectionTimeLeft.formattedTimeLeft)
+                        .foregroundColor(.appText)
+                        .font(.giganticMono)
 
-                Text(viewStore.currentSegmentName)
-                    .foregroundColor(.appText)
-                    .font(.h2)
+                    Text(viewStore.currentSegmentName)
+                        .foregroundColor(.appText)
+                        .font(.h2)
+                }
+                .pulsatingAnimation(viewStore.timerControlsState.isPaused)
             }
-            .pulsatingAnimation(viewStore.timerControlsState.isPaused)
-        }
+//        }
     }
 
     private var progressColor: Color {
