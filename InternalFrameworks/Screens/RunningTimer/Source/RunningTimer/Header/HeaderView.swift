@@ -2,10 +2,10 @@ import SwiftUI
 import ComposableArchitecture
 
 struct HeaderView: View {
-    private let store: Store<RunningTimerState, RunningTimerAction>
-    @ObservedObject var viewStore: ViewStore<RunningTimerState, RunningTimerAction>
+    private let store: Store<HeaderState, HeaderAction>
+    @ObservedObject var viewStore: ViewStore<HeaderState, HeaderAction>
 
-    init(store: Store<RunningTimerState, RunningTimerAction>) {
+    init(store: Store<HeaderState, HeaderAction>) {
         self.store = store
         self.viewStore = ViewStore(store)
     }
@@ -13,7 +13,7 @@ struct HeaderView: View {
     var body: some View {
         HStack(spacing: 18) {
             Button(action: {
-                viewStore.send(.alertButtonTapped)
+                viewStore.send(.closeButtonTapped)
             }, label: {
                 Image(systemName: "xmark")
                     .frame(width: 18, height: 18)
@@ -27,17 +27,17 @@ struct HeaderView: View {
             .background(Color.appCardBackground)
             .cornerRadius(12)
 
-            if viewStore.timerControlsState.isFinished {
+            if viewStore.isFinished {
                 Spacer()
             } else {
                 HStack {
-                    Text(viewStore.workout.name)
+                    Text(viewStore.workoutName)
                         .font(.h3)
                         .foregroundColor(.appText)
 
                     Spacer()
 
-                    Text(viewStore.totalTimeLeft.formattedTimeLeft)
+                    Text(viewStore.timeLeft.formattedTimeLeft)
                         .foregroundColor(.appText)
                         .font(.h1Mono)
                 }
@@ -51,10 +51,10 @@ struct HeaderView: View {
 struct HeaderView_Previews: PreviewProvider {
     static var previews: some View {
         HeaderView(
-            store: Store<RunningTimerState, RunningTimerAction>(
-                initialState: RunningTimerState(workout: mockQuickWorkout1),
-                reducer: runningTimerReducer,
-                environment: .preview
+            store: Store<HeaderState, HeaderAction>(
+                initialState: HeaderState(),
+                reducer: headerReducer,
+                environment: HeaderEnvironment()
             )
         )
     }

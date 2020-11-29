@@ -10,38 +10,27 @@ public enum RunningTimerAction: Equatable {
     case segmentedProgressAction(SegmentedProgressAction)
     case finishedWorkoutAction(FinishedWorkoutAction)
     case preCountdownAction(PreCountdownAction)
+    case headerAction(HeaderAction)
 
     case timerTicked
     case timerFinished
-    case timerClosed
 
-    case onAppear
-    case onActive
     case onBackground
-    case onSizeClassChange(isCompact: Bool)
-
     case sectionEnded
-
-    case alertButtonTapped
-    case alertCancelTapped
-    case alertDismissed
 }
 
 public struct RunningTimerState: Equatable {
     var precountdownState: PreCountdownState?
-
-    var currentSection: TimerSection? = nil
-    var totalTimeLeft: TimeInterval = 0
-    var sectionTimeLeft: TimeInterval = 0
+    var headerState: HeaderState
     var timerControlsState: TimerControlsState
     var segmentedProgressState = SegmentedProgressState(totalSegments: 0)
+    var finishedWorkoutState: FinishedWorkoutState?
+
+    var currentSection: TimerSection? = nil
+    var sectionTimeLeft: TimeInterval = 0
     var finishedSections: Int = 0
     var workout: QuickWorkout
     var timerSections: [TimerSection]
-    var alert: AlertState<RunningTimerAction>?
-    var isPresented = true
-    var isCompact = true
-    var finishedWorkoutState: FinishedWorkoutState?
 
     var progressSegmentsCount: Int {
         timerSections.filter { $0.type == .work }.count
@@ -49,14 +38,13 @@ public struct RunningTimerState: Equatable {
 
     public init(workout: QuickWorkout,
                 currentSection: TimerSection? = nil,
-                timerControlsState: TimerControlsState = TimerControlsState(),
-                isCompact: Bool = true) {
+                timerControlsState: TimerControlsState = TimerControlsState()) {
         self.workout = workout
         self.timerControlsState = timerControlsState
+        self.headerState = HeaderState(timeLeft: 0, workoutName: workout.name)
         self.precountdownState = PreCountdownState(workoutColor: workout.color)
         self.timerSections = workout.segments.map { TimerSection.create(from: $0) }.flatMap { $0 }.dropLast()
         self.currentSection = currentSection ?? timerSections.first
-        self.isCompact = isCompact
     }
 }
 
@@ -87,22 +75,21 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
         action: /RunningTimerAction.preCountdownAction,
         environment: { _ in .live }
     ),
+    headerReducer.pullback(
+        state: \.headerState,
+        action: /RunningTimerAction.headerAction,
+        environment: { _ in HeaderEnvironment() }
+    ),
     Reducer { state, action, environment in
         struct TimerId: Hashable {}
         let id = TimerId()
 
         switch action {
 
-        case .onAppear:
-            break
-
         case .preCountdownAction(.finished):
             state.precountdownState = nil
             state.updateSegments()
             return Effect(value: RunningTimerAction.timerControlsUpdatedState(.start))
-
-        case .onSizeClassChange(let compact):
-            state.isCompact = compact
 
         case .onBackground:
             return environment.notificationClient.scheduleLocalNotification(.timerPaused, .immediately)
@@ -115,9 +102,6 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
             case .pause:
                 return Effect<RunningTimerAction, Never>.cancel(id: id)
 
-            case .stop:
-                return Effect(value: RunningTimerAction.alertButtonTapped)
-
             case .start:
                 return Effect
                     .timer(id: id, every: environment.timerStep, tolerance: .zero, on: environment.mainQueue())
@@ -128,10 +112,10 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
             break
 
         case .timerTicked:
-            state.totalTimeLeft -= environment.timerStep.timeInterval.asDouble ?? 0
+            state.headerState.timeLeft -= environment.timerStep.timeInterval.asDouble ?? 0
             state.sectionTimeLeft -= environment.timerStep.timeInterval.asDouble ?? 0
 
-            if state.totalTimeLeft <= 0 {
+            if state.headerState.timeLeft <= 0 {
                 state.finishedSections += 1
                 return Effect(value: RunningTimerAction.timerFinished)
             }
@@ -147,18 +131,16 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
                 .play(.segment)
                 .fireAndForget()
 
-        case .alertButtonTapped:
-            if state.timerControlsState.isFinished {
-                return Effect(value: RunningTimerAction.timerClosed)
-            } else {
-                state.alert = .init(
-                    title: "Stop workout?",
-                    message: "Are you sure you want to stop this workout?",
-                    primaryButton: .cancel(send: .timerControlsUpdatedState(.start)),
-                    secondaryButton: .default("Yes", send: .timerFinished)
-                )
+        case .headerAction(.closeButtonTapped):
+            if !state.timerControlsState.isFinished {
                 return Effect(value: RunningTimerAction.timerControlsUpdatedState(.pause))
             }
+
+        case .headerAction(.alertCancelTapped):
+            return Effect(value: RunningTimerAction.timerControlsUpdatedState(.start))
+
+        case .headerAction(.alertConfirmTapped):
+            return Effect(value: RunningTimerAction.timerFinished)
 
         case .timerFinished:
             state.finish()
@@ -166,9 +148,6 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
                 .cancel(id: TimerId())
                 .flatMap { _ in environment.soundClient.play(.segment).fireAndForget() }
                 .eraseToEffect()
-
-        case .timerClosed:
-            break
 
         default: break
         }
@@ -193,7 +172,7 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
 
 private extension RunningTimerState {
     mutating func calculateInitialTime() {
-        totalTimeLeft = TimeInterval(timerSections.map(\.duration).reduce(0, +))
+        headerState.timeLeft = TimeInterval(timerSections.map(\.duration).reduce(0, +))
         sectionTimeLeft = currentSection?.duration ?? 0
     }
 
@@ -212,7 +191,7 @@ private extension RunningTimerState {
     }
 
     mutating func updateSegments() {
-        segmentedProgressState = SegmentedProgressState(totalSegments: progressSegmentsCount, filledSegments: 0, title: "Sections", isCompact: isCompact)
+        segmentedProgressState = SegmentedProgressState(totalSegments: progressSegmentsCount, filledSegments: 0, title: "Sections")
         currentSection = timerSections.first
         calculateInitialTime()
     }
@@ -220,7 +199,8 @@ private extension RunningTimerState {
     mutating func finish() {
         finishedWorkoutState = FinishedWorkoutState(workout: workout)
         timerControlsState = TimerControlsState(timerState: .finished)
-        alert = nil
+        headerState.alert = nil
+        headerState.isFinished = true
     }
 
     var isCurrentSegmentLast: Bool {

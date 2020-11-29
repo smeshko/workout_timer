@@ -26,8 +26,6 @@ public struct RunningTimerView: View {
         .padding(28)
         .onChange(of: scenePahse) { newScene in
             switch newScene {
-            case .active:
-                viewStore.send(.onActive)
             case .background:
                 viewStore.send(.onBackground)
             default: break
@@ -83,9 +81,9 @@ private struct MainView: View {
 
     var body: some View {
         VStack(spacing: 28) {
-            HeaderView(store: store)
+            HeaderView(store: store.scope(state: \.headerState, action: RunningTimerAction.headerAction))
                 .transition(.slide)
-                .animation(.easeInOut(duration: 2))
+                .animation(.default)
 
             if !isFinished {
                 SegmentedProgressView(
@@ -93,8 +91,6 @@ private struct MainView: View {
                     color: viewStore.workout.color.color
                 )
                 .padding(.top, 28)
-                .transition(.move(edge: .leading))
-                .animation(isFinished ? .easeInOut(duration: 2) : .none)
             }
 
             Spacer()
@@ -110,9 +106,6 @@ private struct MainView: View {
                 QuickTimerControlsView(store: store.scope(state: \.timerControlsState,
                                                           action: RunningTimerAction.timerControlsUpdatedState), tint: viewStore.workout.color.color)
             }
-        }
-        .onAppear {
-            viewStore.send(.onAppear)
         }
         .onChange(of: viewStore.finishedSections) { change in
             viewStore.send(.segmentedProgressAction(.moveToNextSegment))
