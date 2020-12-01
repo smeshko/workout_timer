@@ -8,8 +8,12 @@ public enum AddTimerSegmentAction: Equatable {
     case changeBreakTime(PickerAction)
     case changeWorkoutTime(PickerAction)
 
-    case addSegments
-    case removeSegments
+    case updateName(String)
+
+    case add
+    case remove
+    case cancel
+    case done
 }
 
 struct AddTimerSegmentState: Equatable, Identifiable {
@@ -18,18 +22,19 @@ struct AddTimerSegmentState: Equatable, Identifiable {
     var setsState = PickerState()
     var workoutTimeState = PickerState()
     var breakTimeState = PickerState()
-    var isAdded: Bool = false
-    
+    var name: String = ""
+    var isEditing = false
+
     public init(id: UUID) {
         self.id = id
     }
     
-    public init(id: UUID, sets: Int, workoutTime: Int, breakTime: Int, isAdded: Bool = false) {
+    public init(id: UUID, sets: Int, workoutTime: Int, breakTime: Int, isEditing: Bool = false) {
         self.id = id
-        setsState = PickerState(value: sets, allNumbers: Array(0...30))
-        workoutTimeState = PickerState(value: workoutTime, allNumbers: Array(0...300))
-        breakTimeState = PickerState(value: breakTime, allNumbers: Array(0...300))
-        self.isAdded = isAdded
+        setsState = PickerState(value: sets, allNumbers: Array(1...30))
+        workoutTimeState = PickerState(value: workoutTime, allNumbers: Array(1...300))
+        breakTimeState = PickerState(value: breakTime, allNumbers: Array(1...300))
+        self.isEditing = isEditing
     }
 }
 
@@ -55,11 +60,11 @@ let addTimerSegmentReducer =
             case .changeWorkoutTime(.valueUpdated(let value)):
                 state.workoutTimeState.value = value
 
-            case .removeSegments:
-                state.isAdded = false
+            case .add, .remove, .cancel, .done:
+                break
 
-            case .addSegments:
-                state.isAdded = true
+            case .updateName(let new):
+                state.name = new
 
             default: break
             }

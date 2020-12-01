@@ -101,3 +101,28 @@ targets:
       - target: RunningTimer
       - target: QuickWorkoutForm
       - target: CorePersistence
+
+schemes: 
+  CoreLogic:
+    templates: 
+      - FrameworkScheme
+  QuickWorkoutsList:
+    templates: 
+      - FrameworkScheme
+  DomainEntities:
+    build:
+      targets:
+        DomainEntities: all
+    run:
+  CorePersistence:
+    templates: 
+      - FrameworkScheme
+  CoreInterface:
+    templates: 
+      - FrameworkScheme
+  QuickWorkoutForm:
+    templates: 
+      - FrameworkScheme
+  RunningTimer:
+    templates: 
+      - FrameworkScheme

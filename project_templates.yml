@@ -105,4 +105,11 @@ targetTemplates:
         SWIFT_OBJC_INTERFACE_HEADER_NAME: ""
         SWIFT_PRECOMPILE_BRIDGING_HEADER: NO
 
-
+schemeTemplates:
+  FrameworkScheme:
+    build:
+      targets:
+       ${scheme_name}: all
+    test:
+      targets:
+      - ${scheme_name}UnitTests

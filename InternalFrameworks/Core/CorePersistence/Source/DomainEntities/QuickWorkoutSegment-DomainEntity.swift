@@ -7,6 +7,7 @@ extension QuickWorkoutSegment: DomainEntity {
     func createDatabaseEntity(in context: NSManagedObjectContext) -> QuickWorkoutSegmentDao {
         let segment = QuickWorkoutSegmentDao(context: context)
         segment.id = id
+        segment.name = name
         segment.sets = Int16(sets)
         segment.work = Int16(work)
         segment.pause = Int16(pause)

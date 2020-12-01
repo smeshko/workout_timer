@@ -20,7 +20,7 @@ struct PreCountdownView: View {
         WithViewStore(store) { viewStore in
             ZStack {
                 Circle()
-                    .scaleEffect(5)
+                    .scaleEffect(startAnimation ? 5 : 0)
                     .foregroundColor(viewStore.workoutColor.color)
 
                 Text("\(viewStore.timeLeft.clean)")
@@ -28,20 +28,17 @@ struct PreCountdownView: View {
                             .foregroundColor(.white)
                             .font(.system(size: 72, weight: .heavy, design: .monospaced))
             }
-            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-            .transition(
-                AnyTransition.asymmetric(
-                    insertion: .scale(scale: 0, anchor: .init(x: origin.x / proxy.size.width, y: origin.y / proxy.size.height)),
-                    removal: .scale(scale: 0, anchor: .center)
-                )            )
-            .animation(Animation.easeInOut(duration: 0.3).delay(0.6))
+            .frame(width: proxy.width, height: proxy.height)
+            .animation(.easeInOut(duration: 0.55))
             .onAppear {
                 viewStore.send(.onAppear)
                 startAnimation = true
             }
-            .onDisappear {
-                startAnimation = false
-            }
+            .onChange(of: viewStore.timeLeft, perform: { value in
+                if value == 0 {
+                    startAnimation = false
+                }
+            })
         }
         .navigationTitle("")
         .navigationBarHidden(true)
@@ -53,7 +50,7 @@ struct PrecountdownView_Previews: PreviewProvider {
             store: Store<PreCountdownState, PreCountdownAction>(
                 initialState: PreCountdownState(workoutColor: .empty),
                 reducer: preCountdownReducer,
-                environment: PreCountdownEnvironment()
+                environment: .preview
             ),
             origin: .zero
         )

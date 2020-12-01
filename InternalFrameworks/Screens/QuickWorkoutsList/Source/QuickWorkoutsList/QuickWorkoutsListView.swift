@@ -9,7 +9,7 @@ public struct QuickWorkoutsListView: View {
     @ObservedObject private var viewStore: ViewStore<QuickWorkoutsListState, QuickWorkoutsListAction>
 
     @State private var isWorkoutFormPresented: Bool = false
-    @State private var origin: CGPoint = .zero
+    @State private var origin: CGPoint = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
 
     public init(store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>) {
         self.store = store
@@ -18,32 +18,29 @@ public struct QuickWorkoutsListView: View {
 
     public var body: some View {
         NavigationView {
-            ZStack {
-                if viewStore.loadingState.isLoading {
-                    ProgressView().progressViewStyle(CircularProgressViewStyle())
-                } else if viewStore.workoutStates.isEmpty && viewStore.loadingState.isFinished {
-                    NoWorkoutsView(store: store, isWorkoutFormPresented: $isWorkoutFormPresented)
+            if viewStore.loadingState.isLoading {
+                ProgressView().progressViewStyle(CircularProgressViewStyle())
+            } else if viewStore.workoutStates.isEmpty && viewStore.loadingState.isFinished {
+                NoWorkoutsView(store: store, isWorkoutFormPresented: $isWorkoutFormPresented)
+            } else {
+                if viewStore.isPresentingTimer {
+                    IfLetStore(store.scope(state: \.runningTimerState, action: QuickWorkoutsListAction.runningTimerAction),
+                               then: { RunningTimerView(store: $0, origin: origin) })
+
                 } else {
-                    if viewStore.isPresentingTimer {
-                        IfLetStore(store.scope(state: \.runningTimerState, action: QuickWorkoutsListAction.runningTimerAction),
-                                   then: { RunningTimerView(store: $0, origin: origin).zIndex(1) })
-                    } else {
-                        WorkoutsList(store: store, isWorkoutFormPresented: $isWorkoutFormPresented, origin: $origin)
-                            .toolbar {
-                                HStack(spacing: 12) {
-                                    Button(action: {
-                                        isWorkoutFormPresented = true
-                                    }, label: {
-                                        Image(systemName: "plus.circle")
-                                            .font(.system(size: 28))
-                                    })
-                                }
+                    WorkoutsList(store: store, isWorkoutFormPresented: $isWorkoutFormPresented, origin: $origin)
+                        .toolbar {
+                            HStack(spacing: 12) {
+                                Button(action: {
+                                    isWorkoutFormPresented = true
+                                }, label: {
+                                    Image(systemName: "plus.circle")
+                                        .font(.system(size: 28))
+                                })
                             }
-                            .animation(.none)
-                    }
+                        }
                 }
             }
-            .animation(Animation.easeInOut(duration: 0.55))
         }
         .sheet(isPresented: $isWorkoutFormPresented) {
             CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState,
@@ -61,21 +58,13 @@ struct QuickWorkoutsListView_Previews: PreviewProvider {
         let emptyStore = Store<QuickWorkoutsListState, QuickWorkoutsListAction>(
             initialState: QuickWorkoutsListState(),
             reducer: quickWorkoutsListReducer,
-            environment: QuickWorkoutsListEnvironment(
-                repository: .mock,
-                mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-                notificationClient: .mock
-            )
+            environment: .preview
         )
 
         let filledStore = Store<QuickWorkoutsListState, QuickWorkoutsListAction>(
             initialState: QuickWorkoutsListState(workouts: [mockQuickWorkout1, mockQuickWorkout2]),
             reducer: quickWorkoutsListReducer,
-            environment: QuickWorkoutsListEnvironment(
-                repository: .mock,
-                mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-                notificationClient: .mock
-            )
+            environment: .preview
         )
 
         return Group {

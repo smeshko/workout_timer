@@ -2,7 +2,6 @@ import ComposableArchitecture
 
 public enum TimerControlsAction: Equatable {
     case start
-    case stop
     case pause
 }
 
@@ -39,8 +38,6 @@ public let quickTimerControlsReducer = Reducer<TimerControlsState, TimerControls
     switch action {
     case .start:
         state.timerState = .running
-    case .stop:
-        state.timerState = .finished
     case .pause:
         state.timerState = .paused
     }

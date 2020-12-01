@@ -63,6 +63,7 @@ struct WorkoutsList: View {
                 viewStore.send(QuickWorkoutsListAction.deleteWorkouts(insets))
             }
         }
+        .rowHeight(cellSize.height)
         .sheet(isPresented: $isWorkoutFormPresented) {
             CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState,
                                                       action: QuickWorkoutsListAction.createWorkoutAction))
@@ -81,11 +82,7 @@ struct WorkoutsListView_Previews: PreviewProvider {
                 initialState: QuickWorkoutsListState(
                     workouts: [mockQuickWorkout1, mockQuickWorkout2]),
                 reducer: quickWorkoutsListReducer,
-                environment: QuickWorkoutsListEnvironment(
-                    repository: .mock,
-                    mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-                    notificationClient: .mock
-                )
+                environment: .preview
             ),
             isWorkoutFormPresented: .constant(false),
             origin: .constant(.zero)

@@ -20,9 +20,6 @@ class QuickTimerControlsTests: XCTestCase {
             },
             .send(.start) {
                 $0.timerState = .running
-            },
-            .send(.stop) {
-                $0.timerState = .finished
             }
         )
     }

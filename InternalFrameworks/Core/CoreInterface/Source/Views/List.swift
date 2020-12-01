@@ -10,6 +10,7 @@ where Data: Collection, RowContent: View, EachState: Identifiable, EachState.ID 
     private let store: Store<IdentifiedArray<ID, EachState>, (ID, EachAction)>
     private let content: (Store<EachState, EachAction>) -> RowContent
 
+    private var rowHeight: CGFloat?
     private var onDelete: (IndexSet) -> Void = { _ in }
 
     public init(_ store: Store<Data, (ID, EachAction)>,
@@ -39,6 +40,7 @@ where Data: Collection, RowContent: View, EachState: Identifiable, EachState.ID 
             store.scope(state: { $0[safe: offset] ?? item },
                         action: { (item.id, $0) })
         }
+        context.coordinator.rowHeight = rowHeight
 
         uiView.setNeedsLayout()
         uiView.setNeedsDisplay()
@@ -58,9 +60,14 @@ where Data: Collection, RowContent: View, EachState: Identifiable, EachState.ID 
         update(\.onDelete, value: action)
     }
 
+    public func rowHeight(_ height: CGFloat?) -> List {
+        update(\.rowHeight, value: height)
+    }
+
     public class Coordinator: NSObject, UITableViewDataSource, UITableViewDelegate {
 
         fileprivate var rows: [Store<EachState, EachAction>]
+        fileprivate var rowHeight: CGFloat?
         private var content: (Store<EachState, EachAction>) -> RowContent
         private var onDelete: (IndexSet) -> Void
 
@@ -71,6 +78,10 @@ where Data: Collection, RowContent: View, EachState: Identifiable, EachState.ID 
             self.rows = rows
             self.content = content
             self.onDelete = onDelete
+        }
+
+        public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            rowHeight ?? 44
         }
 
         public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -7,7 +7,6 @@ import ComposableArchitecture
 public enum FinishedWorkoutAction: Equatable {
     case onAppear
     case didSaveFinishedWorkout(Result<Statistic, PersistenceError>)
-    case didTapDoneButton
 }
 
 public struct FinishedWorkoutState: Equatable {
@@ -46,9 +45,6 @@ public let finishedWorkoutReducer = Reducer<FinishedWorkoutState, FinishedWorkou
         return environment.soundClient.play(.workout).fireAndForget()
 
     case .didSaveFinishedWorkout(.failure):
-        break
-
-    case .didTapDoneButton:
         break
     }
 

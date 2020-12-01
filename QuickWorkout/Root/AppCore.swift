@@ -22,13 +22,16 @@ struct AppState: Equatable {
 }
 
 struct AppEnvironment {
-    var mainQueue: AnySchedulerOf<DispatchQueue>
-    var repository: QuickWorkoutsRepository
     let notificationClient: LocalNotificationClient
 }
 
-let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
-    Reducer<AppState, AppAction, AppEnvironment> { state, action, environment in
+extension SystemEnvironment where Environment == AppEnvironment {
+    static let preview = SystemEnvironment.live(environment: AppEnvironment(notificationClient: .mock))
+    static let live = SystemEnvironment.live(environment: AppEnvironment(notificationClient: .live))
+}
+
+let appReducer = Reducer<AppState, AppAction, SystemEnvironment<AppEnvironment>>.combine(
+    Reducer<AppState, AppAction, SystemEnvironment<AppEnvironment>> { state, action, environment in
         struct LocalStorageReadId: Hashable {}
          
         switch action {
@@ -57,6 +60,6 @@ let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
     quickWorkoutsListReducer.pullback(
         state: \.workoutsListState,
         action: /AppAction.workoutsListAction,
-        environment: { QuickWorkoutsListEnvironment(repository: $0.repository, mainQueue: $0.mainQueue, notificationClient: $0.notificationClient) }
+        environment: { _ in .live }
     )
 )

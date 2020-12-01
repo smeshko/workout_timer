@@ -1,4 +1,5 @@
 import Foundation
+import CoreLogic
 import DomainEntities
 import ComposableArchitecture
 
@@ -19,26 +20,29 @@ public struct PreCountdownState: Equatable {
 }
 
 public struct PreCountdownEnvironment {
-    var mainQueue: AnySchedulerOf<DispatchQueue>
-
-    public init(mainQueue: AnySchedulerOf<DispatchQueue> = DispatchQueue.main.eraseToAnyScheduler()) {
-        self.mainQueue = mainQueue
-    }
+    public init() {}
 }
 
-public let preCountdownReducer = Reducer<PreCountdownState, PreCountdownAction, PreCountdownEnvironment> { state, action, environment in
+public extension SystemEnvironment where Environment == PreCountdownEnvironment {
+    static let preview = SystemEnvironment.live(environment: PreCountdownEnvironment())
+    static let live = SystemEnvironment.live(environment: PreCountdownEnvironment())
+}
+
+public let preCountdownReducer = Reducer<PreCountdownState, PreCountdownAction, SystemEnvironment<PreCountdownEnvironment>> { state, action, environment in
     struct TimerId: Hashable {}
 
     switch action {
     case .onAppear:
         return Effect
-            .timer(id: TimerId(), every: .seconds(1), tolerance: .zero, on: environment.mainQueue)
+            .timer(id: TimerId(), every: .seconds(1), tolerance: .zero, on: environment.mainQueue())
             .map { _ in PreCountdownAction.timerTicked }
 
     case .timerTicked:
         state.timeLeft -= 1
         if state.timeLeft <= 0 {
             return Effect(value: PreCountdownAction.finished)
+                .delay(for: .seconds(0.5), scheduler: environment.mainQueue())
+                .eraseToEffect()
         }
 
     case .finished:

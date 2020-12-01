@@ -3,40 +3,51 @@ import CoreLogic
 import ComposableArchitecture
 
 public struct CreateQuickWorkoutView: View {
-    let store: Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>
+    private let store: Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>
+    @ObservedObject private var viewStore: ViewStore<CreateQuickWorkoutState, CreateQuickWorkoutAction>
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
+    private var isPresentingSegmentPopup: Bool {
+        viewStore.addSegmentState != nil
+    }
+
     public init(store: Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>) {
         self.store = store
+        self.viewStore = ViewStore(store)
     }
 
     public var body: some View {
-        WithViewStore(store) { viewStore in
-            VStack {
-                NavigationView {
+        ZStack {
+            NavigationView {
+                VStack {
                     WorkoutForm(store: store)
-                        .navigationTitle(viewStore.isEditing ? "Edit Workout" : "Create workout")
-                        .toolbar {
-                            ToolbarItem(placement: .confirmationAction) {
-                                Button("Save", action: {
-                                    presentationMode.wrappedValue.dismiss()
-                                    viewStore.send(.save)
-                                })
-                                .disabled(viewStore.isFormIncomplete)
-                            }
-                            ToolbarItem(placement: .cancellationAction) {
-                                Button("Cancel", action: {
-                                    presentationMode.wrappedValue.dismiss()
-                                    viewStore.send(.cancel)
-                                })
-                            }
-                        }
+                }
+                .toolbar {
+                    ToolbarItem(placement: .confirmationAction) {
+                        Button("Save", action: {
+                            presentationMode.wrappedValue.dismiss()
+                            viewStore.send(.save)
+                        })
+                        .disabled(viewStore.isFormIncomplete)
+                    }
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button("Cancel", action: {
+                            presentationMode.wrappedValue.dismiss()
+                            viewStore.send(.cancel)
+                        })
+                    }
+                }
+                .navigationTitle(viewStore.isEditing ? "Edit Workout" : "Create workout")
+                .onAppear {
+                    viewStore.send(.onAppear)
                 }
             }
-            .onAppear {
-                viewStore.send(.onAppear)
-            }
+            .blur(radius: isPresentingSegmentPopup ? 2 : 0)
+
+            IfLetStore(store.scope(state: \.addSegmentState, action: CreateQuickWorkoutAction.addSegmentAction),
+                       then: { AddTimerSegmentView(store: $0) }
+            )
         }
     }
 }
@@ -46,10 +57,7 @@ struct CreateQuickWorkoutView_Previews: PreviewProvider {
         let emptyStore = Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>(
             initialState: CreateQuickWorkoutState(),
             reducer: createQuickWorkoutReducer,
-            environment: CreateQuickWorkoutEnvironment(
-                mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-                repository: .mock
-            )
+            environment: .preview
         )
 
         let filledStore = Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>(
@@ -57,10 +65,7 @@ struct CreateQuickWorkoutView_Previews: PreviewProvider {
                 workout: mockQuickWorkout1
             ),
             reducer: createQuickWorkoutReducer,
-            environment: CreateQuickWorkoutEnvironment(
-                mainQueue: DispatchQueue.main.eraseToAnyScheduler(),
-                repository: .mock
-            )
+            environment: .preview
         )
 
         return Group {
@@ -75,8 +80,8 @@ struct CreateQuickWorkoutView_Previews: PreviewProvider {
 }
 
 private struct WorkoutForm: View {
-    let store: Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>
-    let viewStore: ViewStore<CreateQuickWorkoutState, CreateQuickWorkoutAction>
+    private let store: Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>
+    @ObservedObject private var viewStore: ViewStore<CreateQuickWorkoutState, CreateQuickWorkoutAction>
 
     init(store: Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>) {
         self.store = store
@@ -117,40 +122,27 @@ private struct WorkoutForm: View {
                         }
                     }
                 }
-
-                ForEachStore(store.scope(state: { $0.addTimerSegmentStates }, action: CreateQuickWorkoutAction.addTimerSegmentAction(id:action:))) { segmentViewStore in
-                    AddTimerSegmentView(store: segmentViewStore, color: viewStore.selectedColor)
+                ForEachStore(store.scope(state: \.segmentStates, action: CreateQuickWorkoutAction.segmentAction)) { store in
+                    SegmentView(store: store)
                         .padding(.bottom, 8)
+                        .onTapGesture {
+                            withAnimation {
+                                viewStore.send(.editSegment(id: ViewStore(store).state.id))
+                            }
+                        }
+                }
+
+                Button(action: {
+                    withAnimation {
+                        viewStore.send(.newSegmentButtonTapped)
+                    }
+                }) {
+                    Label("Add segment", systemImage: "plus")
+                        .font(.h2)
+                        .foregroundColor(.appText)
                 }
             }
             .padding(28)
-        }
-    }
-}
-
-private struct ColorsView: View {
-    let viewStore: ViewStore<CreateQuickWorkoutState, CreateQuickWorkoutAction>
-
-    var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 12) {
-                ForEach(viewStore.preselectedTints) { tint in
-                    ZStack {
-                        Circle()
-                            .foregroundColor(tint.color)
-                            .onTapGesture {
-                                viewStore.send(.selectColor(tint.color))
-                            }
-                        if viewStore.selectedTint == tint {
-                            Image(systemName: "checkmark")
-                                .frame(width: 25, height: 25)
-                                .foregroundColor(.white)
-                                .font(.h3)
-                        }
-                    }
-                    .frame(width: 40, height: 40)
-                }
-            }
         }
     }
 }

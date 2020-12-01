@@ -54,6 +54,9 @@ public struct SegmentedProgressView: View {
             .onAppear {
                 viewStore.send(.onAppear)
             }
+            .onChange(of: horizontalSizeClass, perform: { value in
+                viewStore.send(.onChangeSizeClass(isCompact: value == .compact))
+            })
         }
     }
 

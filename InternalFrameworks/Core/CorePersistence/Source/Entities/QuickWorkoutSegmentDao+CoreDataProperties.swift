@@ -9,6 +9,7 @@ extension QuickWorkoutSegmentDao {
     }
 
     @NSManaged public var id: UUID?
+    @NSManaged public var name: String
     @NSManaged public var sets: Int16
     @NSManaged public var work: Int16
     @NSManaged public var pause: Int16
@@ -26,6 +27,7 @@ extension QuickWorkoutSegmentDao: DatabaseEntity {
     func toDomainEntity() -> QuickWorkoutSegment {
         QuickWorkoutSegment(
             id: id ?? UUID(),
+            name: name,
             sets: Int(sets),
             work: Int(work),
             pause: Int(pause)
@@ -33,6 +35,7 @@ extension QuickWorkoutSegmentDao: DatabaseEntity {
     }
 
     func update(with new: QuickWorkoutSegment, in context: NSManagedObjectContext) {
+        name = new.name
         sets = Int16(new.sets)
         work = Int16(new.work)
         pause = Int16(new.pause)
