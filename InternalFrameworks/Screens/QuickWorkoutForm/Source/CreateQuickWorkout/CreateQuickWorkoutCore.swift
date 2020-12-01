@@ -8,8 +8,12 @@ import CoreInterface
 
 public enum CreateQuickWorkoutAction: Equatable {
     case circuitPickerUpdatedValues(AddTimerSegmentAction)
-    case addTimerSegmentAction(id: UUID, action: AddTimerSegmentAction)
+    case addSegmentAction(action: AddTimerSegmentAction)
+    case segmentAction(id: UUID, action: SegmentAction)
+
     case updateName(String)
+    case editSegment(id: UUID)
+    case newSegmentButtonTapped
     case cancel
     case save
     case onAppear
@@ -18,7 +22,9 @@ public enum CreateQuickWorkoutAction: Equatable {
 }
 
 public struct CreateQuickWorkoutState: Equatable {
-    var addTimerSegmentStates: IdentifiedArrayOf<AddTimerSegmentState> = []
+
+    var segmentStates: IdentifiedArrayOf<SegmentState> = []
+    var addSegmentState: AddTimerSegmentState?
     var workout: QuickWorkout?
     var name: String
     let preselectedTints: [TintColor] = TintColor.allTints
@@ -27,7 +33,7 @@ public struct CreateQuickWorkoutState: Equatable {
     let isEditing: Bool
 
     var isFormIncomplete: Bool {
-        name.isEmpty || addTimerSegmentStates.filter(\.isAdded).isEmpty
+        name.isEmpty || segmentStates.isEmpty
     }
 
     var colorComponents: ColorComponents {
@@ -59,17 +65,21 @@ public extension SystemEnvironment where Environment == CreateQuickWorkoutEnviro
 
 public let createQuickWorkoutReducer =
     Reducer<CreateQuickWorkoutState, CreateQuickWorkoutAction, SystemEnvironment<CreateQuickWorkoutEnvironment<TintColor>>>.combine(
-        addTimerSegmentReducer.forEach(
-            state: \.addTimerSegmentStates,
-            action: /CreateQuickWorkoutAction.addTimerSegmentAction(id:action:),
+        addTimerSegmentReducer.optional().pullback(
+            state: \.addSegmentState,
+            action: /CreateQuickWorkoutAction.addSegmentAction,
             environment: { AddTimerSegmentEnvironment(uuid: $0.uuid) }
+        ),
+        segmentReducer.forEach(
+            state: \.segmentStates,
+            action: /CreateQuickWorkoutAction.segmentAction,
+            environment: { _ in SegmentEnvironment() }
         ),
         Reducer { state, action, environment in
             switch action {
 
             case .onAppear:
-                state.addTimerSegmentStates = IdentifiedArray(state.workout?.segments.map(AddTimerSegmentState.init(segment:)) ?? [])
-                state.addTimerSegmentStates.append(defaultSegmentState(with: environment.uuid()))
+                state.segmentStates = IdentifiedArray(state.workout?.segments.map(SegmentState.init(segment:)) ?? [])
 
                 if state.isEditing {
                     state.selectedColor = state.workout?.color.color ?? .appSuccess
@@ -83,18 +93,44 @@ public let createQuickWorkoutReducer =
             case .updateName(let name):
                 state.name = name
 
-            case .addTimerSegmentAction(let id, let action):
+            case .addSegmentAction(let action):
                 switch action {
-                case .addSegments:
-                    state.addTimerSegmentStates.append(defaultSegmentState(with: environment.uuid()))
+                case .add:
+                    guard let addSegmentState = state.addSegmentState else { return .none }
+                    state.segmentStates.append(SegmentState(addSegmentState: addSegmentState))
+                    state.addSegmentState = nil
 
-                case .removeSegments:
-                    state.addTimerSegmentStates.remove(id: id)
+                case .remove:
+                    guard let id = state.addSegmentState?.id else { return .none }
+                    if state.segmentStates[id: id] != nil {
+                        state.segmentStates.remove(id: id)
+                    }
+                    state.addSegmentState = nil
+
+                case .cancel:
+                    state.addSegmentState = nil
+
+                case .done:
+                    guard let id = state.addSegmentState?.id,
+                          let addSegmentState = state.addSegmentState else { return .none }
+                    if let index = state.segmentStates.firstIndex(where: { $0.id == id }) {
+                        state.segmentStates.remove(at: index)
+                        state.segmentStates.insert(SegmentState(addSegmentState: addSegmentState), at: index)
+                    }
+                    state.addSegmentState = nil
 
                 default:
                     break
                 }
 
+            case .newSegmentButtonTapped:
+                state.addSegmentState = AddTimerSegmentState(id: UUID(), sets: 2, workoutTime: 60, breakTime: 20)
+
+            case .editSegment(let id):
+                if let segmentState = state.segmentStates[id: id] {
+                    state.addSegmentState = AddTimerSegmentState(state: segmentState)
+                }
+                
             case .save:
                 return environment.createOrUpdate(
                     QuickWorkout(state: state, uuid: environment.uuid),
@@ -116,8 +152,8 @@ private func defaultSegmentState(with id: UUID) -> AddTimerSegmentState {
 }
 
 private extension QuickWorkoutSegment {
-    init(state: AddTimerSegmentState) {
-        self.init(id: UUID(), sets: state.setsState.value, work: state.workoutTimeState.value, pause: state.breakTimeState.value)
+    init(state: SegmentState) {
+        self.init(id: state.id, sets: state.sets, work: state.work, pause: state.rest)
     }
 }
 
@@ -126,14 +162,31 @@ private extension QuickWorkout {
         self.init(id: state.workout?.id ?? uuid(),
                   name: state.name,
                   color: WorkoutColor(components: state.colorComponents),
-                  segments: state.addTimerSegmentStates.filter({ $0.isAdded }).map(QuickWorkoutSegment.init(state:))
+                  segments: state.segmentStates.map(QuickWorkoutSegment.init(state:))
         )
+    }
+}
+
+private extension SegmentState {
+    init(segment: QuickWorkoutSegment) {
+        self.init(id: segment.id, name: "", sets: segment.sets, rest: segment.pause, work: segment.work)
+    }
+
+    init(addSegmentState: AddTimerSegmentState) {
+        self.init(id: addSegmentState.id, name: "",
+                  sets: addSegmentState.setsState.value,
+                  rest: addSegmentState.breakTimeState.value,
+                  work: addSegmentState.workoutTimeState.value)
     }
 }
 
 private extension AddTimerSegmentState {
     init(segment: QuickWorkoutSegment) {
-        self.init(id: segment.id, sets: segment.sets, workoutTime: segment.work, breakTime: segment.pause, isAdded: true)
+        self.init(id: segment.id, sets: segment.sets, workoutTime: segment.work, breakTime: segment.pause)
+    }
+
+    init(state: SegmentState) {
+        self.init(id: state.id, sets: state.sets, workoutTime: state.work, breakTime: state.rest, isEditing: true)
     }
 }
 
