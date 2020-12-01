@@ -56,7 +56,7 @@ func bumpBuildVersion(at url: URL) throws {
 
     let handle = try FileHandle(forWritingTo: url) 
 
-    guard let newVersionString = (Constants.buildVersionSeparator + "\(newVersion)").data(using: .utf8) else {
+    guard let newVersionString = (Constants.buildVersionSeparator + "\(newVersion)\n").data(using: .utf8) else {
         throw ScriptError.newBuildVersionCannotBeBuilt
     }
     
@@ -66,6 +66,9 @@ func bumpBuildVersion(at url: URL) throws {
 
 func bumpMarketingVersion(at url: URL, minor: Bool, major: Bool, hotfix: Bool) throws {
     let lines = try getFileLines(at: url)
+    if enableLogging {
+        print("lines: \(lines)")
+    }
 
     guard let build = lines.first,
           let marketing = lines.last,
@@ -104,16 +107,17 @@ func bumpMarketingVersion(at url: URL, minor: Bool, major: Bool, hotfix: Bool) t
 
 func bumpVersion() {
     do {
+
+        if enableLogging {
+            print("Contents of config URL: \(try String(contentsOf: configUrl, encoding: .utf8))")
+        }
+
         if shouldBumpBuildVersion {
             try bumpBuildVersion(at: configUrl)
         }
 
         if shouldBumpMarketingVersion {
             try bumpMarketingVersion(at: configUrl, minor: shouldBumpMinorVersion, major: shouldBumpMajorVersion, hotfix: shouldBumpHotfixVersion)
-        }
-
-        if enableLogging {
-            print(try String(contentsOf: configUrl, encoding: .utf8))
         }
 
     } catch (let error) {
@@ -131,7 +135,7 @@ func getFileLines(at url: URL) throws -> [String] {
     if enableLogging {
         print(lines)
     }
-    return lines
+    return lines.filter { !$0.isEmpty }
 }
 
 enum ScriptError: Error {
