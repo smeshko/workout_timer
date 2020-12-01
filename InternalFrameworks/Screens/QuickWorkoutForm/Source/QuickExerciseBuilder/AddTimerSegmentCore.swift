@@ -46,44 +46,43 @@ struct AddTimerSegmentEnvironment {
     }
 }
 
-let addTimerSegmentReducer =
-    Reducer<AddTimerSegmentState, AddTimerSegmentAction, AddTimerSegmentEnvironment>.combine(
-        Reducer { state, action, environment in
-            
-            switch action {
-            case .changeSetsCount(.valueUpdated(let value)):
-                state.setsState.value = value
+let addTimerSegmentReducer = Reducer<AddTimerSegmentState, AddTimerSegmentAction, AddTimerSegmentEnvironment>.combine(
+    Reducer { state, action, environment in
 
-            case .changeBreakTime(.valueUpdated(let value)):
-                state.breakTimeState.value = value
+        switch action {
+        case .changeSetsCount(.valueUpdated(let value)):
+            state.setsState.value = value
 
-            case .changeWorkoutTime(.valueUpdated(let value)):
-                state.workoutTimeState.value = value
+        case .changeBreakTime(.valueUpdated(let value)):
+            state.breakTimeState.value = value
 
-            case .add, .remove, .cancel, .done:
-                break
+        case .changeWorkoutTime(.valueUpdated(let value)):
+            state.workoutTimeState.value = value
 
-            case .updateName(let new):
-                state.name = new
+        case .add, .remove, .cancel, .done:
+            break
 
-            default: break
-            }
-            
-            return .none
-        },
-        pickerReducer.pullback(
-            state: \.setsState,
-            action: /AddTimerSegmentAction.changeSetsCount,
-            environment: { _ in PickerEnvironment() }
-        ),
-        pickerReducer.pullback(
-            state: \.workoutTimeState,
-            action: /AddTimerSegmentAction.changeWorkoutTime,
-            environment: { _ in PickerEnvironment() }
-        ),
-        pickerReducer.pullback(
-            state: \.breakTimeState,
-            action: /AddTimerSegmentAction.changeBreakTime,
-            environment: { _ in PickerEnvironment() }
-        )
+        case .updateName(let new):
+            state.name = new
+
+        default: break
+        }
+
+        return .none
+    },
+    pickerReducer.pullback(
+        state: \.setsState,
+        action: /AddTimerSegmentAction.changeSetsCount,
+        environment: { _ in PickerEnvironment() }
+    ),
+    pickerReducer.pullback(
+        state: \.workoutTimeState,
+        action: /AddTimerSegmentAction.changeWorkoutTime,
+        environment: { _ in PickerEnvironment() }
+    ),
+    pickerReducer.pullback(
+        state: \.breakTimeState,
+        action: /AddTimerSegmentAction.changeBreakTime,
+        environment: { _ in PickerEnvironment() }
+    )
 )
