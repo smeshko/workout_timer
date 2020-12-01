@@ -92,6 +92,7 @@ targets:
       - target: RunningTimer
       - target: QuickWorkoutForm
       - target: CorePersistence
+      - target: Settings
 
   QuickWorkoutsListUnitTests:
     templates: [ScreenUnitTests]
@@ -101,6 +102,15 @@ targets:
       - target: RunningTimer
       - target: QuickWorkoutForm
       - target: CorePersistence
+      - target: Settings
+
+  Settings:
+    templates: [ScreenFramework]
+
+  SettingsUnitTests:
+    templates: [ScreenUnitTests]
+    templateAttributes:
+      frameworkName: Settings
 
 schemes: 
   CoreLogic:

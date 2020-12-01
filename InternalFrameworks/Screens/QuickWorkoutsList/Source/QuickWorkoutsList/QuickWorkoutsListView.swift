@@ -1,4 +1,5 @@
 import SwiftUI
+import Settings
 import ComposableArchitecture
 import QuickWorkoutForm
 import RunningTimer
@@ -9,6 +10,7 @@ public struct QuickWorkoutsListView: View {
     @ObservedObject private var viewStore: ViewStore<QuickWorkoutsListState, QuickWorkoutsListAction>
 
     @State private var isWorkoutFormPresented: Bool = false
+    @State private var isSettingsPresented = false
     @State private var origin: CGPoint = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
 
     public init(store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>) {
@@ -30,21 +32,16 @@ public struct QuickWorkoutsListView: View {
                 } else {
                     WorkoutsList(store: store, isWorkoutFormPresented: $isWorkoutFormPresented, origin: $origin)
                         .toolbar {
-                            HStack(spacing: 12) {
-                                Button(action: {
-                                    isWorkoutFormPresented = true
-                                }, label: {
-                                    Image(systemName: "plus.circle")
-                                        .font(.system(size: 28))
-                                })
+                            ToolbarItem(placement: ToolbarItemPlacement.navigationBarLeading) {
+                                SettingsButton(isPresented: $isSettingsPresented)
+                            }
+                            ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
+                                FormButton(isPresented: $isWorkoutFormPresented, store: store)
                             }
                         }
+                    
                 }
             }
-        }
-        .sheet(isPresented: $isWorkoutFormPresented) {
-            CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState,
-                                                      action: QuickWorkoutsListAction.createWorkoutAction))
         }
         .onAppear {
             viewStore.send(.onAppear)
@@ -74,6 +71,44 @@ struct QuickWorkoutsListView_Previews: PreviewProvider {
 
             QuickWorkoutsListView(store: filledStore)
                 .previewDevice(.iPhone11)
+        }
+    }
+}
+
+private struct SettingsButton: View {
+    @Binding var isPresented: Bool
+
+    var body: some View {
+        Button(action: {
+            isPresented = true
+        }, label: {
+            Image(systemName: "gear")
+        })
+        .sheet(isPresented: $isPresented) {
+            SettingsView(
+                store: Store<SettingsState, SettingsAction>(
+                    initialState: SettingsState(),
+                    reducer: settingsReducer,
+                    environment: SettingsEnvironment(client: .live)
+                )
+            )
+        }
+    }
+}
+
+private struct FormButton: View {
+    @Binding var isPresented: Bool
+    let store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>
+
+    var body: some View {
+        Button(action: {
+            isPresented = true
+        }, label: {
+            Image(systemName: "plus.circle")
+        })
+        .sheet(isPresented: $isPresented) {
+            CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState,
+                                                      action: QuickWorkoutsListAction.createWorkoutAction))
         }
     }
 }
