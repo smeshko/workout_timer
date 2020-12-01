@@ -152,8 +152,10 @@ private func defaultSegmentState(with id: UUID) -> AddTimerSegmentState {
 }
 
 private extension QuickWorkoutSegment {
-    init(state: SegmentState) {
-        self.init(id: state.id, sets: state.sets, work: state.work, pause: state.rest)
+    init(index: Int, state: SegmentState) {
+        self.init(id: state.id,
+                  name: state.name.isEmpty ? "Segment \(index + 1)" : state.name,
+                  sets: state.sets, work: state.work, pause: state.rest)
     }
 }
 
@@ -162,18 +164,19 @@ private extension QuickWorkout {
         self.init(id: state.workout?.id ?? uuid(),
                   name: state.name,
                   color: WorkoutColor(components: state.colorComponents),
-                  segments: state.segmentStates.map(QuickWorkoutSegment.init(state:))
+                  segments: state.segmentStates.enumerated().map(QuickWorkoutSegment.init(index:state:))
         )
     }
 }
 
 private extension SegmentState {
     init(segment: QuickWorkoutSegment) {
-        self.init(id: segment.id, name: "", sets: segment.sets, rest: segment.pause, work: segment.work)
+        self.init(id: segment.id, name: segment.name, sets: segment.sets, rest: segment.pause, work: segment.work)
     }
 
     init(addSegmentState: AddTimerSegmentState) {
-        self.init(id: addSegmentState.id, name: "",
+        self.init(id: addSegmentState.id,
+                  name: addSegmentState.name,
                   sets: addSegmentState.setsState.value,
                   rest: addSegmentState.breakTimeState.value,
                   work: addSegmentState.workoutTimeState.value)

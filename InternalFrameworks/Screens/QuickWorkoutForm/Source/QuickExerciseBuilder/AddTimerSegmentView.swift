@@ -19,7 +19,7 @@ struct AddTimerSegmentView: View {
                     }
 
                 VStack(spacing: 18) {
-                    TextField("segment name", text: .constant(""))
+                    TextField("segment name", text: viewStore.binding(get: \.name, send: AddTimerSegmentAction.updateName))
                         .padding(.horizontal, 28)
                         .padding(.top, 28)
 

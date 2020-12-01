@@ -8,6 +8,10 @@ public struct CreateQuickWorkoutView: View {
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
+    private var isPresentingSegmentPopup: Bool {
+        viewStore.addSegmentState != nil
+    }
+
     public init(store: Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>) {
         self.store = store
         self.viewStore = ViewStore(store)
@@ -39,6 +43,7 @@ public struct CreateQuickWorkoutView: View {
                     viewStore.send(.onAppear)
                 }
             }
+            .blur(radius: isPresentingSegmentPopup ? 2 : 0)
 
             IfLetStore(store.scope(state: \.addSegmentState, action: CreateQuickWorkoutAction.addSegmentAction),
                        then: { AddTimerSegmentView(store: $0) }

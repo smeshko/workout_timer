@@ -11,6 +11,14 @@ struct TimerView: View {
         viewStore.timerControlsState.isFinished
     }
 
+    private func toggleState() {
+        if viewStore.timerControlsState.isPaused {
+            viewStore.send(.timerControlsUpdatedState(.start))
+        } else {
+            viewStore.send(.timerControlsUpdatedState(.pause))
+        }
+    }
+
     init(store: Store<RunningTimerState, RunningTimerAction>) {
         self.store = store
         self.viewStore = ViewStore(store)
@@ -29,10 +37,11 @@ struct TimerView: View {
 
                 Text(viewStore.currentSegmentName)
                     .foregroundColor(.appText)
-                    .font(.h2)
+                    .font(.h1)
             }
             .pulsatingAnimation(viewStore.timerControlsState.isPaused)
         }
+        .onTapGesture(perform: toggleState)
         .animation(.none)
     }
 
@@ -86,7 +95,7 @@ private struct ProgressBar: View {
 
 private extension RunningTimerState {
     var currentSegmentName: String {
-        currentSection?.type == .work ? "Work out" : "Rest"
+        currentSection?.name ?? ""
     }
 }
 

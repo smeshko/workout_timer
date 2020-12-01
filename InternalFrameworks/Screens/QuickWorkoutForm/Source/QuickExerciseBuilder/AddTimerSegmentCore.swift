@@ -8,6 +8,8 @@ public enum AddTimerSegmentAction: Equatable {
     case changeBreakTime(PickerAction)
     case changeWorkoutTime(PickerAction)
 
+    case updateName(String)
+
     case add
     case remove
     case cancel
@@ -20,6 +22,7 @@ struct AddTimerSegmentState: Equatable, Identifiable {
     var setsState = PickerState()
     var workoutTimeState = PickerState()
     var breakTimeState = PickerState()
+    var name: String = ""
     var isEditing = false
 
     public init(id: UUID) {
@@ -59,6 +62,9 @@ let addTimerSegmentReducer =
 
             case .add, .remove, .cancel, .done:
                 break
+
+            case .updateName(let new):
+                state.name = new
 
             default: break
             }

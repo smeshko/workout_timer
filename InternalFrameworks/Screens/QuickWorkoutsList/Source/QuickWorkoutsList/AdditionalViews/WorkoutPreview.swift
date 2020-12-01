@@ -23,7 +23,7 @@ struct WorkoutPreview: View {
                 ScrollView(.vertical) {
                     ForEach(viewStore.workout.segments) { segment in
                         VStack(alignment: .leading) {
-                            Text("\(segment.sets)x")
+                            Text("\(segment.sets)x \(segment.name)")
                                 .font(.h2)
                                 .foregroundColor(.appWhite)
 

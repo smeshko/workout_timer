@@ -70,13 +70,8 @@ struct QuickWorkoutCardView_Previews: PreviewProvider {
 
         let store = Store<QuickWorkoutCardState, QuickWorkoutCardAction>(
             initialState: QuickWorkoutCardState(
-                workout: QuickWorkout(id: UUID(),
-                                      name: "Quick Workout",
-                                      color: WorkoutColor(hue: 0.53, saturation: 0.54, brightness: 0.33),
-                                      segments: [
-                                        QuickWorkoutSegment(id: UUID(), sets: 4, work: 20, pause: 10),
-                                        QuickWorkoutSegment(id: UUID(), sets: 2, work: 60, pause: 10)
-                                      ])),
+                workout: mockQuickWorkout1
+            ),
             reducer: quickWorkoutCardReducer,
             environment: QuickWorkoutCardEnvironment()
         )

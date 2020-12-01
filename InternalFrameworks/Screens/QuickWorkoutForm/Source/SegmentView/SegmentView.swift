@@ -7,7 +7,7 @@ struct SegmentView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             VStack(alignment: .leading, spacing: 8) {
-                Text("viewStore.name")
+                Text(viewStore.name)
                     .font(.h2)
                     .foregroundColor(.appText)
 

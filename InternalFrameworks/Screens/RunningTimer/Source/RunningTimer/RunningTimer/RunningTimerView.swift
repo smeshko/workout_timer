@@ -41,7 +41,7 @@ struct RunningTimerView_Previews: PreviewProvider {
         let runningStore = Store<RunningTimerState, RunningTimerAction>(
             initialState: RunningTimerState(
                 workout: mockQuickWorkout1,
-                currentSection: TimerSection(id: UUID(), duration: 45, type: .work),
+                currentSection: TimerSection(id: UUID(), duration: 45, type: .work, name: "Jump rope"),
                 timerControlsState: TimerControlsState(timerState: .running)
             ),
             reducer: runningTimerReducer,
