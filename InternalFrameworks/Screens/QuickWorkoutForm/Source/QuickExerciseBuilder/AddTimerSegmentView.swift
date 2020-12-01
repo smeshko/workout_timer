@@ -17,19 +17,16 @@ struct AddTimerSegmentView: View {
         WithViewStore(store) { viewStore in
             HStack(spacing: 12) {
                 ValuePicker(store: self.store.scope(state: \.setsState, action: AddTimerSegmentAction.changeSetsCount),
-                            maxCount: 20,
                             valueName: "Sets",
                             tint: workoutColor.monochromatic(for: colorScheme).color
                 )
 
                 ValuePicker(store: self.store.scope(state: \.workoutTimeState, action: AddTimerSegmentAction.changeWorkoutTime),
-                            maxCount: 180,
                             valueName: "Work",
                             tint: workoutColor.monochromatic(for: colorScheme).color
                 )
 
                 ValuePicker(store: self.store.scope(state: \.breakTimeState, action: AddTimerSegmentAction.changeBreakTime),
-                            maxCount: 180,
                             valueName: "Break",
                             tint: workoutColor.monochromatic(for: colorScheme).color
                 )
