@@ -35,8 +35,8 @@ class RunningTimerTests: XCTestCase {
             name: "Mock Workout",
             color: WorkoutColor(hue: 0, saturation: 0, brightness: 0),
             segments: [
-                QuickWorkoutSegment(id: UUID(), sets: 1, work: 2, pause: 1),
-                QuickWorkoutSegment(id: UUID(), sets: 1, work: 4, pause: 1)
+                QuickWorkoutSegment(id: UUID(), name: "Segment", sets: 1, work: 2, pause: 1),
+                QuickWorkoutSegment(id: UUID(), name: "Segment", sets: 1, work: 4, pause: 1)
             ])
 
         let state = RunningTimerState(workout: workout)
@@ -128,7 +128,7 @@ class RunningTimerTests: XCTestCase {
             name: "Mock Workout",
             color: WorkoutColor(hue: 0, saturation: 0, brightness: 0),
             segments: [
-                QuickWorkoutSegment(id: UUID(), sets: 1, work: 2, pause: 1)
+                QuickWorkoutSegment(id: UUID(), name: "Segment", sets: 1, work: 2, pause: 1)
             ])
 
         let state = RunningTimerState(workout: workout)
@@ -189,7 +189,7 @@ class RunningTimerTests: XCTestCase {
                 name: "Mock Workout",
                 color: WorkoutColor(hue: 0, saturation: 0, brightness: 0),
                 segments: [
-                    QuickWorkoutSegment(id: UUID(), sets: 1, work: 2, pause: 1)
+                    QuickWorkoutSegment(id: UUID(), name: "Segment", sets: 1, work: 2, pause: 1)
                 ])
             )
         let sections = state.timerSections
@@ -238,7 +238,7 @@ class RunningTimerTests: XCTestCase {
                 name: "Mock Workout",
                 color: WorkoutColor(hue: 0, saturation: 0, brightness: 0),
                 segments: [
-                    QuickWorkoutSegment(id: UUID(), sets: 1, work: 2, pause: 1)
+                    QuickWorkoutSegment(id: UUID(), name: "Segment", sets: 1, work: 2, pause: 1)
                 ])
             )
         let sections = state.timerSections

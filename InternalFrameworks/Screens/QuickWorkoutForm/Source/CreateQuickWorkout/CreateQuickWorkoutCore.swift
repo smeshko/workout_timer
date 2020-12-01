@@ -124,7 +124,7 @@ public let createQuickWorkoutReducer =
                 }
 
             case .newSegmentButtonTapped:
-                state.addSegmentState = AddTimerSegmentState(id: UUID(), sets: 2, workoutTime: 60, breakTime: 20)
+                state.addSegmentState = AddTimerSegmentState(id: environment.uuid(), sets: 2, workoutTime: 60, breakTime: 20)
 
             case .editSegment(let id):
                 if let segmentState = state.segmentStates[id: id] {
