@@ -30,7 +30,12 @@ public struct FinishedWorkoutEnvironment {
     }
 }
 
-public let finishedWorkoutReducer = Reducer<FinishedWorkoutState, FinishedWorkoutAction, FinishedWorkoutEnvironment> { state, action, environment in
+public extension SystemEnvironment where Environment == FinishedWorkoutEnvironment {
+    static let live = SystemEnvironment.live(environment: FinishedWorkoutEnvironment(repository: .live, soundClient: .live))
+    static let preview = SystemEnvironment.mock(environment: FinishedWorkoutEnvironment(repository: .mock, soundClient: .mock))
+}
+
+public let finishedWorkoutReducer = Reducer<FinishedWorkoutState, FinishedWorkoutAction, SystemEnvironment<FinishedWorkoutEnvironment>> { state, action, environment in
 
     switch action {
     case .onAppear:

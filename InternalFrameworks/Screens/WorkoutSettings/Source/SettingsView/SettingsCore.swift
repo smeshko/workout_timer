@@ -3,7 +3,6 @@ import CoreLogic
 import ComposableArchitecture
 
 public enum SettingsAction: Equatable {
-    case toggleiCloud(Bool)
     case toggleScreen(Bool)
     case toggleSound(Bool)
     case onAppear
@@ -11,12 +10,10 @@ public enum SettingsAction: Equatable {
 
 public struct SettingsState: Equatable {
     var sound = false
-    var iCloud = false
     var keepScreen = false
 
-    public init(sound: Bool = false, iCloud: Bool = false, keepScreen: Bool = false) {
+    public init(sound: Bool = false, keepScreen: Bool = false) {
         self.sound = sound
-        self.iCloud = iCloud
         self.keepScreen = keepScreen
     }
 }
@@ -35,7 +32,6 @@ public let settingsReducer = Reducer<SettingsState, SettingsAction, SettingsEnvi
     switch action {
     case .onAppear:
         state.sound = environment.client.soundEnabled
-        state.iCloud = environment.client.iCloudEnabled
         state.keepScreen = environment.client.keepScreenOn
 
     case .toggleScreen(let on):
@@ -45,10 +41,6 @@ public let settingsReducer = Reducer<SettingsState, SettingsAction, SettingsEnvi
     case .toggleSound(let on):
         state.sound = on
         environment.client.setSoundEnabled(to: on)
-
-    case .toggleiCloud(let on):
-        state.iCloud = on
-        environment.client.setiCloudSync(to: on)
     }
 
     return .none

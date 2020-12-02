@@ -2,7 +2,6 @@ import Foundation
 
 public struct SettingsClient {
     enum Key: String {
-        case iCloud
         case sound
         case screen
         case appStarted
@@ -11,10 +10,6 @@ public struct SettingsClient {
     private let storage: LocalStorage
     private init(storage: LocalStorage) {
         self.storage = storage
-    }
-
-    public var iCloudEnabled: Bool {
-        storage.bool(for: .iCloud)
     }
 
     public var soundEnabled: Bool {
@@ -27,10 +22,6 @@ public struct SettingsClient {
 
     public var appStartedOnce: Bool {
         storage.bool(for: .appStarted)
-    }
-
-    public func setiCloudSync(to value: Bool) {
-        storage.set(value, for: .iCloud)
     }
 
     public func setSoundEnabled(to value: Bool) {

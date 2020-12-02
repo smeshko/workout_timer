@@ -42,7 +42,7 @@ struct FinishedWorkoutView_Previews: PreviewProvider {
             store: Store<FinishedWorkoutState, FinishedWorkoutAction>(
                 initialState: FinishedWorkoutState(workout: mockQuickWorkout1),
                 reducer: finishedWorkoutReducer,
-                environment: FinishedWorkoutEnvironment(repository: .mock)
+                environment: .preview
             )
         )
         .previewDevice(.iPhone11)

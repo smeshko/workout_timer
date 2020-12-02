@@ -163,7 +163,7 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
     finishedWorkoutReducer.optional().pullback(
         state: \.finishedWorkoutState,
         action: /RunningTimerAction.finishedWorkoutAction,
-        environment: { _ in FinishedWorkoutEnvironment(repository: .live) }
+        environment: { _ in .live }
     )
 )
 

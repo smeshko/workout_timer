@@ -77,7 +77,6 @@ let appReducer = Reducer<AppState, AppAction, SystemEnvironment<AppEnvironment>>
 private extension SettingsClient {
     func setupFirstAppStartValues() {
         if !appStartedOnce {
-            setiCloudSync(to: true)
             setSoundEnabled(to: true)
             setKeepScreenOn(to: true)
             setAppStartedOnce(to: true)
