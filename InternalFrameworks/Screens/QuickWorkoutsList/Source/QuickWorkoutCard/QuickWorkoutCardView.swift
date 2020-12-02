@@ -59,9 +59,7 @@ struct QuickWorkoutCardView: View {
                     .frame(width: 40, height: 40)
                 }
             }
-            .padding(Spacing.l)
-            .background(Color.appCardBackground)
-            .cornerRadius(CornerRadius.m)
+            .cardBackground()
         }
     }
 }

@@ -68,7 +68,8 @@ struct WorkoutsList: View {
             CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState,
                                                       action: QuickWorkoutsListAction.createWorkoutAction))
         }
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+        .fullHeight()
+        .fullWidth()
         .edgesIgnoringSafeArea(.all)
         .navigationTitle("Workouts")
 

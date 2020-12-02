@@ -94,7 +94,7 @@ private struct WorkoutForm: View {
             VStack(spacing: Spacing.xxl) {
                 TextField("Workout name", text: viewStore.binding(get: \.name, send: CreateQuickWorkoutAction.updateName))
                     .padding(Spacing.s)
-                    .border(viewStore.selectedColor)
+                    .border(stroke: viewStore.selectedColor)
 
                 VStack(spacing: Spacing.s) {
                     ColorPicker("Choose workout color", selection: viewStore.binding(
@@ -124,7 +124,7 @@ private struct WorkoutForm: View {
                 }
                 ForEachStore(store.scope(state: \.segmentStates, action: CreateQuickWorkoutAction.segmentAction)) { store in
                     SegmentView(store: store)
-                        .border(viewStore.selectedColor)
+                        .border(stroke: viewStore.selectedColor)
                         .padding(.bottom, Spacing.xs)
                         .onTapGesture {
                             withAnimation {

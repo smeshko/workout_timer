@@ -48,7 +48,7 @@ struct AddTimerSegmentView: View {
                             }
                         }, label: {
                             Image(systemName: viewStore.isEditing ? "checkmark" : "plus")
-                                .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity)
+                                .fullWidth()
                                 .frame(height: 44)
                                 .foregroundColor(.appWhite)
                         })
@@ -60,7 +60,7 @@ struct AddTimerSegmentView: View {
                             }
                         }, label: {
                             Image(systemName: viewStore.isEditing ? "trash" : "xmark")
-                                .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity)
+                                .fullWidth()
                                 .frame(height: 44)
                                 .foregroundColor(.appWhite)
                         })

@@ -49,7 +49,9 @@ struct WorkoutPreview: View {
             }
             .padding(.horizontal, Spacing.xxl)
             .padding(.top, Spacing.xxl)
-            .frame(minWidth: 0, idealWidth: .infinity, maxWidth: .infinity, minHeight: 0, idealHeight: .infinity, maxHeight: .infinity, alignment: .topLeading)
+            .fullWidth()
+            .fullHeight()
+            .frame(alignment: .topLeading)
             .background(viewStore.workout.color.monochromatic)
         }
     }
@@ -60,7 +62,7 @@ private extension View {
         font(.h3)
             .foregroundColor(.appWhite)
             .padding(Spacing.l)
-            .frame(minWidth: 0, maxWidth: .infinity)
+            .fullWidth()
             .background(
                 RoundedRectangle(cornerRadius: CornerRadius.m)
                     .foregroundColor(foreground)

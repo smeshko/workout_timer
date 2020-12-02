@@ -38,10 +38,8 @@ struct SegmentView: View {
                         .foregroundColor(.appText)
                 }
             }
-            .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity)
-            .padding(.vertical, Spacing.l)
-            .background(Color.appCardBackground)
-            .cornerRadius(CornerRadius.m)
+            .fullWidth()
+            .cardBackground()
         }
     }
 }
