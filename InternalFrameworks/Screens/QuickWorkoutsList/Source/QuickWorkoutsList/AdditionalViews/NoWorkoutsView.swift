@@ -1,4 +1,5 @@
 import SwiftUI
+import CoreInterface
 import ComposableArchitecture
 import QuickWorkoutForm
 
@@ -13,7 +14,7 @@ struct NoWorkoutsView: View {
     }
 
     var body: some View {
-        VStack(spacing: 18) {
+        VStack(spacing: Spacing.l) {
             Button(action: {
                 isWorkoutFormPresented = true
             }, label: {

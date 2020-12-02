@@ -18,7 +18,7 @@ struct ValuePicker: View {
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            VStack(alignment: .leading, spacing: 8) {
+            VStack(alignment: .leading, spacing: Spacing.xs) {
 // If I remove this line, the app crashes with
 //                2020-12-01 08:57:21.285684+0100 Quick Workouts[776:122312] [error] precondition failure:
 //                attribute failed to set an initial value: 856600, ForEachChild<IdentifiedArray<UUID, AddTimerSegmentState>, UUID, ModifiedContent<AddTimerSegmentView, _PaddingLayout>>

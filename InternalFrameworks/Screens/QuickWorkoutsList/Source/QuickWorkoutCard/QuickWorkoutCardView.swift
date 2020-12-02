@@ -1,5 +1,6 @@
 import SwiftUI
 import DomainEntities
+import CoreInterface
 import ComposableArchitecture
 import RunningTimer
 
@@ -20,9 +21,9 @@ struct QuickWorkoutCardView: View {
 
     var body: some View {
         ZStack {
-            VStack(alignment: .leading, spacing: 18) {
+            VStack(alignment: .leading, spacing: Spacing.l) {
 
-                VStack(alignment: .leading, spacing: 4) {
+                VStack(alignment: .leading, spacing: Spacing.xxs) {
                     Text("\(viewStore.duration) mins")
                         .font(.h3)
 
@@ -48,7 +49,7 @@ struct QuickWorkoutCardView: View {
                             }
                         }, label: {
                             Image(systemName: "play.fill")
-                                .padding(12)
+                                .padding(Spacing.s)
                                 .foregroundColor(.appWhite)
                                 .background(viewStore.workout.color.color)
                                 .mask(Circle())
@@ -58,7 +59,7 @@ struct QuickWorkoutCardView: View {
                     .frame(width: 40, height: 40)
                 }
             }
-            .padding(18)
+            .padding(Spacing.l)
             .background(Color.appCardBackground)
             .cornerRadius(12)
         }

@@ -18,12 +18,12 @@ struct AddTimerSegmentView: View {
                         viewStore.send(.cancel)
                     }
 
-                VStack(spacing: 18) {
+                VStack(spacing: Spacing.l) {
                     TextField("segment name", text: viewStore.binding(get: \.name, send: AddTimerSegmentAction.updateName))
-                        .padding(.horizontal, 28)
-                        .padding(.top, 28)
+                        .padding(.horizontal, Spacing.xxl)
+                        .padding(.top, Spacing.xxl)
 
-                    HStack(spacing: 18) {
+                    HStack(spacing: Spacing.l) {
                         ValuePicker(store: store.scope(state: \.setsState, action: AddTimerSegmentAction.changeSetsCount),
                                     valueName: "Sets",
                                     tint: .orange
@@ -39,9 +39,9 @@ struct AddTimerSegmentView: View {
                                     tint: .red
                         )
                     }
-                    .padding(.horizontal, 28)
+                    .padding(.horizontal, Spacing.xxl)
 
-                    HStack(spacing: 0) {
+                    HStack(spacing: Spacing.none) {
                         Button(action: {
                             withAnimation {
                                 viewStore.send(viewStore.isEditing ? .done : .add)
@@ -69,7 +69,7 @@ struct AddTimerSegmentView: View {
                 }
                 .background(Color.appCardBackground)
                 .cornerRadius(12)
-                .padding(28)
+                .padding(Spacing.xxl)
             }
         }
     }
@@ -104,41 +104,3 @@ private extension WorkoutColor {
                             brightness: brightness + brightnessModifier)
     }
 }
-
-//        WithViewStore(store) { viewStore in
-//            HStack(spacing: 12) {
-//                ValuePicker(store: self.store.scope(state: \.setsState, action: AddTimerSegmentAction.changeSetsCount),
-//                            valueName: "Sets",
-//                            tint: workoutColor.monochromatic(for: colorScheme).color
-//                )
-//
-//                ValuePicker(store: self.store.scope(state: \.workoutTimeState, action: AddTimerSegmentAction.changeWorkoutTime),
-//                            valueName: "Work",
-//                            tint: workoutColor.monochromatic(for: colorScheme).color
-//                )
-//
-//                ValuePicker(store: self.store.scope(state: \.breakTimeState, action: AddTimerSegmentAction.changeBreakTime),
-//                            valueName: "Break",
-//                            tint: workoutColor.monochromatic(for: colorScheme).color
-//                )
-//
-//                Button(action: {
-//                    withAnimation {
-//                        viewStore.send(viewStore.isAdded ? .removeSegments : .addSegments)
-//                    }
-//                }, label: {
-//                    Image(systemName: viewStore.isAdded ? "trash" : "plus")
-//                        .frame(width: 18, height: 18)
-//                        .padding(10)
-//                        .foregroundColor(.appWhite)
-//                })
-//                .background(viewStore.isAdded ? Color.red : color)
-//                .cornerRadius(12)
-//                .padding(.leading, 8)
-//            }
-//            .padding(.horizontal, 28)
-//        }
-//        .padding(.horizontal, 18)
-//        .padding(.vertical, 18)
-//        .background(Color.appCardBackground)
-//        .cornerRadius(12)

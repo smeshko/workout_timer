@@ -1,5 +1,6 @@
 import SwiftUI
 import CoreLogic
+import CoreInterface
 import ComposableArchitecture
 
 public struct CreateQuickWorkoutView: View {
@@ -90,19 +91,19 @@ private struct WorkoutForm: View {
 
     var body: some View {
         ScrollView {
-            VStack(spacing: 28) {
+            VStack(spacing: Spacing.xxl) {
                 TextField("Workout name", text: viewStore.binding(get: \.name, send: CreateQuickWorkoutAction.updateName))
-                    .padding(12)
+                    .padding(Spacing.s)
                     .overlay(RoundedRectangle(cornerRadius: 12).stroke(viewStore.selectedColor, lineWidth: 1))
 
 
-                VStack(spacing: 12) {
+                VStack(spacing: Spacing.s) {
                     ColorPicker("Choose workout color", selection: viewStore.binding(
                         get: \.selectedColor,
                         send: CreateQuickWorkoutAction.selectColor(_:)
                     ))
                     ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 12) {
+                        HStack(spacing: Spacing.s) {
                             ForEach(viewStore.preselectedTints) { tint in
                                 ZStack {
                                     Circle()
@@ -124,7 +125,7 @@ private struct WorkoutForm: View {
                 }
                 ForEachStore(store.scope(state: \.segmentStates, action: CreateQuickWorkoutAction.segmentAction)) { store in
                     SegmentView(store: store)
-                        .padding(.bottom, 8)
+                        .padding(.bottom, Spacing.xs)
                         .onTapGesture {
                             withAnimation {
                                 viewStore.send(.editSegment(id: ViewStore(store).state.id))
@@ -142,7 +143,7 @@ private struct WorkoutForm: View {
                         .foregroundColor(.appText)
                 }
             }
-            .padding(28)
+            .padding(Spacing.xxl)
         }
     }
 }

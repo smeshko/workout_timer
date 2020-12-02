@@ -30,7 +30,7 @@ struct TimerView: View {
                         total: (viewStore.currentSection?.duration ?? 0),
                         tint: progressColor)
 
-            VStack(spacing: 8) {
+            VStack(spacing: Spacing.xs) {
                 Text(viewStore.sectionTimeLeft.formattedTimeLeft)
                     .foregroundColor(.appText)
                     .font(.giganticMono)

@@ -1,4 +1,5 @@
 import SwiftUI
+import CoreInterface
 import ComposableArchitecture
 
 struct SegmentView: View {
@@ -6,7 +7,7 @@ struct SegmentView: View {
     
     var body: some View {
         WithViewStore(store) { viewStore in
-            VStack(alignment: .leading, spacing: 8) {
+            VStack(alignment: .leading, spacing: Spacing.xs) {
                 Text(viewStore.name)
                     .font(.h2)
                     .foregroundColor(.appText)
@@ -37,8 +38,8 @@ struct SegmentView: View {
                         .foregroundColor(.appText)
                 }
             }
-            .frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealWidth: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-            .padding(.vertical, 18)
+            .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity)
+            .padding(.vertical, Spacing.l)
             .background(Color.appCardBackground)
             .cornerRadius(12)
         }

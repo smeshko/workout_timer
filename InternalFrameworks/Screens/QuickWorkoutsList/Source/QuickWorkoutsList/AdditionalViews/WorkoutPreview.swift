@@ -1,4 +1,5 @@
 import SwiftUI
+import CoreInterface
 import DomainEntities
 import ComposableArchitecture
 
@@ -29,13 +30,13 @@ struct WorkoutPreview: View {
 
 
                             HStack {
-                                VStack(spacing: 12) {
+                                VStack(spacing: Spacing.s) {
                                     Image(systemName: "suit.heart.fill")
                                     Text("\(segment.work)s")
                                 }
                                 .cardBackground(foreground: viewStore.workout.color.color.opacity(0.6))
 
-                                VStack(spacing: 12) {
+                                VStack(spacing: Spacing.s) {
                                     Image(systemName: "pause.fill")
                                     Text("\(segment.pause)s")
                                 }
@@ -44,10 +45,10 @@ struct WorkoutPreview: View {
                         }
                     }
                 }
-                .padding(.top, 12)
+                .padding(.top, Spacing.s)
             }
-            .padding(.horizontal, 28)
-            .padding(.top, 28)
+            .padding(.horizontal, Spacing.xxl)
+            .padding(.top, Spacing.xxl)
             .frame(minWidth: 0, idealWidth: .infinity, maxWidth: .infinity, minHeight: 0, idealHeight: .infinity, maxHeight: .infinity, alignment: .topLeading)
             .background(viewStore.workout.color.monochromatic)
         }
@@ -58,7 +59,7 @@ private extension View {
     func cardBackground(foreground: Color) -> some View {
         font(.h3)
             .foregroundColor(.appWhite)
-            .padding(18)
+            .padding(Spacing.l)
             .frame(minWidth: 0, maxWidth: .infinity)
             .background(
                 RoundedRectangle(cornerRadius: 12)
