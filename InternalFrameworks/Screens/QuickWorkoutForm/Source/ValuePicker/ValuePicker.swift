@@ -37,7 +37,7 @@ struct ValuePicker: View {
                     .frame(width: 60, height: 60)
                     .clipped()
                 }
-                .overlay(RoundedRectangle(cornerRadius: CornerRadius.m).stroke(tint, lineWidth: 2))
+                .border(stroke: tint)
 
                 Text(valueName)
                     .foregroundColor(tint)

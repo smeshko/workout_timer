@@ -10,8 +10,3 @@ public struct Spacing {
     public static let xl: CGFloat = 22
     public static let xxl: CGFloat = 28
 }
-
-// corner radius
-// shadow
-// size
-// full width/height
