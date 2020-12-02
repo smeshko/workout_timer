@@ -4,6 +4,7 @@ import CorePersistence
 import Foundation
 import QuickWorkoutsList
 import DomainEntities
+import UIKit
 
 enum AppAction {
     case appDidBecomeActive
@@ -36,6 +37,11 @@ let appReducer = Reducer<AppState, AppAction, SystemEnvironment<AppEnvironment>>
          
         switch action {
         case .appDidBecomeActive:
+            environment.settings.setupFirstAppStartValues()
+            if environment.settings.keepScreenOn {
+                UIApplication.shared.isIdleTimerDisabled = true
+            }
+
             return environment
                 .notificationClient
                 .requestAuthorisation()
@@ -43,10 +49,14 @@ let appReducer = Reducer<AppState, AppAction, SystemEnvironment<AppEnvironment>>
                 .map(AppAction.notificationAuthResult)
 
         case .appDidGoToBackground:
-            break
+            if environment.settings.keepScreenOn {
+                UIApplication.shared.isIdleTimerDisabled = false
+            }
 
         case .appDidBecomeInactive:
-            break
+            if environment.settings.keepScreenOn {
+                UIApplication.shared.isIdleTimerDisabled = false
+            }
 
         case .workoutsListAction:
             break
@@ -63,3 +73,14 @@ let appReducer = Reducer<AppState, AppAction, SystemEnvironment<AppEnvironment>>
         environment: { _ in .live }
     )
 )
+
+private extension SettingsClient {
+    func setupFirstAppStartValues() {
+        if !appStartedOnce {
+            setiCloudSync(to: true)
+            setSoundEnabled(to: true)
+            setKeepScreenOn(to: true)
+            setAppStartedOnce(to: true)
+        }
+    }
+}

@@ -1,5 +1,5 @@
 import SwiftUI
-import Settings
+import WorkoutSettings
 import ComposableArchitecture
 import QuickWorkoutForm
 import RunningTimer
@@ -39,7 +39,6 @@ public struct QuickWorkoutsListView: View {
                                 FormButton(isPresented: $isWorkoutFormPresented, store: store)
                             }
                         }
-                    
                 }
             }
         }

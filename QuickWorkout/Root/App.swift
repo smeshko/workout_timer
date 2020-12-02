@@ -31,13 +31,10 @@ struct MainApp: App {
             switch newScenePhase {
             case .active:
                 viewStore.send(.appDidBecomeActive)
-                UIApplication.shared.isIdleTimerDisabled = true
             case .inactive:
                 viewStore.send(.appDidBecomeInactive)
-                UIApplication.shared.isIdleTimerDisabled = false
             case .background:
                 viewStore.send(.appDidGoToBackground)
-                UIApplication.shared.isIdleTimerDisabled = false
             @unknown default:
                 break
             }

@@ -18,6 +18,7 @@ targets:
       - target: CoreInterface
       - target: QuickWorkoutForm
       - target: RunningTimer
+      - target: WorkoutSettings
     scheme:
       gatherCoverageData: true
       testTargets:
@@ -27,6 +28,7 @@ targets:
         - name: QuickWorkoutFormUnitTests
         - name: RunningTimerUnitTests
         - name: QuickWorkoutsListUnitTests
+        - name: WorkoutSettingsUnitTests
 
   DomainEntities:
     templates: [CoreFramework]
@@ -92,7 +94,7 @@ targets:
       - target: RunningTimer
       - target: QuickWorkoutForm
       - target: CorePersistence
-      - target: Settings
+      - target: WorkoutSettings
 
   QuickWorkoutsListUnitTests:
     templates: [ScreenUnitTests]
@@ -102,15 +104,15 @@ targets:
       - target: RunningTimer
       - target: QuickWorkoutForm
       - target: CorePersistence
-      - target: Settings
+      - target: WorkoutSettings
 
-  Settings:
+  WorkoutSettings:
     templates: [ScreenFramework]
 
-  SettingsUnitTests:
+  WorkoutSettingsUnitTests:
     templates: [ScreenUnitTests]
     templateAttributes:
-      frameworkName: Settings
+      frameworkName: WorkoutSettings
 
 schemes: 
   CoreLogic:

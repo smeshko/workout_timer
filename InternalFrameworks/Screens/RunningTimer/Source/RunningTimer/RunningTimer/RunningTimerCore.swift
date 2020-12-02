@@ -126,6 +126,7 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
 
         case .sectionEnded:
             state.moveToNextSection()
+            guard environment.settings.soundEnabled else { return .none }
             return environment
                 .soundClient
                 .play(.segment)
@@ -144,10 +145,6 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
 
         case .timerFinished:
             state.finish()
-            return Effect<RunningTimerAction, Never>
-                .cancel(id: TimerId())
-                .flatMap { _ in environment.soundClient.play(.segment).fireAndForget() }
-                .eraseToEffect()
 
         default: break
         }

@@ -4,11 +4,11 @@ import ComposableArchitecture
 public struct SystemEnvironment<Environment> {
     public let environment: Environment
     public let mainQueue: () -> AnySchedulerOf<DispatchQueue>
+    public let settings: SettingsClient
     public let uuid: () -> UUID
 
     public subscript<Dependency>(dynamicMember keyPath: KeyPath<Environment, Dependency>) -> Dependency {
         environment[keyPath: keyPath]
-//        set { self.environment[keyPath: keyPath] = newValue }
     }
 
     /// Creates a live system environment with the wrapped environment provided.
@@ -19,6 +19,7 @@ public struct SystemEnvironment<Environment> {
         Self(
             environment: environment,
             mainQueue: { DispatchQueue.main.eraseToAnyScheduler() },
+            settings: .live,
             uuid: UUID.init
         )
     }
@@ -28,6 +29,7 @@ public struct SystemEnvironment<Environment> {
         .init(
             environment: transform(environment),
             mainQueue: mainQueue,
+            settings: settings,
             uuid: uuid
         )
     }
@@ -43,6 +45,7 @@ public extension SystemEnvironment {
         Self(
             environment: environment,
             mainQueue: { mainQueue().eraseToAnyScheduler() },
+            settings: .mock,
             uuid: uuid
         )
     }

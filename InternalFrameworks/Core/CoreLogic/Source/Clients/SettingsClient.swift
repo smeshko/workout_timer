@@ -5,6 +5,7 @@ public struct SettingsClient {
         case iCloud
         case sound
         case screen
+        case appStarted
     }
 
     private let storage: LocalStorage
@@ -24,6 +25,10 @@ public struct SettingsClient {
         storage.bool(for: .screen)
     }
 
+    public var appStartedOnce: Bool {
+        storage.bool(for: .appStarted)
+    }
+
     public func setiCloudSync(to value: Bool) {
         storage.set(value, for: .iCloud)
     }
@@ -34,6 +39,10 @@ public struct SettingsClient {
 
     public func setKeepScreenOn(to value: Bool) {
         storage.set(value, for: .screen)
+    }
+
+    public func setAppStartedOnce(to value: Bool) {
+        storage.set(value, for: .appStarted)
     }
 }
 
