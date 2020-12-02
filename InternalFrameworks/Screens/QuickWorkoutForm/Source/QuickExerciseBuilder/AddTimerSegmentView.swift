@@ -68,7 +68,7 @@ struct AddTimerSegmentView: View {
                     }
                 }
                 .background(Color.appCardBackground)
-                .cornerRadius(12)
+                .cornerRadius(CornerRadius.m)
                 .padding(Spacing.xxl)
             }
         }

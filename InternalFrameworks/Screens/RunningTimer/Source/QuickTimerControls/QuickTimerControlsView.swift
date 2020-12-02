@@ -65,6 +65,6 @@ private struct ControlButton: View {
                 .font(.h1)
         })
         .background(tint)
-        .cornerRadius(12)
+        .cornerRadius(CornerRadius.m)
     }
 }

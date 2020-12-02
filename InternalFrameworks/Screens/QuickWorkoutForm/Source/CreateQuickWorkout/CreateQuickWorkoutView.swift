@@ -94,7 +94,7 @@ private struct WorkoutForm: View {
             VStack(spacing: Spacing.xxl) {
                 TextField("Workout name", text: viewStore.binding(get: \.name, send: CreateQuickWorkoutAction.updateName))
                     .padding(Spacing.s)
-                    .overlay(RoundedRectangle(cornerRadius: 12).stroke(viewStore.selectedColor, lineWidth: 1))
+                    .overlay(RoundedRectangle(cornerRadius: CornerRadius.m).stroke(viewStore.selectedColor, lineWidth: 1))
 
 
                 VStack(spacing: Spacing.s) {

@@ -31,7 +31,7 @@ public struct SegmentedProgressView: View {
                                     .font(.label)
                                     .foregroundColor(.appText)
                             }
-                            RoundedRectangle(cornerRadius: 2)
+                            RoundedRectangle(cornerRadius: CornerRadius.s)
                                 .foregroundColor(color)
                                 .frame(height: 4)
                         }
@@ -44,7 +44,7 @@ public struct SegmentedProgressView: View {
                                     .font(.label)
                                     .foregroundColor(.appText)
                             }
-                            RoundedRectangle(cornerRadius: 2)
+                            RoundedRectangle(cornerRadius: CornerRadius.s)
                                 .foregroundColor(.appGrey)
                                 .frame(height: 4)
                         }

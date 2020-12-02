@@ -62,7 +62,7 @@ private extension View {
             .padding(Spacing.l)
             .frame(minWidth: 0, maxWidth: .infinity)
             .background(
-                RoundedRectangle(cornerRadius: 12)
+                RoundedRectangle(cornerRadius: CornerRadius.m)
                     .foregroundColor(foreground)
                     .shadow(color: Color.black.opacity(0.1), radius: 5, x: 5, y: 5)
             )

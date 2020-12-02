@@ -26,7 +26,7 @@ struct HeaderView: View {
               dismiss: .alertDismissed
             )
             .background(Color.appCardBackground)
-            .cornerRadius(12)
+            .cornerRadius(CornerRadius.m)
 
             if viewStore.isFinished {
                 Spacer()

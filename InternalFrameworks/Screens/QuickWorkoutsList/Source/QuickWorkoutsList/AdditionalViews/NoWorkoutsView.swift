@@ -19,7 +19,7 @@ struct NoWorkoutsView: View {
                 isWorkoutFormPresented = true
             }, label: {
                 ZStack {
-                    RoundedRectangle(cornerRadius: 12)
+                    RoundedRectangle(cornerRadius: CornerRadius.m)
                         .foregroundColor(.appSuccess)
                         .frame(width: 125, height: 125)
 

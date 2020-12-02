@@ -41,7 +41,7 @@ struct SegmentView: View {
             .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity)
             .padding(.vertical, Spacing.l)
             .background(Color.appCardBackground)
-            .cornerRadius(12)
+            .cornerRadius(CornerRadius.m)
         }
     }
 }
