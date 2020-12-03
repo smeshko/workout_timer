@@ -47,7 +47,7 @@ public struct CreateQuickWorkoutView: View {
             .blur(radius: isPresentingSegmentPopup ? 2 : 0)
 
             IfLetStore(store.scope(state: \.addSegmentState, action: CreateQuickWorkoutAction.addSegmentAction),
-                       then: { AddTimerSegmentView(store: $0) }
+                       then: { AddTimerSegmentView(store: $0, tint: viewStore.selectedColor) }
             )
         }
     }
@@ -138,7 +138,7 @@ private struct WorkoutForm: View {
                         viewStore.send(.newSegmentButtonTapped)
                     }
                 }) {
-                    Label("Add segment", systemImage: "plus")
+                    Label("Add interval", systemImage: "plus")
                         .font(.h2)
                         .foregroundColor(.appText)
                 }

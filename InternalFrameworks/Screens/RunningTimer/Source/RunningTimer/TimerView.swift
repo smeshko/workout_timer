@@ -11,14 +11,6 @@ struct TimerView: View {
         viewStore.timerControlsState.isFinished
     }
 
-    private func toggleState() {
-        if viewStore.timerControlsState.isPaused {
-            viewStore.send(.timerControlsUpdatedState(.start))
-        } else {
-            viewStore.send(.timerControlsUpdatedState(.pause))
-        }
-    }
-
     init(store: Store<RunningTimerState, RunningTimerAction>) {
         self.store = store
         self.viewStore = ViewStore(store)
@@ -41,7 +33,6 @@ struct TimerView: View {
             }
             .pulsatingAnimation(viewStore.timerControlsState.isPaused)
         }
-        .onTapGesture(perform: toggleState)
         .animation(.none)
     }
 

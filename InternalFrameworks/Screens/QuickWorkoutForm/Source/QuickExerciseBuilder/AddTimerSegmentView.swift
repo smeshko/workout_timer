@@ -7,6 +7,7 @@ struct AddTimerSegmentView: View {
     @Environment(\.colorScheme) var colorScheme
 
     let store: Store<AddTimerSegmentState, AddTimerSegmentAction>
+    let tint: Color
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -19,24 +20,27 @@ struct AddTimerSegmentView: View {
                     }
 
                 VStack(spacing: Spacing.l) {
-                    TextField("segment name", text: viewStore.binding(get: \.name, send: AddTimerSegmentAction.updateName))
-                        .padding(.horizontal, Spacing.xxl)
-                        .padding(.top, Spacing.xxl)
+                    VStack(alignment: .leading, spacing: 0) {
+                        TextField("interval name", text: viewStore.binding(get: \.name, send: AddTimerSegmentAction.updateName))
+                            .padding(.horizontal, Spacing.xxl)
+                            .padding(.top, Spacing.xxl)
+                        Rectangle()
+                            .foregroundColor(tint)
+                            .frame(height: 2)
+                            .padding(.horizontal, Spacing.xl)
+                    }
 
-                    HStack(spacing: Spacing.l) {
+                    HStack(alignment: .bottom, spacing: Spacing.l) {
                         ValuePicker(store: store.scope(state: \.setsState, action: AddTimerSegmentAction.changeSetsCount),
-                                    valueName: "Sets",
-                                    tint: .orange
+                                    valueName: "sets", valuePostfix: nil, tint: .orange
                         )
 
                         ValuePicker(store: store.scope(state: \.workoutTimeState, action: AddTimerSegmentAction.changeWorkoutTime),
-                                    valueName: "Work",
-                                    tint: .blue
+                                    valueName: "duration/set", valuePostfix: "s", tint: .blue
                         )
 
                         ValuePicker(store: store.scope(state: \.breakTimeState, action: AddTimerSegmentAction.changeBreakTime),
-                                    valueName: "Break",
-                                    tint: .red
+                                    valueName: "rest in between", valuePostfix: "s", tint: .red
                         )
                     }
                     .padding(.horizontal, Spacing.xxl)
@@ -44,27 +48,31 @@ struct AddTimerSegmentView: View {
                     HStack(spacing: Spacing.none) {
                         Button(action: {
                             withAnimation {
-                                viewStore.send(viewStore.isEditing ? .done : .add)
-                            }
-                        }, label: {
-                            Image(systemName: viewStore.isEditing ? "checkmark" : "plus")
-                                .fullWidth()
-                                .frame(height: 44)
-                                .foregroundColor(.appWhite)
-                        })
-                        .background(Color.appSuccess)
-
-                        Button(action: {
-                            withAnimation {
                                 viewStore.send(viewStore.isEditing ? .remove : .cancel)
                             }
                         }, label: {
-                            Image(systemName: viewStore.isEditing ? "trash" : "xmark")
+//                            Image(systemName: viewStore.isEditing ? "Delete" : "Cancel")
+                            Text(viewStore.isEditing ? "Delete" : "Cancel")
+                                .font(.bodyLarge)
                                 .fullWidth()
                                 .frame(height: 44)
                                 .foregroundColor(.appWhite)
                         })
                         .background(Color.red)
+
+                        Button(action: {
+                            withAnimation {
+                                viewStore.send(viewStore.isEditing ? .done : .add)
+                            }
+                        }, label: {
+//                            Image(systemName: viewStore.isEditing ? "Done" : "Add")
+                            Text(viewStore.isEditing ? "Done" : "Add")
+                                .font(.bodyLarge)
+                                .fullWidth()
+                                .frame(height: 44)
+                                .foregroundColor(.appWhite)
+                        })
+                        .background(tint)
                     }
                 }
                 .background(Color.appCardBackground)
@@ -77,18 +85,24 @@ struct AddTimerSegmentView: View {
 
 struct CircuitPickerView_Previews: PreviewProvider {
     static var previews: some View {
-        let store = Store<AddTimerSegmentState, AddTimerSegmentAction>(
-            initialState: AddTimerSegmentState(id: UUID(), sets: 5, workoutTime: 30, breakTime: 30, isEditing: true),
+        let editingStore = Store<AddTimerSegmentState, AddTimerSegmentAction>(
+            initialState: AddTimerSegmentState(id: UUID(), name: "Interval", sets: 5, workoutTime: 30, breakTime: 30, isEditing: true),
+            reducer: addTimerSegmentReducer,
+            environment: AddTimerSegmentEnvironment(uuid: UUID.init)
+        )
+
+        let creatingStore = Store<AddTimerSegmentState, AddTimerSegmentAction>(
+            initialState: AddTimerSegmentState(id: UUID(), name: "Interval", sets: 5, workoutTime: 30, breakTime: 30, isEditing: false),
             reducer: addTimerSegmentReducer,
             environment: AddTimerSegmentEnvironment(uuid: UUID.init)
         )
 
         return Group {
-            AddTimerSegmentView(store: store)
+            AddTimerSegmentView(store: editingStore, tint: .green)
                 .padding()
                 .previewLayout(.sizeThatFits)
 
-            AddTimerSegmentView(store: store)
+            AddTimerSegmentView(store: creatingStore, tint: .blue)
                 .padding()
                 .preferredColorScheme(.dark)
                 .previewLayout(.sizeThatFits)

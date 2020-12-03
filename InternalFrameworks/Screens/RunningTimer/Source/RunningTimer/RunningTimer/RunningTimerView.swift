@@ -110,5 +110,14 @@ private struct MainView: View {
         .onChange(of: viewStore.finishedSections) { change in
             viewStore.send(.segmentedProgressAction(.moveToNextSegment))
         }
+        .onTapGesture(perform: toggleState)
+    }
+
+    private func toggleState() {
+        if viewStore.timerControlsState.isPaused {
+            viewStore.send(.timerControlsUpdatedState(.start))
+        } else {
+            viewStore.send(.timerControlsUpdatedState(.pause))
+        }
     }
 }

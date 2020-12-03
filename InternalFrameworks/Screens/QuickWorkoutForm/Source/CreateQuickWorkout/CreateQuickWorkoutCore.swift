@@ -124,7 +124,7 @@ public let createQuickWorkoutReducer =
                 }
 
             case .newSegmentButtonTapped:
-                state.addSegmentState = AddTimerSegmentState(id: environment.uuid(), sets: 2, workoutTime: 60, breakTime: 20)
+                state.addSegmentState = AddTimerSegmentState(id: environment.uuid(), name: "", sets: 2, workoutTime: 60, breakTime: 20)
 
             case .editSegment(let id):
                 if let segmentState = state.segmentStates[id: id] {
@@ -146,10 +146,6 @@ public let createQuickWorkoutReducer =
             return .none
         }
     )
-
-private func defaultSegmentState(with id: UUID) -> AddTimerSegmentState {
-    AddTimerSegmentState(id: id, sets: 2, workoutTime: 60, breakTime: 20)
-}
 
 private extension QuickWorkoutSegment {
     init(index: Int, state: SegmentState) {
@@ -185,11 +181,11 @@ private extension SegmentState {
 
 private extension AddTimerSegmentState {
     init(segment: QuickWorkoutSegment) {
-        self.init(id: segment.id, sets: segment.sets, workoutTime: segment.work, breakTime: segment.pause)
+        self.init(id: segment.id, name: segment.name, sets: segment.sets, workoutTime: segment.work, breakTime: segment.pause)
     }
 
     init(state: SegmentState) {
-        self.init(id: state.id, sets: state.sets, workoutTime: state.work, breakTime: state.rest, isEditing: true)
+        self.init(id: state.id, name: state.name, sets: state.sets, workoutTime: state.work, breakTime: state.rest, isEditing: true)
     }
 }
 
