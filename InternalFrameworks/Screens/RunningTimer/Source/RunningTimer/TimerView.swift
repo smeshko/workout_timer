@@ -30,6 +30,7 @@ struct TimerView: View {
                 Text(viewStore.currentSegmentName)
                     .foregroundColor(.appText)
                     .font(.h1)
+                    .multilineTextAlignment(.center)
             }
             .pulsatingAnimation(viewStore.timerControlsState.isPaused)
         }

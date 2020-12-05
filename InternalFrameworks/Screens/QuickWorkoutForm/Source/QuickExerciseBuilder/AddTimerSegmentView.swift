@@ -19,8 +19,8 @@ struct AddTimerSegmentView: View {
                         viewStore.send(.cancel)
                     }
 
-                VStack(spacing: Spacing.l) {
-                    VStack(alignment: .leading, spacing: 0) {
+                VStack(spacing: Spacing.xxl) {
+                    VStack(alignment: .leading, spacing: Spacing.none) {
                         TextField("interval name", text: viewStore.binding(get: \.name, send: AddTimerSegmentAction.updateName))
                             .padding(.horizontal, Spacing.xxl)
                             .padding(.top, Spacing.xxl)
@@ -43,7 +43,6 @@ struct AddTimerSegmentView: View {
                                     valueName: "rest in between", valuePostfix: "s", tint: .red
                         )
                     }
-                    .padding(.horizontal, Spacing.xxl)
 
                     HStack(spacing: Spacing.none) {
                         Button(action: {
@@ -51,7 +50,6 @@ struct AddTimerSegmentView: View {
                                 viewStore.send(viewStore.isEditing ? .remove : .cancel)
                             }
                         }, label: {
-//                            Image(systemName: viewStore.isEditing ? "Delete" : "Cancel")
                             Text(viewStore.isEditing ? "Delete" : "Cancel")
                                 .font(.bodyLarge)
                                 .fullWidth()
@@ -65,7 +63,6 @@ struct AddTimerSegmentView: View {
                                 viewStore.send(viewStore.isEditing ? .done : .add)
                             }
                         }, label: {
-//                            Image(systemName: viewStore.isEditing ? "Done" : "Add")
                             Text(viewStore.isEditing ? "Done" : "Add")
                                 .font(.bodyLarge)
                                 .fullWidth()
