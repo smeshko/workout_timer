@@ -7,6 +7,7 @@ struct AddTimerSegmentView: View {
     @Environment(\.colorScheme) var colorScheme
 
     let store: Store<AddTimerSegmentState, AddTimerSegmentAction>
+    let tint: Color
 
     var body: some View {
         WithViewStore(store) { viewStore in
@@ -18,58 +19,62 @@ struct AddTimerSegmentView: View {
                         viewStore.send(.cancel)
                     }
 
-                VStack(spacing: 18) {
-                    TextField("segment name", text: viewStore.binding(get: \.name, send: AddTimerSegmentAction.updateName))
-                        .padding(.horizontal, 28)
-                        .padding(.top, 28)
+                VStack(spacing: Spacing.xxl) {
+                    VStack(alignment: .leading, spacing: Spacing.none) {
+                        TextField("interval name", text: viewStore.binding(get: \.name, send: AddTimerSegmentAction.updateName))
+                            .padding(.horizontal, Spacing.xxl)
+                            .padding(.top, Spacing.xxl)
+                        Rectangle()
+                            .foregroundColor(tint)
+                            .frame(height: 2)
+                            .padding(.horizontal, Spacing.xl)
+                    }
 
-                    HStack(spacing: 18) {
+                    HStack(alignment: .bottom, spacing: Spacing.l) {
                         ValuePicker(store: store.scope(state: \.setsState, action: AddTimerSegmentAction.changeSetsCount),
-                                    valueName: "Sets",
-                                    tint: .orange
+                                    valueName: "sets", valuePostfix: nil, tint: .orange
                         )
 
                         ValuePicker(store: store.scope(state: \.workoutTimeState, action: AddTimerSegmentAction.changeWorkoutTime),
-                                    valueName: "Work",
-                                    tint: .blue
+                                    valueName: "duration/set", valuePostfix: "s", tint: .blue
                         )
 
                         ValuePicker(store: store.scope(state: \.breakTimeState, action: AddTimerSegmentAction.changeBreakTime),
-                                    valueName: "Break",
-                                    tint: .red
+                                    valueName: "rest in between", valuePostfix: "s", tint: .red
                         )
                     }
-                    .padding(.horizontal, 28)
 
-                    HStack(spacing: 0) {
-                        Button(action: {
-                            withAnimation {
-                                viewStore.send(viewStore.isEditing ? .done : .add)
-                            }
-                        }, label: {
-                            Image(systemName: viewStore.isEditing ? "checkmark" : "plus")
-                                .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity)
-                                .frame(height: 44)
-                                .foregroundColor(.appWhite)
-                        })
-                        .background(Color.appSuccess)
-
+                    HStack(spacing: Spacing.none) {
                         Button(action: {
                             withAnimation {
                                 viewStore.send(viewStore.isEditing ? .remove : .cancel)
                             }
                         }, label: {
-                            Image(systemName: viewStore.isEditing ? "trash" : "xmark")
-                                .frame(minWidth: 0, idealWidth: 100, maxWidth: .infinity)
+                            Text(viewStore.isEditing ? "Delete" : "Cancel")
+                                .font(.bodyLarge)
+                                .fullWidth()
                                 .frame(height: 44)
                                 .foregroundColor(.appWhite)
                         })
                         .background(Color.red)
+
+                        Button(action: {
+                            withAnimation {
+                                viewStore.send(viewStore.isEditing ? .done : .add)
+                            }
+                        }, label: {
+                            Text(viewStore.isEditing ? "Done" : "Add")
+                                .font(.bodyLarge)
+                                .fullWidth()
+                                .frame(height: 44)
+                                .foregroundColor(.appWhite)
+                        })
+                        .background(tint)
                     }
                 }
                 .background(Color.appCardBackground)
-                .cornerRadius(12)
-                .padding(28)
+                .cornerRadius(CornerRadius.m)
+                .padding(Spacing.xxl)
             }
         }
     }
@@ -77,18 +82,24 @@ struct AddTimerSegmentView: View {
 
 struct CircuitPickerView_Previews: PreviewProvider {
     static var previews: some View {
-        let store = Store<AddTimerSegmentState, AddTimerSegmentAction>(
-            initialState: AddTimerSegmentState(id: UUID(), sets: 5, workoutTime: 30, breakTime: 30, isEditing: true),
+        let editingStore = Store<AddTimerSegmentState, AddTimerSegmentAction>(
+            initialState: AddTimerSegmentState(id: UUID(), name: "Interval", sets: 5, workoutTime: 30, breakTime: 30, isEditing: true),
+            reducer: addTimerSegmentReducer,
+            environment: AddTimerSegmentEnvironment(uuid: UUID.init)
+        )
+
+        let creatingStore = Store<AddTimerSegmentState, AddTimerSegmentAction>(
+            initialState: AddTimerSegmentState(id: UUID(), name: "Interval", sets: 5, workoutTime: 30, breakTime: 30, isEditing: false),
             reducer: addTimerSegmentReducer,
             environment: AddTimerSegmentEnvironment(uuid: UUID.init)
         )
 
         return Group {
-            AddTimerSegmentView(store: store)
+            AddTimerSegmentView(store: editingStore, tint: .green)
                 .padding()
                 .previewLayout(.sizeThatFits)
 
-            AddTimerSegmentView(store: store)
+            AddTimerSegmentView(store: creatingStore, tint: .blue)
                 .padding()
                 .preferredColorScheme(.dark)
                 .previewLayout(.sizeThatFits)
@@ -104,41 +115,3 @@ private extension WorkoutColor {
                             brightness: brightness + brightnessModifier)
     }
 }
-
-//        WithViewStore(store) { viewStore in
-//            HStack(spacing: 12) {
-//                ValuePicker(store: self.store.scope(state: \.setsState, action: AddTimerSegmentAction.changeSetsCount),
-//                            valueName: "Sets",
-//                            tint: workoutColor.monochromatic(for: colorScheme).color
-//                )
-//
-//                ValuePicker(store: self.store.scope(state: \.workoutTimeState, action: AddTimerSegmentAction.changeWorkoutTime),
-//                            valueName: "Work",
-//                            tint: workoutColor.monochromatic(for: colorScheme).color
-//                )
-//
-//                ValuePicker(store: self.store.scope(state: \.breakTimeState, action: AddTimerSegmentAction.changeBreakTime),
-//                            valueName: "Break",
-//                            tint: workoutColor.monochromatic(for: colorScheme).color
-//                )
-//
-//                Button(action: {
-//                    withAnimation {
-//                        viewStore.send(viewStore.isAdded ? .removeSegments : .addSegments)
-//                    }
-//                }, label: {
-//                    Image(systemName: viewStore.isAdded ? "trash" : "plus")
-//                        .frame(width: 18, height: 18)
-//                        .padding(10)
-//                        .foregroundColor(.appWhite)
-//                })
-//                .background(viewStore.isAdded ? Color.red : color)
-//                .cornerRadius(12)
-//                .padding(.leading, 8)
-//            }
-//            .padding(.horizontal, 28)
-//        }
-//        .padding(.horizontal, 18)
-//        .padding(.vertical, 18)
-//        .background(Color.appCardBackground)
-//        .cornerRadius(12)

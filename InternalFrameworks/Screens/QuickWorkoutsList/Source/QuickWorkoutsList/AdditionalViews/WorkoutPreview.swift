@@ -1,4 +1,5 @@
 import SwiftUI
+import CoreInterface
 import DomainEntities
 import ComposableArchitecture
 
@@ -29,13 +30,13 @@ struct WorkoutPreview: View {
 
 
                             HStack {
-                                VStack(spacing: 12) {
+                                VStack(spacing: Spacing.s) {
                                     Image(systemName: "suit.heart.fill")
                                     Text("\(segment.work)s")
                                 }
                                 .cardBackground(foreground: viewStore.workout.color.color.opacity(0.6))
 
-                                VStack(spacing: 12) {
+                                VStack(spacing: Spacing.s) {
                                     Image(systemName: "pause.fill")
                                     Text("\(segment.pause)s")
                                 }
@@ -44,11 +45,13 @@ struct WorkoutPreview: View {
                         }
                     }
                 }
-                .padding(.top, 12)
+                .padding(.top, Spacing.s)
             }
-            .padding(.horizontal, 28)
-            .padding(.top, 28)
-            .frame(minWidth: 0, idealWidth: .infinity, maxWidth: .infinity, minHeight: 0, idealHeight: .infinity, maxHeight: .infinity, alignment: .topLeading)
+            .padding(.horizontal, Spacing.xxl)
+            .padding(.top, Spacing.xxl)
+            .fullWidth()
+            .fullHeight()
+            .frame(alignment: .topLeading)
             .background(viewStore.workout.color.monochromatic)
         }
     }
@@ -58,10 +61,10 @@ private extension View {
     func cardBackground(foreground: Color) -> some View {
         font(.h3)
             .foregroundColor(.appWhite)
-            .padding(18)
-            .frame(minWidth: 0, maxWidth: .infinity)
+            .padding(Spacing.l)
+            .fullWidth()
             .background(
-                RoundedRectangle(cornerRadius: 12)
+                RoundedRectangle(cornerRadius: CornerRadius.m)
                     .foregroundColor(foreground)
                     .shadow(color: Color.black.opacity(0.1), radius: 5, x: 5, y: 5)
             )

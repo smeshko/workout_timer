@@ -1,4 +1,5 @@
 import SwiftUI
+import CoreInterface
 import ComposableArchitecture
 import QuickWorkoutForm
 
@@ -13,12 +14,12 @@ struct NoWorkoutsView: View {
     }
 
     var body: some View {
-        VStack(spacing: 18) {
+        VStack(spacing: Spacing.l) {
             Button(action: {
                 isWorkoutFormPresented = true
             }, label: {
                 ZStack {
-                    RoundedRectangle(cornerRadius: 12)
+                    RoundedRectangle(cornerRadius: CornerRadius.m)
                         .foregroundColor(.appSuccess)
                         .frame(width: 125, height: 125)
 

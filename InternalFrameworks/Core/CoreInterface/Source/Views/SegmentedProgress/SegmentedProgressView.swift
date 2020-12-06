@@ -21,9 +21,9 @@ public struct SegmentedProgressView: View {
                         .lineLimit(1)
                         .font(.bodySmall)
                         .foregroundColor(.appGrey)
-                        .padding(.bottom, 8)
+                        .padding(.bottom, Spacing.xs)
                 }
-                HStack(alignment: .bottom, spacing: 4) {
+                HStack(alignment: .bottom, spacing: Spacing.xxs) {
                     ForEach(0 ..< viewStore.filledSegments, id: \.self) { index in
                         VStack(alignment: .trailing) {
                             if viewStore.shouldShowLabels {
@@ -31,7 +31,7 @@ public struct SegmentedProgressView: View {
                                     .font(.label)
                                     .foregroundColor(.appText)
                             }
-                            RoundedRectangle(cornerRadius: 2)
+                            RoundedRectangle(cornerRadius: CornerRadius.s)
                                 .foregroundColor(color)
                                 .frame(height: 4)
                         }
@@ -44,7 +44,7 @@ public struct SegmentedProgressView: View {
                                     .font(.label)
                                     .foregroundColor(.appText)
                             }
-                            RoundedRectangle(cornerRadius: 2)
+                            RoundedRectangle(cornerRadius: CornerRadius.s)
                                 .foregroundColor(.appGrey)
                                 .frame(height: 4)
                         }

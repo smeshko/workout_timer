@@ -11,14 +11,6 @@ struct TimerView: View {
         viewStore.timerControlsState.isFinished
     }
 
-    private func toggleState() {
-        if viewStore.timerControlsState.isPaused {
-            viewStore.send(.timerControlsUpdatedState(.start))
-        } else {
-            viewStore.send(.timerControlsUpdatedState(.pause))
-        }
-    }
-
     init(store: Store<RunningTimerState, RunningTimerAction>) {
         self.store = store
         self.viewStore = ViewStore(store)
@@ -30,7 +22,7 @@ struct TimerView: View {
                         total: (viewStore.currentSection?.duration ?? 0),
                         tint: progressColor)
 
-            VStack(spacing: 8) {
+            VStack(spacing: Spacing.xs) {
                 Text(viewStore.sectionTimeLeft.formattedTimeLeft)
                     .foregroundColor(.appText)
                     .font(.giganticMono)
@@ -38,10 +30,10 @@ struct TimerView: View {
                 Text(viewStore.currentSegmentName)
                     .foregroundColor(.appText)
                     .font(.h1)
+                    .multilineTextAlignment(.center)
             }
             .pulsatingAnimation(viewStore.timerControlsState.isPaused)
         }
-        .onTapGesture(perform: toggleState)
         .animation(.none)
     }
 

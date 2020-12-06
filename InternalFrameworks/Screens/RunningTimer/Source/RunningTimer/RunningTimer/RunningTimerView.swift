@@ -23,7 +23,7 @@ public struct RunningTimerView: View {
                    then: { PreCountdownView(store: $0, origin: origin) },
                    else: MainView(store: store)
         )
-        .padding(28)
+        .padding(Spacing.xxl)
         .onChange(of: scenePahse) { newScene in
             switch newScene {
             case .background:
@@ -80,7 +80,7 @@ private struct MainView: View {
     }
 
     var body: some View {
-        VStack(spacing: 28) {
+        VStack(spacing: Spacing.xxl) {
             HeaderView(store: store.scope(state: \.headerState, action: RunningTimerAction.headerAction))
                 .transition(.slide)
                 .animation(.default)
@@ -90,7 +90,7 @@ private struct MainView: View {
                     store: store.scope(state: \.segmentedProgressState, action: RunningTimerAction.segmentedProgressAction),
                     color: viewStore.workout.color.color
                 )
-                .padding(.top, 28)
+                .padding(.top, Spacing.xxl)
             }
 
             Spacer()
@@ -109,6 +109,15 @@ private struct MainView: View {
         }
         .onChange(of: viewStore.finishedSections) { change in
             viewStore.send(.segmentedProgressAction(.moveToNextSegment))
+        }
+        .onTapGesture(perform: toggleState)
+    }
+
+    private func toggleState() {
+        if viewStore.timerControlsState.isPaused {
+            viewStore.send(.timerControlsUpdatedState(.start))
+        } else {
+            viewStore.send(.timerControlsUpdatedState(.pause))
         }
     }
 }

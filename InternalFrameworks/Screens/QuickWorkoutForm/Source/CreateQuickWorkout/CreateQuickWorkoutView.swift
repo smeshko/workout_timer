@@ -1,5 +1,6 @@
 import SwiftUI
 import CoreLogic
+import CoreInterface
 import ComposableArchitecture
 
 public struct CreateQuickWorkoutView: View {
@@ -46,7 +47,7 @@ public struct CreateQuickWorkoutView: View {
             .blur(radius: isPresentingSegmentPopup ? 2 : 0)
 
             IfLetStore(store.scope(state: \.addSegmentState, action: CreateQuickWorkoutAction.addSegmentAction),
-                       then: { AddTimerSegmentView(store: $0) }
+                       then: { AddTimerSegmentView(store: $0, tint: viewStore.selectedColor) }
             )
         }
     }
@@ -90,19 +91,18 @@ private struct WorkoutForm: View {
 
     var body: some View {
         ScrollView {
-            VStack(spacing: 28) {
+            VStack(spacing: Spacing.xxl) {
                 TextField("Workout name", text: viewStore.binding(get: \.name, send: CreateQuickWorkoutAction.updateName))
-                    .padding(12)
-                    .overlay(RoundedRectangle(cornerRadius: 12).stroke(viewStore.selectedColor, lineWidth: 1))
+                    .padding(Spacing.s)
+                    .border(stroke: viewStore.selectedColor)
 
-
-                VStack(spacing: 12) {
+                VStack(spacing: Spacing.s) {
                     ColorPicker("Choose workout color", selection: viewStore.binding(
                         get: \.selectedColor,
                         send: CreateQuickWorkoutAction.selectColor(_:)
                     ))
                     ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 12) {
+                        HStack(spacing: Spacing.s) {
                             ForEach(viewStore.preselectedTints) { tint in
                                 ZStack {
                                     Circle()
@@ -124,7 +124,8 @@ private struct WorkoutForm: View {
                 }
                 ForEachStore(store.scope(state: \.segmentStates, action: CreateQuickWorkoutAction.segmentAction)) { store in
                     SegmentView(store: store)
-                        .padding(.bottom, 8)
+                        .border(stroke: viewStore.selectedColor)
+                        .padding(.bottom, Spacing.xs)
                         .onTapGesture {
                             withAnimation {
                                 viewStore.send(.editSegment(id: ViewStore(store).state.id))
@@ -137,12 +138,12 @@ private struct WorkoutForm: View {
                         viewStore.send(.newSegmentButtonTapped)
                     }
                 }) {
-                    Label("Add segment", systemImage: "plus")
+                    Label("Add interval", systemImage: "plus")
                         .font(.h2)
                         .foregroundColor(.appText)
                 }
             }
-            .padding(28)
+            .padding(Spacing.xxl)
         }
     }
 }

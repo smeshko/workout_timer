@@ -28,8 +28,8 @@ struct WorkoutsList: View {
                          action: QuickWorkoutsListAction.workoutCardAction(id:action:))) { cardViewStore in
             ContextMenuView {
                 QuickWorkoutCardView(store: cardViewStore, origin: $origin)
-                    .padding(.horizontal, 18)
-                    .padding(.vertical, 9)
+                    .padding(.horizontal, Spacing.l)
+                    .padding(.vertical, Spacing.xs)
                     .settingSize($cellSize)
             } previewProvider: {
                 WorkoutPreview(store: cardViewStore)
@@ -68,7 +68,8 @@ struct WorkoutsList: View {
             CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState,
                                                       action: QuickWorkoutsListAction.createWorkoutAction))
         }
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+        .fullHeight()
+        .fullWidth()
         .edgesIgnoringSafeArea(.all)
         .navigationTitle("Workouts")
 

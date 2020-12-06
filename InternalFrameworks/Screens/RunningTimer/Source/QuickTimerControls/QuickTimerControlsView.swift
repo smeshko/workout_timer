@@ -8,15 +8,11 @@ struct QuickTimerControlsView: View {
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            HStack(spacing: 18) {
+            HStack(spacing: Spacing.l) {
                 if viewStore.timerState.isPaused {
                     ControlButton(action: {
                         viewStore.send(.start)
                     }, image: "play", tint: tint)
-//                } else if viewStore.timerState.isFinished {
-//                    ControlButton(action: {
-//                        viewStore.send(.done)
-//                    }, image: "checkmark", tint: tint)
                 } else {
                     ControlButton(action: {
                         viewStore.send(.pause)
@@ -64,11 +60,11 @@ private struct ControlButton: View {
         Button(action: action, label: {
             Image(systemName: image)
                 .frame(width: 40, height: 40)
-                .padding(15)
+                .padding(Spacing.m)
                 .foregroundColor(.appWhite)
                 .font(.h1)
         })
         .background(tint)
-        .cornerRadius(12)
+        .cornerRadius(CornerRadius.m)
     }
 }

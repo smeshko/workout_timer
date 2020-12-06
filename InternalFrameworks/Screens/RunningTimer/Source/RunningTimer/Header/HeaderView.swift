@@ -1,4 +1,5 @@
 import SwiftUI
+import CoreInterface
 import ComposableArchitecture
 
 struct HeaderView: View {
@@ -11,13 +12,13 @@ struct HeaderView: View {
     }
 
     var body: some View {
-        HStack(spacing: 18) {
+        HStack(spacing: Spacing.l) {
             Button(action: {
                 viewStore.send(.closeButtonTapped)
             }, label: {
                 Image(systemName: "xmark")
                     .frame(width: 18, height: 18)
-                    .padding(10)
+                    .padding(Spacing.s)
                     .foregroundColor(.appText)
             })
             .alert(
@@ -25,7 +26,7 @@ struct HeaderView: View {
               dismiss: .alertDismissed
             )
             .background(Color.appCardBackground)
-            .cornerRadius(12)
+            .cornerRadius(CornerRadius.m)
 
             if viewStore.isFinished {
                 Spacer()

@@ -26,7 +26,7 @@ struct PreCountdownView: View {
                 Text("\(viewStore.timeLeft.clean)")
                             .opacity(startAnimation ? 1 : 0)
                             .foregroundColor(.white)
-                            .font(.system(size: 72, weight: .heavy, design: .monospaced))
+                            .font(.timer)
             }
             .frame(width: proxy.width, height: proxy.height)
             .animation(.easeInOut(duration: 0.55))

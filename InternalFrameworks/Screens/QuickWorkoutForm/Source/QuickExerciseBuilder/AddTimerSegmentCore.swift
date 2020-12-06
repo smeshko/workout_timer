@@ -29,8 +29,9 @@ struct AddTimerSegmentState: Equatable, Identifiable {
         self.id = id
     }
     
-    public init(id: UUID, sets: Int, workoutTime: Int, breakTime: Int, isEditing: Bool = false) {
+    public init(id: UUID, name: String, sets: Int, workoutTime: Int, breakTime: Int, isEditing: Bool = false) {
         self.id = id
+        self.name = name
         setsState = PickerState(value: sets, allNumbers: Array(1...30))
         workoutTimeState = PickerState(value: workoutTime, allNumbers: Array(1...300))
         breakTimeState = PickerState(value: breakTime, allNumbers: Array(1...300))
