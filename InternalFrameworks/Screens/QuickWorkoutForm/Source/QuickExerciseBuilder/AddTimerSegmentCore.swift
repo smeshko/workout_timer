@@ -34,7 +34,7 @@ struct AddTimerSegmentState: Equatable, Identifiable {
         self.name = name
         setsState = PickerState(value: sets, allNumbers: Array(1...30))
         workoutTimeState = PickerState(value: workoutTime, allNumbers: Array(1...300))
-        breakTimeState = PickerState(value: breakTime, allNumbers: Array(1...300))
+        breakTimeState = PickerState(value: breakTime, allNumbers: Array(0...300))
         self.isEditing = isEditing
     }
 }

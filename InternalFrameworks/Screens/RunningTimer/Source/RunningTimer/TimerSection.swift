@@ -16,6 +16,7 @@ public struct TimerSection: Equatable {
 
         (0 ..< segment.sets).forEach { index in
             sections.append(TimerSection(id: UUID(), duration: TimeInterval(segment.work), type: .work, name: segment.name))
+            guard segment.pause > 0 else { return }
             sections.append(TimerSection(id: UUID(), duration: TimeInterval(segment.pause), type: .pause, name: "Rest"))
         }
 

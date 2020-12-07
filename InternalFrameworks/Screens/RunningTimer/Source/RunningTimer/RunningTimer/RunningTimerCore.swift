@@ -145,6 +145,7 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
 
         case .timerFinished:
             state.finish()
+            return Effect<RunningTimerAction, Never>.cancel(id: TimerId())
 
         default: break
         }
