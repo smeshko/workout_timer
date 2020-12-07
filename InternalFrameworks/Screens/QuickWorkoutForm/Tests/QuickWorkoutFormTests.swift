@@ -42,6 +42,7 @@ class QuickWorkoutFormTests: XCTestCase {
             .send(.newSegmentButtonTapped) {
                 $0.addSegmentState = AddTimerSegmentState(
                     id: uuid(),
+                    name: "",
                     sets: 2,
                     workoutTime: 60,
                     breakTime: 20
@@ -56,6 +57,7 @@ class QuickWorkoutFormTests: XCTestCase {
             .send(.editSegment(id: uuid())) {
                 $0.addSegmentState = AddTimerSegmentState(
                     id: uuid(),
+                    name: "",
                     sets: 2,
                     workoutTime: 60,
                     breakTime: 20,
