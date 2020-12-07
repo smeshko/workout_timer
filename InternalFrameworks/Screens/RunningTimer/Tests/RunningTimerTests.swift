@@ -55,7 +55,7 @@ class RunningTimerTests: XCTestCase {
                 $0.currentSection = sections.first
                 $0.headerState.timeLeft = 7
                 $0.sectionTimeLeft = 2
-                $0.segmentedProgressState = SegmentedProgressState(isCompact: true, segments: workout.segments)
+                $0.segmentedProgressState = SegmentedProgressState(segments: workout.segments)
             },
             .receive(.timerControlsUpdatedState(.start)) {
                 $0.timerControlsState.timerState = .running
@@ -146,7 +146,7 @@ class RunningTimerTests: XCTestCase {
                 $0.currentSection = sections.first
                 $0.headerState.timeLeft = 2
                 $0.sectionTimeLeft = 2
-                $0.segmentedProgressState = SegmentedProgressState(isCompact: true, segments: workout.segments)
+                $0.segmentedProgressState = SegmentedProgressState(segments: workout.segments)
             },
             .receive(.timerControlsUpdatedState(.start)) {
                 $0.timerControlsState.timerState = .running
@@ -205,7 +205,7 @@ class RunningTimerTests: XCTestCase {
                 $0.currentSection = sections.first
                 $0.headerState.timeLeft = 2
                 $0.sectionTimeLeft = 2
-                $0.segmentedProgressState = SegmentedProgressState(isCompact: true, segments: state.workout.segments)
+                $0.segmentedProgressState = SegmentedProgressState(segments: state.workout.segments)
             },
             .receive(.timerControlsUpdatedState(.start)) {
                 $0.timerControlsState.timerState = .running
@@ -253,7 +253,7 @@ class RunningTimerTests: XCTestCase {
                 $0.currentSection = sections.first
                 $0.headerState.timeLeft = 2
                 $0.sectionTimeLeft = 2
-                $0.segmentedProgressState = SegmentedProgressState(isCompact: true, segments: state.workout.segments)
+                $0.segmentedProgressState = SegmentedProgressState(segments: state.workout.segments)
             },
             .receive(.timerControlsUpdatedState(.start)) {
                 $0.timerControlsState.timerState = .running

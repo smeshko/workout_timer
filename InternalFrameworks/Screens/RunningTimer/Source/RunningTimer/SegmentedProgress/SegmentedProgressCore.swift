@@ -33,22 +33,19 @@ public struct ProgressSegment: Equatable {
 }
 
 public enum SegmentedProgressAction: Equatable {
-    case onChangeSizeClass(isCompact: Bool)
     case onTimerSectionFinished(TimerSection)
     case onSegmentFinished(ProgressSegment)
 }
 
 public struct SegmentedProgressState: Equatable {
 
-    var isCompact: Bool
     var segments: [ProgressSegment]
     var currentIndex: Int = 0
     var currentSegment: ProgressSegment? {
         segments[safe: currentIndex]
     }
 
-    public init(isCompact: Bool = true, segments: [QuickWorkoutSegment] = []) {
-        self.isCompact = isCompact
+    public init(segments: [QuickWorkoutSegment] = []) {
         self.segments = segments.map(ProgressSegment.init(segment:))
     }
 }
@@ -71,9 +68,6 @@ public let segmentedProgressReducer = Reducer<SegmentedProgressState, SegmentedP
 
     case .onSegmentFinished(let segment):
         state.currentIndex += 1
-
-    case .onChangeSizeClass(let isCompact):
-        state.isCompact = isCompact
     }
     return .none
 }

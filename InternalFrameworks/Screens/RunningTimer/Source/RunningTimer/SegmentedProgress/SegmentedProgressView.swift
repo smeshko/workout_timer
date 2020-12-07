@@ -4,10 +4,7 @@ import ComposableArchitecture
 
 public struct SegmentedProgressView: View {
     private let store: Store<SegmentedProgressState, SegmentedProgressAction>
-
-    let color: Color
-
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    private let color: Color
 
     public init(store: Store<SegmentedProgressState, SegmentedProgressAction>, color: Color) {
         self.store = store
@@ -40,9 +37,6 @@ public struct SegmentedProgressView: View {
                     }
                 }
             }
-            .onChange(of: horizontalSizeClass, perform: { value in
-                viewStore.send(.onChangeSizeClass(isCompact: value == .compact))
-            })
         }
     }
 }
@@ -51,7 +45,6 @@ struct SegmentedProgressView_Previews: PreviewProvider {
     static var previews: some View {
         let compactStore = Store<SegmentedProgressState, SegmentedProgressAction>(
             initialState: SegmentedProgressState(
-                isCompact: true,
                 segments: [mockSegment1, mockSegment2]
             ),
             reducer: segmentedProgressReducer,
@@ -60,7 +53,6 @@ struct SegmentedProgressView_Previews: PreviewProvider {
 
         let regularStore = Store<SegmentedProgressState, SegmentedProgressAction>(
             initialState: SegmentedProgressState(
-                isCompact: false,
                 segments: [mockSegment1, mockSegment2]
             ),
             reducer: segmentedProgressReducer,
