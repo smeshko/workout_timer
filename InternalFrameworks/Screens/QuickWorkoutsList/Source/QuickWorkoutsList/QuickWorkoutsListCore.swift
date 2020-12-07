@@ -48,7 +48,7 @@ public struct QuickWorkoutsListEnvironment {
 }
 
 public extension SystemEnvironment where Environment == QuickWorkoutsListEnvironment {
-    static let preview = SystemEnvironment.live(environment: QuickWorkoutsListEnvironment(repository: .mock, notificationClient: .mock))
+    static let preview = SystemEnvironment.mock(environment: QuickWorkoutsListEnvironment(repository: .mock, notificationClient: .mock))
     static let live = SystemEnvironment.live(environment: QuickWorkoutsListEnvironment(repository: .live, notificationClient: .live))
 }
 

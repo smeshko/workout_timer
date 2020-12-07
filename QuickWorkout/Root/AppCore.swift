@@ -27,7 +27,7 @@ struct AppEnvironment {
 }
 
 extension SystemEnvironment where Environment == AppEnvironment {
-    static let preview = SystemEnvironment.live(environment: AppEnvironment(notificationClient: .mock))
+    static let preview = SystemEnvironment.mock(environment: AppEnvironment(notificationClient: .mock))
     static let live = SystemEnvironment.live(environment: AppEnvironment(notificationClient: .live))
 }
 

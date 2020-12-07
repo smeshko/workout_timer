@@ -24,7 +24,7 @@ public struct PreCountdownEnvironment {
 }
 
 public extension SystemEnvironment where Environment == PreCountdownEnvironment {
-    static let preview = SystemEnvironment.live(environment: PreCountdownEnvironment())
+    static let preview = SystemEnvironment.mock(environment: PreCountdownEnvironment())
     static let live = SystemEnvironment.live(environment: PreCountdownEnvironment())
 }
 

@@ -65,7 +65,7 @@ public struct RunningTimerEnvironment {
 }
 
 public extension SystemEnvironment where Environment == RunningTimerEnvironment {
-    static let preview = SystemEnvironment.live(environment: RunningTimerEnvironment(soundClient: .mock, notificationClient: .mock))
+    static let preview = SystemEnvironment.mock(environment: RunningTimerEnvironment(soundClient: .mock, notificationClient: .mock))
     static let live = SystemEnvironment.live(environment: RunningTimerEnvironment(soundClient: .live, notificationClient: .live))
 }
 

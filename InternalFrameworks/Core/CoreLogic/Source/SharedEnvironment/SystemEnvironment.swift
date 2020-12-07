@@ -35,7 +35,6 @@ public struct SystemEnvironment<Environment> {
     }
 }
 
-#if DEBUG
 public extension SystemEnvironment {
     static func mock(
         environment: Environment,
@@ -50,4 +49,3 @@ public extension SystemEnvironment {
         )
     }
 }
-#endif

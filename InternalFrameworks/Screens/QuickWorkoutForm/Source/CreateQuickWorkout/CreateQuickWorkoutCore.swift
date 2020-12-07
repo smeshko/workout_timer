@@ -59,7 +59,7 @@ public struct CreateQuickWorkoutEnvironment<T> {
 }
 
 public extension SystemEnvironment where Environment == CreateQuickWorkoutEnvironment<TintColor> {
-    static let preview = SystemEnvironment.live(environment: CreateQuickWorkoutEnvironment(repository: .mock))
+    static let preview = SystemEnvironment.mock(environment: CreateQuickWorkoutEnvironment(repository: .mock))
     static let live = SystemEnvironment.live(environment: CreateQuickWorkoutEnvironment(repository: .live))
 }
 
