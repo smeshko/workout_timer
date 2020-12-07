@@ -107,8 +107,9 @@ private struct MainView: View {
                                                           action: RunningTimerAction.timerControlsUpdatedState), tint: viewStore.workout.color.color)
             }
         }
-        .onChange(of: viewStore.finishedSections) { change in
-            viewStore.send(.segmentedProgressAction(.moveToNextSegment))
+        .onChange(of: viewStore.currentSection) { value in
+            guard let section = value else { return }
+            viewStore.send(.segmentedProgressAction(.onTimerSectionFinished(section)))
         }
         .onTapGesture(perform: toggleState)
     }

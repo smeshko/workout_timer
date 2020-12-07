@@ -23,7 +23,7 @@ public struct RunningTimerState: Equatable {
     var precountdownState: PreCountdownState?
     var headerState: HeaderState
     var timerControlsState: TimerControlsState
-    var segmentedProgressState = SegmentedProgressState(totalSegments: 0)
+    var segmentedProgressState = SegmentedProgressState()
     var finishedWorkoutState: FinishedWorkoutState?
 
     var currentSection: TimerSection? = nil
@@ -189,7 +189,7 @@ private extension RunningTimerState {
     }
 
     mutating func updateSegments() {
-        segmentedProgressState = SegmentedProgressState(totalSegments: progressSegmentsCount, filledSegments: 0, title: "Sections")
+        segmentedProgressState = SegmentedProgressState(segments: workout.segments)
         currentSection = timerSections.first
         calculateInitialTime()
     }

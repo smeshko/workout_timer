@@ -10,6 +10,7 @@ import Combine
 let testScheduler = DispatchQueue.testScheduler
 let notificationScheduled = PassthroughSubject<Bool, Never>()
 let soundPlayed = PassthroughSubject<Never, Never>()
+let uuidGenerator = { UUID(uuidString: "c06e5e63-d74f-4291-8673-35ce994754dc")! }
 
 extension LocalNotificationClient {
     static let test = LocalNotificationClient(
@@ -23,7 +24,7 @@ extension SystemEnvironment where Environment == RunningTimerEnvironment {
     static let test = SystemEnvironment.mock(
         environment: RunningTimerEnvironment(soundClient: .mock, notificationClient: .test, timerStep: .seconds(1)),
         mainQueue: { AnyScheduler(testScheduler) },
-        uuid: { UUID(uuidString: "c06e5e63-d74f-4291-8673-35ce994754dc")! }
+        uuid: uuidGenerator
     )
 }
 
@@ -35,8 +36,8 @@ class RunningTimerTests: XCTestCase {
             name: "Mock Workout",
             color: WorkoutColor(hue: 0, saturation: 0, brightness: 0),
             segments: [
-                QuickWorkoutSegment(id: UUID(), name: "Segment", sets: 1, work: 2, pause: 1),
-                QuickWorkoutSegment(id: UUID(), name: "Segment", sets: 1, work: 4, pause: 1)
+                QuickWorkoutSegment(id: uuidGenerator(), name: "Segment", sets: 1, work: 2, pause: 1),
+                QuickWorkoutSegment(id: uuidGenerator(), name: "Segment", sets: 1, work: 4, pause: 1)
             ])
 
         let state = RunningTimerState(workout: workout)
@@ -54,8 +55,7 @@ class RunningTimerTests: XCTestCase {
                 $0.currentSection = sections.first
                 $0.headerState.timeLeft = 7
                 $0.sectionTimeLeft = 2
-                $0.segmentedProgressState.originalTotalCount = 2
-                $0.segmentedProgressState.title = "Sections"
+                $0.segmentedProgressState = SegmentedProgressState(isCompact: true, segments: workout.segments)
             },
             .receive(.timerControlsUpdatedState(.start)) {
                 $0.timerControlsState.timerState = .running
@@ -128,7 +128,7 @@ class RunningTimerTests: XCTestCase {
             name: "Mock Workout",
             color: WorkoutColor(hue: 0, saturation: 0, brightness: 0),
             segments: [
-                QuickWorkoutSegment(id: UUID(), name: "Segment", sets: 1, work: 2, pause: 1)
+                QuickWorkoutSegment(id: uuidGenerator(), name: "Segment", sets: 1, work: 2, pause: 1)
             ])
 
         let state = RunningTimerState(workout: workout)
@@ -146,8 +146,7 @@ class RunningTimerTests: XCTestCase {
                 $0.currentSection = sections.first
                 $0.headerState.timeLeft = 2
                 $0.sectionTimeLeft = 2
-                $0.segmentedProgressState.originalTotalCount = 1
-                $0.segmentedProgressState.title = "Sections"
+                $0.segmentedProgressState = SegmentedProgressState(isCompact: true, segments: workout.segments)
             },
             .receive(.timerControlsUpdatedState(.start)) {
                 $0.timerControlsState.timerState = .running
@@ -189,7 +188,7 @@ class RunningTimerTests: XCTestCase {
                 name: "Mock Workout",
                 color: WorkoutColor(hue: 0, saturation: 0, brightness: 0),
                 segments: [
-                    QuickWorkoutSegment(id: UUID(), name: "Segment", sets: 1, work: 2, pause: 1)
+                    QuickWorkoutSegment(id: uuidGenerator(), name: "Segment", sets: 1, work: 2, pause: 1)
                 ])
             )
         let sections = state.timerSections
@@ -206,8 +205,7 @@ class RunningTimerTests: XCTestCase {
                 $0.currentSection = sections.first
                 $0.headerState.timeLeft = 2
                 $0.sectionTimeLeft = 2
-                $0.segmentedProgressState.originalTotalCount = 1
-                $0.segmentedProgressState.title = "Sections"
+                $0.segmentedProgressState = SegmentedProgressState(isCompact: true, segments: state.workout.segments)
             },
             .receive(.timerControlsUpdatedState(.start)) {
                 $0.timerControlsState.timerState = .running
@@ -238,7 +236,7 @@ class RunningTimerTests: XCTestCase {
                 name: "Mock Workout",
                 color: WorkoutColor(hue: 0, saturation: 0, brightness: 0),
                 segments: [
-                    QuickWorkoutSegment(id: UUID(), name: "Segment", sets: 1, work: 2, pause: 1)
+                    QuickWorkoutSegment(id: uuidGenerator(), name: "Segment", sets: 1, work: 2, pause: 1)
                 ])
             )
         let sections = state.timerSections
@@ -255,8 +253,7 @@ class RunningTimerTests: XCTestCase {
                 $0.currentSection = sections.first
                 $0.headerState.timeLeft = 2
                 $0.sectionTimeLeft = 2
-                $0.segmentedProgressState.originalTotalCount = 1
-                $0.segmentedProgressState.title = "Sections"
+                $0.segmentedProgressState = SegmentedProgressState(isCompact: true, segments: state.workout.segments)
             },
             .receive(.timerControlsUpdatedState(.start)) {
                 $0.timerControlsState.timerState = .running
