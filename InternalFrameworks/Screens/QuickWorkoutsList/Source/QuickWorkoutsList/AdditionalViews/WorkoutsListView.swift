@@ -13,6 +13,8 @@ struct WorkoutsList: View {
 
     @State private var cellSize: CGSize = .zero
 
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+
     init(store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>,
          isWorkoutFormPresented: Binding<Bool>,
          origin: Binding<CGPoint>
@@ -70,6 +72,7 @@ struct WorkoutsList: View {
         }
         .fullHeight()
         .fullWidth()
+        .padding(.horizontal, Spacing.margin(horizontalSizeClass))
         .edgesIgnoringSafeArea(.all)
         .navigationTitle("Workouts")
 
