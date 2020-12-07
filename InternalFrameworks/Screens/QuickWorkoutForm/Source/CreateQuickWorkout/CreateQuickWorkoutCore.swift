@@ -150,7 +150,7 @@ public let createQuickWorkoutReducer =
 private extension QuickWorkoutSegment {
     init(index: Int, state: SegmentState) {
         self.init(id: state.id,
-                  name: state.name.isEmpty ? "Segment \(index + 1)" : state.name,
+                  name: state.name.isEmpty ? "Interval \(index + 1)" : state.name,
                   sets: state.sets, work: state.work, pause: state.rest)
     }
 }
