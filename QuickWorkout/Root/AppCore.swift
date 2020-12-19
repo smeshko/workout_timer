@@ -12,12 +12,15 @@ enum AppAction {
     case appDidGoToBackground
 
     case workoutsListAction(QuickWorkoutsListAction)
-
+    case onboardingAction(OnboardingAction)
     case notificationAuthResult(Result<Bool, Error>)
 }
 
 struct AppState: Equatable {
     var workoutsListState = QuickWorkoutsListState()
+    var onboardingState = OnboardingState()
+
+    var shouldShowOnboarding = false
 
     init() {}
 }
@@ -37,16 +40,11 @@ let appReducer = Reducer<AppState, AppAction, SystemEnvironment<AppEnvironment>>
          
         switch action {
         case .appDidBecomeActive:
+            state.shouldShowOnboarding = !environment.settings.onboardingShown
             environment.settings.setupFirstAppStartValues()
             if environment.settings.keepScreenOn {
                 UIApplication.shared.isIdleTimerDisabled = true
             }
-
-            return environment
-                .notificationClient
-                .requestAuthorisation()
-                .catchToEffect()
-                .map(AppAction.notificationAuthResult)
 
         case .appDidGoToBackground:
             if environment.settings.keepScreenOn {
@@ -57,6 +55,16 @@ let appReducer = Reducer<AppState, AppAction, SystemEnvironment<AppEnvironment>>
             if environment.settings.keepScreenOn {
                 UIApplication.shared.isIdleTimerDisabled = false
             }
+
+        case .onboardingAction(.start):
+            environment.settings.setOnboardingShown(to: true)
+            state.shouldShowOnboarding = false
+            return environment
+                .notificationClient
+                .requestAuthorisation()
+                .receive(on: DispatchQueue.main.eraseToAnyScheduler())
+                .catchToEffect()
+                .map(AppAction.notificationAuthResult)
 
         case .workoutsListAction:
             break
@@ -71,6 +79,11 @@ let appReducer = Reducer<AppState, AppAction, SystemEnvironment<AppEnvironment>>
         state: \.workoutsListState,
         action: /AppAction.workoutsListAction,
         environment: { _ in .live }
+    ),
+    onboardingReducer.pullback(
+        state: \.onboardingState,
+        action: /AppAction.onboardingAction,
+        environment: { _ in }
     )
 )
 

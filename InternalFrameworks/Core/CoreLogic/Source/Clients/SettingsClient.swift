@@ -5,6 +5,7 @@ public struct SettingsClient {
         case sound
         case screen
         case appStarted
+        case onboardingShown
     }
 
     private let storage: LocalStorage
@@ -24,6 +25,10 @@ public struct SettingsClient {
         storage.bool(for: .appStarted)
     }
 
+    public var onboardingShown: Bool {
+        storage.bool(for: .onboardingShown)
+    }
+
     public func setSoundEnabled(to value: Bool) {
         storage.set(value, for: .sound)
     }
@@ -34,6 +39,10 @@ public struct SettingsClient {
 
     public func setAppStartedOnce(to value: Bool) {
         storage.set(value, for: .appStarted)
+    }
+
+    public func setOnboardingShown(to value: Bool) {
+        storage.set(value, for: .onboardingShown)
     }
 }
 
