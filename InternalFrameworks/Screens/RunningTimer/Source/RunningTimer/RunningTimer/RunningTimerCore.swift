@@ -92,11 +92,15 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
             return Effect(value: RunningTimerAction.timerControlsUpdatedState(.start))
 
         case .onBackground:
-            guard !state.timerControlsState.isFinished else { return .none }
-            return environment.notificationClient.scheduleLocalNotification(.timerPaused, .immediately)
-                .map { _ in
-                    RunningTimerAction.timerControlsUpdatedState(.pause)
-                }
+            switch state.timerControlsState.timerState {
+            case .running:
+                return environment.notificationClient.scheduleLocalNotification(.timerPaused, .immediately)
+                    .map { _ in RunningTimerAction.timerControlsUpdatedState(.pause) }
+            case .finished:
+                return Effect(value: RunningTimerAction.headerAction(.closeButtonTapped))
+            default:
+                return .none
+            }
 
         case .timerControlsUpdatedState(let controlsAction):
             switch controlsAction {
