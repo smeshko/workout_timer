@@ -42,6 +42,7 @@ struct RunningTimerView_Previews: PreviewProvider {
             initialState: RunningTimerState(
                 workout: mockQuickWorkout1,
                 currentSection: TimerSection(id: UUID(), duration: 45, type: .work, name: "Jump rope"),
+                precountdownState: nil,
                 timerControlsState: TimerControlsState(timerState: .running)
             ),
             reducer: runningTimerReducer,
@@ -49,7 +50,8 @@ struct RunningTimerView_Previews: PreviewProvider {
         )
         let preCountdownStore = Store<RunningTimerState, RunningTimerAction>(
             initialState: RunningTimerState(
-                workout: mockQuickWorkout1
+                workout: mockQuickWorkout1,
+                precountdownState: PreCountdownState(workoutColor: mockQuickWorkout1.color)
             ),
             reducer: runningTimerReducer,
             environment: .preview
@@ -62,6 +64,9 @@ struct RunningTimerView_Previews: PreviewProvider {
             RunningTimerView(store: runningStore, origin: .zero)
                 .previewDevice(.iPhone11)
                 .preferredColorScheme(.dark)
+
+            RunningTimerView(store: runningStore, origin: .zero)
+                .previewLayout(.landscape(.iPhone11))
         }
     }
 }
@@ -69,6 +74,8 @@ struct RunningTimerView_Previews: PreviewProvider {
 private struct MainView: View {
     let store: Store<RunningTimerState, RunningTimerAction>
     @ObservedObject var viewStore: ViewStore<RunningTimerState, RunningTimerAction>
+
+    @Environment(\.verticalSizeClass) var verticalSizeClass: UserInterfaceSizeClass?
 
     private var isFinished: Bool {
         viewStore.timerControlsState.isFinished
@@ -80,38 +87,69 @@ private struct MainView: View {
     }
 
     var body: some View {
-        VStack(spacing: Spacing.xxl) {
-            HeaderView(store: store.scope(state: \.headerState, action: RunningTimerAction.headerAction))
-                .transition(.slide)
-                .animation(.default)
 
-            if !isFinished {
-                SegmentedProgressView(
-                    store: store.scope(state: \.segmentedProgressState, action: RunningTimerAction.segmentedProgressAction),
-                    color: viewStore.workout.color.color
+        if verticalSizeClass == .compact {
+            VStack(spacing: Spacing.xxl) {
+                if !isFinished {
+                    SegmentedProgressView(
+                        store: store.scope(state: \.segmentedProgressState, action: RunningTimerAction.segmentedProgressAction),
+                        color: viewStore.workout.color.color
+                    )
+                    .padding(.top, Spacing.xxl)
+                }
+
+                HStack {
+                    HeaderView(store: store.scope(state: \.headerState, action: RunningTimerAction.headerAction))
+
+                    Spacer()
+
+                    IfLetStore(store.scope(state: \.finishedWorkoutState, action: RunningTimerAction.finishedWorkoutAction),
+                               then: FinishedWorkoutView.init,
+                               else: TimerView(store: store)
+                    )
+
+                    Spacer()
+
+                    if !isFinished {
+                        QuickTimerControlsView(store: store.scope(state: \.timerControlsState,
+                                                                  action: RunningTimerAction.timerControlsUpdatedState), tint: viewStore.workout.color.color)
+                    }
+
+                }
+
+            }
+        } else {
+            VStack(spacing: Spacing.xxl) {
+                HeaderView(store: store.scope(state: \.headerState, action: RunningTimerAction.headerAction))
+
+                if !isFinished {
+                    SegmentedProgressView(
+                        store: store.scope(state: \.segmentedProgressState, action: RunningTimerAction.segmentedProgressAction),
+                        color: viewStore.workout.color.color
+                    )
+                    .padding(.top, Spacing.xxl)
+                }
+
+                Spacer()
+
+                IfLetStore(store.scope(state: \.finishedWorkoutState, action: RunningTimerAction.finishedWorkoutAction),
+                           then: FinishedWorkoutView.init,
+                           else: TimerView(store: store)
                 )
-                .padding(.top, Spacing.xxl)
+
+                Spacer()
+
+                if !isFinished {
+                    QuickTimerControlsView(store: store.scope(state: \.timerControlsState,
+                                                              action: RunningTimerAction.timerControlsUpdatedState), tint: viewStore.workout.color.color)
+                }
             }
-
-            Spacer()
-
-            IfLetStore(store.scope(state: \.finishedWorkoutState, action: RunningTimerAction.finishedWorkoutAction),
-                       then: FinishedWorkoutView.init,
-                       else: TimerView(store: store)
-            )
-
-            Spacer()
-
-            if !isFinished {
-                QuickTimerControlsView(store: store.scope(state: \.timerControlsState,
-                                                          action: RunningTimerAction.timerControlsUpdatedState), tint: viewStore.workout.color.color)
+            .onChange(of: viewStore.currentSection) { value in
+                guard let section = value else { return }
+                viewStore.send(.segmentedProgressAction(.onTimerSectionFinished(section)))
             }
+            .onTapGesture(perform: toggleState)
         }
-        .onChange(of: viewStore.currentSection) { value in
-            guard let section = value else { return }
-            viewStore.send(.segmentedProgressAction(.onTimerSectionFinished(section)))
-        }
-        .onTapGesture(perform: toggleState)
     }
 
     private func toggleState() {

@@ -4,7 +4,8 @@ import ComposableArchitecture
 
 struct HeaderView: View {
     private let store: Store<HeaderState, HeaderAction>
-    @ObservedObject var viewStore: ViewStore<HeaderState, HeaderAction>
+    @ObservedObject private var viewStore: ViewStore<HeaderState, HeaderAction>
+    @Environment(\.verticalSizeClass) private var verticalSizeClass
 
     init(store: Store<HeaderState, HeaderAction>) {
         self.store = store
@@ -12,7 +13,7 @@ struct HeaderView: View {
     }
 
     var body: some View {
-        HStack(spacing: Spacing.l) {
+        VerticalSizeAdaptiveView(spacing: Spacing.l) {
             Button(action: {
                 viewStore.send(.closeButtonTapped)
             }, label: {
@@ -31,7 +32,7 @@ struct HeaderView: View {
             if viewStore.isFinished {
                 Spacer()
             } else {
-                HStack {
+                VerticalSizeAdaptiveView {
                     Text(viewStore.workoutName)
                         .font(.h3)
                         .foregroundColor(.appText)
@@ -42,7 +43,7 @@ struct HeaderView: View {
                         .foregroundColor(.appText)
                         .font(.h1Mono)
                 }
-                .transition(.move(edge: .trailing))
+                .transition(.move(edge: verticalSizeClass == .compact ? .leading : .trailing))
                 .animation(.easeInOut(duration: 0.55))
             }
         }
@@ -53,7 +54,7 @@ struct HeaderView_Previews: PreviewProvider {
     static var previews: some View {
         HeaderView(
             store: Store<HeaderState, HeaderAction>(
-                initialState: HeaderState(),
+                initialState: HeaderState(workoutName: "Some workout"),
                 reducer: headerReducer,
                 environment: HeaderEnvironment()
             )

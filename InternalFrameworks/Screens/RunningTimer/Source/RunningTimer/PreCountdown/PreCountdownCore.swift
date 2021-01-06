@@ -13,7 +13,7 @@ public struct PreCountdownState: Equatable {
     var timeLeft: TimeInterval
     var workoutColor: WorkoutColor
 
-    public init(timeLeft: TimeInterval = 3, workoutColor: WorkoutColor) {
+    public init(timeLeft: TimeInterval = 3, workoutColor: WorkoutColor = .empty) {
         self.timeLeft = timeLeft
         self.workoutColor = workoutColor
     }

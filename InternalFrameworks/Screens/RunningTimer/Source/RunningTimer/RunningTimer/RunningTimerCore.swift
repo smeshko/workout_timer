@@ -38,11 +38,13 @@ public struct RunningTimerState: Equatable {
 
     public init(workout: QuickWorkout,
                 currentSection: TimerSection? = nil,
+                precountdownState: PreCountdownState?,
                 timerControlsState: TimerControlsState = TimerControlsState()) {
         self.workout = workout
         self.timerControlsState = timerControlsState
         self.headerState = HeaderState(timeLeft: 0, workoutName: workout.name)
-        self.precountdownState = PreCountdownState(workoutColor: workout.color)
+//        self.precountdownState = PreCountdownState(workoutColor: workout.color)
+        self.precountdownState = precountdownState
         self.timerSections = workout.segments.map { TimerSection.create(from: $0) }.flatMap { $0 }.dropLast()
         self.currentSection = currentSection ?? timerSections.first
     }
