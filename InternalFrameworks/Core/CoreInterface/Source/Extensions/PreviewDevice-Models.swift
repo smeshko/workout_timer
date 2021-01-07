@@ -6,6 +6,45 @@ public extension PreviewDevice {
     static let iPadPro = PreviewDevice(rawValue: "iPad Pro (12.9-inch) (3rd generation)")
 }
 
+private extension PreviewDevice {
+    var width: CGFloat {
+        switch self.rawValue {
+        case "iPhone 8": return 334
+        case "iPhone 11": return 828
+        case "iPad Pro (12.9-inch) (3rd generation)": return 2048
+        default: return 0
+        }
+    }
+
+    var height: CGFloat {
+        switch self.rawValue {
+        case "iPhone 8": return 750
+        case "iPhone 11": return 1792
+        case "iPad Pro (12.9-inch) (3rd generation)": return 2732
+        default: return 0
+        }
+    }
+
+    var scale: CGFloat {
+        switch self.rawValue {
+        case "iPhone 8": return 1
+        case "iPhone 11": return 2
+        case "iPad Pro (12.9-inch) (3rd generation)": return 2
+        default: return 0
+        }
+    }
+}
+
+public extension PreviewLayout {
+    static var landscape: PreviewLayout {
+        .fixed(width: 2436 / 3.0, height: 1125 / 3.0)
+    }
+
+    static func landscape(_ device: PreviewDevice) -> PreviewLayout {
+        .fixed(width: device.height / device.scale, height: device.width / device.scale)
+    }
+}
+
 /// Overrides the device for a preview.
 ///
 /// If `nil` (default), Xcode will automatically pick an appropriate device

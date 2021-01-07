@@ -11,7 +11,8 @@ struct MainApp: App {
     @Environment(\.scenePhase) var scenePhase
 
     let store: Store<AppState, AppAction>
-    let viewStore: ViewStore<AppState, AppAction>
+    @ObservedObject var viewStore: ViewStore<AppState, AppAction>
+    @State var isPresentingOnboarding: Bool = false
 
     init() {
         store = Store<AppState, AppAction>(
@@ -24,8 +25,12 @@ struct MainApp: App {
 
     var body: some Scene {
         WindowGroup {
-            QuickWorkoutsListView(store: store.scope(state: \.workoutsListState, action: AppAction.workoutsListAction))
-                .onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
+            if isPresentingOnboarding {
+                OnboardingView(store: store.scope(state: \.onboardingState, action: AppAction.onboardingAction))
+            } else {
+                QuickWorkoutsListView(store: store.scope(state: \.workoutsListState, action: AppAction.workoutsListAction))
+                    .onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
+            }
         }
         .onChange(of: scenePhase) { newScenePhase in
             switch newScenePhase {
@@ -37,6 +42,11 @@ struct MainApp: App {
                 viewStore.send(.appDidGoToBackground)
             @unknown default:
                 break
+            }
+        }
+        .onChange(of: viewStore.shouldShowOnboarding) { value in
+            withAnimation {
+                isPresentingOnboarding = value
             }
         }
     }

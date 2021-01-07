@@ -52,6 +52,7 @@ struct TimerView_Previews: PreviewProvider {
             store: Store<RunningTimerState, RunningTimerAction>(
                 initialState: RunningTimerState(
                     workout: mockQuickWorkout1,
+                    precountdownState: nil,
                     timerControlsState: TimerControlsState(timerState: .paused)
                 ),
                 reducer: runningTimerReducer,

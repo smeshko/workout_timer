@@ -84,7 +84,7 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
 
         case .workoutCardAction(let id, action: .tapStart):
             guard let workout = state.workoutStates[id: id]?.workout else { break }
-            state.runningTimerState = RunningTimerState(workout: workout)
+            state.runningTimerState = RunningTimerState(workout: workout, precountdownState: PreCountdownState(workoutColor: workout.color))
             state.isPresentingTimer = true
 
         case .runningTimerAction(.headerAction(.timerClosed)):

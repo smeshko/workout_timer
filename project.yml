@@ -2,6 +2,11 @@ include: [project_templates.yml]
 
 name: QuickWorkouts
 
+fileGroups:
+  - project.yml
+  - project_templates.yml
+  - .github
+
 packages:
   ComposableArchitecture:
     url: https://github.com/pointfreeco/swift-composable-architecture

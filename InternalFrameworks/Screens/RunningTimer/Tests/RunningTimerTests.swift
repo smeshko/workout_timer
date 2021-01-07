@@ -40,7 +40,7 @@ class RunningTimerTests: XCTestCase {
                 QuickWorkoutSegment(id: uuidGenerator(), name: "Segment", sets: 1, work: 4, pause: 1)
             ])
 
-        let state = RunningTimerState(workout: workout)
+        let state = RunningTimerState(workout: workout, precountdownState: PreCountdownState())
         let sections = state.timerSections
 
         let store = TestStore(
@@ -131,7 +131,7 @@ class RunningTimerTests: XCTestCase {
                 QuickWorkoutSegment(id: uuidGenerator(), name: "Segment", sets: 1, work: 2, pause: 1)
             ])
 
-        let state = RunningTimerState(workout: workout)
+        let state = RunningTimerState(workout: workout, precountdownState: PreCountdownState())
         let sections = state.timerSections
 
         let store = TestStore(
@@ -189,7 +189,8 @@ class RunningTimerTests: XCTestCase {
                 color: WorkoutColor(hue: 0, saturation: 0, brightness: 0),
                 segments: [
                     QuickWorkoutSegment(id: uuidGenerator(), name: "Segment", sets: 1, work: 2, pause: 1)
-                ])
+                ]),
+            precountdownState: PreCountdownState()
             )
         let sections = state.timerSections
         
@@ -237,7 +238,8 @@ class RunningTimerTests: XCTestCase {
                 color: WorkoutColor(hue: 0, saturation: 0, brightness: 0),
                 segments: [
                     QuickWorkoutSegment(id: uuidGenerator(), name: "Segment", sets: 1, work: 2, pause: 1)
-                ])
+                ]),
+            precountdownState: PreCountdownState()
             )
         let sections = state.timerSections
 

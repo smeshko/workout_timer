@@ -38,11 +38,13 @@ public struct RunningTimerState: Equatable {
 
     public init(workout: QuickWorkout,
                 currentSection: TimerSection? = nil,
+                precountdownState: PreCountdownState?,
                 timerControlsState: TimerControlsState = TimerControlsState()) {
         self.workout = workout
         self.timerControlsState = timerControlsState
         self.headerState = HeaderState(timeLeft: 0, workoutName: workout.name)
-        self.precountdownState = PreCountdownState(workoutColor: workout.color)
+//        self.precountdownState = PreCountdownState(workoutColor: workout.color)
+        self.precountdownState = precountdownState
         self.timerSections = workout.segments.map { TimerSection.create(from: $0) }.flatMap { $0 }.dropLast()
         self.currentSection = currentSection ?? timerSections.first
     }
@@ -92,10 +94,15 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
             return Effect(value: RunningTimerAction.timerControlsUpdatedState(.start))
 
         case .onBackground:
-            return environment.notificationClient.scheduleLocalNotification(.timerPaused, .immediately)
-                .map { _ in
-                    RunningTimerAction.timerControlsUpdatedState(.pause)
-                }
+            switch state.timerControlsState.timerState {
+            case .running:
+                return environment.notificationClient.scheduleLocalNotification(.timerPaused, .immediately)
+                    .map { _ in RunningTimerAction.timerControlsUpdatedState(.pause) }
+            case .finished:
+                return Effect(value: RunningTimerAction.headerAction(.closeButtonTapped))
+            default:
+                return .none
+            }
 
         case .timerControlsUpdatedState(let controlsAction):
             switch controlsAction {
