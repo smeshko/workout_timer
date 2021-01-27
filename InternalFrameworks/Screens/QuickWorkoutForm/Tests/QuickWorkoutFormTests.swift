@@ -8,8 +8,7 @@ import CorePersistence
 @testable import QuickWorkoutForm
 
 private let uuid = { UUID(uuidString: "c06e5e63-d74f-4291-8673-35ce994754dc")! }
-private let randomTintGenerator: ([TintColor]) -> TintColor? = { _ in TintColor.allTints.first }
-private let randomTint = randomTintGenerator([])!
+private let randomTint = TintColor.allTints.first!
 private let newWorkout = QuickWorkout(id: uuid(), name: "", color: .empty, segments: [])
 
 class QuickWorkoutFormTests: XCTestCase {
@@ -21,22 +20,17 @@ class QuickWorkoutFormTests: XCTestCase {
             reducer: createQuickWorkoutReducer,
             environment: .mock(
                 environment:
-                    CreateQuickWorkoutEnvironment(
-                        repository: .mock,
-                        randomElementGenerator: randomTintGenerator
-                    ),
+                    CreateQuickWorkoutEnvironment(repository: .mock),
                 mainQueue: { AnyScheduler(DispatchQueue.testScheduler) },
                 uuid: uuid
             )
         )
 
         store.assert(
-            .send(.onAppear) {
+            .send(.updateName("My workout")) {
                 $0.segmentStates = []
                 $0.selectedColor = randomTint.color
                 $0.selectedTint = randomTint
-            },
-            .send(.updateName("My workout")) {
                 $0.name = "My workout"
             },
             .send(.newSegmentButtonTapped) {

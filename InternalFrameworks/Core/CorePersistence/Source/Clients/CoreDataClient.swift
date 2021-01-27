@@ -75,7 +75,7 @@ struct CoreDataClient {
     func fetchAll<T: DomainEntity>(_ type: T.Type) -> Future<[T], CoreDataError> {
         Future { promise in
             let request = T.EntityObject.fetchRequest()
-            let dateSort = NSSortDescriptor(key: "createdAt", ascending:false)
+            let dateSort = NSSortDescriptor(key: "createdAt", ascending: false)
 
             request.sortDescriptors = [dateSort]
 

@@ -1,7 +1,6 @@
 import Foundation
 
 extension UUID {
-    /// A deterministic, auto-incrementing "UUID" generator for testing.
     static var incrementing: () -> UUID {
         var uuid = 0
         return {

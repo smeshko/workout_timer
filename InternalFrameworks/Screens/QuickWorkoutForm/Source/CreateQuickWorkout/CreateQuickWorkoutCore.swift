@@ -16,7 +16,6 @@ public enum CreateQuickWorkoutAction: Equatable {
     case newSegmentButtonTapped
     case cancel
     case save
-    case onAppear
     case didSaveSuccessfully(Result<QuickWorkout, PersistenceError>)
     case selectColor(Color)
 }
@@ -44,17 +43,25 @@ public struct CreateQuickWorkoutState: Equatable {
         self.name = workout?.name ?? ""
         self.workout = workout
         self.isEditing = workout != nil
+
+        segmentStates = IdentifiedArray(workout?.segments.map(SegmentState.init(segment:)) ?? [])
+
+        if isEditing {
+            selectedColor = workout?.color.color ?? .appSuccess
+            selectedTint = TintColor.allTints[selectedColor]
+        } else {
+            let firstTint = TintColor.allTints.first
+            selectedColor = firstTint?.color ?? .appSuccess
+            selectedTint = firstTint
+        }
     }
 }
 
 public struct CreateQuickWorkoutEnvironment<T> {
     let repository: QuickWorkoutsRepository
-    let randomElementGenerator: ([T]) -> T?
-
-    public init(repository: QuickWorkoutsRepository,
-                randomElementGenerator: @escaping (_ elements: [T]) -> T? = { $0.randomElement() }) {
+    
+    public init(repository: QuickWorkoutsRepository) {
         self.repository = repository
-        self.randomElementGenerator = randomElementGenerator
     }
 }
 
@@ -77,18 +84,6 @@ public let createQuickWorkoutReducer =
         ),
         Reducer { state, action, environment in
             switch action {
-
-            case .onAppear:
-                state.segmentStates = IdentifiedArray(state.workout?.segments.map(SegmentState.init(segment:)) ?? [])
-
-                if state.isEditing {
-                    state.selectedColor = state.workout?.color.color ?? .appSuccess
-                    state.selectedTint = TintColor.allTints[state.selectedColor]
-                } else {
-                    let randomTint = environment.randomElementGenerator(TintColor.allTints)
-                    state.selectedColor = randomTint?.color ?? .appSuccess
-                    state.selectedTint = randomTint
-                }
 
             case .updateName(let name):
                 state.name = name

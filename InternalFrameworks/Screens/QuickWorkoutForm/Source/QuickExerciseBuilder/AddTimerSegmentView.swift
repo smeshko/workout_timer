@@ -4,31 +4,23 @@ import ComposableArchitecture
 import CoreInterface
 
 struct AddTimerSegmentView: View {
-    @Environment(\.colorScheme) var colorScheme
+    private let store: Store<AddTimerSegmentState, AddTimerSegmentAction>
+    private let tint: Color
 
-    let store: Store<AddTimerSegmentState, AddTimerSegmentAction>
-    let tint: Color
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
+    init(store: Store<AddTimerSegmentState, AddTimerSegmentAction>, tint: Color) {
+        self.store = store
+        self.tint = tint
+    }
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            ZStack {
-                Color.black
-                    .opacity(0.4)
-                    .edgesIgnoringSafeArea(.all)
-                    .onTapGesture {
-                        viewStore.send(.cancel)
-                    }
-
+            NavigationView {
                 VStack(spacing: Spacing.xxl) {
-                    VStack(alignment: .leading, spacing: Spacing.none) {
-                        TextField("interval name", text: viewStore.binding(get: \.name, send: AddTimerSegmentAction.updateName))
-                            .padding(.horizontal, Spacing.xxl)
-                            .padding(.top, Spacing.xxl)
-                        Rectangle()
-                            .foregroundColor(tint)
-                            .frame(height: 2)
-                            .padding(.horizontal, Spacing.xl)
-                    }
+                    TextField("interval name", text: viewStore.binding(get: \.name, send: AddTimerSegmentAction.updateName))
+                        .padding(Spacing.s)
+                        .border(stroke: tint)
 
                     HStack(alignment: .bottom, spacing: Spacing.l) {
                         ValuePicker(store: store.scope(state: \.setsState, action: AddTimerSegmentAction.changeSetsCount),
@@ -43,37 +35,23 @@ struct AddTimerSegmentView: View {
                                     valueName: "rest in between", valuePostfix: "s", tint: .red
                         )
                     }
-
-                    HStack(spacing: Spacing.none) {
-                        Button(action: {
-                            withAnimation {
-                                viewStore.send(viewStore.isEditing ? .remove : .cancel)
-                            }
-                        }, label: {
-                            Text(viewStore.isEditing ? "Delete" : "Cancel")
-                                .font(.bodyLarge)
-                                .fullWidth()
-                                .frame(height: 44)
-                                .foregroundColor(.appWhite)
+                    Spacer()
+                }
+                .toolbar {
+                    ToolbarItem(placement: .confirmationAction) {
+                        Button(viewStore.isEditing ? "Done" : "Add", action: {
+                            presentationMode.wrappedValue.dismiss()
+                            viewStore.send(viewStore.isEditing ? .done : .add)
                         })
-                        .background(Color.red)
-
-                        Button(action: {
-                            withAnimation {
-                                viewStore.send(viewStore.isEditing ? .done : .add)
-                            }
-                        }, label: {
-                            Text(viewStore.isEditing ? "Done" : "Add")
-                                .font(.bodyLarge)
-                                .fullWidth()
-                                .frame(height: 44)
-                                .foregroundColor(.appWhite)
+                    }
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button(viewStore.isEditing ? "Delete" : "Cancel", action: {
+                            presentationMode.wrappedValue.dismiss()
+                            viewStore.send(viewStore.isEditing ? .remove : .cancel)
                         })
-                        .background(tint)
                     }
                 }
-                .background(Color.appCardBackground)
-                .cornerRadius(CornerRadius.m)
+                .navigationTitle(viewStore.name.isEmpty ? "Unnamed Interval" : viewStore.name)
                 .padding(Spacing.xxl)
             }
         }
@@ -104,14 +82,5 @@ struct CircuitPickerView_Previews: PreviewProvider {
                 .preferredColorScheme(.dark)
                 .previewLayout(.sizeThatFits)
         }
-    }
-}
-
-private extension WorkoutColor {
-    func monochromatic(for scheme: ColorScheme) -> WorkoutColor {
-        let brightnessModifier = scheme == .dark ? 0.3 : -0.3
-        return WorkoutColor(hue: hue,
-                            saturation: saturation + 0.2,
-                            brightness: brightness + brightnessModifier)
     }
 }

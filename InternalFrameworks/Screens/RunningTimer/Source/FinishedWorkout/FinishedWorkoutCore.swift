@@ -47,8 +47,6 @@ public let finishedWorkoutReducer = Reducer<FinishedWorkoutState, FinishedWorkou
 
     case .didSaveFinishedWorkout(.success(let statistic)):
         state.statistic = statistic
-        guard environment.settings.soundEnabled else { return .none }
-        return environment.soundClient.play(.workout).fireAndForget()
 
     case .didSaveFinishedWorkout(.failure):
         break

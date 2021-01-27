@@ -12,7 +12,12 @@ extension StatisticDao {
     @NSManaged var id: UUID?
     @NSManaged var workoutName: String?
     @NSManaged var workoutDuration: Double
+    @NSManaged public var createdAt: Date?
 
+    override func awakeFromInsert() {
+        super.awakeFromInsert()
+        createdAt = Date()
+    }
 }
 
 extension StatisticDao: Identifiable {}

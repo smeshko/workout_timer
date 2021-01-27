@@ -9,9 +9,7 @@ public struct CreateQuickWorkoutView: View {
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
-    private var isPresentingSegmentPopup: Bool {
-        viewStore.addSegmentState != nil
-    }
+    @State private var isPresentingIntervalView = false
 
     public init(store: Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>) {
         self.store = store
@@ -19,36 +17,31 @@ public struct CreateQuickWorkoutView: View {
     }
 
     public var body: some View {
-        ZStack {
-            NavigationView {
-                VStack {
-                    WorkoutForm(store: store)
+        NavigationView {
+            VStack {
+                WorkoutForm(store: store, isPresentingIntervalView: $isPresentingIntervalView)
+            }
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Save", action: {
+                        presentationMode.wrappedValue.dismiss()
+                        viewStore.send(.save)
+                    })
+                    .disabled(viewStore.isFormIncomplete)
                 }
-                .toolbar {
-                    ToolbarItem(placement: .confirmationAction) {
-                        Button("Save", action: {
-                            presentationMode.wrappedValue.dismiss()
-                            viewStore.send(.save)
-                        })
-                        .disabled(viewStore.isFormIncomplete)
-                    }
-                    ToolbarItem(placement: .cancellationAction) {
-                        Button("Cancel", action: {
-                            presentationMode.wrappedValue.dismiss()
-                            viewStore.send(.cancel)
-                        })
-                    }
-                }
-                .navigationTitle(viewStore.isEditing ? "Edit Workout" : "Create workout")
-                .onAppear {
-                    viewStore.send(.onAppear)
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel", action: {
+                        presentationMode.wrappedValue.dismiss()
+                        viewStore.send(.cancel)
+                    })
                 }
             }
-            .blur(radius: isPresentingSegmentPopup ? 2 : 0)
-
-            IfLetStore(store.scope(state: \.addSegmentState, action: CreateQuickWorkoutAction.addSegmentAction),
-                       then: { AddTimerSegmentView(store: $0, tint: viewStore.selectedColor) }
-            )
+            .navigationTitle(viewStore.isEditing ? "Edit Workout" : "Create workout")
+            .sheet(isPresented: $isPresentingIntervalView) {
+                IfLetStore(store.scope(state: \.addSegmentState, action: CreateQuickWorkoutAction.addSegmentAction),
+                           then: { AddTimerSegmentView(store: $0, tint: viewStore.selectedColor) }
+                )
+            }
         }
     }
 }
@@ -84,8 +77,11 @@ private struct WorkoutForm: View {
     private let store: Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>
     @ObservedObject private var viewStore: ViewStore<CreateQuickWorkoutState, CreateQuickWorkoutAction>
 
-    init(store: Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>) {
+    @Binding var isPresentingIntervalView: Bool
+
+    init(store: Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>, isPresentingIntervalView: Binding<Bool>) {
         self.store = store
+        self._isPresentingIntervalView = isPresentingIntervalView
         self.viewStore = ViewStore(store)
     }
 
@@ -124,6 +120,7 @@ private struct WorkoutForm: View {
                         .onTapGesture {
                             withAnimation {
                                 viewStore.send(.editSegment(id: ViewStore(store).state.id))
+                                isPresentingIntervalView = true
                             }
                         }
                 }
@@ -131,6 +128,7 @@ private struct WorkoutForm: View {
                 Button(action: {
                     withAnimation {
                         viewStore.send(.newSegmentButtonTapped)
+                        isPresentingIntervalView = true
                     }
                 }) {
                     Label("Add interval", systemImage: "plus")
