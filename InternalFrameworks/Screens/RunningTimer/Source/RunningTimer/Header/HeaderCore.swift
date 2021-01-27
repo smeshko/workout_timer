@@ -36,10 +36,10 @@ public let headerReducer = Reducer<HeaderState, HeaderAction, HeaderEnvironment>
             return Effect(value: HeaderAction.timerClosed)
         } else {
             state.alert = .init(
-                title: "Stop workout?",
-                message: "Are you sure you want to stop this workout?",
+                title: TextState("Stop workout?"),
+                message: TextState("Are you sure you want to stop this workout?"),
                 primaryButton: .cancel(send: .alertCancelTapped),
-                secondaryButton: .default("Yes", send: .alertConfirmTapped)
+                secondaryButton: .default(TextState("Yes"), send: .alertConfirmTapped)
             )
         }
 

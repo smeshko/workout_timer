@@ -25,15 +25,15 @@ struct SegmentView: View {
                         .font(.h3)
                         .foregroundColor(.blue)
                         +
-                        Text("s work and ")
+                    Text("s work and")
                         .font(.h4)
                         .foregroundColor(.appText)
-                        +
-                        Text("\(viewStore.rest)")
+
+                    Text("\(viewStore.rest)")
                         .font(.h3)
                         .foregroundColor(.red)
                         +
-                        Text("s rest")
+                    Text("s rest")
                         .font(.h4)
                         .foregroundColor(.appText)
                 }
