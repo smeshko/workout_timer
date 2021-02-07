@@ -1,4 +1,5 @@
 import CorePersistence
+import WorkoutSettings
 import CoreLogic
 import ComposableArchitecture
 import DomainEntities
@@ -10,6 +11,7 @@ public enum QuickWorkoutsListAction: Equatable {
     case workoutCardAction(id: UUID, action: QuickWorkoutCardAction)
     case createWorkoutAction(CreateQuickWorkoutAction)
     case runningTimerAction(RunningTimerAction)
+    case settingsAction(SettingsAction)
 
     case deleteWorkouts(IndexSet)
     case deleteWorkout(QuickWorkout)
@@ -18,6 +20,7 @@ public enum QuickWorkoutsListAction: Equatable {
     case editWorkout(QuickWorkout)
 
     case timerForm(PresenterAction)
+    case settings(PresenterAction)
 
     case onAppear
 }
@@ -28,11 +31,13 @@ public struct QuickWorkoutsListState: Equatable {
 
     var workoutStates: IdentifiedArrayOf<QuickWorkoutCardState> = []
     var createWorkoutState = CreateQuickWorkoutState()
+    var settingsState = SettingsState()
     var runningTimerState: RunningTimerState?
     var loadingState: LoadingState = .finished
     var isPresentingTimer = false
 
     var isPresentingTimerForm = false
+    var isPresentingSettings = false
 
     public init(workouts: [QuickWorkout] = []) {
         self.workouts = workouts
@@ -127,7 +132,10 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
         case .timerForm(.dismiss):
             state.createWorkoutState = CreateQuickWorkoutState()
 
-        case .createWorkoutAction, .runningTimerAction, .timerForm(.present):
+        case .settingsAction(.close):
+            return Effect(value: QuickWorkoutsListAction.settings(.dismiss))
+
+        case .createWorkoutAction, .runningTimerAction, .timerForm(.present), .settings, .settingsAction:
             break
         }
         return .none
@@ -135,6 +143,15 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
     .presenter(
         keyPath: \.isPresentingTimerForm,
         action: /QuickWorkoutsListAction.timerForm
+    )
+    .presenter(
+        keyPath: \.isPresentingSettings,
+        action: /QuickWorkoutsListAction.settings
+    ),
+    settingsReducer.pullback(
+        state: \.settingsState,
+        action: /QuickWorkoutsListAction.settingsAction,
+        environment: { _ in SettingsEnvironment(client: .live)}
     ),
     createQuickWorkoutReducer.pullback(
         state: \.createWorkoutState,

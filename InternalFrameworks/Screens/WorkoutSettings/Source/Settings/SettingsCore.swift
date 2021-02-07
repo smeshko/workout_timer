@@ -13,6 +13,7 @@ public enum SettingsAction: Equatable {
     case featureRequest(PresenterAction)
 
     case onboardingAction(OnboardingAction)
+    case close
 }
 
 public struct SettingsState: Equatable {
@@ -73,7 +74,7 @@ public let settingsReducer = Reducer<SettingsState, SettingsAction, SettingsEnvi
         case .onboardingAction(.start):
             state.isPresentingOnboarding = false
 
-        case .onboarding, .licenses, .bugReport(.dismiss), .featureRequest(.dismiss):
+        case .onboarding, .licenses, .bugReport(.dismiss), .featureRequest(.dismiss), .close:
             break
         }
 

@@ -5,8 +5,6 @@ import StoreKit
 
 public struct SettingsView: View {
 
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
     private let store: Store<SettingsState, SettingsAction>
     @ObservedObject private var viewStore: ViewStore<SettingsState, SettingsAction>
 
@@ -61,7 +59,7 @@ public struct SettingsView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        presentationMode.wrappedValue.dismiss()
+                        viewStore.send(.close)
                     }, label: {
                         Image(systemName: "xmark")
                     })

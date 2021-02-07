@@ -11,11 +11,11 @@ public extension Reducer {
         action presenterAction: CasePath<Action, PresenterAction>
     ) -> Self {
         Self { state, action, env in
-            guard let presi = presenterAction.extract(from: action) else {
+            guard let extractedAction = presenterAction.extract(from: action) else {
                 return run(&state, action, env)
             }
 
-            switch presi {
+            switch extractedAction {
             case .present:
                 state[keyPath: keyPath] = true
             case .dismiss:

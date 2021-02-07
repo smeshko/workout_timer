@@ -9,8 +9,6 @@ public struct QuickWorkoutsListView: View {
     private let store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>
     @ObservedObject private var viewStore: ViewStore<QuickWorkoutsListState, QuickWorkoutsListAction>
 
-//    @State private var isWorkoutFormPresented: Bool = false
-    @State private var isSettingsPresented = false
     @State private var origin: CGPoint = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
 
     public init(store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>) {
@@ -33,7 +31,7 @@ public struct QuickWorkoutsListView: View {
                     WorkoutsList(store: store, origin: $origin)
                         .toolbar {
                             ToolbarItem(placement: ToolbarItemPlacement.navigationBarLeading) {
-                                SettingsButton(isPresented: $isSettingsPresented)
+                                SettingsButton(store: store)
                             }
                             ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
                                 FormButton(store: store)
@@ -75,22 +73,26 @@ struct QuickWorkoutsListView_Previews: PreviewProvider {
 }
 
 private struct SettingsButton: View {
-    @Binding var isPresented: Bool
+    let store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>
+    @ObservedObject private var viewStore: ViewStore<QuickWorkoutsListState, QuickWorkoutsListAction>
+
+    init(store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>) {
+        self.store = store
+        self.viewStore = ViewStore(store)
+    }
 
     var body: some View {
         Button(action: {
-            isPresented = true
+            viewStore.send(.settings(.present))
         }, label: {
             Image(systemName: "gear")
         })
-        .sheet(isPresented: $isPresented) {
-            SettingsView(
-                store: Store<SettingsState, SettingsAction>(
-                    initialState: SettingsState(),
-                    reducer: settingsReducer,
-                    environment: SettingsEnvironment(client: .live)
-                )
-            )
+        .sheet(isPresented: viewStore.binding(get: \.isPresentingSettings),
+               onDismiss: {
+                viewStore.send(.settings(.dismiss))
+
+               }) {
+            SettingsView(store: store.scope(state: \.settingsState, action: QuickWorkoutsListAction.settingsAction))
         }
     }
 }
