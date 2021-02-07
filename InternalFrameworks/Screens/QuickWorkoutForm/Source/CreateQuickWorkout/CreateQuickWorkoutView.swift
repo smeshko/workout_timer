@@ -131,7 +131,7 @@ private struct WorkoutForm: View {
                         isPresentingIntervalView = true
                     }
                 }) {
-                    Label("Add interval", systemImage: "plus")
+                    Label("Add new round", systemImage: "plus")
                         .font(.h2)
                         .foregroundColor(.appText)
                 }

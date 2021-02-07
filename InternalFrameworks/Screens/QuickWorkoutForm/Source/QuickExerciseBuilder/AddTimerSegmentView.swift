@@ -18,7 +18,7 @@ struct AddTimerSegmentView: View {
         WithViewStore(store) { viewStore in
             NavigationView {
                 VStack(spacing: Spacing.xxl) {
-                    TextField("interval name", text: viewStore.binding(get: \.name, send: AddTimerSegmentAction.updateName))
+                    TextField("round name", text: viewStore.binding(get: \.name, send: AddTimerSegmentAction.updateName))
                         .padding(Spacing.s)
                         .border(stroke: tint)
 
@@ -44,14 +44,27 @@ struct AddTimerSegmentView: View {
                             viewStore.send(viewStore.isEditing ? .done : .add)
                         })
                     }
-                    ToolbarItem(placement: .cancellationAction) {
-                        Button(viewStore.isEditing ? "Delete" : "Cancel", action: {
-                            presentationMode.wrappedValue.dismiss()
-                            viewStore.send(viewStore.isEditing ? .remove : .cancel)
-                        })
-                    }
+
+                    ToolbarItem(placement: viewStore.isEditing ? .navigationBarLeading : .cancellationAction) {
+                            if viewStore.isEditing {
+                                Image(systemName: "trash")
+                                    .foregroundColor(.red)
+                                    .onTapGesture {
+                                        presentationMode.wrappedValue.dismiss()
+                                        viewStore.send(.remove)
+                                    }
+                            } else {
+                                Button(action: {
+                                    presentationMode.wrappedValue.dismiss()
+                                    viewStore.send(.cancel)
+                                }, label: {
+                                    Text("Cancel")
+                                })
+
+                            }
+                        }
                 }
-                .navigationTitle(viewStore.name.isEmpty ? "Unnamed Interval" : viewStore.name)
+                .navigationTitle(viewStore.name.isEmpty ? "Unnamed round" : viewStore.name)
                 .padding(Spacing.xxl)
             }
         }
@@ -61,13 +74,13 @@ struct AddTimerSegmentView: View {
 struct CircuitPickerView_Previews: PreviewProvider {
     static var previews: some View {
         let editingStore = Store<AddTimerSegmentState, AddTimerSegmentAction>(
-            initialState: AddTimerSegmentState(id: UUID(), name: "Interval", sets: 5, workoutTime: 30, breakTime: 30, isEditing: true),
+            initialState: AddTimerSegmentState(id: UUID(), name: "Round 1", sets: 5, workoutTime: 30, breakTime: 30, isEditing: true),
             reducer: addTimerSegmentReducer,
             environment: AddTimerSegmentEnvironment(uuid: UUID.init)
         )
 
         let creatingStore = Store<AddTimerSegmentState, AddTimerSegmentAction>(
-            initialState: AddTimerSegmentState(id: UUID(), name: "Interval", sets: 5, workoutTime: 30, breakTime: 30, isEditing: false),
+            initialState: AddTimerSegmentState(id: UUID(), name: "Round 1", sets: 5, workoutTime: 30, breakTime: 30, isEditing: false),
             reducer: addTimerSegmentReducer,
             environment: AddTimerSegmentEnvironment(uuid: UUID.init)
         )
