@@ -160,10 +160,10 @@ class RunningTimerTests: XCTestCase {
             },
             .send(.headerAction(.closeButtonTapped)) {
                 $0.headerState.alert = .init(
-                    title: "Stop workout?",
-                    message: "Are you sure you want to stop this workout?",
+                    title: TextState("Stop workout?"),
+                    message: TextState("Are you sure you want to stop this workout?"),
                     primaryButton: .cancel(send: .alertCancelTapped),
-                    secondaryButton: .default("Yes", send: .alertConfirmTapped)
+                    secondaryButton: .default(TextState("Yes"), send: .alertConfirmTapped)
                 )
             },
             .receive(.timerControlsUpdatedState(.pause)) {

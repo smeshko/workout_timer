@@ -1,16 +1,45 @@
+import ComposableArchitecture
 import XCTest
+import DomainEntities
+@testable import QuickWorkoutsList
+
+private let uuid = { UUID(uuidString: "c06e5e63-d74f-4291-8673-35ce994754dc")! }
+private let newWorkout = QuickWorkout(id: uuid(), name: "", color: .empty, segments: [])
 
 class QuickWorkoutsListTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+    func testNavigation() {
+        let store = TestStore(
+            initialState: QuickWorkoutsListState(workouts: [newWorkout]),
+            reducer: quickWorkoutsListReducer,
+            environment: .mock(
+                environment: QuickWorkoutsListEnvironment(
+                    repository: .mock,
+                    notificationClient: .mock
+                ),
+                mainQueue: { AnyScheduler(DispatchQueue.testScheduler) },
+                uuid: uuid
+            )
+        )
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+        store.assert(
+            .send(.settings(.present)) {
+                $0.isPresentingSettings = true
+            },
+            .send(.settingsAction(.close)),
+            .receive(.settings(.dismiss)) {
+                $0.isPresentingSettings = false
+            }
+        )
 
-    func testExample() throws {
-        XCTAssertTrue(true)
+        store.assert(
+            .send(.timerForm(.present)) {
+                $0.isPresentingTimerForm = true
+            },
+            .send(.createWorkoutAction(.cancel)),
+            .receive(.timerForm(.dismiss)) {
+                $0.isPresentingTimerForm = false
+            }
+        )
     }
 }
