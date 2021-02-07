@@ -5,18 +5,17 @@ import QuickWorkoutForm
 
 struct NoWorkoutsView: View {
     private let store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>
+    @ObservedObject private var viewStore: ViewStore<QuickWorkoutsListState, QuickWorkoutsListAction>
 
-    @Binding private var isWorkoutFormPresented: Bool
-
-    init(store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>, isWorkoutFormPresented: Binding<Bool>) {
+    init(store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>) {
         self.store = store
-        self._isWorkoutFormPresented = isWorkoutFormPresented
+        self.viewStore = ViewStore(store)
     }
 
     var body: some View {
         VStack(spacing: Spacing.l) {
             Button(action: {
-                isWorkoutFormPresented = true
+                viewStore.send(.timerForm(.present))
             }, label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: CornerRadius.m)
@@ -32,7 +31,8 @@ struct NoWorkoutsView: View {
                 .font(.h2)
                 .foregroundColor(.appText)
         }
-        .sheet(isPresented: $isWorkoutFormPresented) {
+        .sheet(isPresented: viewStore.binding(get: \.isPresentingTimerForm),
+               onDismiss: { viewStore.send(.timerForm(.dismiss)) }) {
             CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState,
                                                       action: QuickWorkoutsListAction.createWorkoutAction))
         }
@@ -48,8 +48,7 @@ struct NoWorkoutsView_Previews: PreviewProvider {
                 initialState: QuickWorkoutsListState(workouts: []),
                 reducer: quickWorkoutsListReducer,
                 environment: .preview
-            ),
-            isWorkoutFormPresented: .constant(false)
+            )
         )
     }
 }

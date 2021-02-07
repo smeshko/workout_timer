@@ -7,7 +7,7 @@ public struct CreateQuickWorkoutView: View {
     private let store: Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>
     @ObservedObject private var viewStore: ViewStore<CreateQuickWorkoutState, CreateQuickWorkoutAction>
 
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+//    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     @State private var isPresentingIntervalView = false
 
@@ -24,14 +24,14 @@ public struct CreateQuickWorkoutView: View {
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save", action: {
-                        presentationMode.wrappedValue.dismiss()
+//                        presentationMode.wrappedValue.dismiss()
                         viewStore.send(.save)
                     })
                     .disabled(viewStore.isFormIncomplete)
                 }
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel", action: {
-                        presentationMode.wrappedValue.dismiss()
+//                        presentationMode.wrappedValue.dismiss()
                         viewStore.send(.cancel)
                     })
                 }

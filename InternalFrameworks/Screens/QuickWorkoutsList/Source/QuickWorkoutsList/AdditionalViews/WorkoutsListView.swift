@@ -5,23 +5,18 @@ import QuickWorkoutForm
 
 struct WorkoutsList: View {
     private let store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>
-
     @ObservedObject private var viewStore: ViewStore<QuickWorkoutsListState, QuickWorkoutsListAction>
 
-    @Binding private var isWorkoutFormPresented: Bool
     @Binding private var origin: CGPoint
-
     @State private var cellSize: CGSize = .zero
 
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
     init(store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>,
-         isWorkoutFormPresented: Binding<Bool>,
          origin: Binding<CGPoint>
     ) {
         self.store = store
         self.viewStore = ViewStore(store)
-        self._isWorkoutFormPresented = isWorkoutFormPresented
         self._origin = origin
     }
 
@@ -43,7 +38,7 @@ struct WorkoutsList: View {
 
                 let edit = UIAction(title: "Edit", image: UIImage(systemName: "pencil")) { _ in
                     viewStore.send(.editWorkout(ViewStore(cardViewStore).workout))
-                    isWorkoutFormPresented = true
+                    viewStore.send(.timerForm(.present))
                 }
 
                 let start = UIAction(title: "Start", image: UIImage(systemName: "play.fill")) { action in
@@ -56,7 +51,7 @@ struct WorkoutsList: View {
             }
             .onPreviewTap {
                 viewStore.send(.editWorkout(ViewStore(cardViewStore).workout))
-                isWorkoutFormPresented = true
+                viewStore.send(.timerForm(.present))
             }
             .frame(height: cellSize.height)
         }
@@ -66,7 +61,8 @@ struct WorkoutsList: View {
             }
         }
         .rowHeight(cellSize.height)
-        .sheet(isPresented: $isWorkoutFormPresented) {
+        .sheet(isPresented: viewStore.binding(get: \.isPresentingTimerForm),
+               onDismiss: { viewStore.send(.timerForm(.dismiss))}) {
             CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState,
                                                       action: QuickWorkoutsListAction.createWorkoutAction))
         }
@@ -88,7 +84,6 @@ struct WorkoutsListView_Previews: PreviewProvider {
                 reducer: quickWorkoutsListReducer,
                 environment: .preview
             ),
-            isWorkoutFormPresented: .constant(false),
             origin: .constant(.zero)
         )
     }

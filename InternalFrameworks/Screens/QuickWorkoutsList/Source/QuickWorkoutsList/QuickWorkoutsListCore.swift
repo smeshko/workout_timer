@@ -17,6 +17,8 @@ public enum QuickWorkoutsListAction: Equatable {
     case didFetchWorkouts(Result<[QuickWorkout], PersistenceError>)
     case editWorkout(QuickWorkout)
 
+    case timerForm(PresenterAction)
+
     case onAppear
 }
 
@@ -29,6 +31,8 @@ public struct QuickWorkoutsListState: Equatable {
     var runningTimerState: RunningTimerState?
     var loadingState: LoadingState = .finished
     var isPresentingTimer = false
+
+    var isPresentingTimerForm = false
 
     public init(workouts: [QuickWorkout] = []) {
         self.workouts = workouts
@@ -91,19 +95,12 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
             state.isPresentingTimer = false
             state.runningTimerState = nil
 
-        case .runningTimerAction:
-            break
-
         case .createWorkoutAction(.didSaveSuccessfully(.success(let workout))):
-            state.createWorkoutState = CreateQuickWorkoutState()
             state.loadingState = .loading
             return environment.fetchWorkouts()
 
-        case .createWorkoutAction(.cancel):
-            state.createWorkoutState = CreateQuickWorkoutState()
-
-        case .createWorkoutAction:
-            break
+        case .createWorkoutAction(.cancel), .createWorkoutAction(.save):
+            return Effect(value: QuickWorkoutsListAction.timerForm(.dismiss))
 
         case .deleteWorkout(let workout):
             return environment
@@ -126,9 +123,19 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
 
         case .editWorkout(let workout):
             state.createWorkoutState = CreateQuickWorkoutState(workout: workout)
+
+        case .timerForm(.dismiss):
+            state.createWorkoutState = CreateQuickWorkoutState()
+
+        case .createWorkoutAction, .runningTimerAction, .timerForm(.present):
+            break
         }
         return .none
-    },
+    }
+    .presenter(
+        keyPath: \.isPresentingTimerForm,
+        action: /QuickWorkoutsListAction.timerForm
+    ),
     createQuickWorkoutReducer.pullback(
         state: \.createWorkoutState,
         action: /QuickWorkoutsListAction.createWorkoutAction,

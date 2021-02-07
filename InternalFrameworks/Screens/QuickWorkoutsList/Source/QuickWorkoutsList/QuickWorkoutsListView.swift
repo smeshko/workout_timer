@@ -9,7 +9,7 @@ public struct QuickWorkoutsListView: View {
     private let store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>
     @ObservedObject private var viewStore: ViewStore<QuickWorkoutsListState, QuickWorkoutsListAction>
 
-    @State private var isWorkoutFormPresented: Bool = false
+//    @State private var isWorkoutFormPresented: Bool = false
     @State private var isSettingsPresented = false
     @State private var origin: CGPoint = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
 
@@ -23,20 +23,20 @@ public struct QuickWorkoutsListView: View {
             if viewStore.loadingState.isLoading {
                 ProgressView().progressViewStyle(CircularProgressViewStyle())
             } else if viewStore.workoutStates.isEmpty && viewStore.loadingState.isFinished {
-                NoWorkoutsView(store: store, isWorkoutFormPresented: $isWorkoutFormPresented)
+                NoWorkoutsView(store: store)
             } else {
                 if viewStore.isPresentingTimer {
                     IfLetStore(store.scope(state: \.runningTimerState, action: QuickWorkoutsListAction.runningTimerAction),
                                then: { RunningTimerView(store: $0, origin: origin) })
 
                 } else {
-                    WorkoutsList(store: store, isWorkoutFormPresented: $isWorkoutFormPresented, origin: $origin)
+                    WorkoutsList(store: store, origin: $origin)
                         .toolbar {
                             ToolbarItem(placement: ToolbarItemPlacement.navigationBarLeading) {
                                 SettingsButton(isPresented: $isSettingsPresented)
                             }
                             ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
-                                FormButton(isPresented: $isWorkoutFormPresented, store: store)
+                                FormButton(store: store)
                             }
                         }
                 }
@@ -96,18 +96,23 @@ private struct SettingsButton: View {
 }
 
 private struct FormButton: View {
-    @Binding var isPresented: Bool
     let store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>
+    @ObservedObject private var viewStore: ViewStore<QuickWorkoutsListState, QuickWorkoutsListAction>
+
+    init(store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>) {
+        self.store = store
+        self.viewStore = ViewStore(store)
+    }
 
     var body: some View {
         Button(action: {
-            isPresented = true
+            viewStore.send(.timerForm(.present))
         }, label: {
             Image(systemName: "plus.circle")
         })
-        .sheet(isPresented: $isPresented,
+        .sheet(isPresented: viewStore.binding(get: \.isPresentingTimerForm),
                onDismiss: {
-                isPresented = false
+                viewStore.send(.timerForm(.dismiss))
                 ViewStore(store).send(.createWorkoutAction(.cancel))
                }) {
             CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState,
