@@ -5,11 +5,14 @@ import ComposableArchitecture
 public enum SettingsAction: Equatable {
     case toggleScreen(Bool)
     case toggleSound(Bool)
-    case sendBugReport
-    case sendFeatureRequest
-    case didPresentMailComposer
-    case didFinishComposingMail
     case onAppear
+
+    case onboarding(PresenterAction)
+    case licenses(PresenterAction)
+    case bugReport(PresenterAction)
+    case featureRequest(PresenterAction)
+
+    case onboardingAction(OnboardingAction)
 }
 
 public struct SettingsState: Equatable {
@@ -17,10 +20,14 @@ public struct SettingsState: Equatable {
     var keepScreen = false
     var versionNumber = ""
 
+    var onboardingState = OnboardingState()
+
     var mailSubject = ""
     var mailBody = ""
 
     var isPresentingMailComposer = false
+    var isPresentingLicenses = false
+    var isPresentingOnboarding = false
 
     public init(sound: Bool = false, keepScreen: Bool = false) {
         self.sound = sound
@@ -37,38 +44,60 @@ public struct SettingsEnvironment {
     }
 }
 
-public let settingsReducer = Reducer<SettingsState, SettingsAction, SettingsEnvironment> { state, action, environment in
+public let settingsReducer = Reducer<SettingsState, SettingsAction, SettingsEnvironment>.combine(
 
-    switch action {
-    case .onAppear:
-        state.versionNumber = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
-        state.sound = environment.client.soundEnabled
-        state.keepScreen = environment.client.keepScreenOn
+    Reducer<SettingsState, SettingsAction, SettingsEnvironment> { state, action, environment in
 
-    case .toggleScreen(let on):
-        state.keepScreen = on
-        environment.client.setKeepScreenOn(to: on)
+        switch action {
+        case .onAppear:
+            state.versionNumber = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
+            state.sound = environment.client.soundEnabled
+            state.keepScreen = environment.client.keepScreenOn
 
-    case .toggleSound(let on):
-        state.sound = on
-        environment.client.setSoundEnabled(to: on)
+        case .toggleScreen(let on):
+            state.keepScreen = on
+            environment.client.setKeepScreenOn(to: on)
 
-    case .sendBugReport:
-        state.mailSubject = "Bug report"
-        state.mailBody = "Hey team!\n\nI found the following bug:"
-        state.isPresentingMailComposer = true
+        case .toggleSound(let on):
+            state.sound = on
+            environment.client.setSoundEnabled(to: on)
 
-    case .sendFeatureRequest:
-        state.mailSubject = "Feature Request"
-        state.mailBody = "Hey team!\n\nI'd like to have the following feature:"
-        state.isPresentingMailComposer = true
+        case .bugReport(.present):
+            state.mailSubject = "Bug report"
+            state.mailBody = "Hey team!\n\nI found the following bug:"
 
-    case .didPresentMailComposer:
-        break
+        case .featureRequest(.present):
+            state.mailSubject = "Feature Request"
+            state.mailBody = "Hey team!\n\nI'd like to have the following feature:"
 
-    case .didFinishComposingMail:
-        state.isPresentingMailComposer = false
+        case .onboardingAction(.start):
+            state.isPresentingOnboarding = false
+
+        case .onboarding, .licenses, .bugReport(.dismiss), .featureRequest(.dismiss):
+            break
+        }
+
+        return .none
     }
-
-    return .none
-}
+    .presenter(
+        keyPath: \.isPresentingOnboarding,
+        action: /SettingsAction.onboarding
+    )
+    .presenter(
+        keyPath: \.isPresentingLicenses,
+        action: /SettingsAction.licenses
+    )
+    .presenter(
+        keyPath: \.isPresentingMailComposer,
+        action: /SettingsAction.bugReport
+    )
+    .presenter(
+        keyPath: \.isPresentingMailComposer,
+        action: /SettingsAction.featureRequest
+    ),
+    onboardingReducer.pullback(
+        state: \.onboardingState,
+        action: /SettingsAction.onboardingAction,
+        environment: { _ in }
+    )
+)

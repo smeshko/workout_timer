@@ -1,6 +1,5 @@
 import SwiftUI
 import CoreInterface
-import MessageUI
 import ComposableArchitecture
 import StoreKit
 
@@ -10,10 +9,6 @@ public struct SettingsView: View {
 
     private let store: Store<SettingsState, SettingsAction>
     @ObservedObject private var viewStore: ViewStore<SettingsState, SettingsAction>
-
-    private var canSendEmail: Bool { MFMailComposeViewController.canSendMail() }
-
-    @State private var isPresentingLicenses = false
 
     public init(store: Store<SettingsState, SettingsAction>) {
         self.store = store
@@ -39,17 +34,10 @@ public struct SettingsView: View {
                 }
 
                 Section(header: Text("Support")) {
-                    if canSendEmail {
-                        Button("Report a bug") {
-                            viewStore.send(.sendBugReport)
-                        }
-                        .buttonStyle(PlainButtonStyle())
-
-                        Button("Feature request") {
-                            viewStore.send(.sendBugReport)
-                        }
-                        .buttonStyle(PlainButtonStyle())
+                    if MailView.canSendEmail {
+                        MailButtons(store: store)
                     }
+                    OnboardingButton(store: store)
 
                     Button("Rate the app") {
                         if let windowScene = UIApplication.shared.windows.first?.windowScene {
@@ -65,10 +53,7 @@ public struct SettingsView: View {
                     }
                     .buttonStyle(PlainButtonStyle())
 
-                    Button("Licenses") {
-                        isPresentingLicenses = true
-                    }
-                    .buttonStyle(PlainButtonStyle())
+                    LicensesButton(store: store)
                 }
 
                 Text("Version \(viewStore.versionNumber)")
@@ -85,17 +70,6 @@ public struct SettingsView: View {
             .onAppear {
                 viewStore.send(.onAppear)
             }
-            .sheet(isPresented: viewStore.binding(
-                get: \.isPresentingMailComposer,
-                send: SettingsAction.didPresentMailComposer
-            ), content: {
-                MailView(subject: viewStore.mailSubject, body: viewStore.mailBody) { _ in
-                    viewStore.send(.didFinishComposingMail)
-                }
-            })
-            .sheet(isPresented: $isPresentingLicenses, content: {
-                LicensesView()
-            })
             .navigationTitle("Settings")
         }
     }
@@ -113,36 +87,75 @@ struct SettingsView_Previews: PreviewProvider {
     }
 }
 
-private struct MailView: UIViewControllerRepresentable {
+private struct OnboardingButton: View {
+    private let store: Store<SettingsState, SettingsAction>
+    @ObservedObject private var viewStore: ViewStore<SettingsState, SettingsAction>
 
-    let subject: String
-    let body: String
-    let onFinished: (MFMailComposeResult) -> Void
-
-    func makeCoordinator() -> Coordinator {
-        Coordinator(onFinished: onFinished)
+    public init(store: Store<SettingsState, SettingsAction>) {
+        self.store = store
+        self.viewStore = ViewStore(store)
     }
 
-    func makeUIViewController(context: UIViewControllerRepresentableContext<MailView>) -> MFMailComposeViewController {
-        let controller = MFMailComposeViewController()
-        controller.setToRecipients(["ivaylo.tsonev@outlook.com"])
-        controller.setSubject(subject)
-        controller.setMessageBody(body, isHTML: false)
-        controller.mailComposeDelegate = context.coordinator
-        return controller
+    var body: some View {
+        Button("Show onboarding") {
+            viewStore.send(.onboarding(.present))
+        }
+        .buttonStyle(PlainButtonStyle())
+        .sheet(
+            isPresented: viewStore.binding(get: \.isPresentingOnboarding),
+            onDismiss: { viewStore.send(.onboarding(.dismiss)) },
+            content: {
+                OnboardingView(store: store.scope(state: \.onboardingState, action: SettingsAction.onboardingAction))
+            })
+    }
+}
+
+private struct MailButtons: View {
+    private let store: Store<SettingsState, SettingsAction>
+    @ObservedObject private var viewStore: ViewStore<SettingsState, SettingsAction>
+
+    public init(store: Store<SettingsState, SettingsAction>) {
+        self.store = store
+        self.viewStore = ViewStore(store)
     }
 
-    func updateUIViewController(_ uiViewController: MFMailComposeViewController, context: Context) {}
+    var body: some View {
+        Group {
+            Button("Report a bug") {
+                viewStore.send(.bugReport(.present))
+            }
+            .buttonStyle(PlainButtonStyle())
 
-    class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
-        let onFinished: (MFMailComposeResult) -> Void
-
-        init(onFinished: @escaping (MFMailComposeResult) -> Void) {
-            self.onFinished = onFinished
+            Button("Feature request") {
+                viewStore.send(.featureRequest(.present))
+            }
+            .buttonStyle(PlainButtonStyle())
+            .sheet(isPresented: viewStore.binding(get: \.isPresentingMailComposer), content: {
+                MailView(subject: viewStore.mailSubject, body: viewStore.mailBody) {
+                    viewStore.send(.bugReport(.dismiss))
+                }
+            })
         }
+    }
+}
 
-        func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-            onFinished(result)
+private struct LicensesButton: View {
+    private let store: Store<SettingsState, SettingsAction>
+    @ObservedObject private var viewStore: ViewStore<SettingsState, SettingsAction>
+
+    public init(store: Store<SettingsState, SettingsAction>) {
+        self.store = store
+        self.viewStore = ViewStore(store)
+    }
+
+    var body: some View {
+        Button("Licenses") {
+            viewStore.send(.licenses(.present))
         }
+        .buttonStyle(PlainButtonStyle())
+        .sheet(isPresented: viewStore.binding(get: \.isPresentingLicenses),
+               onDismiss: { viewStore.send(.licenses(.dismiss)) },
+               content: LicensesView.init
+        )
     }
 }

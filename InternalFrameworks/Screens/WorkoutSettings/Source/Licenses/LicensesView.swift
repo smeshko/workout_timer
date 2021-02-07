@@ -32,6 +32,7 @@ struct LicensesView: View {
                     """
                 )
             )
+            .padding()
             .navigationTitle("Licenses")
         }
     }

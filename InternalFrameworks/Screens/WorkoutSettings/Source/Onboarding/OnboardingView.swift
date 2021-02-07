@@ -101,7 +101,7 @@ private struct InfoView: View {
 
             VStack(alignment: .leading, spacing: Spacing.xxs) {
                 Text(title)
-                    .font(.h2)
+                    .font(.h3)
                 Text(text)
                     .font(.bodyRegular)
             }
