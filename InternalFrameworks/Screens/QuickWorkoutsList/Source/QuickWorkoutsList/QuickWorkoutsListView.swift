@@ -105,7 +105,11 @@ private struct FormButton: View {
         }, label: {
             Image(systemName: "plus.circle")
         })
-        .sheet(isPresented: $isPresented) {
+        .sheet(isPresented: $isPresented,
+               onDismiss: {
+                isPresented = false
+                ViewStore(store).send(.createWorkoutAction(.cancel))
+               }) {
             CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState,
                                                       action: QuickWorkoutsListAction.createWorkoutAction))
         }

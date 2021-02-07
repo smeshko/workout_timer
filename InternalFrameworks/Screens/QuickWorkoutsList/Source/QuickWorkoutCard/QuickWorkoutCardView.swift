@@ -27,7 +27,7 @@ struct QuickWorkoutCardView: View {
                     Text("\(viewStore.duration) mins")
                         .font(.h3)
 
-                    Text("\(viewStore.segmentsCount) segments")
+                    Text("\(viewStore.segmentsCount) rounds")
                         .font(.bodySmall)
                 }
 
