@@ -5,6 +5,7 @@ import Foundation
 import QuickWorkoutsList
 import DomainEntities
 import UIKit
+import WorkoutSettings
 
 enum AppAction {
     case appDidBecomeActive

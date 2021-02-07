@@ -3,44 +3,46 @@ import ComposableArchitecture
 import CoreLogic
 import CoreInterface
 
-enum OnboardingAction {
+public enum OnboardingAction {
     case start
 }
 
-struct OnboardingState: Equatable {}
+public struct OnboardingState: Equatable {
+    public init() {}
+}
 
-let onboardingReducer = Reducer<OnboardingState, OnboardingAction, Void> { state, action, _ in
+public let onboardingReducer = Reducer<OnboardingState, OnboardingAction, Void> { state, action, _ in
 
     return .none
 }
 
-struct OnboardingView: View {
+public struct OnboardingView: View {
     private let store: Store<OnboardingState, OnboardingAction>
     @ObservedObject private var viewStore: ViewStore<OnboardingState, OnboardingAction>
 
-    init(store: Store<OnboardingState, OnboardingAction>) {
+    public init(store: Store<OnboardingState, OnboardingAction>) {
         self.store = store
         self.viewStore = ViewStore(store)
     }
 
-    var body: some View {
+    public var body: some View {
         VStack(spacing: Spacing.xl) {
             Text("Welcome!")
                 .font(.gigantic)
                 .foregroundColor(.appText)
-                .padding(.top, 100)
-                .padding(.bottom, 100)
+
+            Spacer()
 
             VStack(alignment: .leading, spacing: Spacing.l) {
                 InfoView(image: "suit.heart.fill", color: .orange,
-                         title: "Create workouts",
-                         text: "It's easy to create a new workout! Add as many intervals to it as you want.")
+                         title: "Create timers",
+                         text: "It's easy to create new workout timers! Add as many rounds to each one as you wish.")
                 InfoView(image: "timer", color: .blue,
-                         title: "Follow your routine",
-                         text: "Following the workout you've setup is easy. The timer will help you keep track of exercises and progress!")
+                         title: "Focus on training",
+                         text: "The app will guide you through your workout. You'll always have all the important information at a glance.")
                 InfoView(image: "icloud.fill", color: .red,
-                         title: "Sync across all devices",
-                         text: "Workouts you create on one device will be automatically synced to all your other iCloud enabled devices.")
+                         title: "Sync across devices",
+                         text: "Timers you create on one device will be automatically synced to all your other iCloud enabled devices.")
             }
 
             Spacer()
@@ -67,13 +69,20 @@ struct OnboardingView: View {
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView(
-            store: Store<OnboardingState, OnboardingAction>(
-                initialState: OnboardingState(),
-                reducer: .empty,
-                environment: ()
-            )
+        let store = Store<OnboardingState, OnboardingAction>(
+            initialState: OnboardingState(),
+            reducer: .empty,
+            environment: ()
         )
+
+        return Group {
+            OnboardingView(store: store)
+                .previewDevice(.iPhone8)
+
+            OnboardingView(store: store)
+                .previewDevice(.iPhone11)
+                .preferredColorScheme(.dark)
+        }
     }
 }
 
@@ -84,19 +93,20 @@ private struct InfoView: View {
     let text: String
 
     var body: some View {
-        HStack {
+        HStack(alignment: .top) {
             Image(systemName: image)
                 .foregroundColor(color)
                 .font(.h1)
-                .frame(width: 50, height: 50, alignment: .center)
-            VStack(alignment: .leading) {
+                .frame(width: 40, height: 40, alignment: .top)
+
+            VStack(alignment: .leading, spacing: Spacing.xxs) {
                 Text(title)
-                    .font(.h3)
+                    .font(.h2)
                 Text(text)
-                    .font(.bodyLarge)
+                    .font(.bodyRegular)
             }
             Spacer()
         }
-        .frame(minWidth: 0, maxWidth: .infinity)
+        .fullWidth()
     }
 }

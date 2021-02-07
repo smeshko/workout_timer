@@ -4,6 +4,7 @@ import ComposableArchitecture
 import CorePersistence
 import QuickWorkoutsList
 import CoreInterface
+import WorkoutSettings
 
 @main
 struct MainApp: App {
