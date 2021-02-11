@@ -9,7 +9,7 @@ public extension PreviewProvider {
     }
     
     static var mockQuickWorkout2: QuickWorkout {
-        QuickWorkout(id: UUID(), name: "Mock Workout 2", color: WorkoutColor(hue: 0.53, saturation: 0.54, brightness: 0.33), segments: [
+        QuickWorkout(id: UUID(), name: "Mock Workout 2", color: WorkoutColor(color: TintColor.allTints[3].color), segments: [
             mockSegment3, mockSegment4
         ])
     }

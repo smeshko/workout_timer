@@ -11,7 +11,6 @@ public struct TintColor: Identifiable, Equatable {
             TintColor(name: "Orange red", color: Color(red: 243 / 255, green: 114 / 255, blue: 44 / 255)),
             TintColor(name: "Yellow Orange Color Wheel", color: Color(red: 248 / 255, green: 150 / 255, blue: 30 / 255)),
             TintColor(name: "Mango Tango", color: Color(red: 249 / 255, green: 132 / 255, blue: 74 / 255)),
-            TintColor(name: "Maize Crayola", color: Color(red: 249 / 255, green: 199 / 255, blue: 79 / 255)),
             TintColor(name: "Pistachio", color: Color(red: 144 / 255, green: 190 / 255, blue: 109 / 255)),
             TintColor(name: "Zomp", color: Color(red: 67 / 255, green: 170 / 255, blue: 139 / 255)),
             TintColor(name: "Cadet Blue", color: Color(red: 77 / 255, green: 144 / 255, blue: 142 / 255)),

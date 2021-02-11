@@ -7,7 +7,6 @@ struct WorkoutsList: View {
     private let store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>
     @ObservedObject private var viewStore: ViewStore<QuickWorkoutsListState, QuickWorkoutsListAction>
 
-    @Binding private var origin: CGPoint
     @State private var cellSize: CGSize = .zero
 
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
@@ -17,14 +16,13 @@ struct WorkoutsList: View {
     ) {
         self.store = store
         self.viewStore = ViewStore(store)
-        self._origin = origin
     }
 
     var body: some View {
         List(store.scope(state: { $0.workoutStates },
                          action: QuickWorkoutsListAction.workoutCardAction(id:action:))) { cardViewStore in
             ContextMenuView {
-                QuickWorkoutCardView(store: cardViewStore, origin: $origin)
+                QuickWorkoutCardView(store: cardViewStore)
                     .padding(.horizontal, Spacing.l)
                     .padding(.vertical, Spacing.xs)
                     .settingSize($cellSize)

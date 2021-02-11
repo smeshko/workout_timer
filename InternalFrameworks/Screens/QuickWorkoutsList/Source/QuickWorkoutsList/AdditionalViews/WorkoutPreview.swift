@@ -34,13 +34,13 @@ struct WorkoutPreview: View {
                                     Image(systemName: "suit.heart.fill")
                                     Text("\(segment.work)s")
                                 }
-                                .cardBackground(foreground: viewStore.workout.color.color.opacity(0.6))
+                                .cardBackground(foreground: viewStore.workout.color.monochromatic)
 
                                 VStack(spacing: Spacing.s) {
                                     Image(systemName: "pause.fill")
                                     Text("\(segment.pause)s")
                                 }
-                                .cardBackground(foreground: viewStore.workout.color.color.opacity(0.6))
+                                .cardBackground(foreground: viewStore.workout.color.monochromatic)
                             }
                         }
                     }
@@ -52,7 +52,7 @@ struct WorkoutPreview: View {
             .fullWidth()
             .fullHeight()
             .frame(alignment: .topLeading)
-            .background(viewStore.workout.color.monochromatic)
+            .background(viewStore.workout.color.color)
         }
     }
 }
@@ -73,6 +73,6 @@ private extension View {
 
 private extension WorkoutColor {
     var monochromatic: Color {
-        Color(hue: hue, saturation: saturation - 0.2, brightness: brightness - 0.1)
+        Color(hue: hue, saturation: saturation, brightness: brightness + 0.1)
     }
 }

@@ -6,16 +6,11 @@ import RunningTimer
 
 struct QuickWorkoutCardView: View {
 
-    let store: Store<QuickWorkoutCardState, QuickWorkoutCardAction>
-    let viewStore: ViewStore<QuickWorkoutCardState, QuickWorkoutCardAction>
+    private let store: Store<QuickWorkoutCardState, QuickWorkoutCardAction>
+    @ObservedObject private var viewStore: ViewStore<QuickWorkoutCardState, QuickWorkoutCardAction>
 
-    let size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-
-    @Binding var origin: CGPoint
-
-    init(store: Store<QuickWorkoutCardState, QuickWorkoutCardAction>, origin: Binding<CGPoint>) {
+    init(store: Store<QuickWorkoutCardState, QuickWorkoutCardAction>) {
         self.store = store
-        self._origin = origin
         self.viewStore = ViewStore(store)
     }
 
@@ -37,53 +32,71 @@ struct QuickWorkoutCardView: View {
 
                     Spacer()
 
-                    GeometryReader { buttonProxy in
                         Button(action: {
                             withAnimation {
                                 viewStore.send(.tapStart)
-                                let buttonOrigin = buttonProxy.frame(in: .global).origin
-                                origin = CGPoint(
-                                    x: buttonOrigin.x,
-                                    y: buttonOrigin.y - buttonProxy.size.height / 2
-                                )
                             }
                         }, label: {
                             Image(systemName: "play.fill")
                                 .padding(Spacing.s)
-                                .foregroundColor(.appWhite)
                                 .background(viewStore.workout.color.color)
                                 .mask(Circle())
 
                         })
-                    }
                     .frame(width: 40, height: 40)
                 }
             }
-            .cardBackground()
+            .foregroundColor(.appWhite)
+            .padding(Spacing.l)
+            .background(
+                ZStack(alignment: .trailing) {
+                    LinearGradient(
+                        gradient: Gradient(colors: [viewStore.workout.color.color, viewStore.workout.color.monochromatic]),
+                        startPoint: .bottomLeading,
+                        endPoint: .topTrailing
+                    )
+
+                    Circle()
+                        .fill(
+                            LinearGradient(
+                                gradient: Gradient(colors: [viewStore.workout.color.color, viewStore.workout.color.monochromatic]),
+                                startPoint: .bottomLeading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .scaleEffect(1.2)
+                        .offset(x: 175, y: 35)
+                }
+                .cornerRadius(CornerRadius.m)
+            )
         }
     }
 }
 
 struct QuickWorkoutCardView_Previews: PreviewProvider {
     static var previews: some View {
-
-        let store = Store<QuickWorkoutCardState, QuickWorkoutCardAction>(
-            initialState: QuickWorkoutCardState(
-                workout: mockQuickWorkout1
-            ),
-            reducer: quickWorkoutCardReducer,
-            environment: QuickWorkoutCardEnvironment()
-        )
-
-        return Group {
-            QuickWorkoutCardView(store: store, origin: .constant(.zero))
-                .padding()
-                .previewLayout(.fixed(width: 375, height: 180))
-                .preferredColorScheme(.dark)
-
-            QuickWorkoutCardView(store: store, origin: .constant(.zero))
-                .padding()
-                .previewLayout(.fixed(width: 375, height: 180))
+        ForEach(TintColor.allTints) { tint in
+            QuickWorkoutCardView(store: Store<QuickWorkoutCardState, QuickWorkoutCardAction>(
+                initialState: QuickWorkoutCardState(
+                    workout: QuickWorkout(
+                        id: UUID(),
+                        name: "This is Mock Workout",
+                        color: WorkoutColor(color: tint.color),
+                        segments: [mockSegment1, mockSegment3]
+                    )
+                ),
+                reducer: quickWorkoutCardReducer,
+                environment: QuickWorkoutCardEnvironment()
+            ))
+            .padding()
+            .previewLayout(.fixed(width: 375, height: 180))
+            .preferredColorScheme(.dark)
         }
+    }
+}
+
+private extension WorkoutColor {
+    var monochromatic: Color {
+        Color(hue: hue, saturation: saturation, brightness: brightness + 0.4)
     }
 }
