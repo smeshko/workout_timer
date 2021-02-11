@@ -19,10 +19,10 @@ struct QuickWorkoutCardView: View {
             VStack(alignment: .leading, spacing: Spacing.l) {
 
                 VStack(alignment: .leading, spacing: Spacing.xxs) {
-                    Text("\(viewStore.duration) mins")
+                    Text("mins".localized(viewStore.duration))
                         .font(.h3)
 
-                    Text("\(viewStore.segmentsCount) rounds")
+                    Text("rounds".localized(viewStore.segmentsCount))
                         .font(.bodySmall)
                 }
 

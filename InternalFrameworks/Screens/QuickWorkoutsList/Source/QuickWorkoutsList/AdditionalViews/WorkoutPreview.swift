@@ -16,7 +16,7 @@ struct WorkoutPreview: View {
 
                     Spacer()
 
-                    Text("\(viewStore.duration) mins")
+                    Text("mins".localized(viewStore.duration))
                         .font(.h2)
                         .foregroundColor(.appWhite)
                 }
