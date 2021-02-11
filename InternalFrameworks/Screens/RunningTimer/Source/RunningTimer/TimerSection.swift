@@ -23,3 +23,9 @@ public struct TimerSection: Equatable {
         return sections
     }
 }
+
+extension Array where Element == TimerSection {
+    var totalDuration: TimeInterval {
+        TimeInterval(map(\.duration).reduce(0, +))
+    }
+}

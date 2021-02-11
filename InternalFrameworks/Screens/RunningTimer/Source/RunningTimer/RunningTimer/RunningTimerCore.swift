@@ -151,8 +151,13 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
             return Effect(value: RunningTimerAction.timerFinished)
 
         case .timerFinished:
-            state.finish()
-            return Effect<RunningTimerAction, Never>.cancel(id: TimerId())
+            if state.shouldGoToFinishedScreen {
+                state.finish()
+                return Effect<RunningTimerAction, Never>.cancel(id: TimerId())
+            } else {
+                state.close()
+                return Effect(value: RunningTimerAction.headerAction(.timerClosed))
+            }
 
         default: break
         }
@@ -177,7 +182,7 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
 
 private extension RunningTimerState {
     mutating func calculateInitialTime() {
-        headerState.timeLeft = TimeInterval(timerSections.map(\.duration).reduce(0, +))
+        headerState.timeLeft = timerSections.totalDuration
         sectionTimeLeft = currentSection?.duration ?? 0
     }
 
@@ -201,6 +206,13 @@ private extension RunningTimerState {
         calculateInitialTime()
     }
 
+    mutating func close() {
+        timerControlsState = TimerControlsState(timerState: .finished)
+        finishedWorkoutState = nil
+        headerState.alert = nil
+        headerState.isFinished = true
+    }
+
     mutating func finish() {
         finishedWorkoutState = FinishedWorkoutState(workout: workout)
         timerControlsState = TimerControlsState(timerState: .finished)
@@ -211,6 +223,10 @@ private extension RunningTimerState {
     var isCurrentSegmentLast: Bool {
         guard let section = currentSection, let index = timerSections.firstIndex(of: section) else { return true }
         return index == timerSections.count - 1
+    }
+
+    var shouldGoToFinishedScreen: Bool {
+        headerState.timeLeft <= timerSections.totalDuration - (timerSections.totalDuration * 2) / 3
     }
 }
 

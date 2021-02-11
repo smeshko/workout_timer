@@ -19,46 +19,27 @@ struct WorkoutsList: View {
     }
 
     var body: some View {
-        List(store.scope(state: { $0.workoutStates },
-                         action: QuickWorkoutsListAction.workoutCardAction(id:action:))) { cardViewStore in
-            ContextMenuView {
-                QuickWorkoutCardView(store: cardViewStore)
-                    .padding(.horizontal, Spacing.l)
-                    .padding(.vertical, Spacing.xs)
-                    .settingSize($cellSize)
-            } previewProvider: {
-                WorkoutPreview(store: cardViewStore)
-            }
-            .actionProvider {
-                let deleteAction = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) { action in
-                    viewStore.send(.deleteWorkout(ViewStore(cardViewStore).workout))
+        ScrollView(showsIndicators: false) {
+            ForEachStore(store.scope(state: { $0.workoutStates },
+                                     action: QuickWorkoutsListAction.workoutCardAction(id:action:))) { cardViewStore in
+                ContextMenuView {
+                    QuickWorkoutCardView(store: cardViewStore)
+                        .padding(.horizontal, Spacing.l)
+                        .padding(.vertical, Spacing.xxs)
+                        .settingSize($cellSize)
+                } previewProvider: {
+                    WorkoutPreview(store: cardViewStore)
                 }
-
-                let edit = UIAction(title: "Edit", image: UIImage(systemName: "pencil")) { _ in
+                .actionProvider {
+                    actions(cardViewStore)
+                }
+                .onPreviewTap {
                     viewStore.send(.editWorkout(ViewStore(cardViewStore).workout))
                     viewStore.send(.timerForm(.present))
                 }
-
-                let start = UIAction(title: "Start", image: UIImage(systemName: "play.fill")) { action in
-                    ViewStore(cardViewStore).send(.tapStart)
-                }
-
-                let deleteMenu = UIMenu(title: "Delete", image: UIImage(systemName: "trash"), options: .destructive, children: [deleteAction])
-
-                return UIMenu(title: "", children: [start, edit, deleteMenu])
-            }
-            .onPreviewTap {
-                viewStore.send(.editWorkout(ViewStore(cardViewStore).workout))
-                viewStore.send(.timerForm(.present))
-            }
-            .frame(height: cellSize.height)
-        }
-        .onDelete { insets in
-            withAnimation {
-                viewStore.send(QuickWorkoutsListAction.deleteWorkouts(insets))
+                .frame(height: cellSize.height)
             }
         }
-        .rowHeight(cellSize.height)
         .sheet(isPresented: viewStore.binding(get: \.isPresentingTimerForm),
                onDismiss: { viewStore.send(.timerForm(.dismiss))}) {
             CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState,
@@ -67,9 +48,26 @@ struct WorkoutsList: View {
         .fullHeight()
         .fullWidth()
         .padding(.horizontal, Spacing.margin(horizontalSizeClass))
-        .edgesIgnoringSafeArea(.all)
         .navigationTitle("Workouts")
+    }
 
+    private func actions(_ store: Store<QuickWorkoutCardState, QuickWorkoutCardAction>) -> UIMenu {
+        let deleteAction = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) { action in
+            viewStore.send(.deleteWorkout(ViewStore(store).workout))
+        }
+
+        let edit = UIAction(title: "Edit", image: UIImage(systemName: "pencil")) { _ in
+            viewStore.send(.editWorkout(ViewStore(store).workout))
+            viewStore.send(.timerForm(.present))
+        }
+
+        let start = UIAction(title: "Start", image: UIImage(systemName: "play.fill")) { action in
+            ViewStore(store).send(.tapStart)
+        }
+
+        let deleteMenu = UIMenu(title: "Delete", image: UIImage(systemName: "trash"), options: .destructive, children: [deleteAction])
+
+        return UIMenu(title: "", children: [start, edit, deleteMenu])
     }
 }
 
