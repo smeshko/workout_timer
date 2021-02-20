@@ -7,6 +7,11 @@ struct AddTimerSegmentView: View {
     private let store: Store<AddTimerSegmentState, AddTimerSegmentAction>
     private let tint: Color
 
+    fileprivate struct State: Equatable {
+        var name: String
+        var isEditing = false
+    }
+
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     init(store: Store<AddTimerSegmentState, AddTimerSegmentAction>, tint: Color) {
@@ -15,7 +20,7 @@ struct AddTimerSegmentView: View {
     }
 
     var body: some View {
-        WithViewStore(store) { viewStore in
+        WithViewStore(store.scope(state: \.view)) { viewStore in
             NavigationView {
                 VStack(spacing: Spacing.xxl) {
                     TextField("round name", text: viewStore.binding(get: \.name, send: AddTimerSegmentAction.updateName))
@@ -95,5 +100,14 @@ struct CircuitPickerView_Previews: PreviewProvider {
                 .preferredColorScheme(.dark)
                 .previewLayout(.sizeThatFits)
         }
+    }
+}
+
+private extension AddTimerSegmentState {
+    var view: AddTimerSegmentView.State {
+        AddTimerSegmentView.State(
+            name: name,
+            isEditing: isEditing
+        )
     }
 }

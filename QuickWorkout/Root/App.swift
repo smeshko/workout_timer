@@ -49,7 +49,6 @@ struct MainApp: App {
                 }
             }
         }
-        .debug("MainApp")
     }
 }
 

@@ -96,6 +96,7 @@ public let createQuickWorkoutReducer =
                     guard let addSegmentState = state.addSegmentState else { return .none }
                     state.segmentStates.append(SegmentState(addSegmentState: addSegmentState))
                     state.addSegmentState = nil
+                    return Effect(value: CreateQuickWorkoutAction.createInterval(.dismiss))
 
                 case .remove:
                     guard let id = state.addSegmentState?.id else { return .none }
@@ -103,9 +104,11 @@ public let createQuickWorkoutReducer =
                         state.segmentStates.remove(id: id)
                     }
                     state.addSegmentState = nil
+                    return Effect(value: CreateQuickWorkoutAction.createInterval(.dismiss))
 
                 case .cancel:
                     state.addSegmentState = nil
+                    return Effect(value: CreateQuickWorkoutAction.createInterval(.dismiss))
 
                 case .done:
                     guard let id = state.addSegmentState?.id,
@@ -115,6 +118,7 @@ public let createQuickWorkoutReducer =
                         state.segmentStates.insert(SegmentState(addSegmentState: addSegmentState), at: index)
                     }
                     state.addSegmentState = nil
+                    return Effect(value: CreateQuickWorkoutAction.createInterval(.dismiss))
 
                 default:
                     break
