@@ -10,6 +10,7 @@ public enum CreateQuickWorkoutAction: Equatable {
     case circuitPickerUpdatedValues(AddTimerSegmentAction)
     case addSegmentAction(action: AddTimerSegmentAction)
     case segmentAction(id: UUID, action: SegmentAction)
+    case createInterval(PresenterAction)
 
     case updateName(String)
     case editSegment(id: UUID)
@@ -30,6 +31,7 @@ public struct CreateQuickWorkoutState: Equatable {
     var selectedTint: TintColor? = nil
     var selectedColor: Color = .black
     let isEditing: Bool
+    var isPresentingCreateIntervalView = false
 
     var isFormIncomplete: Bool {
         name.isEmpty || segmentStates.isEmpty
@@ -140,6 +142,10 @@ public let createQuickWorkoutReducer =
             }
             return .none
         }
+        .presenter(
+            keyPath: \.isPresentingCreateIntervalView,
+            action: /CreateQuickWorkoutAction.createInterval
+        )
     )
 
 private extension QuickWorkoutSegment {

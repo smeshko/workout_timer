@@ -7,7 +7,7 @@ struct NoWorkoutsView: View {
     let store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>
 
     var body: some View {
-        WithViewStore(store) { viewStore in
+        WithViewStore(store.scope(state: \.isPresentingTimerForm)) { viewStore in
             VStack(spacing: Spacing.l) {
                 Button(action: {
                     viewStore.send(.timerForm(.present))
@@ -26,7 +26,7 @@ struct NoWorkoutsView: View {
                     .font(.h2)
                     .foregroundColor(.appText)
             }
-            .sheet(isPresented: viewStore.binding(get: \.isPresentingTimerForm),
+            .sheet(isPresented: viewStore.binding(get: { $0 }),
                    onDismiss: { viewStore.send(.timerForm(.dismiss)) }) {
                 CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState,
                                                           action: QuickWorkoutsListAction.createWorkoutAction))

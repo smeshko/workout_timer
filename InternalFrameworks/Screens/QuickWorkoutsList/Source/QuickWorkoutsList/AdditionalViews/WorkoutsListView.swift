@@ -10,7 +10,7 @@ struct WorkoutsList: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
     var body: some View {
-        WithViewStore(store) { viewStore in
+        WithViewStore(store.scope(state: \.isPresentingTimerForm)) { viewStore in
             ScrollView(showsIndicators: false) {
                 ForEachStore(store.scope(state: { $0.workoutStates },
                                          action: QuickWorkoutsListAction.workoutCardAction(id:action:))) { cardViewStore in
@@ -32,7 +32,7 @@ struct WorkoutsList: View {
                     .frame(height: cellSize.height)
                 }
             }
-            .sheet(isPresented: viewStore.binding(get: \.isPresentingTimerForm),
+            .sheet(isPresented: viewStore.binding(get: { $0 }),
                    onDismiss: { viewStore.send(.timerForm(.dismiss))}) {
                 CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState,
                                                           action: QuickWorkoutsListAction.createWorkoutAction))
@@ -46,7 +46,7 @@ struct WorkoutsList: View {
 
     private func actions(
         _ store: Store<QuickWorkoutCardState, QuickWorkoutCardAction>,
-        viewStore: ViewStore<QuickWorkoutsListState, QuickWorkoutsListAction>
+        viewStore: ViewStore<Bool, QuickWorkoutsListAction>
     ) -> UIMenu {
         let cardViewStore = ViewStore(store)
 

@@ -4,19 +4,25 @@ import CoreInterface
 import ComposableArchitecture
 
 public struct CreateQuickWorkoutView: View {
-    private let store: Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>
 
-    @State private var isPresentingIntervalView = false
+    struct State: Equatable {
+        var isFormIncomplete = false
+        var isEditing = false
+        var isPresentingCreateIntervalView = false
+        var selectedColor: Color
+    }
+
+    private let store: Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>
 
     public init(store: Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>) {
         self.store = store
     }
 
     public var body: some View {
-        WithViewStore(store) { viewStore in
+        WithViewStore(store.scope(state: \.createView)) { viewStore in
             NavigationView {
                 VStack {
-                    WorkoutForm(store: store, isPresentingIntervalView: $isPresentingIntervalView)
+                    WorkoutForm(store: store)
                 }
                 .toolbar {
                     ToolbarItem(placement: .confirmationAction) {
@@ -32,7 +38,7 @@ public struct CreateQuickWorkoutView: View {
                     }
                 }
                 .navigationTitle(viewStore.isEditing ? "Edit Workout" : "Create workout")
-                .sheet(isPresented: $isPresentingIntervalView) {
+                .sheet(isPresented: viewStore.binding(get: \.isPresentingCreateIntervalView)) {
                     IfLetStore(store.scope(state: \.addSegmentState, action: CreateQuickWorkoutAction.addSegmentAction),
                                then: { AddTimerSegmentView(store: $0, tint: viewStore.selectedColor) }
                     )
@@ -70,16 +76,20 @@ struct CreateQuickWorkoutView_Previews: PreviewProvider {
 }
 
 private struct WorkoutForm: View {
+    struct State: Equatable {
+        var preselectedTints: [TintColor]
+        var selectedColor: Color
+        var selectedTint: TintColor?
+        var name: String
+    }
     private let store: Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>
-    @Binding var isPresentingIntervalView: Bool
 
-    init(store: Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>, isPresentingIntervalView: Binding<Bool>) {
+    init(store: Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>) {
         self.store = store
-        self._isPresentingIntervalView = isPresentingIntervalView
     }
 
     var body: some View {
-        WithViewStore(store) { viewStore in
+        WithViewStore(store.scope(state: \.formView)) { viewStore in
             ScrollView {
                 VStack(spacing: Spacing.xxl) {
                     TextField("Workout name", text: viewStore.binding(get: \.name, send: CreateQuickWorkoutAction.updateName))
@@ -114,7 +124,7 @@ private struct WorkoutForm: View {
                             .onTapGesture {
                                 withAnimation {
                                     viewStore.send(.editSegment(id: ViewStore(store).state.id))
-                                    isPresentingIntervalView = true
+                                    viewStore.send(.createInterval(.present))
                                 }
                             }
                     }
@@ -122,7 +132,7 @@ private struct WorkoutForm: View {
                     Button(action: {
                         withAnimation {
                             viewStore.send(.newSegmentButtonTapped)
-                            isPresentingIntervalView = true
+                            viewStore.send(.createInterval(.present))
                         }
                     }) {
                         Label("Add new round", systemImage: "plus")
@@ -133,5 +143,25 @@ private struct WorkoutForm: View {
             }
         }
         .padding(Spacing.xxl)
+    }
+}
+
+private extension CreateQuickWorkoutState {
+    var formView: WorkoutForm.State {
+        WorkoutForm.State(
+            preselectedTints: preselectedTints,
+            selectedColor: selectedColor,
+            selectedTint: selectedTint,
+            name: name
+        )
+    }
+
+    var createView: CreateQuickWorkoutView.State {
+        CreateQuickWorkoutView.State(
+            isFormIncomplete: isFormIncomplete,
+            isEditing: isEditing,
+            isPresentingCreateIntervalView: isPresentingCreateIntervalView,
+            selectedColor: selectedColor
+        )
     }
 }
