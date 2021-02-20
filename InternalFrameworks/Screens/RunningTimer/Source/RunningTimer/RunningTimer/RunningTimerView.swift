@@ -6,29 +6,25 @@ import CorePersistence
 public struct RunningTimerView: View {
 
     let store: Store<RunningTimerState, RunningTimerAction>
-    let origin: CGPoint
-
-    @ObservedObject var viewStore: ViewStore<RunningTimerState, RunningTimerAction>
-
     @Environment(\.scenePhase) var scenePahse
 
-    public init(store: Store<RunningTimerState, RunningTimerAction>, origin: CGPoint) {
+    public init(store: Store<RunningTimerState, RunningTimerAction>) {
         self.store = store
-        self.origin = origin
-        self.viewStore = ViewStore(store)
     }
 
     public var body: some View {
-        IfLetStore(store.scope(state: \.precountdownState, action: RunningTimerAction.preCountdownAction),
-                   then: { PreCountdownView(store: $0, origin: origin) },
-                   else: MainView(store: store)
-        )
-        .padding(Spacing.xxl)
-        .onChange(of: scenePahse) { newScene in
-            switch newScene {
-            case .background:
-                viewStore.send(.onBackground)
-            default: break
+        WithViewStore(store) { viewStore in
+            IfLetStore(store.scope(state: \.precountdownState, action: RunningTimerAction.preCountdownAction),
+                       then: { PreCountdownView(store: $0) },
+                       else: MainView(store: store)
+            )
+            .padding(Spacing.xxl)
+            .onChange(of: scenePahse) { newScene in
+                switch newScene {
+                case .background:
+                    viewStore.send(.onBackground)
+                default: break
+                }
             }
         }
         .navigationTitle("")
@@ -58,14 +54,14 @@ struct RunningTimerView_Previews: PreviewProvider {
         )
 
         return Group {
-            RunningTimerView(store: preCountdownStore, origin: .zero)
+            RunningTimerView(store: preCountdownStore)
                 .previewDevice(.iPhone11)
 
-            RunningTimerView(store: runningStore, origin: .zero)
+            RunningTimerView(store: runningStore)
                 .previewDevice(.iPhone11)
                 .preferredColorScheme(.dark)
 
-            RunningTimerView(store: runningStore, origin: .zero)
+            RunningTimerView(store: runningStore)
                 .previewLayout(.landscape(.iPhone11))
         }
     }

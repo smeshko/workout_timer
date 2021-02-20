@@ -7,43 +7,41 @@ import RunningTimer
 public struct QuickWorkoutsListView: View {
 
     private let store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>
-    @ObservedObject private var viewStore: ViewStore<QuickWorkoutsListState, QuickWorkoutsListAction>
-
-    @State private var origin: CGPoint = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
 
     public init(store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>) {
         self.store = store
-        self.viewStore = ViewStore(store)
     }
 
     public var body: some View {
-        NavigationView {
-            if viewStore.loadingState.isLoading {
-                ProgressView().progressViewStyle(CircularProgressViewStyle())
-            } else if viewStore.workoutStates.isEmpty && viewStore.loadingState.isFinished {
-                NoWorkoutsView(store: store)
-            } else {
-                if viewStore.isPresentingTimer {
-                    IfLetStore(store.scope(state: \.runningTimerState, action: QuickWorkoutsListAction.runningTimerAction),
-                               then: { RunningTimerView(store: $0, origin: origin) })
-
+        WithViewStore(store) { viewStore in
+            NavigationView {
+                if viewStore.loadingState.isLoading {
+                    ProgressView().progressViewStyle(CircularProgressViewStyle())
+                } else if viewStore.workoutStates.isEmpty && viewStore.loadingState.isFinished {
+                    NoWorkoutsView(store: store)
                 } else {
-                    WorkoutsList(store: store, origin: $origin)
-                        .toolbar {
-                            ToolbarItem(placement: ToolbarItemPlacement.navigationBarLeading) {
-                                SettingsButton(store: store)
+                    if viewStore.isPresentingTimer {
+                        IfLetStore(store.scope(state: \.runningTimerState, action: QuickWorkoutsListAction.runningTimerAction),
+                                   then: { RunningTimerView(store: $0) })
+
+                    } else {
+                        WorkoutsList(store: store)
+                            .toolbar {
+                                ToolbarItem(placement: ToolbarItemPlacement.navigationBarLeading) {
+                                    SettingsButton(store: store)
+                                }
+                                ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
+                                    FormButton(store: store)
+                                }
                             }
-                            ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
-                                FormButton(store: store)
-                            }
-                        }
+                    }
                 }
             }
+            .onAppear {
+                viewStore.send(.onAppear)
+            }
+            .navigationViewStyle(StackNavigationViewStyle())
         }
-        .onAppear {
-            viewStore.send(.onAppear)
-        }
-        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
@@ -90,7 +88,6 @@ private struct SettingsButton: View {
         .sheet(isPresented: viewStore.binding(get: \.isPresentingSettings),
                onDismiss: {
                 viewStore.send(.settings(.dismiss))
-
                }) {
             SettingsView(store: store.scope(state: \.settingsState, action: QuickWorkoutsListAction.settingsAction))
         }

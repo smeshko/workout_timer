@@ -3,17 +3,12 @@ import ComposableArchitecture
 
 struct PreCountdownView: View {
     private let store: Store<PreCountdownState, PreCountdownAction>
-    @ObservedObject private var viewStore: ViewStore<PreCountdownState, PreCountdownAction>
-
     private let proxy = UIScreen.main.bounds
-    private let origin: CGPoint
 
     @State var startAnimation = false
 
-    init(store: Store<PreCountdownState, PreCountdownAction>, origin: CGPoint) {
+    init(store: Store<PreCountdownState, PreCountdownAction>) {
         self.store = store
-        self.origin = origin
-        self.viewStore = ViewStore(store)
     }
 
     var body: some View {
@@ -51,8 +46,7 @@ struct PrecountdownView_Previews: PreviewProvider {
                 initialState: PreCountdownState(workoutColor: .empty),
                 reducer: preCountdownReducer,
                 environment: .preview
-            ),
-            origin: .zero
+            )
         )
     }
 }

@@ -4,37 +4,33 @@ import ComposableArchitecture
 import QuickWorkoutForm
 
 struct NoWorkoutsView: View {
-    private let store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>
-    @ObservedObject private var viewStore: ViewStore<QuickWorkoutsListState, QuickWorkoutsListAction>
-
-    init(store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>) {
-        self.store = store
-        self.viewStore = ViewStore(store)
-    }
+    let store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>
 
     var body: some View {
-        VStack(spacing: Spacing.l) {
-            Button(action: {
-                viewStore.send(.timerForm(.present))
-            }, label: {
-                ZStack {
-                    RoundedRectangle(cornerRadius: CornerRadius.m)
-                        .foregroundColor(.appSuccess)
-                        .frame(width: 125, height: 125)
+        WithViewStore(store) { viewStore in
+            VStack(spacing: Spacing.l) {
+                Button(action: {
+                    viewStore.send(.timerForm(.present))
+                }, label: {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: CornerRadius.m)
+                            .foregroundColor(.appSuccess)
+                            .frame(width: 125, height: 125)
 
-                    Image(systemName: "plus")
-                        .font(.gigantic)
-                        .foregroundColor(.appWhite)
-                }
-            })
-            Text("Create your first workout")
-                .font(.h2)
-                .foregroundColor(.appText)
-        }
-        .sheet(isPresented: viewStore.binding(get: \.isPresentingTimerForm),
-               onDismiss: { viewStore.send(.timerForm(.dismiss)) }) {
-            CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState,
-                                                      action: QuickWorkoutsListAction.createWorkoutAction))
+                        Image(systemName: "plus")
+                            .font(.gigantic)
+                            .foregroundColor(.appWhite)
+                    }
+                })
+                Text("Create your first workout")
+                    .font(.h2)
+                    .foregroundColor(.appText)
+            }
+            .sheet(isPresented: viewStore.binding(get: \.isPresentingTimerForm),
+                   onDismiss: { viewStore.send(.timerForm(.dismiss)) }) {
+                CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState,
+                                                          action: QuickWorkoutsListAction.createWorkoutAction))
+            }
         }
         .navigationTitle("")
         .navigationBarHidden(true)

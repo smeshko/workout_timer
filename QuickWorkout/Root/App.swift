@@ -12,7 +12,6 @@ struct MainApp: App {
     @Environment(\.scenePhase) var scenePhase
 
     let store: Store<AppState, AppAction>
-    @ObservedObject var viewStore: ViewStore<AppState, AppAction>
     @State var isPresentingOnboarding: Bool = false
 
     init() {
@@ -21,35 +20,37 @@ struct MainApp: App {
             reducer: appReducer,
             environment: .live
         )
-        viewStore = ViewStore(store)
     }
 
     var body: some Scene {
-        WindowGroup {
-            if isPresentingOnboarding {
-                OnboardingView(store: store.scope(state: \.onboardingState, action: AppAction.onboardingAction))
-            } else {
-                QuickWorkoutsListView(store: store.scope(state: \.workoutsListState, action: AppAction.workoutsListAction))
-                    .onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
+        WithViewStore(store) { viewStore in
+            WindowGroup {
+                if isPresentingOnboarding {
+                    OnboardingView(store: store.scope(state: \.onboardingState, action: AppAction.onboardingAction))
+                } else {
+                    QuickWorkoutsListView(store: store.scope(state: \.workoutsListState, action: AppAction.workoutsListAction))
+                        .onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
+                }
+            }
+            .onChange(of: scenePhase) { newScenePhase in
+                switch newScenePhase {
+                case .active:
+                    viewStore.send(.appDidBecomeActive)
+                case .inactive:
+                    viewStore.send(.appDidBecomeInactive)
+                case .background:
+                    viewStore.send(.appDidGoToBackground)
+                @unknown default:
+                    break
+                }
+            }
+            .onChange(of: viewStore.shouldShowOnboarding) { value in
+                withAnimation {
+                    isPresentingOnboarding = value
+                }
             }
         }
-        .onChange(of: scenePhase) { newScenePhase in
-            switch newScenePhase {
-            case .active:
-                viewStore.send(.appDidBecomeActive)
-            case .inactive:
-                viewStore.send(.appDidBecomeInactive)
-            case .background:
-                viewStore.send(.appDidGoToBackground)
-            @unknown default:
-                break
-            }
-        }
-        .onChange(of: viewStore.shouldShowOnboarding) { value in
-            withAnimation {
-                isPresentingOnboarding = value
-            }
-        }
+        .debug("MainApp")
     }
 }
 

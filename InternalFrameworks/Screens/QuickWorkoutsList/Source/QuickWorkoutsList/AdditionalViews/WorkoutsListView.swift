@@ -4,46 +4,39 @@ import CoreInterface
 import QuickWorkoutForm
 
 struct WorkoutsList: View {
-    private let store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>
-    @ObservedObject private var viewStore: ViewStore<QuickWorkoutsListState, QuickWorkoutsListAction>
+    let store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>
 
     @State private var cellSize: CGSize = .zero
-
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
-    init(store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>,
-         origin: Binding<CGPoint>
-    ) {
-        self.store = store
-        self.viewStore = ViewStore(store)
-    }
-
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            ForEachStore(store.scope(state: { $0.workoutStates },
-                                     action: QuickWorkoutsListAction.workoutCardAction(id:action:))) { cardViewStore in
-                ContextMenuView {
-                    QuickWorkoutCardView(store: cardViewStore)
-                        .padding(.horizontal, Spacing.l)
-                        .padding(.vertical, Spacing.xxs)
-                        .settingSize($cellSize)
-                } previewProvider: {
-                    WorkoutPreview(store: cardViewStore)
+        WithViewStore(store) { viewStore in
+            ScrollView(showsIndicators: false) {
+                ForEachStore(store.scope(state: { $0.workoutStates },
+                                         action: QuickWorkoutsListAction.workoutCardAction(id:action:))) { cardViewStore in
+                    ContextMenuView {
+                        QuickWorkoutCardView(store: cardViewStore)
+                            .padding(.horizontal, Spacing.l)
+                            .padding(.vertical, Spacing.xxs)
+                            .settingSize($cellSize)
+                    } previewProvider: {
+                        WorkoutPreview(store: cardViewStore)
+                    }
+                    .actionProvider {
+                        actions(cardViewStore, viewStore: viewStore)
+                    }
+                    .onPreviewTap {
+                        viewStore.send(.editWorkout(ViewStore(cardViewStore).workout))
+                        viewStore.send(.timerForm(.present))
+                    }
+                    .frame(height: cellSize.height)
                 }
-                .actionProvider {
-                    actions(cardViewStore)
-                }
-                .onPreviewTap {
-                    viewStore.send(.editWorkout(ViewStore(cardViewStore).workout))
-                    viewStore.send(.timerForm(.present))
-                }
-                .frame(height: cellSize.height)
             }
-        }
-        .sheet(isPresented: viewStore.binding(get: \.isPresentingTimerForm),
-               onDismiss: { viewStore.send(.timerForm(.dismiss))}) {
-            CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState,
-                                                      action: QuickWorkoutsListAction.createWorkoutAction))
+            .sheet(isPresented: viewStore.binding(get: \.isPresentingTimerForm),
+                   onDismiss: { viewStore.send(.timerForm(.dismiss))}) {
+                CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState,
+                                                          action: QuickWorkoutsListAction.createWorkoutAction))
+            }
         }
         .fullHeight()
         .fullWidth()
@@ -51,18 +44,23 @@ struct WorkoutsList: View {
         .navigationTitle("Workouts")
     }
 
-    private func actions(_ store: Store<QuickWorkoutCardState, QuickWorkoutCardAction>) -> UIMenu {
+    private func actions(
+        _ store: Store<QuickWorkoutCardState, QuickWorkoutCardAction>,
+        viewStore: ViewStore<QuickWorkoutsListState, QuickWorkoutsListAction>
+    ) -> UIMenu {
+        let cardViewStore = ViewStore(store)
+
         let deleteAction = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) { action in
-            viewStore.send(.deleteWorkout(ViewStore(store).workout))
+            viewStore.send(.deleteWorkout(cardViewStore.workout))
         }
 
         let edit = UIAction(title: "Edit", image: UIImage(systemName: "pencil")) { _ in
-            viewStore.send(.editWorkout(ViewStore(store).workout))
+            viewStore.send(.editWorkout(cardViewStore.workout))
             viewStore.send(.timerForm(.present))
         }
 
         let start = UIAction(title: "Start", image: UIImage(systemName: "play.fill")) { action in
-            ViewStore(store).send(.tapStart)
+            cardViewStore.send(.tapStart)
         }
 
         let deleteMenu = UIMenu(title: "Delete", image: UIImage(systemName: "trash"), options: .destructive, children: [deleteAction])
@@ -79,8 +77,7 @@ struct WorkoutsListView_Previews: PreviewProvider {
                     workouts: [mockQuickWorkout1, mockQuickWorkout2]),
                 reducer: quickWorkoutsListReducer,
                 environment: .preview
-            ),
-            origin: .constant(.zero)
+            )
         )
     }
 }
