@@ -7,7 +7,7 @@ import CoreLogic
 
 public struct QuickWorkoutsListView: View {
 
-    struct State: Equatable {
+    fileprivate struct State: Equatable {
         var loadingState: LoadingState
         var noWorkouts = false
         var isPresentingTimer = false

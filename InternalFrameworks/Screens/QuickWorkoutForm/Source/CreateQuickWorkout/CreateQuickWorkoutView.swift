@@ -5,7 +5,7 @@ import ComposableArchitecture
 
 public struct CreateQuickWorkoutView: View {
 
-    struct State: Equatable {
+    fileprivate struct State: Equatable {
         var isFormIncomplete = false
         var isEditing = false
         var isPresentingCreateIntervalView = false
@@ -76,7 +76,7 @@ struct CreateQuickWorkoutView_Previews: PreviewProvider {
 }
 
 private struct WorkoutForm: View {
-    struct State: Equatable {
+    fileprivate struct State: Equatable {
         var preselectedTints: [TintColor]
         var selectedColor: Color
         var selectedTint: TintColor?
