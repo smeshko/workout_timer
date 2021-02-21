@@ -35,14 +35,14 @@ public struct OnboardingView: View {
 
             VStack(alignment: .leading, spacing: Spacing.l) {
                 InfoView(image: "suit.heart.fill", color: .orange,
-                         title: "Create timers",
-                         text: "It's easy to create new workout timers! Add as many rounds to each one as you wish.")
+                         title: "onboarding_title_1",
+                         text: "onboarding_text_1")
                 InfoView(image: "timer", color: .blue,
-                         title: "Focus on training",
-                         text: "The app will guide you through your workout. You'll always have all the important information at a glance.")
+                         title: "onboarding_title_2",
+                         text: "onboarding_text_2")
                 InfoView(image: "icloud.fill", color: .red,
-                         title: "Sync across devices",
-                         text: "Timers you create on one device will be automatically synced to all your other iCloud enabled devices.")
+                         title: "onboarding_title_3",
+                         text: "onboarding_text_3")
             }
 
             Spacer()
@@ -52,7 +52,7 @@ public struct OnboardingView: View {
                     viewStore.send(.start)
                 }
             }, label: {
-                Text("Start")
+                Text(key: "start")
                     .padding(.vertical, Spacing.m)
                     .font(.h3)
                     .frame(minWidth: 0, maxWidth: .infinity)
@@ -89,8 +89,8 @@ struct OnboardingView_Previews: PreviewProvider {
 private struct InfoView: View {
     let image: String
     let color: Color
-    let title: String
-    let text: String
+    let title: LocalizedStringKey
+    let text: LocalizedStringKey
 
     var body: some View {
         HStack(alignment: .top) {
@@ -100,9 +100,9 @@ private struct InfoView: View {
                 .frame(width: 40, height: 40, alignment: .top)
 
             VStack(alignment: .leading, spacing: Spacing.xxs) {
-                Text(title)
+                Text(key: title)
                     .font(.h3)
-                Text(text)
+                Text(key: text)
                     .font(.bodyRegular)
             }
             Spacer()

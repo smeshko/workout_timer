@@ -15,7 +15,7 @@ public struct SegmentedProgressView: View {
         WithViewStore(store) { viewStore in
             VStack(alignment: .leading) {
                 if let title = viewStore.currentSegment?.setsProgress {
-                    Text("Current set: \(title)")
+                    Text(key: "current_set \(title)")
                         .lineLimit(1)
                         .font(.bodySmall)
                         .foregroundColor(.appGrey)

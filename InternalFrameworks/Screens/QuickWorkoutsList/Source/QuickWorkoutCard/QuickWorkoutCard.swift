@@ -18,7 +18,8 @@ struct QuickWorkoutCardState: Equatable, Identifiable {
     }
 
     var duration: Int {
-        Int(workout.duration / 60)
+        let minutes = Int(workout.duration / 60)
+        return minutes < 1 ? 1 : minutes
     }
 
     public init(workout: QuickWorkout) {

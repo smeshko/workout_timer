@@ -21,37 +21,37 @@ struct AddTimerSegmentView: View {
         WithViewStore(store.scope(state: \.view)) { viewStore in
             NavigationView {
                 VStack(spacing: Spacing.xxl) {
-                    TextField("round name", text: viewStore.binding(get: \.name, send: AddTimerSegmentAction.updateName))
+                    TextField("round_name_placeholder".localized, text: viewStore.binding(get: \.name, send: AddTimerSegmentAction.updateName))
                         .padding(Spacing.s)
                         .border(stroke: tint)
 
                     HStack(alignment: .bottom, spacing: Spacing.l) {
                         ValuePicker(store: store.scope(state: \.setsState, action: AddTimerSegmentAction.changeSetsCount),
-                                    valueName: "sets", valuePostfix: nil, tint: .orange
+                                    valueName: "sets_value_picker".localized, valuePostfix: nil, tint: .orange
                         )
 
                         ValuePicker(store: store.scope(state: \.workoutTimeState, action: AddTimerSegmentAction.changeWorkoutTime),
-                                    valueName: "duration/set", valuePostfix: "s", tint: .blue
+                                    valueName: "duration_value_picker".localized, valuePostfix: "s", tint: .blue
                         )
 
                         ValuePicker(store: store.scope(state: \.breakTimeState, action: AddTimerSegmentAction.changeBreakTime),
-                                    valueName: "rest in between", valuePostfix: "s", tint: .red
+                                    valueName: "rest_value_picker".localized, valuePostfix: "s", tint: .red
                         )
                     }
                     Spacer()
                 }
                 .toolbar {
                     ToolbarItem(placement: .confirmationAction) {
-                        Button(viewStore.isEditing ? "Done" : "Add", action: {
+                        Button(key: viewStore.isEditing ? "done" : "add") {
                             viewStore.send(viewStore.isEditing ? .done : .add)
-                        })
+                        }
                     }
 
                     ToolbarItem(placement: viewStore.isEditing ? .navigationBarLeading : .cancellationAction) {
                             if viewStore.isEditing {
                                 HStack {
                                     Image(systemName: "trash")
-                                    Text("Delete")
+                                    Text(key: "delete")
                                         .bold()
                                 }
                                 .font(.bodyRegular)
@@ -63,13 +63,13 @@ struct AddTimerSegmentView: View {
                                 Button(action: {
                                     viewStore.send(.cancel)
                                 }, label: {
-                                    Text("Cancel")
+                                    Text(key: "cancel")
                                 })
 
                             }
                         }
                 }
-                .navigationTitle(viewStore.name.isEmpty ? "Unnamed round" : viewStore.name)
+                .navigationTitle(viewStore.name.isEmpty ? "unnamed_round".localized : viewStore.name)
                 .padding(Spacing.xxl)
             }
             .navigationViewStyle(StackNavigationViewStyle())

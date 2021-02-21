@@ -33,7 +33,7 @@ struct LicensesView: View {
                 )
             )
             .padding()
-            .navigationTitle("Licenses")
+            .navigationTitle("licenses".localized)
         }
     }
 }

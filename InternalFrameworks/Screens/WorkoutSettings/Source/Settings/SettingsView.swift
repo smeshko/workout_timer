@@ -16,28 +16,28 @@ public struct SettingsView: View {
     public var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Customization")) {
+                Section(header: Text(key: "settings_customization")) {
                     VStack(alignment: .leading) {
-                        Toggle("Enable sound", isOn: viewStore.binding(get: \.sound, send: SettingsAction.toggleSound))
-                        Text("The app plays sounds while the timer is running or when an interval is finished.")
+                        Toggle("settings_enable_sound".localized, isOn: viewStore.binding(get: \.sound, send: SettingsAction.toggleSound))
+                        Text(key: "settings_enable_sound_descr")
                             .font(.bodySmall)
                             .padding(.bottom, Spacing.xxs)
                     }
                     VStack(alignment: .leading) {
-                        Toggle("Keep screen on", isOn: viewStore.binding(get: \.keepScreen, send: SettingsAction.toggleScreen))
-                        Text("Choose to disable auto-locking the screen while using the app.")
+                        Toggle("settings_keep_screen".localized, isOn: viewStore.binding(get: \.keepScreen, send: SettingsAction.toggleScreen))
+                        Text(key: "settings_keep_screen_descr")
                             .font(.bodySmall)
                             .padding(.bottom, Spacing.xxs)
                     }
                 }
 
-                Section(header: Text("Support")) {
+                Section(header: Text(key: "settings_support")) {
                     if MailView.canSendEmail {
                         MailButtons(store: store)
                     }
                     OnboardingButton(store: store)
 
-                    Button("Rate the app") {
+                    Button(key: "settings_rate_app") {
                         if let windowScene = UIApplication.shared.windows.first?.windowScene {
                             SKStoreReviewController.requestReview(in: windowScene)
                         }
@@ -45,8 +45,8 @@ public struct SettingsView: View {
                     .buttonStyle(PlainButtonStyle())
                 }
 
-                Section(header: Text("Legal")) {
-                    Button("Privacy policy") {
+                Section(header: Text(key: "settings_legal")) {
+                    Button(key: "settings_privacy_policy") {
 
                     }
                     .buttonStyle(PlainButtonStyle())
@@ -54,7 +54,7 @@ public struct SettingsView: View {
                     LicensesButton(store: store)
                 }
 
-                Text("Version \(viewStore.versionNumber)")
+                Text(key: "settings_version \(viewStore.versionNumber)")
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -68,7 +68,7 @@ public struct SettingsView: View {
             .onAppear {
                 viewStore.send(.onAppear)
             }
-            .navigationTitle("Settings")
+            .navigationTitle("settings".localized)
         }
     }
 }
@@ -95,7 +95,7 @@ private struct OnboardingButton: View {
     }
 
     var body: some View {
-        Button("Show onboarding") {
+        Button(key: "settings_show_onboarding") {
             viewStore.send(.onboarding(.present))
         }
         .buttonStyle(PlainButtonStyle())
@@ -119,12 +119,12 @@ private struct MailButtons: View {
 
     var body: some View {
         Group {
-            Button("Report a bug") {
+            Button(key: "settings_report") {
                 viewStore.send(.bugReport(.present))
             }
             .buttonStyle(PlainButtonStyle())
 
-            Button("Feature request") {
+            Button(key: "settings_request") {
                 viewStore.send(.featureRequest(.present))
             }
             .buttonStyle(PlainButtonStyle())
@@ -147,7 +147,7 @@ private struct LicensesButton: View {
     }
 
     var body: some View {
-        Button("Licenses") {
+        Button(key: "licenses") {
             viewStore.send(.licenses(.present))
         }
         .buttonStyle(PlainButtonStyle())

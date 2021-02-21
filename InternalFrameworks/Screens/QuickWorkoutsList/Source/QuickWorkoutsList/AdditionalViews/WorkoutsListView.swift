@@ -35,7 +35,7 @@ struct WorkoutsList: View {
         .fullHeight()
         .fullWidth()
         .padding(.horizontal, Spacing.margin(horizontalSizeClass))
-        .navigationTitle("Workouts")
+        .navigationTitle("workouts".localized)
     }
 }
 
@@ -97,20 +97,20 @@ private struct ListContents: View {
     ) -> UIMenu {
         let cardViewStore = ViewStore(store)
 
-        let deleteAction = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) { action in
+        let deleteAction = UIAction(title: "delete".localized, image: UIImage(systemName: "trash"), attributes: .destructive) { action in
             viewStore.send(.deleteWorkout(cardViewStore.workout))
         }
 
-        let edit = UIAction(title: "Edit", image: UIImage(systemName: "pencil")) { _ in
+        let edit = UIAction(title: "edit".localized, image: UIImage(systemName: "pencil")) { _ in
             viewStore.send(.editWorkout(cardViewStore.workout))
             viewStore.send(.timerForm(.present))
         }
 
-        let start = UIAction(title: "Start", image: UIImage(systemName: "play.fill")) { action in
+        let start = UIAction(title: "start".localized, image: UIImage(systemName: "play.fill")) { action in
             cardViewStore.send(.tapStart)
         }
 
-        let deleteMenu = UIMenu(title: "Delete", image: UIImage(systemName: "trash"), options: .destructive, children: [deleteAction])
+        let deleteMenu = UIMenu(title: "delete".localized, image: UIImage(systemName: "trash"), options: .destructive, children: [deleteAction])
 
         return UIMenu(title: "", children: [start, edit, deleteMenu])
     }

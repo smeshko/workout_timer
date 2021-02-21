@@ -15,7 +15,7 @@ struct FinishedWorkoutView: View {
         VStack {
             Spacer()
             ZStack {
-                Text("Congratulations")
+                Text(key: "congratulations")
                     .font(.h1)
                     .foregroundColor(viewStore.workout.color.color)
                     .animation(.easeInOut(duration: 0.55))
@@ -23,7 +23,7 @@ struct FinishedWorkoutView: View {
                 Confetti()
             }
 
-            Text("Another one in the books")
+            Text(key: "finished_greeting")
                 .font(.h2)
                 .foregroundColor(.appText)
                 .animation(.easeInOut(duration: 0.55))

@@ -24,18 +24,18 @@ public struct CreateQuickWorkoutView: View {
                 WorkoutForm(store: store)
                     .toolbar {
                         ToolbarItem(placement: .confirmationAction) {
-                            Button("Save", action: {
+                            Button(key: "save") {
                                 viewStore.send(.save)
-                            })
+                            }
                             .disabled(viewStore.isFormIncomplete)
                         }
                         ToolbarItem(placement: .cancellationAction) {
-                            Button("Cancel", action: {
+                            Button(key: "cancel") {
                                 viewStore.send(.cancel)
-                            })
+                            }
                         }
                     }
-                    .navigationTitle(viewStore.isEditing ? "Edit Workout" : "Create workout")
+                    .navigationTitle(viewStore.isEditing ? "edit_workout".localized : "create_workout".localized)
                     .sheet(isPresented: viewStore.binding(get: \.isPresentingCreateIntervalView)) {
                         IfLetStore(store.scope(state: \.addSegmentState, action: CreateQuickWorkoutAction.addSegmentAction),
                                    then: { AddTimerSegmentView(store: $0, tint: viewStore.selectedColor) }
@@ -90,7 +90,7 @@ private struct WorkoutForm: View {
         WithViewStore(store.scope(state: \.formView)) { viewStore in
             ScrollView {
                 VStack(spacing: Spacing.xxl) {
-                    TextField("Workout name", text: viewStore.binding(get: \.name, send: CreateQuickWorkoutAction.updateName))
+                    TextField("workout_name_placeholder".localized, text: viewStore.binding(get: \.name, send: CreateQuickWorkoutAction.updateName))
                         .padding(Spacing.s)
                         .border(stroke: viewStore.selectedColor)
 
@@ -133,7 +133,7 @@ private struct WorkoutForm: View {
                             viewStore.send(.createInterval(.present))
                         }
                     }) {
-                        Label("Add new round", systemImage: "plus")
+                        Label(key: "add_round", systemImage: "plus")
                             .font(.h2)
                             .foregroundColor(.appText)
                     }

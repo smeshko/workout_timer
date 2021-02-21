@@ -22,7 +22,7 @@ struct NoWorkoutsView: View {
                             .foregroundColor(.appWhite)
                     }
                 })
-                Text("Create your first workout")
+                Text(key: "first_workout")
                     .font(.h2)
                     .foregroundColor(.appText)
             }

@@ -17,7 +17,7 @@ struct SegmentView: View {
                         .font(.h3)
                         .foregroundColor(.orange)
                         +
-                        Text(" sets of")
+                    Text(key: "sets_of")
                         .font(.h4)
                         .foregroundColor(.appText)
 
@@ -25,7 +25,7 @@ struct SegmentView: View {
                         .font(.h3)
                         .foregroundColor(.blue)
                         +
-                    Text("s work and")
+                    Text(key: "seconds_work")
                         .font(.h4)
                         .foregroundColor(.appText)
 
@@ -33,7 +33,7 @@ struct SegmentView: View {
                         .font(.h3)
                         .foregroundColor(.red)
                         +
-                    Text("s rest")
+                    Text(key: "seconds_rest")
                         .font(.h4)
                         .foregroundColor(.appText)
                 }
