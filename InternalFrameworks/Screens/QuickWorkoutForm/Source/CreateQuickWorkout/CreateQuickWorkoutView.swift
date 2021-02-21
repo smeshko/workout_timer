@@ -21,28 +21,26 @@ public struct CreateQuickWorkoutView: View {
     public var body: some View {
         WithViewStore(store.scope(state: \.createView)) { viewStore in
             NavigationView {
-                VStack {
-                    WorkoutForm(store: store)
-                }
-                .toolbar {
-                    ToolbarItem(placement: .confirmationAction) {
-                        Button("Save", action: {
-                            viewStore.send(.save)
-                        })
-                        .disabled(viewStore.isFormIncomplete)
+                WorkoutForm(store: store)
+                    .toolbar {
+                        ToolbarItem(placement: .confirmationAction) {
+                            Button("Save", action: {
+                                viewStore.send(.save)
+                            })
+                            .disabled(viewStore.isFormIncomplete)
+                        }
+                        ToolbarItem(placement: .cancellationAction) {
+                            Button("Cancel", action: {
+                                viewStore.send(.cancel)
+                            })
+                        }
                     }
-                    ToolbarItem(placement: .cancellationAction) {
-                        Button("Cancel", action: {
-                            viewStore.send(.cancel)
-                        })
+                    .navigationTitle(viewStore.isEditing ? "Edit Workout" : "Create workout")
+                    .sheet(isPresented: viewStore.binding(get: \.isPresentingCreateIntervalView)) {
+                        IfLetStore(store.scope(state: \.addSegmentState, action: CreateQuickWorkoutAction.addSegmentAction),
+                                   then: { AddTimerSegmentView(store: $0, tint: viewStore.selectedColor) }
+                        )
                     }
-                }
-                .navigationTitle(viewStore.isEditing ? "Edit Workout" : "Create workout")
-                .sheet(isPresented: viewStore.binding(get: \.isPresentingCreateIntervalView)) {
-                    IfLetStore(store.scope(state: \.addSegmentState, action: CreateQuickWorkoutAction.addSegmentAction),
-                               then: { AddTimerSegmentView(store: $0, tint: viewStore.selectedColor) }
-                    )
-                }
             }
         }
     }

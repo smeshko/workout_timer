@@ -12,8 +12,6 @@ struct AddTimerSegmentView: View {
         var isEditing = false
     }
 
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
     init(store: Store<AddTimerSegmentState, AddTimerSegmentAction>, tint: Color) {
         self.store = store
         self.tint = tint
@@ -45,22 +43,24 @@ struct AddTimerSegmentView: View {
                 .toolbar {
                     ToolbarItem(placement: .confirmationAction) {
                         Button(viewStore.isEditing ? "Done" : "Add", action: {
-                            presentationMode.wrappedValue.dismiss()
                             viewStore.send(viewStore.isEditing ? .done : .add)
                         })
                     }
 
                     ToolbarItem(placement: viewStore.isEditing ? .navigationBarLeading : .cancellationAction) {
                             if viewStore.isEditing {
-                                Image(systemName: "trash")
-                                    .foregroundColor(.red)
-                                    .onTapGesture {
-                                        presentationMode.wrappedValue.dismiss()
-                                        viewStore.send(.remove)
-                                    }
+                                HStack {
+                                    Image(systemName: "trash")
+                                    Text("Delete")
+                                        .bold()
+                                }
+                                .font(.bodyRegular)
+                                .foregroundColor(.red)
+                                .onTapGesture {
+                                    viewStore.send(.remove)
+                                }
                             } else {
                                 Button(action: {
-                                    presentationMode.wrappedValue.dismiss()
                                     viewStore.send(.cancel)
                                 }, label: {
                                     Text("Cancel")
