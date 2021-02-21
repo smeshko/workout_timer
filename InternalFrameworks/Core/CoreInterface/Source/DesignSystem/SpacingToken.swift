@@ -25,7 +25,7 @@ public struct Spacing {
         case .compact:
             return 8
         case .regular:
-            return 160
+            return 8
         @unknown default:
             return 8
         }

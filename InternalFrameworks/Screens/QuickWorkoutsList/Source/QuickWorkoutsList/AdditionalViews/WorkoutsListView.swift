@@ -6,30 +6,24 @@ import QuickWorkoutForm
 struct WorkoutsList: View {
     let store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>
 
-    @State private var cellSize: CGSize = .zero
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
+
+    private let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
 
     var body: some View {
         WithViewStore(store.scope(state: \.isPresentingTimerForm)) { viewStore in
             ScrollView(showsIndicators: false) {
-                ForEachStore(store.scope(state: { $0.workoutStates },
-                                         action: QuickWorkoutsListAction.workoutCardAction(id:action:))) { cardViewStore in
-                    ContextMenuView {
-                        QuickWorkoutCardView(store: cardViewStore)
-                            .padding(.horizontal, Spacing.l)
-                            .padding(.vertical, Spacing.xxs)
-                            .settingSize($cellSize)
-                    } previewProvider: {
-                        WorkoutPreview(store: cardViewStore)
+                if horizontalSizeClass == .regular {
+                    LazyVGrid(columns: columns) {
+                        ListContents(store: store)
                     }
-                    .actionProvider {
-                        actions(cardViewStore, viewStore: viewStore)
+                } else {
+                    VStack {
+                        ListContents(store: store)
                     }
-                    .onPreviewTap {
-                        viewStore.send(.editWorkout(ViewStore(cardViewStore).workout))
-                        viewStore.send(.timerForm(.present))
-                    }
-                    .frame(height: cellSize.height)
                 }
             }
             .sheet(isPresented: viewStore.binding(get: { $0 }),
@@ -42,6 +36,59 @@ struct WorkoutsList: View {
         .fullWidth()
         .padding(.horizontal, Spacing.margin(horizontalSizeClass))
         .navigationTitle("Workouts")
+    }
+}
+
+struct WorkoutsListView_Previews: PreviewProvider {
+    static var previews: some View {
+        WorkoutsList(
+            store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>(
+                initialState: QuickWorkoutsListState(
+                    workouts: [mockQuickWorkout1, mockQuickWorkout2]),
+                reducer: quickWorkoutsListReducer,
+                environment: .preview
+            )
+        )
+        .previewDevice(.iPadPro)
+    }
+}
+
+private extension View {
+    func settingSize(_ binding: Binding<CGSize>) -> some View {
+        background(
+            GeometryReader { proxy in
+                Color.clear
+                    .onAppear { binding.wrappedValue = proxy.size }
+            })
+    }
+}
+
+private struct ListContents: View {
+    let store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>
+    @State private var cellSize: CGSize = .zero
+
+    var body: some View {
+        WithViewStore(store.scope(state: \.isPresentingTimerForm)) { viewStore in
+            ForEachStore(store.scope(state: { $0.workoutStates },
+                                     action: QuickWorkoutsListAction.workoutCardAction(id:action:))) { cardViewStore in
+                ContextMenuView {
+                    QuickWorkoutCardView(store: cardViewStore)
+                        .padding(.horizontal, Spacing.l)
+                        .padding(.vertical, Spacing.xxs)
+                        .settingSize($cellSize)
+                } previewProvider: {
+                    WorkoutPreview(store: cardViewStore)
+                }
+                .actionProvider {
+                    actions(cardViewStore, viewStore: viewStore)
+                }
+                .onPreviewTap {
+                    viewStore.send(.editWorkout(ViewStore(cardViewStore).workout))
+                    viewStore.send(.timerForm(.present))
+                }
+                .frame(height: cellSize.height)
+            }
+        }
     }
 
     private func actions(
@@ -66,28 +113,5 @@ struct WorkoutsList: View {
         let deleteMenu = UIMenu(title: "Delete", image: UIImage(systemName: "trash"), options: .destructive, children: [deleteAction])
 
         return UIMenu(title: "", children: [start, edit, deleteMenu])
-    }
-}
-
-struct WorkoutsListView_Previews: PreviewProvider {
-    static var previews: some View {
-        WorkoutsList(
-            store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>(
-                initialState: QuickWorkoutsListState(
-                    workouts: [mockQuickWorkout1, mockQuickWorkout2]),
-                reducer: quickWorkoutsListReducer,
-                environment: .preview
-            )
-        )
-    }
-}
-
-private extension View {
-    func settingSize(_ binding: Binding<CGSize>) -> some View {
-        background(
-            GeometryReader { proxy in
-                Color.clear
-                    .onAppear { binding.wrappedValue = proxy.size }
-            })
     }
 }
