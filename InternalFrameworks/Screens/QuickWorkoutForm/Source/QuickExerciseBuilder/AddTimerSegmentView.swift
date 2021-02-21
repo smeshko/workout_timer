@@ -72,6 +72,7 @@ struct AddTimerSegmentView: View {
                 .navigationTitle(viewStore.name.isEmpty ? "Unnamed round" : viewStore.name)
                 .padding(Spacing.xxl)
             }
+            .navigationViewStyle(StackNavigationViewStyle())
         }
     }
 }

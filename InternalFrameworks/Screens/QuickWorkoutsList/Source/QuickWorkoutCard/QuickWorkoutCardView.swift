@@ -15,40 +15,37 @@ struct QuickWorkoutCardView: View {
     }
 
     var body: some View {
-        ZStack {
-            VStack(alignment: .leading, spacing: Spacing.l) {
+        VStack(alignment: .leading, spacing: Spacing.l) {
+            VStack(alignment: .leading, spacing: Spacing.xxs) {
+                Text("mins".localized(viewStore.duration))
+                    .font(.h3)
 
-                VStack(alignment: .leading, spacing: Spacing.xxs) {
-                    Text("mins".localized(viewStore.duration))
-                        .font(.h3)
-
-                    Text("rounds".localized(viewStore.segmentsCount))
-                        .font(.bodySmall)
-                }
-
-                HStack {
-                    Text(viewStore.workout.name)
-                        .font(.h1)
-
-                    Spacer()
-
-                        Button(action: {
-                            withAnimation {
-                                viewStore.send(.tapStart)
-                            }
-                        }, label: {
-                            Image(systemName: "play.fill")
-                                .padding(Spacing.s)
-                                .background(viewStore.workout.color.color)
-                                .mask(Circle())
-
-                        })
-                    .frame(width: 40, height: 40)
-                }
+                Text("rounds".localized(viewStore.segmentsCount))
+                    .font(.bodySmall)
             }
-            .foregroundColor(.appWhite)
-            .padding(Spacing.l)
-            .background(
+
+            HStack {
+                Text(viewStore.workout.name)
+                    .font(.h1)
+                Spacer()
+                Button(action: {
+                    withAnimation {
+                        viewStore.send(.tapStart)
+                    }
+                }, label: {
+                    Image(systemName: "play.fill")
+                        .padding(Spacing.s)
+                        .background(viewStore.workout.color.color)
+                        .mask(Circle())
+
+                })
+                .frame(width: 40, height: 40)
+            }
+        }
+        .foregroundColor(.appWhite)
+        .padding(Spacing.l)
+        .background(
+            GeometryReader { proxy in
                 ZStack(alignment: .trailing) {
                     LinearGradient(
                         gradient: Gradient(colors: [viewStore.workout.color.color, viewStore.workout.color.monochromatic]),
@@ -65,11 +62,11 @@ struct QuickWorkoutCardView: View {
                             )
                         )
                         .scaleEffect(1.2)
-                        .offset(x: 175, y: 35)
+                        .offset(x: proxy.size.width / 2, y: 35)
                 }
-                .cornerRadius(CornerRadius.m)
-            )
-        }
+            }
+            .cornerRadius(CornerRadius.m)
+        )
     }
 }
 
