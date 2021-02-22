@@ -46,10 +46,8 @@ public struct SettingsView: View {
                 }
 
                 Section(header: Text(key: "settings_legal")) {
-                    Button(key: "settings_privacy_policy") {
-
-                    }
-                    .buttonStyle(PlainButtonStyle())
+                    Link("settings_privacy_policy".localized, destination: URL(string: "https://pbandswift.com/privacy/")!)
+                        .buttonStyle(PlainButtonStyle())
 
                     LicensesButton(store: store)
                 }
