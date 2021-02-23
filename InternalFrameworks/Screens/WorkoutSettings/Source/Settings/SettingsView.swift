@@ -151,7 +151,7 @@ private struct LicensesButton: View {
         .buttonStyle(PlainButtonStyle())
         .sheet(isPresented: viewStore.binding(get: \.isPresentingLicenses),
                onDismiss: { viewStore.send(.licenses(.dismiss)) },
-               content: LicensesView.init
+               content: { LicensesView(store: store) }
         )
     }
 }

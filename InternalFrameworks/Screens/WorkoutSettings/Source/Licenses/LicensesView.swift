@@ -1,10 +1,19 @@
+import ComposableArchitecture
 import SwiftUI
 
 struct LicensesView: View {
+    private let store: Store<SettingsState, SettingsAction>
+    @ObservedObject private var viewStore: ViewStore<SettingsState, SettingsAction>
+
+    public init(store: Store<SettingsState, SettingsAction>) {
+        self.store = store
+        self.viewStore = ViewStore(store)
+    }
+
     var body: some View {
         NavigationView {
-            TextEditor(
-                text: .constant(
+            ScrollView(showsIndicators: false) {
+                Text(
                     """
                     The Composable Architecture
 
@@ -31,9 +40,30 @@ struct LicensesView: View {
                     SOFTWARE.
                     """
                 )
-            )
-            .padding()
+                .padding()
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        viewStore.send(.licenses(.dismiss))
+                    }, label: {
+                        Image(systemName: "xmark")
+                    })
+                }
+            }
             .navigationTitle("licenses".localized)
         }
+    }
+}
+
+struct LicensesView_Previews: PreviewProvider {
+    static var previews: some View {
+        LicensesView(
+            store: Store<SettingsState, SettingsAction>(
+                initialState: SettingsState(),
+                reducer: settingsReducer,
+                environment: SettingsEnvironment(client: .mock)
+            )
+        )
     }
 }
