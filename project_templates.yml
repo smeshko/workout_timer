@@ -59,7 +59,7 @@ targetTemplates:
     platform: iOS
     sources: InternalFrameworks/Core/${frameworkName}/Tests
     dependencies:
-      - target: DomainEntities
+      - package: DomainEntities
     scheme:
       testTargets:
         - name: ${frameworkName}UnitTests
@@ -77,7 +77,7 @@ targetTemplates:
     dependencies:
       - target: CoreInterface
       - target: CoreLogic
-      - target: DomainEntities
+      - package: DomainEntities
     settings:
       base:
         SWIFT_INSTALL_OBJC_HEADER: NO
@@ -93,8 +93,8 @@ targetTemplates:
           - "**/__Snapshots__"
     dependencies:
       - target: CoreLogic
-      - target: DomainEntities
       - target: ${frameworkName}
+      - package: DomainEntities
     scheme:
       testTargets:
         - name: ${frameworkName}UnitTests

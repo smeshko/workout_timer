@@ -8,6 +8,8 @@ fileGroups:
   - .github
 
 packages:
+  DomainEntities:
+    path: InternalFrameworks/Core/DomainEntities
   ComposableArchitecture:
     url: https://github.com/pointfreeco/swift-composable-architecture
     from: 0.10.0
@@ -18,12 +20,12 @@ targets:
     dependencies:
       - target: CoreLogic
       - target: QuickWorkoutsList
-      - target: DomainEntities
       - target: CorePersistence
       - target: CoreInterface
       - target: QuickWorkoutForm
       - target: RunningTimer
       - target: WorkoutSettings
+      - package: DomainEntities
     scheme:
       gatherCoverageData: true
       testTargets:
@@ -34,9 +36,6 @@ targets:
         - name: RunningTimerUnitTests
         - name: QuickWorkoutsListUnitTests
         - name: WorkoutSettingsUnitTests
-
-  DomainEntities:
-    templates: [CoreFramework]
 
   CoreLogic:
     templates: [CoreFramework]
@@ -52,8 +51,8 @@ targets:
 
   CoreInterface:
     templates: [CoreFramework]
-    dependencies: 
-      - target: DomainEntities
+    dependencies:
+      - package: DomainEntities
       - target: CoreLogic
 
   CoreInterfaceUnitTests:
@@ -64,7 +63,7 @@ targets:
   CorePersistence:
     templates: [CoreFramework]
     dependencies:
-      - target: DomainEntities
+      - package: DomainEntities
 
   CorePersistenceUnitTests:
     templates: [CoreUnitTests]
@@ -126,11 +125,6 @@ schemes:
   QuickWorkoutsList:
     templates: 
       - FrameworkScheme
-  DomainEntities:
-    build:
-      targets:
-        DomainEntities: all
-    run:
   CorePersistence:
     templates: 
       - FrameworkScheme
