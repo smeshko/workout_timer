@@ -1,6 +1,6 @@
 import SwiftUI
 import ComposableArchitecture
-import CoreLogic
+import CoreLogic2
 import CoreInterface
 
 public enum OnboardingAction {

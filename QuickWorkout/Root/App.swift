@@ -1,5 +1,5 @@
 import SwiftUI
-import CoreLogic
+import CoreLogic2
 import ComposableArchitecture
 import CorePersistence
 import QuickWorkoutsList

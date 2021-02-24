@@ -1,5 +1,5 @@
 import Foundation
-import CoreLogic
+import CoreLogic2
 import DomainEntities
 import ComposableArchitecture
 

@@ -1,6 +1,6 @@
 import CorePersistence
 import WorkoutSettings
-import CoreLogic
+import CoreLogic2
 import ComposableArchitecture
 import DomainEntities
 import CoreInterface
