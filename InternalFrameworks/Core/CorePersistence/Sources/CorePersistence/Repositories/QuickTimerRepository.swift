@@ -30,4 +30,19 @@ public extension QuickWorkoutsRepository {
         delete: LocalStore(client: .preview).delete(_:),
         deleteMultiple: LocalStore(client: .preview).delete(_:)
     )
+
+    static let test = QuickWorkoutsRepository {
+        Just([]).setFailureType(to: PersistenceError.self).eraseToAnyPublisher()
+    } createWorkout: { workout in
+        Just(workout).setFailureType(to: PersistenceError.self).eraseToAnyPublisher()
+    } createSegment: { segment in
+        Just(segment).setFailureType(to: PersistenceError.self).eraseToAnyPublisher()
+    } updateWorkout: { workout in
+        Just(workout).setFailureType(to: PersistenceError.self).eraseToAnyPublisher()
+    } delete: { workout in
+        Just(workout.id.uuidString).setFailureType(to: PersistenceError.self).eraseToAnyPublisher()
+    } deleteMultiple: { workouts in
+        Just(workouts.map { $0.id.uuidString }).setFailureType(to: PersistenceError.self).eraseToAnyPublisher()
+    }
+
 }

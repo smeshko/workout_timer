@@ -20,7 +20,7 @@ class QuickWorkoutFormTests: XCTestCase {
             reducer: createQuickWorkoutReducer,
             environment: .mock(
                 environment:
-                    CreateQuickWorkoutEnvironment(repository: .mock),
+                    CreateQuickWorkoutEnvironment(repository: .test),
                 mainQueue: { AnyScheduler(DispatchQueue.testScheduler) },
                 uuid: uuid
             )
@@ -48,6 +48,7 @@ class QuickWorkoutFormTests: XCTestCase {
                 ]
                 $0.addSegmentState = nil
             },
+            .receive(.createInterval(.dismiss)),
             .send(.editSegment(id: uuid())) {
                 $0.addSegmentState = AddTimerSegmentState(
                     id: uuid(),
@@ -61,7 +62,8 @@ class QuickWorkoutFormTests: XCTestCase {
             .send(.addSegmentAction(action: .remove)) {
                 $0.segmentStates = []
                 $0.addSegmentState = nil
-            }
+            },
+            .receive(.createInterval(.dismiss))
         )
     }
 }

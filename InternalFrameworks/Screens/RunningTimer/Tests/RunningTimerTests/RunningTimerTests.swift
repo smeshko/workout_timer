@@ -128,6 +128,70 @@ class RunningTimerTests: XCTestCase {
             name: "Mock Workout",
             color: WorkoutColor(hue: 0, saturation: 0, brightness: 0),
             segments: [
+                QuickWorkoutSegment(id: uuidGenerator(), name: "Segment", sets: 1, work: 3, pause: 1)
+            ])
+
+        let state = RunningTimerState(workout: workout, precountdownState: PreCountdownState())
+        let sections = state.timerSections
+
+        let store = TestStore(
+            initialState: state,
+            reducer: runningTimerReducer,
+            environment: .test
+        )
+
+        store.assert(
+            .send(.preCountdownAction(.finished)) {
+                $0.precountdownState = nil
+                $0.currentSection = sections.first
+                $0.headerState.timeLeft = 3
+                $0.sectionTimeLeft = 3
+                $0.segmentedProgressState = SegmentedProgressState(segments: workout.segments)
+            },
+            .receive(.timerControlsUpdatedState(.start)) {
+                $0.timerControlsState.timerState = .running
+            },
+
+            // close
+            .do { testScheduler.advance(by: 1) },
+            .receive(.timerTicked) {
+                $0.headerState.timeLeft = 2
+                $0.sectionTimeLeft = 2
+            },
+            // close
+            .do { testScheduler.advance(by: 1) },
+            .receive(.timerTicked) {
+                $0.headerState.timeLeft = 1
+                $0.sectionTimeLeft = 1
+            },
+            .send(.headerAction(.closeButtonTapped)) {
+                $0.headerState.alert = .init(
+                    title: TextState("Stop workout?"),
+                    message: TextState("Are you sure you want to stop this workout?"),
+                    primaryButton: .cancel(send: .alertCancelTapped),
+                    secondaryButton: .default(TextState("Yes"), send: .alertConfirmTapped)
+                )
+            },
+            .receive(.timerControlsUpdatedState(.pause)) {
+                $0.timerControlsState.timerState = .paused
+            },
+            .send(.headerAction(.alertConfirmTapped)),
+            // finish
+            .receive(.timerFinished) {
+                $0.headerState.alert = nil
+                $0.headerState.isFinished = true
+                $0.timerControlsState.timerState = .finished
+                $0.finishedWorkoutState = FinishedWorkoutState(workout: workout)
+            }
+        )
+    }
+
+    func testCloseTimerEarly() {
+        let workout = QuickWorkout(
+            id: UUID(),
+            name: "Mock Workout",
+            color: WorkoutColor(hue: 0, saturation: 0, brightness: 0),
+            segments: [
                 QuickWorkoutSegment(id: uuidGenerator(), name: "Segment", sets: 1, work: 2, pause: 1)
             ])
 
@@ -170,14 +234,13 @@ class RunningTimerTests: XCTestCase {
                 $0.timerControlsState.timerState = .paused
             },
             .send(.headerAction(.alertConfirmTapped)),
-
             // finish
             .receive(.timerFinished) {
                 $0.headerState.alert = nil
                 $0.headerState.isFinished = true
                 $0.timerControlsState.timerState = .finished
-                $0.finishedWorkoutState = FinishedWorkoutState(workout: workout)
-            }
+            },
+            .receive(.headerAction(.timerClosed))
         )
     }
 

@@ -21,6 +21,7 @@ let package = Package(
 //        .package(path: "../DomainEntities"),
         .package(path: "../WorkoutSettings"),
         .package(path: "../RunningTimer"),
+        .package(path: "../QuickWorkoutForm"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -28,6 +29,7 @@ let package = Package(
         .target(
             name: "QuickWorkoutsList",
             dependencies: [
+                "QuickWorkoutForm",
                 "RunningTimer",
                 "WorkoutSettings"
             ]),

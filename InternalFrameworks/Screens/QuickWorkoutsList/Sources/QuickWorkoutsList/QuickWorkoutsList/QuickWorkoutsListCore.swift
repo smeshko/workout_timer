@@ -156,7 +156,7 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
     createQuickWorkoutReducer.pullback(
         state: \.createWorkoutState,
         action: /QuickWorkoutsListAction.createWorkoutAction,
-        environment: { _ in .live }
+        environment: { env in .live(environment: CreateQuickWorkoutEnvironment<TintColor>(repository: env.repository)) }
     )
 )
 

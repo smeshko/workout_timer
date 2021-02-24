@@ -28,6 +28,9 @@ let package = Package(
             dependencies: ["DomainEntities"]),
         .testTarget(
             name: "CorePersistenceTests",
-            dependencies: ["CorePersistence", "DomainEntities"]),
+            dependencies: ["CorePersistence"],
+            resources: [
+                .process("CoreData/WorkoutTimer.xcdatamodel")
+            ]),
     ]
 )

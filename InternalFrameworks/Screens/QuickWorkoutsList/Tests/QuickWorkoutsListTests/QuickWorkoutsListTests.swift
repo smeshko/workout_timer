@@ -14,7 +14,7 @@ class QuickWorkoutsListTests: XCTestCase {
             reducer: quickWorkoutsListReducer,
             environment: .mock(
                 environment: QuickWorkoutsListEnvironment(
-                    repository: .mock,
+                    repository: .test,
                     notificationClient: .mock
                 ),
                 mainQueue: { AnyScheduler(DispatchQueue.testScheduler) },
