@@ -1,0 +1,100 @@
+/* 
+  Localizable.strings
+  QuickWorkouts
+
+  Created by Tsonev Ivaylo on 21.02.21.
+  
+*/
+
+"workout" = "Workout";
+
+"workouts" = "Workouts";
+
+"first_workout" = "Create your first workout";
+
+"delete" = "Delete";
+
+"edit" = "Edit";
+
+"start" = "Start";
+
+"save" = "Save";
+
+"cancel" = "Cancel";
+
+"edit_workout" = "Edit workout";
+
+"create_workout" = "Create workout";
+
+"workout_name_placeholder" = "Workout name";
+
+"add_round" = "Add new round";
+
+"round_name_placeholder" = "round name";
+
+"sets_value_picker" = "sets";
+
+"duration_value_picker" = "duration/set";
+
+"rest_value_picker" = "rest in between";
+
+"done" = "Done";
+
+"add" = "Add";
+
+"unnamed_round" = "Unnamed round";
+
+/// Next 3 strings build the description of a round
+"sets_of" = " sets of";
+
+"seconds_work" = "s work and";
+
+"seconds_rest" = "s rest";
+
+"congratulations" = "Congratulations";
+
+"finished_greeting" = "Another one in the books!";
+
+"current_set %@" = "Current set: %@";
+
+"licenses" = "Licenses";
+
+"onboarding_title_1" = "Create timers";
+
+"onboarding_text_1" = "It's easy to create new workout timers! Add as many rounds to each one as you wish.";
+
+"onboarding_title_2" = "Focus on training";
+
+"onboarding_text_2" = "The app will guide you through your workout. You'll always have all the important information at a glance.";
+
+"onboarding_title_3" = "Sync across devices";
+
+"onboarding_text_3" = "Timers you create on one device will be automatically synced to all your other iCloud enabled devices.";
+
+"settings" = "Settings";
+
+"settings_customization" = "Customization";
+
+"settings_support" = "Support";
+
+"settings_legal" = "Legal";
+
+"settings_enable_sound" = "Enable sound";
+
+"settings_enable_sound_descr" = "The app plays sounds while the timer is running or when an interval is finished.";
+
+"settings_keep_screen" = "Keep screen on";
+
+"settings_keep_screen_descr" = "Choose to disable auto-locking the screen while using the app.";
+
+"settings_rate_app" = "Rate the app";
+
+"settings_privacy_policy" = "Privacy policy";
+
+"settings_version %@" = "Version %@";
+
+"settings_show_onboarding" = "Show onboarding";
+
+"settings_report" = "Report a bug";
+
+"settings_request" = "Feature request";

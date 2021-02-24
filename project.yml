@@ -12,6 +12,18 @@ packages:
     path: InternalFrameworks/Core/DomainEntities
   CorePersistence:
     path: InternalFrameworks/Core/CorePersistence
+  CoreLogic:
+    path: InternalFrameworks/Core/CoreLogic
+  CoreInterface:
+    path: InternalFrameworks/Core/CoreInterface
+  QuickWorkoutsList:
+    path: InternalFrameworks/Screens/QuickWorkoutsList
+  QuickWorkoutForm:
+    path: InternalFrameworks/Screens/QuickWorkoutForm
+  RunningTimer:
+    path: InternalFrameworks/Screens/RunningTimer
+  WorkoutSettings:
+    path: InternalFrameworks/Screens/WorkoutSettings
 
   ComposableArchitecture:
     url: https://github.com/pointfreeco/swift-composable-architecture
@@ -21,108 +33,112 @@ targets:
   QuickWorkouts:
     templates: [Target]
     dependencies:
-      - target: CoreLogic
-      - target: QuickWorkoutsList
-      - target: CoreInterface
-      - target: QuickWorkoutForm
-      - target: RunningTimer
-      - target: WorkoutSettings
+      - package: CoreLogic
+      - package: QuickWorkoutsList
+#      - target: CoreInterface2
+      - package: QuickWorkoutForm
+      - package: RunningTimer
+      - package: WorkoutSettings
       - package: CorePersistence
       - package: DomainEntities
+      - package: CoreInterface
     scheme:
       gatherCoverageData: true
-      testTargets:
-        - name: CoreLogicUnitTests
-        - name: CoreInterfaceUnitTests
-        - name: QuickWorkoutFormUnitTests
-        - name: RunningTimerUnitTests
-        - name: QuickWorkoutsListUnitTests
-        - name: WorkoutSettingsUnitTests
+      test:
+        targets:
+          - name: WorkoutSettingsTests
+#      testTargets:
+#        - name: WorkoutSettingsTests
+#        - name: CoreLogicUnitTests
+#        - name: CoreInterface2UnitTests
+#        - name: QuickWorkoutFormUnitTests
+#        - name: RunningTimerUnitTests
+#        - name: QuickWorkoutsListUnitTests
+#        - name: WorkoutSettingsUnitTests
 
-  CoreLogic:
-    templates: [CoreFramework]
-    dependencies:
-      - package: ComposableArchitecture
+#  CoreLogic:
+#    templates: [CoreFramework]
+#    dependencies:
+#      - package: ComposableArchitecture
+#
+#  CoreLogicUnitTests:
+#    templates: [CoreUnitTests]
+#    templateAttributes:
+#      frameworkName: CoreLogic
+#    dependencies:
+#      - package: ComposableArchitecture
 
-  CoreLogicUnitTests:
-    templates: [CoreUnitTests]
-    templateAttributes:
-      frameworkName: CoreLogic
-    dependencies:
-      - package: ComposableArchitecture
+#  CoreInterface2:
+#    templates: [CoreFramework]
+#    dependencies:
+#      - package: DomainEntities
+#      - target: CoreLogic
+#
+#  CoreInterface2UnitTests:
+#    templates: [CoreUnitTests]
+#    templateAttributes:
+#      frameworkName: CoreInterface2
+#
+#  QuickWorkoutForm:
+#    templates: [ScreenFramework]
+#    dependencies:
+#      - package: CorePersistence
+#
+#  QuickWorkoutFormUnitTests:
+#    templates: [ScreenUnitTests]
+#    templateAttributes:
+#      frameworkName: QuickWorkoutForm
+#    dependencies:
+#      - package: CorePersistence
+#
+#  RunningTimer:
+#    templates: [ScreenFramework]
+#    dependencies:
+#      - package: CorePersistence
+#
+#  RunningTimerUnitTests:
+#    templates: [ScreenUnitTests]
+#    templateAttributes:
+#      frameworkName: RunningTimer
+#
+#  QuickWorkoutsList:
+#    templates: [ScreenFramework]
+#    dependencies:
+#      - target: RunningTimer
+#      - target: QuickWorkoutForm
+#      - target: WorkoutSettings
+#      - package: CorePersistence
+#
+#  QuickWorkoutsListUnitTests:
+#    templates: [ScreenUnitTests]
+#    templateAttributes:
+#      frameworkName: QuickWorkoutsList
+#    dependencies:
+#      - target: RunningTimer
+#      - target: QuickWorkoutForm
+#      - target: WorkoutSettings
+#      - package: CorePersistence
+#
+#  WorkoutSettings:
+#    templates: [ScreenFramework]
+#
+#  WorkoutSettingsUnitTests:
+#    templates: [ScreenUnitTests]
+#    templateAttributes:
+#      frameworkName: WorkoutSettings
 
-  CoreInterface:
-    templates: [CoreFramework]
-    dependencies:
-      - package: DomainEntities
-      - target: CoreLogic
-
-  CoreInterfaceUnitTests:
-    templates: [CoreUnitTests]
-    templateAttributes:
-      frameworkName: CoreInterface
-
-  QuickWorkoutForm:
-    templates: [ScreenFramework]
-    dependencies:
-      - package: CorePersistence
-
-  QuickWorkoutFormUnitTests:
-    templates: [ScreenUnitTests]
-    templateAttributes:
-      frameworkName: QuickWorkoutForm
-    dependencies:
-      - package: CorePersistence
-
-  RunningTimer:
-    templates: [ScreenFramework]
-    dependencies:
-      - package: CorePersistence
-
-  RunningTimerUnitTests:
-    templates: [ScreenUnitTests]
-    templateAttributes:
-      frameworkName: RunningTimer
-
-  QuickWorkoutsList:
-    templates: [ScreenFramework]
-    dependencies:
-      - target: RunningTimer
-      - target: QuickWorkoutForm
-      - target: WorkoutSettings
-      - package: CorePersistence
-
-  QuickWorkoutsListUnitTests:
-    templates: [ScreenUnitTests]
-    templateAttributes:
-      frameworkName: QuickWorkoutsList
-    dependencies:
-      - target: RunningTimer
-      - target: QuickWorkoutForm
-      - target: WorkoutSettings
-      - package: CorePersistence
-
-  WorkoutSettings:
-    templates: [ScreenFramework]
-
-  WorkoutSettingsUnitTests:
-    templates: [ScreenUnitTests]
-    templateAttributes:
-      frameworkName: WorkoutSettings
-
-schemes: 
-  CoreLogic:
-    templates: 
-      - FrameworkScheme
-  QuickWorkoutsList:
-    templates: 
-      - FrameworkScheme
-  CoreInterface:
-    templates: 
-      - FrameworkScheme
-  QuickWorkoutForm:
-    templates: 
-      - FrameworkScheme
-  RunningTimer:
-    templates: 
-      - FrameworkScheme
+#  CoreLogic:
+#    templates:
+#      - FrameworkScheme
+#  QuickWorkoutsList:
+#    templates:
+#      - FrameworkScheme
+#  CoreInterface2:
+#    templates:
+#      - FrameworkScheme
+#  QuickWorkoutForm:
+#    templates:
+#      - FrameworkScheme
+#  RunningTimer:
+#    templates:
+#      - FrameworkScheme
