@@ -1,7 +1,7 @@
 import UIKit
 import SwiftUI
 import ComposableArchitecture
-import CoreLogic2
+import CoreLogic
 
 public struct List<EachState, EachAction, RowContent, Data, ID>: UIViewRepresentable, KeyPathUpdateable
 where Data: Collection, RowContent: View, EachState: Identifiable, EachState.ID == ID {

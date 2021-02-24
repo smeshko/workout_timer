@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import CoreInterface
 import ComposableArchitecture
-import CoreLogic2
+import CoreLogic
 import DomainEntities
 
 public enum RunningTimerAction: Equatable {

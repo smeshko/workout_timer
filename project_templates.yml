@@ -76,8 +76,7 @@ targetTemplates:
     sources: InternalFrameworks/Screens/${target_name}/Source
     dependencies:
       - target: CoreInterface
-      - target: CoreLogic2
-      - package: CoreLogic
+      - target: CoreLogic
       - package: DomainEntities
     settings:
       base:
@@ -93,8 +92,7 @@ targetTemplates:
         excludes:
           - "**/__Snapshots__"
     dependencies:
-      - target: CoreLogic2
-      - package: CoreLogic
+      - target: CoreLogic
       - target: ${frameworkName}
       - package: DomainEntities
     scheme:

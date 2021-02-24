@@ -1,5 +1,5 @@
 import XCTest
-import CoreLogic2
+import CoreLogic
 import DomainEntities
 import SwiftUI
 import CoreInterface

@@ -1,5 +1,5 @@
 import Foundation
-import CoreLogic2
+import CoreLogic
 import DomainEntities
 import ComposableArchitecture
 import RunningTimer

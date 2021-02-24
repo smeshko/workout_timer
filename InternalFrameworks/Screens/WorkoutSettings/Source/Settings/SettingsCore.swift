@@ -1,5 +1,5 @@
 import Foundation
-import CoreLogic2
+import CoreLogic
 import ComposableArchitecture
 
 public enum SettingsAction: Equatable {

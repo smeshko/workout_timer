@@ -18,6 +18,7 @@ let package = Package(
             targets: ["CorePersistence"]),
     ],
     dependencies: [
+
         .package(path: "../DomainEntities")
     ],
     targets: [

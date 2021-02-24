@@ -3,7 +3,7 @@ import WorkoutSettings
 import ComposableArchitecture
 import QuickWorkoutForm
 import RunningTimer
-import CoreLogic2
+import CoreLogic
 
 public struct QuickWorkoutsListView: View {
 

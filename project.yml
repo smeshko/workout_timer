@@ -10,8 +10,6 @@ fileGroups:
 packages:
   DomainEntities:
     path: InternalFrameworks/Core/DomainEntities
-  CoreLogic:
-    path: InternalFrameworks/Core/CoreLogic
   CorePersistence:
     path: InternalFrameworks/Core/CorePersistence
 
@@ -23,7 +21,7 @@ targets:
   QuickWorkouts:
     templates: [Target]
     dependencies:
-      - target: CoreLogic2
+      - target: CoreLogic
       - target: QuickWorkoutsList
       - target: CoreInterface
       - target: QuickWorkoutForm
@@ -31,26 +29,25 @@ targets:
       - target: WorkoutSettings
       - package: CorePersistence
       - package: DomainEntities
-      - package: CoreLogic
     scheme:
       gatherCoverageData: true
       testTargets:
-        - name: CoreLogic2UnitTests
+        - name: CoreLogicUnitTests
         - name: CoreInterfaceUnitTests
         - name: QuickWorkoutFormUnitTests
         - name: RunningTimerUnitTests
         - name: QuickWorkoutsListUnitTests
         - name: WorkoutSettingsUnitTests
 
-  CoreLogic2:
+  CoreLogic:
     templates: [CoreFramework]
     dependencies:
       - package: ComposableArchitecture
 
-  CoreLogic2UnitTests:
+  CoreLogicUnitTests:
     templates: [CoreUnitTests]
     templateAttributes:
-      frameworkName: CoreLogic2
+      frameworkName: CoreLogic
     dependencies:
       - package: ComposableArchitecture
 
@@ -58,8 +55,7 @@ targets:
     templates: [CoreFramework]
     dependencies:
       - package: DomainEntities
-      - package: CoreLogic
-      - target: CoreLogic2
+      - target: CoreLogic
 
   CoreInterfaceUnitTests:
     templates: [CoreUnitTests]
@@ -115,8 +111,8 @@ targets:
       frameworkName: WorkoutSettings
 
 schemes: 
-  CoreLogic2:
-    templates:
+  CoreLogic:
+    templates: 
       - FrameworkScheme
   QuickWorkoutsList:
     templates: 

@@ -1,5 +1,5 @@
 import ComposableArchitecture
-import CoreLogic2
+import CoreLogic
 import Foundation
 import CorePersistence
 

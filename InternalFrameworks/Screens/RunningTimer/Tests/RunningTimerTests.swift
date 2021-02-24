@@ -1,7 +1,7 @@
 import XCTest
 import Foundation
 import DomainEntities
-@testable import CoreLogic2
+@testable import CoreLogic
 import ComposableArchitecture
 @testable import RunningTimer
 @testable import CoreInterface
