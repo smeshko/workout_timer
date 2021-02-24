@@ -1,0 +1,77 @@
+{
+  "configurations" : [
+    {
+      "id" : "673F4494-AA9B-41EE-966F-4EC9AED313B3",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:QuickWorkouts.xcodeproj",
+      "identifier" : "4546C50B7188D99EB3D52764",
+      "name" : "QuickWorkouts"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:InternalFrameworks\/Core\/CoreInterface",
+        "identifier" : "CoreInterfaceTests",
+        "name" : "CoreInterfaceTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:InternalFrameworks\/Core\/CoreLogic",
+        "identifier" : "CoreLogicTests",
+        "name" : "CoreLogicTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:InternalFrameworks\/Core\/CorePersistence",
+        "identifier" : "CorePersistenceTests",
+        "name" : "CorePersistenceTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:InternalFrameworks\/Core\/DomainEntities",
+        "identifier" : "DomainEntitiesTests",
+        "name" : "DomainEntitiesTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:InternalFrameworks\/Screens\/QuickWorkoutForm",
+        "identifier" : "QuickWorkoutFormTests",
+        "name" : "QuickWorkoutFormTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:InternalFrameworks\/Screens\/QuickWorkoutsList",
+        "identifier" : "QuickWorkoutsListTests",
+        "name" : "QuickWorkoutsListTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:InternalFrameworks\/Screens\/RunningTimer",
+        "identifier" : "RunningTimerTests",
+        "name" : "RunningTimerTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:InternalFrameworks\/Screens\/WorkoutSettings",
+        "identifier" : "WorkoutSettingsTests",
+        "name" : "WorkoutSettingsTests"
+      }
+    }
+  ],
+  "version" : 1
+}
