@@ -8,7 +8,8 @@ let package = Package(
     defaultLocalization: "en",
     platforms: [
         .macOS(.v10_15),
-        .iOS(.v14)
+        .iOS(.v14),
+        .watchOS(.v7)
     ],
     products: [
         .library(

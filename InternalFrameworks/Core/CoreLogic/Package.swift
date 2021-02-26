@@ -7,7 +7,8 @@ let package = Package(
     name: "CoreLogic",
     platforms: [
         .macOS(.v10_15),
-        .iOS(.v14)
+        .iOS(.v14),
+        .watchOS(.v7)
     ],
     products: [
         .library(
