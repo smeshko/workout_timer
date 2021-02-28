@@ -1,6 +1,6 @@
 include: [project_templates.yml]
 
-name: QuickWorkouts
+name: Timer Wiz
 
 fileGroups:
   - project.yml
@@ -30,7 +30,7 @@ packages:
     from: 0.10.0
 
 targets:
-  QuickWorkouts:
+  Timer Wiz:
     templates: [Target]
     dependencies:
       - package: CoreLogic
@@ -43,3 +43,21 @@ targets:
       - package: WorkoutSettings
     scheme:
       gatherCoverageData: true
+
+  Timer Wiz Watch:
+    templates: [watchOS-Target]
+    dependencies:
+      - target: Timer Wiz Watch Extension
+
+  Timer Wiz Watch Extension:
+    templates: [watchOS-Extension]
+    dependencies:
+      - package: CoreLogic
+      - package: CorePersistence
+      - package: CoreInterface
+      - package: DomainEntities
+      - package: QuickWorkoutsList
+      - package: QuickWorkoutForm
+      - package: RunningTimer
+      - package: WorkoutSettings
+
