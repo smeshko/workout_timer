@@ -2,10 +2,10 @@ import SwiftUI
 import CoreInterface
 import ComposableArchitecture
 
+#if os(watchOS)
 struct HeaderView: View {
     private let store: Store<HeaderState, HeaderAction>
     @ObservedObject private var viewStore: ViewStore<HeaderState, HeaderAction>
-    @Environment(\.verticalSizeClass) private var verticalSizeClass
 
     init(store: Store<HeaderState, HeaderAction>) {
         self.store = store
@@ -13,7 +13,7 @@ struct HeaderView: View {
     }
 
     var body: some View {
-        VerticalSizeAdaptiveView(spacing: Spacing.l) {
+        VStack(spacing: Spacing.l) {
             Button(action: {
                 viewStore.send(.closeButtonTapped)
             }, label: {
@@ -32,7 +32,7 @@ struct HeaderView: View {
             if viewStore.isFinished {
                 Spacer()
             } else {
-                VerticalSizeAdaptiveView {
+                HStack {
                     Text(viewStore.workoutName)
                         .font(.h3)
                         .foregroundColor(.appText)
@@ -43,7 +43,7 @@ struct HeaderView: View {
                         .foregroundColor(.appText)
                         .font(.h1Mono)
                 }
-                .transition(.move(edge: verticalSizeClass == .compact ? .leading : .trailing))
+                .transition(.move(edge: .trailing))
                 .animation(.easeInOut(duration: 0.55))
             }
         }
@@ -61,3 +61,4 @@ struct HeaderView_Previews: PreviewProvider {
         )
     }
 }
+#endif

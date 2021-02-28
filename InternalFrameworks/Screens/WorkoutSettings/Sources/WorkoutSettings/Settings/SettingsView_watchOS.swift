@@ -46,7 +46,7 @@ public struct SettingsView: View {
                 Text(key: "settings_version \(viewStore.versionNumber)")
             }
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .close) {
                     Button(action: {
                         viewStore.send(.close)
                     }, label: {

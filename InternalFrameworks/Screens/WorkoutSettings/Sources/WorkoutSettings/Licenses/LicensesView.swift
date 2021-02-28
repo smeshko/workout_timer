@@ -43,7 +43,7 @@ struct LicensesView: View {
                 .padding()
             }
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: .close) {
                     Button(action: {
                         viewStore.send(.licenses(.dismiss))
                     }, label: {
