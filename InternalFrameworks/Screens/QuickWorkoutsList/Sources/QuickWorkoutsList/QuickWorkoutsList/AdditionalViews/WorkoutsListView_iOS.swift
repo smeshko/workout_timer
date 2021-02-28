@@ -3,6 +3,7 @@ import ComposableArchitecture
 import CoreInterface
 import QuickWorkoutForm
 
+#if os(iOS)
 struct WorkoutsList: View {
     let store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>
 
@@ -115,3 +116,4 @@ private struct ListContents: View {
         return UIMenu(title: "", children: [start, edit, deleteMenu])
     }
 }
+#endif

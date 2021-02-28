@@ -3,7 +3,6 @@ import ComposableArchitecture
 
 struct PreCountdownView: View {
     private let store: Store<PreCountdownState, PreCountdownAction>
-    private let proxy = UIScreen.main.bounds
 
     @State var startAnimation = false
 
@@ -23,7 +22,7 @@ struct PreCountdownView: View {
                             .foregroundColor(.white)
                             .font(.timer)
             }
-            .frame(width: proxy.width, height: proxy.height)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .animation(.easeInOut(duration: 0.55))
             .onAppear {
                 viewStore.send(.onAppear)

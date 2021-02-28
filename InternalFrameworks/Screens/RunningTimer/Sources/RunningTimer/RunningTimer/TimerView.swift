@@ -72,7 +72,7 @@ private struct ProgressBar: View {
         ZStack {
             Circle()
                 .stroke(lineWidth: 16)
-                .foregroundColor(Color(.systemBackground))
+                .foregroundColor(Color.background)
             Circle()
                 .trim(from: 0.0, to: CGFloat(min(progress, 1.0)))
                 .stroke(tint.color, style: StrokeStyle(lineWidth: 16, lineCap: .round, lineJoin: .round))
@@ -101,5 +101,15 @@ private extension View {
                     Animation.easeInOut(duration: 1).repeatForever() :
                     .none
             )
+    }
+}
+
+private extension Color {
+    static var background: Color {
+        #if os(iOS)
+        return Color(.systemBackground)
+        #else
+        return .black
+        #endif
     }
 }

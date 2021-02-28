@@ -17,14 +17,6 @@ struct AddTimerSegmentView: View {
         self.tint = tint
     }
 
-    private func placement(isEditing: Bool) -> ToolbarItemPlacement {
-        #if os(watchOS)
-        return .automatic
-        #else
-        return isEditing ? .navigationBarLeading : .cancellationAction
-        #endif
-    }
-
     var body: some View {
         WithViewStore(store.scope(state: \.view)) { viewStore in
             NavigationView {
@@ -41,7 +33,7 @@ struct AddTimerSegmentView: View {
                         ValuePicker(store: store.scope(state: \.workoutTimeState, action: AddTimerSegmentAction.changeWorkoutTime),
                                     valueName: "duration_value_picker".localized, valuePostfix: "s", tint: .blue
                         )
-                        
+
                         ValuePicker(store: store.scope(state: \.breakTimeState, action: AddTimerSegmentAction.changeBreakTime),
                                     valueName: "rest_value_picker".localized, valuePostfix: "s", tint: .red
                         )
@@ -54,7 +46,7 @@ struct AddTimerSegmentView: View {
                             viewStore.send(viewStore.isEditing ? .done : .add)
                         }
                     }
-                    
+
                     ToolbarItem(placement: placement(isEditing: viewStore.isEditing)) {
                         if viewStore.isEditing {
                             HStack {
@@ -82,6 +74,14 @@ struct AddTimerSegmentView: View {
             }
             .navigationViewStyle(StackNavigationViewStyle())
         }
+    }
+
+    private func placement(isEditing: Bool) -> ToolbarItemPlacement {
+        #if os(watchOS)
+        return .automatic
+        #else
+        return isEditing ? .navigationBarLeading : .cancellationAction
+        #endif
     }
 }
 

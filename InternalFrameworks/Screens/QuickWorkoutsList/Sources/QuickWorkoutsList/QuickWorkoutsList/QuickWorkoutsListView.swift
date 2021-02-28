@@ -34,10 +34,10 @@ public struct QuickWorkoutsListView: View {
                     } else {
                         WorkoutsList(store: store)
                             .toolbar {
-                                ToolbarItem(placement: ToolbarItemPlacement.navigationBarLeading) {
+                                ToolbarItem(placement: placement(isLeading: true)) {
                                     SettingsButton(store: store)
                                 }
-                                ToolbarItem(placement: ToolbarItemPlacement.navigationBarTrailing) {
+                                ToolbarItem(placement: placement(isLeading: false)) {
                                     FormButton(store: store)
                                 }
                             }
@@ -49,6 +49,14 @@ public struct QuickWorkoutsListView: View {
             }
             .navigationViewStyle(StackNavigationViewStyle())
         }
+    }
+
+    private func placement(isLeading: Bool) -> ToolbarItemPlacement {
+        #if os(watchOS)
+        return .automatic
+        #else
+        return isLeading ? .navigationBarLeading : .navigationBarTrailing
+        #endif
     }
 }
 
