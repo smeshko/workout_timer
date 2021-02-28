@@ -1,5 +1,6 @@
 import SwiftUI
 
+#if !os(watchOS)
 public struct VerticalSizeAdaptiveView<Content: View>: View {
 
     private let content: Content
@@ -32,3 +33,4 @@ struct VerticalSizeAdaptiveView_Previews: PreviewProvider {
         }
     }
 }
+#endif

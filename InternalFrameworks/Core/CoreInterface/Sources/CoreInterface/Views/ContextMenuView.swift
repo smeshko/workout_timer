@@ -1,5 +1,6 @@
 import SwiftUI
 
+#if !os(watchOS)
 public struct ContextMenuView<Content: View, Preview: View>: UIViewRepresentable, KeyPathUpdateable {
 
     private let content: Content
@@ -98,3 +99,4 @@ public class CustomView<Content: View>: UIView {
         setNeedsLayout()
     }
 }
+#endif

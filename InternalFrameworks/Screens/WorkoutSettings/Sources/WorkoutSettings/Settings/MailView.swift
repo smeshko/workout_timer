@@ -1,3 +1,4 @@
+#if !os(watchOS)
 import MessageUI
 import SwiftUI
 
@@ -36,3 +37,4 @@ struct MailView: UIViewControllerRepresentable {
         }
     }
 }
+#endif

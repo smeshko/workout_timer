@@ -34,7 +34,7 @@ struct WorkoutsList: View {
         }
         .fullHeight()
         .fullWidth()
-        .padding(.horizontal, Spacing.margin(horizontalSizeClass))
+        .padding(.horizontal, Spacing.margin)
         .navigationTitle("workouts".localized)
     }
 }

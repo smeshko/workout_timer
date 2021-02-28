@@ -23,7 +23,11 @@ let package = Package(
             name: "CoreLogic",
             dependencies: [
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
-            ]),
+            ],
+            resources: [
+                .copy("applause.mp3")
+            ]
+        ),
         .testTarget(
             name: "CoreLogicTests",
             dependencies: ["CoreLogic"]),

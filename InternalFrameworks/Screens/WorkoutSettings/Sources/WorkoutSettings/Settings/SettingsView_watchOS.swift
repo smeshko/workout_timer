@@ -3,7 +3,7 @@ import CoreInterface
 import ComposableArchitecture
 import StoreKit
 
-#if os(iOS)
+#if os(watchOS)
 public struct SettingsView: View {
 
     private let store: Store<SettingsState, SettingsAction>
@@ -33,17 +33,7 @@ public struct SettingsView: View {
                 }
 
                 Section(header: Text(key: "settings_support")) {
-                    if MailView.canSendEmail {
-                        MailButtons(store: store)
-                    }
                     OnboardingButton(store: store)
-
-                    Button(key: "settings_rate_app") {
-                        if let windowScene = UIApplication.shared.windows.first?.windowScene {
-                            SKStoreReviewController.requestReview(in: windowScene)
-                        }
-                    }
-                    .buttonStyle(PlainButtonStyle())
                 }
 
                 Section(header: Text(key: "settings_legal")) {
@@ -104,35 +94,6 @@ private struct OnboardingButton: View {
             content: {
                 OnboardingView(store: store.scope(state: \.onboardingState, action: SettingsAction.onboardingAction))
             })
-    }
-}
-
-private struct MailButtons: View {
-    private let store: Store<SettingsState, SettingsAction>
-    @ObservedObject private var viewStore: ViewStore<SettingsState, SettingsAction>
-
-    public init(store: Store<SettingsState, SettingsAction>) {
-        self.store = store
-        self.viewStore = ViewStore(store)
-    }
-
-    var body: some View {
-        Group {
-            Button(key: "settings_report") {
-                viewStore.send(.bugReport(.present))
-            }
-            .buttonStyle(PlainButtonStyle())
-
-            Button(key: "settings_request") {
-                viewStore.send(.featureRequest(.present))
-            }
-            .buttonStyle(PlainButtonStyle())
-            .sheet(isPresented: viewStore.binding(get: \.isPresentingMailComposer), content: {
-                MailView(subject: viewStore.mailSubject, body: viewStore.mailBody) {
-                    viewStore.send(.bugReport(.dismiss))
-                }
-            })
-        }
     }
 }
 
