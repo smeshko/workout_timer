@@ -16,9 +16,6 @@ let package = Package(
             targets: ["RunningTimer"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "0.10.0"),
-        .package(path: "../DomainEntities"),
-        .package(path: "../CoreLogic"),
         .package(path: "../CoreInterface"),
         .package(path: "../CorePersistence"),
 
@@ -27,9 +24,6 @@ let package = Package(
         .target(
             name: "RunningTimer",
             dependencies: [
-                .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
-                "DomainEntities",
-                "CoreLogic",
                 "CoreInterface",
                 "CorePersistence"
             ]),

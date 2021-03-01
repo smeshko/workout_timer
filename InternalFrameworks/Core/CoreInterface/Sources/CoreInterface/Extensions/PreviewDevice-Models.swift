@@ -4,6 +4,7 @@ public extension PreviewDevice {
     static let iPhone8 = PreviewDevice(rawValue: "iPhone 8")
     static let iPhone11 = PreviewDevice(rawValue: "iPhone 11")
     static let iPadPro = PreviewDevice(rawValue: "iPad Pro (12.9-inch) (3rd generation)")
+    static let watch6 = PreviewDevice(rawValue: "Apple Watch Series 6 - 44mm")
 }
 
 private extension PreviewDevice {

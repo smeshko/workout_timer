@@ -81,6 +81,10 @@ struct QuickWorkoutsListView_Previews: PreviewProvider {
 
             QuickWorkoutsListView(store: filledStore)
                 .previewDevice(.iPhone11)
+
+            QuickWorkoutsListView(store: filledStore)
+                .previewDevice(.watch6)
+
         }
     }
 }

@@ -30,18 +30,19 @@ targetTemplates:
         TARGETED_DEVICE_FAMILY: 1,2
         ENABLE_BITCODE: NO
         ENABLE_TESTING_SEARCH_PATHS: YES
+        CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: YES
       configs:
         Debug:
           DEVELOPMENT_TEAM: GR9SJM3FZP
           PRODUCT_BUNDLE_IDENTIFIER: com.tsonev.mobile.ios.QuickWorkouts.debug
           PROVISIONING_PROFILE_SPECIFIER: QuickWorkouts Development
-          CODE_SIGN_ENTITLEMENTS: QuickWorkout/Product/Entitlements/Debug.entitlements
+          CODE_SIGN_ENTITLEMENTS: Timer Wiz/Product/Entitlements/Debug.entitlements
           ASSETCATALOG_COMPILER_APPICON_NAME: AppIconDev
         Release:
           ENABLE_BITCODE: YES
           PRODUCT_BUNDLE_IDENTIFIER: com.tsonev.mobile.ios.QuickWorkouts
           PROVISIONING_PROFILE_SPECIFIER: QuickWorkouts Distribution
-          CODE_SIGN_ENTITLEMENTS: QuickWorkout/Product/Entitlements/Release.entitlements
+          CODE_SIGN_ENTITLEMENTS: Timer Wiz/Product/Entitlements/Release.entitlements
           CODE_SIGN_IDENTITY: iPhone Distribution
           DEVELOPMENT_TEAM: GR9SJM3FZP
           ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon

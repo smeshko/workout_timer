@@ -21,7 +21,9 @@ let package = Package(
     targets: [
         .target(
             name: "CorePersistence",
-            dependencies: ["DomainEntities"]),
+            dependencies: [
+                "DomainEntities"
+            ]),
         .testTarget(
             name: "CorePersistenceTests",
             dependencies: ["CorePersistence"],

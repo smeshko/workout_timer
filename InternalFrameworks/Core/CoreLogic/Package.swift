@@ -25,7 +25,7 @@ let package = Package(
                 .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
             ],
             resources: [
-                .copy("applause.mp3")
+                .process("Assets/applause.mp3")
             ]
         ),
         .testTarget(

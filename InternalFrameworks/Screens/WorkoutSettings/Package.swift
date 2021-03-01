@@ -16,18 +16,12 @@ let package = Package(
             targets: ["WorkoutSettings"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "0.10.0"),
-        .package(path: "../DomainEntities"),
-        .package(path: "../CoreLogic"),
         .package(path: "../CoreInterface"),
     ],
     targets: [
         .target(
             name: "WorkoutSettings",
             dependencies: [
-                .product(name: "ComposableArchitecture", package: "swift-composable-architecture"),
-                "DomainEntities",
-                "CoreLogic",
                 "CoreInterface"
             ]),
         .testTarget(

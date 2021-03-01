@@ -17,7 +17,6 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "../CorePersistence"),
-        .package(path: "../CoreLogic"),
         .package(path: "../CoreInterface"),
     ],
     targets: [
@@ -25,7 +24,6 @@ let package = Package(
             name: "QuickWorkoutForm",
             dependencies: [
                 "CorePersistence",
-                "CoreLogic",
                 "CoreInterface"
             ]),
         .testTarget(
