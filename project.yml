@@ -1,6 +1,6 @@
 include: [project_templates.yml]
 
-name: QuickWorkouts
+name: Timer Wiz
 
 fileGroups:
   - project.yml
@@ -13,7 +13,7 @@ packages:
     from: 0.10.0
 
 targets:
-  QuickWorkouts:
+  Timer Wiz:
     templates: [Target]
     dependencies:
       - target: CoreLogic
