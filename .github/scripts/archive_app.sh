@@ -2,8 +2,8 @@
 
 set -eo pipefail
 
-xcodebuild -project QuickWorkouts.xcodeproj \
-            -scheme QuickWorkouts \
+xcodebuild -project Timer\ Wiz.xcodeproj \
+            -scheme Timer\ Wiz \
             -sdk iphoneos \
             -configuration Release \
             -archivePath $PWD/build/QuickWorkouts.xcarchive \
