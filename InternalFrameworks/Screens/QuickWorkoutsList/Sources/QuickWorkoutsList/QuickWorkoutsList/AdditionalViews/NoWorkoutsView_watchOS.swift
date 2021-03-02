@@ -3,28 +3,23 @@ import CoreInterface
 import ComposableArchitecture
 import QuickWorkoutForm
 
+#if os(watchOS)
 struct NoWorkoutsView: View {
     let store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>
 
     var body: some View {
         WithViewStore(store.scope(state: \.isPresentingTimerForm)) { viewStore in
             VStack(spacing: Spacing.l) {
+                Text(key: "first_workout")
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(.appText)
+                
                 Button(action: {
                     viewStore.send(.timerForm(.present))
                 }, label: {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: CornerRadius.m)
-                            .foregroundColor(.appSuccess)
-                            .frame(width: 125, height: 125)
-
-                        Image(systemName: "plus")
-                            .font(.gigantic)
-                            .foregroundColor(.appWhite)
-                    }
+                    Image(systemName: "plus")
+                        .foregroundColor(.appWhite)
                 })
-                Text(key: "first_workout")
-                    .font(.h2)
-                    .foregroundColor(.appText)
             }
             .sheet(isPresented: viewStore.binding(get: { $0 }),
                    onDismiss: { viewStore.send(.timerForm(.dismiss)) }) {
@@ -48,3 +43,4 @@ struct NoWorkoutsView_Previews: PreviewProvider {
         )
     }
 }
+#endif

@@ -3,6 +3,7 @@ import DomainEntities
 import ComposableArchitecture
 import CoreInterface
 
+#if os(iOS)
 struct AddTimerSegmentView: View {
     private let store: Store<AddTimerSegmentState, AddTimerSegmentAction>
     private let tint: Color
@@ -120,3 +121,4 @@ private extension AddTimerSegmentState {
         )
     }
 }
+#endif

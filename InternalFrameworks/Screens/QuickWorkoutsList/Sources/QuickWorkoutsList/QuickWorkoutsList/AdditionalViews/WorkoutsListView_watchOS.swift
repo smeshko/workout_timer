@@ -22,7 +22,6 @@ struct WorkoutsList: View {
         }
         .fullHeight()
         .fullWidth()
-        .padding(.horizontal, Spacing.margin)
         .navigationTitle("workouts".localized)
     }
 }
@@ -60,8 +59,6 @@ private struct ListContents: View {
             ForEachStore(store.scope(state: { $0.workoutStates },
                                      action: QuickWorkoutsListAction.workoutCardAction(id:action:))) { cardViewStore in
                 QuickWorkoutCardView(store: cardViewStore)
-                    .padding(.horizontal, Spacing.l)
-                    .padding(.vertical, Spacing.xxs)
             }
         }
     }

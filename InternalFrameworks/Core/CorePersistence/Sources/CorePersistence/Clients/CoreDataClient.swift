@@ -58,16 +58,16 @@ struct CoreDataClient {
         }
 
         container = NSPersistentCloudKitContainer(name: "WorkoutTimer", managedObjectModel: managedObjectModel)
-        container.viewContext.automaticallyMergesChangesFromParent = true
 
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
         }
 
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        container.loadPersistentStores(completionHandler: { [container] (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
+            container.viewContext.automaticallyMergesChangesFromParent = true
         })
     }
 

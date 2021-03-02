@@ -4,6 +4,7 @@ import CoreInterface
 import ComposableArchitecture
 import RunningTimer
 
+#if os(iOS)
 struct QuickWorkoutCardView: View {
 
     private let store: Store<QuickWorkoutCardState, QuickWorkoutCardAction>
@@ -97,3 +98,4 @@ private extension WorkoutColor {
         Color(hue: hue, saturation: saturation, brightness: brightness + 0.4)
     }
 }
+#endif

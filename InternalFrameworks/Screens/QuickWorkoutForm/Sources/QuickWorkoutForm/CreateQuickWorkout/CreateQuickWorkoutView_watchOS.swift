@@ -3,6 +3,7 @@ import CoreLogic
 import CoreInterface
 import ComposableArchitecture
 
+#if os(watchOS)
 public struct CreateQuickWorkoutView: View {
 
     fileprivate struct State: Equatable {
@@ -35,7 +36,6 @@ public struct CreateQuickWorkoutView: View {
                             }
                         }
                     }
-                    .navigationTitle(viewStore.isEditing ? "edit_workout".localized : "create_workout".localized)
                     .sheet(isPresented: viewStore.binding(get: \.isPresentingCreateIntervalView)) {
                         IfLetStore(store.scope(state: \.addSegmentState, action: CreateQuickWorkoutAction.addSegmentAction),
                                    then: { AddTimerSegmentView(store: $0, tint: viewStore.selectedColor) }
@@ -89,13 +89,12 @@ private struct WorkoutForm: View {
     var body: some View {
         WithViewStore(store.scope(state: \.formView)) { viewStore in
             ScrollView {
-                VStack(spacing: Spacing.xxl) {
+                VStack(spacing: Spacing.s) {
                     TextField("workout_name_placeholder".localized, text: viewStore.binding(get: \.name, send: CreateQuickWorkoutAction.updateName))
-                        .padding(Spacing.s)
                         .border(stroke: viewStore.selectedColor)
 
                     ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: Spacing.s) {
+                        HStack(spacing: Spacing.xs) {
                             ForEach(viewStore.preselectedTints) { tint in
                                 ZStack {
                                     Circle()
@@ -105,12 +104,12 @@ private struct WorkoutForm: View {
                                         }
                                     if viewStore.selectedTint == tint {
                                         Image(systemName: "checkmark")
-                                            .frame(width: 25, height: 25)
+                                            .frame(width: 12, height: 12)
                                             .foregroundColor(.white)
                                             .font(.h3)
                                     }
                                 }
-                                .frame(width: 40, height: 40)
+                                .frame(width: 25, height: 25)
                             }
                         }
                     }
@@ -134,13 +133,13 @@ private struct WorkoutForm: View {
                         }
                     }) {
                         Label(key: "add_round", systemImage: "plus")
-                            .font(.h2)
+                            .font(.h4)
                             .foregroundColor(.appText)
                     }
                 }
             }
         }
-        .padding(Spacing.xxl)
+        .padding(.vertical, Spacing.s)
     }
 }
 
@@ -163,3 +162,4 @@ private extension CreateQuickWorkoutState {
         )
     }
 }
+#endif
