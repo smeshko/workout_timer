@@ -6,5 +6,5 @@ xcodebuild -project Timer\ Wiz.xcodeproj \
             -scheme Timer\ Wiz \
             -sdk iphoneos \
             -configuration Release \
-            -archivePath $PWD/build/QuickWorkouts.xcarchive \
+            -archivePath $PWD/build/Timer\ Wiz.xcarchive \
             clean archive | xcpretty
