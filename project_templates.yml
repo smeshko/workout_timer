@@ -57,8 +57,14 @@ targetTemplates:
       Debug: Timer Wiz_watchOS/App/Product/Debug.xcconfig
       Release: Timer Wiz_watchOS/App/Product/Release.xcconfig
     settings:
-      PRODUCT_NAME: Timer Wiz
-      PRODUCT_BUNDLE_IDENTIFIER: com.tsonev.mobile.ios.QuickWorkouts.watch
+      base:
+        PRODUCT_NAME: Timer Wiz
+        PRODUCT_BUNDLE_IDENTIFIER: com.tsonev.mobile.ios.QuickWorkouts.watch
+      configs:
+        Debug:
+          ASSETCATALOG_COMPILER_APPICON_NAME: AppIconDev
+        Release:
+          ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
 
 #    configs:
 #      Debug:
