@@ -254,7 +254,7 @@ class RunningTimerTests: XCTestCase {
                     QuickWorkoutSegment(id: uuidGenerator(), name: "Segment", sets: 1, work: 2, pause: 1)
                 ]),
             precountdownState: PreCountdownState()
-            )
+        )
         let sections = state.timerSections
         
         let store = TestStore(
@@ -303,7 +303,7 @@ class RunningTimerTests: XCTestCase {
                     QuickWorkoutSegment(id: uuidGenerator(), name: "Segment", sets: 1, work: 2, pause: 1)
                 ]),
             precountdownState: PreCountdownState()
-            )
+        )
         let sections = state.timerSections
 
         let store = TestStore(

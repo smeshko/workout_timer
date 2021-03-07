@@ -59,6 +59,7 @@ class QuickWorkoutFormTests: XCTestCase {
                     isEditing: true
                 )
             },
+
             .send(.addSegmentAction(action: .remove)) {
                 $0.segmentStates = []
                 $0.addSegmentState = nil

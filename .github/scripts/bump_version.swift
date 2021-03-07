@@ -147,7 +147,7 @@ enum ScriptError: Error {
 }
 
 struct Constants {
-    static let configPath = "/QuickWorkout/Product/Common.xcconfig"
+    static let configPath = "/Timer Wiz/Product/Common.xcconfig"
 
     static let marketingVersionSeparator = "APP_MARKETING_VERSION = "
     static let buildVersionSeparator = "APP_BUILD_NUMBER = "
