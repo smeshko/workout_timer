@@ -19,13 +19,14 @@ public enum CreateQuickWorkoutAction: Equatable {
     case save
     case didSaveSuccessfully(Result<QuickWorkout, PersistenceError>)
     case selectColor(Color)
+    case onAppear
 }
 
 public struct CreateQuickWorkoutState: Equatable {
 
     var segmentStates: IdentifiedArrayOf<SegmentState> = []
     var addSegmentState: AddTimerSegmentState?
-    var workout: QuickWorkout?
+    public var workout: QuickWorkout?
     var name: String
     let preselectedTints: [TintColor] = TintColor.allTints
     var selectedTint: TintColor? = nil
@@ -45,17 +46,6 @@ public struct CreateQuickWorkoutState: Equatable {
         self.name = workout?.name ?? ""
         self.workout = workout
         self.isEditing = workout != nil
-
-        segmentStates = IdentifiedArray(workout?.segments.map(SegmentState.init(segment:)) ?? [])
-
-        if isEditing {
-            selectedColor = workout?.color.color ?? .appSuccess
-            selectedTint = TintColor.allTints[selectedColor]
-        } else {
-            let firstTint = TintColor.allTints.first
-            selectedColor = firstTint?.color ?? .appSuccess
-            selectedTint = firstTint
-        }
     }
 }
 
@@ -79,13 +69,20 @@ public let createQuickWorkoutReducer =
             action: /CreateQuickWorkoutAction.addSegmentAction,
             environment: { AddTimerSegmentEnvironment(uuid: $0.uuid) }
         ),
-        segmentReducer.forEach(
-            state: \.segmentStates,
-            action: /CreateQuickWorkoutAction.segmentAction,
-            environment: { _ in SegmentEnvironment() }
-        ),
         Reducer { state, action, environment in
             switch action {
+
+            case .onAppear:
+                state.segmentStates = IdentifiedArray(state.workout?.segments.map(SegmentState.init(segment:)) ?? [])
+
+                if state.isEditing {
+                    state.selectedColor = state.workout?.color.color ?? .appSuccess
+                    state.selectedTint = TintColor.allTints[state.selectedColor]
+                } else {
+                    let firstTint = TintColor.allTints.first
+                    state.selectedColor = firstTint?.color ?? .appSuccess
+                    state.selectedTint = firstTint
+                }
 
             case .updateName(let name):
                 state.name = name
@@ -149,6 +146,11 @@ public let createQuickWorkoutReducer =
         .presenter(
             keyPath: \.isPresentingCreateIntervalView,
             action: /CreateQuickWorkoutAction.createInterval
+        ),
+        segmentReducer.forEach(
+            state: \.segmentStates,
+            action: /CreateQuickWorkoutAction.segmentAction,
+            environment: { _ in SegmentEnvironment() }
         )
     )
 

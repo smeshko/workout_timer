@@ -91,6 +91,7 @@ private struct WorkoutForm: View {
             ScrollView {
                 VStack(spacing: Spacing.xxl) {
                     TextField("workout_name_placeholder".localized, text: viewStore.binding(get: \.name, send: CreateQuickWorkoutAction.updateName))
+                        .disableAutocorrection(true)
                         .padding(Spacing.s)
                         .border(stroke: viewStore.selectedColor)
 
@@ -138,6 +139,10 @@ private struct WorkoutForm: View {
                             .foregroundColor(.appText)
                     }
                 }
+                Spacer()
+            }
+            .onAppear {
+                viewStore.send(.onAppear)
             }
         }
         .padding(Spacing.xxl)

@@ -145,7 +145,7 @@ private struct MainView: View {
                 }
             }
             .onChange(of: viewStore.currentSection) { value in
-                guard let section = value else { return }
+                guard !viewStore.isFinished, let section = value else { return }
                 viewStore.send(.segmentedProgressAction(.onTimerSectionFinished(section)))
             }
             .onTapGesture(perform: toggleState)

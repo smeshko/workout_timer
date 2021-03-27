@@ -19,9 +19,7 @@ enum AppAction {
 
 struct AppState: Equatable {
     var workoutsListState = QuickWorkoutsListState()
-    var onboardingState = OnboardingState()
-
-    var shouldShowOnboarding = false
+    var onboardingState: OnboardingState?
 
     init() {}
 }
@@ -36,12 +34,19 @@ extension SystemEnvironment where Environment == AppEnvironment {
 }
 
 let appReducer = Reducer<AppState, AppAction, SystemEnvironment<AppEnvironment>>.combine(
+    onboardingReducer.optional().pullback(
+        state: \.onboardingState,
+        action: /AppAction.onboardingAction,
+        environment: { _ in }
+    ),
     Reducer<AppState, AppAction, SystemEnvironment<AppEnvironment>> { state, action, environment in
         struct LocalStorageReadId: Hashable {}
          
         switch action {
         case .appDidBecomeActive:
-            state.shouldShowOnboarding = !environment.settings.onboardingShown
+            if environment.settings.onboardingShown == false {
+                state.onboardingState = OnboardingState()
+            }
             environment.settings.setupFirstAppStartValues()
             if environment.settings.keepScreenOn {
                 UIApplication.shared.isIdleTimerDisabled = true
@@ -59,7 +64,7 @@ let appReducer = Reducer<AppState, AppAction, SystemEnvironment<AppEnvironment>>
 
         case .onboardingAction(.start):
             environment.settings.setOnboardingShown(to: true)
-            state.shouldShowOnboarding = false
+            state.onboardingState = nil
             return environment
                 .notificationClient
                 .requestAuthorisation()
@@ -80,11 +85,6 @@ let appReducer = Reducer<AppState, AppAction, SystemEnvironment<AppEnvironment>>
         state: \.workoutsListState,
         action: /AppAction.workoutsListAction,
         environment: { _ in .live }
-    ),
-    onboardingReducer.pullback(
-        state: \.onboardingState,
-        action: /AppAction.onboardingAction,
-        environment: { _ in }
     )
 )
 
