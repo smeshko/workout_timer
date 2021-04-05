@@ -9,9 +9,7 @@ import WorkoutSettings
 @main
 struct MainApp: App {
     @Environment(\.scenePhase) var scenePhase
-
     let store: Store<AppState, AppAction>
-    @State var isPresentingOnboarding: Bool = false
 
     init() {
         store = Store<AppState, AppAction>(
@@ -22,14 +20,16 @@ struct MainApp: App {
     }
 
     var body: some Scene {
-        WithViewStore(store.scope(state: \.view)) { viewStore in
+        WithViewStore(store.stateless) { viewStore in
             WindowGroup {
-                if isPresentingOnboarding {
-                    OnboardingView(store: store.scope(state: \.onboardingState, action: AppAction.onboardingAction))
-                } else {
-                    QuickWorkoutsListView(store: store.scope(state: \.workoutsListState, action: AppAction.workoutsListAction))
-                        .onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
-                }
+                IfLetStore(
+                    store.scope(state: \.onboardingState, action: AppAction.onboardingAction),
+                    then: OnboardingView.init(store:),
+                    else: QuickWorkoutsListView(
+                        store: store.scope(state: \.workoutsListState, action: AppAction.workoutsListAction)
+                    )
+                    .onAppear(perform: UIApplication.shared.addTapGestureRecognizer)
+                )
             }
             .onChange(of: scenePhase) { newScenePhase in
                 switch newScenePhase {
@@ -41,11 +41,6 @@ struct MainApp: App {
                     viewStore.send(.appDidGoToBackground)
                 @unknown default:
                     break
-                }
-            }
-            .onChange(of: viewStore.shouldShowOnboarding) { value in
-                withAnimation {
-                    isPresentingOnboarding = value
                 }
             }
         }
@@ -66,15 +61,5 @@ extension UIApplication {
 extension UIApplication: UIGestureRecognizerDelegate {
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         true
-    }
-}
-
-private struct MainAppState: Equatable {
-    var shouldShowOnboarding = false
-}
-
-private extension AppState {
-    var view: MainAppState {
-        MainAppState(shouldShowOnboarding: shouldShowOnboarding)
     }
 }

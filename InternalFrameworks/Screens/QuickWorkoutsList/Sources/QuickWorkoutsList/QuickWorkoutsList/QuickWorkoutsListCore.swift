@@ -130,12 +130,17 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
             state.createWorkoutState = CreateQuickWorkoutState(workout: workout)
 
         case .timerForm(.dismiss):
-            state.createWorkoutState = CreateQuickWorkoutState()
+            state.createWorkoutState.workout = nil
+
+        case .timerForm(.present):
+            if state.createWorkoutState.workout == nil {
+                state.createWorkoutState = CreateQuickWorkoutState()
+            }
 
         case .settingsAction(.close):
             return Effect(value: QuickWorkoutsListAction.settings(.dismiss))
 
-        case .createWorkoutAction, .runningTimerAction, .timerForm(.present), .settings, .settingsAction:
+        case .createWorkoutAction, .runningTimerAction, .settings, .settingsAction:
             break
         }
         return .none

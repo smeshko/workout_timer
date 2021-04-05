@@ -43,7 +43,6 @@ public struct RunningTimerState: Equatable {
         self.workout = workout
         self.timerControlsState = timerControlsState
         self.headerState = HeaderState(timeLeft: 0, workoutName: workout.name)
-//        self.precountdownState = PreCountdownState(workoutColor: workout.color)
         self.precountdownState = precountdownState
         self.timerSections = workout.segments.map { TimerSection.create(from: $0) }.flatMap { $0 }.dropLast()
         self.currentSection = currentSection ?? timerSections.first
@@ -81,6 +80,11 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
         state: \.headerState,
         action: /RunningTimerAction.headerAction,
         environment: { _ in HeaderEnvironment() }
+    ),
+    finishedWorkoutReducer.optional().pullback(
+        state: \.finishedWorkoutState,
+        action: /RunningTimerAction.finishedWorkoutAction,
+        environment: { _ in .live }
     ),
     Reducer { state, action, environment in
         struct TimerId: Hashable {}
@@ -172,11 +176,6 @@ public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, 
         state: \.segmentedProgressState,
         action: /RunningTimerAction.segmentedProgressAction,
         environment: { _ in SegmentedProgressEnvironment() }
-    ),
-    finishedWorkoutReducer.optional().pullback(
-        state: \.finishedWorkoutState,
-        action: /RunningTimerAction.finishedWorkoutAction,
-        environment: { _ in .live }
     )
 )
 

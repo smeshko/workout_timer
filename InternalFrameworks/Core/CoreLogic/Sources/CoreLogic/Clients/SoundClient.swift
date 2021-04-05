@@ -6,17 +6,10 @@ public enum Sound {
     case segment
     case workout
 
-   fileprivate var systemId: Int? {
-        switch self {
-        case .segment: return 1008
-        default: return nil
-        }
-    }
-
     fileprivate var resource: (String, String)? {
         switch self {
+        case .segment: return ("round_over", "m4a")
         case .workout: return ("applause", "mp3")
-        default: return nil
         }
     }
 }
@@ -31,11 +24,9 @@ public extension SoundClient {
     static let live = SoundClient { sound in
         .fireAndForget {
             #if os(iOS)
-            if let id = sound.systemId {
-                AudioServicesPlaySystemSound(SystemSoundID(id))
-            } else if let resource = sound.resource,
-                      let bundle = Bundle(identifier: "com.tsonev.mobile.ios.CoreLogic"),
-                      let path = bundle.path(forResource: resource.0, ofType: resource.1) {
+            if let resource = sound.resource,
+               let bundle = Bundle(identifier: "com.tsonev.mobile.ios.CoreLogic"),
+               let path = bundle.path(forResource: resource.0, ofType: resource.1) {
                 play(at: path)
             }
             #endif
