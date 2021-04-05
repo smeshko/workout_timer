@@ -1,0 +1,919 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		162DC1A9B9A212D2336AB70D /* DomainEntities in Frameworks */ = {isa = PBXBuildFile; productRef = 313C990DD2FFB8B2DDA70604 /* DomainEntities */; };
+		1F3BEA5B40083DB8233F3AB4 /* CoreLogic in Frameworks */ = {isa = PBXBuildFile; productRef = A36E90918D046A74E56A5F68 /* CoreLogic */; };
+		2203EA975E3428DD8C61DC59 /* WorkoutSettings in Frameworks */ = {isa = PBXBuildFile; productRef = 7D2FA720C4DE291C20F22113 /* WorkoutSettings */; };
+		259CAB29BEADAB51E9B6EEAC /* AppCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC17DBEE57EC61FA7F9E5C3 /* AppCore.swift */; };
+		2AAD65A77D01B5ADF67306A2 /* QuickWorkoutForm in Frameworks */ = {isa = PBXBuildFile; productRef = 4B25C6750148D5E56FBFC705 /* QuickWorkoutForm */; };
+		2CAE98711F218111E96D356F /* CorePersistence in Frameworks */ = {isa = PBXBuildFile; productRef = C40D626A4D7B6DF79D49B350 /* CorePersistence */; };
+		2F75D1AFCDF17958A3FC3343 /* QuickWorkoutsList in Frameworks */ = {isa = PBXBuildFile; productRef = 23412DDB599B331060C37D05 /* QuickWorkoutsList */; };
+		3B2B46AD1D86155F3B32D195 /* DomainEntities in Frameworks */ = {isa = PBXBuildFile; productRef = A57E400DB9482F89B88538B1 /* DomainEntities */; };
+		4371446DA4B5CAECC27F514D /* CorePersistence in Frameworks */ = {isa = PBXBuildFile; productRef = EDFA3FD3711AB1B045C25E70 /* CorePersistence */; };
+		43FD592FFA6703CAE8DD3911 /* Timer Wiz Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D5EC222B35CF3B91B09CA79E /* Timer Wiz Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4419E9E820E8A94196C0A7A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E387AD739BDE9EBB8217831A /* Assets.xcassets */; };
+		45C8339EBF1A5F0C11403AC4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 830B49699ADABED73AE35958 /* Preview Assets.xcassets */; };
+		54636F1B7B6CEE4CC92BB1C3 /* CoreInterface in Frameworks */ = {isa = PBXBuildFile; productRef = 30E7C67114F5D4EBCF328733 /* CoreInterface */; };
+		73D25471318E2632F50F4DCA /* RunningTimer in Frameworks */ = {isa = PBXBuildFile; productRef = 283688B6E7F08DD66F80236F /* RunningTimer */; };
+		7D5F7DBD596A67D43EC042FB /* QuickWorkoutForm in Frameworks */ = {isa = PBXBuildFile; productRef = 9D252EB96D29143466857DAF /* QuickWorkoutForm */; };
+		7E2F4D0C59EE5CC58831A87D /* CoreLogic in Frameworks */ = {isa = PBXBuildFile; productRef = D50F43BB4CFAC556447C2A39 /* CoreLogic */; };
+		89E2FB5BE3586B432D4646B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EA18F5093C9FC74DE0A67BF /* Assets.xcassets */; };
+		9A6392EF35DD0E44D9610492 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B9B53EFD56552C7AE55DE60 /* LaunchScreen.storyboard */; };
+		A6711C1B02EAC6EB9D8C0A1A /* exportOptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 115BDC5DEA1EE767E2BDD10C /* exportOptions.plist */; };
+		A7D5970E5C5C939656BBB4DB /* CoreInterface in Frameworks */ = {isa = PBXBuildFile; productRef = 98ABD104794FD7A30F94DC84 /* CoreInterface */; };
+		A8EE9FBFEF16347140ABFCA8 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB93CAE6A9901D2F9EC0A0B6 /* ComplicationController.swift */; };
+		AC0BEDA7F9FA604A659DE740 /* RunningTimer in Frameworks */ = {isa = PBXBuildFile; productRef = 92E7919499FC89EF10D18AF1 /* RunningTimer */; };
+		B355E21185D39A3037EB1C17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA0171E0033199FB41BC4FDB /* Assets.xcassets */; };
+		B82DD7D43C39C0B5028E828B /* QuickWorkoutsList in Frameworks */ = {isa = PBXBuildFile; productRef = 5B91E732D3BEA0B01D563446 /* QuickWorkoutsList */; };
+		C8E785D1EBB50D25AB74A587 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC2FEABAA6693B149B4BCBC /* NotificationController.swift */; };
+		CCD61D9DF89979DCCD91474A /* AppCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DB3B8CB653DF422183019D /* AppCore.swift */; };
+		CDB19E12D263926B4F782133 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C720A70DA260860C6C70F0F3 /* NotificationView.swift */; };
+		DF6C38A41F76C914C3011973 /* WorkoutSettings in Frameworks */ = {isa = PBXBuildFile; productRef = 6473CD3119671A8E917DFF3D /* WorkoutSettings */; };
+		E11B84E05E2B83F4818200E2 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE8E9B3EEFA48B8C063610C /* App.swift */; };
+		E9D5CAE2337D531864A06A07 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F70FAAD963A3CF817C4AF4 /* App.swift */; };
+		F321281241CAF78105EBD523 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0227223B03834DE4B86C6F20 /* Preview Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CDBF3440DDE9E88A02CCE084 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 592B92AE04F4725226213B61 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0932920303856264B2301452;
+			remoteInfo = "Timer Wiz Watch Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		13FB6D94F6C1182C4A104390 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				43FD592FFA6703CAE8DD3911 /* Timer Wiz Watch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0227223B03834DE4B86C6F20 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		0D4110FEE0863569B3EE3C39 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		0EE89B5CE3BD3F3194516C6C /* project.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = project.yml; sourceTree = "<group>"; };
+		115BDC5DEA1EE767E2BDD10C /* exportOptions.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = exportOptions.plist; sourceTree = "<group>"; };
+		175A87A6B0E36EE9EE6E2298 /* DomainEntities */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DomainEntities; path = InternalFrameworks/Core/DomainEntities; sourceTree = SOURCE_ROOT; };
+		1E12B49F4A6F4542C1CD2A83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		23E785FADC1BB9E17FC4FB75 /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
+		26F70FAAD963A3CF817C4AF4 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		2E028832FE430EEF0E332E00 /* certificate.p12.gpg */ = {isa = PBXFileReference; path = certificate.p12.gpg; sourceTree = "<group>"; };
+		2F1D832AE91CCE6AEFC37170 /* profile.mobileprovision.gpg */ = {isa = PBXFileReference; path = profile.mobileprovision.gpg; sourceTree = "<group>"; };
+		331589781F7A33161E30BB3E /* QuickWorkoutForm */ = {isa = PBXFileReference; lastKnownFileType = folder; name = QuickWorkoutForm; path = InternalFrameworks/Screens/QuickWorkoutForm; sourceTree = SOURCE_ROOT; };
+		3AF3D4BE89917BCA4757E46C /* Debug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Debug.entitlements; sourceTree = "<group>"; };
+		59AEA284B8A4218D614BE8A9 /* QuickWorkoutsList */ = {isa = PBXFileReference; lastKnownFileType = folder; name = QuickWorkoutsList; path = InternalFrameworks/Screens/QuickWorkoutsList; sourceTree = SOURCE_ROOT; };
+		5D0E2AA487EB13627AA1F1D1 /* WorkoutSettings */ = {isa = PBXFileReference; lastKnownFileType = folder; name = WorkoutSettings; path = InternalFrameworks/Screens/WorkoutSettings; sourceTree = SOURCE_ROOT; };
+		602029E6B79C08A5E1EFC080 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		647D87FD0C41F9713F201B9F /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		65089AC4A7AF8F5C29CE2581 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		6B95DF9F880FA286C72E75FF /* project_templates.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = project_templates.yml; sourceTree = "<group>"; };
+		6DE8E9B3EEFA48B8C063610C /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		721E980D585BB5C61D981BA0 /* RunningTimer */ = {isa = PBXFileReference; lastKnownFileType = folder; name = RunningTimer; path = InternalFrameworks/Screens/RunningTimer; sourceTree = SOURCE_ROOT; };
+		77DA334D36EAB31EDFC155F0 /* test_app.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = test_app.sh; sourceTree = "<group>"; };
+		7D33C2D2236DEB4E84D82351 /* Timer Wiz Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Timer Wiz Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		830B49699ADABED73AE35958 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		84BE02881575D07A09199FBB /* bump_version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bump_version.swift; sourceTree = "<group>"; };
+		8C72BACDA523AD874582296D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8C837EB6D1FDE8291E16089A /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		8F891C198B8FA5909A73B96A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		906A26A5ED590987CCE4CBC5 /* testing.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = testing.yml; sourceTree = "<group>"; };
+		930E03EC79B11C2148E37B35 /* CoreLogic */ = {isa = PBXFileReference; lastKnownFileType = folder; name = CoreLogic; path = InternalFrameworks/Core/CoreLogic; sourceTree = SOURCE_ROOT; };
+		96F66614B2538F0BB06AF7D0 /* Timer Wiz.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "Timer Wiz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AD525E3DAB14F1309E65E67 /* CorePersistence */ = {isa = PBXFileReference; lastKnownFileType = folder; name = CorePersistence; path = InternalFrameworks/Core/CorePersistence; sourceTree = SOURCE_ROOT; };
+		9EA18F5093C9FC74DE0A67BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AA77E5CF7EEA3F3AEB424F58 /* export_ipa.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = export_ipa.sh; sourceTree = "<group>"; };
+		AB93CAE6A9901D2F9EC0A0B6 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		B33DC6037ACFFAB1BF6AB07E /* decrypt_secrets.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = decrypt_secrets.sh; sourceTree = "<group>"; };
+		B4DB3B8CB653DF422183019D /* AppCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCore.swift; sourceTree = "<group>"; };
+		B582B47141A14921DBDFB203 /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
+		C471CB037E352B56257170C5 /* publish_testflight.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = publish_testflight.sh; sourceTree = "<group>"; };
+		C720A70DA260860C6C70F0F3 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		C9B09205766A516208342827 /* deployment-testflight.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = "deployment-testflight.yml"; sourceTree = "<group>"; };
+		CCC17DBEE57EC61FA7F9E5C3 /* AppCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCore.swift; sourceTree = "<group>"; };
+		D5EC222B35CF3B91B09CA79E /* Timer Wiz Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Timer Wiz Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDC2FEABAA6693B149B4BCBC /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		E387AD739BDE9EBB8217831A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E94120470CB8A464C6E64988 /* archive_app.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = archive_app.sh; sourceTree = "<group>"; };
+		EA0171E0033199FB41BC4FDB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EA87000BAE5764933AC9D91B /* CoreInterface */ = {isa = PBXFileReference; lastKnownFileType = folder; name = CoreInterface; path = InternalFrameworks/Core/CoreInterface; sourceTree = SOURCE_ROOT; };
+		EE82ECD009C7C845B63F9A84 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		F8235933F8119DEC47FCEBFE /* Release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Release.entitlements; sourceTree = "<group>"; };
+		F84AE5AB895CDEC3CC159918 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5B9862BD760C51FDEC9BF810 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1F3BEA5B40083DB8233F3AB4 /* CoreLogic in Frameworks */,
+				2CAE98711F218111E96D356F /* CorePersistence in Frameworks */,
+				54636F1B7B6CEE4CC92BB1C3 /* CoreInterface in Frameworks */,
+				3B2B46AD1D86155F3B32D195 /* DomainEntities in Frameworks */,
+				B82DD7D43C39C0B5028E828B /* QuickWorkoutsList in Frameworks */,
+				2AAD65A77D01B5ADF67306A2 /* QuickWorkoutForm in Frameworks */,
+				73D25471318E2632F50F4DCA /* RunningTimer in Frameworks */,
+				2203EA975E3428DD8C61DC59 /* WorkoutSettings in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7606ACEBF922D1FB8A05FFC6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E2F4D0C59EE5CC58831A87D /* CoreLogic in Frameworks */,
+				4371446DA4B5CAECC27F514D /* CorePersistence in Frameworks */,
+				A7D5970E5C5C939656BBB4DB /* CoreInterface in Frameworks */,
+				162DC1A9B9A212D2336AB70D /* DomainEntities in Frameworks */,
+				2F75D1AFCDF17958A3FC3343 /* QuickWorkoutsList in Frameworks */,
+				7D5F7DBD596A67D43EC042FB /* QuickWorkoutForm in Frameworks */,
+				AC0BEDA7F9FA604A659DE740 /* RunningTimer in Frameworks */,
+				DF6C38A41F76C914C3011973 /* WorkoutSettings in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		141CE06610BD90A82DAB52E5 /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				9241B6AD2173347C6C9566DC /* Entitlements */,
+				EA0171E0033199FB41BC4FDB /* Assets.xcassets */,
+				B582B47141A14921DBDFB203 /* Common.xcconfig */,
+				8C837EB6D1FDE8291E16089A /* Debug.xcconfig */,
+				115BDC5DEA1EE767E2BDD10C /* exportOptions.plist */,
+				8C72BACDA523AD874582296D /* Info.plist */,
+				5B9B53EFD56552C7AE55DE60 /* LaunchScreen.storyboard */,
+				F84AE5AB895CDEC3CC159918 /* Release.xcconfig */,
+			);
+			path = Product;
+			sourceTree = "<group>";
+		};
+		37CF75FC047B2EE0CF97095F /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				830B49699ADABED73AE35958 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4377824D0761DC983D4CA8FC /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				F23F7590050E7A267D2F5F7B /* App */,
+				AB93CAE6A9901D2F9EC0A0B6 /* ComplicationController.swift */,
+				DDC2FEABAA6693B149B4BCBC /* NotificationController.swift */,
+				C720A70DA260860C6C70F0F3 /* NotificationView.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		4784DEA3C0633E9F13D4F0F0 /* .github */ = {
+			isa = PBXGroup;
+			children = (
+				5CB70F32A924322EF2F99AF7 /* scripts */,
+				88A4033AEF290A4A99CC03DE /* secrets */,
+				DC96FE20D7E9F928032589BD /* workflows */,
+			);
+			path = .github;
+			sourceTree = "<group>";
+		};
+		5CB70F32A924322EF2F99AF7 /* scripts */ = {
+			isa = PBXGroup;
+			children = (
+				E94120470CB8A464C6E64988 /* archive_app.sh */,
+				84BE02881575D07A09199FBB /* bump_version.swift */,
+				AA77E5CF7EEA3F3AEB424F58 /* export_ipa.sh */,
+				C471CB037E352B56257170C5 /* publish_testflight.sh */,
+				77DA334D36EAB31EDFC155F0 /* test_app.sh */,
+			);
+			path = scripts;
+			sourceTree = "<group>";
+		};
+		701BFC5A6D4FB526F1D83237 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				EA87000BAE5764933AC9D91B /* CoreInterface */,
+				930E03EC79B11C2148E37B35 /* CoreLogic */,
+				9AD525E3DAB14F1309E65E67 /* CorePersistence */,
+				175A87A6B0E36EE9EE6E2298 /* DomainEntities */,
+				331589781F7A33161E30BB3E /* QuickWorkoutForm */,
+				59AEA284B8A4218D614BE8A9 /* QuickWorkoutsList */,
+				721E980D585BB5C61D981BA0 /* RunningTimer */,
+				5D0E2AA487EB13627AA1F1D1 /* WorkoutSettings */,
+			);
+			name = Packages;
+			sourceTree = SOURCE_ROOT;
+		};
+		76B53416C2ABFD136C1EA3D6 /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				23E785FADC1BB9E17FC4FB75 /* Common.xcconfig */,
+				0D4110FEE0863569B3EE3C39 /* Debug.xcconfig */,
+				EE82ECD009C7C845B63F9A84 /* Release.xcconfig */,
+			);
+			path = Product;
+			sourceTree = "<group>";
+		};
+		88A4033AEF290A4A99CC03DE /* secrets */ = {
+			isa = PBXGroup;
+			children = (
+				2E028832FE430EEF0E332E00 /* certificate.p12.gpg */,
+				B33DC6037ACFFAB1BF6AB07E /* decrypt_secrets.sh */,
+				2F1D832AE91CCE6AEFC37170 /* profile.mobileprovision.gpg */,
+			);
+			path = secrets;
+			sourceTree = "<group>";
+		};
+		9241B6AD2173347C6C9566DC /* Entitlements */ = {
+			isa = PBXGroup;
+			children = (
+				3AF3D4BE89917BCA4757E46C /* Debug.entitlements */,
+				F8235933F8119DEC47FCEBFE /* Release.entitlements */,
+			);
+			path = Entitlements;
+			sourceTree = "<group>";
+		};
+		99CBEC3367F47BB6FD4B0FFD /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				E387AD739BDE9EBB8217831A /* Assets.xcassets */,
+				65089AC4A7AF8F5C29CE2581 /* Info.plist */,
+				647D87FD0C41F9713F201B9F /* PushNotificationPayload.apns */,
+			);
+			path = Product;
+			sourceTree = "<group>";
+		};
+		AC76FEEB4BC9B297019DE16E /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				26F70FAAD963A3CF817C4AF4 /* App.swift */,
+				B4DB3B8CB653DF422183019D /* AppCore.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		B0BF4DB1B506C2538CE84611 /* Timer Wiz */ = {
+			isa = PBXGroup;
+			children = (
+				37CF75FC047B2EE0CF97095F /* Preview Content */,
+				141CE06610BD90A82DAB52E5 /* Product */,
+				AC76FEEB4BC9B297019DE16E /* Root */,
+			);
+			path = "Timer Wiz";
+			sourceTree = "<group>";
+		};
+		B7F3A185019280BE19E33A8F = {
+			isa = PBXGroup;
+			children = (
+				4784DEA3C0633E9F13D4F0F0 /* .github */,
+				701BFC5A6D4FB526F1D83237 /* Packages */,
+				B0BF4DB1B506C2538CE84611 /* Timer Wiz */,
+				F9D4BCB8728D1E8D355A7658 /* Timer Wiz_watchOS */,
+				6B95DF9F880FA286C72E75FF /* project_templates.yml */,
+				0EE89B5CE3BD3F3194516C6C /* project.yml */,
+				EE853AE33FB76D1FD4AFDB58 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BA699671F977138EFB731F7F /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				0227223B03834DE4B86C6F20 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C392834EDB6518012E58153C /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				BA699671F977138EFB731F7F /* Preview Content */,
+				99CBEC3367F47BB6FD4B0FFD /* Product */,
+				4377824D0761DC983D4CA8FC /* Root */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		DC96FE20D7E9F928032589BD /* workflows */ = {
+			isa = PBXGroup;
+			children = (
+				C9B09205766A516208342827 /* deployment-testflight.yml */,
+				906A26A5ED590987CCE4CBC5 /* testing.yml */,
+			);
+			path = workflows;
+			sourceTree = "<group>";
+		};
+		E08B1BFFF8A58D4656795466 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				76B53416C2ABFD136C1EA3D6 /* Product */,
+				9EA18F5093C9FC74DE0A67BF /* Assets.xcassets */,
+				8F891C198B8FA5909A73B96A /* Info.plist */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		EE853AE33FB76D1FD4AFDB58 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D5EC222B35CF3B91B09CA79E /* Timer Wiz Watch Extension.appex */,
+				7D33C2D2236DEB4E84D82351 /* Timer Wiz Watch.app */,
+				96F66614B2538F0BB06AF7D0 /* Timer Wiz.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F23F7590050E7A267D2F5F7B /* App */ = {
+			isa = PBXGroup;
+			children = (
+				6DE8E9B3EEFA48B8C063610C /* App.swift */,
+				CCC17DBEE57EC61FA7F9E5C3 /* AppCore.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		F9D4BCB8728D1E8D355A7658 /* Timer Wiz_watchOS */ = {
+			isa = PBXGroup;
+			children = (
+				E08B1BFFF8A58D4656795466 /* App */,
+				C392834EDB6518012E58153C /* Extension */,
+			);
+			path = "Timer Wiz_watchOS";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0932920303856264B2301452 /* Timer Wiz Watch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B26789F98B9C6D6DCE16D839 /* Build configuration list for PBXNativeTarget "Timer Wiz Watch Extension" */;
+			buildPhases = (
+				1EEA0DE5823E36287514E383 /* Sources */,
+				B73A41F8E8B21D80D2A2F68D /* Resources */,
+				5B9862BD760C51FDEC9BF810 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Timer Wiz Watch Extension";
+			packageProductDependencies = (
+				A36E90918D046A74E56A5F68 /* CoreLogic */,
+				C40D626A4D7B6DF79D49B350 /* CorePersistence */,
+				30E7C67114F5D4EBCF328733 /* CoreInterface */,
+				A57E400DB9482F89B88538B1 /* DomainEntities */,
+				5B91E732D3BEA0B01D563446 /* QuickWorkoutsList */,
+				4B25C6750148D5E56FBFC705 /* QuickWorkoutForm */,
+				283688B6E7F08DD66F80236F /* RunningTimer */,
+				7D2FA720C4DE291C20F22113 /* WorkoutSettings */,
+			);
+			productName = "Timer Wiz Watch Extension";
+			productReference = D5EC222B35CF3B91B09CA79E /* Timer Wiz Watch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+		429BFDFEA9DB359BBC9D553F /* Timer Wiz */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEC1034DBB5200E883EA4664 /* Build configuration list for PBXNativeTarget "Timer Wiz" */;
+			buildPhases = (
+				C579087D9D68AD5DA2D0C2B4 /* Sources */,
+				0DC11E24920562321CF9D56E /* Resources */,
+				7606ACEBF922D1FB8A05FFC6 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Timer Wiz";
+			packageProductDependencies = (
+				D50F43BB4CFAC556447C2A39 /* CoreLogic */,
+				EDFA3FD3711AB1B045C25E70 /* CorePersistence */,
+				98ABD104794FD7A30F94DC84 /* CoreInterface */,
+				313C990DD2FFB8B2DDA70604 /* DomainEntities */,
+				23412DDB599B331060C37D05 /* QuickWorkoutsList */,
+				9D252EB96D29143466857DAF /* QuickWorkoutForm */,
+				92E7919499FC89EF10D18AF1 /* RunningTimer */,
+				6473CD3119671A8E917DFF3D /* WorkoutSettings */,
+			);
+			productName = "Timer Wiz";
+			productReference = 96F66614B2538F0BB06AF7D0 /* Timer Wiz.app */;
+			productType = "com.apple.product-type.application";
+		};
+		92BD55C0B08B463CA8C7D582 /* Timer Wiz Watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2539AE9C845B517CCDE13F10 /* Build configuration list for PBXNativeTarget "Timer Wiz Watch" */;
+			buildPhases = (
+				6416C903C3A6875B76287E15 /* Sources */,
+				AC99A0DBDF54E18E178D0237 /* Resources */,
+				13FB6D94F6C1182C4A104390 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				09DBB87B5A1CDD8C20F9CEFF /* PBXTargetDependency */,
+			);
+			name = "Timer Wiz Watch";
+			productName = "Timer Wiz Watch";
+			productReference = 7D33C2D2236DEB4E84D82351 /* Timer Wiz Watch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		592B92AE04F4725226213B61 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1200;
+				TargetAttributes = {
+					429BFDFEA9DB359BBC9D553F = {
+						DevelopmentTeam = GR9SJM3FZP;
+						ProvisioningStyle = Manual;
+					};
+				};
+			};
+			buildConfigurationList = 83D5C2A8F27A83B0ACA82F85 /* Build configuration list for PBXProject "Timer Wiz" */;
+			compatibilityVersion = "Xcode 10.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				de,
+				en,
+			);
+			mainGroup = B7F3A185019280BE19E33A8F;
+			packageReferences = (
+				B02F5AECF24EC20479A1DE1A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+			);
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				429BFDFEA9DB359BBC9D553F /* Timer Wiz */,
+				92BD55C0B08B463CA8C7D582 /* Timer Wiz Watch */,
+				0932920303856264B2301452 /* Timer Wiz Watch Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0DC11E24920562321CF9D56E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B355E21185D39A3037EB1C17 /* Assets.xcassets in Resources */,
+				9A6392EF35DD0E44D9610492 /* LaunchScreen.storyboard in Resources */,
+				45C8339EBF1A5F0C11403AC4 /* Preview Assets.xcassets in Resources */,
+				A6711C1B02EAC6EB9D8C0A1A /* exportOptions.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AC99A0DBDF54E18E178D0237 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				89E2FB5BE3586B432D4646B2 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B73A41F8E8B21D80D2A2F68D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4419E9E820E8A94196C0A7A1 /* Assets.xcassets in Resources */,
+				F321281241CAF78105EBD523 /* Preview Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1EEA0DE5823E36287514E383 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E11B84E05E2B83F4818200E2 /* App.swift in Sources */,
+				259CAB29BEADAB51E9B6EEAC /* AppCore.swift in Sources */,
+				A8EE9FBFEF16347140ABFCA8 /* ComplicationController.swift in Sources */,
+				C8E785D1EBB50D25AB74A587 /* NotificationController.swift in Sources */,
+				CDB19E12D263926B4F782133 /* NotificationView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6416C903C3A6875B76287E15 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C579087D9D68AD5DA2D0C2B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9D5CAE2337D531864A06A07 /* App.swift in Sources */,
+				CCD61D9DF89979DCCD91474A /* AppCore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		09DBB87B5A1CDD8C20F9CEFF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0932920303856264B2301452 /* Timer Wiz Watch Extension */;
+			targetProxy = CDBF3440DDE9E88A02CCE084 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		5B9B53EFD56552C7AE55DE60 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1E12B49F4A6F4542C1CD2A83 /* Base */,
+				602029E6B79C08A5E1EFC080 /* de */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1CE72D038EA7DEC0B406253E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Debug;
+		};
+		24941AD998CB2C7367763DAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8C837EB6D1FDE8291E16089A /* Debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CODE_SIGN_ENTITLEMENTS = "Timer Wiz/Product/Entitlements/Debug.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = GR9SJM3FZP;
+				ENABLE_BITCODE = NO;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
+				INFOPLIST_FILE = "Timer Wiz/Product/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.QuickWorkouts.debug;
+				PRODUCT_NAME = "Timer Wiz";
+				PROVISIONING_PROFILE_SPECIFIER = "QuickWorkouts Development";
+				SDKROOT = iphoneos;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3A0955626E76F7A0354491A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Release;
+		};
+		61544D85BC36F49233CE7838 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F84AE5AB895CDEC3CC159918 /* Release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CODE_SIGN_ENTITLEMENTS = "Timer Wiz/Product/Entitlements/Release.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = GR9SJM3FZP;
+				ENABLE_BITCODE = YES;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
+				INFOPLIST_FILE = "Timer Wiz/Product/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.QuickWorkouts;
+				PRODUCT_NAME = "Timer Wiz";
+				PROVISIONING_PROFILE_SPECIFIER = "QuickWorkouts Distribution";
+				SDKROOT = iphoneos;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		641FAFC1AF423E113AEADF31 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0D4110FEE0863569B3EE3C39 /* Debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
+				INFOPLIST_FILE = "Timer Wiz_watchOS/App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.QuickWorkouts.watch;
+				PRODUCT_NAME = "Timer Wiz";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Debug;
+		};
+		773C7130795CF2C827AED79A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				INFOPLIST_FILE = "Timer Wiz_watchOS/Extension/Product/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.QuickWorkouts.watch.extension;
+				PRODUCT_NAME = "Timer Wiz";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Debug;
+		};
+		97768EA1E12F263155F4232B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE82ECD009C7C845B63F9A84 /* Release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Timer Wiz_watchOS/App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.QuickWorkouts.watch;
+				PRODUCT_NAME = "Timer Wiz";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Release;
+		};
+		A5E0C8AA662AA5D3B5F711C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				INFOPLIST_FILE = "Timer Wiz_watchOS/Extension/Product/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.tsonev.mobile.ios.QuickWorkouts.watch.extension;
+				PRODUCT_NAME = "Timer Wiz";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2539AE9C845B517CCDE13F10 /* Build configuration list for PBXNativeTarget "Timer Wiz Watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				641FAFC1AF423E113AEADF31 /* Debug */,
+				97768EA1E12F263155F4232B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		83D5C2A8F27A83B0ACA82F85 /* Build configuration list for PBXProject "Timer Wiz" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1CE72D038EA7DEC0B406253E /* Debug */,
+				3A0955626E76F7A0354491A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		B26789F98B9C6D6DCE16D839 /* Build configuration list for PBXNativeTarget "Timer Wiz Watch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				773C7130795CF2C827AED79A /* Debug */,
+				A5E0C8AA662AA5D3B5F711C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		BEC1034DBB5200E883EA4664 /* Build configuration list for PBXNativeTarget "Timer Wiz" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24941AD998CB2C7367763DAD /* Debug */,
+				61544D85BC36F49233CE7838 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B02F5AECF24EC20479A1DE1A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.10.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		23412DDB599B331060C37D05 /* QuickWorkoutsList */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = QuickWorkoutsList;
+		};
+		283688B6E7F08DD66F80236F /* RunningTimer */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RunningTimer;
+		};
+		30E7C67114F5D4EBCF328733 /* CoreInterface */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CoreInterface;
+		};
+		313C990DD2FFB8B2DDA70604 /* DomainEntities */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DomainEntities;
+		};
+		4B25C6750148D5E56FBFC705 /* QuickWorkoutForm */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = QuickWorkoutForm;
+		};
+		5B91E732D3BEA0B01D563446 /* QuickWorkoutsList */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = QuickWorkoutsList;
+		};
+		6473CD3119671A8E917DFF3D /* WorkoutSettings */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WorkoutSettings;
+		};
+		7D2FA720C4DE291C20F22113 /* WorkoutSettings */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WorkoutSettings;
+		};
+		92E7919499FC89EF10D18AF1 /* RunningTimer */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RunningTimer;
+		};
+		98ABD104794FD7A30F94DC84 /* CoreInterface */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CoreInterface;
+		};
+		9D252EB96D29143466857DAF /* QuickWorkoutForm */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = QuickWorkoutForm;
+		};
+		A36E90918D046A74E56A5F68 /* CoreLogic */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CoreLogic;
+		};
+		A57E400DB9482F89B88538B1 /* DomainEntities */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DomainEntities;
+		};
+		C40D626A4D7B6DF79D49B350 /* CorePersistence */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CorePersistence;
+		};
+		D50F43BB4CFAC556447C2A39 /* CoreLogic */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CoreLogic;
+		};
+		EDFA3FD3711AB1B045C25E70 /* CorePersistence */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CorePersistence;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 592B92AE04F4725226213B61 /* Project object */;
+}

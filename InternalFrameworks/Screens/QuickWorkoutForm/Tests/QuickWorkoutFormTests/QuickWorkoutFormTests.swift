@@ -29,8 +29,8 @@ class QuickWorkoutFormTests: XCTestCase {
         store.assert(
             .send(.updateName("My workout")) {
                 $0.segmentStates = []
-                $0.selectedColor = randomTint.color
-                $0.selectedTint = randomTint
+                $0.selectedColor = Color(red: 0, green: 0, blue: 0, opacity: 1)
+                $0.selectedTint = nil
                 $0.name = "My workout"
             },
             .send(.newSegmentButtonTapped) {
