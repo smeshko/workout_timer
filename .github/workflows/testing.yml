@@ -10,10 +10,10 @@ jobs:
         uses: actions/checkout@v1
       - name: Force XCode 12
         run: sudo xcode-select -switch /Applications/Xcode_12.4.app
-     # - name: Install xcodegen
-     #   run: brew install xcodegen
-     # - name: Generate project
-     #   run: xcodegen generate
+      - name: Install xcodegen
+        run: brew install xcodegen
+      - name: Generate project
+        run: xcodegen generate
       - name: Testing iOS app
         run: |
           chmod 755 .github/scripts/test_app.sh 
