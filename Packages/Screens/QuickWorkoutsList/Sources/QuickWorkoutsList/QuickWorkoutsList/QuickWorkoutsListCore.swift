@@ -18,6 +18,8 @@ public enum QuickWorkoutsListAction: Equatable {
     case didFinishDeleting(Result<[String], PersistenceError>)
     case didFetchWorkouts(Result<[QuickWorkout], PersistenceError>)
     case editWorkout(QuickWorkout)
+    case onUpdateQuery(String)
+    case refresh
 
     case timerForm(PresenterAction)
     case settings(PresenterAction)
@@ -35,6 +37,7 @@ public struct QuickWorkoutsListState: Equatable {
     var runningTimerState: RunningTimerState?
     var loadingState: LoadingState = .finished
     var isPresentingTimer = false
+    var query: String = ""
 
     var isPresentingTimerForm = false
     var isPresentingSettings = false
@@ -78,6 +81,22 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
         case .onAppear:
             state.loadingState = .loading
             return environment.fetchWorkouts()
+
+        case .refresh:
+            state.loadingState = .loading
+            return environment.fetchWorkouts()
+
+        case .onUpdateQuery(let query):
+            state.query = query
+            if query.isEmpty {
+                state.workoutStates = IdentifiedArray(state.workouts.map { QuickWorkoutCardState(workout: $0) })
+            } else {
+                state.workoutStates = IdentifiedArray(
+                    state.workouts
+                        .filter { $0.name.contains(query) }
+                        .map { QuickWorkoutCardState(workout: $0) }
+                )
+            }
             
         case .didFinishDeleting(.success(let ids)):
             ids.forEach { state.workoutStates.remove(id: UUID(uuidString: $0) ?? UUID()) }

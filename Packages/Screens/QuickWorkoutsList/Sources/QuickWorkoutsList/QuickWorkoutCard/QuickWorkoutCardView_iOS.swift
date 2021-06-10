@@ -64,9 +64,9 @@ struct QuickWorkoutCardView: View {
                         )
                         .scaleEffect(1.2)
                         .offset(x: proxy.size.width / 2, y: 35)
+                        .clipped()
                 }
             }
-            .cornerRadius(CornerRadius.m)
         )
     }
 }

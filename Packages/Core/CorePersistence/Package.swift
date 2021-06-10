@@ -7,7 +7,7 @@ let package = Package(
     name: "CorePersistence",
     platforms: [
         .macOS(.v10_15),
-        .iOS(.v14),
+        .iOS("15.0"),
         .watchOS(.v7)
     ],
     products: [
@@ -28,7 +28,7 @@ let package = Package(
             name: "CorePersistenceTests",
             dependencies: ["CorePersistence"],
             resources: [
-                .process("CoreData/WorkoutTimer.xcdatamodel")
+                .process("CoreData/WorkoutTimer.xcdatamodeld")
             ]),
     ]
 )

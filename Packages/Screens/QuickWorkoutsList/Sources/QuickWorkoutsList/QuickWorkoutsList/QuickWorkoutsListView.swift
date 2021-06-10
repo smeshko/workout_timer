@@ -143,7 +143,7 @@ private extension QuickWorkoutsListState {
     var view: QuickWorkoutsListView.State {
         QuickWorkoutsListView.State(
             loadingState: loadingState,
-            noWorkouts: workoutStates.isEmpty,
+            noWorkouts: workouts.isEmpty,
             isPresentingTimer: isPresentingTimer
         )
     }

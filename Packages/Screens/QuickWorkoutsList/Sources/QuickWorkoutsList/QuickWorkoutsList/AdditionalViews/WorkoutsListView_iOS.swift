@@ -16,17 +16,17 @@ struct WorkoutsList: View {
 
     var body: some View {
         WithViewStore(store.scope(state: \.isPresentingTimerForm)) { viewStore in
-            ScrollView(showsIndicators: false) {
-                if horizontalSizeClass == .regular {
-                    LazyVGrid(columns: columns) {
+//            ScrollView(showsIndicators: false) {
+//                if horizontalSizeClass == .regular {
+//                    LazyVGrid(columns: columns) {
                         ListContents(store: store)
-                    }
-                } else {
-                    VStack {
-                        ListContents(store: store)
-                    }
-                }
-            }
+//                    }
+//                } else {
+//                    VStack {
+//                        ListContents(store: store)
+//                    }
+//                }
+//            }
             .sheet(isPresented: viewStore.binding(get: { $0 }),
                    onDismiss: { viewStore.send(.timerForm(.dismiss))}) {
                 CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState,
@@ -35,7 +35,7 @@ struct WorkoutsList: View {
         }
         .fullHeight()
         .fullWidth()
-        .padding(.horizontal, Spacing.margin)
+//        .padding(.horizontal, Spacing.margin)
         .navigationTitle("workouts".localized)
     }
 }
@@ -65,30 +65,59 @@ private extension View {
 }
 
 private struct ListContents: View {
+    fileprivate struct ViewState: Equatable {
+        let isPresentingTimerForm: Bool
+        let query: String
+    }
+
     let store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>
     @State private var cellSize: CGSize = .zero
 
     var body: some View {
-        WithViewStore(store.scope(state: \.isPresentingTimerForm)) { viewStore in
-            ForEachStore(store.scope(state: { $0.workoutStates },
-                                     action: QuickWorkoutsListAction.workoutCardAction(id:action:))) { cardViewStore in
-                ContextMenuView {
+        WithViewStore(store.scope(state: \.listContentsState)) { viewStore in
+            List {
+                ForEachStore(store.scope(state: { $0.workoutStates },
+                                         action: QuickWorkoutsListAction.workoutCardAction(id:action:))) { cardViewStore in
+
                     QuickWorkoutCardView(store: cardViewStore)
-                        .padding(.horizontal, Spacing.l)
-                        .padding(.vertical, Spacing.xxs)
-                        .settingSize($cellSize)
-                } previewProvider: {
-                    WorkoutPreview(store: cardViewStore)
+                        .listRowSeparator(.hidden)
+                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: Spacing.xs, trailing: 0))
+                        .swipeActions(allowsFullSwipe: false) {
+                            Button(key: "delete", action: {
+                                viewStore.send(.deleteWorkout(ViewStore(cardViewStore).workout))
+                            })
+                                .tint(.red)
+                            Button(key: "edit", action: {
+                                viewStore.send(.editWorkout(ViewStore(cardViewStore).workout))
+                                viewStore.send(.timerForm(.present))
+                            })
+                                .tint(.appSuccess)
+                                .padding(.bottom, Spacing.xs)
+                        }
+
+//                    ContextMenuView {
+//                        QuickWorkoutCardView(store: cardViewStore)
+//                            .padding(.horizontal, Spacing.l)
+//                            .padding(.vertical, Spacing.xxs)
+//                            .settingSize($cellSize)
+//                    } previewProvider: {
+//                        WorkoutPreview(store: cardViewStore)
+//                    }
+//                    .actionProvider {
+//                        actions(cardViewStore, viewStore: viewStore)
+//                    }
+//                    .onPreviewTap {
+//                        viewStore.send(.editWorkout(ViewStore(cardViewStore).workout))
+//                        viewStore.send(.timerForm(.present))
+//                    }
+//                    .frame(height: cellSize.height)
                 }
-                .actionProvider {
-                    actions(cardViewStore, viewStore: viewStore)
-                }
-                .onPreviewTap {
-                    viewStore.send(.editWorkout(ViewStore(cardViewStore).workout))
-                    viewStore.send(.timerForm(.present))
-                }
-                .frame(height: cellSize.height)
             }
+            .listStyle(.plain)
+            .refreshable {
+                viewStore.send(.refresh)
+            }
+            .searchable(text: viewStore.binding(get: \.query, send: QuickWorkoutsListAction.onUpdateQuery))
         }
     }
 
@@ -114,6 +143,12 @@ private struct ListContents: View {
         let deleteMenu = UIMenu(title: "delete".localized, image: UIImage(systemName: "trash"), options: .destructive, children: [deleteAction])
 
         return UIMenu(title: "", children: [start, edit, deleteMenu])
+    }
+}
+
+fileprivate extension QuickWorkoutsListState {
+    var listContentsState: ListContents.ViewState {
+        ListContents.ViewState(isPresentingTimerForm: isPresentingTimer, query: query)
     }
 }
 #endif

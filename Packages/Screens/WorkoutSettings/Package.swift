@@ -4,30 +4,28 @@
 import PackageDescription
 
 let package = Package(
-    name: "QuickWorkoutForm",
+    name: "WorkoutSettings",
     platforms: [
         .macOS(.v10_15),
-        .iOS(.v14),
+        .iOS("15.0"),
         .watchOS(.v7)
     ],
     products: [
         .library(
-            name: "QuickWorkoutForm",
-            targets: ["QuickWorkoutForm"]),
+            name: "WorkoutSettings",
+            targets: ["WorkoutSettings"]),
     ],
     dependencies: [
-        .package(path: "../CorePersistence"),
         .package(path: "../CoreInterface"),
     ],
     targets: [
         .target(
-            name: "QuickWorkoutForm",
+            name: "WorkoutSettings",
             dependencies: [
-                "CorePersistence",
                 "CoreInterface"
             ]),
         .testTarget(
-            name: "QuickWorkoutFormTests",
-            dependencies: ["QuickWorkoutForm"]),
+            name: "WorkoutSettingsTests",
+            dependencies: ["WorkoutSettings"]),
     ]
 )
