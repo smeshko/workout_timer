@@ -25,8 +25,7 @@ public extension SoundClient {
         .fireAndForget {
             #if os(iOS)
             if let resource = sound.resource,
-               let bundle = Bundle(identifier: "com.tsonev.mobile.ios.CoreLogic"),
-               let path = bundle.path(forResource: resource.0, ofType: resource.1) {
+               let path = Bundle.module.path(forResource: resource.0, ofType: resource.1) {
                 play(at: path)
             }
             #endif
@@ -40,8 +39,8 @@ public extension SoundClient {
     private static func play(at path: String) {
         let resource = URL(fileURLWithPath: path)
 
-        try? AVAudioSession.sharedInstance().setCategory(.playback)
-        try? AVAudioSession.sharedInstance().setActive(true)
+        try? AVAudioSession.sharedInstance().setCategory(.ambient)
+        try? AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
         player = try? AVAudioPlayer(contentsOf: resource)
         player?.prepareToPlay()
         player?.play()

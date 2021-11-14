@@ -26,9 +26,7 @@ let package = Package(
             ]),
         .testTarget(
             name: "CorePersistenceTests",
-            dependencies: ["CorePersistence"],
-            resources: [
-                .process("CoreData/WorkoutTimer.xcdatamodeld")
-            ]),
+            dependencies: ["CorePersistence"]
+        )
     ]
 )

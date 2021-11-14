@@ -19,6 +19,7 @@ let package = Package(
         .package(path: "../WorkoutSettings"),
         .package(path: "../RunningTimer"),
         .package(path: "../QuickWorkoutForm"),
+        .package(path: "../CoreInterface")
     ],
     targets: [
         .target(
@@ -26,7 +27,8 @@ let package = Package(
             dependencies: [
                 "QuickWorkoutForm",
                 "RunningTimer",
-                "WorkoutSettings"
+                "WorkoutSettings",
+                "CoreInterface"
             ]),
         .testTarget(
             name: "QuickWorkoutsListTests",

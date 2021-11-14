@@ -5,6 +5,7 @@ import ComposableArchitecture
 import CorePersistence
 import DomainEntities
 import CoreInterface
+import IdentifiedCollections
 
 public enum CreateQuickWorkoutAction: Equatable {
     case circuitPickerUpdatedValues(AddTimerSegmentAction)
@@ -73,7 +74,7 @@ public let createQuickWorkoutReducer =
             switch action {
 
             case .onAppear:
-                state.segmentStates = IdentifiedArray(state.workout?.segments.map(SegmentState.init(segment:)) ?? [])
+                state.segmentStates = IdentifiedArray(uniqueElements: state.workout?.segments.map(SegmentState.init(segment:)) ?? [])
 
                 if state.isEditing {
                     state.selectedColor = state.workout?.color.color ?? .appSuccess

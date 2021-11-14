@@ -34,7 +34,7 @@ struct TimerView: View {
             }
             .pulsatingAnimation(viewStore.timerControlsState.isPaused)
         }
-        .animation(.none)
+
     }
 
     private var progressColor: WorkoutColor {
@@ -95,12 +95,12 @@ private extension RunningTimerState {
 private extension View {
     func pulsatingAnimation(_ animate: Bool) -> some View {
         self
-            .opacity(animate ? 0.25 : 1)
-            .animation(
-                animate ?
-                    Animation.easeInOut(duration: 1).repeatForever() :
-                    .none
-            )
+//            .opacity(animate ? 0.25 : 1)
+//            .animation(
+//                animate ?
+//                    Animation.easeInOut(duration: 1).repeatForever() :
+//                    .none
+//            )
     }
 }
 

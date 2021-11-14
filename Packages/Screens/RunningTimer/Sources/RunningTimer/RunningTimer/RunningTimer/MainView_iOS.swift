@@ -41,7 +41,7 @@ struct MainView: View {
 
                     IfLetStore(store.scope(state: \.finishedWorkoutState, action: RunningTimerAction.finishedWorkoutAction),
                                then: FinishedWorkoutView.init,
-                               else: TimerView(store: store)
+                               else: { TimerView(store: store) }
                     )
 
                     Spacer()
@@ -70,7 +70,7 @@ struct MainView: View {
 
                 IfLetStore(store.scope(state: \.finishedWorkoutState, action: RunningTimerAction.finishedWorkoutAction),
                            then: FinishedWorkoutView.init,
-                           else: TimerView(store: store)
+                           else: { TimerView(store: store) }
                 )
 
                 Spacer()

@@ -23,7 +23,7 @@ struct PreCountdownView: View {
                             .font(.timer)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .animation(.easeInOut(duration: 0.55))
+
             .onAppear {
                 viewStore.send(.onAppear)
                 startAnimation = true

@@ -9,21 +9,21 @@ fileGroups:
 
 packages:
   DomainEntities:
-    path: InternalFrameworks/Core/DomainEntities
+    path: Packages/Core/DomainEntities
   CorePersistence:
-    path: InternalFrameworks/Core/CorePersistence
+    path: Packages/Core/CorePersistence
   CoreLogic:
-    path: InternalFrameworks/Core/CoreLogic
+    path: Packages/Core/CoreLogic
   CoreInterface:
-    path: InternalFrameworks/Core/CoreInterface
+    path: Packages/Core/CoreInterface
   QuickWorkoutsList:
-    path: InternalFrameworks/Screens/QuickWorkoutsList
+    path: Packages/Screens/QuickWorkoutsList
   QuickWorkoutForm:
-    path: InternalFrameworks/Screens/QuickWorkoutForm
+    path: Packages/Screens/QuickWorkoutForm
   RunningTimer:
-    path: InternalFrameworks/Screens/RunningTimer
+    path: Packages/Screens/RunningTimer
   WorkoutSettings:
-    path: InternalFrameworks/Screens/WorkoutSettings
+    path: Packages/Screens/WorkoutSettings
 
   ComposableArchitecture:
     url: https://github.com/pointfreeco/swift-composable-architecture

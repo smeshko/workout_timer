@@ -47,39 +47,39 @@ public struct CreateQuickWorkoutView: View {
     }
 }
 
-struct CreateQuickWorkoutView_Previews: PreviewProvider {
-    static var previews: some View {
-        let emptyStore = Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>(
-            initialState: CreateQuickWorkoutState(),
-            reducer: createQuickWorkoutReducer,
-            environment: .preview
-        )
+//struct CreateQuickWorkoutView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let emptyStore = Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>(
+//            initialState: CreateQuickWorkoutState(),
+//            reducer: createQuickWorkoutReducer,
+//            environment: .preview
+//        )
+//
+//        let filledStore = Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>(
+//            initialState: CreateQuickWorkoutState(
+//                workout: mockQuickWorkout1
+//            ),
+//            reducer: createQuickWorkoutReducer,
+//            environment: .preview
+//        )
+//
+//        return Group {
+//            CreateQuickWorkoutView(store: emptyStore)
+//                .previewDevice(.iPhone11)
+//                .preferredColorScheme(.dark)
+//
+//            CreateQuickWorkoutView(store: filledStore)
+//                .previewDevice(.iPhone11)
+//        }
+//    }
+//}
 
-        let filledStore = Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>(
-            initialState: CreateQuickWorkoutState(
-                workout: mockQuickWorkout1
-            ),
-            reducer: createQuickWorkoutReducer,
-            environment: .preview
-        )
-
-        return Group {
-            CreateQuickWorkoutView(store: emptyStore)
-                .previewDevice(.iPhone11)
-                .preferredColorScheme(.dark)
-
-            CreateQuickWorkoutView(store: filledStore)
-                .previewDevice(.iPhone11)
-        }
-    }
-}
-
-private struct WorkoutForm: View {
-    fileprivate struct State: Equatable {
+public struct WorkoutForm: View {
+    public struct State: Equatable {
         var preselectedTints: [TintColor]
-        var selectedColor: Color
+        @BindableState var selectedColor: Color
         var selectedTint: TintColor?
-        var name: String
+        @BindableState var name: String
     }
     private let store: Store<CreateQuickWorkoutState, CreateQuickWorkoutAction>
 
@@ -87,7 +87,7 @@ private struct WorkoutForm: View {
         self.store = store
     }
 
-    var body: some View {
+    public var body: some View {
         WithViewStore(store.scope(state: \.formView)) { viewStore in
             ScrollView {
                 VStack(spacing: Spacing.xxl) {

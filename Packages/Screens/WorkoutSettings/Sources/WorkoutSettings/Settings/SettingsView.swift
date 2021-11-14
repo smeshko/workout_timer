@@ -39,7 +39,7 @@ public struct SettingsView: View {
                     OnboardingButton(store: store)
 
                     Button(key: "settings_rate_app") {
-                        if let windowScene = UIApplication.shared.windows.first?.windowScene {
+                        if let windowScene = UIApplication.activeScene {
                             SKStoreReviewController.requestReview(in: windowScene)
                         }
                     }
@@ -157,3 +157,18 @@ private struct LicensesButton: View {
     }
 }
 #endif
+
+private extension UIApplication {
+    static var activeScene: UIWindowScene? {
+        UIApplication.shared.connectedScenes
+            .filter { $0.activationState == .foregroundActive }
+            .first(where: { $0 is UIWindowScene })
+        as? UIWindowScene
+    }
+
+    static var keyWindow: UIWindow? {
+        activeScene?
+            .windows
+            .first(where: \.isKeyWindow)
+    }
+}

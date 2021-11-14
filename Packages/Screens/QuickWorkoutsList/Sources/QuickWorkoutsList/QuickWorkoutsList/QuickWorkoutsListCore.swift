@@ -14,12 +14,9 @@ public enum QuickWorkoutsListAction: Equatable {
     case settingsAction(SettingsAction)
 
     case deleteWorkouts(IndexSet)
-    case deleteWorkout(QuickWorkout)
     case didFinishDeleting(Result<[String], PersistenceError>)
     case didFetchWorkouts(Result<[QuickWorkout], PersistenceError>)
-    case editWorkout(QuickWorkout)
     case onUpdateQuery(String)
-    case refresh
 
     case timerForm(PresenterAction)
     case settings(PresenterAction)
@@ -44,7 +41,7 @@ public struct QuickWorkoutsListState: Equatable {
 
     public init(workouts: [QuickWorkout] = []) {
         self.workouts = workouts
-        workoutStates = IdentifiedArray(workouts.map { QuickWorkoutCardState(workout: $0) })
+        workoutStates = IdentifiedArray(uniqueElements: workouts.map { QuickWorkoutCardState(workout: $0) })
     }
 }
 
@@ -82,18 +79,15 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
             state.loadingState = .loading
             return environment.fetchWorkouts()
 
-        case .refresh:
-            state.loadingState = .loading
-            return environment.fetchWorkouts()
-
         case .onUpdateQuery(let query):
             state.query = query
             if query.isEmpty {
-                state.workoutStates = IdentifiedArray(state.workouts.map { QuickWorkoutCardState(workout: $0) })
+                state.workoutStates = IdentifiedArray(uniqueElements: state.workouts.map { QuickWorkoutCardState(workout: $0) })
             } else {
                 state.workoutStates = IdentifiedArray(
-                    state.workouts
-                        .filter { $0.name.contains(query) }
+                    uniqueElements:
+                        state.workouts
+                        .filter { $0.name.lowercased().contains(query.lowercased()) }
                         .map { QuickWorkoutCardState(workout: $0) }
                 )
             }
@@ -104,17 +98,32 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
         case .didFetchWorkouts(.success(let workouts)):
             state.loadingState = .finished
             state.workouts = workouts
-            state.workoutStates = IdentifiedArray(workouts.map { QuickWorkoutCardState(workout: $0) })
+            state.workoutStates = IdentifiedArray(uniqueElements: workouts.map { QuickWorkoutCardState(workout: $0) })
 
         case .didFinishDeleting(.failure), .didFetchWorkouts(.failure):
             state.loadingState = .error
-            break
 
-        case .workoutCardAction(let id, action: .tapStart):
+        case .workoutCardAction(let id, action: .start):
             guard let workout = state.workoutStates[id: id]?.workout else { break }
             state.runningTimerState = RunningTimerState(workout: workout, precountdownState: PreCountdownState(workoutColor: workout.color))
             state.isPresentingTimer = true
 
+        case .workoutCardAction(let id, action: .edit):
+            guard let workout = state.workoutStates[id: id]?.workout else { break }
+            state.createWorkoutState = CreateQuickWorkoutState(workout: workout)
+            return Effect(value: QuickWorkoutsListAction.timerForm(.present))
+
+        case .workoutCardAction(let id, action: .delete):
+            guard let workout = state.workoutStates[id: id]?.workout else { break }
+            return environment
+                .repository
+                .delete(workout)
+                .receive(on: environment.mainQueue())
+                .catchToEffect()
+                .map {
+                    QuickWorkoutsListAction.didFinishDeleting($0.map { [$0] })
+                }
+            
         case .runningTimerAction(.headerAction(.timerClosed)):
             state.isPresentingTimer = false
             state.runningTimerState = nil
@@ -126,16 +135,6 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
         case .createWorkoutAction(.cancel), .createWorkoutAction(.save):
             return Effect(value: QuickWorkoutsListAction.timerForm(.dismiss))
 
-        case .deleteWorkout(let workout):
-            return environment
-                .repository
-                .delete(workout)
-                .receive(on: environment.mainQueue())
-                .catchToEffect()
-                .map {
-                    QuickWorkoutsListAction.didFinishDeleting($0.map { [$0] })
-                }
-
         case .deleteWorkouts(let indices):
             let objects = indices.compactMap { state.workoutStates[safe: $0]?.workout }
             return environment
@@ -144,9 +143,6 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
                 .receive(on: environment.mainQueue())
                 .catchToEffect()
                 .map(QuickWorkoutsListAction.didFinishDeleting(_:))
-
-        case .editWorkout(let workout):
-            state.createWorkoutState = CreateQuickWorkoutState(workout: workout)
 
         case .timerForm(.dismiss):
             state.createWorkoutState.workout = nil

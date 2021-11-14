@@ -16,7 +16,7 @@ public struct RunningTimerView: View {
         WithViewStore(store.stateless) { viewStore in
             IfLetStore(store.scope(state: \.precountdownState, action: RunningTimerAction.preCountdownAction),
                        then: { PreCountdownView(store: $0) },
-                       else: MainView(store: store)
+                       else: { MainView(store: store) }
             )
             .padding(Spacing.xxl)
             .onChange(of: scenePahse) { newScene in

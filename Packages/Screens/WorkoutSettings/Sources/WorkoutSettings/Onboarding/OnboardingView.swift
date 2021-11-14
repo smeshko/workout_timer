@@ -62,7 +62,6 @@ public struct OnboardingView: View {
             })
         }
         .transition(.opacity)
-        .animation(.default)
         .padding(Spacing.xxl)
     }
 }

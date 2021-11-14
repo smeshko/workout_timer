@@ -60,34 +60,34 @@ public struct QuickWorkoutsListView: View {
     }
 }
 
-struct QuickWorkoutsListView_Previews: PreviewProvider {
-    static var previews: some View {
-        let emptyStore = Store<QuickWorkoutsListState, QuickWorkoutsListAction>(
-            initialState: QuickWorkoutsListState(),
-            reducer: quickWorkoutsListReducer,
-            environment: .preview
-        )
-
-        let filledStore = Store<QuickWorkoutsListState, QuickWorkoutsListAction>(
-            initialState: QuickWorkoutsListState(workouts: [mockQuickWorkout1, mockQuickWorkout2]),
-            reducer: quickWorkoutsListReducer,
-            environment: .preview
-        )
-
-        return Group {
-            QuickWorkoutsListView(store: emptyStore)
-                .previewDevice(.iPhone11)
-                .preferredColorScheme(.dark)
-
-            QuickWorkoutsListView(store: filledStore)
-                .previewDevice(.iPhone11)
-
-            QuickWorkoutsListView(store: filledStore)
-                .previewDevice(.watch6)
-
-        }
-    }
-}
+//struct QuickWorkoutsListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let emptyStore = Store<QuickWorkoutsListState, QuickWorkoutsListAction>(
+//            initialState: QuickWorkoutsListState(),
+//            reducer: quickWorkoutsListReducer,
+//            environment: .preview
+//        )
+//
+//        let filledStore = Store<QuickWorkoutsListState, QuickWorkoutsListAction>(
+//            initialState: QuickWorkoutsListState(workouts: [mockQuickWorkout1, mockQuickWorkout2]),
+//            reducer: quickWorkoutsListReducer,
+//            environment: .preview
+//        )
+//
+//        return Group {
+//            QuickWorkoutsListView(store: emptyStore)
+//                .previewDevice(.iPhone11)
+//                .preferredColorScheme(.dark)
+//
+//            QuickWorkoutsListView(store: filledStore)
+//                .previewDevice(.iPhone11)
+//
+//            QuickWorkoutsListView(store: filledStore)
+//                .previewDevice(.watch6)
+//
+//        }
+//    }
+//}
 
 private struct SettingsButton: View {
     let store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>

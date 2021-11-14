@@ -5,7 +5,7 @@ import ComposableArchitecture
 import RunningTimer
 
 public enum QuickWorkoutCardAction: Equatable {
-    case tapStart
+    case start, edit, delete
 }
 
 struct QuickWorkoutCardState: Equatable, Identifiable {
@@ -34,7 +34,7 @@ let quickWorkoutCardReducer = Reducer<QuickWorkoutCardState, QuickWorkoutCardAct
     Reducer { state, action, environment in
         
         switch action {
-        case .tapStart:
+        case .start, .edit, .delete:
             break
         }
         

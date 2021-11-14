@@ -45,7 +45,6 @@ struct HeaderView: View {
                         .font(.h1Mono)
                 }
                 .transition(.move(edge: verticalSizeClass == .compact ? .leading : .trailing))
-                .animation(.easeInOut(duration: 0.55))
             }
         }
     }

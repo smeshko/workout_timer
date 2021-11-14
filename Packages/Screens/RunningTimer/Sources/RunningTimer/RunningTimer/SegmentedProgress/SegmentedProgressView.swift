@@ -30,7 +30,7 @@ public struct SegmentedProgressView: View {
                                 RoundedRectangle(cornerRadius: CornerRadius.s)
                                     .foregroundColor(color)
                                     .frame(width: min(CGFloat(segment.progress) * proxy.size.width, proxy.size.width))
-                                    .animation(.default)
+
                             }
                         }
                         .frame(height: 4)
