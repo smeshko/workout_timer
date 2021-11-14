@@ -1,6 +1,6 @@
 import XCTest
 
-import QuickWorkoutsListTests
+import TimersListTests
 
 var tests = [XCTestCaseEntry]()
 tests += QuickWorkoutsListTests.allTests()

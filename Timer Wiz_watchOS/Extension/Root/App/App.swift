@@ -1,6 +1,6 @@
 import SwiftUI
 import CoreLogic
-import QuickWorkoutsList
+import TimersList
 import ComposableArchitecture
 
 @main

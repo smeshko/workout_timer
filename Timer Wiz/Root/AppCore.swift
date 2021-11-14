@@ -2,7 +2,7 @@ import ComposableArchitecture
 import CoreLogic
 import CorePersistence
 import Foundation
-import QuickWorkoutsList
+import TimersList
 import DomainEntities
 import UIKit
 import WorkoutSettings

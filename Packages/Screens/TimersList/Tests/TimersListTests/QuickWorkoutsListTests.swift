@@ -1,7 +1,7 @@
 import ComposableArchitecture
 import XCTest
 import DomainEntities
-@testable import QuickWorkoutsList
+@testable import TimersList
 
 private let uuid = { UUID(uuidString: "c06e5e63-d74f-4291-8673-35ce994754dc")! }
 private let newWorkout = QuickWorkout(id: uuid(), name: "", color: .empty, segments: [])

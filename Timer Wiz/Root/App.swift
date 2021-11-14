@@ -2,7 +2,7 @@ import SwiftUI
 import CoreLogic
 import ComposableArchitecture
 import CorePersistence
-import QuickWorkoutsList
+import TimersList
 import CoreInterface
 import WorkoutSettings
 

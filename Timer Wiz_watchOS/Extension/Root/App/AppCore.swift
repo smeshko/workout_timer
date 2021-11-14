@@ -1,5 +1,5 @@
 import ComposableArchitecture
-import QuickWorkoutsList
+import TimersList
 import CoreLogic
 
 enum AppAction {

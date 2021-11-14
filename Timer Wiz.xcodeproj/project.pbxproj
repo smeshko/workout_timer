@@ -13,7 +13,6 @@
 		259CAB29BEADAB51E9B6EEAC /* AppCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC17DBEE57EC61FA7F9E5C3 /* AppCore.swift */; };
 		2AAD65A77D01B5ADF67306A2 /* QuickWorkoutForm in Frameworks */ = {isa = PBXBuildFile; productRef = 4B25C6750148D5E56FBFC705 /* QuickWorkoutForm */; };
 		2CAE98711F218111E96D356F /* CorePersistence in Frameworks */ = {isa = PBXBuildFile; productRef = C40D626A4D7B6DF79D49B350 /* CorePersistence */; };
-		2F75D1AFCDF17958A3FC3343 /* QuickWorkoutsList in Frameworks */ = {isa = PBXBuildFile; productRef = 23412DDB599B331060C37D05 /* QuickWorkoutsList */; };
 		3B2B46AD1D86155F3B32D195 /* DomainEntities in Frameworks */ = {isa = PBXBuildFile; productRef = A57E400DB9482F89B88538B1 /* DomainEntities */; };
 		4371446DA4B5CAECC27F514D /* CorePersistence in Frameworks */ = {isa = PBXBuildFile; productRef = EDFA3FD3711AB1B045C25E70 /* CorePersistence */; };
 		43FD592FFA6703CAE8DD3911 /* Timer Wiz Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D5EC222B35CF3B91B09CA79E /* Timer Wiz Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -31,6 +30,7 @@
 		AC0BEDA7F9FA604A659DE740 /* RunningTimer in Frameworks */ = {isa = PBXBuildFile; productRef = 92E7919499FC89EF10D18AF1 /* RunningTimer */; };
 		B355E21185D39A3037EB1C17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA0171E0033199FB41BC4FDB /* Assets.xcassets */; };
 		B82DD7D43C39C0B5028E828B /* QuickWorkoutsList in Frameworks */ = {isa = PBXBuildFile; productRef = 5B91E732D3BEA0B01D563446 /* QuickWorkoutsList */; };
+		B847A52D2741661D00857F1E /* TimersList in Frameworks */ = {isa = PBXBuildFile; productRef = B847A52C2741661D00857F1E /* TimersList */; };
 		C8E785D1EBB50D25AB74A587 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC2FEABAA6693B149B4BCBC /* NotificationController.swift */; };
 		CCD61D9DF89979DCCD91474A /* AppCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DB3B8CB653DF422183019D /* AppCore.swift */; };
 		CDB19E12D263926B4F782133 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C720A70DA260860C6C70F0F3 /* NotificationView.swift */; };
@@ -77,7 +77,6 @@
 		2F1D832AE91CCE6AEFC37170 /* profile.mobileprovision.gpg */ = {isa = PBXFileReference; lastKnownFileType = file; path = profile.mobileprovision.gpg; sourceTree = "<group>"; };
 		331589781F7A33161E30BB3E /* QuickWorkoutForm */ = {isa = PBXFileReference; lastKnownFileType = folder; name = QuickWorkoutForm; path = Packages/Screens/QuickWorkoutForm; sourceTree = SOURCE_ROOT; };
 		3AF3D4BE89917BCA4757E46C /* Debug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Debug.entitlements; sourceTree = "<group>"; };
-		59AEA284B8A4218D614BE8A9 /* QuickWorkoutsList */ = {isa = PBXFileReference; lastKnownFileType = folder; name = QuickWorkoutsList; path = Packages/Screens/QuickWorkoutsList; sourceTree = SOURCE_ROOT; };
 		5D0E2AA487EB13627AA1F1D1 /* WorkoutSettings */ = {isa = PBXFileReference; lastKnownFileType = folder; name = WorkoutSettings; path = Packages/Screens/WorkoutSettings; sourceTree = SOURCE_ROOT; };
 		602029E6B79C08A5E1EFC080 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		647D87FD0C41F9713F201B9F /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
@@ -102,6 +101,7 @@
 		B33DC6037ACFFAB1BF6AB07E /* decrypt_secrets.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = decrypt_secrets.sh; sourceTree = "<group>"; };
 		B4DB3B8CB653DF422183019D /* AppCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCore.swift; sourceTree = "<group>"; };
 		B582B47141A14921DBDFB203 /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
+		B847A52B274164FB00857F1E /* TimersList */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TimersList; path = Packages/Screens/TimersList; sourceTree = "<group>"; };
 		C471CB037E352B56257170C5 /* publish_testflight.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = publish_testflight.sh; sourceTree = "<group>"; };
 		C720A70DA260860C6C70F0F3 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		C9B09205766A516208342827 /* deployment-testflight.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = "deployment-testflight.yml"; sourceTree = "<group>"; };
@@ -139,9 +139,9 @@
 			files = (
 				7E2F4D0C59EE5CC58831A87D /* CoreLogic in Frameworks */,
 				4371446DA4B5CAECC27F514D /* CorePersistence in Frameworks */,
+				B847A52D2741661D00857F1E /* TimersList in Frameworks */,
 				A7D5970E5C5C939656BBB4DB /* CoreInterface in Frameworks */,
 				162DC1A9B9A212D2336AB70D /* DomainEntities in Frameworks */,
-				2F75D1AFCDF17958A3FC3343 /* QuickWorkoutsList in Frameworks */,
 				7D5F7DBD596A67D43EC042FB /* QuickWorkoutForm in Frameworks */,
 				AC0BEDA7F9FA604A659DE740 /* RunningTimer in Frameworks */,
 				DF6C38A41F76C914C3011973 /* WorkoutSettings in Frameworks */,
@@ -215,9 +215,9 @@
 				9AD525E3DAB14F1309E65E67 /* CorePersistence */,
 				175A87A6B0E36EE9EE6E2298 /* DomainEntities */,
 				331589781F7A33161E30BB3E /* QuickWorkoutForm */,
-				59AEA284B8A4218D614BE8A9 /* QuickWorkoutsList */,
 				721E980D585BB5C61D981BA0 /* RunningTimer */,
 				5D0E2AA487EB13627AA1F1D1 /* WorkoutSettings */,
+				B847A52B274164FB00857F1E /* TimersList */,
 			);
 			name = Packages;
 			sourceTree = SOURCE_ROOT;
@@ -290,7 +290,15 @@
 				6B95DF9F880FA286C72E75FF /* project_templates.yml */,
 				0EE89B5CE3BD3F3194516C6C /* project.yml */,
 				EE853AE33FB76D1FD4AFDB58 /* Products */,
+				B847A5292741642B00857F1E /* Frameworks */,
 			);
+			sourceTree = "<group>";
+		};
+		B847A5292741642B00857F1E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		BA699671F977138EFB731F7F /* Preview Content */ = {
@@ -406,10 +414,10 @@
 				EDFA3FD3711AB1B045C25E70 /* CorePersistence */,
 				98ABD104794FD7A30F94DC84 /* CoreInterface */,
 				313C990DD2FFB8B2DDA70604 /* DomainEntities */,
-				23412DDB599B331060C37D05 /* QuickWorkoutsList */,
 				9D252EB96D29143466857DAF /* QuickWorkoutForm */,
 				92E7919499FC89EF10D18AF1 /* RunningTimer */,
 				6473CD3119671A8E917DFF3D /* WorkoutSettings */,
+				B847A52C2741661D00857F1E /* TimersList */,
 			);
 			productName = "Timer Wiz";
 			productReference = 96F66614B2538F0BB06AF7D0 /* Timer Wiz.app */;
@@ -848,10 +856,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		23412DDB599B331060C37D05 /* QuickWorkoutsList */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = QuickWorkoutsList;
-		};
 		283688B6E7F08DD66F80236F /* RunningTimer */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = RunningTimer;
@@ -899,6 +903,10 @@
 		A57E400DB9482F89B88538B1 /* DomainEntities */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = DomainEntities;
+		};
+		B847A52C2741661D00857F1E /* TimersList */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TimersList;
 		};
 		C40D626A4D7B6DF79D49B350 /* CorePersistence */ = {
 			isa = XCSwiftPackageProductDependency;

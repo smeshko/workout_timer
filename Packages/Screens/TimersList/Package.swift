@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "QuickWorkoutsList",
+    name: "TimersList",
     platforms: [
         .iOS("15.0"),
         .macOS(.v10_15),
@@ -12,8 +12,8 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "QuickWorkoutsList",
-            targets: ["QuickWorkoutsList"]),
+            name: "TimersList",
+            targets: ["TimersList"]),
     ],
     dependencies: [
         .package(path: "../WorkoutSettings"),
@@ -23,7 +23,7 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "QuickWorkoutsList",
+            name: "TimersList",
             dependencies: [
                 "QuickWorkoutForm",
                 "RunningTimer",
@@ -31,7 +31,7 @@ let package = Package(
                 "CoreInterface"
             ]),
         .testTarget(
-            name: "QuickWorkoutsListTests",
-            dependencies: ["QuickWorkoutsList"]),
+            name: "TimersListTests",
+            dependencies: ["TimersList"]),
     ]
 )
