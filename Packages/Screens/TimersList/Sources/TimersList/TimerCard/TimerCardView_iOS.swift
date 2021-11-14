@@ -5,12 +5,12 @@ import ComposableArchitecture
 import RunningTimer
 
 #if os(iOS)
-struct QuickWorkoutCardView: View {
+struct TimerCardView: View {
 
-    private let store: Store<QuickWorkoutCardState, QuickWorkoutCardAction>
-    @ObservedObject private var viewStore: ViewStore<QuickWorkoutCardState, QuickWorkoutCardAction>
+    private let store: Store<TimerCardState, TimerCardAction>
+    @ObservedObject private var viewStore: ViewStore<TimerCardState, TimerCardAction>
 
-    init(store: Store<QuickWorkoutCardState, QuickWorkoutCardAction>) {
+    init(store: Store<TimerCardState, TimerCardAction>) {
         self.store = store
         self.viewStore = ViewStore(store)
     }
@@ -65,7 +65,7 @@ struct QuickWorkoutCardView: View {
 //struct QuickWorkoutCardView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        ForEach(TintColor.allTints) { tint in
-//            QuickWorkoutCardView(store: Store<QuickWorkoutCardState, QuickWorkoutCardAction>(
+//            TimerCardView(store: Store<TimerCardState, TimerCardAction>(
 //                initialState: QuickWorkoutCardState(
 //                    workout: QuickWorkout(
 //                        id: UUID(),
@@ -74,7 +74,7 @@ struct QuickWorkoutCardView: View {
 //                        segments: [mockSegment1, mockSegment3]
 //                    )
 //                ),
-//                reducer: quickWorkoutCardReducer,
+//                reducer: timerCardReducer,
 //                environment: QuickWorkoutCardEnvironment()
 //            ))
 //            .padding()

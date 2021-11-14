@@ -4,7 +4,7 @@ import DomainEntities
 import ComposableArchitecture
 
 struct WorkoutPreview: View {
-    let store: Store<QuickWorkoutCardState, QuickWorkoutCardAction>
+    let store: Store<TimerCardState, TimerCardAction>
 
     var body: some View {
         WithViewStore(store) { viewStore in

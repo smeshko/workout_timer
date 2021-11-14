@@ -63,7 +63,7 @@ private struct ListContents: View {
         WithViewStore(store.scope(state: \.query)) { viewStore in
             ForEachStore(store.scope(state: { $0.workoutStates },
                                      action: QuickWorkoutsListAction.workoutCardAction(id:action:))) { cardViewStore in
-                QuickWorkoutCardView(store: cardViewStore)
+                TimerCardView(store: cardViewStore)
             }
             .searchable(text: viewStore.binding(get: { $0 }, send: QuickWorkoutsListAction.onUpdateQuery))
         }

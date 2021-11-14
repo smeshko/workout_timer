@@ -8,7 +8,7 @@ import QuickWorkoutForm
 import RunningTimer
 
 public enum QuickWorkoutsListAction: Equatable {
-    case workoutCardAction(id: UUID, action: QuickWorkoutCardAction)
+    case workoutCardAction(id: UUID, action: TimerCardAction)
     case createWorkoutAction(CreateQuickWorkoutAction)
     case runningTimerAction(RunningTimerAction)
     case settingsAction(SettingsAction)
@@ -28,7 +28,7 @@ public struct QuickWorkoutsListState: Equatable {
 
     public var workouts: [QuickWorkout] = []
 
-    var workoutStates: IdentifiedArrayOf<QuickWorkoutCardState> = []
+    var workoutStates: IdentifiedArrayOf<TimerCardState> = []
     var createWorkoutState = CreateQuickWorkoutState()
     var settingsState = SettingsState()
     var runningTimerState: RunningTimerState?
@@ -41,7 +41,7 @@ public struct QuickWorkoutsListState: Equatable {
 
     public init(workouts: [QuickWorkout] = []) {
         self.workouts = workouts
-        workoutStates = IdentifiedArray(uniqueElements: workouts.map { QuickWorkoutCardState(workout: $0) })
+        workoutStates = IdentifiedArray(uniqueElements: workouts.map { TimerCardState(workout: $0) })
     }
 }
 
@@ -62,10 +62,10 @@ public extension SystemEnvironment where Environment == QuickWorkoutsListEnviron
 }
 
 public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorkoutsListAction, SystemEnvironment<QuickWorkoutsListEnvironment>>.combine(
-    quickWorkoutCardReducer.forEach(
+    timerCardReducer.forEach(
         state: \.workoutStates,
         action: /QuickWorkoutsListAction.workoutCardAction(id:action:),
-        environment: { _ in QuickWorkoutCardEnvironment() }
+        environment: { _ in () }
     ),
     runningTimerReducer.optional().pullback(
         state: \.runningTimerState,
@@ -82,13 +82,13 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
         case .onUpdateQuery(let query):
             state.query = query
             if query.isEmpty {
-                state.workoutStates = IdentifiedArray(uniqueElements: state.workouts.map { QuickWorkoutCardState(workout: $0) })
+                state.workoutStates = IdentifiedArray(uniqueElements: state.workouts.map { TimerCardState(workout: $0) })
             } else {
                 state.workoutStates = IdentifiedArray(
                     uniqueElements:
                         state.workouts
                         .filter { $0.name.lowercased().contains(query.lowercased()) }
-                        .map { QuickWorkoutCardState(workout: $0) }
+                        .map { TimerCardState(workout: $0) }
                 )
             }
             
@@ -98,7 +98,7 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
         case .didFetchWorkouts(.success(let workouts)):
             state.loadingState = .finished
             state.workouts = workouts
-            state.workoutStates = IdentifiedArray(uniqueElements: workouts.map { QuickWorkoutCardState(workout: $0) })
+            state.workoutStates = IdentifiedArray(uniqueElements: workouts.map { TimerCardState(workout: $0) })
 
         case .didFinishDeleting(.failure), .didFetchWorkouts(.failure):
             state.loadingState = .error

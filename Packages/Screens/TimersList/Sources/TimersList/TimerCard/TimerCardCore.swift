@@ -4,11 +4,11 @@ import DomainEntities
 import ComposableArchitecture
 import RunningTimer
 
-public enum QuickWorkoutCardAction: Equatable {
+public enum TimerCardAction: Equatable {
     case start, edit, delete
 }
 
-struct QuickWorkoutCardState: Equatable, Identifiable {
+struct TimerCardState: Equatable, Identifiable {
 
     public var id: UUID { workout.id }
     var workout: QuickWorkout
@@ -27,11 +27,9 @@ struct QuickWorkoutCardState: Equatable, Identifiable {
     }
 }
 
-struct QuickWorkoutCardEnvironment {}
-
-let quickWorkoutCardReducer = Reducer<QuickWorkoutCardState, QuickWorkoutCardAction, QuickWorkoutCardEnvironment>.combine(
+let timerCardReducer = Reducer<TimerCardState, TimerCardAction, ()>.combine(
     
-    Reducer { state, action, environment in
+    Reducer { state, action, _ in
         
         switch action {
         case .start, .edit, .delete:
