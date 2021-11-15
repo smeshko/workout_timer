@@ -6,6 +6,11 @@ public enum PresenterAction: Equatable {
 }
 
 public extension Reducer {
+    /// A reducer that handles presentation logic.
+    /// - Parameters:
+    ///   - keyPath: a boolean flag that handles the presentation
+    ///   - presenterAction: the action that is sent for presenting/dismissing
+    /// - Returns: a reducer
     func presenter(
         keyPath: WritableKeyPath<State, Bool>,
         action presenterAction: CasePath<Action, PresenterAction>

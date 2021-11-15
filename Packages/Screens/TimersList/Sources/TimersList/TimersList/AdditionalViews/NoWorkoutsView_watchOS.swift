@@ -5,7 +5,7 @@ import QuickWorkoutForm
 
 #if os(watchOS)
 struct NoWorkoutsView: View {
-    let store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>
+    let store: Store<TimersListState, TimersListAction>
 
     var body: some View {
         WithViewStore(store.scope(state: \.isPresentingTimerForm)) { viewStore in
@@ -24,7 +24,7 @@ struct NoWorkoutsView: View {
             .sheet(isPresented: viewStore.binding(get: { $0 }),
                    onDismiss: { viewStore.send(.timerForm(.dismiss)) }) {
                 CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState,
-                                                          action: QuickWorkoutsListAction.createWorkoutAction))
+                                                          action: TimersListAction.createWorkoutAction))
             }
         }
         .navigationTitle("")
@@ -35,9 +35,9 @@ struct NoWorkoutsView: View {
 struct NoWorkoutsView_Previews: PreviewProvider {
     static var previews: some View {
         NoWorkoutsView(
-            store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>(
+            store: Store<TimersListState, TimersListAction>(
                 initialState: QuickWorkoutsListState(workouts: []),
-                reducer: quickWorkoutsListReducer,
+                reducer: timersListReducer,
                 environment: .preview
             )
         )

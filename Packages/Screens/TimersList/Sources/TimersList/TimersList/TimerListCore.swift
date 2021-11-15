@@ -7,7 +7,7 @@ import CoreInterface
 import QuickWorkoutForm
 import RunningTimer
 
-public enum QuickWorkoutsListAction: Equatable {
+public enum TimersListAction: Equatable {
     case workoutCardAction(id: UUID, action: TimerCardAction)
     case createWorkoutAction(CreateQuickWorkoutAction)
     case runningTimerAction(RunningTimerAction)
@@ -18,13 +18,13 @@ public enum QuickWorkoutsListAction: Equatable {
     case didFetchWorkouts(Result<[QuickWorkout], PersistenceError>)
     case onUpdateQuery(String)
 
-    case timerForm(PresenterAction)
-    case settings(PresenterAction)
+    case onSettingsPresentationChange(Bool)
+    case onTimerFormPresentationChange(Bool)
 
     case onAppear
 }
 
-public struct QuickWorkoutsListState: Equatable {
+public struct TimersListState: Equatable {
 
     public var workouts: [QuickWorkout] = []
 
@@ -33,11 +33,12 @@ public struct QuickWorkoutsListState: Equatable {
     var settingsState = SettingsState()
     var runningTimerState: RunningTimerState?
     var loadingState: LoadingState = .finished
-    var isPresentingTimer = false
     var query: String = ""
 
     var isPresentingTimerForm = false
     var isPresentingSettings = false
+    var isPresentingTimer = false
+    var isPresentingTimerPreview = false
 
     public init(workouts: [QuickWorkout] = []) {
         self.workouts = workouts
@@ -45,7 +46,7 @@ public struct QuickWorkoutsListState: Equatable {
     }
 }
 
-public struct QuickWorkoutsListEnvironment {
+public struct TimersListEnvironment {
     let repository: QuickWorkoutsRepository
     let notificationClient: LocalNotificationClient
 
@@ -56,20 +57,20 @@ public struct QuickWorkoutsListEnvironment {
     }
 }
 
-public extension SystemEnvironment where Environment == QuickWorkoutsListEnvironment {
-    static let preview = SystemEnvironment.mock(environment: QuickWorkoutsListEnvironment(repository: .mock, notificationClient: .mock))
-    static let live = SystemEnvironment.live(environment: QuickWorkoutsListEnvironment(repository: .live, notificationClient: .live))
+public extension SystemEnvironment where Environment == TimersListEnvironment {
+    static let preview = SystemEnvironment.mock(environment: TimersListEnvironment(repository: .mock, notificationClient: .mock))
+    static let live = SystemEnvironment.live(environment: TimersListEnvironment(repository: .live, notificationClient: .live))
 }
 
-public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorkoutsListAction, SystemEnvironment<QuickWorkoutsListEnvironment>>.combine(
+public let timersListReducer = Reducer<TimersListState, TimersListAction, SystemEnvironment<TimersListEnvironment>>.combine(
     timerCardReducer.forEach(
         state: \.workoutStates,
-        action: /QuickWorkoutsListAction.workoutCardAction(id:action:),
+        action: /TimersListAction.workoutCardAction(id:action:),
         environment: { _ in () }
     ),
     runningTimerReducer.optional().pullback(
         state: \.runningTimerState,
-        action: /QuickWorkoutsListAction.runningTimerAction,
+        action: /TimersListAction.runningTimerAction,
         environment: { _ in .live }
     ),
     Reducer { state, action, environment in
@@ -78,6 +79,11 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
         case .onAppear:
             state.loadingState = .loading
             return environment.fetchWorkouts()
+
+        case .onSettingsPresentationChange(let isPresented):
+            state.isPresentingSettings = isPresented
+        case .onTimerFormPresentationChange(let isPresented):
+            state.isPresentingTimerForm = isPresented
 
         case .onUpdateQuery(let query):
             state.query = query
@@ -111,7 +117,7 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
         case .workoutCardAction(let id, action: .edit):
             guard let workout = state.workoutStates[id: id]?.workout else { break }
             state.createWorkoutState = CreateQuickWorkoutState(workout: workout)
-            return Effect(value: QuickWorkoutsListAction.timerForm(.present))
+            state.isPresentingTimerForm = true
 
         case .workoutCardAction(let id, action: .delete):
             guard let workout = state.workoutStates[id: id]?.workout else { break }
@@ -121,7 +127,7 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
                 .receive(on: environment.mainQueue())
                 .catchToEffect()
                 .map {
-                    QuickWorkoutsListAction.didFinishDeleting($0.map { [$0] })
+                    TimersListAction.didFinishDeleting($0.map { [$0] })
                 }
             
         case .runningTimerAction(.headerAction(.timerClosed)):
@@ -133,7 +139,7 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
             return environment.fetchWorkouts()
 
         case .createWorkoutAction(.cancel), .createWorkoutAction(.save):
-            return Effect(value: QuickWorkoutsListAction.timerForm(.dismiss))
+            state.isPresentingTimerForm = false
 
         case .deleteWorkouts(let indices):
             let objects = indices.compactMap { state.workoutStates[safe: $0]?.workout }
@@ -142,50 +148,34 @@ public let quickWorkoutsListReducer = Reducer<QuickWorkoutsListState, QuickWorko
                 .deleteMultiple(objects)
                 .receive(on: environment.mainQueue())
                 .catchToEffect()
-                .map(QuickWorkoutsListAction.didFinishDeleting(_:))
-
-        case .timerForm(.dismiss):
-            state.createWorkoutState.workout = nil
-
-        case .timerForm(.present):
-            if state.createWorkoutState.workout == nil {
-                state.createWorkoutState = CreateQuickWorkoutState()
-            }
+                .map(TimersListAction.didFinishDeleting(_:))
 
         case .settingsAction(.close):
-            return Effect(value: QuickWorkoutsListAction.settings(.dismiss))
+            state.isPresentingSettings = false
 
-        case .createWorkoutAction, .runningTimerAction, .settings, .settingsAction:
+        case .createWorkoutAction, .runningTimerAction, .settingsAction:
             break
         }
         return .none
-    }
-    .presenter(
-        keyPath: \.isPresentingTimerForm,
-        action: /QuickWorkoutsListAction.timerForm
-    )
-    .presenter(
-        keyPath: \.isPresentingSettings,
-        action: /QuickWorkoutsListAction.settings
-    ),
+    },
     settingsReducer.pullback(
         state: \.settingsState,
-        action: /QuickWorkoutsListAction.settingsAction,
+        action: /TimersListAction.settingsAction,
         environment: { _ in SettingsEnvironment(client: .live)}
     ),
     createQuickWorkoutReducer.pullback(
         state: \.createWorkoutState,
-        action: /QuickWorkoutsListAction.createWorkoutAction,
+        action: /TimersListAction.createWorkoutAction,
         environment: { env in .live(environment: CreateQuickWorkoutEnvironment<TintColor>(repository: env.repository)) }
     )
 )
 
-private extension SystemEnvironment where Environment == QuickWorkoutsListEnvironment {
-    func fetchWorkouts() -> Effect<QuickWorkoutsListAction, Never> {
+private extension SystemEnvironment where Environment == TimersListEnvironment {
+    func fetchWorkouts() -> Effect<TimersListAction, Never> {
         environment.repository
             .fetchAllWorkouts()
             .receive(on: mainQueue())
             .catchToEffect()
-            .map(QuickWorkoutsListAction.didFetchWorkouts)
+            .map(TimersListAction.didFetchWorkouts)
     }
 }

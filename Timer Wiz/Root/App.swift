@@ -25,7 +25,7 @@ struct MainApp: App {
                 IfLetStore(
                     store.scope(state: \.onboardingState, action: AppAction.onboardingAction),
                     then: OnboardingView.init(store:),
-                    else: { QuickWorkoutsListView(store: store.scope(state: \.workoutsListState, action: AppAction.workoutsListAction)) }
+                    else: { TimersListView(store: store.scope(state: \.workoutsListState, action: AppAction.workoutsListAction)) }
                 )
             }
             .onChange(of: scenePhase) { newScenePhase in

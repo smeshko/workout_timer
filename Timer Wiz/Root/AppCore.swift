@@ -12,13 +12,13 @@ enum AppAction {
     case appDidBecomeInactive
     case appDidGoToBackground
 
-    case workoutsListAction(QuickWorkoutsListAction)
+    case workoutsListAction(TimersListAction)
     case onboardingAction(OnboardingAction)
     case notificationAuthResult(Result<Bool, Error>)
 }
 
 struct AppState: Equatable {
-    var workoutsListState = QuickWorkoutsListState()
+    var workoutsListState = TimersListState()
     var onboardingState: OnboardingState?
 
     init() {}
@@ -81,7 +81,7 @@ let appReducer = Reducer<AppState, AppAction, SystemEnvironment<AppEnvironment>>
         
         return .none
     },
-    quickWorkoutsListReducer.pullback(
+    timersListReducer.pullback(
         state: \.workoutsListState,
         action: /AppAction.workoutsListAction,
         environment: { _ in .live }

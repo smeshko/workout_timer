@@ -16,28 +16,37 @@ struct TimerCardView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: Spacing.l) {
-            HStack {
+        HStack {
+            VStack(alignment: .leading, spacing: Spacing.xxl) {
                 Text(viewStore.workout.name)
                     .font(.h1)
-                Spacer()
 
+                HStack(spacing: Spacing.s) {
+                    Text("mins".localized(viewStore.duration))
+                        .font(.h3)
+
+                    Text("rounds".localized(viewStore.segmentsCount))
+                        .font(.bodyRegular)
+                }
+            }
+            .contentShape(Rectangle())
+            .onTapGesture {
+                viewStore.send(.edit)
+            }
+
+            Spacer()
+
+            VStack {
                 Menu {
-                    Button("edit", action: { viewStore.send(.edit) })
-                    Button("start", action: { viewStore.send(.start) })
-                    Button("delete", role: .destructive, action: { viewStore.send(.delete) })
+                    Button(key: "edit", action: { viewStore.send(.edit) })
+                    Button(key: "start", action: { viewStore.send(.start) })
+                    Button(key: "delete", role: .destructive, action: { viewStore.send(.delete) })
                 } label: {
                     Image(systemName: "ellipsis")
                         .foregroundColor(.appText)
+                        .font(.h2)
                 }
-            }
-
-            HStack(spacing: Spacing.s) {
-                Text("mins".localized(viewStore.duration))
-                    .font(.h3)
-
-                Text("rounds".localized(viewStore.segmentsCount))
-                    .font(.bodyRegular)
+                .frame(width: 40, height: 40)
 
                 Spacer()
 
@@ -52,11 +61,10 @@ struct TimerCardView: View {
                         .background(viewStore.workout.color.color)
                         .mask(Circle())
                 })
-                .frame(width: 40, height: 40)
+                    .frame(width: 40, height: 40)
             }
         }
-        .onTapGesture { viewStore.send(.edit) }
-        .padding(Spacing.l)
+        .padding(Spacing.xl)
         .background(Color.appCardBackground)
         .cornerRadius(CornerRadius.m)
     }

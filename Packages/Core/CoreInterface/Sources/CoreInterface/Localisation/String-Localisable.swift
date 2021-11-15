@@ -10,8 +10,8 @@ public extension Text {
 }
 
 public extension Button where Label == Text {
-    init(key: LocalizedStringKey, action: @escaping () -> Void) {
-        self.init(action: action) {
+    init(key: LocalizedStringKey, role: ButtonRole? = nil, action: @escaping () -> Void) {
+        self.init(role: role, action: action) {
             Text(key: key)
         }
     }

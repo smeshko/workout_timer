@@ -10,10 +10,10 @@ class QuickWorkoutsListTests: XCTestCase {
 
     func testNavigation() {
         let store = TestStore(
-            initialState: QuickWorkoutsListState(workouts: [newWorkout]),
-            reducer: quickWorkoutsListReducer,
+            initialState: TimersListState(workouts: [newWorkout]),
+            reducer: timersListReducer,
             environment: .mock(
-                environment: QuickWorkoutsListEnvironment(
+                environment: TimersListEnvironment(
                     repository: .test,
                     notificationClient: .mock
                 ),

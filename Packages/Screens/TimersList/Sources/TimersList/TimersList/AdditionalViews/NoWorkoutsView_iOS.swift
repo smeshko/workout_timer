@@ -5,13 +5,13 @@ import QuickWorkoutForm
 
 #if os(iOS)
 struct NoWorkoutsView: View {
-    let store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>
+    let store: Store<TimersListState, TimersListAction>
 
     var body: some View {
         WithViewStore(store.scope(state: \.isPresentingTimerForm)) { viewStore in
             VStack(spacing: Spacing.l) {
                 Button(action: {
-                    viewStore.send(.timerForm(.present))
+                    viewStore.send(.onTimerFormPresentationChange(true))
                 }, label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: CornerRadius.m)
@@ -27,10 +27,9 @@ struct NoWorkoutsView: View {
                     .font(.h2)
                     .foregroundColor(.appText)
             }
-            .sheet(isPresented: viewStore.binding(get: { $0 }),
-                   onDismiss: { viewStore.send(.timerForm(.dismiss)) }) {
-                CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState,
-                                                          action: QuickWorkoutsListAction.createWorkoutAction))
+            .sheet(isPresented: viewStore.binding(get: { $0 } )) {
+                CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState, action: TimersListAction.createWorkoutAction))
+                    .interactiveDismissDisabled()
             }
         }
         .navigationTitle("")
@@ -41,9 +40,9 @@ struct NoWorkoutsView: View {
 struct NoWorkoutsView_Previews: PreviewProvider {
     static var previews: some View {
         NoWorkoutsView(
-            store: Store<QuickWorkoutsListState, QuickWorkoutsListAction>(
-                initialState: QuickWorkoutsListState(workouts: []),
-                reducer: quickWorkoutsListReducer,
+            store: Store<TimersListState, TimersListAction>(
+                initialState: TimersListState(workouts: []),
+                reducer: timersListReducer,
                 environment: .preview
             )
         )
