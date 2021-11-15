@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "QuickWorkoutForm",
+    name: "NewTimerForm",
     platforms: [
         .macOS(.v10_15),
         .iOS("15.0"),
@@ -12,8 +12,8 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "QuickWorkoutForm",
-            targets: ["QuickWorkoutForm"]),
+            name: "NewTimerForm",
+            targets: ["NewTimerForm"]),
     ],
     dependencies: [
         .package(path: "../CorePersistence"),
@@ -21,13 +21,13 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "QuickWorkoutForm",
+            name: "NewTimerForm",
             dependencies: [
                 "CorePersistence",
                 "CoreInterface"
             ]),
         .testTarget(
-            name: "QuickWorkoutFormTests",
-            dependencies: ["QuickWorkoutForm"]),
+            name: "NewTimerFormTests",
+            dependencies: ["NewTimerForm"]),
     ]
 )

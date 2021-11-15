@@ -18,14 +18,14 @@ let package = Package(
     dependencies: [
         .package(path: "../WorkoutSettings"),
         .package(path: "../RunningTimer"),
-        .package(path: "../QuickWorkoutForm"),
+        .package(path: "../NewTimerForm"),
         .package(path: "../CoreInterface")
     ],
     targets: [
         .target(
             name: "TimersList",
             dependencies: [
-                "QuickWorkoutForm",
+                "NewTimerForm",
                 "RunningTimer",
                 "WorkoutSettings",
                 "CoreInterface"

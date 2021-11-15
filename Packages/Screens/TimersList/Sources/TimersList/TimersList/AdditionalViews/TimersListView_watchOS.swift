@@ -1,7 +1,7 @@
 import SwiftUI
 import ComposableArchitecture
 import CoreInterface
-import QuickWorkoutForm
+import NewTimerForm
 
 #if os(watchOS)
 struct TimersList: View {

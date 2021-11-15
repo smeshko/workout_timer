@@ -5,7 +5,7 @@ import SwiftUI
 import CoreInterface
 import ComposableArchitecture
 import CorePersistence
-@testable import QuickWorkoutForm
+@testable import NewTimerForm
 
 private let uuid = { UUID(uuidString: "c06e5e63-d74f-4291-8673-35ce994754dc")! }
 private let randomTint = TintColor.allTints.first!

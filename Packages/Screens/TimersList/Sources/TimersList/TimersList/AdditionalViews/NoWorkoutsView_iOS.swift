@@ -1,7 +1,7 @@
 import SwiftUI
 import CoreInterface
 import ComposableArchitecture
-import QuickWorkoutForm
+import NewTimerForm
 
 #if os(iOS)
 struct NoWorkoutsView: View {

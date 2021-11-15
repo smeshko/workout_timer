@@ -20,7 +20,6 @@
 		45C8339EBF1A5F0C11403AC4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 830B49699ADABED73AE35958 /* Preview Assets.xcassets */; };
 		54636F1B7B6CEE4CC92BB1C3 /* CoreInterface in Frameworks */ = {isa = PBXBuildFile; productRef = 30E7C67114F5D4EBCF328733 /* CoreInterface */; };
 		73D25471318E2632F50F4DCA /* RunningTimer in Frameworks */ = {isa = PBXBuildFile; productRef = 283688B6E7F08DD66F80236F /* RunningTimer */; };
-		7D5F7DBD596A67D43EC042FB /* QuickWorkoutForm in Frameworks */ = {isa = PBXBuildFile; productRef = 9D252EB96D29143466857DAF /* QuickWorkoutForm */; };
 		7E2F4D0C59EE5CC58831A87D /* CoreLogic in Frameworks */ = {isa = PBXBuildFile; productRef = D50F43BB4CFAC556447C2A39 /* CoreLogic */; };
 		89E2FB5BE3586B432D4646B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9EA18F5093C9FC74DE0A67BF /* Assets.xcassets */; };
 		9A6392EF35DD0E44D9610492 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B9B53EFD56552C7AE55DE60 /* LaunchScreen.storyboard */; };
@@ -31,6 +30,7 @@
 		B355E21185D39A3037EB1C17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA0171E0033199FB41BC4FDB /* Assets.xcassets */; };
 		B82DD7D43C39C0B5028E828B /* QuickWorkoutsList in Frameworks */ = {isa = PBXBuildFile; productRef = 5B91E732D3BEA0B01D563446 /* QuickWorkoutsList */; };
 		B847A52D2741661D00857F1E /* TimersList in Frameworks */ = {isa = PBXBuildFile; productRef = B847A52C2741661D00857F1E /* TimersList */; };
+		B8A10DDD27429A04003806B9 /* NewTimerForm in Frameworks */ = {isa = PBXBuildFile; productRef = B8A10DDC27429A04003806B9 /* NewTimerForm */; };
 		C8E785D1EBB50D25AB74A587 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC2FEABAA6693B149B4BCBC /* NotificationController.swift */; };
 		CCD61D9DF89979DCCD91474A /* AppCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DB3B8CB653DF422183019D /* AppCore.swift */; };
 		CDB19E12D263926B4F782133 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C720A70DA260860C6C70F0F3 /* NotificationView.swift */; };
@@ -75,7 +75,6 @@
 		26F70FAAD963A3CF817C4AF4 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		2E028832FE430EEF0E332E00 /* certificate.p12.gpg */ = {isa = PBXFileReference; lastKnownFileType = file; path = certificate.p12.gpg; sourceTree = "<group>"; };
 		2F1D832AE91CCE6AEFC37170 /* profile.mobileprovision.gpg */ = {isa = PBXFileReference; lastKnownFileType = file; path = profile.mobileprovision.gpg; sourceTree = "<group>"; };
-		331589781F7A33161E30BB3E /* QuickWorkoutForm */ = {isa = PBXFileReference; lastKnownFileType = folder; name = QuickWorkoutForm; path = Packages/Screens/QuickWorkoutForm; sourceTree = SOURCE_ROOT; };
 		3AF3D4BE89917BCA4757E46C /* Debug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Debug.entitlements; sourceTree = "<group>"; };
 		5D0E2AA487EB13627AA1F1D1 /* WorkoutSettings */ = {isa = PBXFileReference; lastKnownFileType = folder; name = WorkoutSettings; path = Packages/Screens/WorkoutSettings; sourceTree = SOURCE_ROOT; };
 		602029E6B79C08A5E1EFC080 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -102,6 +101,8 @@
 		B4DB3B8CB653DF422183019D /* AppCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCore.swift; sourceTree = "<group>"; };
 		B582B47141A14921DBDFB203 /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
 		B847A52B274164FB00857F1E /* TimersList */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TimersList; path = Packages/Screens/TimersList; sourceTree = "<group>"; };
+		B857BA91274292D700F583C5 /* NewTimerForm */ = {isa = PBXFileReference; lastKnownFileType = folder; name = NewTimerForm; path = Packages/Screens/NewTimerForm; sourceTree = "<group>"; };
+		B857BA922742945D00F583C5 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = Packages/Screens/NewTimerForm/Package.swift; sourceTree = "<group>"; };
 		C471CB037E352B56257170C5 /* publish_testflight.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = publish_testflight.sh; sourceTree = "<group>"; };
 		C720A70DA260860C6C70F0F3 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		C9B09205766A516208342827 /* deployment-testflight.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = "deployment-testflight.yml"; sourceTree = "<group>"; };
@@ -140,9 +141,9 @@
 				7E2F4D0C59EE5CC58831A87D /* CoreLogic in Frameworks */,
 				4371446DA4B5CAECC27F514D /* CorePersistence in Frameworks */,
 				B847A52D2741661D00857F1E /* TimersList in Frameworks */,
+				B8A10DDD27429A04003806B9 /* NewTimerForm in Frameworks */,
 				A7D5970E5C5C939656BBB4DB /* CoreInterface in Frameworks */,
 				162DC1A9B9A212D2336AB70D /* DomainEntities in Frameworks */,
-				7D5F7DBD596A67D43EC042FB /* QuickWorkoutForm in Frameworks */,
 				AC0BEDA7F9FA604A659DE740 /* RunningTimer in Frameworks */,
 				DF6C38A41F76C914C3011973 /* WorkoutSettings in Frameworks */,
 			);
@@ -210,11 +211,11 @@
 		701BFC5A6D4FB526F1D83237 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
+				B857BA91274292D700F583C5 /* NewTimerForm */,
 				EA87000BAE5764933AC9D91B /* CoreInterface */,
 				930E03EC79B11C2148E37B35 /* CoreLogic */,
 				9AD525E3DAB14F1309E65E67 /* CorePersistence */,
 				175A87A6B0E36EE9EE6E2298 /* DomainEntities */,
-				331589781F7A33161E30BB3E /* QuickWorkoutForm */,
 				721E980D585BB5C61D981BA0 /* RunningTimer */,
 				5D0E2AA487EB13627AA1F1D1 /* WorkoutSettings */,
 				B847A52B274164FB00857F1E /* TimersList */,
@@ -297,6 +298,7 @@
 		B847A5292741642B00857F1E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B857BA922742945D00F583C5 /* Package.swift */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -414,10 +416,10 @@
 				EDFA3FD3711AB1B045C25E70 /* CorePersistence */,
 				98ABD104794FD7A30F94DC84 /* CoreInterface */,
 				313C990DD2FFB8B2DDA70604 /* DomainEntities */,
-				9D252EB96D29143466857DAF /* QuickWorkoutForm */,
 				92E7919499FC89EF10D18AF1 /* RunningTimer */,
 				6473CD3119671A8E917DFF3D /* WorkoutSettings */,
 				B847A52C2741661D00857F1E /* TimersList */,
+				B8A10DDC27429A04003806B9 /* NewTimerForm */,
 			);
 			productName = "Timer Wiz";
 			productReference = 96F66614B2538F0BB06AF7D0 /* Timer Wiz.app */;
@@ -892,10 +894,6 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = CoreInterface;
 		};
-		9D252EB96D29143466857DAF /* QuickWorkoutForm */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = QuickWorkoutForm;
-		};
 		A36E90918D046A74E56A5F68 /* CoreLogic */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = CoreLogic;
@@ -907,6 +905,10 @@
 		B847A52C2741661D00857F1E /* TimersList */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = TimersList;
+		};
+		B8A10DDC27429A04003806B9 /* NewTimerForm */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NewTimerForm;
 		};
 		C40D626A4D7B6DF79D49B350 /* CorePersistence */ = {
 			isa = XCSwiftPackageProductDependency;

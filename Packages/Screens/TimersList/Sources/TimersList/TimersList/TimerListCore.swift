@@ -4,7 +4,7 @@ import CoreLogic
 import ComposableArchitecture
 import DomainEntities
 import CoreInterface
-import QuickWorkoutForm
+import NewTimerForm
 import RunningTimer
 
 public enum TimersListAction: Equatable {

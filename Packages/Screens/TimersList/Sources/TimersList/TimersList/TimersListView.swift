@@ -1,7 +1,7 @@
 import SwiftUI
 import WorkoutSettings
 import ComposableArchitecture
-import QuickWorkoutForm
+import NewTimerForm
 import RunningTimer
 import CoreLogic
 
