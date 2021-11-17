@@ -33,6 +33,17 @@ public extension UIColor {
 }
 
 public extension Color {
+    func isEqual(to color: Color?) -> Bool {
+        let lhsComponents = hsbComponents()
+        let rhsComponents = color?.hsbComponents()
+        return
+            lhsComponents.h == rhsComponents?.h &&
+            lhsComponents.s == rhsComponents?.s &&
+            lhsComponents.b == rhsComponents?.b
+    }
+}
+
+public extension Color {
     func hsbComponents() -> (h: Double, s: Double, b: Double) {
         UIColor(self).hsbComponents()
     }

@@ -3,6 +3,7 @@ import CoreLogic
 import ComposableArchitecture
 import CorePersistence
 import TimersList
+import NewTimerForm
 import CoreInterface
 import WorkoutSettings
 

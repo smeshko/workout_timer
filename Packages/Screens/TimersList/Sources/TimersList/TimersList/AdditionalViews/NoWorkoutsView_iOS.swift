@@ -28,8 +28,11 @@ struct NoWorkoutsView: View {
                     .foregroundColor(.appText)
             }
             .sheet(isPresented: viewStore.binding(get: { $0 } )) {
-                CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState, action: TimersListAction.createWorkoutAction))
-                    .interactiveDismissDisabled()
+                IfLetStore(
+                    store.scope(state: \.newTimerFormState, action: TimersListAction.newTimerFormAction)) { store in
+                        NewTimerForm(store: store)
+                            .interactiveDismissDisabled()
+                    }
             }
         }
         .navigationTitle("")

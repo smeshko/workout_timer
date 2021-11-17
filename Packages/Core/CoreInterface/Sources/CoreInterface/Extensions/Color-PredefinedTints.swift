@@ -1,9 +1,19 @@
 import SwiftUI
 
-public struct TintColor: Identifiable, Equatable {
+public struct TintColor: Identifiable, Equatable, Hashable {
     public var id: String { name }
     public let name: String
     public let color: Color
+
+    public init(name: String, color: Color) {
+        self.name = name
+        self.color = color
+    }
+
+    public init?(color: Color?) {
+        guard let tint = TintColor.allTints.first(where: { $0.color.isEqual(to: color) }) else { return nil }
+        self.init(name: tint.name, color: tint.color)
+    }
 
     public static var allTints: [TintColor] {
         [
@@ -17,6 +27,14 @@ public struct TintColor: Identifiable, Equatable {
             TintColor(name: "Queen Blue", color: Color(red: 87 / 255, green: 117 / 255, blue: 144 / 255)),
             TintColor(name: "CG Blue", color: Color(red: 39 / 255, green: 125 / 255, blue: 161 / 255))
         ]
+    }
+
+    public static var `default`: TintColor {
+        TintColor(name: "Zomp", color: Color(red: 67 / 255, green: 170 / 255, blue: 139 / 255))
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
     }
 }
 

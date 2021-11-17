@@ -7,9 +7,10 @@ import CoreInterface
 import NewTimerForm
 import RunningTimer
 
-public enum TimersListAction: Equatable {
+public enum TimersListAction {
     case workoutCardAction(id: UUID, action: TimerCardAction)
-    case createWorkoutAction(CreateQuickWorkoutAction)
+//    case createWorkoutAction(CreateQuickWorkoutAction)
+    case newTimerFormAction(NewTimerFormAction)
     case runningTimerAction(RunningTimerAction)
     case settingsAction(SettingsAction)
 
@@ -29,7 +30,8 @@ public struct TimersListState: Equatable {
     public var workouts: [QuickWorkout] = []
 
     var workoutStates: IdentifiedArrayOf<TimerCardState> = []
-    var createWorkoutState = CreateQuickWorkoutState()
+//    var createWorkoutState = CreateQuickWorkoutState()
+    var newTimerFormState: NewTimerFormState?
     var settingsState = SettingsState()
     var runningTimerState: RunningTimerState?
     var loadingState: LoadingState = .finished
@@ -73,6 +75,11 @@ public let timersListReducer = Reducer<TimersListState, TimersListAction, System
         action: /TimersListAction.runningTimerAction,
         environment: { _ in .live }
     ),
+    newTimerFormReducer.optional().pullback(
+        state: \.newTimerFormState,
+        action: /TimersListAction.newTimerFormAction,
+        environment: { env in .live(environment: NewTimerFormEnvironment(repository: env.repository)) }
+    ),
     Reducer { state, action, environment in
 
         switch action {
@@ -82,7 +89,11 @@ public let timersListReducer = Reducer<TimersListState, TimersListAction, System
 
         case .onSettingsPresentationChange(let isPresented):
             state.isPresentingSettings = isPresented
+
         case .onTimerFormPresentationChange(let isPresented):
+            if isPresented {
+                state.newTimerFormState = NewTimerFormState()
+            }
             state.isPresentingTimerForm = isPresented
 
         case .onUpdateQuery(let query):
@@ -115,8 +126,7 @@ public let timersListReducer = Reducer<TimersListState, TimersListAction, System
             state.isPresentingTimer = true
 
         case .workoutCardAction(let id, action: .edit):
-            guard let workout = state.workoutStates[id: id]?.workout else { break }
-            state.createWorkoutState = CreateQuickWorkoutState(workout: workout)
+            state.newTimerFormState = NewTimerFormState(workout: state.workoutStates[id: id]?.workout)
             state.isPresentingTimerForm = true
 
         case .workoutCardAction(let id, action: .delete):
@@ -134,12 +144,16 @@ public let timersListReducer = Reducer<TimersListState, TimersListAction, System
             state.isPresentingTimer = false
             state.runningTimerState = nil
 
-        case .createWorkoutAction(.didSaveSuccessfully(.success(let workout))):
+        case .newTimerFormAction(.save), .newTimerFormAction(.cancel):
+            return Effect(value: TimersListAction.onTimerFormPresentationChange(false))
+
+        case .newTimerFormAction(.didSaveSuccessfully(.success(let workout))):
             state.loadingState = .loading
+            state.newTimerFormState = nil
             return environment.fetchWorkouts()
 
-        case .createWorkoutAction(.cancel), .createWorkoutAction(.save):
-            state.isPresentingTimerForm = false
+        case .newTimerFormAction:
+            break
 
         case .deleteWorkouts(let indices):
             let objects = indices.compactMap { state.workoutStates[safe: $0]?.workout }
@@ -153,7 +167,7 @@ public let timersListReducer = Reducer<TimersListState, TimersListAction, System
         case .settingsAction(.close):
             state.isPresentingSettings = false
 
-        case .createWorkoutAction, .runningTimerAction, .settingsAction:
+        case .runningTimerAction, .settingsAction:
             break
         }
         return .none
@@ -162,11 +176,6 @@ public let timersListReducer = Reducer<TimersListState, TimersListAction, System
         state: \.settingsState,
         action: /TimersListAction.settingsAction,
         environment: { _ in SettingsEnvironment(client: .live)}
-    ),
-    createQuickWorkoutReducer.pullback(
-        state: \.createWorkoutState,
-        action: /TimersListAction.createWorkoutAction,
-        environment: { env in .live(environment: CreateQuickWorkoutEnvironment<TintColor>(repository: env.repository)) }
     )
 )
 

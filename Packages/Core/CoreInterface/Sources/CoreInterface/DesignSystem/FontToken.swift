@@ -14,7 +14,7 @@ extension Font {
     /// 14 medium
     public static let display = Font.system(size: 14, weight: .medium)
     /// 14 regular
-    public static let bodyRegular = Font.system(size: 15, weight: .regular)
+    public static let bodyRegular = Font.system(size: 16, weight: .regular)
     /// 12 regular
     public static let bodySmall = Font.system(size: 12, weight: .regular)
     /// 12 bold

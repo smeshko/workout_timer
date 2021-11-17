@@ -98,8 +98,11 @@ private struct FormButton: View {
             Image(systemName: "plus.circle")
         })
         .sheet(isPresented: viewStore.binding(get: { $0 })) {
-            CreateQuickWorkoutView(store: store.scope(state: \.createWorkoutState, action: TimersListAction.createWorkoutAction))
-                .interactiveDismissDisabled()
+            IfLetStore(
+                store.scope(state: \.newTimerFormState, action: TimersListAction.newTimerFormAction)) { store in
+                    NewTimerForm(store: store)
+                        .interactiveDismissDisabled()
+                }
         }
     }
 }
