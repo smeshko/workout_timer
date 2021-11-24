@@ -15,7 +15,7 @@ public struct RunningTimerView: View {
     public var body: some View {
         WithViewStore(store.stateless) { viewStore in
             IfLetStore(store.scope(state: \.precountdownState, action: RunningTimerAction.preCountdownAction),
-                       then: { PreCountdownView(store: $0) },
+                       then: { CountdownView(store: $0) },
                        else: { MainView(store: store) }
             )
             .padding(Spacing.xxl)
@@ -47,7 +47,7 @@ struct RunningTimerView_Previews: PreviewProvider {
         let preCountdownStore = Store<RunningTimerState, RunningTimerAction>(
             initialState: RunningTimerState(
                 workout: mockQuickWorkout1,
-                precountdownState: PreCountdownState(workoutColor: mockQuickWorkout1.color)
+                precountdownState: CountdownState(workoutColor: mockQuickWorkout1.color)
             ),
             reducer: runningTimerReducer,
             environment: .preview

@@ -9,7 +9,7 @@ public enum RunningTimerAction: Equatable {
     case timerControlsUpdatedState(TimerControlsAction)
     case segmentedProgressAction(SegmentedProgressAction)
     case finishedWorkoutAction(FinishedWorkoutAction)
-    case preCountdownAction(PreCountdownAction)
+    case preCountdownAction(CountdownAction)
     case headerAction(HeaderAction)
 
     case timerTicked
@@ -20,7 +20,7 @@ public enum RunningTimerAction: Equatable {
 }
 
 public struct RunningTimerState: Equatable {
-    var precountdownState: PreCountdownState?
+    var precountdownState: CountdownState?
     var headerState: HeaderState
     var timerControlsState: TimerControlsState
     var segmentedProgressState = SegmentedProgressState()
@@ -38,7 +38,7 @@ public struct RunningTimerState: Equatable {
 
     public init(workout: QuickWorkout,
                 currentSection: TimerSection? = nil,
-                precountdownState: PreCountdownState?,
+                precountdownState: CountdownState?,
                 timerControlsState: TimerControlsState = TimerControlsState()) {
         self.workout = workout
         self.timerControlsState = timerControlsState
@@ -71,7 +71,7 @@ public extension SystemEnvironment where Environment == RunningTimerEnvironment 
 }
 
 public let runningTimerReducer = Reducer<RunningTimerState, RunningTimerAction, SystemEnvironment<RunningTimerEnvironment>>.combine(
-    preCountdownReducer.optional().pullback(
+    countdownReducer.optional().pullback(
         state: \.precountdownState,
         action: /RunningTimerAction.preCountdownAction,
         environment: { _ in .live }

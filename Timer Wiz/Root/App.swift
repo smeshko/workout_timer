@@ -2,7 +2,9 @@ import SwiftUI
 import CoreLogic
 import ComposableArchitecture
 import CorePersistence
+import DomainEntities
 import TimersList
+import RunningTimer
 import NewTimerForm
 import CoreInterface
 import WorkoutSettings
@@ -23,11 +25,19 @@ struct MainApp: App {
     var body: some Scene {
         WithViewStore(store.stateless) { viewStore in
             WindowGroup {
-                IfLetStore(
-                    store.scope(state: \.onboardingState, action: AppAction.onboardingAction),
-                    then: OnboardingView.init(store:),
-                    else: { TimersListView(store: store.scope(state: \.workoutsListState, action: AppAction.workoutsListAction)) }
-                )
+                TimerView2()
+//                CountdownView(
+//                    store: Store(
+//                        initialState: CountdownState(workoutColor: WorkoutColor.init(color: Color(red: 77 / 255, green: 144 / 255, blue: 142 / 255))),
+//                        reducer: countdownReducer,
+//                        environment: .live
+//                    )
+//                )
+//                IfLetStore(
+//                    store.scope(state: \.onboardingState, action: AppAction.onboardingAction),
+//                    then: OnboardingView.init(store:),
+//                    else: { TimersListView(store: store.scope(state: \.workoutsListState, action: AppAction.workoutsListAction)) }
+//                )
             }
             .onChange(of: scenePhase) { newScenePhase in
                 switch newScenePhase {

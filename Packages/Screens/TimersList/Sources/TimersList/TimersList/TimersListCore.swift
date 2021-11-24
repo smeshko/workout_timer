@@ -122,7 +122,7 @@ public let timersListReducer = Reducer<TimersListState, TimersListAction, System
 
         case .workoutCardAction(let id, action: .start):
             guard let workout = state.workoutStates[id: id]?.workout else { break }
-            state.runningTimerState = RunningTimerState(workout: workout, precountdownState: PreCountdownState(workoutColor: workout.color))
+            state.runningTimerState = RunningTimerState(workout: workout, precountdownState: CountdownState(workoutColor: workout.color))
             state.isPresentingTimer = true
 
         case .workoutCardAction(let id, action: .edit):

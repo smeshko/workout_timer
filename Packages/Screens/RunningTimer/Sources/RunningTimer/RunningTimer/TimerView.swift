@@ -18,7 +18,7 @@ struct TimerView: View {
 
     var body: some View {
         ZStack {
-            ProgressBar(elapsed: (viewStore.currentSection?.duration ?? 0) - viewStore.sectionTimeLeft,
+            ProgressCircle(elapsed: (viewStore.currentSection?.duration ?? 0) - viewStore.sectionTimeLeft,
                         total: (viewStore.currentSection?.duration ?? 0),
                         tint: progressColor)
 
@@ -48,6 +48,8 @@ struct TimerView: View {
 
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
+        ProgressView().progressViewStyle(LinearProgressViewStyle())
+
         TimerView(
             store: Store<RunningTimerState, RunningTimerAction>(
                 initialState: RunningTimerState(
@@ -63,7 +65,7 @@ struct TimerView_Previews: PreviewProvider {
     }
 }
 
-private struct ProgressBar: View {
+struct ProgressCircle: View {
     var elapsed: TimeInterval
     var total: TimeInterval
     let tint: WorkoutColor
