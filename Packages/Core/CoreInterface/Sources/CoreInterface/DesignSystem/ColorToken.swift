@@ -5,6 +5,7 @@ extension Color {
 
     public static let appDark = Color("dark", bundle: bundle)
     public static let appWhite = Color("white", bundle: bundle)
+    public static let appGreen = Color("green", bundle: bundle)
     public static let appPrimary = Color("primary", bundle: bundle)
     public static let appSecondary = Color("secondary", bundle: bundle)
     public static let appSuccess = Color("success", bundle: bundle)

@@ -42,7 +42,7 @@ struct HeaderView: View {
 
                     Text(viewStore.timeLeft.formattedTimeLeft)
                         .foregroundColor(.appText)
-                        .font(.h1Mono)
+                        .font(.h1)
                 }
                 .transition(.move(edge: verticalSizeClass == .compact ? .leading : .trailing))
             }

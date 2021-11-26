@@ -51,15 +51,15 @@ public struct TimerView2: View {
 
             VStack {
                 Text(viewStore.totalTimeLeft.formattedTimeLeft)
-                    .font(.h2)
+                    .font(.h1.monospacedDigit())
+                    .foregroundColor(.appWhite)
 
                 Text("Remaining")
-                    .font(.h3)
+                    .font(.h4)
                     .foregroundColor(.appWhite)
             }
 
             ProgressView(
-                "Pause",
                 value: (viewStore.currentSection?.timeLeft ?? 0),
                 total: (viewStore.currentSection?.duration ?? 0)
             )
@@ -74,15 +74,18 @@ public struct TimerView2: View {
 
                 Text(viewStore.currentSection?.timeLeft.formattedTimeLeft ?? "")
                     .font(.giganticMono)
+                    .foregroundColor(.appWhite)
 
                 Text(viewStore.currentSection?.name ?? "")
                     .font(.h1)
+                    .foregroundColor(.appWhite)
 
                 Spacer()
 
                 VStack {
                     Text("\(viewStore.finishedSections)/\(viewStore.timerSections.count)")
                         .font(.h2)
+                        .foregroundColor(.appWhite)
                     Text("Intervals")
                         .font(.h3)
                         .foregroundColor(.appWhite)
@@ -96,24 +99,21 @@ public struct TimerView2: View {
         }
         .padding(48)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .ignoresSafeArea(.all)
         .background(
-            LinearGradient(
-                gradient: Gradient(colors: [color.monochromatic, color.color]),
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
+            BackgroundGradient(workoutColor: color.color, state: viewStore.workoutState)
+                .ignoresSafeArea(.all)
         )
     }
 }
 
-private extension WorkoutColor {
+private extension Color {
     var monochromatic: Color {
-        Color(hue: hue, saturation: saturation, brightness: brightness + 0.3)
+        let components = hsbComponents()
+        return Color(hue: components.h, saturation: components.s, brightness: components.b + 0.3)
     }
 }
 
-struct CustomCircularProgressViewStyle: ProgressViewStyle {
+private struct CustomCircularProgressViewStyle: ProgressViewStyle {
     let isRunning: Bool
     let tint: Color
 
@@ -124,14 +124,49 @@ struct CustomCircularProgressViewStyle: ProgressViewStyle {
                 .stroke(tint, style: StrokeStyle(lineWidth: 16, lineCap: .round, lineJoin: .round))
                 .rotationEffect(.degrees(270))
 
-            if isRunning {
-                Text("Pause")
-                    .font(.h1)
-            } else {
-                Text("Resume")
-                    .font(.h1)
-            }
+            Image(systemName: isRunning ? "pause.fill" : "play.fill")
+                .font(.gigantic)
+                .foregroundColor(.appWhite)
         }
         .contentShape(Circle())
+    }
+}
+
+private struct BackgroundGradient: View {
+    let workoutColor: Color
+    let state: TimerViewState.WorkoutState
+    
+    var colors: [Color] {
+        switch state {
+        case .workout: return [workoutColor.monochromatic, workoutColor]
+        case .rest: return [.appGreen.monochromatic, .appGreen]
+        case .pause: return [.appDark]
+        }
+    }
+    
+    var body: some View {
+        ZStack {
+            LinearGradient(
+                gradient: Gradient(colors: [.appDark]),
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+                .opacity(state == .pause ? 1 : 0)
+            
+            LinearGradient(
+                gradient: Gradient(colors: [.appGreen.monochromatic, .appGreen]),
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+                .opacity(state == .rest ? 1 : 0)
+
+            LinearGradient(
+                gradient: Gradient(colors: [workoutColor.monochromatic, workoutColor]),
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+                .opacity(state == .workout ? 1 : 0)
+        }
+        .animation(.default, value: state)
     }
 }

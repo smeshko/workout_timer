@@ -19,7 +19,6 @@ public struct NewTimerForm: View {
                 Form {
                     Section {
                         TextField("unnamed workout", text: viewStore.binding(\.$name))
-                            .focused($isInputActive)
 
                         NavigationLink {
                             ColorPickerView(colors: viewStore.preselectedTints, selectedColor: viewStore.binding(\.$selectedColor))
@@ -94,7 +93,7 @@ public struct NewTimerForm: View {
 }
 
 
-struct ExercisesList: View {
+private struct ExercisesList: View {
     private let store: Store<NewTimerFormState, NewTimerFormAction>
     let isInputActive: FocusState<Bool>
     @Environment(\.editMode) var editMode
@@ -105,7 +104,7 @@ struct ExercisesList: View {
     }
 
     var body: some View {
-        WithViewStore(store) { viewStore in
+        WithViewStore(store.scope(state: \.segmentStates)) { viewStore in
             List {
                 ForEachStore(store.scope(state: \.segmentStates, action: NewTimerFormAction.segmentAction)) { segmentStore in
                     SegmentView(store: segmentStore, isInputActive: isInputActive)
@@ -116,14 +115,14 @@ struct ExercisesList: View {
                 }
                 .onDelete { indexSet in
                     viewStore.send(.deleteSegments(indexSet), animation: .default)
-                    if viewStore.segmentStates.isEmpty { editMode?.wrappedValue = .inactive }
+                    if viewStore.isEmpty { editMode?.wrappedValue = .inactive }
                 }
             }
         }
     }
 }
 
-struct ColorPickerView: View {
+private struct ColorPickerView: View {
     let colors: [TintColor]
     @Binding var selectedColor: TintColor
     @Environment(\.dismiss) var dismiss
@@ -160,6 +159,12 @@ struct ColorPickerView: View {
 
 //struct NewTimerView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        NewTimerView()
+//        NewTimerForm(
+//            store: Store<NewTimerFormState, NewTimerFormAction>(
+//                initialState: NewTimerFormState(),
+//                reducer: newTimerFormReducer,
+//                environment: .preview
+//            )
+//        )
 //    }
 //}

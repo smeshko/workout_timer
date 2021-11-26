@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "TimersList",
     platforms: [
-        .iOS("15.0"),
+        .iOS(.v15),
         .macOS(.v10_15),
         .watchOS(.v7)
     ],

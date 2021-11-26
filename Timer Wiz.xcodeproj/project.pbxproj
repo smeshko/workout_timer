@@ -409,6 +409,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				B8F3E05B274EE1D4003CBAC6 /* PBXTargetDependency */,
 			);
 			name = "Timer Wiz";
 			packageProductDependencies = (
@@ -546,6 +547,10 @@
 			isa = PBXTargetDependency;
 			target = 0932920303856264B2301452 /* Timer Wiz Watch Extension */;
 			targetProxy = CDBF3440DDE9E88A02CCE084 /* PBXContainerItemProxy */;
+		};
+		B8F3E05B274EE1D4003CBAC6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = B8F3E05A274EE1D4003CBAC6 /* NewTimerForm */;
 		};
 /* End PBXTargetDependency section */
 
@@ -907,6 +912,10 @@
 			productName = TimersList;
 		};
 		B8A10DDC27429A04003806B9 /* NewTimerForm */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NewTimerForm;
+		};
+		B8F3E05A274EE1D4003CBAC6 /* NewTimerForm */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = NewTimerForm;
 		};

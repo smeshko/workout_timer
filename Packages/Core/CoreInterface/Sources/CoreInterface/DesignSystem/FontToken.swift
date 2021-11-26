@@ -3,8 +3,6 @@ import SwiftUI
 extension Font {
     /// 30 bold
     public static let h1 = Font.system(size: 30, weight: .bold)
-    /// 30 bold mono
-    public static let h1Mono = Font.system(size: 30, weight: .bold, design: .monospaced)
     /// 22 bold
     public static let h2 = Font.system(size: 22, weight: .bold)
     /// 16 bold

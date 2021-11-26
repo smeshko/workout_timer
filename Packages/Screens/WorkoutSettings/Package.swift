@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.5
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -7,7 +7,7 @@ let package = Package(
     name: "WorkoutSettings",
     platforms: [
         .macOS(.v10_15),
-        .iOS("15.0"),
+        .iOS(.v15),
         .watchOS(.v7)
     ],
     products: [

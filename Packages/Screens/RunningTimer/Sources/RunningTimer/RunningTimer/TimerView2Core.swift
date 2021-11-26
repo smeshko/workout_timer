@@ -16,6 +16,11 @@ public enum TimerViewAction: Equatable {
 }
 
 public struct TimerViewState: Equatable {
+    
+    enum WorkoutState: Equatable {
+        case workout, rest, pause
+    }
+    
     let workout: QuickWorkout
     var totalTimeLeft: TimeInterval = 0
     var timerSections: IdentifiedArrayOf<TimerSection>
@@ -29,6 +34,10 @@ public struct TimerViewState: Equatable {
 
     var totalTimeExpired: TimeInterval {
         timerSections.totalDuration - totalTimeLeft
+    }
+    
+    var workoutState: WorkoutState {
+        isRunning ? (currentSection?.type == .work ? .workout : .rest) : .pause
     }
 
     public init(workout: QuickWorkout) {
