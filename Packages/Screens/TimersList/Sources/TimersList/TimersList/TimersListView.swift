@@ -27,26 +27,24 @@ public struct TimersListView: View {
                 } else if viewStore.noWorkouts && viewStore.loadingState.isFinished {
                     NoWorkoutsView(store: store)
                 } else {
-                    if viewStore.isPresentingTimer {
-                        IfLetStore(store.scope(state: \.runningTimerState, action: TimersListAction.runningTimerAction),
-                                   then: { RunningTimerView(store: $0) })
-
-                    } else {
-                        TimersList(store: store)
-                            .toolbar {
-                                ToolbarItem(placement: placement(isLeading: true)) {
-                                    SettingsButton(store: store)
-                                }
-                                ToolbarItem(placement: placement(isLeading: false)) {
-                                    FormButton(store: store)
-                                }
+                    TimersList(store: store)
+                        .toolbar {
+                            ToolbarItem(placement: placement(isLeading: true)) {
+                                SettingsButton(store: store)
                             }
-                            .navigationTitle("workouts".localized)
-                    }
+                            ToolbarItem(placement: placement(isLeading: false)) {
+                                FormButton(store: store)
+                            }
+                        }
+                        .navigationTitle("workouts".localized)
                 }
             }
             .onAppear {
                 viewStore.send(.onAppear)
+            }
+            .fullScreenCover(isPresented: viewStore.binding(get: \.isPresentingTimer)) {
+                IfLetStore(store.scope(state: \.timerViewState, action: TimersListAction.timerViewAction),
+                           then: TimerView.init(store:))
             }
             .navigationViewStyle(StackNavigationViewStyle())
         }

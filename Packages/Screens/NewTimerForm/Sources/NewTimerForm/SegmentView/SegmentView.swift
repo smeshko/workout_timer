@@ -49,7 +49,7 @@ private struct DurationSetView: View {
             } label: {
                 Image(systemName: "minus")
                     .font(.h4)
-                    .foregroundColor(.appWhite)
+                    .foregroundColor(.appText)
             }
             .buttonStyle(BorderlessButtonStyle())
 
@@ -63,7 +63,7 @@ private struct DurationSetView: View {
             } label: {
                 Image(systemName: "plus")
                     .font(.h4)
-                    .foregroundColor(.appWhite)
+                    .foregroundColor(.appText)
             }
             .buttonStyle(BorderlessButtonStyle())
         }

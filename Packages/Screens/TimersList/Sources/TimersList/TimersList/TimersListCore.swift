@@ -9,9 +9,8 @@ import RunningTimer
 
 public enum TimersListAction {
     case workoutCardAction(id: UUID, action: TimerCardAction)
-//    case createWorkoutAction(CreateQuickWorkoutAction)
     case newTimerFormAction(NewTimerFormAction)
-    case runningTimerAction(RunningTimerAction)
+    case timerViewAction(TimerViewAction)
     case settingsAction(SettingsAction)
 
     case deleteWorkouts(IndexSet)
@@ -30,10 +29,9 @@ public struct TimersListState: Equatable {
     public var workouts: [QuickWorkout] = []
 
     var workoutStates: IdentifiedArrayOf<TimerCardState> = []
-//    var createWorkoutState = CreateQuickWorkoutState()
     var newTimerFormState: NewTimerFormState?
     var settingsState = SettingsState()
-    var runningTimerState: RunningTimerState?
+    var timerViewState: TimerViewState?
     var loadingState: LoadingState = .finished
     var query: String = ""
 
@@ -70,9 +68,9 @@ public let timersListReducer = Reducer<TimersListState, TimersListAction, System
         action: /TimersListAction.workoutCardAction(id:action:),
         environment: { _ in () }
     ),
-    runningTimerReducer.optional().pullback(
-        state: \.runningTimerState,
-        action: /TimersListAction.runningTimerAction,
+    timerViewReducer.optional().pullback(
+        state: \.timerViewState,
+        action: /TimersListAction.timerViewAction,
         environment: { _ in .live }
     ),
     newTimerFormReducer.optional().pullback(
@@ -122,7 +120,7 @@ public let timersListReducer = Reducer<TimersListState, TimersListAction, System
 
         case .workoutCardAction(let id, action: .start):
             guard let workout = state.workoutStates[id: id]?.workout else { break }
-            state.runningTimerState = RunningTimerState(workout: workout, precountdownState: CountdownState(workoutColor: workout.color))
+            state.timerViewState = TimerViewState(workout: workout)
             state.isPresentingTimer = true
 
         case .workoutCardAction(let id, action: .edit):
@@ -139,10 +137,8 @@ public let timersListReducer = Reducer<TimersListState, TimersListAction, System
                 .map {
                     TimersListAction.didFinishDeleting($0.map { [$0] })
                 }
-            
-        case .runningTimerAction(.headerAction(.timerClosed)):
+        case .timerViewAction(.close):
             state.isPresentingTimer = false
-            state.runningTimerState = nil
 
         case .newTimerFormAction(.save), .newTimerFormAction(.cancel):
             return Effect(value: TimersListAction.onTimerFormPresentationChange(false))
@@ -151,9 +147,6 @@ public let timersListReducer = Reducer<TimersListState, TimersListAction, System
             state.loadingState = .loading
             state.newTimerFormState = nil
             return environment.fetchWorkouts()
-
-        case .newTimerFormAction:
-            break
 
         case .deleteWorkouts(let indices):
             let objects = indices.compactMap { state.workoutStates[safe: $0]?.workout }
@@ -167,7 +160,7 @@ public let timersListReducer = Reducer<TimersListState, TimersListAction, System
         case .settingsAction(.close):
             state.isPresentingSettings = false
 
-        case .runningTimerAction, .settingsAction:
+        case .newTimerFormAction, .timerViewAction, .settingsAction:
             break
         }
         return .none

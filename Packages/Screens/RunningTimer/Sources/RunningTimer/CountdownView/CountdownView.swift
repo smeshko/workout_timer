@@ -17,11 +17,14 @@ public struct CountdownView: View {
             .ignoresSafeArea(.all)
             .background(
                 LinearGradient(
-                    gradient: Gradient(colors: [viewStore.workoutColor.monochromatic, viewStore.workoutColor.color]),
+                    gradient: Gradient(colors: [.appSecondary.monochromatic, .appSecondary]),
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
                 )
             )
+            .onAppear {
+                viewStore.send(.start)
+            }
     }
 }
 
@@ -32,20 +35,14 @@ private extension TimeInterval {
     }
 }
 
-private extension WorkoutColor {
-    var monochromatic: Color {
-        Color(hue: hue, saturation: saturation, brightness: brightness + 0.3)
-    }
-}
-
-struct CountdownView_Previews: PreviewProvider {
-    static var previews: some View {
-        return CountdownView(
-            store: Store<CountdownState, CountdownAction>(
-                initialState: CountdownState(),
-                reducer: countdownReducer,
-                environment: .preview
-            )
-        )
-    }
-}
+//struct CountdownView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        return CountdownView(
+//            store: Store<CountdownState, CountdownAction>(
+//                initialState: CountdownState(),
+//                reducer: countdownReducer,
+//                environment: .preview
+//            )
+//        )
+//    }
+//}

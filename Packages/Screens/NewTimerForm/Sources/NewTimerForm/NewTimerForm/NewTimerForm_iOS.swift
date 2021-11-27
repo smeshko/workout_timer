@@ -66,7 +66,6 @@ public struct NewTimerForm: View {
                             Button("+") {
                                 viewStore.send(.addEmptySegment, animation: .default)
                             }
-                            .foregroundColor(.white)
                             .font(.h2)
 
                             Spacer() }

@@ -6,6 +6,7 @@ import ComposableArchitecture
 
 public enum FinishedWorkoutAction: Equatable {
     case onAppear
+    case closeButtonTapped
     case didSaveFinishedWorkout(Result<Statistic, PersistenceError>)
 }
 
@@ -48,7 +49,7 @@ public let finishedWorkoutReducer = Reducer<FinishedWorkoutState, FinishedWorkou
     case .didSaveFinishedWorkout(.success(let statistic)):
         state.statistic = statistic
 
-    case .didSaveFinishedWorkout(.failure):
+    case .didSaveFinishedWorkout(.failure), .closeButtonTapped:
         break
     }
 

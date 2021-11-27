@@ -13,7 +13,6 @@ public enum NewTimerFormAction: BindableAction {
     case segmentAction(id: UUID, action: SegmentAction)
     case save, cancel
     case didSaveSuccessfully(Result<QuickWorkout, PersistenceError>)
-
 }
 
 public struct NewTimerFormState: Equatable {
