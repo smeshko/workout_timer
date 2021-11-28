@@ -36,6 +36,18 @@ public struct NewTimerForm: View {
                             }
                         }
                     }
+                    
+                    Section("Countdown") {
+                        HStack {
+                            Text("Countdown")
+                                .font(.h3)
+                                .foregroundColor(.appText)
+
+                            Spacer()
+
+                            DurationSetView(value: viewStore.binding(\.$countdown), step: 1, timeFormatted: true)
+                        }
+                    }
 
                     if !viewStore.segmentStates.isEmpty {
                         Section {

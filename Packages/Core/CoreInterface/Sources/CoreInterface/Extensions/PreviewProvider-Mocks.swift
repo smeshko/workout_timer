@@ -3,19 +3,19 @@ import DomainEntities
 
 public extension PreviewProvider {
     static var mockQuickWorkout1: QuickWorkout {
-        QuickWorkout(id: UUID(), name: "Mock Workout 1", color: WorkoutColor(hue: 0.53, saturation: 0.54, brightness: 0.33), segments: [
+        QuickWorkout(id: UUID(), name: "Mock Workout 1", color: WorkoutColor(hue: 0.53, saturation: 0.54, brightness: 0.33), countdown: 3, segments: [
             mockSegment1, mockSegment2
         ])
     }
     
     static var mockQuickWorkout2: QuickWorkout {
-        QuickWorkout(id: UUID(), name: "Mock Workout 2", color: WorkoutColor(color: TintColor.allTints[3].color), segments: [
+        QuickWorkout(id: UUID(), name: "Mock Workout 2", color: WorkoutColor(color: TintColor.allTints[3].color), countdown: 3, segments: [
             mockSegment3, mockSegment4
         ])
     }
     
     static var mockQuickWorkout3: QuickWorkout {
-        QuickWorkout(id: UUID(), name: "Mock Workout 3", color: WorkoutColor(hue: 0.53, saturation: 0.54, brightness: 0.33), segments: [
+        QuickWorkout(id: UUID(), name: "Mock Workout 3", color: WorkoutColor(hue: 0.53, saturation: 0.54, brightness: 0.33), countdown: 3, segments: [
             mockSegment1, mockSegment2, mockSegment3, mockSegment4
         ])
     }

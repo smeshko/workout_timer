@@ -11,9 +11,26 @@ private let uuid = { UUID(uuidString: "c06e5e63-d74f-4291-8673-35ce994754dc")! }
 private let randomTint = TintColor.allTints.first!
 private let newWorkout = QuickWorkout(id: uuid(), name: "", color: .empty, segments: [])
 
-class QuickWorkoutFormTests: XCTestCase {
+class NewTimerFormTests: XCTestCase {
 
 
+    func testFlow() {
+        let store = TestStore(
+            initialState: NewTimerFormState(),
+            reducer: newTimerFormReducer,
+            environment: .mock(
+                environment: NewTimerFormEnvironment(repository: .test),
+                mainQueue: { DispatchQueue.test.eraseToAnyScheduler() },
+                uuid: uuid
+            )
+        )
+        
+        store.assert(
+            .send(.binding(.set(\.$name, "My Workout"))) {
+                $0.name = "My Workout"
+            }
+        )
+    }
 //    func testFlow() {
 //        let store = TestStore(
 //            initialState: CreateQuickWorkoutState(),

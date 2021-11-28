@@ -36,7 +36,7 @@ struct SegmentView: View {
     }
 }
 
-private struct DurationSetView: View {
+struct DurationSetView: View {
     @Binding var value: Int
     let step: Int
     let timeFormatted: Bool

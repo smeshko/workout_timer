@@ -5,7 +5,7 @@ import CorePersistence
 import CoreLogic
 import SwiftUI
 
-public enum NewTimerFormAction: BindableAction {
+public enum NewTimerFormAction: BindableAction, Equatable {
     case binding(BindingAction<NewTimerFormState>)
     case addEmptySegment
     case moveSegment(IndexSet, Int)
@@ -18,6 +18,7 @@ public enum NewTimerFormAction: BindableAction {
 public struct NewTimerFormState: Equatable {
     @BindableState var name: String
     @BindableState var selectedColor: TintColor
+    @BindableState var countdown: Int = 3
 
     public var workout: QuickWorkout?
     var segmentStates: IdentifiedArrayOf<SegmentState> = []
@@ -113,6 +114,8 @@ private extension QuickWorkout {
             id: state.workout?.id ?? uuid(),
             name: state.name,
             color: WorkoutColor(components: state.colorComponents),
+            // TODO: Change
+            countdown: 3,
             segments: state.segmentStates.enumerated().map(QuickWorkoutSegment.init(index:state:))
         )
     }

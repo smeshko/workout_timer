@@ -15,6 +15,7 @@ extension QuickWorkoutDao {
     @NSManaged public var colorSaturation: Double
     @NSManaged public var colorBrightness: Double
     @NSManaged public var createdAt: Date?
+    @NSManaged public var countdown: Int16
 
     override func awakeFromInsert() {
         super.awakeFromInsert()
@@ -45,6 +46,7 @@ extension QuickWorkoutDao: DatabaseEntity {
         QuickWorkout(id: id ?? UUID(),
                      name: name ?? "",
                      color: WorkoutColor(hue: colorHue, saturation: colorSaturation, brightness: colorBrightness),
+                     countdown: Int(countdown),
                      segments: segments?
                         .compactMap { $0 as? QuickWorkoutSegmentDao }
                         .sorted(by: { ($0.createdAt ?? Date()) < ($1.createdAt ?? Date()) })
@@ -57,6 +59,7 @@ extension QuickWorkoutDao: DatabaseEntity {
         colorHue = new.color.hue
         colorSaturation = new.color.saturation
         colorBrightness = new.color.brightness
+        countdown = Int16(new.countdown)
 
         if let segments = segments {
             removeFromSegments(segments)
