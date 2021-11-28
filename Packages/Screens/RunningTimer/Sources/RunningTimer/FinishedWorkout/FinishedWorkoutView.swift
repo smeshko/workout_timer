@@ -12,24 +12,12 @@ struct FinishedWorkoutView: View {
     }
 
     var body: some View {
-        VStack {
-            HStack {
-                Spacer()
-                Button(action: {
-                    viewStore.send(.closeButtonTapped)
-                }) {
-                    Image(systemName: "xmark")
-                        .font(.h2.bold())
-                        .foregroundColor(.appWhite)
-                }
-            }
-            
+        VStack(spacing: Spacing.xl) {
             Spacer()
             ZStack {
                 Text(key: "congratulations")
                     .font(.h1)
-                    .foregroundColor(viewStore.workout.color.color)
-                    .animation(.easeInOut(duration: 0.55))
+                    .foregroundColor(viewStore.workout.workout.color.color)
 
                 Confetti()
             }
@@ -37,9 +25,54 @@ struct FinishedWorkoutView: View {
             Text(key: "finished_greeting")
                 .font(.h2)
                 .foregroundColor(.appText)
-                .animation(.easeInOut(duration: 0.55))
+            
+            Spacer()
+
+            VStack(spacing: Spacing.xxs) {
+                Text("Estimated burned calories")
+                    .font(.h2)
+                    .foregroundColor(viewStore.workout.workout.color.color)
+                Text("\(viewStore.caloriesBurned)")
+                    .font(.bodyRegular)
+                    .foregroundColor(.appGrey)
+            }
+
+            VStack(spacing: Spacing.xxs) {
+                Text("Total time")
+                    .font(.h2)
+                    .foregroundColor(viewStore.workout.workout.color.color)
+                Text(viewStore.workout.totalDuration.formattedTimeLeft)
+                    .font(.bodyRegular)
+                    .foregroundColor(.appGrey)
+            }
+
+            VStack(spacing: Spacing.xxs) {
+                Text("Date")
+                    .font(.h2)
+                    .foregroundColor(viewStore.workout.workout.color.color)
+                
+                Text("\(viewStore.workout.startDate.formatted(date: .abbreviated, time: .omitted))")
+                        .font(.bodyRegular)
+                        .foregroundColor(.appGrey)
+                     
+                Text("\(viewStore.workout.startDate.formatted(date: .omitted, time: .shortened)) - \(viewStore.workout.finishDate.formatted(date: .omitted, time: .shortened))")
+                    .font(.bodyRegular)
+                    .foregroundColor(.appGrey)
+            }
 
             Spacer()
+            
+            Button(action: {
+                viewStore.send(.closeButtonTapped)
+            }) {
+                Text("Done")
+                    .font(.h2)
+                    .foregroundColor(.appWhite)
+            }
+            .padding(.vertical, Spacing.m)
+            .padding(.horizontal, Spacing.xl)
+            .background(Capsule().foregroundColor(viewStore.workout.workout.color.color))
+
         }
         .padding(Spacing.xxl)
         .onAppear {

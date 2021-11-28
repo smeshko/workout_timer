@@ -117,13 +117,13 @@ private extension TimersListState {
 
 //struct QuickWorkoutsListView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        let emptyStore = Store<TimersListState, QuickWorkoutsListAction>(
+//        let emptyStore = Store<TimersListState, TimersListAction>(
 //            initialState: TimersListState(),
 //            reducer: timersListReducer,
 //            environment: .preview
 //        )
 //
-//        let filledStore = Store<TimersListState, QuickWorkoutsListAction>(
+//        let filledStore = Store<TimersListState, TimersListAction>(
 //            initialState: TimersListState(workouts: [mockQuickWorkout1, mockQuickWorkout2]),
 //            reducer: timersListReducer,
 //            environment: .preview

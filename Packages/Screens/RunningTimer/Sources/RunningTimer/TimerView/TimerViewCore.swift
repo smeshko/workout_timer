@@ -38,6 +38,7 @@ public struct TimerViewState: Equatable {
     var countdownState: CountdownState? = CountdownState()
     var finishedState: FinishedWorkoutState?
     var alert: AlertState<TimerViewAction>?
+    var startDate = Date()
 
     public init(workout: QuickWorkout) {
         self.workout = workout
@@ -104,7 +105,13 @@ public let timerViewReducer = Reducer<TimerViewState, TimerViewAction, SystemEnv
             }
 
         case .timerFinish:
-            state.finishedState = FinishedWorkoutState(workout: state.workout)
+            let finishedWorkout = FinishedWorkout(
+                workout: state.workout,
+                totalDuration: state.totalTimeExpired,
+                startDate: state.startDate,
+                finishDate: Date()
+            )
+            state.finishedState = FinishedWorkoutState(workout: finishedWorkout)
             return .cancel(id: id)
 
         case .timerBegin:
@@ -147,7 +154,13 @@ public let timerViewReducer = Reducer<TimerViewState, TimerViewAction, SystemEnv
         case .stop:
             state.isRunning = false
             if state.shouldGoToFinishedScreen {
-                state.finishedState = FinishedWorkoutState(workout: state.workout)
+                let finishedWorkout = FinishedWorkout(
+                    workout: state.workout,
+                    totalDuration: state.totalTimeExpired,
+                    startDate: state.startDate,
+                    finishDate: Date()
+                )
+                state.finishedState = FinishedWorkoutState(workout: finishedWorkout)
                 return .cancel(id: id)
             } else {
                 return .cancel(id: id).merge(with: .init(value: .close)).eraseToEffect()

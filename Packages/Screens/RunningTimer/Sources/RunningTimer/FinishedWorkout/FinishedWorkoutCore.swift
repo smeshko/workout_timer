@@ -11,10 +11,11 @@ public enum FinishedWorkoutAction: Equatable {
 }
 
 public struct FinishedWorkoutState: Equatable {
-    let workout: QuickWorkout
+    var workout: FinishedWorkout
+    var caloriesBurned: Int = 0
     var statistic: Statistic?
 
-    public init(workout: QuickWorkout) {
+    public init(workout: FinishedWorkout) {
         self.workout = workout
     }
 }
@@ -22,27 +23,31 @@ public struct FinishedWorkoutState: Equatable {
 public struct FinishedWorkoutEnvironment {
 
     let repository: StatisticsRepository
+    let calculator: CalorieCalculator
     let soundClient: SoundClient
 
     public init(repository: StatisticsRepository,
+                calculator: CalorieCalculator,
                 soundClient: SoundClient = .live) {
         self.repository = repository
+        self.calculator = calculator
         self.soundClient = soundClient
     }
 }
 
 public extension SystemEnvironment where Environment == FinishedWorkoutEnvironment {
-    static let live = SystemEnvironment.live(environment: FinishedWorkoutEnvironment(repository: .live, soundClient: .live))
-    static let preview = SystemEnvironment.mock(environment: FinishedWorkoutEnvironment(repository: .mock, soundClient: .mock))
+    static let live = SystemEnvironment.live(environment: FinishedWorkoutEnvironment(repository: .live, calculator: .live, soundClient: .live))
+    static let preview = SystemEnvironment.mock(environment: FinishedWorkoutEnvironment(repository: .mock, calculator: .mock, soundClient: .mock))
 }
 
 public let finishedWorkoutReducer = Reducer<FinishedWorkoutState, FinishedWorkoutAction, SystemEnvironment<FinishedWorkoutEnvironment>> { state, action, environment in
 
     switch action {
     case .onAppear:
+        state.caloriesBurned = environment.calculator.calories(state.workout.totalDuration, 4, 70)
         return environment
             .repository
-            .finish(state.workout)
+            .finish(state.workout.workout)
             .catchToEffect()
             .map(FinishedWorkoutAction.didSaveFinishedWorkout)
 

@@ -7,26 +7,26 @@ import ComposableArchitecture
 @testable import CoreInterface
 import Combine
 
-let testScheduler = DispatchQueue.testScheduler
-let notificationScheduled = PassthroughSubject<Bool, Never>()
-let soundPlayed = PassthroughSubject<Never, Never>()
-let uuidGenerator = { UUID(uuidString: "c06e5e63-d74f-4291-8673-35ce994754dc")! }
-
-extension LocalNotificationClient {
-    static let test = LocalNotificationClient(
-        requestAuthorisation: { .fireAndForget {} },
-        scheduleLocalNotification: { _, _ in
-            Effect(notificationScheduled)
-        })
-}
-
-extension SystemEnvironment where Environment == RunningTimerEnvironment {
-    static let test = SystemEnvironment.mock(
-        environment: RunningTimerEnvironment(soundClient: .mock, notificationClient: .test, timerStep: .seconds(1)),
-        mainQueue: { AnyScheduler(testScheduler) },
-        uuid: uuidGenerator
-    )
-}
+//let testScheduler = DispatchQueue.testScheduler
+//let notificationScheduled = PassthroughSubject<Bool, Never>()
+//let soundPlayed = PassthroughSubject<Never, Never>()
+//let uuidGenerator = { UUID(uuidString: "c06e5e63-d74f-4291-8673-35ce994754dc")! }
+//
+//extension LocalNotificationClient {
+//    static let test = LocalNotificationClient(
+//        requestAuthorisation: { .fireAndForget {} },
+//        scheduleLocalNotification: { _, _ in
+//            Effect(notificationScheduled)
+//        })
+//}
+//
+//extension SystemEnvironment where Environment == RunningTimerEnvironment {
+//    static let test = SystemEnvironment.mock(
+//        environment: RunningTimerEnvironment(soundClient: .mock, notificationClient: .test, timerStep: .seconds(1)),
+//        mainQueue: { AnyScheduler(testScheduler) },
+//        uuid: uuidGenerator
+//    )
+//}
 
 class RunningTimerTests: XCTestCase {
 

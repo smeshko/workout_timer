@@ -67,6 +67,7 @@ public struct NewTimerForm: View {
                                 viewStore.send(.addEmptySegment, animation: .default)
                             }
                             .font(.h2)
+                            .foregroundColor(.appText)
 
                             Spacer() }
 
