@@ -11,6 +11,9 @@ public enum TimerViewAction: Equatable {
     case timerFinish
     case sectionEnded
     
+    case next
+    case previous
+    
     case countdownAction(CountdownAction)
     case finishedAction(FinishedWorkoutAction)
 
@@ -33,6 +36,7 @@ public struct TimerViewState: Equatable {
     
     let workout: QuickWorkout
     var totalTimeLeft: TimeInterval = 0
+    var actualTimeExpired: TimeInterval = 0
     var timerSections: IdentifiedArrayOf<TimerSection>
     var isRunning: Bool = false
     var countdownState: CountdownState? = CountdownState()
@@ -85,13 +89,8 @@ public let timerViewReducer = Reducer<TimerViewState, TimerViewAction, SystemEnv
 
         switch action {
 
-        case .resume:
-            state.isRunning = true
-            return Effect
-                .timer(id: id, every: environment.timerStep, tolerance: .zero, on: environment.mainQueue())
-                .map { _ in TimerViewAction.timerTick }
-
         case .timerTick:
+            state.actualTimeExpired += environment.timerStep.timeInterval.asDouble ?? 0
             state.totalTimeLeft -= environment.timerStep.timeInterval.asDouble ?? 0
             state.timerSections.update(state.currentSection?.id, keyPath: \.timeLeft, value: (state.currentSection?.timeLeft ?? 0) - (environment.timerStep.timeInterval.asDouble ?? 0))
 
@@ -107,7 +106,7 @@ public let timerViewReducer = Reducer<TimerViewState, TimerViewAction, SystemEnv
         case .timerFinish:
             let finishedWorkout = FinishedWorkout(
                 workout: state.workout,
-                totalDuration: state.totalTimeExpired,
+                totalDuration: state.actualTimeExpired,
                 startDate: state.startDate,
                 finishDate: Date()
             )
@@ -131,10 +130,6 @@ public let timerViewReducer = Reducer<TimerViewState, TimerViewAction, SystemEnv
         case .countdownAction(.finished):
             state.countdownState = nil
             
-        case .pause:
-            state.isRunning = false
-            return .cancel(id: id)
-            
         case .closeButtonTapped:
             state.alert = .init(
                 title: .init("Stop workout?"),
@@ -151,12 +146,22 @@ public let timerViewReducer = Reducer<TimerViewState, TimerViewAction, SystemEnv
         case .alertConfirmTapped:
             return Effect(value: .stop)
             
+        case .pause:
+            state.isRunning = false
+            return .cancel(id: id)
+            
+        case .resume:
+            state.isRunning = true
+            return Effect
+                .timer(id: id, every: environment.timerStep, tolerance: .zero, on: environment.mainQueue())
+                .map { _ in TimerViewAction.timerTick }
+
         case .stop:
             state.isRunning = false
             if state.shouldGoToFinishedScreen {
                 let finishedWorkout = FinishedWorkout(
                     workout: state.workout,
-                    totalDuration: state.totalTimeExpired,
+                    totalDuration: state.actualTimeExpired,
                     startDate: state.startDate,
                     finishDate: Date()
                 )
@@ -165,6 +170,16 @@ public let timerViewReducer = Reducer<TimerViewState, TimerViewAction, SystemEnv
             } else {
                 return .cancel(id: id).merge(with: .init(value: .close)).eraseToEffect()
             }
+            
+        case .previous:
+            state.totalTimeLeft += (state.currentSection?.timeLeft ?? 0)
+            let previous = state.previousSection
+            state.timerSections.update(previous?.id, keyPath: \.timeLeft, value: previous?.duration ?? 0)
+            state.timerSections.update(previous?.id, keyPath: \.isFinished, value: false)
+            
+        case .next:
+            state.totalTimeLeft -= (state.currentSection?.timeLeft ?? 0)
+            state.timerSections.update(state.currentSection?.id, keyPath: \.isFinished, value: true)
             
         case .finishedAction(.closeButtonTapped):
             return .init(value: .close)
@@ -182,8 +197,22 @@ extension TimerViewState {
         timerSections.first { $0.isFinished == false }
     }
     
-    var finishedSections: Int {
+    var previousSection: TimerSection? {
+        guard let current = currentSection, let index = timerSections.index(id: current.id) else { return nil }
+        return timerSections[safe: index - 1]
+    }
+
+    var nextSection: TimerSection? {
+        guard let current = currentSection, let index = timerSections.index(id: current.id) else { return nil }
+        return timerSections[safe: index + 1]
+    }
+
+    var finishedWorkSections: Int {
         timerSections.filter { $0.type == .work && $0.isFinished == true }.count
+    }
+
+    var totalWorkSections: Int {
+        timerSections.filter { $0.type == .work }.count
     }
 
     var totalTimeExpired: TimeInterval {
@@ -197,6 +226,6 @@ extension TimerViewState {
 
 private extension TimerViewState {
     var shouldGoToFinishedScreen: Bool {
-        totalTimeLeft <= timerSections.totalDuration - (timerSections.totalDuration * 2) / 3
+        actualTimeExpired <= timerSections.totalDuration - (timerSections.totalDuration * 2) / 3
     }
 }

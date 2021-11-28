@@ -139,14 +139,34 @@ private struct TimerWrapper: View {
                     .foregroundColor(.appWhite)
             }
             
-            ProgressView(
-                value: (viewStore.currentSection?.timeLeft ?? 0),
-                total: (viewStore.currentSection?.duration ?? 0)
-            )
-                .progressViewStyle(CustomCircularProgressViewStyle(isRunning: viewStore.isRunning, tint: .white))
-                .onTapGesture {
-                    viewStore.send(viewStore.isRunning ? .pause : .resume)
+            HStack(spacing: Spacing.m) {
+                Button {
+                    viewStore.send(.previous)
+                } label: {
+                    Image(systemName: "backward.fill")
+                        .font(.h2)
+                        .foregroundColor(.appWhite)
                 }
+                .disabled(viewStore.previousSection == nil)
+                
+                ProgressView(
+                    value: (viewStore.currentSection?.timeLeft ?? 0),
+                    total: (viewStore.currentSection?.duration ?? 0)
+                )
+                    .progressViewStyle(CustomCircularProgressViewStyle(isRunning: viewStore.isRunning, tint: .white))
+                    .onTapGesture {
+                        viewStore.send(viewStore.isRunning ? .pause : .resume)
+                    }
+                
+                Button {
+                    viewStore.send(.next)
+                } label: {
+                    Image(systemName: "forward.fill")
+                        .font(.h2)
+                        .foregroundColor(.appWhite)
+                }
+                .disabled(viewStore.nextSection == nil)
+            }
             
             Group {
                 
@@ -163,7 +183,7 @@ private struct TimerWrapper: View {
                 Spacer()
                 
                 VStack {
-                    Text("\(viewStore.finishedSections + 1)/\(viewStore.timerSections.count)")
+                    Text("\(viewStore.finishedWorkSections + 1)/\(viewStore.totalWorkSections)")
                         .font(.h2)
                         .foregroundColor(.appWhite)
                     Text("Intervals")
