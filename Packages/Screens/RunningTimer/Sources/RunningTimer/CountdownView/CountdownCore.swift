@@ -3,10 +3,10 @@ import CoreLogic
 import ComposableArchitecture
 
 public enum CountdownAction: Equatable {
-    case onAppear
     case start
     case timerTicked
     case finished
+    case skip
 }
 
 public struct CountdownState: Equatable {
@@ -32,11 +32,7 @@ public let countdownReducer = Reducer<CountdownState, CountdownAction, SystemEnv
     struct TimerId: Hashable {}
 
     switch action {
-    case .onAppear:
-        break
-
     case .start:
-        state.timeLeft = 3
         return Effect
             .timer(id: TimerId(), every: .seconds(1), tolerance: .zero, on: environment.mainQueue())
             .map { _ in CountdownAction.timerTicked }
@@ -44,12 +40,14 @@ public let countdownReducer = Reducer<CountdownState, CountdownAction, SystemEnv
     case .timerTicked:
         state.timeLeft -= 1
         if state.timeLeft <= 0 {
-            return Effect(value: CountdownAction.finished)
-                .eraseToEffect()
+            return Effect(value: .finished).eraseToEffect()
         }
 
     case .finished:
-        return Effect<CountdownAction, Never>.cancel(id: TimerId())
+        return .cancel(id: TimerId())
+    
+    case .skip:
+        return Effect(value: .finished)
     }
     return .none
 }

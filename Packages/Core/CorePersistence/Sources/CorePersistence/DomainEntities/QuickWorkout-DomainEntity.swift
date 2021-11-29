@@ -11,6 +11,7 @@ extension QuickWorkout: DomainEntity {
         workout.colorHue = color.hue
         workout.colorBrightness = color.brightness
         workout.colorSaturation = color.saturation
+        workout.countdown = Int16(countdown)
         workout.segments = NSSet(array: segments.map { $0.createDatabaseEntity(in: context) })
         return workout
     }

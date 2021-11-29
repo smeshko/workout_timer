@@ -12,7 +12,6 @@ public enum TimerViewAction: Equatable {
     case sectionEnded
     
     case next
-    case previous
     
     case countdownAction(CountdownAction)
     case finishedAction(FinishedWorkoutAction)
@@ -39,13 +38,14 @@ public struct TimerViewState: Equatable {
     var actualTimeExpired: TimeInterval = 0
     var timerSections: IdentifiedArrayOf<TimerSection>
     var isRunning: Bool = false
-    var countdownState: CountdownState? = CountdownState()
+    var countdownState: CountdownState?
     var finishedState: FinishedWorkoutState?
     var alert: AlertState<TimerViewAction>?
     var startDate = Date()
 
     public init(workout: QuickWorkout) {
         self.workout = workout
+        self.countdownState = CountdownState(timeLeft: TimeInterval(workout.countdown))
         self.timerSections = IdentifiedArray(uniqueElements: workout.segments.map(TimerSection.create(from:)).flatMap { $0 }.dropLast())
         self.totalTimeLeft = timerSections.totalDuration
     }
@@ -170,17 +170,11 @@ public let timerViewReducer = Reducer<TimerViewState, TimerViewAction, SystemEnv
             } else {
                 return .cancel(id: id).merge(with: .init(value: .close)).eraseToEffect()
             }
-            
-        case .previous:
-            state.totalTimeLeft += (state.currentSection?.timeLeft ?? 0)
-            let previous = state.previousSection
-            state.timerSections.update(previous?.id, keyPath: \.timeLeft, value: previous?.duration ?? 0)
-            state.timerSections.update(previous?.id, keyPath: \.isFinished, value: false)
-            
+
         case .next:
             state.totalTimeLeft -= (state.currentSection?.timeLeft ?? 0)
             state.timerSections.update(state.currentSection?.id, keyPath: \.isFinished, value: true)
-            
+
         case .finishedAction(.closeButtonTapped):
             return .init(value: .close)
 
@@ -226,6 +220,6 @@ extension TimerViewState {
 
 private extension TimerViewState {
     var shouldGoToFinishedScreen: Bool {
-        actualTimeExpired <= timerSections.totalDuration - (timerSections.totalDuration * 2) / 3
+        actualTimeExpired >= timerSections.totalDuration - (timerSections.totalDuration * 2) / 3
     }
 }

@@ -18,7 +18,7 @@ public enum NewTimerFormAction: BindableAction, Equatable {
 public struct NewTimerFormState: Equatable {
     @BindableState var name: String
     @BindableState var selectedColor: TintColor
-    @BindableState var countdown: Int = 3
+    @BindableState var countdown: Int
 
     public var workout: QuickWorkout?
     var segmentStates: IdentifiedArrayOf<SegmentState> = []
@@ -36,6 +36,7 @@ public struct NewTimerFormState: Equatable {
 
     public init(workout: QuickWorkout? = nil) {
         self.name = workout?.name ?? ""
+        self.countdown = workout?.countdown ?? 3
         self.workout = workout
         self.isEditing = workout != nil
         self.selectedColor = TintColor(color: workout?.color.color) ?? .default
@@ -83,11 +84,13 @@ Reducer<NewTimerFormState, NewTimerFormAction, SystemEnvironment<NewTimerFormEnv
                 QuickWorkout(state: state, uuid: environment.uuid),
                 isEditing: state.isEditing
             )
+            
+        case .binding(\.$countdown):
+            if state.countdown < 1 {
+                state.countdown = 1
+            }
 
-        case .cancel, .didSaveSuccessfully:
-            break
-
-        case .segmentAction, .binding:
+        case .cancel, .didSaveSuccessfully, .segmentAction, .binding:
             break
         }
 
@@ -114,8 +117,7 @@ private extension QuickWorkout {
             id: state.workout?.id ?? uuid(),
             name: state.name,
             color: WorkoutColor(components: state.colorComponents),
-            // TODO: Change
-            countdown: 3,
+            countdown: state.countdown,
             segments: state.segmentStates.enumerated().map(QuickWorkoutSegment.init(index:state:))
         )
     }

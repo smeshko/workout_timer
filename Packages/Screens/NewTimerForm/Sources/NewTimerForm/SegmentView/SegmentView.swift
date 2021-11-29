@@ -25,6 +25,7 @@ struct SegmentView: View {
                 }
 
                 Spacer()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
 
                 VStack(alignment: .leading, spacing: Spacing.xs) {
                     DurationSetView(value: viewStore.binding(\.$work), step: 5, timeFormatted: true)

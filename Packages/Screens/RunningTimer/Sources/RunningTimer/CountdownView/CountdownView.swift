@@ -1,4 +1,5 @@
 import SwiftUI
+import CoreInterface
 import DomainEntities
 import ComposableArchitecture
 
@@ -10,21 +11,39 @@ public struct CountdownView: View {
     }
 
     public var body: some View {
-        Text("\(viewStore.timeLeft)")
-            .font(.giganticMono)
-            .foregroundColor(.appWhite)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-            .ignoresSafeArea(.all)
-            .background(
-                LinearGradient(
-                    gradient: Gradient(colors: [.appSecondary.monochromatic, .appSecondary]),
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                )
-            )
-            .onAppear {
-                viewStore.send(.start)
+        ZStack(alignment: .bottom) {
+            VStack {
+                Spacer()
+                Text("\(viewStore.timeLeft)")
+                    .font(.giganticMono)
+                    .foregroundColor(.appWhite)
+                Spacer()
             }
+            
+            Button {
+                viewStore.send(.skip)
+            } label: {
+                Text("Skip")
+                    .font(.h2)
+                    .foregroundColor(.appWhite)
+            }
+            .padding(.vertical, Spacing.m)
+            .padding(.horizontal, Spacing.xl)
+            .background(Capsule().foregroundColor(.appGrey).opacity(0.3))
+            .padding(.bottom, Spacing.xxl)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        .ignoresSafeArea(.all)
+        .background(
+            LinearGradient(
+                gradient: Gradient(colors: [.appSecondary.monochromatic, .appSecondary]),
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+        )
+        .onAppear {
+            viewStore.send(.start)
+        }
     }
 }
 

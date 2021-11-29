@@ -50,14 +50,14 @@ extension Color {
 private struct CustomCircularProgressViewStyle: ProgressViewStyle {
     let isRunning: Bool
     let tint: Color
-
+    
     func makeBody(configuration: Configuration) -> some View {
         ZStack {
             Circle()
                 .trim(from: 0.0, to: CGFloat(configuration.fractionCompleted ?? 0))
                 .stroke(tint, style: StrokeStyle(lineWidth: 16, lineCap: .round, lineJoin: .round))
                 .rotationEffect(.degrees(270))
-
+            
             Image(systemName: isRunning ? "pause.fill" : "play.fill")
                 .font(.gigantic)
                 .foregroundColor(.appWhite)
@@ -93,7 +93,7 @@ private struct BackgroundGradient: View {
                 endPoint: .bottomTrailing
             )
                 .opacity(state == .rest ? 1 : 0)
-
+            
             LinearGradient(
                 gradient: Gradient(colors: [workoutColor.monochromatic, workoutColor]),
                 startPoint: .topLeading,
@@ -108,16 +108,31 @@ private struct BackgroundGradient: View {
 private struct TimerWrapper: View {
     @ObservedObject private var viewStore: ViewStore<TimerViewState, TimerViewAction>
     private let store: Store<TimerViewState, TimerViewAction>
-
+    
     public init(store: Store<TimerViewState, TimerViewAction>) {
         self.viewStore = ViewStore(store)
         self.store = store
     }
-
+    
     var body: some View {
-        VStack(spacing: 12) {
-            HStack {
-                Spacer()
+        VStack(spacing: Spacing.s) {
+            ZStack(alignment: .trailing) {
+                HStack {
+                    Spacer()
+                    
+                    VStack {
+                        Text(viewStore.totalTimeLeft.formattedTimeLeft)
+                            .font(.h1.monospacedDigit())
+                            .foregroundColor(.appWhite)
+                        
+                        Text("Remaining")
+                            .font(.h4)
+                            .foregroundColor(.appWhite)
+                    }
+                    
+                    Spacer()
+                }
+                
                 Button(action: {
                     viewStore.send(.closeButtonTapped)
                 }) {
@@ -129,49 +144,13 @@ private struct TimerWrapper: View {
             
             Spacer()
             
-            VStack {
-                Text(viewStore.totalTimeLeft.formattedTimeLeft)
-                    .font(.h1.monospacedDigit())
-                    .foregroundColor(.appWhite)
-                
-                Text("Remaining")
-                    .font(.h4)
-                    .foregroundColor(.appWhite)
-            }
+            ProgressView(value: (viewStore.currentSection?.timeLeft ?? 0), total: (viewStore.currentSection?.duration ?? 0))
+                .progressViewStyle(CustomCircularProgressViewStyle(isRunning: viewStore.isRunning, tint: .white))
+                .padding(.horizontal, Spacing.s)
             
-            HStack(spacing: Spacing.m) {
-                Button {
-                    viewStore.send(.previous)
-                } label: {
-                    Image(systemName: "backward.fill")
-                        .font(.h2)
-                        .foregroundColor(.appWhite)
-                }
-                .disabled(viewStore.previousSection == nil)
-                
-                ProgressView(
-                    value: (viewStore.currentSection?.timeLeft ?? 0),
-                    total: (viewStore.currentSection?.duration ?? 0)
-                )
-                    .progressViewStyle(CustomCircularProgressViewStyle(isRunning: viewStore.isRunning, tint: .white))
-                    .onTapGesture {
-                        viewStore.send(viewStore.isRunning ? .pause : .resume)
-                    }
-                
-                Button {
-                    viewStore.send(.next)
-                } label: {
-                    Image(systemName: "forward.fill")
-                        .font(.h2)
-                        .foregroundColor(.appWhite)
-                }
-                .disabled(viewStore.nextSection == nil)
-            }
+            Spacer()
             
-            Group {
-                
-                Spacer()
-                
+            VStack(spacing: Spacing.xxs) {
                 Text(viewStore.currentSection?.timeLeft.formattedTimeLeft ?? "")
                     .font(.giganticMono)
                     .foregroundColor(.appWhite)
@@ -179,17 +158,27 @@ private struct TimerWrapper: View {
                 Text(viewStore.currentSection?.name ?? "")
                     .font(.h1)
                     .foregroundColor(.appWhite)
-                
-                Spacer()
-                
-                VStack {
-                    Text("\(viewStore.finishedWorkSections + 1)/\(viewStore.totalWorkSections)")
-                        .font(.h2)
-                        .foregroundColor(.appWhite)
-                    Text("Intervals")
-                        .font(.h3)
-                        .foregroundColor(.appWhite)
-                }
+            }
+            
+            Button {
+                viewStore.send(.next)
+            } label: {
+                Text("Skip")
+                    .font(.h2)
+                    .foregroundColor(.appWhite)
+            }
+            .disabled(viewStore.nextSection == nil)
+            .padding(.vertical, Spacing.m)
+            .padding(.horizontal, Spacing.xl)
+            .background(Capsule().foregroundColor(.appGrey).opacity(0.1))
+            
+            VStack(spacing: Spacing.xxs) {
+                Text("\(viewStore.finishedWorkSections + 1)/\(viewStore.totalWorkSections)")
+                    .font(.h2)
+                    .foregroundColor(.appWhite)
+                Text("Intervals")
+                    .font(.h3)
+                    .foregroundColor(.appWhite)
             }
             
             ProgressView(value: viewStore.totalTimeExpired, total: viewStore.timerSections.totalDuration)
@@ -204,6 +193,9 @@ private struct TimerWrapper: View {
         )
         .onAppear {
             viewStore.send(.timerBegin)
+        }
+        .onTapGesture {
+            viewStore.send(viewStore.isRunning ? .pause : .resume)
         }
         .alert(store.scope(state: \.alert), dismiss: .alertDismissed)
     }

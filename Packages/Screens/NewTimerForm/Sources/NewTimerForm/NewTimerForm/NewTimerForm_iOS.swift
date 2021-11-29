@@ -44,7 +44,8 @@ public struct NewTimerForm: View {
                                 .foregroundColor(.appText)
 
                             Spacer()
-
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            
                             DurationSetView(value: viewStore.binding(\.$countdown), step: 1, timeFormatted: true)
                         }
                     }
