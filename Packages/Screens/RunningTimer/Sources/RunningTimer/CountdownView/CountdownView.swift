@@ -24,7 +24,7 @@ public struct CountdownView: View {
                 viewStore.send(.skip)
             } label: {
                 Text("Skip")
-                    .font(.h2)
+                    .font(.h4)
                     .foregroundColor(.appWhite)
             }
             .padding(.vertical, Spacing.m)

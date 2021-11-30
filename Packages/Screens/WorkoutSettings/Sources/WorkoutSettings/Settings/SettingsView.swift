@@ -21,6 +21,7 @@ public struct SettingsView: View {
                     VStack(alignment: .leading) {
                         Toggle("settings_enable_sound".localized, isOn: viewStore.binding(get: \.sound, send: SettingsAction.toggleSound))
                         Text(key: "settings_enable_sound_descr")
+                            .fixedSize(horizontal: false, vertical: true)
                             .font(.bodySmall)
                             .padding(.bottom, Spacing.xxs)
                     }
@@ -72,17 +73,17 @@ public struct SettingsView: View {
     }
 }
 
-struct SettingsView_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingsView(
-            store: Store<SettingsState, SettingsAction>(
-                initialState: SettingsState(),
-                reducer: settingsReducer,
-                environment: SettingsEnvironment(client: .mock)
-            )
-        )
-    }
-}
+//struct SettingsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SettingsView(
+//            store: Store<SettingsState, SettingsAction>(
+//                initialState: SettingsState(),
+//                reducer: settingsReducer,
+//                environment: SettingsEnvironment(client: .mock)
+//            )
+//        )
+//    }
+//}
 
 private struct OnboardingButton: View {
     private let store: Store<SettingsState, SettingsAction>

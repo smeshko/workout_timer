@@ -8,10 +8,12 @@ extension StatisticDao {
         return NSFetchRequest<StatisticDao>(entityName: "StatisticDao")
     }
 
-    @NSManaged var date: Date?
+    @NSManaged var startDate: Date?
+    @NSManaged var finishDate: Date?
+    @NSManaged var burnedCalories: Int16
     @NSManaged var id: UUID?
     @NSManaged var workoutName: String?
-    @NSManaged var workoutDuration: Double
+    @NSManaged var duration: Double
     @NSManaged public var createdAt: Date?
 
     override func awakeFromInsert() {
@@ -25,15 +27,19 @@ extension StatisticDao: DatabaseEntity {
     func toDomainEntity() -> Statistic {
         Statistic(
             id: id ?? UUID(),
-            date: date ?? Date(),
             workoutName: workoutName ?? "",
-            workoutDuration: workoutDuration
+            duration: duration,
+            startDate: startDate ?? Date(),
+            finishDate: finishDate ?? Date(),
+            burnedCalories: Int(burnedCalories)
         )
     }
 
     func update(with new: Statistic, in context: NSManagedObjectContext) {
-        date = new.date
         workoutName = new.workoutName
-        workoutDuration = new.workoutDuration
+        duration = new.duration
+        startDate = new.startDate
+        finishDate = new.finishDate
+        burnedCalories = Int16(new.burnedCalories)
     }
 }

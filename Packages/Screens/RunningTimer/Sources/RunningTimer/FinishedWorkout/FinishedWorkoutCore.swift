@@ -47,7 +47,7 @@ public let finishedWorkoutReducer = Reducer<FinishedWorkoutState, FinishedWorkou
         state.caloriesBurned = environment.calculator.calories(state.workout.totalDuration, 4, 70)
         return environment
             .repository
-            .finish(state.workout.workout)
+            .finish(state.workout, state.caloriesBurned)
             .catchToEffect()
             .map(FinishedWorkoutAction.didSaveFinishedWorkout)
 

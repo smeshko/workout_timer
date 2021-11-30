@@ -2,14 +2,18 @@ import Foundation
 
 public struct Statistic: Equatable, Identifiable {
     public let id: UUID
-    public let date: Date
     public let workoutName: String
-    public let workoutDuration: Double
+    public let duration: Double
+    public let startDate: Date
+    public let finishDate: Date
+    public let burnedCalories: Int
 
-    public init(id: UUID, date: Date, workoutName: String, workoutDuration: Double) {
+    public init(id: UUID, workoutName: String, duration: Double, startDate: Date, finishDate: Date, burnedCalories: Int) {
         self.id = id
-        self.date = date
         self.workoutName = workoutName
-        self.workoutDuration = workoutDuration
+        self.duration = duration
+        self.startDate = startDate
+        self.finishDate = finishDate
+        self.burnedCalories = burnedCalories
     }
 }

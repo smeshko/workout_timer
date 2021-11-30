@@ -451,11 +451,6 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1200;
-				TargetAttributes = {
-					429BFDFEA9DB359BBC9D553F = {
-						DevelopmentTeam = GR9SJM3FZP;
-					};
-				};
 			};
 			buildConfigurationList = 83D5C2A8F27A83B0ACA82F85 /* Build configuration list for PBXProject "Timer Wiz" */;
 			compatibilityVersion = "Xcode 10.0";
@@ -639,7 +634,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Timer Wiz/Product/Entitlements/Debug.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = GR9SJM3FZP;
 				ENABLE_BITCODE = NO;
 				ENABLE_TESTING_SEARCH_PATHS = YES;
 				INFOPLIST_FILE = "Timer Wiz/Product/Info.plist";

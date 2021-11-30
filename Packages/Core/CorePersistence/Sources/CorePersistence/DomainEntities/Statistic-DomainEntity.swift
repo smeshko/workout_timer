@@ -6,10 +6,13 @@ extension Statistic: DomainEntity {
 
     func createDatabaseEntity(in context: NSManagedObjectContext) -> StatisticDao {
         let statistic = StatisticDao(context: context)
-        statistic.date = date
         statistic.id = id
         statistic.workoutName = workoutName
-        statistic.workoutDuration = workoutDuration
+        statistic.startDate = startDate
+        statistic.finishDate = finishDate
+        statistic.burnedCalories = Int16(burnedCalories)
+        statistic.duration = duration
+        
         return statistic
     }
 }

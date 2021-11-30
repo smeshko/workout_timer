@@ -54,6 +54,9 @@ private struct CustomCircularProgressViewStyle: ProgressViewStyle {
     func makeBody(configuration: Configuration) -> some View {
         ZStack {
             Circle()
+                .stroke(Color.appGrey.opacity(0.2), style: StrokeStyle(lineWidth: 16))
+
+            Circle()
                 .trim(from: 0.0, to: CGFloat(configuration.fractionCompleted ?? 0))
                 .stroke(tint, style: StrokeStyle(lineWidth: 16, lineCap: .round, lineJoin: .round))
                 .rotationEffect(.degrees(270))
@@ -164,7 +167,7 @@ private struct TimerWrapper: View {
                 viewStore.send(.next)
             } label: {
                 Text("Skip")
-                    .font(.h2)
+                    .font(.h4)
                     .foregroundColor(.appWhite)
             }
             .disabled(viewStore.nextSection == nil)
@@ -174,14 +177,15 @@ private struct TimerWrapper: View {
             
             VStack(spacing: Spacing.xxs) {
                 Text("\(viewStore.finishedWorkSections + 1)/\(viewStore.totalWorkSections)")
-                    .font(.h2)
+                    .font(.h3)
                     .foregroundColor(.appWhite)
                 Text("Intervals")
-                    .font(.h3)
+                    .font(.h4)
                     .foregroundColor(.appWhite)
             }
             
             ProgressView(value: viewStore.totalTimeExpired, total: viewStore.timerSections.totalDuration)
+                .background(Color.appGrey.opacity(0.1))
                 .tint(.white)
                 .frame(maxWidth: .infinity, maxHeight: 4)
         }
