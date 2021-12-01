@@ -1,7 +1,7 @@
 import Foundation
 
 public struct SettingsClient {
-    enum Key: String {
+    public enum Key: String {
         case sound
         case screen
         case appStarted
@@ -12,37 +12,13 @@ public struct SettingsClient {
     private init(storage: LocalStorage) {
         self.storage = storage
     }
-
-    public var soundEnabled: Bool {
-        storage.bool(for: .sound)
+    
+    public func value<V: Defaultable>(for key: Key) -> V {
+        storage.value(for: key) ?? .default
     }
-
-    public var keepScreenOn: Bool {
-        storage.bool(for: .screen)
-    }
-
-    public var appStartedOnce: Bool {
-        storage.bool(for: .appStarted)
-    }
-
-    public var onboardingShown: Bool {
-        storage.bool(for: .onboardingShown)
-    }
-
-    public func setSoundEnabled(to value: Bool) {
-        storage.set(value, for: .sound)
-    }
-
-    public func setKeepScreenOn(to value: Bool) {
-        storage.set(value, for: .screen)
-    }
-
-    public func setAppStartedOnce(to value: Bool) {
-        storage.set(value, for: .appStarted)
-    }
-
-    public func setOnboardingShown(to value: Bool) {
-        storage.set(value, for: .onboardingShown)
+    
+    public func set(_ key: Key, to value: Bool) {
+        storage.set(value, for: key)
     }
 }
 
@@ -58,8 +34,16 @@ public extension SettingsClient {
     }()
 }
 
+public protocol Defaultable {
+    static var `default`: Self { get }
+}
+
+extension Bool: Defaultable {
+    public static var `default`: Bool { false }
+}
+
 private struct MockLocalStorage: LocalStorage {
     func set(_ value: Bool, for key: SettingsClient.Key) {}
     func bool(for key: SettingsClient.Key) -> Bool { false }
-    func value(for key: SettingsClient.Key) -> Any? { nil }
+    func value<V>(for key: SettingsClient.Key) -> V? { nil }
 }

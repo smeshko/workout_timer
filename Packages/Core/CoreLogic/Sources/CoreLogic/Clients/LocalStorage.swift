@@ -3,7 +3,7 @@ import Foundation
 protocol LocalStorage {
     func set(_ value: Bool, for key: SettingsClient.Key)
     func bool(for key: SettingsClient.Key) -> Bool
-    func value(for key: SettingsClient.Key) -> Any?
+    func value<V: Defaultable>(for key: SettingsClient.Key) -> V?
 }
 
 extension UserDefaults: LocalStorage {
@@ -11,8 +11,8 @@ extension UserDefaults: LocalStorage {
         bool(forKey: key.rawValue)
     }
 
-    func value(for key: SettingsClient.Key) -> Any? {
-        value(forKey: key.rawValue)
+    func value<V: Defaultable>(for key: SettingsClient.Key) -> V? {
+        value(forKey: key.rawValue) as? V
     }
 
     func set(_ value: Bool, for key: SettingsClient.Key) {

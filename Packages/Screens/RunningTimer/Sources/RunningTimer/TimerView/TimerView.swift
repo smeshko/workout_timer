@@ -136,12 +136,25 @@ private struct TimerWrapper: View {
                     Spacer()
                 }
                 
-                Button(action: {
-                    viewStore.send(.closeButtonTapped)
-                }) {
-                    Image(systemName: "xmark")
-                        .font(.h2.bold())
-                        .foregroundColor(.appWhite)
+                HStack {
+                    
+                    Button {
+                        viewStore.send(.toggleSound)
+                    } label: {
+                        Image(systemName: viewStore.isSoundEnabled ? "bell.fill" : "bell.slash.fill")
+                            .font(.h2.bold())
+                            .foregroundColor(.appWhite)
+                    }
+
+                    Spacer()
+                
+                    Button(action: {
+                        viewStore.send(.closeButtonTapped)
+                    }) {
+                        Image(systemName: "xmark")
+                            .font(.h2.bold())
+                            .foregroundColor(.appWhite)
+                    }
                 }
             }
             

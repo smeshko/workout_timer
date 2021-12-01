@@ -14,10 +14,10 @@ class SettingsTest: XCTestCase {
 
         store.assert(
             .send(.toggleScreen(true)) {
-                $0.keepScreen = true
+                $0.keepScreenActive = true
             },
             .send(.toggleSound(true)) {
-                $0.sound = true
+                $0.isSoundEnabled = true
             },
             .send(.onboarding(.present)) {
                 $0.isPresentingOnboarding = true

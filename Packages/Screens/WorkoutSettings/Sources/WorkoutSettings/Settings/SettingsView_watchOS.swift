@@ -19,13 +19,13 @@ public struct SettingsView: View {
             Form {
                 Section(header: Text(key: "settings_customization")) {
                     VStack(alignment: .leading) {
-                        Toggle("settings_enable_sound".localized, isOn: viewStore.binding(get: \.sound, send: SettingsAction.toggleSound))
+                        Toggle("settings_enable_sound".localized, isOn: viewStore.binding(get: \.isSoundEnabled, send: SettingsAction.toggleSound))
                         Text(key: "settings_enable_sound_descr")
                             .font(.bodySmall)
                             .padding(.bottom, Spacing.xxs)
                     }
                     VStack(alignment: .leading) {
-                        Toggle("settings_keep_screen".localized, isOn: viewStore.binding(get: \.keepScreen, send: SettingsAction.toggleScreen))
+                        Toggle("settings_keep_screen".localized, isOn: viewStore.binding(get: \.keepScreenActive, send: SettingsAction.toggleScreen))
                         Text(key: "settings_keep_screen_descr")
                             .font(.bodySmall)
                             .padding(.bottom, Spacing.xxs)

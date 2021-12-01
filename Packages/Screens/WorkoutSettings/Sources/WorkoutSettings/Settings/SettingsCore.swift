@@ -2,10 +2,9 @@ import Foundation
 import CoreLogic
 import ComposableArchitecture
 
-public enum SettingsAction: Equatable {
-    case toggleScreen(Bool)
-    case toggleSound(Bool)
+public enum SettingsAction: BindableAction, Equatable {
     case onAppear
+    case binding(BindingAction<SettingsState>)
 
     case onboarding(PresenterAction)
     case licenses(PresenterAction)
@@ -17,8 +16,8 @@ public enum SettingsAction: Equatable {
 }
 
 public struct SettingsState: Equatable {
-    var sound = false
-    var keepScreen = false
+    @BindableState var isSoundEnabled = false
+    @BindableState var keepScreenActive = false
     var versionNumber = ""
 
     var onboardingState = OnboardingState()
@@ -31,8 +30,8 @@ public struct SettingsState: Equatable {
     var isPresentingOnboarding = false
 
     public init(sound: Bool = false, keepScreen: Bool = false) {
-        self.sound = sound
-        self.keepScreen = keepScreen
+        self.isSoundEnabled = sound
+        self.keepScreenActive = keepScreen
     }
 }
 
@@ -52,16 +51,14 @@ public let settingsReducer = Reducer<SettingsState, SettingsAction, SettingsEnvi
         switch action {
         case .onAppear:
             state.versionNumber = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
-            state.sound = environment.client.soundEnabled
-            state.keepScreen = environment.client.keepScreenOn
+            state.isSoundEnabled = environment.client.value(for: .sound)
+            state.keepScreenActive = environment.client.value(for: .screen)
 
-        case .toggleScreen(let on):
-            state.keepScreen = on
-            environment.client.setKeepScreenOn(to: on)
+        case .binding(\.$keepScreenActive):
+            environment.client.set(.screen, to: state.keepScreenActive)
 
-        case .toggleSound(let on):
-            state.sound = on
-            environment.client.setSoundEnabled(to: on)
+        case .binding(\.$isSoundEnabled):
+            environment.client.set(.sound, to: state.isSoundEnabled)
 
         case .bugReport(.present):
             state.mailSubject = "Bug report"
@@ -74,7 +71,7 @@ public let settingsReducer = Reducer<SettingsState, SettingsAction, SettingsEnvi
         case .onboardingAction(.start):
             state.isPresentingOnboarding = false
 
-        case .onboarding, .licenses, .bugReport(.dismiss), .featureRequest(.dismiss), .close:
+        case .onboarding, .licenses, .bugReport(.dismiss), .featureRequest(.dismiss), .close, .binding:
             break
         }
 
@@ -102,3 +99,4 @@ public let settingsReducer = Reducer<SettingsState, SettingsAction, SettingsEnvi
         environment: { _ in }
     )
 )
+    .binding()

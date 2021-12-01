@@ -44,26 +44,26 @@ let appReducer = Reducer<AppState, AppAction, SystemEnvironment<AppEnvironment>>
          
         switch action {
         case .appDidBecomeActive:
-            if environment.settings.onboardingShown == false {
+            if environment.settings.value(for: .onboardingShown) == false {
                 state.onboardingState = OnboardingState()
             }
             environment.settings.setupFirstAppStartValues()
-            if environment.settings.keepScreenOn {
+            if environment.settings.value(for: .screen) {
                 UIApplication.shared.isIdleTimerDisabled = true
             }
 
         case .appDidGoToBackground:
-            if environment.settings.keepScreenOn {
+            if environment.settings.value(for: .screen) {
                 UIApplication.shared.isIdleTimerDisabled = false
             }
 
         case .appDidBecomeInactive:
-            if environment.settings.keepScreenOn {
+            if environment.settings.value(for: .screen) {
                 UIApplication.shared.isIdleTimerDisabled = false
             }
 
         case .onboardingAction(.start):
-            environment.settings.setOnboardingShown(to: true)
+            environment.settings.set(.onboardingShown, to: true)
             state.onboardingState = nil
             return environment
                 .notificationClient
@@ -90,10 +90,10 @@ let appReducer = Reducer<AppState, AppAction, SystemEnvironment<AppEnvironment>>
 
 private extension SettingsClient {
     func setupFirstAppStartValues() {
-        if !appStartedOnce {
-            setSoundEnabled(to: true)
-            setKeepScreenOn(to: true)
-            setAppStartedOnce(to: true)
+        if !value(for: .appStarted) {
+            set(.sound, to: true)
+            set(.screen, to: true)
+            set(.appStarted, to: true)
         }
     }
 }

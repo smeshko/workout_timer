@@ -11,7 +11,7 @@ public enum TimerViewAction: Equatable {
     case timerFinish
     case sectionEnded
     
-    case next
+    case toggleSound
     
     case countdownAction(CountdownAction)
     case finishedAction(FinishedWorkoutAction)
@@ -25,6 +25,7 @@ public enum TimerViewAction: Equatable {
     case resume
     case stop
     case close
+    case next
 }
 
 public struct TimerViewState: Equatable {
@@ -33,6 +34,7 @@ public struct TimerViewState: Equatable {
         case workout, rest, pause
     }
     
+    var isSoundEnabled = false
     let workout: QuickWorkout
     var totalTimeLeft: TimeInterval = 0
     var actualTimeExpired: TimeInterval = 0
@@ -114,6 +116,7 @@ public let timerViewReducer = Reducer<TimerViewState, TimerViewAction, SystemEnv
             return .cancel(id: id)
 
         case .timerBegin:
+            state.isSoundEnabled = environment.settings.value(for: .sound)
             state.isRunning = true
             return Effect
                 .timer(id: id, every: environment.timerStep, tolerance: .zero, on: environment.mainQueue())
@@ -121,11 +124,11 @@ public let timerViewReducer = Reducer<TimerViewState, TimerViewAction, SystemEnv
 
         case .sectionEnded:
             state.timerSections.update(state.currentSection?.id, keyPath: \.isFinished, value: true)
-//            guard environment.settings.soundEnabled else { break }
-//            return environment
-//                .soundClient
-//                .play(.segment)
-//                .fireAndForget()
+            guard environment.settings.value(for: .sound) else { break }
+            return environment
+                .soundClient
+                .play(.segment)
+                .fireAndForget()
 
         case .countdownAction(.finished):
             state.countdownState = nil
@@ -177,6 +180,10 @@ public let timerViewReducer = Reducer<TimerViewState, TimerViewAction, SystemEnv
 
         case .finishedAction(.closeButtonTapped):
             return .init(value: .close)
+            
+        case .toggleSound:
+            state.isSoundEnabled.toggle()
+            environment.settings.set(.sound, to: state.isSoundEnabled)
 
         case .finishedAction, .countdownAction, .close:
             break
