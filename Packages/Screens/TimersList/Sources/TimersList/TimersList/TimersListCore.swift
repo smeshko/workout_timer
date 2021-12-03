@@ -7,7 +7,7 @@ import CoreInterface
 import NewTimerForm
 import RunningTimer
 
-public enum TimersListAction {
+public enum TimersListAction: Equatable {
     case workoutCardAction(id: UUID, action: TimerCardAction)
     case newTimerFormAction(NewTimerFormAction)
     case timerViewAction(TimerViewAction)

@@ -7,81 +7,128 @@ import ComposableArchitecture
 import CorePersistence
 @testable import NewTimerForm
 
-private let uuid = { UUID(uuidString: "c06e5e63-d74f-4291-8673-35ce994754dc")! }
-private let randomTint = TintColor.allTints.first!
-private let newWorkout = QuickWorkout(id: uuid(), name: "", color: .empty, segments: [])
+private var uuidIndex = 0
+private let uuid: () -> UUID = {
+    uuidIndex += 1
+    return UUID(uuidString: "00000000-0000-0000-0000-00000000000\(uuidIndex)")!
+}
+private let scheduler = DispatchQueue.test
+private let newWorkout = QuickWorkout(id: uuid(), name: "", color: .empty, countdown: 3, segments: [])
+
+private let segmentState1 = SegmentState(
+    id: UUID(uuidString: "00000000-0000-0000-0000-000000000001")!, name: "Exercise 1",
+    sets: 1, rest: 30, work: 60, color: TintColor.default.color
+)
+
+private let segmentState2 = SegmentState(
+    id: UUID(uuidString: "00000000-0000-0000-0000-000000000002")!, name: "Exercise 2",
+    sets: 1, rest: 30, work: 60, color: TintColor.default.color
+)
 
 class NewTimerFormTests: XCTestCase {
 
-
-    func testFlow() {
+    func testCreateFlow() {
         let store = TestStore(
             initialState: NewTimerFormState(),
             reducer: newTimerFormReducer,
             environment: .mock(
                 environment: NewTimerFormEnvironment(repository: .test),
-                mainQueue: { DispatchQueue.test.eraseToAnyScheduler() },
+                mainQueue: { scheduler.eraseToAnyScheduler() },
                 uuid: uuid
             )
         )
-        
-        store.assert(
-            .send(.binding(.set(\.$name, "My Workout"))) {
-                $0.name = "My Workout"
-            }
-        )
-    }
-//    func testFlow() {
-//        let store = TestStore(
-//            initialState: CreateQuickWorkoutState(),
-//            reducer: createQuickWorkoutReducer,
-//            environment: .mock(
-//                environment:
-//                    CreateQuickWorkoutEnvironment(repository: .test),
-//                mainQueue: { AnyScheduler(DispatchQueue.testScheduler) },
-//                uuid: uuid
+
+        store.send(.binding(.set(\.$name, "My Workout"))) {
+            $0.name = "My Workout"
+        }
+        store.send(.addEmptySegment) {
+            $0.segmentStates = [segmentState1]
+        }
+        store.send(.addEmptySegment) {
+            $0.segmentStates = [segmentState1, segmentState2]
+        }
+        store.send(.moveSegment([0], 2)) {
+            $0.segmentStates = [segmentState2, segmentState1]
+        }
+        store.send(.deleteSegments([0])) {
+            $0.segmentStates = [segmentState1]
+        }
+//        store.send(.save)
+//        scheduler.advance()
+//        store.receive(
+//            .didSaveSuccessfully(
+//                .success(
+//                    QuickWorkout(
+//                        id: UUID(uuidString: "00000000-0000-0000-0000-000000000003")!,
+//                        name: "My Workout",
+//                        color: WorkoutColor(color: TintColor.default.color),
+//                        countdown: 3,
+//                        segments: [
+//                            QuickWorkoutSegment(
+//                                id: UUID(uuidString: "00000000-0000-0000-0000-000000000001")!,
+//                                name: "Exercise 1", sets: 1, work: 60, pause: 30
+//                            )
+//                        ]
+//                    )
+//                )
 //            )
 //        )
-//
-//        store.assert(
-//            .send(.updateName("My workout")) {
-//                $0.segmentStates = []
-//                $0.selectedColor = Color(red: 0, green: 0, blue: 0, opacity: 1)
-//                $0.selectedTint = nil
-//                $0.name = "My workout"
-//            },
-//            .send(.newSegmentButtonTapped) {
-//                $0.addSegmentState = AddTimerSegmentState(
-//                    id: uuid(),
-//                    name: "",
-//                    sets: 2,
-//                    workoutTime: 60,
-//                    breakTime: 20
+    }
+
+    func testEditFlow() {
+        let store = TestStore(
+            initialState: NewTimerFormState(
+                workout: QuickWorkout(
+                    id: UUID(uuidString: "00000000-0000-0000-0000-000000000000")!,
+                    name: "My Workout", color: WorkoutColor(color: TintColor.default.color), countdown: 3,
+                    segments: [
+                        QuickWorkoutSegment(
+                            id: UUID(uuidString: "00000000-0000-0000-0000-000000000001")!,
+                            name: "Segment", sets: 3, work: 45, pause: 20
+                        )
+                    ]
+                )
+            ),
+            reducer: newTimerFormReducer,
+            environment: .mock(
+                environment: NewTimerFormEnvironment(repository: .test),
+                mainQueue: { scheduler.eraseToAnyScheduler() },
+                uuid: uuid
+            )
+        )
+
+        store.send(.binding(.set(\.$name, "Edited Workout"))) {
+            $0.name = "Edited Workout"
+        }
+        uuidIndex = 1
+        store.send(.addEmptySegment) {
+            $0.segmentStates = [
+                SegmentState(
+                    id: UUID(uuidString: "00000000-0000-0000-0000-000000000001")!,
+                    name: "Segment", sets: 3, rest: 20, work: 45, color: TintColor.default.color
+                ),
+                segmentState2
+            ]
+        }
+//        store.send(.save)
+//        scheduler.advance()
+//        store.receive(
+//            .didSaveSuccessfully(
+//                .success(
+//                    QuickWorkout(
+//                        id: UUID(uuidString: "00000000-0000-0000-0000-000000000003")!,
+//                        name: "My Workout",
+//                        color: WorkoutColor(color: TintColor.default.color),
+//                        countdown: 3,
+//                        segments: [
+//                            QuickWorkoutSegment(
+//                                id: UUID(uuidString: "00000000-0000-0000-0000-000000000001")!,
+//                                name: "Exercise 1", sets: 1, work: 60, pause: 30
+//                            )
+//                        ]
+//                    )
 //                )
-//            },
-//            .send(.addSegmentAction(action: .add)) {
-//                $0.segmentStates = [
-//                    SegmentState(id: uuid(), name: "", sets: 2, rest: 20, work: 60)
-//                ]
-//                $0.addSegmentState = nil
-//            },
-//            .receive(.createInterval(.dismiss)),
-//            .send(.editSegment(id: uuid())) {
-//                $0.addSegmentState = AddTimerSegmentState(
-//                    id: uuid(),
-//                    name: "",
-//                    sets: 2,
-//                    workoutTime: 60,
-//                    breakTime: 20,
-//                    isEditing: true
-//                )
-//            },
-//
-//            .send(.addSegmentAction(action: .remove)) {
-//                $0.segmentStates = []
-//                $0.addSegmentState = nil
-//            },
-//            .receive(.createInterval(.dismiss))
+//            )
 //        )
-//    }
+    }
 }

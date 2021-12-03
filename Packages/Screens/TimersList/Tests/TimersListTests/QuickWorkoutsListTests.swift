@@ -1,27 +1,43 @@
 import ComposableArchitecture
 import XCTest
 import DomainEntities
+import CorePersistence
 @testable import TimersList
 
-private let uuid = { UUID(uuidString: "c06e5e63-d74f-4291-8673-35ce994754dc")! }
-private let newWorkout = QuickWorkout(id: uuid(), name: "", color: .empty, segments: [])
+private let uuid = { UUID(uuidString: "00000000-0000-0000-0000-000000000000")! }
+private let scheduler = DispatchQueue.test
 
 class QuickWorkoutsListTests: XCTestCase {
 
-//    func testNavigation() {
-//        let store = TestStore(
-//            initialState: TimersListState(workouts: [newWorkout]),
-//            reducer: timersListReducer,
-//            environment: .mock(
-//                environment: TimersListEnvironment(
-//                    repository: .test,
-//                    notificationClient: .mock
-//                ),
-//                mainQueue: { AnyScheduler(DispatchQueue.testScheduler) },
-//                uuid: uuid
-//            )
-//        )
-//
+    func testFetchTimers() {
+        var repo = QuickWorkoutsRepository.test
+        repo.fetchAllWorkouts = { Effect(value: [Mocks.mockQuickWorkout1]).eraseToAnyPublisher() }
+        
+        let store = TestStore(
+            initialState: TimersListState(workouts: []),
+            reducer: timersListReducer,
+            environment: .mock(
+                environment: TimersListEnvironment(
+                    repository: repo,
+                    notificationClient: .mock
+                ),
+                mainQueue: scheduler.eraseToAnyScheduler,
+                uuid: uuid
+            )
+        )
+        
+        store.send(.onAppear) {
+            $0.loadingState = .loading
+        }
+        scheduler.advance()
+        store.receive(.didFetchWorkouts(.success([Mocks.mockQuickWorkout1]))) {
+            $0.workouts = [Mocks.mockQuickWorkout1]
+            $0.workoutStates = [TimerCardState(workout: Mocks.mockQuickWorkout1)]
+            $0.loadingState = .finished
+        }
+        
+        scheduler.run()
+
 //        store.assert(
 //            .send(.settings(.present)) {
 //                $0.isPresentingSettings = true
@@ -41,5 +57,5 @@ class QuickWorkoutsListTests: XCTestCase {
 //                $0.isPresentingTimerForm = false
 //            }
 //        )
-//    }
+    }
 }

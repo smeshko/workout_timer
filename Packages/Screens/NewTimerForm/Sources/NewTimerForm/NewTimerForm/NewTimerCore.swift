@@ -101,7 +101,6 @@ Reducer<NewTimerFormState, NewTimerFormAction, SystemEnvironment<NewTimerFormEnv
         action: /NewTimerFormAction.segmentAction,
         environment: { _ in SegmentEnvironment() }
     )
-
 )
     .binding()
 
