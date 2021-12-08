@@ -12,20 +12,15 @@ struct SegmentView: View {
                 VStack(alignment: .leading, spacing: Spacing.xs) {
                     TextField("exercise name", text: viewStore.binding(\.$name))
                         .focused(isInputActive.projectedValue)
-                        .font(.h3)
-                        .foregroundColor(viewStore.color)
+                        .styling(font: .h3, color: viewStore.color)
 
                     Text("Rest")
-                        .font(.h3)
-                        .foregroundColor(.appPrimary)
+                        .styling(font: .h3, color: .appPrimary)
 
                     Text("Sets")
-                        .font(.h3)
-                        .foregroundColor(.appSuccess)
+                        .styling(font: .h3, color: .appSuccess)
                 }
-
-                Spacer()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
 
                 VStack(alignment: .leading, spacing: Spacing.xs) {
                     DurationSetView(value: viewStore.binding(\.$work), step: 5, timeFormatted: true)
@@ -49,22 +44,18 @@ struct DurationSetView: View {
                 value -= step
             } label: {
                 Image(systemName: "minus")
-                    .font(.h4)
-                    .foregroundColor(.appText)
+                    .styling(font: .h4)
             }
             .buttonStyle(BorderlessButtonStyle())
 
             Text(timeFormatted ? value.formattedTimeLeft : "\(value)")
-                .font(.h3)
-                .monospacedDigit()
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                .styling(font: .h3.monospacedDigit())
 
             Button {
                 value += step
             } label: {
                 Image(systemName: "plus")
-                    .font(.h4)
-                    .foregroundColor(.appText)
+                    .styling(font: .h4)
             }
             .buttonStyle(BorderlessButtonStyle())
         }

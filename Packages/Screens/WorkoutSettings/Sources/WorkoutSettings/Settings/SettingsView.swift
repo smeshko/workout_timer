@@ -22,14 +22,14 @@ public struct SettingsView: View {
                         Toggle("settings_enable_sound".localized, isOn: viewStore.binding(\.$isSoundEnabled))
                         Text(key: "settings_enable_sound_descr")
                             .fixedSize(horizontal: false, vertical: true)
-                            .font(.bodySmall)
+                            .styling(font: .bodySmall)
                             .padding(.bottom, Spacing.xxs)
                     }
                     VStack(alignment: .leading) {
                         Toggle("settings_keep_screen".localized, isOn: viewStore.binding(\.$keepScreenActive))
                         Text(key: "settings_keep_screen_descr")
                             .fixedSize(horizontal: false, vertical: true)
-                            .font(.bodySmall)
+                            .styling(font: .bodySmall)
                             .padding(.bottom, Spacing.xxs)
                     }
                 }

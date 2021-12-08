@@ -29,9 +29,7 @@ public struct TintColor: Identifiable, Equatable, Hashable {
         ]
     }
 
-    public static var `default`: TintColor {
-        TintColor(name: "Zomp", color: Color(red: 67 / 255, green: 170 / 255, blue: 139 / 255))
-    }
+    public static let `default` = TintColor(name: "Zomp", color: Color(red: 67 / 255, green: 170 / 255, blue: 139 / 255))
 
     public func hash(into hasher: inout Hasher) {
         hasher.combine(name)

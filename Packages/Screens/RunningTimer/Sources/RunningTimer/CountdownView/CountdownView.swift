@@ -15,8 +15,7 @@ public struct CountdownView: View {
             VStack {
                 Spacer()
                 Text("\(viewStore.timeLeft)")
-                    .font(.giganticMono)
-                    .foregroundColor(.appWhite)
+                    .styling(font: .gigantic.monospacedDigit(), color: .appWhite)
                 Spacer()
             }
             
@@ -24,8 +23,7 @@ public struct CountdownView: View {
                 viewStore.send(.skip)
             } label: {
                 Text("Skip")
-                    .font(.h4)
-                    .foregroundColor(.appWhite)
+                    .styling(font: .h4, color: .appWhite)
             }
             .padding(.vertical, Spacing.m)
             .padding(.horizontal, Spacing.xl)

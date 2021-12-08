@@ -11,22 +11,19 @@ struct WorkoutPreview: View {
             VStack(alignment: .leading) {
                 HStack(alignment: .center) {
                     Text(viewStore.workout.name)
-                        .font(.h1)
-                        .foregroundColor(.appWhite)
+                        .styling(font: .h1)
 
                     Spacer()
 
                     Text("mins".localized(viewStore.duration))
-                        .font(.h2)
-                        .foregroundColor(.appWhite)
+                        .styling(font: .h2)
                 }
 
                 ScrollView(.vertical) {
                     ForEach(viewStore.workout.segments) { segment in
                         VStack(alignment: .leading) {
                             Text("\(segment.sets)x \(segment.name)")
-                                .font(.h2)
-                                .foregroundColor(.appWhite)
+                                .styling(font: .h2)
 
 
                             HStack {

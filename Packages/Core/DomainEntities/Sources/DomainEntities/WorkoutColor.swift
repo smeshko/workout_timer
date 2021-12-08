@@ -23,7 +23,5 @@ public class WorkoutColor: NSObject, NSCoding {
         coder.encode(brightness, forKey: "brightness")
     }
 
-    public static var empty: WorkoutColor {
-        WorkoutColor(hue: 0, saturation: 0, brightness: 0)
-    }
+    public static let empty = WorkoutColor(hue: 0, saturation: 0, brightness: 0)
 }

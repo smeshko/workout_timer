@@ -19,14 +19,14 @@ struct TimerCardView: View {
         HStack {
             VStack(alignment: .leading, spacing: Spacing.xxl) {
                 Text(viewStore.workout.name)
-                    .font(.h1)
+                    .styling(font: .h1)
 
                 HStack(spacing: Spacing.s) {
                     Text("mins".localized(viewStore.duration))
-                        .font(.h3)
+                        .styling(font: .h3)
 
                     Text("rounds".localized(viewStore.segmentsCount))
-                        .font(.bodyRegular)
+                        .styling(font: .bodyRegular)
                 }
             }
             .contentShape(Rectangle())
@@ -43,8 +43,7 @@ struct TimerCardView: View {
                     Button(key: "delete", role: .destructive, action: { viewStore.send(.delete) })
                 } label: {
                     Image(systemName: "ellipsis")
-                        .foregroundColor(.appText)
-                        .font(.h2)
+                        .styling(font: .h2)
                 }
                 .frame(width: 40, height: 40)
 

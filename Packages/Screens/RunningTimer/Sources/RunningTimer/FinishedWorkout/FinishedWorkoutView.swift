@@ -16,48 +16,40 @@ struct FinishedWorkoutView: View {
             Spacer()
             ZStack {
                 Text(key: "congratulations")
-                    .font(.h1)
-                    .foregroundColor(viewStore.workout.workout.color.color)
+                    .styling(font: .h1, color: viewStore.workout.workout.color.color)
 
                 Confetti()
             }
 
             Text(key: "finished_greeting")
-                .font(.h2)
-                .foregroundColor(.appText)
+                .styling(font: .h2)
             
             Spacer()
 
             VStack(spacing: Spacing.xxs) {
                 Text("Estimated burned calories")
-                    .font(.h2)
-                    .foregroundColor(viewStore.workout.workout.color.color)
+                    .styling(font: .h2, color: viewStore.workout.workout.color.color)
                 Text("\(viewStore.caloriesBurned)")
-                    .font(.bodyRegular)
-                    .foregroundColor(.appGrey)
+                    .styling(font: .bodyRegular, color: .appGrey)
             }
 
             VStack(spacing: Spacing.xxs) {
                 Text("Total time")
-                    .font(.h2)
-                    .foregroundColor(viewStore.workout.workout.color.color)
+                    .styling(font: .h2, color: viewStore.workout.workout.color.color)
+
                 Text(viewStore.workout.totalDuration.formattedTimeLeft)
-                    .font(.bodyRegular)
-                    .foregroundColor(.appGrey)
+                    .styling(font: .bodyRegular, color: .appGrey)
             }
 
             VStack(spacing: Spacing.xxs) {
                 Text("Date")
-                    .font(.h2)
-                    .foregroundColor(viewStore.workout.workout.color.color)
+                    .styling(font: .h2, color: viewStore.workout.workout.color.color)
                 
                 Text("\(viewStore.workout.startDate.formatted(date: .abbreviated, time: .omitted))")
-                        .font(.bodyRegular)
-                        .foregroundColor(.appGrey)
+                    .styling(font: .bodyRegular, color: .appGrey)
                      
                 Text("\(viewStore.workout.startDate.formatted(date: .omitted, time: .shortened)) - \(viewStore.workout.finishDate.formatted(date: .omitted, time: .shortened))")
-                    .font(.bodyRegular)
-                    .foregroundColor(.appGrey)
+                    .styling(font: .bodyRegular, color: .appGrey)
             }
 
             Spacer()
@@ -66,8 +58,7 @@ struct FinishedWorkoutView: View {
                 viewStore.send(.closeButtonTapped)
             }) {
                 Text("Done")
-                    .font(.h2)
-                    .foregroundColor(.appWhite)
+                    .styling(font: .h2)
             }
             .padding(.vertical, Spacing.m)
             .padding(.horizontal, Spacing.xl)

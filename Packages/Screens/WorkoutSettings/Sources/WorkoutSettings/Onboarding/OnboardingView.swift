@@ -28,8 +28,7 @@ public struct OnboardingView: View {
     public var body: some View {
         VStack(spacing: Spacing.xl) {
             Text("Welcome!")
-                .font(.gigantic)
-                .foregroundColor(.appText)
+                .styling(font: .gigantic)
 
             Spacer()
 
@@ -54,10 +53,9 @@ public struct OnboardingView: View {
             }, label: {
                 Text(key: "start")
                     .padding(.vertical, Spacing.m)
-                    .font(.h3)
+                    .styling(font: .h3, color: .appWhite)
                     .frame(minWidth: 0, maxWidth: .infinity)
                     .background(Color.blue)
-                    .foregroundColor(.appWhite)
                     .cornerRadius(CornerRadius.m)
             })
         }
@@ -94,15 +92,14 @@ private struct InfoView: View {
     var body: some View {
         HStack(alignment: .top) {
             Image(systemName: image)
-                .foregroundColor(color)
-                .font(.h1)
+                .styling(font: .h1, color: color)
                 .frame(width: 40, height: 40, alignment: .top)
 
             VStack(alignment: .leading, spacing: Spacing.xxs) {
                 Text(key: title)
-                    .font(.h3)
+                    .styling(font: .h3)
                 Text(key: text)
-                    .font(.bodyRegular)
+                    .styling(font: .bodyRegular)
             }
             Spacer()
         }

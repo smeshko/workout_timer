@@ -13,7 +13,6 @@ private let uuid: () -> UUID = {
     return UUID(uuidString: "00000000-0000-0000-0000-00000000000\(uuidIndex)")!
 }
 private let scheduler = DispatchQueue.test
-private let newWorkout = QuickWorkout(id: uuid(), name: "", color: .empty, countdown: 3, segments: [])
 
 private let segmentState1 = SegmentState(
     id: UUID(uuidString: "00000000-0000-0000-0000-000000000001")!, name: "Exercise 1",
@@ -53,26 +52,12 @@ class NewTimerFormTests: XCTestCase {
         store.send(.deleteSegments([0])) {
             $0.segmentStates = [segmentState1]
         }
-//        store.send(.save)
-//        scheduler.advance()
-//        store.receive(
-//            .didSaveSuccessfully(
-//                .success(
-//                    QuickWorkout(
-//                        id: UUID(uuidString: "00000000-0000-0000-0000-000000000003")!,
-//                        name: "My Workout",
-//                        color: WorkoutColor(color: TintColor.default.color),
-//                        countdown: 3,
-//                        segments: [
-//                            QuickWorkoutSegment(
-//                                id: UUID(uuidString: "00000000-0000-0000-0000-000000000001")!,
-//                                name: "Exercise 1", sets: 1, work: 60, pause: 30
-//                            )
-//                        ]
-//                    )
-//                )
-//            )
-//        )
+        store.send(.binding(.set(\.$countdown, 0))) {
+            $0.countdown = 1
+        }
+        store.send(.binding(.set(\.$countdown, 2))) {
+            $0.countdown = 2
+        }
     }
 
     func testEditFlow() {
@@ -110,25 +95,5 @@ class NewTimerFormTests: XCTestCase {
                 segmentState2
             ]
         }
-//        store.send(.save)
-//        scheduler.advance()
-//        store.receive(
-//            .didSaveSuccessfully(
-//                .success(
-//                    QuickWorkout(
-//                        id: UUID(uuidString: "00000000-0000-0000-0000-000000000003")!,
-//                        name: "My Workout",
-//                        color: WorkoutColor(color: TintColor.default.color),
-//                        countdown: 3,
-//                        segments: [
-//                            QuickWorkoutSegment(
-//                                id: UUID(uuidString: "00000000-0000-0000-0000-000000000001")!,
-//                                name: "Exercise 1", sets: 1, work: 60, pause: 30
-//                            )
-//                        ]
-//                    )
-//                )
-//            )
-//        )
     }
 }

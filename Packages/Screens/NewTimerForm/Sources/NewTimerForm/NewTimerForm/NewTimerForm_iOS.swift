@@ -26,7 +26,7 @@ public struct NewTimerForm: View {
                         } label: {
                             HStack {
                                 Text("Pick a Color")
-                                    .font(.bodyRegular)
+                                    .styling(font: .bodyRegular)
 
                                 Spacer()
 
@@ -40,11 +40,8 @@ public struct NewTimerForm: View {
                     Section("Countdown") {
                         HStack {
                             Text("Countdown")
-                                .font(.h3)
-                                .foregroundColor(.appText)
-
-                            Spacer()
-                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .styling(font: .h3)
+                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
                             
                             DurationSetView(value: viewStore.binding(\.$countdown), step: 1, timeFormatted: true)
                         }
@@ -79,10 +76,10 @@ public struct NewTimerForm: View {
                             Button("+") {
                                 viewStore.send(.addEmptySegment, animation: .default)
                             }
-                            .font(.h2)
-                            .foregroundColor(.appText)
+                            .styling(font: .h2)
 
-                            Spacer() }
+                            Spacer()
+                        }
 
                     }
                 }
@@ -153,7 +150,7 @@ private struct ColorPickerView: View {
                             .foregroundColor(color.color)
 
                         Text(color.name)
-                            .font(.bodyRegular)
+                            .styling(font: .bodyRegular)
 
                         Spacer()
 

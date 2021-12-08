@@ -62,8 +62,7 @@ private struct CustomCircularProgressViewStyle: ProgressViewStyle {
                 .rotationEffect(.degrees(270))
             
             Image(systemName: isRunning ? "pause.fill" : "play.fill")
-                .font(.gigantic)
-                .foregroundColor(.appWhite)
+                .styling(font: .gigantic, color: .appWhite)
         }
         .contentShape(Circle())
     }
@@ -125,12 +124,10 @@ private struct TimerWrapper: View {
                     
                     VStack {
                         Text(viewStore.totalTimeLeft.formattedTimeLeft)
-                            .font(.h1.monospacedDigit())
-                            .foregroundColor(.appWhite)
+                            .styling(font: .h1.monospacedDigit(), color: .appWhite)
                         
                         Text("Remaining")
-                            .font(.h4)
-                            .foregroundColor(.appWhite)
+                            .styling(font: .h4, color: .appWhite)
                     }
                     
                     Spacer()
@@ -142,8 +139,7 @@ private struct TimerWrapper: View {
                         viewStore.send(.toggleSound)
                     } label: {
                         Image(systemName: viewStore.isSoundEnabled ? "bell.fill" : "bell.slash.fill")
-                            .font(.h2.bold())
-                            .foregroundColor(.appWhite)
+                            .styling(font: .h2.bold(), color: .appWhite)
                     }
 
                     Spacer()
@@ -152,8 +148,7 @@ private struct TimerWrapper: View {
                         viewStore.send(.closeButtonTapped)
                     }) {
                         Image(systemName: "xmark")
-                            .font(.h2.bold())
-                            .foregroundColor(.appWhite)
+                            .styling(font: .h2.bold(), color: .appWhite)
                     }
                 }
             }
@@ -168,20 +163,17 @@ private struct TimerWrapper: View {
             
             VStack(spacing: Spacing.xxs) {
                 Text(viewStore.currentSection?.timeLeft.formattedTimeLeft ?? "")
-                    .font(.giganticMono)
-                    .foregroundColor(.appWhite)
+                    .styling(font: .gigantic.monospacedDigit(), color: .appWhite)
                 
                 Text(viewStore.currentSection?.name ?? "")
-                    .font(.h1)
-                    .foregroundColor(.appWhite)
+                    .styling(font: .h1, color: .appWhite)
             }
             
             Button {
                 viewStore.send(.next)
             } label: {
                 Text("Skip")
-                    .font(.h4)
-                    .foregroundColor(.appWhite)
+                    .styling(font: .h4, color: .appWhite)
             }
             .disabled(viewStore.nextSection == nil)
             .padding(.vertical, Spacing.m)
@@ -190,11 +182,10 @@ private struct TimerWrapper: View {
             
             VStack(spacing: Spacing.xxs) {
                 Text("\(viewStore.finishedWorkSections + 1)/\(viewStore.totalWorkSections)")
-                    .font(.h3)
-                    .foregroundColor(.appWhite)
+                    .styling(font: .h3, color: .appWhite)
+
                 Text("Intervals")
-                    .font(.h4)
-                    .foregroundColor(.appWhite)
+                    .styling(font: .h4, color: .appWhite)
             }
             
             ProgressView(value: viewStore.totalTimeExpired, total: viewStore.timerSections.totalDuration)

@@ -19,13 +19,11 @@ struct NoWorkoutsView: View {
                             .frame(width: 125, height: 125)
 
                         Image(systemName: "plus")
-                            .font(.gigantic)
-                            .foregroundColor(.appWhite)
+                            .styling(font: .gigantic)
                     }
                 })
                 Text(key: "first_workout")
-                    .font(.h2)
-                    .foregroundColor(.appText)
+                    .styling(font: .h2)
             }
             .sheet(isPresented: viewStore.binding(get: { $0 } )) {
                 IfLetStore(
