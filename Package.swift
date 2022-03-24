@@ -27,7 +27,7 @@ let package = Package(
         .target(product: .coreLogic, dependencies: [Dependencies.composableArchitecture], resources: [.roundOver]),
 
         .target(product: .settingsFeature, dependencies: [Products.coreInterface, .coreLogic]),
-        .target(product: .runningTimerFeature, dependencies: [Products.coreInterface, .corePersistence]),
+        .target(product: .runningTimerFeature, dependencies: [Products.coreInterface, .corePersistence, .coreLogic]),
         .target(product: .newTimerFeature, dependencies: [Products.coreInterface, .corePersistence, .coreLogic]),
         .target(product: .timersListFeature, dependencies: [Products.settingsFeature, .runningTimerFeature, .newTimerFeature]),
         .target(product: .appFeature, dependencies: [Products.settingsFeature, .runningTimerFeature, .newTimerFeature, .timersListFeature]),

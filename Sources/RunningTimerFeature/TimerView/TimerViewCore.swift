@@ -48,7 +48,7 @@ public struct TimerViewState: Equatable {
     public init(workout: QuickWorkout) {
         self.workout = workout
         self.countdownState = CountdownState(timeLeft: TimeInterval(workout.countdown))
-        self.timerSections = IdentifiedArray(uniqueElements: workout.segments.map(TimerSection.create(from:)).flatMap { $0 }.dropLast())
+        self.timerSections = IdentifiedArray(uniqueElements: workout.segments.map(TimerSection.create(from:)).flatMap { $0 }.dropLast(if: { $0.count > 1 }))
         self.totalTimeLeft = timerSections.totalDuration
     }
 }
@@ -228,5 +228,14 @@ extension TimerViewState {
 private extension TimerViewState {
     var shouldGoToFinishedScreen: Bool {
         actualTimeExpired >= timerSections.totalDuration - (timerSections.totalDuration * 2) / 3
+    }
+}
+
+private extension Array {
+    func dropLast(if predicate: (Array) -> Bool) -> Array {
+        if predicate(self) {
+            return dropLast()
+        }
+        return self
     }
 }
