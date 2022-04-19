@@ -7,6 +7,10 @@ let package = Package(
     defaultLocalization: "en",
     platforms: [.iOS(.v15), .macOS(.v10_15)],
     products: [
+        .library(name: "ServiceRegistry", targets: ["ServiceRegistry"]),
+        .library(name: "TestMocks", targets: ["TestMocks"]),
+        .library(name: "TestUtilities", targets: ["TestUtilities"]),
+
         .library(product: .entities),
         .library(product: .coreLogic),
         .library(product: .coreInterface),
@@ -21,6 +25,10 @@ let package = Package(
         .package(dependency: .composableArchitecture)
     ],
     targets: [
+        .target(name: "ServiceRegistry"),
+
+        .target(name: "TestUtilities", dependencies: []),
+        .target(name: "TestMocks", dependencies: ["TestUtilities", "ServiceRegistry"]),
         .target(product: .entities),
         .target(product: .corePersistence, dependencies: [Products.entities]),
         .target(product: .coreInterface, dependencies: [Products.entities, Dependencies.composableArchitecture]),

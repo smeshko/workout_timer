@@ -74,17 +74,17 @@ public struct SettingsView: View {
     }
 }
 
-//struct SettingsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SettingsView(
-//            store: Store<SettingsState, SettingsAction>(
-//                initialState: SettingsState(),
-//                reducer: settingsReducer,
-//                environment: SettingsEnvironment(client: .mock)
-//            )
-//        )
-//    }
-//}
+struct SettingsView_Previews: PreviewProvider {
+    static var previews: some View {
+        SettingsView(
+            store: Store<SettingsState, SettingsAction>(
+                initialState: SettingsState(),
+                reducer: settingsReducer,
+                environment: SettingsEnvironment(client: .mock)
+            )
+        )
+    }
+}
 
 private struct OnboardingButton: View {
     private let store: Store<SettingsState, SettingsAction>
