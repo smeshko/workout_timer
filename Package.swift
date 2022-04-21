@@ -10,7 +10,7 @@ let package = Package(
         .library(name: "ServiceRegistry", targets: ["ServiceRegistry"]),
         .library(name: "TestMocks", targets: ["TestMocks"]),
         .library(name: "TestUtilities", targets: ["TestUtilities"]),
-
+        .library(name: "NetworkClient", targets: ["NetworkClient"]),
         .library(product: .entities),
         .library(product: .coreLogic),
         .library(product: .coreInterface),
@@ -22,13 +22,20 @@ let package = Package(
         .library(product: .appFeature),
     ],
     dependencies: [
-        .package(dependency: .composableArchitecture)
+        .package(dependency: .composableArchitecture),
+            .package(url: "https://github.com/apple/swift-collections.git", .upToNextMajor(from: "1.0.0")),
+
     ],
     targets: [
-        .target(name: "ServiceRegistry"),
+        .target(name: "ServiceRegistry", dependencies: [.product(name: "Collections", package: "swift-collections")]),
 
         .target(name: "TestUtilities", dependencies: []),
         .target(name: "TestMocks", dependencies: ["TestUtilities", "ServiceRegistry"]),
+
+        .target(name: "NetworkClient", dependencies: ["ServiceRegistry"]),
+        .testTarget(name: "NetworkClientTests", dependencies: ["NetworkClient", "TestUtilities", "TestMocks"]),
+
+
         .target(product: .entities),
         .target(product: .corePersistence, dependencies: [Products.entities]),
         .target(product: .coreInterface, dependencies: [Products.entities, Dependencies.composableArchitecture]),
