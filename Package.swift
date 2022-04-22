@@ -11,6 +11,8 @@ let package = Package(
         .library(name: "TestMocks", targets: ["TestMocks"]),
         .library(name: "TestUtilities", targets: ["TestUtilities"]),
         .library(name: "NetworkClient", targets: ["NetworkClient"]),
+        .library(name: "LocalStorageClient", targets: ["LocalStorageClient"]),
+
         .library(product: .entities),
         .library(product: .coreLogic),
         .library(product: .coreInterface),
@@ -35,6 +37,8 @@ let package = Package(
         .target(name: "NetworkClient", dependencies: ["ServiceRegistry"]),
         .testTarget(name: "NetworkClientTests", dependencies: ["NetworkClient", "TestUtilities", "TestMocks"]),
 
+        .target(name: "LocalStorageClient", dependencies: ["ServiceRegistry", "DomainEntities"]),
+        .testTarget(name: "LocalStorageClientTests", dependencies: ["LocalStorageClient", "TestUtilities", "TestMocks"]),
 
         .target(product: .entities),
         .target(product: .corePersistence, dependencies: [Products.entities]),
