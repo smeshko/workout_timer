@@ -13,6 +13,7 @@ let package = Package(
         .library(name: "NetworkClient", targets: ["NetworkClient"]),
         .library(name: "LocalStorageClient", targets: ["LocalStorageClient"]),
         .library(name: "CalorieCalculatorClient", targets: ["CalorieCalculatorClient"]),
+        .library(name: "SettingsClient", targets: ["SettingsClient"]),
 
         .library(product: .entities),
         .library(product: .coreLogic),
@@ -26,8 +27,7 @@ let package = Package(
     ],
     dependencies: [
         .package(dependency: .composableArchitecture),
-            .package(url: "https://github.com/apple/swift-collections.git", .upToNextMajor(from: "1.0.0")),
-
+        .package(url: "https://github.com/apple/swift-collections.git", .upToNextMajor(from: "1.0.0")),
     ],
     targets: [
         .target(name: "ServiceRegistry", dependencies: [.product(name: "Collections", package: "swift-collections")]),
@@ -44,6 +44,8 @@ let package = Package(
         .target(name: "CalorieCalculatorClient", dependencies: ["ServiceRegistry"]),
         .testTarget(name: "CalorieCalculatorClientTests", dependencies: ["CalorieCalculatorClient", "TestUtilities", "TestMocks"]),
 
+        .target(name: "SettingsClient", dependencies: ["ServiceRegistry"]),
+        .testTarget(name: "SettingsClientTests", dependencies: ["SettingsClient", "TestUtilities", "TestMocks"]),
         .target(product: .entities),
         .target(product: .corePersistence, dependencies: [Products.entities]),
         .target(product: .coreInterface, dependencies: [Products.entities, Dependencies.composableArchitecture]),
