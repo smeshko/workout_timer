@@ -14,6 +14,7 @@ let package = Package(
         .library(name: "LocalStorageClient", targets: ["LocalStorageClient"]),
         .library(name: "CalorieCalculatorClient", targets: ["CalorieCalculatorClient"]),
         .library(name: "SettingsClient", targets: ["SettingsClient"]),
+        .library(name: "LocalNotificationClient", targets: ["LocalNotificationClient"]),
 
         .library(product: .entities),
         .library(product: .coreLogic),
@@ -46,6 +47,9 @@ let package = Package(
 
         .target(name: "SettingsClient", dependencies: ["ServiceRegistry"]),
         .testTarget(name: "SettingsClientTests", dependencies: ["SettingsClient", "TestUtilities", "TestMocks"]),
+
+        .target(name: "LocalNotificationClient", dependencies: ["ServiceRegistry"]),
+        .testTarget(name: "LocalNotificationClientTests", dependencies: ["LocalNotificationClient", "TestUtilities", "TestMocks"]),
         .target(product: .entities),
         .target(product: .corePersistence, dependencies: [Products.entities]),
         .target(product: .coreInterface, dependencies: [Products.entities, Dependencies.composableArchitecture]),
