@@ -115,7 +115,7 @@ func createServiceMock() throws {
 
     let mocksPath = mocksDirectoryPath.appending("/\(prefix)ServiceMock.swift")
     let mocksUrl = URL(fileURLWithPath: mocksPath)
-    try serviceCode.write(to: mocksUrl, atomically: true, encoding: .utf8)
+    try serviceMockCode.write(to: mocksUrl, atomically: true, encoding: .utf8)
 
     print("\(Color.green.rawValue)Generated service mock file!\n")
 }
