@@ -1,6 +1,12 @@
 import Foundation
 import OrderedCollections
 
+public enum NetworkError: Error {
+    case wrongUrl
+    case incorrectResponse
+    case invalidToken
+}
+
 public enum HTTPMethod: String {
     case get = "GET"
     case post = "POST"

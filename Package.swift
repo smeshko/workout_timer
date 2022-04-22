@@ -15,6 +15,7 @@ let package = Package(
         .library(name: "CalorieCalculatorClient", targets: ["CalorieCalculatorClient"]),
         .library(name: "SettingsClient", targets: ["SettingsClient"]),
         .library(name: "LocalNotificationClient", targets: ["LocalNotificationClient"]),
+        .library(name: "SoundClient", targets: ["SoundClient"]),
 
         .library(product: .entities),
         .library(product: .coreLogic),
@@ -31,7 +32,7 @@ let package = Package(
         .package(url: "https://github.com/apple/swift-collections.git", .upToNextMajor(from: "1.0.0")),
     ],
     targets: [
-        .target(name: "ServiceRegistry", dependencies: [.product(name: "Collections", package: "swift-collections")]),
+        .target(name: "ServiceRegistry", dependencies: ["DomainEntities", .product(name: "Collections", package: "swift-collections")]),
 
         .target(name: "TestUtilities", dependencies: []),
         .target(name: "TestMocks", dependencies: ["TestUtilities", "ServiceRegistry"]),
@@ -50,6 +51,14 @@ let package = Package(
 
         .target(name: "LocalNotificationClient", dependencies: ["ServiceRegistry"]),
         .testTarget(name: "LocalNotificationClientTests", dependencies: ["LocalNotificationClient", "TestUtilities", "TestMocks"]),
+
+        .target(
+            name: "SoundClient",
+            dependencies: ["ServiceRegistry"],
+            resources: [.process("Assets/round_over.m4a")]
+        ),
+        .testTarget(name: "SoundClientTests", dependencies: ["SoundClient", "TestUtilities", "TestMocks"]),
+
         .target(product: .entities),
         .target(product: .corePersistence, dependencies: [Products.entities]),
         .target(product: .coreInterface, dependencies: [Products.entities, Dependencies.composableArchitecture]),

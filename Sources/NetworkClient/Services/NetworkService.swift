@@ -1,12 +1,6 @@
 import Foundation
 import ServiceRegistry
 
-public enum NetworkError: Error {
-    case wrongUrl
-    case incorrectResponse
-    case invalidToken
-}
-
 public struct NetworkService: NetworkServiceProtocol {
 
     private let session: NetworkSession

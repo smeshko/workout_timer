@@ -1,7 +1,6 @@
 import Foundation
 import TestUtilities
 import ServiceRegistry
-@testable import NetworkClient
 
 public class NetworkServiceMock<T: Decodable>: MockBase, NetworkServiceProtocol {
     public var error: NetworkError?
